@@ -103,13 +103,12 @@ export default function HeroSection() {
             <span className="font-bold text-[#2D2D2D] mx-2">design</span>
             <br />
             <span className="font-normal text-[#999999]">leader based in</span>
+            <span className="inline-block ml-1" style={{ verticalAlign: "text-bottom", marginTop: "-2px" }}>
+              <img src="/mumbai-illustration.png" alt="Mumbai" style={{ height: "1.4em", width: "auto", display: "block" }} />
+            </span>
             <br />
             <span className="font-bold text-[#2D2D2D]">Mumbai,</span>
-            <span className="font-normal text-[#999999] ml-2">India</span>
-            <span className="inline-block ml-1" style={{ verticalAlign: "middle" }}>
-              <img src="/mumbai-illustration.png" alt="Mumbai" style={{ height: "1.1em", width: "auto", display: "block" }} />
-            </span>
-            <span className="font-normal text-[#999999]">.</span>
+            <span className="font-normal text-[#999999] ml-2">India.</span>
           </motion.h1>
         </motion.div>
 
