@@ -12,7 +12,7 @@ export default function Footer() {
           <div>
             <h2
               style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
-              className="text-3xl md:text-4xl leading-tight text-foreground mb-3"
+              className="text-3xl md:text-4xl leading-tight text-foreground mb-1"
             >
               Reach out to connect<br />or collaborate
             </h2>
