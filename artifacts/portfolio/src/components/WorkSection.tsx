@@ -7,6 +7,8 @@ const EXPERIENCES = [
     company: "Atlassian",
     role: "Senior Product Designer",
     period: "Aug 2021 – Present",
+    duration: "4 yrs 8 mos",
+    location: "Remote",
     logo: "https://logo.clearbit.com/atlassian.com",
     icon: "/icon-atlassian.png",
     achievements: [
@@ -18,8 +20,10 @@ const EXPERIENCES = [
   },
   {
     company: "Amazon",
-    role: "Product Designer",
+    role: "User Experience Designer",
     period: "Feb 2019 – Jul 2021",
+    duration: "2 yrs 6 mos",
+    location: "Bengaluru, Karnataka, India",
     logo: "https://logo.clearbit.com/amazon.com",
     icon: "/icon-amazon.png",
     achievements: [
@@ -31,8 +35,10 @@ const EXPERIENCES = [
   },
   {
     company: "Xoriant",
-    role: "Senior Product Designer",
+    role: "Senior User Experience Designer",
     period: "Sep 2016 – Feb 2019",
+    duration: "2 yrs 6 mos",
+    location: "Mumbai Metropolitan Region",
     logo: "https://logo.clearbit.com/xoriant.com",
     icon: "/icon-xoriant.png",
     achievements: [
@@ -43,9 +49,11 @@ const EXPERIENCES = [
     ]
   },
   {
-    company: "Rolta Defence",
-    role: "Product Designer",
+    company: "Rolta India Limited",
+    role: "UX Analyst",
     period: "Feb 2015 – Aug 2016",
+    duration: "1 yr 7 mos",
+    location: "Mumbai, Maharashtra, India",
     logo: null,
     icon: "/icon-rolta.png",
     achievements: [
@@ -54,18 +62,26 @@ const EXPERIENCES = [
       "Established human-factors research protocols for defense systems, conducting cognitive load testing and workload assessments with active military personnel. Influenced design standards adopted across Rolta Defence's portfolio, improving usability for systems serving 10,000+ users.",
       "Led design quality assurance for field deployments, identifying critical usability issues during pre-launch testing. Iterated on 47+ design changes to meet zero-error requirements, ensuring system reliability in mission-critical scenarios."
     ]
+  },
+  {
+    company: "L&T Infotech",
+    role: "UX Designer",
+    period: "Jul 2012 – Sep 2014",
+    duration: "2 yrs 3 mos",
+    location: "Mumbai Metropolitan Region",
+    logo: "https://logo.clearbit.com/ltinfotech.com",
+    icon: null,
+    achievements: [
+      "Established foundational UX practices at L&T Infotech, designing enterprise software interfaces for global clients in financial services, healthcare, and retail sectors. Conducted user research across 12+ organizations, translating complex business workflows into intuitive digital solutions.",
+      "Led redesign of a legacy financial management system, improving task completion rates by 67% and reducing training time from 8 hours to 2 hours. Designed data-heavy dashboards and report generation tools that became templates for future enterprise applications.",
+      "Collaborated with offshore development teams in India and onshore stakeholders, establishing design communication standards and bridging timezone collaboration gaps. Created design documentation systems adopted company-wide, improving handoff efficiency by 45%.",
+      "Mentored 2 junior UX designers and contributed to UX process documentation, establishing the company's first formal user research methodology. Advocated for user-centered design culture in an engineering-focused organization, conducting 6+ design workshops."
+    ]
   }
 ];
 
-function ExperienceRow({ company, role, period, logo, icon, achievements, isFirst }: typeof EXPERIENCES[0] & { isFirst?: boolean }) {
+function ExperienceRow({ company, role, period, duration, location, logo, icon, achievements, isFirst }: typeof EXPERIENCES[0] & { isFirst?: boolean }) {
   const [isExpanded, setIsExpanded] = useState(isFirst ?? false);
-  const extractYearRange = () => {
-    const parts = period.split(" ");
-    const start = parts[parts.length - 3];
-    const end = parts[parts.length - 1];
-    if (end === "Present") return `${start} - Present`;
-    return `${start} - ${end}`;
-  };
   const isActive = period.includes("Present");
   
   return (
@@ -75,18 +91,25 @@ function ExperienceRow({ company, role, period, logo, icon, achievements, isFirs
         onClick={() => setIsExpanded(!isExpanded)}
         whileHover={{ backgroundColor: "rgba(0,0,0,0.02)" }}
       >
-        <div className="h-10 w-10 flex-shrink-0 flex items-center justify-center rounded-lg overflow-hidden">
-          <img src={icon} alt={company} className="h-full w-full object-cover" />
+        <div className="h-10 w-10 flex-shrink-0 flex items-center justify-center rounded-lg overflow-hidden bg-blue-100">
+          {icon ? (
+            <img src={icon} alt={company} className="h-full w-full object-cover" />
+          ) : (
+            <span className="text-sm font-bold text-blue-700">LTI</span>
+          )}
         </div>
         
         <div className="flex-1 min-w-0">
-          <p className="text-base font-bold text-foreground">{company}</p>
-          <p className="text-sm text-muted-foreground">{role}</p>
+          <p className="text-base font-bold text-foreground">{role}</p>
+          <p className="text-sm text-muted-foreground">{company}</p>
+          {location && <p className="text-xs text-muted-foreground/70">{location}</p>}
         </div>
         
         <div className={`px-3 py-1.5 rounded-full text-sm font-medium flex-shrink-0 min-w-max flex items-center gap-2 ${isActive ? "bg-green-100 text-green-900" : "bg-muted text-foreground"}`}>
           {isActive && <div className="w-2 h-2 rounded-full bg-green-500" />}
-          {extractYearRange()}
+          <span>{period}</span>
+          {duration && <span className="text-xs opacity-75">·</span>}
+          {duration && <span className="text-xs">{duration}</span>}
         </div>
 
         <motion.div
@@ -143,6 +166,8 @@ export default function WorkSection() {
             company={exp.company}
             role={exp.role}
             period={exp.period}
+            duration={exp.duration}
+            location={exp.location}
             logo={exp.logo}
             icon={exp.icon}
             achievements={exp.achievements}
