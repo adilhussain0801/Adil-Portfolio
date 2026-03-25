@@ -105,7 +105,11 @@ export default function HeroSection() {
             <span className="font-normal text-[#999999]">leader based in</span>
             <br />
             <span className="font-bold text-[#2D2D2D]">Mumbai,</span>
-            <span className="font-normal text-[#999999] ml-2">India.</span>
+            <span className="font-normal text-[#999999] ml-2">India</span>
+            <span className="inline-block ml-1 -mt-1">
+              <img src="/mumbai-illustration.png" alt="Mumbai" style={{ height: "2em", width: "auto" }} />
+            </span>
+            <span className="font-normal text-[#999999]">.</span>
           </motion.h1>
         </motion.div>
 
