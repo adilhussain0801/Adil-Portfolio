@@ -93,7 +93,7 @@ export default function ClientTicker() {
   const items = CLIENTS;
 
   return (
-    <div className="w-full border-t border-b border-border overflow-hidden relative bg-background">
+    <div className="w-full overflow-hidden relative bg-background">
       <div className="py-6 px-6 md:px-12">
         <h2
           style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
