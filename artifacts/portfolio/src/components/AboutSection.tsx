@@ -2,15 +2,17 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="py-24 md:py-32 px-6 md:px-12 max-w-7xl mx-auto"
+      className="py-24 md:py-32 px-6 md:px-16 max-w-[1440px] mx-auto"
     >
-      <p className="text-xs uppercase tracking-widest text-muted-foreground font-bold mb-12">
-        About
-      </p>
-
       <div className="flex flex-wrap gap-y-16 items-center justify-between">
         {/* Left: Text content */}
         <div className="flex-1 min-w-[320px] max-w-[820px] flex flex-col gap-12">
+          <h2
+            style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+            className="text-3xl md:text-4xl leading-tight text-foreground"
+          >
+            About me
+          </h2>
 
           <div className="flex flex-col gap-6 mr-[36px]">
             <p
