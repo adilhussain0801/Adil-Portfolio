@@ -7,7 +7,7 @@ const EXPERIENCES = [
     role: "Senior Product Designer",
     period: "Aug 2021 – Present",
     logo: "https://logo.clearbit.com/atlassian.com",
-    icon: "⚡",
+    icon: "/icon-atlassian.png",
     achievements: [
       "Designed agentic AI workflows for Jira Service Management, reducing MTTRs by 80–90%",
       "Defined interaction patterns for AI-assisted vs autonomous behavior across the platform",
@@ -20,7 +20,7 @@ const EXPERIENCES = [
     role: "Product Designer",
     period: "Feb 2019 – Jul 2021",
     logo: "https://logo.clearbit.com/amazon.com",
-    icon: "🛍️",
+    icon: "/icon-amazon.png",
     achievements: [
       "Owned post-purchase design strategy for Amazon India: Contact Us, Your Orders, Message Us",
       "Reduced support dependency by significantly increasing self-serve flow adoption",
@@ -32,7 +32,7 @@ const EXPERIENCES = [
     role: "Senior Product Designer",
     period: "Sep 2016 – Feb 2019",
     logo: "https://logo.clearbit.com/xoriant.com",
-    icon: "🔧",
+    icon: "/icon-xoriant.png",
     achievements: [
       "Led design of comprehensive IoT platform for oil & gas operations, focusing on workflow management and incident tracking",
       "Designed predictive systems for equipment downtime and translated complex operational data into actionable insights"
@@ -43,7 +43,7 @@ const EXPERIENCES = [
     role: "Product Designer",
     period: "Feb 2015 – Aug 2016",
     logo: null,
-    icon: "🛡️",
+    icon: "/icon-rolta.png",
     achievements: [
       "Designed mission-critical battlefield management interfaces for the Indian Army",
       "Built real-time visualization systems for complex tactical sources and terrain data"
@@ -61,8 +61,8 @@ function ExperienceRow({ company, role, period, logo, icon, achievements }: type
         className="flex items-center gap-6 py-6 border-b border-border last:border-b-0 group cursor-pointer hover:bg-muted/50 px-4 -mx-4 transition-colors duration-200"
         onClick={() => setIsExpanded(!isExpanded)}
       >
-        <div className="h-10 w-10 flex-shrink-0 flex items-center justify-center text-xl">
-          {icon}
+        <div className="h-10 w-10 flex-shrink-0 flex items-center justify-center rounded-lg overflow-hidden">
+          <img src={icon} alt={company} className="h-full w-full object-cover" />
         </div>
         
         <div className="flex-1 min-w-0">
