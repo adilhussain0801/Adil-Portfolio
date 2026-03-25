@@ -1,0 +1,10 @@
+packages:
+  "framer-motion": "For smooth scroll reveals, page transitions, and expandable experience cards"
+  "lucide-react": "For UI icons like the hamburger menu and arrows"
+
+images: []
+
+notes:
+  - This is a static portfolio site, no backend APIs required.
+  - Using framer-motion for complex layout animations (accordion style experience list).
+  - Wouter is installed but mostly using hash routing for single page scrolling.
