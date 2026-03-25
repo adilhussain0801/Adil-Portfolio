@@ -98,7 +98,6 @@ function ExperienceRow({ company, role, period, duration, location, logo, icon, 
         <div className="flex-1 min-w-0">
           <p className="text-base font-bold text-foreground">{role}</p>
           <p className="text-sm text-muted-foreground">{company}</p>
-          {location && <p className="text-xs text-muted-foreground/70">{location}</p>}
         </div>
         
         <div className={`px-3 py-1.5 rounded-full text-sm font-medium flex-shrink-0 min-w-max flex items-center gap-2 ${isActive ? "bg-green-100 text-green-900" : "bg-muted text-foreground"}`}>
