@@ -1,3 +1,5 @@
+import React from "react";
+
 const CLIENTS = [
   {
     name: "Atlassian",
@@ -60,25 +62,23 @@ function ArmedForcesIcon() {
 }
 
 function ClientItem({ client }: { client: typeof CLIENTS[0] }) {
+  const [imageLoaded, setImageLoaded] = React.useState(true);
+
   return (
-    <div className="flex items-center justify-center shrink-0 px-6 group">
-      <div className="h-12 w-auto flex items-center justify-center">
-        {client.logo ? (
-          <img
-            src={client.logo}
-            alt={client.name}
-            className="h-10 w-auto max-w-[140px] object-contain grayscale opacity-60 group-hover:opacity-100 transition-opacity duration-300"
-            title={client.name}
-            onError={(e) => {
-              (e.target as HTMLImageElement).style.display = "none";
-            }}
-          />
-        ) : (
-          <div className="text-foreground/60 group-hover:text-foreground transition-colors duration-300">
-            <ArmedForcesIcon />
-          </div>
-        )}
-      </div>
+    <div className="flex items-center justify-center shrink-0 px-4 group">
+      {client.logo && imageLoaded ? (
+        <img
+          src={client.logo}
+          alt={client.name}
+          className="h-8 w-auto max-w-[120px] object-contain grayscale opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+          title={client.name}
+          onError={() => setImageLoaded(false)}
+        />
+      ) : (
+        <span className="text-xs font-medium text-foreground/70 group-hover:text-foreground transition-colors duration-300 whitespace-nowrap">
+          {client.name}
+        </span>
+      )}
     </div>
   );
 }
