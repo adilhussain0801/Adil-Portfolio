@@ -1,76 +1,59 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Zap } from "lucide-react";
 import { useState } from "react";
 
 const PROJECTS = [
   {
     id: 1,
     title: "Project Carrara",
-    description: "Improving the customer satisfaction in the post purchase support experience for the customer by minimized friction in the high touch resolution journey",
+    category: "Amazon Post-Purchase",
+    description: "Led cross-functional team to redesign support workflows. Reduced resolution time by 42% through smart routing and self-serve options.",
     year: "2024",
     image: "/project-jira-ai.png",
-    bgColor: "bg-yellow-100",
-    span: "col-span-1 row-span-1",
-    details: "Led cross-functional team to redesign support workflows. Reduced resolution time by 42% through smart routing and self-serve options.",
     metrics: [
-      { label: "CSAT Improvement", value: "34%" },
-      { label: "Tickets Resolved", value: "89%" }
-    ]
+      { label: "SUCCESS", value: "65.2%" },
+    ],
+    colSpan: "md:col-span-1",
+    type: "image",
   },
   {
     id: 2,
     title: "Foresight",
-    description: "Reimagining the post-purchase experience by introducing enhanced self-serve and automation capabilities by reducing reliance on support teams and improving overall efficiency and satisfaction through a seamless self serve experience",
+    category: "Native iOS/Android",
+    description: "Designed AI-powered support automation that reduced support tickets by 32% and improved customer satisfaction across all demographics.",
     year: "2021",
     image: "/project-amazon-orders.png",
-    bgColor: "bg-blue-100",
-    span: "col-span-1 md:col-span-1 row-span-1",
-    details: "Designed AI-powered support automation that reduced support tickets by 32% and improved customer satisfaction across all demographics.",
     metrics: [
-      { label: "Adoption Rate", value: "76%" },
-      { label: "Support Reduction", value: "32%" }
-    ]
+      { label: "ADOPTION", value: "89%" },
+      { label: "MONTHLY ACTIONS", value: "1.5M" },
+    ],
+    colSpan: "md:col-span-2",
+    type: "image",
   },
   {
     id: 3,
     title: "Improve Trust in Marketplace Apps",
-    description: "Privacy and Security details on Marketplace app listings page to highlight the security postures of cloud apps, improving transparency and helping users make informed, trust-based decisions.",
+    category: "Growth & Optimization",
+    description: "Designed transparency features that surfaced security certifications and compliance details, building user confidence in third-party apps.",
     year: "2023",
     image: "/project-iot-platform.png",
-    bgColor: "bg-emerald-100",
-    span: "col-span-1 row-span-1",
-    details: "Designed transparency features that surfaced security certifications and compliance details, building user confidence in third-party apps.",
     metrics: [
-      { label: "User Confidence", value: "+28%" },
-      { label: "Trust Signals", value: "12" }
-    ]
+      { label: "LESSER TICKETS", value: "67%" },
+      { label: "FEWER DETRACTORS", value: "16%" },
+    ],
+    colSpan: "md:col-span-2",
+    type: "image",
   },
   {
     id: 4,
-    title: "Monetization Pathways for Marketplace Partners",
-    description: "A new monetization strategy for Marketplace partners to package their apps. These plans offer flexible pricing options, enabling partners to tailor offerings to different customer needs, driving revenue growth and enhancing customer acquisition.",
-    year: "2022",
-    image: "/project-defense-system.png",
-    bgColor: "bg-rose-100",
-    span: "col-span-1 row-span-1",
-    details: "Created flexible pricing tier system that increased app partner revenue by 145% and reduced churn significantly.",
-    metrics: [
-      { label: "Revenue Growth", value: "+145%" },
-      { label: "Partner Retention", value: "94%" }
-    ]
-  },
-  {
-    id: 5,
-    title: "Design Systems & Component Library",
-    description: "Built modular UI framework reducing development cycles by 40%. Standardized design patterns across enterprise applications and platforms.",
+    title: "How I Use AI",
+    category: "Experiments & Explorations",
+    description: "Explore my experiments, prompt engineering workflows, and AI demos.",
     year: "2023",
-    image: "/project-design-system.png",
-    bgColor: "bg-purple-100",
-    span: "col-span-1 md:col-span-1 row-span-1",
-    details: "Established scalable design system with 200+ components, reducing design-to-dev handoff time and improving consistency.",
-    metrics: [
-      { label: "Dev Time Saved", value: "40%" },
-      { label: "Component Library", value: "200+" }
-    ]
+    image: null,
+    metrics: [],
+    colSpan: "md:col-span-1",
+    type: "special",
+    cta: "VIEW LAB",
   },
 ];
 
@@ -87,93 +70,104 @@ export default function RecentWorkSection() {
           Recent work
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[400px]">
-          {PROJECTS.map((project, index) => {
-            let gridClass = "col-span-1";
-            if (index === 1) gridClass = "col-span-1 md:col-span-2 md:row-span-1 auto-rows-[400px]";
-            if (index === 4) gridClass = "col-span-1 md:col-span-2 auto-rows-[400px]";
-
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[380px]">
+          {PROJECTS.map((project) => {
             const isHovered = hoveredId === project.id;
+
+            if (project.type === "special") {
+              return (
+                <a
+                  key={project.id}
+                  href={`/work/${project.id}`}
+                  className={`group block rounded-2xl overflow-hidden ${project.colSpan} relative cursor-pointer`}
+                  style={{ background: "linear-gradient(135deg, #3d1f6b 0%, #1a1040 50%, #0d0824 100%)" }}
+                  onMouseEnter={() => setHoveredId(project.id)}
+                  onMouseLeave={() => setHoveredId(null)}
+                >
+                  <div className="h-full flex flex-col items-center justify-center p-8 text-center">
+                    <div className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center mb-6 group-hover:bg-white/20 transition-colors">
+                      <Zap size={24} className="text-white" />
+                    </div>
+                    <h3
+                      style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+                      className="text-2xl text-white mb-3"
+                    >
+                      {project.title}
+                    </h3>
+                    <p className="text-sm text-white/70 leading-relaxed mb-8">
+                      {project.description}
+                    </p>
+                    <div className="border border-white/30 rounded-full px-5 py-2 text-xs uppercase tracking-widest font-semibold text-white group-hover:bg-white/10 transition-colors">
+                      {project.cta}
+                    </div>
+                  </div>
+                </a>
+              );
+            }
 
             return (
               <a
                 key={project.id}
                 href={`/work/${project.id}`}
-                className={`group block rounded-lg overflow-hidden ${gridClass} relative cursor-pointer`}
+                className={`group block rounded-2xl overflow-hidden ${project.colSpan} relative cursor-pointer bg-[#111111]`}
                 onMouseEnter={() => setHoveredId(project.id)}
                 onMouseLeave={() => setHoveredId(null)}
               >
-                {/* Base card with image */}
-                <div className="relative h-full rounded-lg overflow-hidden bg-black">
+                {/* Image area */}
+                <div className="relative h-[62%] overflow-hidden">
                   <img
-                    src={project.image}
+                    src={project.image!}
                     alt={project.title}
-                    className={`w-full h-full object-cover transition-all duration-300 ${
-                      isHovered ? "scale-110 blur-sm" : "scale-100"
+                    className={`w-full h-full object-cover transition-all duration-500 ${
+                      isHovered ? "scale-105 brightness-75" : "scale-100 brightness-90"
                     }`}
                   />
+                </div>
 
-                  {/* Default state - minimal overlay */}
-                  <div className={`absolute inset-0 bg-black/40 transition-all duration-300 ${
-                    isHovered ? "bg-black/90" : ""
-                  } flex flex-col justify-end p-6`}>
-                    <h3 className="text-lg md:text-xl font-bold text-white mb-2">
-                      {project.title}
-                    </h3>
-
-                    {!isHovered && (
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs uppercase tracking-widest font-semibold text-white">
-                          View Work
-                        </span>
-                        <ArrowUpRight size={16} className="text-white" />
-                      </div>
-                    )}
+                {/* Bottom info band */}
+                <div className="absolute bottom-0 left-0 right-0 bg-[#111111] px-5 py-4">
+                  {/* Default state */}
+                  <div className={`flex items-start justify-between transition-all duration-300 ${isHovered ? "opacity-0 h-0 overflow-hidden" : "opacity-100"}`}>
+                    <div>
+                      <h3 className="text-base md:text-lg font-bold text-white leading-tight">
+                        {project.title}
+                      </h3>
+                      <p className="text-xs text-white/50 mt-0.5">{project.category}</p>
+                    </div>
+                    <div className="flex gap-4 ml-4">
+                      {project.metrics.map((metric, idx) => (
+                        <div key={idx} className="text-right">
+                          <p className="text-lg md:text-xl font-bold text-[#4ecdc4]">{metric.value}</p>
+                          <p className="text-[10px] uppercase tracking-widest text-white/50">{metric.label}</p>
+                        </div>
+                      ))}
+                    </div>
                   </div>
 
-                  {/* Expanded state - detailed overlay */}
-                  {isHovered && (
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-black flex flex-col justify-between p-6 animate-in fade-in duration-300">
-                      {/* Top section */}
-                      <div>
-                        <p className="text-xs uppercase tracking-widest text-white/60 font-semibold mb-2">
-                          {project.year}
-                        </p>
-                        <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                          {project.title}
-                        </h3>
+                  {/* Hovered state */}
+                  <div className={`transition-all duration-300 ${isHovered ? "opacity-100" : "opacity-0 h-0 overflow-hidden"}`}>
+                    <h3 className="text-base md:text-lg font-bold text-white leading-tight mb-1">
+                      {project.title}
+                    </h3>
+                    <p className="text-xs text-white/50 mb-2">{project.category}</p>
+                    <p className="text-xs text-white/80 leading-relaxed mb-3 line-clamp-2">
+                      {project.description}
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <div className="flex gap-4">
+                        {project.metrics.map((metric, idx) => (
+                          <div key={idx}>
+                            <p className="text-base font-bold text-[#4ecdc4]">{metric.value}</p>
+                            <p className="text-[10px] uppercase tracking-widest text-white/50">{metric.label}</p>
+                          </div>
+                        ))}
                       </div>
-
-                      {/* Middle section - details */}
-                      <div>
-                        <p className="text-sm md:text-base text-white/90 leading-relaxed mb-6">
-                          {project.details}
-                        </p>
-
-                        {/* Metrics */}
-                        <div className="grid grid-cols-2 gap-4 mb-6">
-                          {project.metrics.map((metric, idx) => (
-                            <div key={idx}>
-                              <p className="text-2xl md:text-3xl font-bold text-teal-400">
-                                {metric.value}
-                              </p>
-                              <p className="text-xs uppercase tracking-widest text-white/60 font-semibold mt-1">
-                                {metric.label}
-                              </p>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Bottom section - CTA */}
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs uppercase tracking-widest font-semibold text-white">
-                          View Work
-                        </span>
-                        <ArrowUpRight size={16} className="text-white" />
+                      <div className="flex items-center gap-1 text-white/60 group-hover:text-white transition-colors">
+                        <span className="text-xs uppercase tracking-widest font-semibold">View Work</span>
+                        <ArrowUpRight size={14} />
                       </div>
                     </div>
-                  )}
+                  </div>
                 </div>
               </a>
             );
