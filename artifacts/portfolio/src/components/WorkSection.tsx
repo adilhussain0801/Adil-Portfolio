@@ -81,7 +81,7 @@ const EXPERIENCES = [
 ];
 
 function ExperienceRow({ company, role, period, duration, location, logo, icon, achievements, isFirst }: typeof EXPERIENCES[0] & { isFirst?: boolean }) {
-  const [isExpanded, setIsExpanded] = useState(isFirst ?? false);
+  const [isExpanded, setIsExpanded] = useState(false);
   const isActive = period.includes("Present");
   
   return (
