@@ -70,7 +70,7 @@ const EXPERIENCES = [
     duration: "2 yrs 3 mos",
     location: "Mumbai Metropolitan Region",
     logo: "https://logo.clearbit.com/ltinfotech.com",
-    icon: null,
+    icon: "/icon-lti.png",
     achievements: [
       "Established foundational UX practices at L&T Infotech, designing enterprise software interfaces for global clients in financial services, healthcare, and retail sectors. Conducted user research across 12+ organizations, translating complex business workflows into intuitive digital solutions.",
       "Led redesign of a legacy financial management system, improving task completion rates by 67% and reducing training time from 8 hours to 2 hours. Designed data-heavy dashboards and report generation tools that became templates for future enterprise applications.",
@@ -91,12 +91,8 @@ function ExperienceRow({ company, role, period, duration, location, logo, icon, 
         onClick={() => setIsExpanded(!isExpanded)}
         whileHover={{ backgroundColor: "rgba(0,0,0,0.02)" }}
       >
-        <div className="h-10 w-10 flex-shrink-0 flex items-center justify-center rounded-lg overflow-hidden bg-blue-100">
-          {icon ? (
-            <img src={icon} alt={company} className="h-full w-full object-cover" />
-          ) : (
-            <span className="text-sm font-bold text-blue-700">LTI</span>
-          )}
+        <div className="h-10 w-10 flex-shrink-0 flex items-center justify-center rounded-lg overflow-hidden">
+          <img src={icon} alt={company} className="h-full w-full object-cover" />
         </div>
         
         <div className="flex-1 min-w-0">
