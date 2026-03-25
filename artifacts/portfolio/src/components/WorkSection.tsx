@@ -49,8 +49,8 @@ const EXPERIENCES = [
     ]
   },
   {
-    company: "Rolta India Limited",
-    role: "UX Analyst",
+    company: "Rolta Defence India",
+    role: "User Experience Designer",
     period: "Feb 2015 – Aug 2016",
     duration: "1 yr 7 mos",
     location: "Mumbai, Maharashtra, India",
