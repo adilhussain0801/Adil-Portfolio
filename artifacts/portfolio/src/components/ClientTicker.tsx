@@ -102,7 +102,21 @@ export default function ClientTicker() {
           I've designed for
         </h2>
       </div>
-      <div className="pb-12 overflow-hidden">
+      <div className="pb-12 overflow-hidden relative">
+        {/* Left scrim */}
+        <div
+          className="absolute left-0 top-0 bottom-0 w-24 pointer-events-none z-10"
+          style={{
+            background: "linear-gradient(to right, #FAF8F5, transparent)",
+          }}
+        />
+        {/* Right scrim */}
+        <div
+          className="absolute right-0 top-0 bottom-0 w-24 pointer-events-none z-10"
+          style={{
+            background: "linear-gradient(to left, #FAF8F5, transparent)",
+          }}
+        />
         <div className="flex ticker-track">
         {[...items, ...items, ...items].map((client, i) => (
           <span key={i} className="flex items-center">
