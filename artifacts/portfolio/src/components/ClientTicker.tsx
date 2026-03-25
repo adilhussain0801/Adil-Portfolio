@@ -61,27 +61,23 @@ function ArmedForcesIcon() {
 
 function ClientItem({ client }: { client: typeof CLIENTS[0] }) {
   return (
-    <div className="flex items-center gap-3 shrink-0 px-2">
-      <div className="flex items-center gap-3 group">
-        <div className="h-8 w-auto flex items-center">
-          {client.logo ? (
-            <img
-              src={client.logo}
-              alt={client.name}
-              className="h-7 w-auto max-w-[120px] object-contain grayscale opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-              onError={(e) => {
-                (e.target as HTMLImageElement).style.display = "none";
-              }}
-            />
-          ) : (
-            <div className="text-foreground/70 group-hover:text-foreground transition-colors duration-300">
-              <ArmedForcesIcon />
-            </div>
-          )}
-        </div>
-        <span className="text-sm font-normal tracking-wide text-foreground/70 group-hover:text-foreground transition-colors duration-300 whitespace-nowrap">
-          {client.name}
-        </span>
+    <div className="flex items-center justify-center shrink-0 px-6 group">
+      <div className="h-12 w-auto flex items-center justify-center">
+        {client.logo ? (
+          <img
+            src={client.logo}
+            alt={client.name}
+            className="h-10 w-auto max-w-[140px] object-contain grayscale opacity-60 group-hover:opacity-100 transition-opacity duration-300"
+            title={client.name}
+            onError={(e) => {
+              (e.target as HTMLImageElement).style.display = "none";
+            }}
+          />
+        ) : (
+          <div className="text-foreground/60 group-hover:text-foreground transition-colors duration-300">
+            <ArmedForcesIcon />
+          </div>
+        )}
       </div>
     </div>
   );
@@ -89,7 +85,7 @@ function ClientItem({ client }: { client: typeof CLIENTS[0] }) {
 
 function Separator() {
   return (
-    <span className="shrink-0 text-foreground/25 mx-4 text-lg select-none">✳</span>
+    <span className="shrink-0 text-foreground/15 mx-6 text-lg select-none">•</span>
   );
 }
 
@@ -97,7 +93,7 @@ export default function ClientTicker() {
   const items = CLIENTS;
 
   return (
-    <div className="w-full border-t border-b border-border py-6 overflow-hidden relative bg-background">
+    <div className="w-full border-t border-b border-border py-8 overflow-hidden relative bg-background">
       <p className="absolute top-0 left-6 md:left-12 -translate-y-1/2 text-xs uppercase tracking-widest text-muted-foreground bg-background px-2 font-medium">
         I've designed for
       </p>
