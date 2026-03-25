@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
+import ClientTicker from "@/components/ClientTicker";
 import WorkSection from "@/components/WorkSection";
 import SkillsSection from "@/components/SkillsSection";
 import AboutSection from "@/components/AboutSection";
@@ -12,6 +13,7 @@ export default function Home() {
       
       <main>
         <HeroSection />
+        <ClientTicker />
         <WorkSection />
         <SkillsSection />
         <AboutSection />
