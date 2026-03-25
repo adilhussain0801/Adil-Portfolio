@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const EXPERIENCES = [
   {
@@ -53,13 +54,20 @@ const EXPERIENCES = [
 
 function ExperienceRow({ company, role, period, logo, icon, achievements }: typeof EXPERIENCES[0]) {
   const [isExpanded, setIsExpanded] = useState(false);
-  const year = period.split(" ").pop();
+  const extractYearRange = () => {
+    const parts = period.split(" ");
+    const start = parts[parts.length - 3];
+    const end = parts[parts.length - 1];
+    if (end === "Present") return `${start} - Present`;
+    return `${start} - ${end}`;
+  };
   
   return (
     <>
-      <div 
+      <motion.div 
         className="flex items-center gap-6 py-6 border-b border-border last:border-b-0 group cursor-pointer hover:bg-muted/50 px-4 -mx-4 transition-colors duration-200"
         onClick={() => setIsExpanded(!isExpanded)}
+        whileHover={{ backgroundColor: "rgba(0,0,0,0.02)" }}
       >
         <div className="h-10 w-10 flex-shrink-0 flex items-center justify-center rounded-lg overflow-hidden">
           <img src={icon} alt={company} className="h-full w-full object-cover" />
@@ -70,28 +78,49 @@ function ExperienceRow({ company, role, period, logo, icon, achievements }: type
           <p className="text-sm text-muted-foreground">{role}</p>
         </div>
         
-        <div className="text-base font-bold text-foreground flex-shrink-0 min-w-max">
-          {year}
+        <div className="px-3 py-1.5 bg-muted rounded-full text-sm font-medium text-foreground flex-shrink-0 min-w-max">
+          {extractYearRange()}
         </div>
 
-        <ChevronDown 
-          size={20} 
-          className={`flex-shrink-0 text-muted-foreground transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}
-        />
-      </div>
+        <motion.div
+          animate={{ rotate: isExpanded ? 180 : 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <ChevronDown 
+            size={20} 
+            className="flex-shrink-0 text-muted-foreground"
+          />
+        </motion.div>
+      </motion.div>
 
-      {isExpanded && (
-        <div className="bg-muted/30 border-b border-border px-4 py-6 pl-16">
-          <ul className="space-y-3">
-            {achievements.map((achievement, idx) => (
-              <li key={idx} className="flex gap-3 text-sm text-foreground/80">
-                <span className="text-muted-foreground flex-shrink-0 pt-1">•</span>
-                <span>{achievement}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      <AnimatePresence>
+        {isExpanded && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="overflow-hidden px-4 pl-16"
+          >
+            <div className="py-6">
+              <ul className="space-y-3">
+                {achievements.map((achievement, idx) => (
+                  <motion.li 
+                    key={idx} 
+                    className="flex gap-3 text-sm text-foreground/80"
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: idx * 0.05 }}
+                  >
+                    <span className="text-muted-foreground flex-shrink-0 pt-1">•</span>
+                    <span>{achievement}</span>
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
