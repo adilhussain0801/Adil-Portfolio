@@ -5,6 +5,7 @@ import ClientTicker from "@/components/ClientTicker";
 import WorkSection from "@/components/WorkSection";
 import RecentWorkSection from "@/components/RecentWorkSection";
 import SkillsSection from "@/components/SkillsSection";
+import LifeSection from "@/components/LifeSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
         <ClientTicker />
         <WorkSection />
         <RecentWorkSection />
+        <LifeSection />
         <SkillsSection />
       </main>
 
