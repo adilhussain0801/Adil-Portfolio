@@ -65,17 +65,17 @@ function ClientItem({ client }: { client: typeof CLIENTS[0] }) {
   const [imageLoaded, setImageLoaded] = React.useState(true);
 
   return (
-    <div className="flex items-center justify-center shrink-0 px-8 group">
+    <div className="flex items-center justify-center shrink-0 px-5 group">
       {client.logo && imageLoaded ? (
         <img
           src={client.logo}
           alt={client.name}
-          className="h-10 w-auto max-w-[140px] object-contain grayscale opacity-65 group-hover:opacity-100 transition-opacity duration-300"
+          className="h-8 w-auto max-w-[120px] object-contain grayscale opacity-65 group-hover:opacity-100 transition-opacity duration-300"
           title={client.name}
           onError={() => setImageLoaded(false)}
         />
       ) : (
-        <span className="text-base font-medium text-foreground/65 group-hover:text-foreground transition-colors duration-300 whitespace-nowrap">
+        <span className="text-sm font-medium text-foreground/65 group-hover:text-foreground transition-colors duration-300 whitespace-nowrap">
           {client.name}
         </span>
       )}
@@ -85,7 +85,7 @@ function ClientItem({ client }: { client: typeof CLIENTS[0] }) {
 
 function Separator() {
   return (
-    <span className="shrink-0 text-foreground/10 mx-8 text-xl select-none">•</span>
+    <span className="shrink-0 text-foreground/10 mx-5 text-lg select-none">•</span>
   );
 }
 
@@ -93,31 +93,33 @@ export default function ClientTicker() {
   const items = CLIENTS;
 
   return (
-    <div className="w-full overflow-hidden relative bg-background">
-      <div className="py-6 px-6 md:px-12">
-        <h2
-          style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
-          className="text-3xl md:text-4xl leading-tight text-foreground mb-8"
-        >
-          I've designed for
-        </h2>
+    <section id="clients" className="py-24 md:py-32 px-6 md:px-12 bg-secondary/30">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 md:gap-24">
+        <div className="w-full md:w-1/3">
+          <h2 className="text-3xl md:text-4xl font-wotfard font-bold text-foreground sticky top-32">
+            I've designed for
+          </h2>
+        </div>
+
+        <div className="w-full md:w-2/3">
+          <div 
+            className="overflow-hidden"
+            style={{
+              maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+              WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+            }}
+          >
+            <div className="flex ticker-track">
+              {[...items, ...items, ...items].map((client, i) => (
+                <span key={i} className="flex items-center">
+                  <ClientItem client={client} />
+                  <Separator />
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
-      <div 
-        className="px-6 md:px-12 pb-12 overflow-hidden"
-        style={{
-          maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
-          WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
-        }}
-      >
-        <div className="flex ticker-track">
-        {[...items, ...items, ...items].map((client, i) => (
-          <span key={i} className="flex items-center">
-            <ClientItem client={client} />
-            <Separator />
-          </span>
-        ))}
-      </div>
-      </div>
-    </div>
+    </section>
   );
 }
