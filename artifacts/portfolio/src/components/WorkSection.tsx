@@ -148,29 +148,38 @@ function ExperienceRow({ company, role, period, duration, location, logo, icon, 
 
 export default function WorkSection() {
   return (
-    <section id="work" className="py-24 md:py-40 px-6 md:px-12 max-w-7xl mx-auto">
-      <h2
-        style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
-        className="text-3xl md:text-4xl leading-tight text-foreground mb-12"
-      >
-        Experience
-      </h2>
+    <section id="work" className="py-24 md:py-40 px-6 md:px-12">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 md:gap-24">
+        
+        {/* Left: Heading */}
+        <div className="md:w-1/3 flex-shrink-0">
+          <h2
+            style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+            className="text-3xl md:text-4xl leading-tight text-foreground md:sticky md:top-32"
+          >
+            Experience
+          </h2>
+        </div>
 
-      <div className="space-y-0 border-t border-border">
-        {EXPERIENCES.map((exp, index) => (
-          <ExperienceRow 
-            key={index}
-            company={exp.company}
-            role={exp.role}
-            period={exp.period}
-            duration={exp.duration}
-            location={exp.location}
-            logo={exp.logo}
-            icon={exp.icon}
-            achievements={exp.achievements}
-            isFirst={index === 0}
-          />
-        ))}
+        {/* Right: Experience list */}
+        <div className="md:w-2/3">
+          <div className="space-y-0 border-t border-border">
+            {EXPERIENCES.map((exp, index) => (
+              <ExperienceRow 
+                key={index}
+                company={exp.company}
+                role={exp.role}
+                period={exp.period}
+                duration={exp.duration}
+                location={exp.location}
+                logo={exp.logo}
+                icon={exp.icon}
+                achievements={exp.achievements}
+                isFirst={index === 0}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
