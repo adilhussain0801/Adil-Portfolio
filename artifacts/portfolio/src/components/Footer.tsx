@@ -1,8 +1,6 @@
 import { Linkedin, Instagram, FileText } from "lucide-react";
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
     <footer id="contact" className="bg-background border-t border-border py-20 md:py-28 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
@@ -62,12 +60,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom copyright */}
-        <div className="border-t border-border pt-6">
-          <p className="text-sm text-muted-foreground">
-            © {currentYear} Adil Hussain. All rights reserved.
-          </p>
-        </div>
       </div>
     </footer>
   );
