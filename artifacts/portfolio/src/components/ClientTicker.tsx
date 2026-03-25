@@ -107,14 +107,14 @@ export default function ClientTicker() {
         <div
           className="absolute left-0 top-0 bottom-0 w-24 pointer-events-none z-10"
           style={{
-            background: "linear-gradient(to right, #FAF8F5, transparent)",
+            background: "linear-gradient(to right, rgba(250, 248, 245, 1), rgba(250, 248, 245, 0))",
           }}
         />
         {/* Right scrim */}
         <div
           className="absolute right-0 top-0 bottom-0 w-24 pointer-events-none z-10"
           style={{
-            background: "linear-gradient(to left, #FAF8F5, transparent)",
+            background: "linear-gradient(to left, rgba(250, 248, 245, 1), rgba(250, 248, 245, 0))",
           }}
         />
         <div className="flex ticker-track">
