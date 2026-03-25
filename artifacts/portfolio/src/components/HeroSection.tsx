@@ -84,39 +84,40 @@ export default function HeroSection() {
 
         {/* Left: Text Content */}
         <motion.div
-          className="flex-1 max-w-xl"
+          className="flex-1 max-w-2xl"
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
         >
-          <h1
-            className="font-sans font-bold text-[#2D2D2D] leading-tight mb-10"
-            style={{ fontSize: "clamp(2.8rem, 6vw, 4.25rem)" }}
-          >
-            Hi, I'm Adil
-          </h1>
-
-          <motion.div
+          <motion.h1
+            className="font-sans leading-[1.1] mb-12"
+            style={{ fontSize: "clamp(2.2rem, 5.5vw, 3.8rem)" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.85, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.85, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p
-              className="text-[#2D2D2D] font-sans font-normal leading-[1.65] mb-6"
-              style={{ fontSize: "clamp(1rem, 1.8vw, 1.175rem)" }}
-            >
-              I'm a product designer based in Mumbai, India. I've been creating
-              digital products for organisations since 2012. I'm experienced in
-              every step of the UX lifecycle, from strategy, to concept through
-              to implementation.
-            </p>
-            <p
-              className="text-[#2D2D2D] font-sans font-normal leading-[1.65]"
-              style={{ fontSize: "clamp(1rem, 1.8vw, 1.175rem)" }}
-            >
-              Welcome to my digital crib!
-            </p>
-          </motion.div>
+            <span className="font-bold text-[#2D2D2D]">I'm Adil,</span>
+            <span className="font-normal text-[#999999] mx-2">a multi-</span>
+            <br />
+            <span className="font-normal text-[#999999]">disciplinary</span>
+            <span className="font-bold text-[#2D2D2D] mx-2">design</span>
+            <br />
+            <span className="font-normal text-[#999999]">leader based in</span>
+            <br />
+            <span className="font-bold text-[#2D2D2D]">Mumbai,</span>
+            <span className="font-normal text-[#999999] ml-2">India.</span>
+            <span className="inline-block ml-2 -mt-1">
+              <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" className="inline">
+                <g opacity="0.7">
+                  <path d="M21 4C21 4 18 12 21 18" stroke="#2D2D2D" strokeWidth="1.5" strokeLinecap="round"/>
+                  <path d="M21 18C21 18 24 12 21 4" stroke="#2D2D2D" strokeWidth="1.5" strokeLinecap="round"/>
+                  <path d="M14 15C14 15 8 14 6 18" stroke="#2D2D2D" strokeWidth="1.5" strokeLinecap="round"/>
+                  <path d="M28 15C28 15 34 14 36 18" stroke="#2D2D2D" strokeWidth="1.5" strokeLinecap="round"/>
+                  <rect x="8" y="20" width="26" height="18" rx="2" fill="#D4A574" opacity="0.6"/>
+                </g>
+              </svg>
+            </span>
+          </motion.h1>
         </motion.div>
 
         {/* Right: Photo collage */}
@@ -127,7 +128,7 @@ export default function HeroSection() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         >
-          {/* Arch photo container — white arch */}
+          {/* Arch photo container — white arch with Gateway of India */}
           <div
             className="absolute overflow-hidden"
             style={{
@@ -141,10 +142,10 @@ export default function HeroSection() {
             }}
           >
             <img
-              src="/adil-photo.jpg"
-              alt="Adil Hussain"
+              src="/gateway-of-india.jpg"
+              alt="Gateway of India, Mumbai"
               className="absolute object-cover w-full h-full"
-              style={{ objectPosition: "center top" }}
+              style={{ objectPosition: "center center" }}
             />
           </div>
 
