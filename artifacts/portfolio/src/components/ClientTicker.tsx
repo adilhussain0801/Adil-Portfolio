@@ -55,9 +55,9 @@ function initNodes(): Node[] {
   return [...pills, ...dots];
 }
 
-const REPEL_RADIUS = 150;
-const REPEL_STRENGTH = 0.6;
-const DAMPING = 0.992;
+const REPEL_RADIUS = 80;
+const REPEL_STRENGTH = 0.06;
+const DAMPING = 0.97;
 
 export default function ClientTicker() {
   const nodesRef = useRef<Node[]>(initNodes());
@@ -158,7 +158,7 @@ export default function ClientTicker() {
             ref={svgRef}
             viewBox={`0 0 ${W} ${H}`}
             className="w-full"
-            style={{ overflow: "hidden", cursor: "none" }}
+            style={{ overflow: "hidden" }}
             onMouseMove={(e) => { mouseRef.current = toSVGCoords(e.clientX, e.clientY); }}
             onMouseLeave={() => { mouseRef.current = null; }}
           >
@@ -172,7 +172,7 @@ export default function ClientTicker() {
                   x1={a.x} y1={a.y} x2={b.x} y2={b.y}
                   stroke="#2D2D2D"
                   strokeWidth={1}
-                  strokeOpacity={de ? opacity * 0.04 : opacity * 0.22}
+                  strokeOpacity={de ? opacity * 0.08 : opacity * 0.22}
                 />
               );
             })}
@@ -183,7 +183,7 @@ export default function ClientTicker() {
                 key={n.id}
                 cx={n.x} cy={n.y} r={n.r}
                 fill="#2D2D2D"
-                fillOpacity={dim(n.id) ? 0.08 : hovered === n.id ? 1 : 0.45}
+                fillOpacity={dim(n.id) ? 0.2 : hovered === n.id ? 1 : 0.45}
                 onMouseEnter={() => { setHovered(n.id); hoveredRef.current = n.id; }}
                 onMouseLeave={() => { setHovered(null); hoveredRef.current = null; }}
                 style={{ cursor: "default" }}
@@ -194,18 +194,20 @@ export default function ClientTicker() {
             {nodes.filter((n) => n.type === "pill").map((n) => {
               const w = pillW(n.label!);
               const isHov = hovered === n.id;
+              const scale = isHov ? 1.12 : 1;
               return (
                 <g
                   key={n.id}
+                  transform={`translate(${n.x},${n.y}) scale(${scale}) translate(${-n.x},${-n.y})`}
                   onMouseEnter={() => { setHovered(n.id); hoveredRef.current = n.id; }}
                   onMouseLeave={() => { setHovered(null); hoveredRef.current = null; }}
-                  style={{ cursor: "default" }}
+                  style={{ cursor: "default", transition: "transform 0.15s ease" }}
                 >
                   <rect
                     x={n.x - w / 2} y={n.y - PILL_H / 2}
                     width={w} height={PILL_H} rx={PILL_H / 2}
                     fill="#2D2D2D"
-                    fillOpacity={dim(n.id) ? 0.07 : isHov ? 1 : 0.85}
+                    fillOpacity={dim(n.id) ? 0.1 : 1}
                   />
                   <text
                     x={n.x} y={n.y + 4.5}
