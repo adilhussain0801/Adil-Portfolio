@@ -106,17 +106,6 @@ export default function HeroSection() {
             <br />
             <span className="font-bold text-[#2D2D2D]">Mumbai,</span>
             <span className="font-normal text-[#999999] ml-2">India.</span>
-            <span className="inline-block ml-2 -mt-1">
-              <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" className="inline">
-                <g opacity="0.7">
-                  <path d="M21 4C21 4 18 12 21 18" stroke="#2D2D2D" strokeWidth="1.5" strokeLinecap="round"/>
-                  <path d="M21 18C21 18 24 12 21 4" stroke="#2D2D2D" strokeWidth="1.5" strokeLinecap="round"/>
-                  <path d="M14 15C14 15 8 14 6 18" stroke="#2D2D2D" strokeWidth="1.5" strokeLinecap="round"/>
-                  <path d="M28 15C28 15 34 14 36 18" stroke="#2D2D2D" strokeWidth="1.5" strokeLinecap="round"/>
-                  <rect x="8" y="20" width="26" height="18" rx="2" fill="#D4A574" opacity="0.6"/>
-                </g>
-              </svg>
-            </span>
           </motion.h1>
         </motion.div>
 
@@ -142,10 +131,10 @@ export default function HeroSection() {
             }}
           >
             <img
-              src="/gateway-of-india.jpg"
-              alt="Gateway of India, Mumbai"
+              src="/adil-photo.jpg"
+              alt="Adil Hussain"
               className="absolute object-cover w-full h-full"
-              style={{ objectPosition: "center center" }}
+              style={{ objectPosition: "center top" }}
             />
           </div>
 
