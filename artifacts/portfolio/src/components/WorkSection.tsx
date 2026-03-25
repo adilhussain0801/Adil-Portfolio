@@ -91,8 +91,8 @@ function ExperienceRow({ company, role, period, duration, location, logo, icon, 
         onClick={() => setIsExpanded(!isExpanded)}
         whileHover={{ backgroundColor: "rgba(0,0,0,0.02)" }}
       >
-        <div className="h-10 w-12 flex-shrink-0 flex items-center justify-center rounded-lg overflow-hidden bg-gradient-to-br from-blue-50 to-blue-100 p-1">
-          <img src={icon} alt={company} className="h-full w-full object-contain" />
+        <div className="h-10 w-10 flex-shrink-0 flex items-center justify-center rounded-lg overflow-hidden">
+          <img src={icon} alt={company} className="h-full w-full object-cover" />
         </div>
         
         <div className="flex-1 min-w-0">
