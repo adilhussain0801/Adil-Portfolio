@@ -65,17 +65,17 @@ function ClientItem({ client }: { client: typeof CLIENTS[0] }) {
   const [imageLoaded, setImageLoaded] = React.useState(true);
 
   return (
-    <div className="flex items-center justify-center shrink-0 px-4 group">
+    <div className="flex items-center justify-center shrink-0 px-8 group">
       {client.logo && imageLoaded ? (
         <img
           src={client.logo}
           alt={client.name}
-          className="h-8 w-auto max-w-[120px] object-contain grayscale opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+          className="h-10 w-auto max-w-[140px] object-contain grayscale opacity-65 group-hover:opacity-100 transition-opacity duration-300"
           title={client.name}
           onError={() => setImageLoaded(false)}
         />
       ) : (
-        <span className="text-xs font-medium text-foreground/70 group-hover:text-foreground transition-colors duration-300 whitespace-nowrap">
+        <span className="text-sm font-medium text-foreground/65 group-hover:text-foreground transition-colors duration-300 whitespace-nowrap">
           {client.name}
         </span>
       )}
@@ -85,7 +85,7 @@ function ClientItem({ client }: { client: typeof CLIENTS[0] }) {
 
 function Separator() {
   return (
-    <span className="shrink-0 text-foreground/15 mx-6 text-lg select-none">•</span>
+    <span className="shrink-0 text-foreground/10 mx-8 text-xl select-none">•</span>
   );
 }
 
@@ -93,8 +93,8 @@ export default function ClientTicker() {
   const items = CLIENTS;
 
   return (
-    <div className="w-full border-t border-b border-border py-8 overflow-hidden relative bg-background">
-      <p className="absolute top-0 left-6 md:left-12 -translate-y-1/2 text-xs uppercase tracking-widest text-muted-foreground bg-background px-2 font-medium">
+    <div className="w-full border-t border-b border-border py-12 overflow-hidden relative bg-background">
+      <p className="absolute top-0 left-6 md:left-12 -translate-y-1/2 text-sm uppercase tracking-widest text-muted-foreground bg-background px-3 font-medium">
         I've designed for
       </p>
 
