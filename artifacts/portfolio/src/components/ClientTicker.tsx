@@ -14,20 +14,20 @@ const PILL_LABELS = [
   "Customer Service",
   "Post Purchase",
   "IoT Platforms",
-  "Defence C2",
+  "Defence",
   "Trust & Security",
   "Design Systems",
+  "AI Agents",
+  "Monetization",
+  "Finance",
   "Healthcare Tech",
-  "FinTech Platforms",
-  "SaaS Scaling",
-  "Blockchain Design",
 ];
 
 // Initial positions spread across canvas
 const PILL_INIT = [
   [160, 88], [430, 52], [718, 118], [648, 358],
   [272, 374], [68, 282], [790, 440], [418, 242],
-  [556, 72], [310, 450], [820, 280], [82, 420],
+  [540, 380], [650, 88], [320, 120], [810, 180],
 ];
 
 const DOT_INIT = [
@@ -60,8 +60,8 @@ function initNodes(): Node[] {
   return [...pills, ...dots];
 }
 
-const REPEL_RADIUS = 80;
-const REPEL_STRENGTH = 0.06;
+const REPEL_RADIUS = 0;
+const REPEL_STRENGTH = 0;
 const DAMPING = 0.97;
 
 export default function ClientTicker() {
@@ -197,7 +197,7 @@ export default function ClientTicker() {
                   fillOpacity={dim(n.id) ? 0.2 : hovered === n.id ? 1 : 0.45}
                   onMouseEnter={() => { setHovered(n.id); hoveredRef.current = n.id; }}
                   onMouseLeave={() => { setHovered(null); hoveredRef.current = null; }}
-                  style={{ cursor: "default" }}
+                  style={{ cursor: "default", transition: "r 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)" }}
                 />
               );
             })}
@@ -218,7 +218,7 @@ export default function ClientTicker() {
                   transform={`translate(${n.x},${n.y}) scale(${scale}) translate(${-n.x},${-n.y})`}
                   onMouseEnter={() => { setHovered(n.id); hoveredRef.current = n.id; }}
                   onMouseLeave={() => { setHovered(null); hoveredRef.current = null; }}
-                  style={{ cursor: "default", transition: "transform 0.15s ease" }}
+                  style={{ cursor: "default", transition: "transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)" }}
                 >
                   <rect
                     x={n.x - w / 2} y={n.y - PILL_H / 2}
