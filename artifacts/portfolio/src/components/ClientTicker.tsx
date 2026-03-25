@@ -105,16 +105,16 @@ export default function ClientTicker() {
       <div className="pb-12 overflow-hidden relative">
         {/* Left scrim */}
         <div
-          className="absolute left-0 top-0 bottom-0 w-24 pointer-events-none z-10"
+          className="absolute left-0 top-0 bottom-0 w-32 pointer-events-none z-10"
           style={{
-            background: "linear-gradient(to right, rgba(250, 248, 245, 1), rgba(250, 248, 245, 0))",
+            background: "linear-gradient(to right, rgba(250, 248, 245, 1) 0%, transparent 100%)",
           }}
         />
         {/* Right scrim */}
         <div
-          className="absolute right-0 top-0 bottom-0 w-24 pointer-events-none z-10"
+          className="absolute right-0 top-0 bottom-0 w-32 pointer-events-none z-10"
           style={{
-            background: "linear-gradient(to left, rgba(250, 248, 245, 1), rgba(250, 248, 245, 0))",
+            background: "linear-gradient(to left, rgba(250, 248, 245, 1) 0%, transparent 100%)",
           }}
         />
         <div className="flex ticker-track">
