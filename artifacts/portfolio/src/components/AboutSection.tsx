@@ -30,7 +30,7 @@ export default function AboutSection() {
               style={{ fontFamily: "'Wotfard', sans-serif" }}
               className="text-[20px] md:text-[24px] leading-[1.6] text-foreground"
             >
-              Beyond design, I'm an explorer—I travel to understand diverse
+              Beyond design, I'm an explorer - I travel to understand diverse
               cultures and perspectives, capture life through photography, and
               create living systems in my garden. These experiences fuel my
               approach to design, reminding me that the best solutions come from
@@ -61,7 +61,7 @@ export default function AboutSection() {
             >
               <img
                 src="/about-photo-2.jpg"
-                alt="Adil — travel"
+                alt="Adil - travel"
                 className="absolute w-full h-full object-cover object-center"
               />
             </div>
@@ -71,7 +71,7 @@ export default function AboutSection() {
             >
               <img
                 src="/about-photo-3.jpg"
-                alt="Adil — hobby"
+                alt="Adil - hobby"
                 className="absolute w-full h-full object-cover object-center"
               />
             </div>

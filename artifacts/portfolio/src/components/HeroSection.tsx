@@ -120,7 +120,7 @@ export default function HeroSection() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         >
-          {/* Arch photo container — white arch with Gateway of India */}
+          {/* Arch photo container - white arch with Gateway of India */}
           <div
             className="absolute overflow-hidden"
             style={{
@@ -141,7 +141,7 @@ export default function HeroSection() {
             />
           </div>
 
-          {/* Coral quarter circle — top right, overlapping arch */}
+          {/* Coral quarter circle - top right, overlapping arch */}
           <FloatingShape
             speed={0.55}
             amplitude={7}
@@ -160,7 +160,7 @@ export default function HeroSection() {
             </motion.div>
           </FloatingShape>
 
-          {/* Sparkle glyph — top far right */}
+          {/* Sparkle glyph - top far right */}
           <FloatingShape
             speed={0.7}
             amplitude={5}
@@ -177,7 +177,7 @@ export default function HeroSection() {
             </motion.div>
           </FloatingShape>
 
-          {/* Teal rounded square — bottom left, overlapping arch */}
+          {/* Teal rounded square - bottom left, overlapping arch */}
           <FloatingShape
             speed={0.5}
             amplitude={9}
@@ -196,7 +196,7 @@ export default function HeroSection() {
             </motion.div>
           </FloatingShape>
 
-          {/* Gestural line eyelash — bottom far left */}
+          {/* Gestural line eyelash - bottom far left */}
           <FloatingShape
             speed={0.65}
             amplitude={6}
