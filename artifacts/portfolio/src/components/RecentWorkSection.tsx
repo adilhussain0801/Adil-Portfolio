@@ -8,7 +8,8 @@ const PROJECTS = [
     category: "Amazon Post-Purchase",
     description: "Led cross-functional team to redesign support workflows. Reduced resolution time by 42% through smart routing and self-serve options.",
     year: "2024",
-    image: "/project-jira-ai.png",
+    image: null,
+    placeholderColor: "#D4C5F9",
     metrics: [
       { label: "SUCCESS", value: "65.2%" },
     ],
@@ -21,7 +22,8 @@ const PROJECTS = [
     category: "Native iOS/Android",
     description: "Designed AI-powered support automation that reduced support tickets by 32% and improved customer satisfaction across all demographics.",
     year: "2021",
-    image: "/project-amazon-orders.png",
+    image: null,
+    placeholderColor: "#B8D8C8",
     metrics: [
       { label: "ADOPTION", value: "89%" },
       { label: "MONTHLY ACTIONS", value: "1.5M" },
@@ -35,7 +37,8 @@ const PROJECTS = [
     category: "Growth & Optimization",
     description: "Designed transparency features that surfaced security certifications and compliance details, building user confidence in third-party apps.",
     year: "2023",
-    image: "/project-iot-platform.png",
+    image: null,
+    placeholderColor: "#F9C5C5",
     metrics: [
       { label: "LESSER TICKETS", value: "67%" },
       { label: "FEWER DETRACTORS", value: "16%" },
@@ -113,16 +116,11 @@ export default function RecentWorkSection() {
                 onMouseEnter={() => setHoveredId(project.id)}
                 onMouseLeave={() => setHoveredId(null)}
               >
-                {/* Image area */}
-                <div className="relative h-[62%] overflow-hidden">
-                  <img
-                    src={project.image!}
-                    alt={project.title}
-                    className={`w-full h-full object-cover transition-all duration-500 ${
-                      isHovered ? "scale-105 brightness-75" : "scale-100 brightness-90"
-                    }`}
-                  />
-                </div>
+                {/* Image / placeholder area */}
+                <div
+                  className="relative h-[62%] overflow-hidden transition-all duration-500"
+                  style={{ backgroundColor: project.placeholderColor }}
+                />
 
                 {/* Bottom info band */}
                 <div className="absolute bottom-0 left-0 right-0 bg-[#111111] px-5 py-4">
