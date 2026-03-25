@@ -94,10 +94,9 @@ export default function ClientTicker() {
 
   return (
     <div className="w-full border-t border-b border-border pt-16 pb-12 overflow-hidden relative bg-background">
-      <p className="absolute top-6 left-6 md:left-12 text-sm uppercase tracking-widest text-muted-foreground bg-background px-3 font-medium">
+      <p className="absolute top-6 left-6 md:left-12 text-sm uppercase tracking-widest text-muted-foreground bg-background px-3 font-bold">
         I've designed for
       </p>
-
       <div className="flex ticker-track">
         {[...items, ...items, ...items].map((client, i) => (
           <span key={i} className="flex items-center">
