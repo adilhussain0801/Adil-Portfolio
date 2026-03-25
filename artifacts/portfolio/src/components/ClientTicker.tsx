@@ -93,8 +93,8 @@ export default function ClientTicker() {
   const items = CLIENTS;
 
   return (
-    <div className="w-full border-t border-b border-border py-12 overflow-hidden relative bg-background">
-      <p className="absolute top-0 left-6 md:left-12 -translate-y-1/2 text-sm uppercase tracking-widest text-muted-foreground bg-background px-3 font-medium">
+    <div className="w-full border-t border-b border-border pt-16 pb-12 overflow-hidden relative bg-background">
+      <p className="absolute top-6 left-6 md:left-12 text-sm uppercase tracking-widest text-muted-foreground bg-background px-3 font-medium">
         I've designed for
       </p>
 
