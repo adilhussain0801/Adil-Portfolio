@@ -18,13 +18,31 @@ function SparkleGlyph() {
   );
 }
 
-// Hand-drawn dash lines (bottom-left corner)
-function DashLines() {
+// Gestural line eyelash from Figma
+function GesturalLineEyelash() {
   return (
-    <svg width="42" height="36" viewBox="0 0 42 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M2 30 C4 28 7 29 8 27" stroke="#1a1a1a" strokeWidth="1.8" strokeLinecap="round"/>
-      <path d="M10 26 C12 24 15 25 16 23" stroke="#1a1a1a" strokeWidth="1.8" strokeLinecap="round"/>
-      <path d="M18 22 C20 20 24 21 25 19" stroke="#1a1a1a" strokeWidth="1.8" strokeLinecap="round"/>
+    <svg width="70.8" height="38.66" viewBox="0 0 70.8 38.66" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M3 8 Q15 5 25 12 T45 8 T65 15"
+        stroke="#000000"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        fill="none"
+      />
+      <path
+        d="M0 20 Q12 18 22 25 T42 20 T62 28"
+        stroke="#000000"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        fill="none"
+      />
+      <path
+        d="M5 32 Q16 30 26 37 T46 33 T65 38"
+        stroke="#000000"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        fill="none"
+      />
     </svg>
   );
 }
@@ -185,20 +203,20 @@ export default function HeroSection() {
             </motion.div>
           </FloatingShape>
 
-          {/* Dash lines glyph — bottom far left */}
+          {/* Gestural line eyelash — bottom far left */}
           <FloatingShape
             speed={0.65}
             amplitude={6}
             offset={0.7}
             className="absolute"
-            style={{ left: "-4%", bottom: "12%" }}
+            style={{ left: "-6%", bottom: "8%", transform: "rotate(-150deg)" }}
           >
             <motion.div
               initial={{ opacity: 0, x: -15 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.75, ease: [0.16, 1, 0.3, 1] }}
             >
-              <DashLines />
+              <GesturalLineEyelash />
             </motion.div>
           </FloatingShape>
         </motion.div>
