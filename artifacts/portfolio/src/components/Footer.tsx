@@ -1,68 +1,72 @@
-import { ArrowUpRight } from "lucide-react";
+import { Linkedin, Instagram, FileText } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer id="contact" className="bg-foreground text-background py-24 md:py-32 px-6 md:px-12">
+    <footer id="contact" className="bg-background border-t border-border py-20 md:py-28 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-8 mb-24">
-          
+
+        {/* Main footer content */}
+        <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-12 mb-16">
+
+          {/* Left: Reach out */}
           <div>
-            <h2 className="text-5xl md:text-8xl font-serif tracking-tight mb-8">
-              Let's build <br />
-              <span className="italic text-background/80">together.</span>
-            </h2>
-            <p className="text-background/60 font-sans max-w-sm text-lg font-light">
-              Available for leadership roles, advisory, and select freelance opportunities.
-            </p>
-          </div>
-
-          <div className="flex flex-col md:items-end justify-end space-y-8 text-lg font-sans">
-            <div>
-              <p className="text-background/50 text-sm mb-1 uppercase tracking-wider">Email</p>
-              <a 
-                href="mailto:adilhussain0801@gmail.com" 
-                className="hover:italic transition-all group flex items-center gap-2"
-              >
-                adilhussain0801@gmail.com
-                <ArrowUpRight size={16} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-              </a>
-            </div>
-            <div>
-              <p className="text-background/50 text-sm mb-1 uppercase tracking-wider">Phone</p>
-              <a 
-                href="tel:+919619793585" 
-                className="hover:italic transition-all"
-              >
-                +91 9619 79 3585
-              </a>
-            </div>
-          </div>
-
-        </div>
-
-        <div className="pt-8 border-t border-background/20 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 text-sm font-sans text-background/50">
-          <p>© {currentYear} Adil Hussain. All rights reserved.</p>
-          
-          <div className="flex gap-8">
-            <a 
-              href="https://linkedin.com/in/adil0801" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="hover:text-background transition-colors"
+            <h2
+              style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+              className="text-3xl md:text-4xl leading-tight text-foreground mb-3"
             >
+              Reach out to connect<br />or collaborate
+            </h2>
+            <a
+              href="mailto:adilhussain0801@gmail.com"
+              className="text-muted-foreground hover:text-foreground transition-colors text-base"
+            >
+              adilhussain0801@gmail.com
+            </a>
+          </div>
+
+          {/* Right: Social links */}
+          <div className="flex flex-col gap-3">
+            <a
+              href="https://linkedin.com/in/adil0801"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-base font-bold text-foreground hover:text-muted-foreground transition-colors"
+            >
+              <Linkedin size={16} />
               LinkedIn
             </a>
-            <a 
-              href="https://dribbble.com/adil0801" 
-              target="_blank" 
+            <a
+              href="https://instagram.com/adil0801"
+              target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-background transition-colors"
+              className="flex items-center gap-2 text-base font-bold text-foreground hover:text-muted-foreground transition-colors"
             >
-              Dribbble
+              <Instagram size={16} />
+              Instagram
+            </a>
+
+            {/* Separator before Resume */}
+            <div className="border-t border-border my-1" />
+
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-base font-bold text-foreground hover:text-muted-foreground transition-colors"
+            >
+              <FileText size={16} />
+              Resume
             </a>
           </div>
+        </div>
+
+        {/* Bottom copyright */}
+        <div className="border-t border-border pt-6">
+          <p className="text-sm text-muted-foreground">
+            © {currentYear} Adil Hussain. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
