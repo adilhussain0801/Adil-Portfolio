@@ -149,9 +149,12 @@ function ExperienceRow({ company, role, period, duration, location, logo, icon, 
 export default function WorkSection() {
   return (
     <section id="work" className="py-24 md:py-40 px-6 md:px-12 max-w-7xl mx-auto">
-      <p className="text-xs uppercase tracking-widest text-muted-foreground font-bold mb-12">
+      <h2
+        style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+        className="text-3xl md:text-4xl leading-tight text-foreground mb-12"
+      >
         Experience
-      </p>
+      </h2>
 
       <div className="space-y-0 border-t border-border">
         {EXPERIENCES.map((exp, index) => (
