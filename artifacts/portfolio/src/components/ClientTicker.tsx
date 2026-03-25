@@ -93,17 +93,24 @@ export default function ClientTicker() {
   const items = CLIENTS;
 
   return (
-    <div className="w-full border-t border-b border-border pt-16 pb-12 overflow-hidden relative bg-background">
-      <p className="absolute top-6 left-6 md:left-12 text-base uppercase tracking-widest text-muted-foreground bg-background px-3 font-bold mt-[-6px] mb-[-9px] pt-[-5px] pb-[-5px]">
-        I've designed for
-      </p>
-      <div className="flex ticker-track">
+    <div className="w-full border-t border-b border-border overflow-hidden relative bg-background">
+      <div className="py-6 px-6 md:px-12">
+        <h2
+          style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+          className="text-3xl md:text-4xl leading-tight text-foreground mb-8"
+        >
+          I've designed for
+        </h2>
+      </div>
+      <div className="pb-12 overflow-hidden">
+        <div className="flex ticker-track">
         {[...items, ...items, ...items].map((client, i) => (
           <span key={i} className="flex items-center">
             <ClientItem client={client} />
             <Separator />
           </span>
         ))}
+      </div>
       </div>
     </div>
   );
