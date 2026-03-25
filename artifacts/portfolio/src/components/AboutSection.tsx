@@ -1,60 +1,80 @@
 export default function AboutSection() {
   return (
-    <section id="about" className="py-24 md:py-40 px-6 md:px-12 max-w-7xl mx-auto">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
-        
-        <div className="lg:col-span-4">
-          <h2 className="text-4xl md:text-6xl font-serif text-foreground">About</h2>
-        </div>
-        
-        <div className="lg:col-span-8 space-y-16">
-          {/* Bio */}
-          <div className="prose prose-lg md:prose-xl max-w-none text-foreground/80 font-light font-sans leading-relaxed">
-            <p className="first-letter:text-5xl first-letter:font-serif first-letter:mr-1 first-letter:float-left first-letter:text-foreground">
-              I'm a product designer with 13+ years of experience building at the intersection of AI, SaaS, and enterprise. 
-              I've led design for Jira's AI-native experiences at Atlassian, shaped post-purchase journeys at Amazon, 
-              and created interfaces for defense-grade systems. I care deeply about agentic systems, trust in AI, 
-              and design that works at scale.
+    <section
+      id="about"
+      className="py-24 md:py-32 px-6 md:px-16 max-w-[1440px] mx-auto"
+    >
+      <div className="flex flex-wrap gap-y-16 items-center justify-between">
+        {/* Left: Text content */}
+        <div className="flex-1 min-w-[320px] max-w-[820px] flex flex-col gap-12">
+          <h2
+            style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+            className="text-[56px] md:text-[68px] leading-tight text-foreground"
+          >
+            About me
+          </h2>
+
+          <div className="flex flex-col gap-6">
+            <p
+              style={{ fontFamily: "'Wotfard', sans-serif" }}
+              className="text-[20px] md:text-[24px] leading-[1.6] text-foreground"
+            >
+              I'm Adil Hussain, a product designer with over 13 years of
+              experience, based in Mumbai, India. I'm passionate about solving
+              problems through design, always advocating for the end user, and
+              collaborating with different crafts to create intuitive, impactful
+              solutions.
+            </p>
+            <p
+              style={{ fontFamily: "'Wotfard', sans-serif" }}
+              className="text-[20px] md:text-[24px] leading-[1.6] text-foreground"
+            >
+              In my free time, you'll find me exploring new travel destinations,
+              capturing moments through photography, painting or nurturing my
+              home garden and creating terrariums and vivariums. These hobbies
+              inspire me and fuel my creativity in design.
             </p>
           </div>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 pt-8 border-t border-border">
-            {/* Education */}
-            <div>
-              <h3 className="text-xs font-sans uppercase tracking-widest text-muted-foreground mb-6">Education</h3>
-              <ul className="space-y-6">
-                <li>
-                  <h4 className="font-serif text-xl text-foreground">Certified Usability Analyst</h4>
-                  <p className="text-sm font-sans text-muted-foreground mt-1">Human Factors International (HFI) · 2016</p>
-                </li>
-                <li>
-                  <h4 className="font-serif text-xl text-foreground">B.E. Chemical Engineering</h4>
-                  <p className="text-sm font-sans text-muted-foreground mt-1">Mumbai University · 2012</p>
-                </li>
-              </ul>
+        {/* Right: Photo collage */}
+        <div className="flex gap-6 items-center shrink-0">
+          {/* Large portrait photo */}
+          <div
+            className="relative rounded-[40px] overflow-hidden shrink-0"
+            style={{ width: 280, height: 560 }}
+          >
+            <img
+              src="/about-photo-1.jpg"
+              alt="Adil Hussain"
+              className="absolute w-full h-full object-cover object-center"
+            />
+          </div>
+
+          {/* Two stacked photos */}
+          <div className="flex flex-col gap-5 shrink-0" style={{ width: 210 }}>
+            <div
+              className="relative rounded-[40px] overflow-hidden"
+              style={{ height: 270 }}
+            >
+              <img
+                src="/about-photo-2.jpg"
+                alt="Adil — travel"
+                className="absolute w-full h-full object-cover object-center"
+              />
             </div>
-
-            {/* Awards */}
-            <div>
-              <h3 className="text-xs font-sans uppercase tracking-widest text-muted-foreground mb-6">Recognition</h3>
-              <ul className="space-y-6">
-                <li>
-                  <h4 className="font-serif text-xl text-foreground">Door Desk Award</h4>
-                  <p className="text-sm font-sans text-muted-foreground mt-1">Amazon · 2019</p>
-                </li>
-                <li>
-                  <h4 className="font-serif text-xl text-foreground">Design X Award</h4>
-                  <p className="text-sm font-sans text-muted-foreground mt-1">UX India · 2018</p>
-                </li>
-                <li>
-                  <h4 className="font-serif text-xl text-foreground">UX Innovator</h4>
-                  <p className="text-sm font-sans text-muted-foreground mt-1">Xoriant · 2016</p>
-                </li>
-              </ul>
+            <div
+              className="relative rounded-[40px] overflow-hidden"
+              style={{ height: 270 }}
+            >
+              <img
+                src="/about-photo-3.jpg"
+                alt="Adil — hobby"
+                className="absolute w-full h-full object-cover object-center"
+              />
             </div>
           </div>
         </div>
-
       </div>
     </section>
   );
