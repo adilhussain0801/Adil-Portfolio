@@ -117,7 +117,6 @@ function ExperienceRow({ company, role, period, duration, location, logo, icon, 
           />
         </motion.div>
       </motion.div>
-
       <AnimatePresence>
         {isExpanded && (
           <motion.div
@@ -127,7 +126,7 @@ function ExperienceRow({ company, role, period, duration, location, logo, icon, 
             transition={{ duration: 0.3 }}
             className="overflow-hidden px-4 border-b border-border"
           >
-            <div className="py-6 pl-12 space-y-4">
+            <div className="py-6 pl-12 space-y-4 pt-[4px]">
               {achievements.map((achievement, idx) => (
                 <motion.p 
                   key={idx} 
