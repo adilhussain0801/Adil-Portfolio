@@ -7,6 +7,7 @@ const PROJECTS = [
     description: "Designed intuitive interfaces for AI-native task automation in Jira Service Management. Led cross-functional team to ship agentic features that reduced MTTR by 85%.",
     type: "Product Design",
     year: "2024",
+    image: "/project-jira-ai.png",
   },
   {
     id: 2,
@@ -14,6 +15,7 @@ const PROJECTS = [
     description: "Rebuilt order tracking and customer support journeys. Designed self-serve solutions that reduced support tickets by 32% and improved CSAT by 18%.",
     type: "UX Strategy",
     year: "2021",
+    image: "/project-amazon-orders.png",
   },
   {
     id: 3,
@@ -21,6 +23,7 @@ const PROJECTS = [
     description: "Created mission-critical interfaces for real-time operations monitoring. Designed data visualization systems that reduced time-to-insight from 30 mins to <2 mins.",
     type: "Systems Design",
     year: "2018",
+    image: "/project-iot-platform.png",
   },
   {
     id: 4,
@@ -28,6 +31,7 @@ const PROJECTS = [
     description: "Designed battlefield management interfaces for high-stress military operations. Established human-factors protocols adopted across defense portfolio.",
     type: "Defense Tech",
     year: "2015",
+    image: "/project-defense-system.png",
   },
   {
     id: 5,
@@ -35,6 +39,7 @@ const PROJECTS = [
     description: "Built modular UI framework reducing development cycles by 40%. Standardized design patterns across enterprise applications and platforms.",
     type: "Design Systems",
     year: "2023",
+    image: "/project-design-system.png",
   },
 ];
 
@@ -49,35 +54,46 @@ export default function RecentWorkSection() {
           Recent work
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {PROJECTS.map((project) => (
             <a
               key={project.id}
               href={`/work/${project.id}`}
-              className="group p-6 rounded-lg border border-border/60 hover:border-foreground/30 hover:bg-foreground/5 transition-all duration-300"
+              className="group flex flex-col overflow-hidden rounded-lg border border-border/60 hover:border-foreground/30 transition-all duration-300"
             >
-              <div className="flex items-start justify-between mb-4">
-                <div className="flex-1">
-                  <h3 className="text-lg md:text-xl font-bold text-foreground group-hover:text-foreground transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-xs uppercase tracking-widest text-muted-foreground font-semibold mt-2">
-                    {project.type}
-                  </p>
-                </div>
-                <ArrowUpRight 
-                  size={20} 
-                  className="text-muted-foreground group-hover:text-foreground transition-colors flex-shrink-0 ml-3"
+              {/* Image container */}
+              <div className="relative h-48 md:h-56 overflow-hidden bg-muted">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
 
-              <p className="text-sm text-foreground/70 leading-relaxed mb-4">
-                {project.description}
-              </p>
+              {/* Content container */}
+              <div className="flex-1 p-6 bg-background hover:bg-foreground/5 transition-colors duration-300 flex flex-col">
+                <div className="flex items-start justify-between gap-3 mb-3">
+                  <h3 className="text-lg font-bold text-foreground group-hover:text-foreground transition-colors flex-1">
+                    {project.title}
+                  </h3>
+                  <ArrowUpRight 
+                    size={20} 
+                    className="text-muted-foreground group-hover:text-foreground transition-colors flex-shrink-0"
+                  />
+                </div>
 
-              <p className="text-xs text-muted-foreground">
-                {project.year}
-              </p>
+                <p className="text-xs uppercase tracking-widest text-muted-foreground font-semibold mb-3">
+                  {project.type}
+                </p>
+
+                <p className="text-sm text-foreground/70 leading-relaxed mb-4 flex-1">
+                  {project.description}
+                </p>
+
+                <p className="text-xs text-muted-foreground">
+                  {project.year}
+                </p>
+              </div>
             </a>
           ))}
         </div>
