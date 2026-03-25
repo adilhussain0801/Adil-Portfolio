@@ -23,7 +23,7 @@ export default function AboutSection() {
               style={{ fontFamily: "'Wotfard', sans-serif" }}
               className="text-base md:text-lg leading-relaxed text-foreground"
             >
-              A natural curiosity keeps me at the intersection of design and emerging technology. I'm constantly exploring how tools—particularly AI—can raise the bar for both product experience and design practice itself. Beyond work, I travel to understand diverse perspectives, capture moments through photography, and create living systems in my garden. These experiences keep me grounded and fuel my belief that the best design comes from observation, empathy, and genuine human understanding.
+              A natural curiosity keeps me at the intersection of design and emerging technology. I'm constantly exploring how tools - particularly AI - can raise the bar for both product experience and design practice itself. Beyond work, I travel to understand diverse perspectives, capture moments through photography, and create living systems in my garden. These experiences keep me grounded and fuel my belief that the best design comes from observation, empathy, and genuine human understanding.
             </p>
           </div>
         </div>

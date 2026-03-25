@@ -42,7 +42,7 @@ const EXPERIENCES = [
     logo: "https://logo.clearbit.com/xoriant.com",
     icon: "/icon-xoriant.png",
     achievements: [
-      "Led the product design strategy for an enterprise IoT platform serving oil & gas operations across 15+ sites. Designed complex workflow management systems handling equipment monitoring, incident tracking, and real-time asset visibility—enabling 24/7 operations with minimal downtime.",
+      "Led the product design strategy for an enterprise IoT platform serving oil & gas operations across 15+ sites. Designed complex workflow management systems handling equipment monitoring, incident tracking, and real-time asset visibility - enabling 24/7 operations with minimal downtime.",
       "Architected predictive analytics interfaces translating ML-driven equipment downtime forecasts into actionable maintenance schedules. Designed data visualization dashboards that reduced time-to-insight from 30 minutes to <2 minutes, enabling field teams to prioritize critical interventions.",
       "Managed cross-disciplinary design team of 2 designers and 4 developers, establishing design standards for industrial UX. Created modular UI component library reducing development cycles by 40% and improving consistency across client deployments.",
       "Conducted extensive domain research with operators and maintenance crews, translating industrial workflows into intuitive digital interfaces. Trained 50+ field operators on new system, achieving 98% adoption rate despite significant workflow changes."
