@@ -106,8 +106,8 @@ export default function HeroSection() {
             <br />
             <span className="font-bold text-[#2D2D2D]">Mumbai,</span>
             <span className="font-normal text-[#999999] ml-2">India</span>
-            <span className="inline-block ml-1 -mt-1">
-              <img src="/mumbai-illustration.png" alt="Mumbai" style={{ height: "2em", width: "auto" }} />
+            <span className="inline-block ml-1" style={{ verticalAlign: "middle" }}>
+              <img src="/mumbai-illustration.png" alt="Mumbai" style={{ height: "1.1em", width: "auto", display: "block" }} />
             </span>
             <span className="font-normal text-[#999999]">.</span>
           </motion.h1>
