@@ -103,7 +103,7 @@ export default function HeroSection() {
             <span className="font-bold text-[#2D2D2D] mx-2">design</span>
             <br />
             <span className="font-normal text-[#999999]">leader based in</span>
-            <span className="inline-block ml-1" style={{ verticalAlign: "text-bottom", marginTop: "-2px" }}>
+            <span className="inline-block ml-1" style={{ verticalAlign: "text-bottom", marginTop: "4px" }}>
               <img src="/mumbai-illustration.png" alt="Mumbai" style={{ height: "1.4em", width: "auto", display: "block" }} />
             </span>
             <br />
