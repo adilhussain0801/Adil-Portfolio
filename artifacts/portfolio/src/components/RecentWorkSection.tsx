@@ -172,7 +172,7 @@ export default function RecentWorkSection() {
           })}
 
           {/* Full-width bottom card */}
-          <div className="col-span-1 md:col-span-3 rounded-2xl border border-border overflow-hidden bg-background flex flex-col md:flex-row items-stretch" style={{ height: "220px" }}>
+          <div className="col-span-1 md:col-span-3 rounded-2xl border border-border overflow-hidden bg-background flex flex-col md:flex-row items-stretch" style={{ height: "330px" }}>
             {/* Left: text content */}
             <div className="flex-1 flex flex-col justify-center p-8 md:p-10">
               <h3
