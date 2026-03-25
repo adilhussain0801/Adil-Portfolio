@@ -9,7 +9,7 @@ export default function AboutSection() {
         <div className="flex-1 min-w-[320px] max-w-[820px] flex flex-col gap-12">
           <h2
             style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
-            className="text-[56px] md:text-[68px] leading-tight text-foreground"
+            className="text-3xl md:text-4xl leading-tight text-foreground"
           >
             About me
           </h2>
@@ -17,7 +17,7 @@ export default function AboutSection() {
           <div className="flex flex-col gap-6 mr-[36px]">
             <p
               style={{ fontFamily: "'Wotfard', sans-serif" }}
-              className="text-[20px] md:text-[24px] leading-[1.6] text-foreground"
+              className="text-base md:text-lg leading-relaxed text-foreground"
             >
               I'm Adil Hussain, a design leader with 13+ years of experience
               building products at scale. I've led design strategy and teams at
@@ -28,7 +28,7 @@ export default function AboutSection() {
             </p>
             <p
               style={{ fontFamily: "'Wotfard', sans-serif" }}
-              className="text-[20px] md:text-[24px] leading-[1.6] text-foreground"
+              className="text-base md:text-lg leading-relaxed text-foreground"
             >
               Beyond design, I'm an explorer - I travel to understand diverse
               cultures and perspectives, capture life through photography, and
