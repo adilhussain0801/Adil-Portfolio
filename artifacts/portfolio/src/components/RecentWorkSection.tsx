@@ -8,6 +8,7 @@ const PROJECTS = [
     year: "2024",
     image: "/project-jira-ai.png",
     bgColor: "bg-yellow-100",
+    span: "col-span-1 row-span-1",
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ const PROJECTS = [
     year: "2021",
     image: "/project-amazon-orders.png",
     bgColor: "bg-blue-100",
+    span: "col-span-1 md:col-span-1 row-span-1",
   },
   {
     id: 3,
@@ -24,6 +26,7 @@ const PROJECTS = [
     year: "2023",
     image: "/project-iot-platform.png",
     bgColor: "bg-emerald-100",
+    span: "col-span-1 row-span-1",
   },
   {
     id: 4,
@@ -32,6 +35,7 @@ const PROJECTS = [
     year: "2022",
     image: "/project-defense-system.png",
     bgColor: "bg-rose-100",
+    span: "col-span-1 row-span-1",
   },
   {
     id: 5,
@@ -40,13 +44,14 @@ const PROJECTS = [
     year: "2023",
     image: "/project-design-system.png",
     bgColor: "bg-purple-100",
+    span: "col-span-1 md:col-span-1 row-span-1",
   },
 ];
 
 export default function RecentWorkSection() {
   return (
     <section id="work-showcase" className="py-24 md:py-40 px-6 md:px-12">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <h2
           style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
           className="text-3xl md:text-4xl leading-tight text-foreground mb-12"
@@ -54,44 +59,53 @@ export default function RecentWorkSection() {
           Recent work
         </h2>
 
-        <div className="space-y-16">
-          {PROJECTS.map((project) => (
-            <a
-              key={project.id}
-              href={`/work/${project.id}`}
-              className="group block"
-            >
-              {/* Image container */}
-              <div className={`relative h-64 md:h-80 rounded-lg overflow-hidden ${project.bgColor} mb-4 group-hover:shadow-lg transition-shadow duration-300`}>
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[400px]">
+          {PROJECTS.map((project, index) => {
+            // Create bento grid pattern: 1st and 3rd wider, 2nd and 4th span 1, 5th wider
+            let gridClass = "col-span-1";
+            if (index === 1) gridClass = "col-span-1 md:col-span-2 md:row-span-1 auto-rows-[400px]";
+            if (index === 4) gridClass = "col-span-1 md:col-span-2 auto-rows-[400px]";
 
-              {/* Content container */}
-              <div className="flex flex-col">
-                <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3 group-hover:opacity-70 transition-opacity">
-                  {project.title}
-                </h3>
+            return (
+              <a
+                key={project.id}
+                href={`/work/${project.id}`}
+                className={`group block rounded-lg overflow-hidden ${gridClass}`}
+              >
+                <div className="relative h-full">
+                  {/* Image with overlay */}
+                  <div className={`relative h-full rounded-lg overflow-hidden ${project.bgColor} group-hover:shadow-lg transition-shadow duration-300`}>
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    
+                    {/* Overlay content */}
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex flex-col justify-end p-6">
+                      <h3 className="text-lg md:text-xl font-bold text-white mb-2 group-hover:opacity-100 opacity-100 transition-opacity">
+                        {project.title}
+                      </h3>
+                      
+                      <p className="text-sm text-white/90 leading-relaxed mb-4 line-clamp-3">
+                        {project.description}
+                      </p>
 
-                <p className="text-sm md:text-base text-foreground/70 leading-relaxed mb-4">
-                  {project.description}
-                </p>
-
-                <div className="flex items-center gap-2">
-                  <span className="text-xs uppercase tracking-widest font-semibold text-muted-foreground group-hover:text-foreground transition-colors">
-                    View Work
-                  </span>
-                  <ArrowUpRight 
-                    size={16} 
-                    className="text-muted-foreground group-hover:text-foreground transition-colors"
-                  />
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs uppercase tracking-widest font-semibold text-white group-hover:opacity-100 opacity-90 transition-opacity">
+                          View Work
+                        </span>
+                        <ArrowUpRight 
+                          size={16} 
+                          className="text-white group-hover:opacity-100 opacity-90 transition-opacity"
+                        />
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </a>
-          ))}
+              </a>
+            );
+          })}
         </div>
       </div>
     </section>
