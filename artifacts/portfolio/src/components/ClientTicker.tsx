@@ -55,24 +55,58 @@ function initNodes(): Node[] {
   return [...pills, ...dots];
 }
 
+const REPEL_RADIUS = 150;
+const REPEL_STRENGTH = 0.6;
+const DAMPING = 0.992;
+
 export default function ClientTicker() {
   const nodesRef = useRef<Node[]>(initNodes());
   const [, setTick] = useState(0);
   const [hovered, setHovered] = useState<string | null>(null);
   const hoveredRef = useRef<string | null>(null);
+  const mouseRef = useRef<{ x: number; y: number } | null>(null);
+  const svgRef = useRef<SVGSVGElement>(null);
+
+  // Convert DOM mouse coords → SVG viewBox coords
+  const toSVGCoords = (clientX: number, clientY: number) => {
+    const el = svgRef.current;
+    if (!el) return null;
+    const rect = el.getBoundingClientRect();
+    const scaleX = W / rect.width;
+    const scaleY = H / rect.height;
+    return { x: (clientX - rect.left) * scaleX, y: (clientY - rect.top) * scaleY };
+  };
 
   useEffect(() => {
     let raf: number;
     const step = () => {
+      const mouse = mouseRef.current;
       nodesRef.current = nodesRef.current.map((n) => {
         let { x, y, vx, vy } = n;
         const margin = n.type === "pill" ? pillW(n.label!) / 2 + 4 : (n.r ?? 4) + 4;
+
+        // Cursor repulsion
+        if (mouse) {
+          const dx = x - mouse.x;
+          const dy = y - mouse.y;
+          const dist = Math.hypot(dx, dy);
+          if (dist < REPEL_RADIUS && dist > 0) {
+            const force = (1 - dist / REPEL_RADIUS) * REPEL_STRENGTH;
+            vx += (dx / dist) * force;
+            vy += (dy / dist) * force;
+          }
+        }
+
+        // Dampen velocity
+        vx *= DAMPING;
+        vy *= DAMPING;
+
         x += vx;
         y += vy;
-        if (x < margin)      { x = margin;      vx = Math.abs(vx); }
-        if (x > W - margin)  { x = W - margin;  vx = -Math.abs(vx); }
-        if (y < PILL_H / 2 + 4) { y = PILL_H / 2 + 4; vy = Math.abs(vy); }
-        if (y > H - PILL_H / 2 - 4) { y = H - PILL_H / 2 - 4; vy = -Math.abs(vy); }
+        if (x < margin)              { x = margin;              vx = Math.abs(vx) * 0.6; }
+        if (x > W - margin)          { x = W - margin;          vx = -Math.abs(vx) * 0.6; }
+        if (y < PILL_H / 2 + 4)     { y = PILL_H / 2 + 4;     vy = Math.abs(vy) * 0.6; }
+        if (y > H - PILL_H / 2 - 4) { y = H - PILL_H / 2 - 4; vy = -Math.abs(vy) * 0.6; }
         return { ...n, x, y, vx, vy };
       });
       setTick((t) => t + 1);
@@ -120,7 +154,14 @@ export default function ClientTicker() {
         </div>
 
         <div className="w-full md:w-2/3">
-          <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ overflow: "hidden" }}>
+          <svg
+            ref={svgRef}
+            viewBox={`0 0 ${W} ${H}`}
+            className="w-full"
+            style={{ overflow: "hidden", cursor: "none" }}
+            onMouseMove={(e) => { mouseRef.current = toSVGCoords(e.clientX, e.clientY); }}
+            onMouseLeave={() => { mouseRef.current = null; }}
+          >
 
             {/* Edges */}
             {edges.map(({ a, b, opacity }) => {
