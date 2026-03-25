@@ -75,7 +75,7 @@ function ClientItem({ client }: { client: typeof CLIENTS[0] }) {
           onError={() => setImageLoaded(false)}
         />
       ) : (
-        <span className="text-sm font-medium text-foreground/65 group-hover:text-foreground transition-colors duration-300 whitespace-nowrap">
+        <span className="text-base font-medium text-foreground/65 group-hover:text-foreground transition-colors duration-300 whitespace-nowrap">
           {client.name}
         </span>
       )}
@@ -94,7 +94,7 @@ export default function ClientTicker() {
 
   return (
     <div className="w-full border-t border-b border-border pt-16 pb-12 overflow-hidden relative bg-background">
-      <p className="absolute top-6 left-6 md:left-12 text-sm uppercase tracking-widest text-muted-foreground bg-background px-3 font-bold">
+      <p className="absolute top-6 left-6 md:left-12 text-base uppercase tracking-widest text-muted-foreground bg-background px-3 font-bold">
         I've designed for
       </p>
       <div className="flex ticker-track">
