@@ -18,7 +18,7 @@ export default function Footer() {
             </h2>
             <a
               href="mailto:adilhussain0801@gmail.com"
-              className="text-muted-foreground hover:text-foreground transition-colors text-base"
+              className="text-muted-foreground hover:text-foreground transition-colors text-[36px]"
             >
               adilhussain0801@gmail.com
             </a>
