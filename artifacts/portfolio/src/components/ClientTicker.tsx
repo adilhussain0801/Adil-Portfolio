@@ -103,7 +103,7 @@ export default function ClientTicker() {
         </h2>
       </div>
       <div 
-        className="pb-12 overflow-hidden"
+        className="px-6 md:px-12 pb-12 overflow-hidden"
         style={{
           maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
           WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
