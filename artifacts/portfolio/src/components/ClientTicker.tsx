@@ -3,9 +3,9 @@ import { useEffect, useRef, useState } from "react";
 const W = 920;
 const H = 500;
 const MAX_DIST = 210;
-const PILL_H = 26;
-const PILL_PAD = 12;
-const CHAR_W = 6.8;
+const PILL_H = 34;
+const PILL_PAD = 14;
+const CHAR_W = 7.2;
 const pillW = (label: string) => label.length * CHAR_W + PILL_PAD * 2;
 
 const PILL_LABELS = [
@@ -17,12 +17,17 @@ const PILL_LABELS = [
   "Defence C2",
   "Trust & Security",
   "Design Systems",
+  "Healthcare Tech",
+  "FinTech Platforms",
+  "SaaS Scaling",
+  "Blockchain Design",
 ];
 
 // Initial positions spread across canvas
 const PILL_INIT = [
   [160, 88], [430, 52], [718, 118], [648, 358],
   [272, 374], [68, 282], [790, 440], [418, 242],
+  [556, 72], [310, 450], [820, 280], [82, 420],
 ];
 
 const DOT_INIT = [
@@ -178,23 +183,35 @@ export default function ClientTicker() {
             })}
 
             {/* Dot nodes */}
-            {nodes.filter((n) => n.type === "dot").map((n) => (
-              <circle
-                key={n.id}
-                cx={n.x} cy={n.y} r={n.r}
-                fill="#2D2D2D"
-                fillOpacity={dim(n.id) ? 0.2 : hovered === n.id ? 1 : 0.45}
-                onMouseEnter={() => { setHovered(n.id); hoveredRef.current = n.id; }}
-                onMouseLeave={() => { setHovered(null); hoveredRef.current = null; }}
-                style={{ cursor: "default" }}
-              />
-            ))}
+            {nodes.filter((n) => n.type === "dot").map((n) => {
+              let scale = 1;
+              if (mouseRef.current) {
+                const dist = Math.hypot(n.x - mouseRef.current.x, n.y - mouseRef.current.y);
+                scale = 1 + Math.max(0, (1 - dist / 200)) * 0.8; // Grow up to 1.8x closer to cursor
+              }
+              return (
+                <circle
+                  key={n.id}
+                  cx={n.x} cy={n.y} r={(n.r ?? 4) * scale}
+                  fill="#2D2D2D"
+                  fillOpacity={dim(n.id) ? 0.2 : hovered === n.id ? 1 : 0.45}
+                  onMouseEnter={() => { setHovered(n.id); hoveredRef.current = n.id; }}
+                  onMouseLeave={() => { setHovered(null); hoveredRef.current = null; }}
+                  style={{ cursor: "default" }}
+                />
+              );
+            })}
 
             {/* Pill nodes */}
             {nodes.filter((n) => n.type === "pill").map((n) => {
               const w = pillW(n.label!);
               const isHov = hovered === n.id;
-              const scale = isHov ? 1.12 : 1;
+              let scale = 1;
+              if (mouseRef.current) {
+                const dist = Math.hypot(n.x - mouseRef.current.x, n.y - mouseRef.current.y);
+                scale = 1 + Math.max(0, (1 - dist / 180)) * 0.25; // Grow up to 1.25x closer to cursor
+              }
+              scale *= isHov ? 1.12 : 1; // Add hover pop on top
               return (
                 <g
                   key={n.id}
@@ -210,9 +227,9 @@ export default function ClientTicker() {
                     fillOpacity={dim(n.id) ? 0.1 : 1}
                   />
                   <text
-                    x={n.x} y={n.y + 4.5}
+                    x={n.x} y={n.y + 5}
                     textAnchor="middle"
-                    fontSize={10.5}
+                    fontSize={12}
                     fontFamily="'Wotfard', sans-serif"
                     fontWeight={600}
                     fill="#FAF8F5"
