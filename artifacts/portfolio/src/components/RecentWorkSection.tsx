@@ -47,9 +47,12 @@ export default function RecentWorkSection() {
   return (
     <section id="work-showcase" className="py-24 md:py-40 px-6 md:px-12">
       <div className="max-w-6xl mx-auto">
-        <p className="text-xs uppercase tracking-widest text-muted-foreground font-bold mb-12">
+        <h2
+          style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+          className="text-3xl md:text-4xl leading-tight text-foreground mb-12"
+        >
           Recent work
-        </p>
+        </h2>
 
         <div className="space-y-16">
           {PROJECTS.map((project) => (
