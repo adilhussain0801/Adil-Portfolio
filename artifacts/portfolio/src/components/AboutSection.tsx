@@ -19,22 +19,13 @@ export default function AboutSection() {
               style={{ fontFamily: "'Wotfard', sans-serif" }}
               className="text-base md:text-lg leading-relaxed text-foreground"
             >
-              I'm Adil Hussain, a design leader with 13+ years of experience
-              building products at scale. I've led design strategy and teams at
-              Atlassian, Amazon, and other industry-defining companies, defining
-              vision and shaping user experience across platforms. I'm driven by
-              designing systems that scale, mentoring teams, and creating lasting
-              impact through thoughtful, user-centered solutions.
+              I'm a design leader with 13+ years building products across product design, strategy, design systems, and AI features. I've led design at Atlassian, Amazon, and other defining organizations, working across startups, scale-ups, and enterprise to ship thoughtful, user-centered products. I'm equally comfortable leading design teams and working hands-on with components, design systems, and cross-functional delivery.
             </p>
             <p
               style={{ fontFamily: "'Wotfard', sans-serif" }}
               className="text-base md:text-lg leading-relaxed text-foreground"
             >
-              Beyond design, I'm an explorer - I travel to understand diverse
-              cultures and perspectives, capture life through photography, and
-              create living systems in my garden. These experiences fuel my
-              approach to design, reminding me that the best solutions come from
-              curiosity, observation, and an openness to the world.
+              A natural curiosity keeps me at the intersection of design and emerging technology. I'm constantly exploring how tools—particularly AI—can raise the bar for both product experience and design practice itself. Beyond work, I travel to understand diverse perspectives, capture moments through photography, and create living systems in my garden. These experiences keep me grounded and fuel my belief that the best design comes from observation, empathy, and genuine human understanding.
             </p>
           </div>
         </div>
