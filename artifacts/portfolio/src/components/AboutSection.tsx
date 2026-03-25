@@ -19,20 +19,22 @@ export default function AboutSection() {
               style={{ fontFamily: "'Wotfard', sans-serif" }}
               className="text-[20px] md:text-[24px] leading-[1.6] text-foreground"
             >
-              I'm Adil Hussain, a product designer with over 13 years of
-              experience, based in Mumbai, India. I'm passionate about solving
-              problems through design, always advocating for the end user, and
-              collaborating with different crafts to create intuitive, impactful
-              solutions.
+              I'm Adil Hussain, a design leader with 13+ years of experience
+              building products at scale. I've led design strategy and teams at
+              Atlassian, Amazon, and other industry-defining companies, defining
+              vision and shaping user experience across platforms. I'm driven by
+              designing systems that scale, mentoring teams, and creating lasting
+              impact through thoughtful, user-centered solutions.
             </p>
             <p
               style={{ fontFamily: "'Wotfard', sans-serif" }}
               className="text-[20px] md:text-[24px] leading-[1.6] text-foreground"
             >
-              In my free time, you'll find me exploring new travel destinations,
-              capturing moments through photography, painting or nurturing my
-              home garden and creating terrariums and vivariums. These hobbies
-              inspire me and fuel my creativity in design.
+              Beyond design, I'm an explorer—I travel to understand diverse
+              cultures and perspectives, capture life through photography, and
+              create living systems in my garden. These experiences fuel my
+              approach to design, reminding me that the best solutions come from
+              curiosity, observation, and an openness to the world.
             </p>
           </div>
         </div>
