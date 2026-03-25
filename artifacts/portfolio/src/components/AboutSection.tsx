@@ -27,45 +27,6 @@ export default function AboutSection() {
             </p>
           </div>
         </div>
-
-        {/* Right: Photo collage */}
-        <div className="flex gap-6 items-center shrink-0">
-          {/* Large portrait photo */}
-          <div
-            className="relative rounded-[40px] overflow-hidden shrink-0"
-            style={{ width: 280, height: 560 }}
-          >
-            <img
-              src="/about-photo-1.jpg"
-              alt="Adil Hussain"
-              className="absolute w-full h-full object-cover object-center"
-            />
-          </div>
-
-          {/* Two stacked photos */}
-          <div className="flex flex-col gap-5 shrink-0" style={{ width: 210 }}>
-            <div
-              className="relative rounded-[40px] overflow-hidden"
-              style={{ height: 270 }}
-            >
-              <img
-                src="/about-photo-2.jpg"
-                alt="Adil - travel"
-                className="absolute w-full h-full object-cover object-center"
-              />
-            </div>
-            <div
-              className="relative rounded-[40px] overflow-hidden"
-              style={{ height: 270 }}
-            >
-              <img
-                src="/about-photo-3.jpg"
-                alt="Adil - hobby"
-                className="absolute w-full h-full object-cover object-center"
-              />
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
