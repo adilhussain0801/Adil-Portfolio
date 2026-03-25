@@ -1,9 +1,10 @@
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
+import AboutSection from "@/components/AboutSection";
 import ClientTicker from "@/components/ClientTicker";
 import WorkSection from "@/components/WorkSection";
+import RecentWorkSection from "@/components/RecentWorkSection";
 import SkillsSection from "@/components/SkillsSection";
-import AboutSection from "@/components/AboutSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
         <AboutSection />
         <ClientTicker />
         <WorkSection />
+        <RecentWorkSection />
         <SkillsSection />
       </main>
 
