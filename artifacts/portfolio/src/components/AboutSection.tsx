@@ -14,7 +14,7 @@ export default function AboutSection() {
             About me
           </h2>
 
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-6 mr-[36px]">
             <p
               style={{ fontFamily: "'Wotfard', sans-serif" }}
               className="text-[20px] md:text-[24px] leading-[1.6] text-foreground"
