@@ -18,9 +18,7 @@ export default function AboutSection() {
             <p
               style={{ fontFamily: "'Wotfard', sans-serif" }}
               className="text-base md:text-lg leading-relaxed text-foreground"
-            >
-              I'm a design leader with 13+ years building products across product design, strategy, design systems, and AI features. I've led design at Atlassian, Amazon, and other defining organizations, working across startups, scale-ups, and enterprise to ship thoughtful, user-centered products. I'm equally comfortable leading design teams and working hands-on with components, design systems, and cross-functional delivery.
-            </p>
+            >I'm a design leader with 13+ years creating experiences across product design, strategy, design systems, and AI features. I've led design at Atlassian, Amazon, and other defining organizations, working across startups, scale-ups, and enterprise to ship thoughtful, user-centered products. I'm equally comfortable leading design teams and working hands-on with components, design systems, and cross-functional delivery.</p>
             <p
               style={{ fontFamily: "'Wotfard', sans-serif" }}
               className="text-base md:text-lg leading-relaxed text-foreground"
