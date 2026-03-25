@@ -57,8 +57,8 @@ const EXPERIENCES = [
   }
 ];
 
-function ExperienceRow({ company, role, period, logo, icon, achievements }: typeof EXPERIENCES[0]) {
-  const [isExpanded, setIsExpanded] = useState(false);
+function ExperienceRow({ company, role, period, logo, icon, achievements, isFirst }: typeof EXPERIENCES[0] & { isFirst?: boolean }) {
+  const [isExpanded, setIsExpanded] = useState(isFirst ?? false);
   const extractYearRange = () => {
     const parts = period.split(" ");
     const start = parts[parts.length - 3];
@@ -66,6 +66,7 @@ function ExperienceRow({ company, role, period, logo, icon, achievements }: type
     if (end === "Present") return `${start} - Present`;
     return `${start} - ${end}`;
   };
+  const isActive = period.includes("Present");
   
   return (
     <>
@@ -83,7 +84,8 @@ function ExperienceRow({ company, role, period, logo, icon, achievements }: type
           <p className="text-sm text-muted-foreground">{role}</p>
         </div>
         
-        <div className="px-3 py-1.5 bg-muted rounded-full text-sm font-medium text-foreground flex-shrink-0 min-w-max">
+        <div className={`px-3 py-1.5 rounded-full text-sm font-medium flex-shrink-0 min-w-max flex items-center gap-2 ${isActive ? "bg-green-100 text-green-900" : "bg-muted text-foreground"}`}>
+          {isActive && <div className="w-2 h-2 rounded-full bg-green-500" />}
           {extractYearRange()}
         </div>
 
@@ -144,6 +146,7 @@ export default function WorkSection() {
             logo={exp.logo}
             icon={exp.icon}
             achievements={exp.achievements}
+            isFirst={index === 0}
           />
         ))}
       </div>
