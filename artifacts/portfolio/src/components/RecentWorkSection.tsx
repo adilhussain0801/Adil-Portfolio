@@ -46,6 +46,21 @@ const PROJECTS = [
     colSpan: "md:col-span-2",
     type: "image",
   },
+  {
+    id: 4,
+    title: "Rovo Service",
+    category: "Atlassian AI Assistant",
+    description: "Designed the service layer experience for Rovo, Atlassian's AI assistant — enabling agents to take action across tools, reducing manual workflows for enterprise teams.",
+    year: "2024",
+    image: null,
+    placeholderColor: "#C5D9F9",
+    metrics: [
+      { label: "EFFICIENCY GAIN", value: "38%" },
+      { label: "ACTIVE TEAMS", value: "2.1K" },
+    ],
+    colSpan: "md:col-span-1",
+    type: "image",
+  },
 ];
 
 export default function RecentWorkSection() {
