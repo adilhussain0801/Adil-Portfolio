@@ -1,8 +1,9 @@
-import { useParams, useLocation } from "wouter";
+import { useParams, Link } from "wouter";
 import { useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { getCaseStudy, getNextCaseStudy, type CaseStudy } from "@/data/caseStudies";
+import NotFound from "@/pages/not-found";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -330,7 +331,7 @@ function NextProjectSection({ study }: { study: CaseStudy }) {
           >
             Next project
           </p>
-          <a
+          <Link
             href={`/work/${next.id}`}
             className="group flex items-center justify-between rounded-2xl bg-[#1a1a1a] px-8 py-7 hover:bg-[#252525] transition-colors"
           >
@@ -351,7 +352,7 @@ function NextProjectSection({ study }: { study: CaseStudy }) {
             <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors flex-shrink-0 ml-6">
               <ArrowUpRight size={18} className="text-white" />
             </div>
-          </a>
+          </Link>
         </div>
       </section>
     </SectionReveal>
@@ -360,7 +361,6 @@ function NextProjectSection({ study }: { study: CaseStudy }) {
 
 export default function CaseStudyPage() {
   const params = useParams<{ id: string }>();
-  const [, navigate] = useLocation();
 
   const id = parseInt(params.id ?? "", 10);
   const study = getCaseStudy(id);
@@ -370,14 +370,13 @@ export default function CaseStudyPage() {
   }, [id]);
 
   if (!study) {
-    navigate("/404");
-    return null;
+    return <NotFound />;
   }
 
   return (
     <div className="min-h-screen relative selection:bg-foreground selection:text-background" style={{ background: "#FAF8F5" }}>
       <header className="fixed top-0 left-0 right-0 z-50 py-5 px-6 md:px-24 flex items-center justify-between bg-transparent">
-        <a
+        <Link
           href="/"
           className="flex items-center gap-2 text-sm font-medium text-[#2D2D2D]/70 hover:text-[#2D2D2D] transition-colors group"
           style={{ fontFamily: "'Wotfard', sans-serif" }}
@@ -386,13 +385,13 @@ export default function CaseStudyPage() {
             <ArrowLeft size={14} strokeWidth={1.5} />
           </div>
           <span>Back</span>
-        </a>
-        <a
+        </Link>
+        <Link
           href="/"
           className="text-lg font-serif font-medium tracking-wide hover:opacity-70 transition-opacity text-[#2D2D2D]"
         >
           Adil Hussain
-        </a>
+        </Link>
       </header>
 
       <main>
