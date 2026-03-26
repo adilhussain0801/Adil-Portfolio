@@ -42,7 +42,7 @@ function TickerRow({ items, reverse }: { items: typeof ROW_ONE; reverse?: boolea
 
 export default function LifeSection() {
   return (
-    <section className="py-24 md:py-32 px-6 md:px-24 overflow-hidden">
+    <section id="life" className="py-24 md:py-32 px-6 md:px-24 overflow-hidden">
       <div className="flex flex-col md:flex-row gap-12 md:gap-24">
         {/* Left: Heading */}
         <div className="md:w-1/3 flex-shrink-0">
