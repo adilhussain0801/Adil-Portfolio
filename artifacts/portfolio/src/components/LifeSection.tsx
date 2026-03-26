@@ -54,13 +54,8 @@ export default function LifeSection() {
           </h2>
         </div>
 
-        {/* Right: Description and Ticker */}
+        {/* Right: Ticker */}
         <div className="md:w-2/3 flex flex-col gap-6">
-          <p className="text-base md:text-lg text-foreground/80 leading-relaxed">
-            I don't just stare at screens. I stare at race tracks, ocean waves, and my cat (who frankly, is the real creative director here).
-          </p>
-
-          {/* Ticker rows */}
           <div className="flex flex-col gap-3">
             <TickerRow items={ROW_ONE} />
             <TickerRow items={ROW_TWO} reverse />
