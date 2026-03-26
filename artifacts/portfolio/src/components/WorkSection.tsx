@@ -111,13 +111,17 @@ function ExperienceRow({ company, role, period, duration, location, logo, icon, 
           {duration && <span className="text-xs">{duration}</span>}
         </div>
 
-        <div className="flex-shrink-0 text-muted-foreground">
+        <motion.div 
+          className="flex-shrink-0 text-muted-foreground"
+          animate={{ rotate: isExpanded ? 45 : 0 }}
+          transition={{ duration: 0.3 }}
+        >
           {isExpanded ? (
             <X size={20} />
           ) : (
             <Plus size={20} />
           )}
-        </div>
+        </motion.div>
       </motion.div>
       <AnimatePresence>
         {isExpanded && (
