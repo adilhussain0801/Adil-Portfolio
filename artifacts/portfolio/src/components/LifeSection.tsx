@@ -42,24 +42,30 @@ function TickerRow({ items, reverse }: { items: typeof ROW_ONE; reverse?: boolea
 
 export default function LifeSection() {
   return (
-    <section className="py-24 md:py-32 overflow-hidden">
-      {/* Header */}
-      <div className="text-center px-6 mb-16">
-        <h2
-          style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
-          className="text-3xl md:text-4xl text-foreground mb-4"
-        >
-          Life outside the box
-        </h2>
-        <p className="text-sm md:text-base text-foreground/50 max-w-md mx-auto leading-relaxed">
-          I don't just stare at screens. I stare at race tracks, ocean waves, and my cat (who frankly, is the real creative director here).
-        </p>
-      </div>
+    <section className="py-24 md:py-32 px-6 md:px-24 overflow-hidden">
+      <div className="flex flex-col md:flex-row gap-12 md:gap-24">
+        {/* Left: Heading */}
+        <div className="md:w-1/3 flex-shrink-0">
+          <h2
+            style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+            className="text-3xl md:text-4xl text-foreground md:sticky md:top-32"
+          >
+            Life outside the box
+          </h2>
+        </div>
 
-      {/* Ticker rows */}
-      <div className="flex flex-col gap-3">
-        <TickerRow items={ROW_ONE} />
-        <TickerRow items={ROW_TWO} reverse />
+        {/* Right: Description and Ticker */}
+        <div className="md:w-2/3 flex flex-col gap-6">
+          <p className="text-base md:text-lg text-foreground/80 leading-relaxed">
+            I don't just stare at screens. I stare at race tracks, ocean waves, and my cat (who frankly, is the real creative director here).
+          </p>
+
+          {/* Ticker rows */}
+          <div className="flex flex-col gap-3">
+            <TickerRow items={ROW_ONE} />
+            <TickerRow items={ROW_TWO} reverse />
+          </div>
+        </div>
       </div>
     </section>
   );
