@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { 
-  Banknote, Headphones, Zap, Brain, Settings2, Building2, Lock, TrendingUp,
+  Banknote, Headphones, Zap, Brain, Settings2, ShoppingCart, Lock, TrendingUp,
   Shield
 } from "lucide-react";
 
@@ -10,7 +10,7 @@ const INDUSTRIES = [
   { id: 3, label: "IoT Platforms", icon: Zap },
   { id: 4, label: "AI Agents", icon: Brain },
   { id: 5, label: "Design Systems", icon: Settings2 },
-  { id: 6, label: "Marketplace", icon: Building2 },
+  { id: 6, label: "Marketplace", icon: ShoppingCart },
   { id: 7, label: "Defence", icon: Shield },
   { id: 8, label: "Monetization", icon: TrendingUp },
   { id: 9, label: "Trust & Security", icon: Lock },
