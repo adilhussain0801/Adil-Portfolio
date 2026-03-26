@@ -89,13 +89,7 @@ export default function LifeSection() {
 
         {/* Right: Ticker */}
         <div className="md:w-2/3 flex flex-col gap-3">
-          <div
-            className="flex flex-col gap-3 overflow-hidden"
-            style={{
-              maskImage: "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
-              WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
-            }}
-          >
+          <div className="ticker-mask flex flex-col gap-3 overflow-hidden">
             <TickerRow items={ROW_ONE} />
             <TickerRow items={ROW_TWO} reverse />
           </div>
