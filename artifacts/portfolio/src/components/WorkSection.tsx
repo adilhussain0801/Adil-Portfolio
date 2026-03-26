@@ -87,7 +87,7 @@ function ExperienceRow({ company, role, period, duration, location, logo, icon, 
   return (
     <>
       <motion.div 
-        className={`flex items-center gap-6 py-6 ${!isExpanded ? "border-b border-border" : ""} last:border-b-0 group cursor-pointer hover:bg-muted/50 px-4 -mx-4 transition-colors duration-200`}
+        className={`flex items-center gap-6 py-6 ${!isExpanded ? "border-b border-border/40" : ""} last:border-b-0 group cursor-pointer hover:bg-muted/30 hover:rounded-lg px-4 -mx-4 transition-colors duration-200`}
         onClick={() => setIsExpanded(!isExpanded)}
         whileHover={{ backgroundColor: "rgba(0,0,0,0.02)" }}
       >
@@ -163,7 +163,7 @@ export default function WorkSection() {
 
         {/* Right: Experience list */}
         <div className="md:w-2/3">
-          <div className="space-y-0 border-t border-border">
+          <div className="space-y-0">
             {EXPERIENCES.map((exp, index) => (
               <ExperienceRow 
                 key={index}
