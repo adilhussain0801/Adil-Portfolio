@@ -139,3 +139,8 @@
 .animate-ticker-reverse {
   animation: ticker-right 30s linear infinite;
 }
+
+.ticker-container:hover .animate-ticker,
+.ticker-container:hover .animate-ticker-reverse {
+  animation-play-state: paused;
+}
