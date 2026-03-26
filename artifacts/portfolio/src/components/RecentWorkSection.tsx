@@ -1,7 +1,6 @@
 import { ArrowUpRight, Zap } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
 
 const PROJECTS = [
   {
@@ -65,24 +64,46 @@ const PROJECTS = [
   },
 ];
 
-function ProjectCard({ project, hoveredId, setHoveredId }: { project: typeof PROJECTS[0]; hoveredId: number | null; setHoveredId: (id: number | null) => void }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+function ProjectCard({
+  project,
+  index,
+  hoveredId,
+  setHoveredId,
+  onVisible,
+}: {
+  project: typeof PROJECTS[0];
+  index: number;
+  hoveredId: number | null;
+  setHoveredId: (id: number | null) => void;
+  onVisible: (index: number) => void;
+}) {
+  const animRef = useRef(null);
+  const trackRef = useRef(null);
+  const isInView = useInView(animRef, { once: true, amount: 0.3 });
+  const isActive = useInView(trackRef, { once: false, amount: 0.5 });
   const isHovered = hoveredId === project.id;
+
+  useEffect(() => {
+    if (isActive) {
+      onVisible(index);
+    }
+  }, [isActive, index, onVisible]);
 
   return (
     <motion.div
-      ref={ref}
-      className="w-full py-6"
+      ref={animRef}
+      className="w-full py-6 relative"
       initial={{ opacity: 0, y: 80 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
+      {/* Invisible tracking sentinel centered in the card */}
+      <div ref={trackRef} className="absolute inset-0 pointer-events-none" />
+
       {project.type === "special" ? (
         <a
-          key={project.id}
           href={`/work/${project.id}`}
-          className={`group block rounded-2xl overflow-hidden relative cursor-pointer w-full h-[78vh]`}
+          className="group block rounded-2xl overflow-hidden relative cursor-pointer w-full h-[78vh]"
           style={{ background: "linear-gradient(135deg, #3d1f6b 0%, #1a1040 50%, #0d0824 100%)" }}
           onMouseEnter={() => setHoveredId(project.id)}
           onMouseLeave={() => setHoveredId(null)}
@@ -101,34 +122,27 @@ function ProjectCard({ project, hoveredId, setHoveredId }: { project: typeof PRO
               {project.description}
             </p>
             <div className="border border-white/30 rounded-full px-5 py-2 text-xs uppercase tracking-widest font-semibold text-white group-hover:bg-white/10 transition-colors">
-              {project.cta}
+              View project
             </div>
           </div>
         </a>
       ) : (
         <a
-          key={project.id}
           href={`/work/${project.id}`}
           className="group relative block rounded-2xl overflow-hidden cursor-pointer w-full h-[78vh]"
           onMouseEnter={() => setHoveredId(project.id)}
           onMouseLeave={() => setHoveredId(null)}
         >
-          {/* Image fills the entire card */}
           <div
             className="absolute inset-0"
             style={{ backgroundColor: project.placeholderColor }}
           />
 
-          {/* Arrow button on hover */}
           <div className={`absolute top-4 right-4 w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center transition-all duration-300 z-10 ${isHovered ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"}`}>
             <ArrowUpRight size={16} className="text-white" />
           </div>
 
-          {/* Floating info panel — 12px margin, expands upward inside fixed card */}
-          <div
-            className="absolute left-3 right-3 bottom-3 bg-[#1a1a1a] rounded-xl overflow-hidden z-10"
-          >
-            {/* Always-visible top row: title + metrics */}
+          <div className="absolute left-3 right-3 bottom-3 bg-[#1a1a1a] rounded-xl overflow-hidden z-10">
             <div className="flex items-start justify-between px-5 py-4">
               <div>
                 <h3
@@ -149,7 +163,6 @@ function ProjectCard({ project, hoveredId, setHoveredId }: { project: typeof PRO
               </div>
             </div>
 
-            {/* Expandable description — grows upward within the card */}
             <div
               className="overflow-hidden"
               style={{
@@ -172,27 +185,75 @@ function ProjectCard({ project, hoveredId, setHoveredId }: { project: typeof PRO
 
 export default function RecentWorkSection() {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <section id="work-showcase" className="py-24 md:py-40 px-6 md:px-24" style={{ background: "#FAF8F5" }}>
       <div className="flex flex-col md:flex-row gap-12 md:gap-24">
-        {/* Left: Heading */}
+        {/* Left: Heading + dots */}
         <div className="md:w-1/3 flex-shrink-0">
-          <h2
-            style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
-            className="text-3xl md:text-4xl leading-tight text-foreground md:sticky md:top-32"
-          >
-            Recent work
-          </h2>
+          <div className="md:sticky md:top-32 flex flex-col gap-8">
+            <h2
+              style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+              className="text-3xl md:text-4xl leading-tight text-foreground"
+            >
+              Recent work
+            </h2>
+
+            {/* Counter */}
+            <div className="flex items-center gap-3">
+              <span
+                style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 600 }}
+                className="text-sm tabular-nums text-[#2D2D2D]"
+              >
+                {String(activeIndex + 1).padStart(2, "0")}
+                <span className="text-[#2D2D2D]/30 mx-1">/</span>
+                {String(PROJECTS.length).padStart(2, "0")}
+              </span>
+            </div>
+
+            {/* Dots */}
+            <div className="flex flex-col gap-2">
+              {PROJECTS.map((project, i) => (
+                <div key={project.id} className="flex items-center gap-3 group">
+                  <motion.div
+                    animate={{
+                      width: i === activeIndex ? 24 : 6,
+                      backgroundColor: i === activeIndex ? "#2D2D2D" : "#2D2D2D33",
+                    }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="h-1.5 rounded-full flex-shrink-0"
+                  />
+                  <motion.span
+                    animate={{
+                      opacity: i === activeIndex ? 1 : 0,
+                      x: i === activeIndex ? 0 : -4,
+                    }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="text-xs text-[#2D2D2D]/60 whitespace-nowrap overflow-hidden"
+                    style={{ fontFamily: "'Wotfard', sans-serif" }}
+                  >
+                    {project.title}
+                  </motion.span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
-        {/* Right: Projects Grid */}
+        {/* Right: Projects */}
         <div className="md:w-2/3">
           <div className="flex flex-col gap-0">
-          {PROJECTS.map((project) => (
-            <ProjectCard key={project.id} project={project} hoveredId={hoveredId} setHoveredId={setHoveredId} />
-          ))}
-
+            {PROJECTS.map((project, i) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                index={i}
+                hoveredId={hoveredId}
+                setHoveredId={setHoveredId}
+                onVisible={setActiveIndex}
+              />
+            ))}
           </div>
         </div>
       </div>
