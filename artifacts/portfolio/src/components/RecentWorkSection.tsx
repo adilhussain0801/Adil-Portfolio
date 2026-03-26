@@ -78,7 +78,7 @@ export default function RecentWorkSection() {
 
         {/* Right: Projects Grid */}
         <div className="md:w-2/3">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[380px]">
+          <div className="flex flex-col gap-4">
           {PROJECTS.map((project) => {
             const isHovered = hoveredId === project.id;
 
