@@ -42,16 +42,16 @@ function TickerRow({ items, reverse }: { items: typeof ROW_ONE; reverse?: boolea
 
 export default function LifeSection() {
   return (
-    <section className="py-24 md:py-32 bg-[#0d0d0d] overflow-hidden">
+    <section className="py-24 md:py-32 overflow-hidden">
       {/* Header */}
       <div className="text-center px-6 mb-16">
         <h2
           style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
-          className="text-3xl md:text-4xl text-white mb-4"
+          className="text-3xl md:text-4xl text-foreground mb-4"
         >
           Life outside the box
         </h2>
-        <p className="text-sm md:text-base text-white/50 max-w-md mx-auto leading-relaxed">
+        <p className="text-sm md:text-base text-foreground/50 max-w-md mx-auto leading-relaxed">
           I don't just stare at screens. I stare at race tracks, ocean waves, and my cat (who frankly, is the real creative director here).
         </p>
       </div>
