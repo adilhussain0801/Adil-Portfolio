@@ -114,7 +114,7 @@ function ExperienceRow({ company, role, period, duration, location, logo, icon, 
         <motion.div 
           className="flex-shrink-0 text-muted-foreground"
           animate={{ rotate: isExpanded ? 45 : 0 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
         >
           <Plus size={20} />
         </motion.div>
@@ -125,7 +125,7 @@ function ExperienceRow({ company, role, period, duration, location, logo, icon, 
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
             className="overflow-hidden px-4"
           >
             <div className="py-6 pl-4 md:pl-12 space-y-4 pt-[4px]">
@@ -135,7 +135,7 @@ function ExperienceRow({ company, role, period, duration, location, logo, icon, 
                   className="text-sm leading-relaxed text-foreground/80"
                   initial={{ opacity: 0, y: -8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: idx * 0.08 }}
+                  transition={{ delay: idx * 0.08, duration: 0.4, ease: "easeInOut" }}
                 >
                   {achievement}
                 </motion.p>
