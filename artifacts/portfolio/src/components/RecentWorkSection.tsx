@@ -105,27 +105,35 @@ export default function RecentWorkSection() {
               <a
                 key={project.id}
                 href={`/work/${project.id}`}
-                className={`group block rounded-2xl overflow-hidden relative cursor-pointer bg-[#111111] h-[380px]`}
+                className="group flex flex-col rounded-2xl overflow-hidden cursor-pointer"
                 onMouseEnter={() => setHoveredId(project.id)}
                 onMouseLeave={() => setHoveredId(null)}
               >
-                {/* Image / placeholder area */}
+                {/* Image area */}
                 <div
-                  className="relative h-[62%] overflow-hidden transition-all duration-500"
+                  className="relative h-[280px] overflow-hidden"
                   style={{ backgroundColor: project.placeholderColor }}
-                />
+                >
+                  {/* Arrow button on hover */}
+                  <div className={`absolute top-4 right-4 w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center transition-all duration-300 ${isHovered ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"}`}>
+                    <ArrowUpRight size={16} className="text-white" />
+                  </div>
+                </div>
 
-                {/* Bottom info band */}
-                <div className="absolute bottom-0 left-0 right-0 bg-[#111111] px-5 py-4">
-                  {/* Default state */}
-                  <div className={`flex items-start justify-between transition-all duration-300 ${isHovered ? "opacity-0 h-0 overflow-hidden" : "opacity-100"}`}>
+                {/* Info panel */}
+                <div className="bg-[#1a1a1a]">
+                  {/* Always-visible top row: title + metrics */}
+                  <div className="flex items-start justify-between px-6 py-5">
                     <div>
-                      <h3 className="text-base md:text-lg font-bold text-white leading-tight">
+                      <h3
+                        style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+                        className="text-base md:text-lg text-white leading-tight"
+                      >
                         {project.title}
                       </h3>
-                      <p className="text-xs text-white/50 mt-0.5">{project.category}</p>
+                      <p className="text-xs text-white/50 mt-1">{project.category}</p>
                     </div>
-                    <div className="flex gap-4 ml-4">
+                    <div className="flex gap-5 ml-4 flex-shrink-0">
                       {project.metrics.map((metric, idx) => (
                         <div key={idx} className="text-right">
                           <p className="text-lg md:text-xl font-bold text-[#4ecdc4]">{metric.value}</p>
@@ -135,28 +143,18 @@ export default function RecentWorkSection() {
                     </div>
                   </div>
 
-                  {/* Hovered state */}
-                  <div className={`transition-all duration-300 ${isHovered ? "opacity-100" : "opacity-0 h-0 overflow-hidden"}`}>
-                    <h3 className="text-base md:text-lg font-bold text-white leading-tight mb-1">
-                      {project.title}
-                    </h3>
-                    <p className="text-xs text-white/50 mb-2">{project.category}</p>
-                    <p className="text-xs text-white/80 leading-relaxed mb-3 line-clamp-2">
-                      {project.description}
-                    </p>
-                    <div className="flex items-center justify-between">
-                      <div className="flex gap-4">
-                        {project.metrics.map((metric, idx) => (
-                          <div key={idx}>
-                            <p className="text-base font-bold text-[#4ecdc4]">{metric.value}</p>
-                            <p className="text-[10px] uppercase tracking-widest text-white/50">{metric.label}</p>
-                          </div>
-                        ))}
-                      </div>
-                      <div className="flex items-center gap-1 text-white/60 group-hover:text-white transition-colors">
-                        <span className="text-xs uppercase tracking-widest font-semibold">View Work</span>
-                        <ArrowUpRight size={14} />
-                      </div>
+                  {/* Expandable description */}
+                  <div
+                    className="overflow-hidden"
+                    style={{
+                      maxHeight: isHovered ? "120px" : "0px",
+                      transition: "max-height 0.35s ease-in-out",
+                    }}
+                  >
+                    <div className="px-6 pb-5 border-t border-white/10 pt-4">
+                      <p className="text-sm text-white/70 leading-relaxed">
+                        {project.description}
+                      </p>
                     </div>
                   </div>
                 </div>
