@@ -32,7 +32,7 @@ export default function ClientTicker() {
         </div>
 
         <div className="w-full md:w-2/3">
-          <div className="flex flex-wrap gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {INDUSTRIES.map((item) => {
               const IconComponent = item.icon;
               const isHovered = hovered === item.id;
@@ -41,14 +41,14 @@ export default function ClientTicker() {
                   key={item.id}
                   onMouseEnter={() => setHovered(item.id)}
                   onMouseLeave={() => setHovered(null)}
-                  className={`flex items-center gap-3 px-5 py-3 rounded-full text-sm font-medium transition-all duration-200 border cursor-default ${
+                  className={`flex items-center gap-4 px-6 py-4 rounded-full text-sm font-medium transition-all duration-200 border cursor-default ${
                     isHovered
                       ? "bg-foreground text-background border-foreground"
                       : "bg-background border-border/40 text-foreground hover:border-border/80"
                   }`}
                 >
                   <IconComponent 
-                    size={18} 
+                    size={22} 
                     className="flex-shrink-0"
                   />
                   <span>{item.label}</span>
