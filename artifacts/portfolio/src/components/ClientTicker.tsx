@@ -1,21 +1,23 @@
 import React, { useState } from "react";
+import { 
+  Banknote, Headphones, Zap, Brain, Settings2, Building2, Lock, TrendingUp,
+  Shield
+} from "lucide-react";
 
 const INDUSTRIES = [
-  "Design Leadership & Strategy",
-  "Systems Thinking",
-  "Agentic UX",
-  "Platform Design",
-  "0→1 Problem Solving",
-  "Cross-functional Leadership",
-  "Trust & Transparency in AI",
-  "User-Centered Design",
-  "Vibe Coding",
-  "Accessibility",
-  "Design Mentorship",
+  { id: 1, label: "Finance", icon: Banknote },
+  { id: 2, label: "Customer Service", icon: Headphones },
+  { id: 3, label: "IoT Platforms", icon: Zap },
+  { id: 4, label: "AI Agents", icon: Brain },
+  { id: 5, label: "Design Systems", icon: Settings2 },
+  { id: 6, label: "Marketplace", icon: Building2 },
+  { id: 7, label: "Defence", icon: Shield },
+  { id: 8, label: "Monetization", icon: TrendingUp },
+  { id: 9, label: "Trust & Security", icon: Lock },
 ];
 
 export default function ClientTicker() {
-  const [hovered, setHovered] = useState<string | null>(null);
+  const [hovered, setHovered] = useState<number | null>(null);
 
   return (
     <section id="clients" className="py-24 md:py-32 px-6 md:px-24 bg-secondary/30">
@@ -31,20 +33,28 @@ export default function ClientTicker() {
 
         <div className="w-full md:w-2/3">
           <div className="flex flex-wrap gap-3">
-            {INDUSTRIES.map((label) => (
-              <button
-                key={label}
-                onMouseEnter={() => setHovered(label)}
-                onMouseLeave={() => setHovered(null)}
-                className={`px-5 py-3 rounded-full text-sm font-medium transition-all duration-200 border ${
-                  hovered === label
-                    ? "bg-foreground text-background border-foreground"
-                    : "bg-background border-border/40 text-foreground hover:border-border/80"
-                }`}
-              >
-                {label}
-              </button>
-            ))}
+            {INDUSTRIES.map((item) => {
+              const IconComponent = item.icon;
+              const isHovered = hovered === item.id;
+              return (
+                <div
+                  key={item.id}
+                  onMouseEnter={() => setHovered(item.id)}
+                  onMouseLeave={() => setHovered(null)}
+                  className={`flex items-center gap-3 px-5 py-3 rounded-full text-sm font-medium transition-all duration-200 border cursor-default ${
+                    isHovered
+                      ? "bg-foreground text-background border-foreground"
+                      : "bg-background border-border/40 text-foreground hover:border-border/80"
+                  }`}
+                >
+                  <IconComponent 
+                    size={18} 
+                    className="flex-shrink-0"
+                  />
+                  <span>{item.label}</span>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
