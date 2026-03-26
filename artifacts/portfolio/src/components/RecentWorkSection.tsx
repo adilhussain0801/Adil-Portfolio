@@ -105,25 +105,27 @@ export default function RecentWorkSection() {
               <a
                 key={project.id}
                 href={`/work/${project.id}`}
-                className="group flex flex-col rounded-2xl overflow-hidden cursor-pointer"
+                className="group relative block rounded-2xl overflow-hidden cursor-pointer h-[380px]"
                 onMouseEnter={() => setHoveredId(project.id)}
                 onMouseLeave={() => setHoveredId(null)}
               >
-                {/* Image area */}
+                {/* Image fills the entire card */}
                 <div
-                  className="relative h-[280px] overflow-hidden"
+                  className="absolute inset-0"
                   style={{ backgroundColor: project.placeholderColor }}
-                >
-                  {/* Arrow button on hover */}
-                  <div className={`absolute top-4 right-4 w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center transition-all duration-300 ${isHovered ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"}`}>
-                    <ArrowUpRight size={16} className="text-white" />
-                  </div>
+                />
+
+                {/* Arrow button on hover */}
+                <div className={`absolute top-4 right-4 w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center transition-all duration-300 z-10 ${isHovered ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"}`}>
+                  <ArrowUpRight size={16} className="text-white" />
                 </div>
 
-                {/* Info panel */}
-                <div className="bg-[#1a1a1a]">
+                {/* Floating info panel — 12px margin, expands upward inside fixed card */}
+                <div
+                  className="absolute left-3 right-3 bottom-3 bg-[#1a1a1a] rounded-xl overflow-hidden z-10"
+                >
                   {/* Always-visible top row: title + metrics */}
-                  <div className="flex items-start justify-between px-6 py-5">
+                  <div className="flex items-start justify-between px-5 py-4">
                     <div>
                       <h3
                         style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
@@ -143,15 +145,15 @@ export default function RecentWorkSection() {
                     </div>
                   </div>
 
-                  {/* Expandable description */}
+                  {/* Expandable description — grows upward within the card */}
                   <div
                     className="overflow-hidden"
                     style={{
-                      maxHeight: isHovered ? "120px" : "0px",
+                      maxHeight: isHovered ? "100px" : "0px",
                       transition: "max-height 0.35s ease-in-out",
                     }}
                   >
-                    <div className="px-6 pb-5 border-t border-white/10 pt-4">
+                    <div className="px-5 pb-4 border-t border-white/10 pt-3">
                       <p className="text-sm text-white/70 leading-relaxed">
                         {project.description}
                       </p>
