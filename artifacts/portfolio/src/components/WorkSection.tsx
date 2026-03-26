@@ -87,7 +87,7 @@ function ExperienceRow({ company, role, period, duration, location, logo, icon, 
   return (
     <>
       <motion.div 
-        className={`flex items-center gap-6 py-6 ${!isExpanded ? "border-b border-border/40" : ""} last:border-b-0 group cursor-pointer hover:bg-muted/30 hover:rounded-lg px-4 -mx-4 transition-colors duration-200`}
+        className="flex items-center gap-6 py-6 group cursor-pointer hover:bg-muted/30 hover:rounded-lg px-4 -mx-4 transition-colors duration-200"
         onClick={() => setIsExpanded(!isExpanded)}
         whileHover={{ backgroundColor: "rgba(0,0,0,0.02)" }}
       >
@@ -124,7 +124,7 @@ function ExperienceRow({ company, role, period, duration, location, logo, icon, 
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="overflow-hidden px-4 border-b border-border"
+            className="overflow-hidden px-4"
           >
             <div className="py-6 pl-12 space-y-4 pt-[4px]">
               {achievements.map((achievement, idx) => (
