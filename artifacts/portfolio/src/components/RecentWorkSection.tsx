@@ -64,8 +64,8 @@ export default function RecentWorkSection() {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
   return (
-    <section id="work-showcase" className="py-24 md:py-40 px-6 md:px-12">
-      <div className="max-w-7xl mx-auto">
+    <section id="work-showcase" className="py-24 md:py-40 px-6 md:px-24">
+      <div>
         <h2
           style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
           className="text-3xl md:text-4xl leading-tight text-foreground mb-12"

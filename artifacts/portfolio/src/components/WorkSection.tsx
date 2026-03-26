@@ -148,8 +148,8 @@ function ExperienceRow({ company, role, period, duration, location, logo, icon, 
 
 export default function WorkSection() {
   return (
-    <section id="work" className="py-24 md:py-40 px-6 md:px-12">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 md:gap-24">
+    <section id="work" className="py-24 md:py-40 px-6 md:px-24">
+      <div className="flex flex-col md:flex-row gap-12 md:gap-24">
         
         {/* Left: Heading */}
         <div className="md:w-1/3 flex-shrink-0">

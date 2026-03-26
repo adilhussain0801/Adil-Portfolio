@@ -2,8 +2,8 @@ import { Linkedin, Instagram, FileText } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer id="contact" className="bg-background border-t border-border py-20 md:py-28 px-6 md:px-12">
-      <div className="max-w-7xl mx-auto">
+    <footer id="contact" className="bg-background border-t border-border py-20 md:py-28 px-6 md:px-24">
+      <div>
 
         {/* Main footer content */}
         <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-12 mb-16">

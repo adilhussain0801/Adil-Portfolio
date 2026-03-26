@@ -153,8 +153,8 @@ export default function ClientTicker() {
   const dimEdge = (a: string, b: string) => hovered && a !== hovered && b !== hovered;
 
   return (
-    <section id="clients" className="py-24 md:py-32 px-6 md:px-12 bg-secondary/30">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 md:gap-24">
+    <section id="clients" className="py-24 md:py-32 px-6 md:px-24 bg-secondary/30">
+      <div className="flex flex-col md:flex-row gap-12 md:gap-24">
         <div className="w-full md:w-1/3">
           <h2
             className="text-3xl md:text-4xl font-bold text-foreground md:sticky md:top-32"

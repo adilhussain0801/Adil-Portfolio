@@ -34,7 +34,7 @@ export default function Navigation() {
           : "py-6 md:py-10 bg-transparent border-b border-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+      <div className="max-w-full px-6 md:px-24 flex items-center justify-between">
         <a 
           href="#" 
           onClick={scrollToTop}

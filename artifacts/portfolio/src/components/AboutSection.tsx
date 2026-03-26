@@ -2,7 +2,7 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="py-24 md:py-32 px-6 md:px-16 max-w-[1440px] mx-auto"
+      className="py-24 md:py-32 px-6 md:px-24"
     >
       <div className="flex flex-col md:flex-row gap-12 md:gap-24">
         {/* Left: Heading */}

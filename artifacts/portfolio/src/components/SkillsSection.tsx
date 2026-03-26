@@ -14,8 +14,8 @@ const SKILLS = [
 
 export default function SkillsSection() {
   return (
-    <section id="expertise" className="py-24 md:py-32 px-6 md:px-12 bg-secondary/30">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 md:gap-24">
+    <section id="expertise" className="py-24 md:py-32 px-6 md:px-24 bg-secondary/30">
+      <div className="flex flex-col md:flex-row gap-12 md:gap-24">
         <div className="w-full md:w-1/3">
           <h2 className="text-3xl md:text-5xl font-serif text-foreground sticky top-32">
             Expertise

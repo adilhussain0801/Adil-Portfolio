@@ -77,7 +77,7 @@ function FloatingShape({ children, speed, amplitude, offset, className, style }:
 export default function HeroSection() {
   return (
     <section
-      className="min-h-screen flex flex-col justify-center pt-24 pb-12 px-6 md:px-12 lg:px-24 relative overflow-hidden"
+      className="min-h-screen flex flex-col justify-center pt-24 pb-12 px-6 md:px-24 relative overflow-hidden"
       style={{ background: "#FAF8F5" }}
     >
       <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center justify-between gap-12 md:gap-8">
