@@ -5,15 +5,15 @@ import {
 } from "lucide-react";
 
 const INDUSTRIES = [
-  { id: 1, label: "Finance", icon: Banknote },
-  { id: 2, label: "Customer Service", icon: Headphones },
-  { id: 3, label: "IoT Platforms", icon: Zap },
-  { id: 4, label: "AI Agents", icon: Brain },
-  { id: 5, label: "Design Systems", icon: Settings2 },
-  { id: 6, label: "Marketplace", icon: ShoppingCart },
-  { id: 7, label: "Defence", icon: Shield },
-  { id: 8, label: "Monetization", icon: TrendingUp },
-  { id: 9, label: "Trust & Security", icon: Lock },
+  { id: 1, label: "Finance", icon: Banknote, colSpan: 2, rowSpan: 2 },
+  { id: 2, label: "Customer Service", icon: Headphones, colSpan: 1, rowSpan: 1 },
+  { id: 3, label: "IoT Platforms", icon: Zap, colSpan: 1, rowSpan: 1 },
+  { id: 4, label: "AI Agents", icon: Brain, colSpan: 1, rowSpan: 2 },
+  { id: 5, label: "Design Systems", icon: Settings2, colSpan: 1, rowSpan: 1 },
+  { id: 6, label: "Marketplace", icon: ShoppingCart, colSpan: 1, rowSpan: 1 },
+  { id: 7, label: "Defence", icon: Shield, colSpan: 1, rowSpan: 1 },
+  { id: 8, label: "Monetization", icon: TrendingUp, colSpan: 1, rowSpan: 1 },
+  { id: 9, label: "Trust & Security", icon: Lock, colSpan: 2, rowSpan: 1 },
 ];
 
 export default function ClientTicker() {
@@ -32,23 +32,25 @@ export default function ClientTicker() {
         </div>
 
         <div className="w-full md:w-2/3">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-4 gap-4 auto-rows-[120px] md:auto-rows-[140px]">
             {INDUSTRIES.map((item) => {
               const IconComponent = item.icon;
               const isHovered = hovered === item.id;
+              const colSpanClass = item.colSpan === 2 ? "col-span-2" : "col-span-1";
+              const rowSpanClass = item.rowSpan === 2 ? "row-span-2" : "row-span-1";
               return (
                 <div
                   key={item.id}
                   onMouseEnter={() => setHovered(item.id)}
                   onMouseLeave={() => setHovered(null)}
-                  className={`flex items-center gap-4 px-6 py-4 rounded-full text-sm font-medium transition-all duration-200 border cursor-default ${
+                  className={`${colSpanClass} ${rowSpanClass} flex flex-col items-center justify-center gap-3 px-6 py-4 rounded-2xl text-center text-sm font-medium transition-all duration-200 border cursor-default ${
                     isHovered
-                      ? "bg-foreground text-background border-foreground"
+                      ? "bg-foreground text-background border-foreground scale-105"
                       : "bg-background border-border/40 text-foreground hover:border-border/80"
                   }`}
                 >
                   <IconComponent 
-                    size={22} 
+                    size={item.rowSpan === 2 ? 28 : 22} 
                     className="flex-shrink-0"
                   />
                   <span>{item.label}</span>
