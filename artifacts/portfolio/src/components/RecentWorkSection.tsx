@@ -73,7 +73,7 @@ function ProjectCard({ project, hoveredId, setHoveredId }: { project: typeof PRO
   return (
     <motion.div
       ref={ref}
-      className="h-screen snap-start snap-always flex items-center justify-center"
+      className="min-h-[85vh] flex items-center justify-center py-12"
       initial={{ opacity: 0, y: 80 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -187,7 +187,7 @@ export default function RecentWorkSection() {
         </div>
 
         {/* Right: Projects Grid */}
-        <div className="md:w-2/3 h-screen overflow-y-scroll snap-y snap-mandatory">
+        <div className="md:w-2/3">
           <div className="flex flex-col gap-0">
           {PROJECTS.map((project) => (
             <ProjectCard key={project.id} project={project} hoveredId={hoveredId} setHoveredId={setHoveredId} />
