@@ -73,7 +73,7 @@ function ProjectCard({ project, hoveredId, setHoveredId }: { project: typeof PRO
   return (
     <motion.div
       ref={ref}
-      className="min-h-[85vh] flex items-center justify-center py-12"
+      className="w-full py-6"
       initial={{ opacity: 0, y: 80 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -82,7 +82,7 @@ function ProjectCard({ project, hoveredId, setHoveredId }: { project: typeof PRO
         <a
           key={project.id}
           href={`/work/${project.id}`}
-          className={`group block rounded-2xl overflow-hidden relative cursor-pointer w-full`}
+          className={`group block rounded-2xl overflow-hidden relative cursor-pointer w-full h-[78vh]`}
           style={{ background: "linear-gradient(135deg, #3d1f6b 0%, #1a1040 50%, #0d0824 100%)" }}
           onMouseEnter={() => setHoveredId(project.id)}
           onMouseLeave={() => setHoveredId(null)}
@@ -109,7 +109,7 @@ function ProjectCard({ project, hoveredId, setHoveredId }: { project: typeof PRO
         <a
           key={project.id}
           href={`/work/${project.id}`}
-          className="group relative block rounded-2xl overflow-hidden cursor-pointer w-full h-full"
+          className="group relative block rounded-2xl overflow-hidden cursor-pointer w-full h-[78vh]"
           onMouseEnter={() => setHoveredId(project.id)}
           onMouseLeave={() => setHoveredId(null)}
         >
