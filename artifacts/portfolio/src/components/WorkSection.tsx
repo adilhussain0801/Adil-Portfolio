@@ -87,7 +87,7 @@ function ExperienceRow({ company, role, period, duration, location, logo, icon, 
   return (
     <>
       <motion.div 
-        className="flex items-center gap-6 py-6 group cursor-pointer hover:bg-muted/30 hover:rounded-lg px-4 -mx-4 transition-colors duration-200"
+        className="flex items-center gap-3 md:gap-6 py-6 group cursor-pointer hover:bg-muted/30 hover:rounded-lg px-4 -mx-4 transition-colors duration-200"
         onClick={() => setIsExpanded(!isExpanded)}
         whileHover={{ backgroundColor: "rgba(0,0,0,0.02)" }}
       >
@@ -96,11 +96,15 @@ function ExperienceRow({ company, role, period, duration, location, logo, icon, 
         </div>
         
         <div className="flex-1 min-w-0">
-          <p className="text-base font-bold text-foreground">{role}</p>
-          <p className="text-sm text-muted-foreground">{company}</p>
+          <p className="text-base font-bold text-foreground truncate">{role}</p>
+          <div className="flex items-center gap-2">
+            <p className="text-sm text-muted-foreground">{company}</p>
+            {isActive && <div className="w-1.5 h-1.5 rounded-full bg-green-500 md:hidden" />}
+            <p className="text-xs text-muted-foreground/60 md:hidden">{period}</p>
+          </div>
         </div>
         
-        <div className={`px-3 py-1.5 rounded-full text-sm font-medium flex-shrink-0 min-w-max flex items-center gap-2 ${isActive ? "bg-green-100 text-green-900" : "bg-muted text-foreground"}`}>
+        <div className={`px-3 py-1.5 rounded-full text-sm font-medium flex-shrink-0 hidden md:flex items-center gap-2 ${isActive ? "bg-green-100 text-green-900" : "bg-muted text-foreground"}`}>
           {isActive && <div className="w-2 h-2 rounded-full bg-green-500" />}
           <span>{period}</span>
           {duration && <span className="text-xs opacity-75">·</span>}
@@ -126,7 +130,7 @@ function ExperienceRow({ company, role, period, duration, location, logo, icon, 
             transition={{ duration: 0.3 }}
             className="overflow-hidden px-4"
           >
-            <div className="py-6 pl-12 space-y-4 pt-[4px]">
+            <div className="py-6 pl-4 md:pl-12 space-y-4 pt-[4px]">
               {achievements.map((achievement, idx) => (
                 <motion.p 
                   key={idx} 

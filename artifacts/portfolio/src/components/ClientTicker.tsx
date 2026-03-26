@@ -32,7 +32,7 @@ export default function ClientTicker() {
         </div>
 
         <div className="w-full md:w-2/3">
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
             {ITEMS.map((item) => {
               const IconComponent = item.icon;
               const isHovered = hovered === item.id;
@@ -41,18 +41,18 @@ export default function ClientTicker() {
                   key={item.id}
                   onMouseEnter={() => setHovered(item.id)}
                   onMouseLeave={() => setHovered(null)}
-                  className={`relative flex flex-col gap-4 px-6 py-6 rounded-xl transition-all duration-200 border cursor-default ${
+                  className={`relative flex flex-col gap-3 px-4 py-4 md:px-6 md:py-6 rounded-xl transition-all duration-200 border cursor-default ${
                     isHovered
                       ? "bg-foreground border-foreground"
                       : "bg-background border-border/40 hover:border-border/80"
                   }`}
                 >
-                  <div className="flex items-start gap-3">
+                  <div className="flex items-start gap-2 md:gap-3">
                     <IconComponent 
-                      size={24} 
-                      className={`flex-shrink-0 mt-1 ${isHovered ? "text-background" : "text-foreground"}`}
+                      size={20} 
+                      className={`flex-shrink-0 mt-0.5 ${isHovered ? "text-background" : "text-foreground"}`}
                     />
-                    <h4 className={`text-base font-semibold ${isHovered ? "text-background" : "text-foreground"}`}>
+                    <h4 className={`text-sm md:text-base font-semibold ${isHovered ? "text-background" : "text-foreground"}`}>
                       {item.label}
                     </h4>
                   </div>

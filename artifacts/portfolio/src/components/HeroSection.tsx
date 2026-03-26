@@ -90,7 +90,7 @@ export default function HeroSection() {
           transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
         >
           <motion.h1
-            className="font-sans leading-[1.1] mb-12"
+            className="font-sans leading-[1.1] mb-6 md:mb-12"
             style={{ fontSize: "clamp(2.2rem, 5.5vw, 3.8rem)" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
