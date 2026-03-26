@@ -4,19 +4,16 @@ import { motion, useInView } from "framer-motion";
 const STATS = [
   {
     stat: "$1B+",
-    statColor: "#C9A96E",
     description:
       "Designed post-purchase and seller experiences at Amazon that contributed to over $1 billion in annual platform revenue.",
   },
   {
     stat: "50M+",
-    statColor: "#FFFFFF",
     description:
       "Shipped products used by over 50 million people across Atlassian and Amazon's global platforms.",
   },
   {
     stat: "89%",
-    statColor: "#9B8FE8",
     description:
       "Average adoption rate across key product launches, measured 90 days post-release across multiple teams.",
   },
@@ -32,14 +29,14 @@ function StatCard({ stat, delay }: { stat: typeof STATS[0]; delay: number }) {
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
       transition={{ duration: 0.6, ease: "easeOut", delay }}
-      className="flex-1 rounded-2xl p-8 md:p-10 flex flex-col justify-between min-h-[280px]"
-      style={{ background: "#1C1C1E", border: "1px solid rgba(255,255,255,0.07)" }}
+      className="flex-1 rounded-2xl p-8 md:p-10 flex flex-col justify-between min-h-[260px]"
+      style={{ background: "#F0EDE8", border: "1px solid rgba(45,45,45,0.08)" }}
     >
       <div
         className="text-5xl md:text-6xl font-bold leading-none mb-6"
         style={{
           fontFamily: "'Wotfard', sans-serif",
-          color: stat.statColor,
+          color: "#2D2D2D",
           letterSpacing: "-0.02em",
         }}
       >
@@ -47,7 +44,7 @@ function StatCard({ stat, delay }: { stat: typeof STATS[0]; delay: number }) {
       </div>
       <p
         className="text-[15px] leading-relaxed"
-        style={{ color: "rgba(255,255,255,0.65)", fontFamily: "'Wotfard', sans-serif" }}
+        style={{ color: "rgba(45,45,45,0.6)", fontFamily: "'Wotfard', sans-serif" }}
       >
         {stat.description}
       </p>
@@ -62,7 +59,7 @@ export default function ImpactSection() {
   return (
     <section
       className="py-24 md:py-32 px-6 md:px-24"
-      style={{ background: "#111111" }}
+      style={{ background: "#FAF8F5" }}
     >
       <motion.p
         ref={headingRef}
@@ -70,7 +67,7 @@ export default function ImpactSection() {
         animate={isHeadingInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
         className="text-xs uppercase tracking-widest mb-12 md:mb-16"
-        style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'Wotfard', sans-serif" }}
+        style={{ color: "rgba(45,45,45,0.4)", fontFamily: "'Wotfard', sans-serif" }}
       >
         Impact
       </motion.p>
