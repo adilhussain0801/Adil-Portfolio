@@ -46,7 +46,7 @@ export default function Footer() {
             </a>
 
             {/* Separator before Resume */}
-            <div className="border-t border-border my-1" />
+            <div className="border-t border-border my-8" />
 
             <a
               href="/resume.pdf"
