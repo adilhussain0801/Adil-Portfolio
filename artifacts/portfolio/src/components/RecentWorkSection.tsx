@@ -73,6 +73,7 @@ function ProjectCard({ project, hoveredId, setHoveredId }: { project: typeof PRO
   return (
     <motion.div
       ref={ref}
+      className="h-screen snap-start snap-always flex items-center justify-center"
       initial={{ opacity: 0, y: 80 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -81,7 +82,7 @@ function ProjectCard({ project, hoveredId, setHoveredId }: { project: typeof PRO
         <a
           key={project.id}
           href={`/work/${project.id}`}
-          className={`group block rounded-2xl overflow-hidden relative cursor-pointer h-[380px]`}
+          className={`group block rounded-2xl overflow-hidden relative cursor-pointer w-full`}
           style={{ background: "linear-gradient(135deg, #3d1f6b 0%, #1a1040 50%, #0d0824 100%)" }}
           onMouseEnter={() => setHoveredId(project.id)}
           onMouseLeave={() => setHoveredId(null)}
@@ -108,7 +109,7 @@ function ProjectCard({ project, hoveredId, setHoveredId }: { project: typeof PRO
         <a
           key={project.id}
           href={`/work/${project.id}`}
-          className="group relative block rounded-2xl overflow-hidden cursor-pointer h-[380px]"
+          className="group relative block rounded-2xl overflow-hidden cursor-pointer w-full h-full"
           onMouseEnter={() => setHoveredId(project.id)}
           onMouseLeave={() => setHoveredId(null)}
         >
@@ -186,8 +187,8 @@ export default function RecentWorkSection() {
         </div>
 
         {/* Right: Projects Grid */}
-        <div className="md:w-2/3">
-          <div className="flex flex-col gap-4">
+        <div className="md:w-2/3 h-screen overflow-y-scroll snap-y snap-mandatory">
+          <div className="flex flex-col gap-0">
           {PROJECTS.map((project) => (
             <ProjectCard key={project.id} project={project} hoveredId={hoveredId} setHoveredId={setHoveredId} />
           ))}
