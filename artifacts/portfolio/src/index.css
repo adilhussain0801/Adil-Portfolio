@@ -133,11 +133,11 @@
 }
 
 .animate-ticker {
-  animation: ticker-left 30s linear infinite;
+  animation: ticker-left 60s linear infinite;
 }
 
 .animate-ticker-reverse {
-  animation: ticker-right 30s linear infinite;
+  animation: ticker-right 60s linear infinite;
 }
 
 .ticker-container:hover .animate-ticker,
