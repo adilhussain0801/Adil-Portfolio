@@ -58,24 +58,30 @@ export default function ImpactSection() {
 
   return (
     <section
-      className="py-24 md:py-32 px-6 md:px-24"
+      className="py-24 md:py-40 px-6 md:px-24"
       style={{ background: "#FAF8F5" }}
     >
-      <motion.p
-        ref={headingRef}
-        initial={{ opacity: 0, y: 20 }}
-        animate={isHeadingInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className="text-xs uppercase tracking-widest mb-12 md:mb-16"
-        style={{ color: "rgba(45,45,45,0.4)", fontFamily: "'Wotfard', sans-serif" }}
-      >
-        Impact
-      </motion.p>
+      <div className="flex flex-col md:flex-row gap-12 md:gap-24">
+        {/* Left: Title */}
+        <div className="md:w-1/3 flex-shrink-0">
+          <motion.h2
+            ref={headingRef}
+            initial={{ opacity: 0, y: 20 }}
+            animate={isHeadingInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="text-3xl md:text-4xl leading-tight md:sticky md:top-32"
+            style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700, color: "#2D2D2D" }}
+          >
+            Impact
+          </motion.h2>
+        </div>
 
-      <div className="flex flex-col md:flex-row gap-4">
-        {STATS.map((stat, i) => (
-          <StatCard key={i} stat={stat} delay={i * 0.12} />
-        ))}
+        {/* Right: Stat cards */}
+        <div className="md:w-2/3 flex flex-col gap-4">
+          {STATS.map((stat, i) => (
+            <StatCard key={i} stat={stat} delay={i * 0.12} />
+          ))}
+        </div>
       </div>
     </section>
   );
