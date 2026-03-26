@@ -1,26 +1,34 @@
-const ROW_ONE = [
-  { id: 1, color: "#D4C5F9", w: "w-48", h: "h-56" },
-  { id: 2, color: "#B8D8C8", w: "w-64", h: "h-56" },
-  { id: 3, color: "#F9C5C5", w: "w-80", h: "h-56" },
-  { id: 4, color: "#FAD9A1", w: "w-52", h: "h-56" },
-  { id: 5, color: "#C8D8F0", w: "w-44", h: "h-56" },
-  { id: 6, color: "#D9F0C8", w: "w-72", h: "h-56" },
-  { id: 7, color: "#F0C8D9", w: "w-56", h: "h-56" },
-  { id: 8, color: "#C8F0EE", w: "w-60", h: "h-56" },
+type TickerItem = {
+  id: number;
+  src: string;
+  alt: string;
+  w: string;
+};
+
+const ROW_ONE: TickerItem[] = [
+  { id: 1,  src: "/life/img_2322.jpg", alt: "Life photo", w: "w-40" },
+  { id: 2,  src: "/life/img_5596.jpg", alt: "Life photo", w: "w-56" },
+  { id: 3,  src: "/life/img_2716.jpg", alt: "Life photo", w: "w-40" },
+  { id: 4,  src: "/life/img_2918.jpg", alt: "Life photo", w: "w-40" },
+  { id: 5,  src: "/life/img_5307.jpg", alt: "Life photo", w: "w-36" },
+  { id: 6,  src: "/life/img_2888.jpg", alt: "Life photo", w: "w-52" },
+  { id: 7,  src: "/life/img_5839.jpg", alt: "Life photo", w: "w-40" },
+  { id: 8,  src: "/life/img_6912.jpg", alt: "Life photo", w: "w-40" },
+  { id: 9,  src: "/life/img_7329.jpg", alt: "Life photo", w: "w-36" },
 ];
 
-const ROW_TWO = [
-  { id: 9,  color: "#FAD9A1", w: "w-56", h: "h-56" },
-  { id: 10, color: "#C8D8F0", w: "w-44", h: "h-56" },
-  { id: 11, color: "#D4C5F9", w: "w-72", h: "h-56" },
-  { id: 12, color: "#D9F0C8", w: "w-64", h: "h-56" },
-  { id: 13, color: "#F9C5C5", w: "w-48", h: "h-56" },
-  { id: 14, color: "#C8F0EE", w: "w-80", h: "h-56" },
-  { id: 15, color: "#B8D8C8", w: "w-52", h: "h-56" },
-  { id: 16, color: "#F0C8D9", w: "w-60", h: "h-56" },
+const ROW_TWO: TickerItem[] = [
+  { id: 10, src: "/life/img_2324.jpg", alt: "Life photo", w: "w-40" },
+  { id: 11, src: "/life/img_2578.jpg", alt: "Life photo", w: "w-40" },
+  { id: 12, src: "/life/img_2593.jpg", alt: "Life photo", w: "w-80" },
+  { id: 13, src: "/life/img_2558.jpg", alt: "Life photo", w: "w-36" },
+  { id: 14, src: "/life/img_5441.jpg", alt: "Life photo", w: "w-40" },
+  { id: 15, src: "/life/img_6563.jpg", alt: "Life photo", w: "w-40" },
+  { id: 16, src: "/life/img_6589.jpg", alt: "Life photo", w: "w-36" },
+  { id: 17, src: "/life/img_7506.jpg", alt: "Life photo", w: "w-44" },
 ];
 
-function TickerRow({ items, reverse }: { items: typeof ROW_ONE; reverse?: boolean }) {
+function TickerRow({ items, reverse }: { items: TickerItem[]; reverse?: boolean }) {
   const duplicated = [...items, ...items];
 
   return (
@@ -31,9 +39,14 @@ function TickerRow({ items, reverse }: { items: typeof ROW_ONE; reverse?: boolea
         {duplicated.map((item, idx) => (
           <div
             key={`${item.id}-${idx}`}
-            className={`${item.w} ${item.h} rounded-xl flex-shrink-0`}
-            style={{ backgroundColor: item.color }}
-          />
+            className={`${item.w} h-56 rounded-xl flex-shrink-0 overflow-hidden`}
+          >
+            <img
+              src={item.src}
+              alt={item.alt}
+              className="w-full h-full object-cover"
+            />
+          </div>
         ))}
       </div>
     </div>
@@ -55,7 +68,7 @@ export default function LifeSection() {
         </div>
 
         {/* Right: Ticker */}
-        <div className="md:w-2/3 flex flex-col gap-6">
+        <div className="md:w-2/3 flex flex-col gap-3">
           <div 
             className="flex flex-col gap-3 overflow-hidden"
             style={{
