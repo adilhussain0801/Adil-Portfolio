@@ -13,6 +13,7 @@ const ITEMS = [
   { id: 6, label: "IoT Platforms", icon: Zap, description: "Crafting IoT solutions for connectivity" },
   { id: 7, label: "Defence", icon: Shield, description: "Ensuring robust defensetech" },
   { id: 8, label: "Finance", icon: Banknote, description: "Optimizing financial workflows" },
+  { id: 9, label: "Design Systems", icon: Settings2, description: "Creating scalable design architecture" },
 ];
 
 export default function ClientTicker() {
