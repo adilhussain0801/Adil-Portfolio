@@ -67,7 +67,7 @@ export default function RecentWorkSection() {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
   return (
-    <section id="work-showcase" className="py-24 md:py-40 px-6 md:px-24">
+    <section id="work-showcase" className="py-24 md:py-40 px-6 md:px-24" style={{ background: "#FAF8F5" }}>
       <div className="flex flex-col md:flex-row gap-12 md:gap-24">
         {/* Left: Heading */}
         <div className="md:w-1/3 flex-shrink-0">
