@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { Plus, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const EXPERIENCES = [
@@ -111,15 +111,13 @@ function ExperienceRow({ company, role, period, duration, location, logo, icon, 
           {duration && <span className="text-xs">{duration}</span>}
         </div>
 
-        <motion.div
-          animate={{ rotate: isExpanded ? 180 : 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <ChevronDown 
-            size={20} 
-            className="flex-shrink-0 text-muted-foreground"
-          />
-        </motion.div>
+        <div className="flex-shrink-0 text-muted-foreground">
+          {isExpanded ? (
+            <X size={20} />
+          ) : (
+            <Plus size={20} />
+          )}
+        </div>
       </motion.div>
       <AnimatePresence>
         {isExpanded && (
