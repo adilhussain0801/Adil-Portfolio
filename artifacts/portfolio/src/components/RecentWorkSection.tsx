@@ -46,18 +46,6 @@ const PROJECTS = [
     colSpan: "md:col-span-2",
     type: "image",
   },
-  {
-    id: 4,
-    title: "How I Use AI",
-    category: "Experiments & Explorations",
-    description: "Explore my experiments, prompt engineering workflows, and AI demos.",
-    year: "2023",
-    image: null,
-    metrics: [],
-    colSpan: "md:col-span-1",
-    type: "special",
-    cta: "VIEW LAB",
-  },
 ];
 
 export default function RecentWorkSection() {
