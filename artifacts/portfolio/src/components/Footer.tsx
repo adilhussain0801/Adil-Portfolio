@@ -2,7 +2,7 @@ import { Linkedin, Instagram, FileText } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer id="contact" className="bg-background border-t border-border py-20 md:py-28 px-6 md:px-24 mt-8 border-t-[#d4d4d4] border-r-[#d4d4d4] border-b-[#d4d4d4] border-l-[#d4d4d4]">
+    <footer id="contact" className="border-t border-border py-20 md:py-28 px-6 md:px-24 mt-8 border-t-[#d4d4d4] border-r-[#d4d4d4] border-b-[#d4d4d4] border-l-[#d4d4d4]" style={{ background: "#FAF8F5" }}>
       <div>
 
         {/* Main footer content */}

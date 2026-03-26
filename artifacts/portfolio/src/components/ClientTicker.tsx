@@ -20,7 +20,7 @@ export default function ClientTicker() {
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (
-    <section id="clients" className="py-24 md:py-32 px-6 md:px-24 bg-secondary/30">
+    <section id="clients" className="py-24 md:py-32 px-6 md:px-24" style={{ background: "#FAF8F5" }}>
       <div className="flex flex-col md:flex-row gap-12 md:gap-24">
         <div className="w-full md:w-1/3">
           <h2
