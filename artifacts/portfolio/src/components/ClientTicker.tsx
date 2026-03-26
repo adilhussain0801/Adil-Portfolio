@@ -36,9 +36,19 @@ export default function ClientTicker() {
 
   return (
     <section id="clients" className="py-24 md:py-32 px-6 md:px-24 bg-secondary/30">
-      <div className="space-y-16">
-        {CATEGORIES.map((category) => (
-          <div key={category.name}>
+      <div className="flex flex-col md:flex-row gap-12 md:gap-24">
+        <div className="w-full md:w-1/3">
+          <h2
+            className="text-3xl md:text-4xl font-bold text-foreground md:sticky md:top-32"
+            style={{ fontFamily: "'Wotfard', sans-serif" }}
+          >
+            I've designed for
+          </h2>
+        </div>
+
+        <div className="w-full md:w-2/3 space-y-16">
+          {CATEGORIES.map((category) => (
+            <div key={category.name}>
             <h3 className="text-sm font-medium text-muted-foreground mb-6">{category.name}</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {category.items.map((item) => {
@@ -64,8 +74,9 @@ export default function ClientTicker() {
                 );
               })}
             </div>
-          </div>
-        ))}
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
