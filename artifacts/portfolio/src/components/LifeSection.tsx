@@ -6,26 +6,41 @@ type TickerItem = {
 };
 
 const ROW_ONE: TickerItem[] = [
-  { id: 1,  src: "/life/img_2322.jpg", alt: "Life photo", w: "w-40" },
-  { id: 2,  src: "/life/img_5596.jpg", alt: "Life photo", w: "w-56" },
-  { id: 3,  src: "/life/img_2716.jpg", alt: "Life photo", w: "w-40" },
-  { id: 4,  src: "/life/img_2918.jpg", alt: "Life photo", w: "w-40" },
-  { id: 5,  src: "/life/img_5307.jpg", alt: "Life photo", w: "w-36" },
-  { id: 6,  src: "/life/img_2888.jpg", alt: "Life photo", w: "w-52" },
-  { id: 7,  src: "/life/img_5839.jpg", alt: "Life photo", w: "w-40" },
-  { id: 8,  src: "/life/img_6912.jpg", alt: "Life photo", w: "w-40" },
-  { id: 9,  src: "/life/img_7329.jpg", alt: "Life photo", w: "w-36" },
+  { id: 1,  src: "/life/img_2322.jpg",   alt: "Life photo", w: "w-40" },
+  { id: 2,  src: "/life/img_2166.jpg",   alt: "Life photo", w: "w-48" },
+  { id: 3,  src: "/life/img_5596.jpg",   alt: "Life photo", w: "w-52" },
+  { id: 4,  src: "/life/img_2716.jpg",   alt: "Life photo", w: "w-40" },
+  { id: 5,  src: "/life/img_6908.jpg",   alt: "Life photo", w: "w-48" },
+  { id: 6,  src: "/life/img_2918.jpg",   alt: "Life photo", w: "w-40" },
+  { id: 7,  src: "/life/img_2258.jpg",   alt: "Life photo", w: "w-64" },
+  { id: 8,  src: "/life/img_5307.jpg",   alt: "Life photo", w: "w-36" },
+  { id: 9,  src: "/life/img_2310.jpg",   alt: "Life photo", w: "w-48" },
+  { id: 10, src: "/life/img_2888.jpg",   alt: "Life photo", w: "w-52" },
+  { id: 11, src: "/life/img_6794.jpg",   alt: "Life photo", w: "w-64" },
+  { id: 12, src: "/life/img_5839.jpg",   alt: "Life photo", w: "w-40" },
+  { id: 13, src: "/life/img_7039.jpg",   alt: "Life photo", w: "w-52" },
+  { id: 14, src: "/life/img_6912.jpg",   alt: "Life photo", w: "w-40" },
+  { id: 15, src: "/life/img_3934.jpg",   alt: "Life photo", w: "w-48" },
+  { id: 16, src: "/life/img_7329.jpg",   alt: "Life photo", w: "w-36" },
+  { id: 17, src: "/life/img_7499.jpg",   alt: "Life photo", w: "w-48" },
 ];
 
 const ROW_TWO: TickerItem[] = [
-  { id: 10, src: "/life/img_2324.jpg", alt: "Life photo", w: "w-40" },
-  { id: 11, src: "/life/img_2578.jpg", alt: "Life photo", w: "w-40" },
-  { id: 12, src: "/life/img_2593.jpg", alt: "Life photo", w: "w-80" },
-  { id: 13, src: "/life/img_2558.jpg", alt: "Life photo", w: "w-36" },
-  { id: 14, src: "/life/img_5441.jpg", alt: "Life photo", w: "w-40" },
-  { id: 15, src: "/life/img_6563.jpg", alt: "Life photo", w: "w-40" },
-  { id: 16, src: "/life/img_6589.jpg", alt: "Life photo", w: "w-36" },
-  { id: 17, src: "/life/img_7506.jpg", alt: "Life photo", w: "w-44" },
+  { id: 18, src: "/life/img_2324.jpg",   alt: "Life photo", w: "w-40" },
+  { id: 19, src: "/life/img_2307.jpg",   alt: "Life photo", w: "w-48" },
+  { id: 20, src: "/life/img_2578.jpg",   alt: "Life photo", w: "w-40" },
+  { id: 21, src: "/life/img_5596_2.jpg", alt: "Life photo", w: "w-64" },
+  { id: 22, src: "/life/img_2558.jpg",   alt: "Life photo", w: "w-36" },
+  { id: 23, src: "/life/img_6967.jpg",   alt: "Life photo", w: "w-48" },
+  { id: 24, src: "/life/img_2593.jpg",   alt: "Life photo", w: "w-80" },
+  { id: 25, src: "/life/img_1823.jpg",   alt: "Life photo", w: "w-40" },
+  { id: 26, src: "/life/img_5441.jpg",   alt: "Life photo", w: "w-40" },
+  { id: 27, src: "/life/img_7138.jpg",   alt: "Life photo", w: "w-64" },
+  { id: 28, src: "/life/img_6563.jpg",   alt: "Life photo", w: "w-40" },
+  { id: 29, src: "/life/img_3936.jpg",   alt: "Life photo", w: "w-48" },
+  { id: 30, src: "/life/img_6589.jpg",   alt: "Life photo", w: "w-36" },
+  { id: 31, src: "/life/img_1873.jpg",   alt: "Life photo", w: "w-40" },
+  { id: 32, src: "/life/img_7506.jpg",   alt: "Life photo", w: "w-44" },
 ];
 
 function TickerRow({ items, reverse }: { items: TickerItem[]; reverse?: boolean }) {
@@ -69,7 +84,7 @@ export default function LifeSection() {
 
         {/* Right: Ticker */}
         <div className="md:w-2/3 flex flex-col gap-3">
-          <div 
+          <div
             className="flex flex-col gap-3 overflow-hidden"
             style={{
               maskImage: "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
