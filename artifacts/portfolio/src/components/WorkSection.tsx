@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Plus, X } from "lucide-react";
+import { Plus } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const EXPERIENCES = [
@@ -116,11 +116,7 @@ function ExperienceRow({ company, role, period, duration, location, logo, icon, 
           animate={{ rotate: isExpanded ? 45 : 0 }}
           transition={{ duration: 0.3 }}
         >
-          {isExpanded ? (
-            <X size={20} />
-          ) : (
-            <Plus size={20} />
-          )}
+          <Plus size={20} />
         </motion.div>
       </motion.div>
       <AnimatePresence>
