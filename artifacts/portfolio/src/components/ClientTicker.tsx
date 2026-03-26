@@ -5,14 +5,14 @@ import {
 } from "lucide-react";
 
 const ITEMS = [
-  { id: 1, label: "AI Agents", icon: Brain, description: "Exploring intelligent agent interfaces", colSpan: 2 },
-  { id: 2, label: "Monetization", icon: TrendingUp, description: "Building pricing and revenue models", colSpan: 1 },
-  { id: 3, label: "Trust & Security", icon: Lock, description: "Fortifying security across platforms", colSpan: 1 },
-  { id: 4, label: "Marketplace", icon: ShoppingCart, description: "Enhancing digital commerce for SaaS", colSpan: 2 },
-  { id: 5, label: "Customer Service", icon: Headphones, description: "Empowering support experiences", colSpan: 1 },
-  { id: 6, label: "IoT Platforms", icon: Zap, description: "Crafting IoT solutions for connectivity", colSpan: 2 },
-  { id: 7, label: "Defence", icon: Shield, description: "Ensuring robust defensetech", colSpan: 1 },
-  { id: 8, label: "Finance", icon: Banknote, description: "Optimizing financial workflows", colSpan: 1 },
+  { id: 1, label: "AI Agents", icon: Brain, description: "Exploring intelligent agent interfaces" },
+  { id: 2, label: "Monetization", icon: TrendingUp, description: "Building pricing and revenue models" },
+  { id: 3, label: "Trust & Security", icon: Lock, description: "Fortifying security across platforms" },
+  { id: 4, label: "Marketplace", icon: ShoppingCart, description: "Enhancing digital commerce for SaaS" },
+  { id: 5, label: "Customer Service", icon: Headphones, description: "Empowering support experiences" },
+  { id: 6, label: "IoT Platforms", icon: Zap, description: "Crafting IoT solutions for connectivity" },
+  { id: 7, label: "Defence", icon: Shield, description: "Ensuring robust defensetech" },
+  { id: 8, label: "Finance", icon: Banknote, description: "Optimizing financial workflows" },
 ];
 
 export default function ClientTicker() {
@@ -35,13 +35,12 @@ export default function ClientTicker() {
             {ITEMS.map((item) => {
               const IconComponent = item.icon;
               const isHovered = hovered === item.id;
-              const colSpanClass = item.colSpan === 2 ? "col-span-2" : "col-span-1";
               return (
                 <div
                   key={item.id}
                   onMouseEnter={() => setHovered(item.id)}
                   onMouseLeave={() => setHovered(null)}
-                  className={`${colSpanClass} flex flex-col gap-4 px-6 py-6 rounded-xl transition-all duration-200 border cursor-default ${
+                  className={`relative flex flex-col gap-4 px-6 py-6 rounded-xl transition-all duration-200 border cursor-default ${
                     isHovered
                       ? "bg-foreground border-foreground"
                       : "bg-background border-border/40 hover:border-border/80"
@@ -57,9 +56,10 @@ export default function ClientTicker() {
                     </h4>
                   </div>
                   {isHovered && (
-                    <p className="text-sm text-background">
+                    <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-foreground text-background text-xs rounded-lg whitespace-nowrap shadow-lg z-50">
                       {item.description}
-                    </p>
+                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-foreground" />
+                    </div>
                   )}
                 </div>
               );
