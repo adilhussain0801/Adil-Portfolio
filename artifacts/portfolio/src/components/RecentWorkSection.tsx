@@ -87,7 +87,7 @@ export default function RecentWorkSection() {
                 <a
                   key={project.id}
                   href={`/work/${project.id}`}
-                  className={`group block rounded-2xl overflow-hidden ${project.colSpan} relative cursor-pointer`}
+                  className={`group block rounded-2xl overflow-hidden relative cursor-pointer h-[380px]`}
                   style={{ background: "linear-gradient(135deg, #3d1f6b 0%, #1a1040 50%, #0d0824 100%)" }}
                   onMouseEnter={() => setHoveredId(project.id)}
                   onMouseLeave={() => setHoveredId(null)}
@@ -117,7 +117,7 @@ export default function RecentWorkSection() {
               <a
                 key={project.id}
                 href={`/work/${project.id}`}
-                className={`group block rounded-2xl overflow-hidden ${project.colSpan} relative cursor-pointer bg-[#111111]`}
+                className={`group block rounded-2xl overflow-hidden relative cursor-pointer bg-[#111111] h-[380px]`}
                 onMouseEnter={() => setHoveredId(project.id)}
                 onMouseLeave={() => setHoveredId(null)}
               >
