@@ -228,13 +228,16 @@ function OverviewSection({ study }: { study: CaseStudy }) {
               Overview
             </h2>
           </div>
-          <div className="md:w-2/3">
-            <p
-              className="text-base md:text-lg leading-relaxed text-foreground/80"
-              style={{ fontFamily: "'Wotfard', sans-serif" }}
-            >
-              {study.overview}
-            </p>
+          <div className="md:w-2/3 flex flex-col gap-5">
+            {study.overview.split("\n\n").map((para, i) => (
+              <p
+                key={i}
+                className="text-base md:text-lg leading-relaxed text-foreground/80"
+                style={{ fontFamily: "'Wotfard', sans-serif" }}
+              >
+                {para}
+              </p>
+            ))}
           </div>
         </div>
       </section>

@@ -340,7 +340,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     image: "/project-jira-ai.png",
     imageAlt: "Rovo AI assistant service layer design",
     overview:
-      "Designed the service layer experience for Rovo, Atlassian's enterprise AI assistant — enabling AI agents to take autonomous action across Jira, Confluence, and third-party tools while maintaining user trust and control.",
+      "Rovo Service is an AI-powered system designed to transform how enterprise support works — shifting from reactive ticket handling to proactive, autonomous issue resolution.\n\nBuilt within Jira Service Management, the system embeds AI agents directly into service workflows, enabling them to understand requests, generate resolution plans, and execute actions across tools — while keeping humans in control.",
     metrics: [
       { label: "EFFICIENCY GAIN", value: "38%" },
       { label: "ACTIVE TEAMS", value: "2.1K" },
