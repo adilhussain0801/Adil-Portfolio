@@ -266,7 +266,7 @@ export default function HeroSection() {
               {/* Venetian-blind stripe overlay — always-on at rest, intensifies on hover */}
               <motion.div
                 className="absolute inset-0 pointer-events-none"
-                initial={{ opacity: 0 }}
+                initial={{ opacity: 0.38 }}
                 animate={{ opacity: isHovered ? 0.88 : 0.38 }}
                 transition={{ duration: 0.45, ease: EASE }}
                 style={{
