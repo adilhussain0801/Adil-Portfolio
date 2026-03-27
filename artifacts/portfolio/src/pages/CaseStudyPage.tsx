@@ -6,6 +6,7 @@ import { getCaseStudy, getNextCaseStudy, type CaseStudy } from "@/data/caseStudi
 import NotFound from "@/pages/not-found";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
+const APPLE: [number, number, number, number] = [0.25, 0.46, 0.45, 0.94];
 
 function fadeUp(delay = 0) {
   return {
@@ -15,15 +16,23 @@ function fadeUp(delay = 0) {
   };
 }
 
-function SectionReveal({ children, className }: { children: React.ReactNode; className?: string }) {
+function SnapReveal({
+  children,
+  delay = 0,
+  className = "",
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+}) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.15 });
+  const isInView = useInView(ref, { once: false, amount: 0.15 });
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 40 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-      transition={{ duration: 0.65, ease: EASE }}
+      initial={{ opacity: 0, y: 28 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
+      transition={{ duration: 0.72, ease: APPLE, delay }}
       className={className}
     >
       {children}
@@ -62,27 +71,21 @@ function CaseStudyHeroBg() {
       className="absolute inset-0 w-full h-full pointer-events-none select-none"
       preserveAspectRatio="xMidYMid slice"
     >
-      {/* Subtle hex grid */}
       {gridHexes.map(([cx, cy], i) => (
         <polygon key={i} points={hexPts(cx, cy, 34)} stroke="white" strokeOpacity={0.045} strokeWidth={1} fill="none" />
       ))}
 
-      {/* Flow lines — left to centre AI */}
       <path d="M 150 82 L 282 82 Q 312 82 332 128 L 380 214" {...flowLine} />
       <path d="M 150 240 L 380 240" {...flowLine} />
       <path d="M 150 398 L 282 398 Q 312 398 332 352 L 380 266" {...flowLine} />
-
-      {/* Flow lines — centre AI to right */}
       <path d="M 540 214 L 568 148 Q 582 88 616 82 L 710 82" {...flowLine} />
       <path d="M 540 240 L 710 240" {...flowLine} />
       <path d="M 540 266 L 568 332 Q 582 392 616 398 L 710 398" {...flowLine} />
 
-      {/* Bend junction dots */}
       {([[282, 82], [282, 398], [616, 82], [616, 398]] as [number, number][]).map(([cx, cy], i) => (
         <circle key={i} cx={cx} cy={cy} r={4} fill="white" fillOpacity={0.3} />
       ))}
 
-      {/* Left input cards (task cards) */}
       {([[55, 54], [55, 212], [55, 370]] as [number, number][]).map(([x, y], i) => (
         <g key={i}>
           <rect x={x} y={y} width={95} height={56} rx={9} fill="white" fillOpacity={0.07} stroke="white" strokeOpacity={0.22} strokeWidth={1} />
@@ -92,7 +95,6 @@ function CaseStudyHeroBg() {
         </g>
       ))}
 
-      {/* Central AI agent node */}
       <rect x={380} y={183} width={160} height={114} rx={14} fill="white" fillOpacity={0.1} stroke="white" strokeOpacity={0.38} strokeWidth={1.5} />
       <text x={460} y={236} textAnchor="middle" fill="white" fillOpacity={0.9} fontSize={26} fontFamily="sans-serif">✦</text>
       <line x1={400} y1={254} x2={520} y2={254} stroke="white" strokeOpacity={0.13} strokeWidth={1} />
@@ -100,7 +102,6 @@ function CaseStudyHeroBg() {
       <line x1={400} y1={274} x2={490} y2={274} stroke="white" strokeOpacity={0.09} strokeWidth={1} />
       <line x1={400} y1={284} x2={514} y2={284} stroke="white" strokeOpacity={0.07} strokeWidth={1} />
 
-      {/* Right output nodes (resolved) */}
       {([[710, 54], [710, 212], [710, 370]] as [number, number][]).map(([x, y], i) => (
         <g key={i}>
           <rect x={x} y={y} width={95} height={56} rx={9} fill="white" fillOpacity={0.07} stroke="white" strokeOpacity={0.22} strokeWidth={1} />
@@ -108,7 +109,6 @@ function CaseStudyHeroBg() {
         </g>
       ))}
 
-      {/* Hexagonal status badges */}
       {[
         { cx: 310, cy: 82, fill: "#4ecdc4", op: 0.6 },
         { cx: 310, cy: 398, fill: "#E8654B", op: 0.6 },
@@ -120,7 +120,6 @@ function CaseStudyHeroBg() {
         <polygon key={i} points={hexPts(cx, cy, 14)} fill={fill} fillOpacity={op} />
       ))}
 
-      {/* Avatar circles */}
       {([[102, 152], [102, 328], [757, 152], [757, 328], [460, 116]] as [number, number][]).map(([cx, cy], i) => (
         <g key={i}>
           <circle cx={cx} cy={cy} r={19} fill="white" fillOpacity={0.07} stroke="white" strokeOpacity={0.2} strokeWidth={1} />
@@ -129,7 +128,6 @@ function CaseStudyHeroBg() {
         </g>
       ))}
 
-      {/* Decorative glyphs */}
       <text x={812} y={58} fill="white" fillOpacity={0.28} fontSize={18} fontFamily="sans-serif">✦</text>
       <text x={36} y={168} fill="white" fillOpacity={0.17} fontSize={22} fontFamily="sans-serif">⊕</text>
       <text x={36} y={422} fill="white" fillOpacity={0.17} fontSize={22} fontFamily="sans-serif">⊕</text>
@@ -137,7 +135,6 @@ function CaseStudyHeroBg() {
       <text x={258} y={245} fill="white" fillOpacity={0.4} fontSize={13} fontFamily="sans-serif">→</text>
       <text x={608} y={245} fill="white" fillOpacity={0.4} fontSize={13} fontFamily="sans-serif">→</text>
 
-      {/* Dot trails */}
       {[0, 1, 2, 3, 4].map((i) => (
         <circle key={i} cx={840} cy={180 + i * 42} r={3} fill="white" fillOpacity={Math.max(0.06, 0.16 - i * 0.025)} />
       ))}
@@ -151,7 +148,7 @@ function CaseStudyHeroBg() {
 function HeroSection({ study }: { study: CaseStudy }) {
   return (
     <section
-      className="relative min-h-[70vh] flex flex-col justify-end px-6 md:px-24 pt-32 pb-0 overflow-hidden"
+      className="relative h-screen snap-start snap-always flex flex-col justify-end px-6 md:px-24 pt-32 pb-0 overflow-hidden"
       style={{ backgroundColor: study.heroColor }}
     >
       <CaseStudyHeroBg />
@@ -217,8 +214,11 @@ function HeroSection({ study }: { study: CaseStudy }) {
 
 function OverviewSection({ study }: { study: CaseStudy }) {
   return (
-    <SectionReveal>
-      <section className="py-20 md:py-28 px-6 md:px-24" style={{ background: "#FAF8F5" }}>
+    <section
+      className="relative h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-24 overflow-hidden"
+      style={{ background: "#FAF8F5" }}
+    >
+      <SnapReveal>
         <div className="flex flex-col md:flex-row gap-12 md:gap-24 max-w-5xl">
           <div className="md:w-1/3 flex-shrink-0">
             <h2
@@ -240,19 +240,22 @@ function OverviewSection({ study }: { study: CaseStudy }) {
             ))}
           </div>
         </div>
-      </section>
-    </SectionReveal>
+      </SnapReveal>
+    </section>
   );
 }
 
 function ChallengeSection({ study }: { study: CaseStudy }) {
   return (
-    <SectionReveal>
-      <section className="py-20 md:py-28 px-6 md:px-24 border-t border-[#e8e4de]" style={{ background: "#FAF8F5" }}>
+    <section
+      className="relative h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-24 overflow-hidden"
+      style={{ background: "#FAF8F5" }}
+    >
+      <SnapReveal>
         <div className="flex flex-col md:flex-row gap-12 md:gap-24 max-w-5xl">
           <div className="md:w-1/3 flex-shrink-0">
             <h2
-              className="text-2xl md:text-3xl leading-tight text-foreground md:sticky md:top-32"
+              className="text-2xl md:text-3xl leading-tight text-foreground"
               style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
             >
               The challenge
@@ -265,7 +268,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
             >
               {study.challenge.text}
             </p>
-            <ul className="flex flex-col gap-3 mt-2">
+            <ul className="flex flex-col gap-3">
               {study.challenge.bullets.map((bullet, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#2D2D2D]/40 flex-shrink-0" />
@@ -280,74 +283,73 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
             </ul>
           </div>
         </div>
-      </section>
-    </SectionReveal>
+      </SnapReveal>
+    </section>
   );
 }
 
 function ProcessSection({ study }: { study: CaseStudy }) {
   return (
-    <SectionReveal>
-      <section className="py-20 md:py-28 px-6 md:px-24 border-t border-[#e8e4de]" style={{ background: "#FAF8F5" }}>
-        <div className="max-w-5xl">
-          <h2
-            className="text-2xl md:text-3xl leading-tight text-foreground mb-12"
-            style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
-          >
-            Process
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {study.process.map((step, i) => (
-              <motion.div
-                key={i}
-                className="rounded-2xl bg-[#F0EDE8] px-6 py-7 flex flex-col gap-3"
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.55, ease: EASE, delay: i * 0.08 }}
+    <section
+      className="relative h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-24 overflow-hidden"
+      style={{ background: "#FAF8F5" }}
+    >
+      <SnapReveal>
+        <h2
+          className="text-2xl md:text-3xl leading-tight text-foreground mb-10 max-w-5xl"
+          style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+        >
+          Process
+        </h2>
+      </SnapReveal>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl">
+        {study.process.map((step, i) => (
+          <SnapReveal key={i} delay={0.06 + i * 0.07}>
+            <div className="rounded-2xl bg-[#F0EDE8] px-6 py-6 flex flex-col gap-2">
+              <p
+                className="text-xs font-bold text-[#2D2D2D]/30 tabular-nums"
+                style={{ fontFamily: "'Wotfard', sans-serif" }}
               >
-                <p
-                  className="text-xs font-bold text-[#2D2D2D]/30 tabular-nums"
-                  style={{ fontFamily: "'Wotfard', sans-serif" }}
-                >
-                  {step.number}
-                </p>
-                <h3
-                  className="text-base md:text-lg font-bold text-[#2D2D2D]"
-                  style={{ fontFamily: "'Wotfard', sans-serif" }}
-                >
-                  {step.title}
-                </h3>
-                <p
-                  className="text-sm leading-relaxed text-[#2D2D2D]/70"
-                  style={{ fontFamily: "'Wotfard', sans-serif" }}
-                >
-                  {step.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-    </SectionReveal>
+                {step.number}
+              </p>
+              <h3
+                className="text-base md:text-lg font-bold text-[#2D2D2D]"
+                style={{ fontFamily: "'Wotfard', sans-serif" }}
+              >
+                {step.title}
+              </h3>
+              <p
+                className="text-sm leading-relaxed text-[#2D2D2D]/70"
+                style={{ fontFamily: "'Wotfard', sans-serif" }}
+              >
+                {step.description}
+              </p>
+            </div>
+          </SnapReveal>
+        ))}
+      </div>
+    </section>
   );
 }
 
 function SolutionSection({ study }: { study: CaseStudy }) {
   return (
-    <SectionReveal>
-      <section className="py-20 md:py-28 px-6 md:px-24 border-t border-[#e8e4de]" style={{ background: "#FAF8F5" }}>
-        <div className="max-w-5xl flex flex-col gap-12">
-          <div className="flex flex-col md:flex-row gap-12 md:gap-24">
+    <section
+      className="relative h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-24 overflow-hidden"
+      style={{ background: "#FAF8F5" }}
+    >
+      <SnapReveal>
+        <div className="max-w-5xl flex flex-col gap-8">
+          <div className="flex flex-col md:flex-row gap-10 md:gap-24">
             <div className="md:w-1/3 flex-shrink-0">
               <h2
-                className="text-2xl md:text-3xl leading-tight text-foreground md:sticky md:top-32"
+                className="text-2xl md:text-3xl leading-tight text-foreground"
                 style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
               >
                 The solution
               </h2>
             </div>
-            <div className="md:w-2/3 flex flex-col gap-4">
+            <div className="md:w-2/3 flex flex-col gap-3">
               <h3
                 className="text-xl md:text-2xl font-bold text-foreground"
                 style={{ fontFamily: "'Wotfard', sans-serif" }}
@@ -364,14 +366,13 @@ function SolutionSection({ study }: { study: CaseStudy }) {
           </div>
 
           <div
-            className="w-full rounded-2xl overflow-hidden"
-            style={{ backgroundColor: study.heroColor, minHeight: "340px" }}
+            className="w-full rounded-2xl overflow-hidden flex-shrink-0"
+            style={{ backgroundColor: study.heroColor, height: "180px" }}
           >
             <img
               src={study.image}
               alt={study.imageAlt}
               className="w-full h-full object-cover"
-              style={{ maxHeight: "480px" }}
             />
           </div>
 
@@ -395,56 +396,54 @@ function SolutionSection({ study }: { study: CaseStudy }) {
             ))}
           </div>
         </div>
-      </section>
-    </SectionReveal>
+      </SnapReveal>
+    </section>
   );
 }
 
 function ImpactSection({ study }: { study: CaseStudy }) {
   return (
-    <SectionReveal>
-      <section className="py-20 md:py-28 px-6 md:px-24 border-t border-[#e8e4de]" style={{ background: "#FAF8F5" }}>
-        <div className="max-w-5xl">
-          <h2
-            className="text-2xl md:text-3xl leading-tight text-foreground mb-12"
-            style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+    <section
+      className="relative h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-24 overflow-hidden"
+      style={{ background: "#FAF8F5" }}
+    >
+      <SnapReveal>
+        <h2
+          className="text-2xl md:text-3xl leading-tight text-foreground mb-14 max-w-5xl"
+          style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+        >
+          Impact
+        </h2>
+      </SnapReveal>
+      <div className="flex flex-col md:flex-row gap-0 divide-y md:divide-y-0 md:divide-x divide-[#e8e4de] max-w-5xl">
+        {study.impact.map((item, i) => (
+          <SnapReveal
+            key={i}
+            delay={0.08 + i * 0.1}
+            className="flex-1 px-0 md:px-10 py-8 md:py-0 first:pl-0 last:pr-0 flex flex-col gap-2"
           >
-            Impact
-          </h2>
-          <div className="flex flex-col md:flex-row gap-0 divide-y md:divide-y-0 md:divide-x divide-[#e8e4de]">
-            {study.impact.map((item, i) => (
-              <motion.div
-                key={i}
-                className="flex-1 px-0 md:px-10 py-8 md:py-0 first:pl-0 last:pr-0 flex flex-col gap-2"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-              >
-                <p
-                  className="text-4xl md:text-5xl font-bold text-[#4ecdc4]"
-                  style={{ fontFamily: "'Wotfard', sans-serif" }}
-                >
-                  {item.value}
-                </p>
-                <p
-                  className="text-xs uppercase tracking-widest font-semibold text-[#2D2D2D]/50"
-                  style={{ fontFamily: "'Wotfard', sans-serif" }}
-                >
-                  {item.label}
-                </p>
-                <p
-                  className="text-sm leading-relaxed text-foreground/60 mt-1"
-                  style={{ fontFamily: "'Wotfard', sans-serif" }}
-                >
-                  {item.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-    </SectionReveal>
+            <p
+              className="text-4xl md:text-5xl font-bold text-[#4ecdc4]"
+              style={{ fontFamily: "'Wotfard', sans-serif" }}
+            >
+              {item.value}
+            </p>
+            <p
+              className="text-xs uppercase tracking-widest font-semibold text-[#2D2D2D]/50"
+              style={{ fontFamily: "'Wotfard', sans-serif" }}
+            >
+              {item.label}
+            </p>
+            <p
+              className="text-sm leading-relaxed text-foreground/60 mt-1"
+              style={{ fontFamily: "'Wotfard', sans-serif" }}
+            >
+              {item.description}
+            </p>
+          </SnapReveal>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -453,8 +452,11 @@ function NextProjectSection({ study }: { study: CaseStudy }) {
   if (!next) return null;
 
   return (
-    <SectionReveal>
-      <section className="py-20 md:py-28 px-6 md:px-24 border-t border-[#e8e4de]" style={{ background: "#FAF8F5" }}>
+    <section
+      className="relative h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-24 overflow-hidden"
+      style={{ background: "#FAF8F5" }}
+    >
+      <SnapReveal>
         <div className="max-w-5xl">
           <p
             className="text-xs uppercase tracking-widest font-semibold text-[#2D2D2D]/40 mb-6"
@@ -485,19 +487,20 @@ function NextProjectSection({ study }: { study: CaseStudy }) {
             </div>
           </Link>
         </div>
-      </section>
-    </SectionReveal>
+      </SnapReveal>
+    </section>
   );
 }
 
 export default function CaseStudyPage() {
   const params = useParams<{ id: string }>();
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const id = parseInt(params.id ?? "", 10);
   const study = getCaseStudy(id);
 
   useEffect(() => {
-    window.scrollTo({ top: 0 });
+    scrollRef.current?.scrollTo({ top: 0 });
   }, [id]);
 
   if (!study) {
@@ -505,7 +508,10 @@ export default function CaseStudyPage() {
   }
 
   return (
-    <div className="min-h-screen relative selection:bg-foreground selection:text-background" style={{ background: "#FAF8F5" }}>
+    <div
+      className="h-screen overflow-hidden relative selection:bg-foreground selection:text-background"
+      style={{ background: "#FAF8F5" }}
+    >
       <header className="fixed top-0 left-0 right-0 z-50 py-5 px-6 md:px-24 flex items-center justify-between bg-transparent">
         <Link
           href="/"
@@ -525,7 +531,11 @@ export default function CaseStudyPage() {
         </Link>
       </header>
 
-      <main>
+      <div
+        ref={scrollRef}
+        className="h-screen overflow-y-scroll"
+        style={{ scrollSnapType: "y mandatory", scrollbarWidth: "none" }}
+      >
         <HeroSection study={study} />
         <OverviewSection study={study} />
         <ChallengeSection study={study} />
@@ -533,7 +543,7 @@ export default function CaseStudyPage() {
         <SolutionSection study={study} />
         <ImpactSection study={study} />
         <NextProjectSection study={study} />
-      </main>
+      </div>
     </div>
   );
 }
