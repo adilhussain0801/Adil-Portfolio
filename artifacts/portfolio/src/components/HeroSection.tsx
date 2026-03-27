@@ -108,9 +108,12 @@ function FloatingCard({
           ease: EASE,
         }}
       >
-        <div className="w-[125px] h-[155px] rounded-2xl overflow-hidden shadow-2xl bg-white">
-          <img src={src} alt={alt} className="w-full h-full object-cover" />
-        </div>
+        <img
+          src={src}
+          alt={alt}
+          className="w-[155px] h-[155px] object-contain drop-shadow-2xl"
+          style={{ filter: "drop-shadow(0 12px 28px rgba(0,0,0,0.35))" }}
+        />
       </motion.div>
     </div>
   );
@@ -214,7 +217,7 @@ export default function HeroSection() {
             exitX={90}
             exitY={50}
             zIndex={4}
-            style={{ left: 72, top: "8%" }}
+            style={{ left: 128, top: "5%" }}
           />
           <FloatingCard
             src="/hobby-photography.png"
@@ -228,7 +231,7 @@ export default function HeroSection() {
             exitX={70}
             exitY={-40}
             zIndex={4}
-            style={{ left: 38, top: "44%" }}
+            style={{ left: 96, top: "42%" }}
           />
 
           {/* ── Arch inner container — z-index 5, sits between the two card layers ── */}
@@ -260,15 +263,15 @@ export default function HeroSection() {
                 className="absolute object-cover w-full h-full"
                 style={{ objectPosition: "center top" }}
               />
-              {/* Venetian-blind stripe overlay */}
+              {/* Venetian-blind stripe overlay — always-on at rest, intensifies on hover */}
               <motion.div
                 className="absolute inset-0 pointer-events-none"
                 initial={{ opacity: 0 }}
-                animate={{ opacity: isHovered ? 1 : 0 }}
+                animate={{ opacity: isHovered ? 0.88 : 0.38 }}
                 transition={{ duration: 0.45, ease: EASE }}
                 style={{
                   background:
-                    "repeating-linear-gradient(90deg, rgba(60,5,0,0.52) 0px, rgba(60,5,0,0.52) 2px, transparent 2px, transparent 11px)",
+                    "repeating-linear-gradient(90deg, rgba(80,5,0,0.7) 0px, rgba(80,5,0,0.7) 2px, transparent 2px, transparent 11px)",
                   borderRadius: "inherit",
                 }}
               />
@@ -320,7 +323,7 @@ export default function HeroSection() {
             exitX={-90}
             exitY={50}
             zIndex={6}
-            style={{ right: 55, top: "6%" }}
+            style={{ right: 102, top: "5%" }}
           />
           <FloatingCard
             src="/hobby-garden.png"
@@ -334,7 +337,7 @@ export default function HeroSection() {
             exitX={-70}
             exitY={-30}
             zIndex={6}
-            style={{ right: 28, bottom: "12%" }}
+            style={{ right: 72, bottom: "10%" }}
           />
         </motion.div>
       </div>
