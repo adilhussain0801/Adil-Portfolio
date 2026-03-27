@@ -253,10 +253,11 @@ export default function HeroSection() {
               left: "50%",
               transform: "translateX(-50%)",
               zIndex: 5,
+              perspective: "1000px",
             }}
           >
-            {/* Arch photo with vertical stripe overlay on hover */}
-            <div
+            {/* Arch photo with 3D flip on hover */}
+            <motion.div
               className="absolute overflow-hidden"
               style={{
                 borderRadius: "220px 220px 0 0",
@@ -266,7 +267,10 @@ export default function HeroSection() {
                 top: "4%",
                 background: "#FFFFFF",
                 boxShadow: "0 4px 40px rgba(0,0,0,0.08)",
+                transformStyle: "preserve-3d",
               }}
+              animate={{ rotateY: isHovered ? 10 : 0 }}
+              transition={{ duration: 0.65, ease: EASE }}
             >
               <img
                 src="/adil-photo.jpg"
@@ -298,7 +302,7 @@ export default function HeroSection() {
                   borderRadius: "inherit",
                 }}
               />
-            </div>
+            </motion.div>
 
             {/* Coral quarter circle — hides on hover */}
             <FloatingShape speed={0.55} amplitude={7} offset={0} className="absolute" style={{ right: "6%", top: "2%" }}>
