@@ -171,7 +171,7 @@ function HeroSection({ study }: { study: CaseStudy }) {
         </h1>
         {study.subtitle && (
           <p
-            className="text-sm md:text-base leading-relaxed text-[#1a1a1a]/55 max-w-xl mb-10 md:mb-14"
+            className="text-sm md:text-base leading-relaxed text-[#1a1a1a]/55 mb-10 md:mb-14"
             style={{ fontFamily: "'Wotfard', sans-serif" }}
           >
             {study.subtitle}
