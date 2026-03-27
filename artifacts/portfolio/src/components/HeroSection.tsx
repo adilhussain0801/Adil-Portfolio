@@ -1,8 +1,9 @@
-import { motion, useAnimationFrame } from "framer-motion";
-import { useRef, useState } from "react";
+import { motion, useAnimation, useAnimationFrame } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
 import { ArrowDown } from "lucide-react";
 
-// Hand-drawn sparkle asterisk (top-right corner)
+const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
 function SparkleGlyph() {
   return (
     <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -18,36 +19,16 @@ function SparkleGlyph() {
   );
 }
 
-// Gestural line eyelash from Figma
 function GesturalLineEyelash() {
   return (
     <svg width="70.8" height="38.66" viewBox="0 0 70.8 38.66" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M3 8 Q15 5 25 12 T45 8 T65 15"
-        stroke="#000000"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-        fill="none"
-      />
-      <path
-        d="M0 20 Q12 18 22 25 T42 20 T62 28"
-        stroke="#000000"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-        fill="none"
-      />
-      <path
-        d="M5 32 Q16 30 26 37 T46 33 T65 38"
-        stroke="#000000"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-        fill="none"
-      />
+      <path d="M3 8 Q15 5 25 12 T45 8 T65 15" stroke="#000000" strokeWidth="2.2" strokeLinecap="round" fill="none"/>
+      <path d="M0 20 Q12 18 22 25 T42 20 T62 28" stroke="#000000" strokeWidth="2.2" strokeLinecap="round" fill="none"/>
+      <path d="M5 32 Q16 30 26 37 T46 33 T65 38" stroke="#000000" strokeWidth="2.2" strokeLinecap="round" fill="none"/>
     </svg>
   );
 }
 
-// Floating bob animation hook
 function useFloatY(speed = 1, amplitude = 8, offset = 0) {
   const [y, setY] = useState(0);
   const t = useRef(offset);
@@ -67,14 +48,109 @@ function FloatingShape({ children, speed, amplitude, offset, className, style }:
   style?: React.CSSProperties;
 }) {
   const y = useFloatY(speed, amplitude, offset);
+  const baseTransform = style?.transform ?? "";
+  const transform = baseTransform
+    ? `${baseTransform} translateY(${y}px)`
+    : `translateY(${y}px)`;
   return (
-    <div className={className} style={{ ...style, transform: `translateY(${y}px)` }}>
+    <div className={className} style={{ ...style, transform }}>
       {children}
     </div>
   );
 }
 
+function FloatingImage({
+  src,
+  alt,
+  rotateDeg,
+  side,
+  isHovered,
+  delay = 0,
+  speed = 0.5,
+  amplitude = 8,
+  offset = 0,
+  style,
+  onMouseEnter,
+  onMouseLeave,
+}: {
+  src: string;
+  alt: string;
+  rotateDeg: number;
+  side: "left" | "right";
+  isHovered: boolean;
+  delay?: number;
+  speed?: number;
+  amplitude?: number;
+  offset?: number;
+  style?: React.CSSProperties;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
+}) {
+  const y = useFloatY(speed, amplitude, offset);
+  const exitX = side === "left" ? -44 : 44;
+
+  return (
+    <div
+      className="absolute"
+      style={{ ...style, transform: `translateY(${y}px)`, zIndex: 10 }}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
+      <motion.div
+        initial={{ opacity: 0, x: exitX, rotate: rotateDeg }}
+        animate={
+          isHovered
+            ? { opacity: 1, x: 0, rotate: rotateDeg }
+            : { opacity: 0, x: exitX, rotate: rotateDeg }
+        }
+        transition={{
+          duration: 0.55,
+          delay: isHovered ? delay : 0,
+          ease: EASE,
+        }}
+      >
+        <div className="w-[110px] h-[110px] rounded-2xl overflow-hidden shadow-xl bg-white">
+          <img
+            src={src}
+            alt={alt}
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
 export default function HeroSection() {
+  const [isHovered, setIsHovered] = useState(false);
+  const hoverTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const coralAnim = useAnimation();
+  const tealAnim = useAnimation();
+
+  useEffect(() => {
+    coralAnim.start({ opacity: 1, scale: 1, rotate: 0, transition: { duration: 0.9, delay: 0.5, ease: EASE } });
+    tealAnim.start({ opacity: 1, scale: 1, rotate: 0, transition: { duration: 0.9, delay: 0.6, ease: EASE } });
+    return () => {
+      if (hoverTimer.current) clearTimeout(hoverTimer.current);
+    };
+  }, [coralAnim, tealAnim]);
+
+  const startHover = () => {
+    if (hoverTimer.current) clearTimeout(hoverTimer.current);
+    setIsHovered(true);
+    coralAnim.start({ opacity: 0, scale: 0.55, transition: { duration: 0.32, ease: EASE } });
+    tealAnim.start({ opacity: 0, scale: 0.55, transition: { duration: 0.32, delay: 0.05, ease: EASE } });
+  };
+
+  const endHover = () => {
+    hoverTimer.current = setTimeout(() => {
+      setIsHovered(false);
+      coralAnim.start({ opacity: 1, scale: 1, rotate: 0, transition: { duration: 0.55, ease: EASE } });
+      tealAnim.start({ opacity: 1, scale: 1, rotate: 0, transition: { duration: 0.55, delay: 0.05, ease: EASE } });
+    }, 80);
+  };
+
   return (
     <section
       className="min-h-screen flex flex-col justify-center pt-24 pb-12 px-6 md:px-24 relative overflow-hidden"
@@ -87,14 +163,14 @@ export default function HeroSection() {
           className="flex-1 max-w-2xl"
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.85, ease: EASE }}
         >
           <motion.h1
             className="font-sans leading-[1.1] mb-6 md:mb-12"
             style={{ fontSize: "clamp(2.2rem, 5.5vw, 3.8rem)" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.85, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.85, delay: 0.15, ease: EASE }}
           >
             <span className="font-bold text-[#2D2D2D]">I'm Adil,</span>
             <span className="font-normal text-[#999999] mx-2">a multi-</span>
@@ -118,9 +194,69 @@ export default function HeroSection() {
           style={{ width: "min(440px, 90vw)", height: "min(580px, 85vw)" }}
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1, delay: 0.1, ease: EASE }}
         >
-          {/* Arch photo container - white arch with Gateway of India */}
+          {/* Left hobby images (painting top, travel bottom) */}
+          <FloatingImage
+            src="/hobby-painting.png"
+            alt="Painting"
+            rotateDeg={-6}
+            side="left"
+            isHovered={isHovered}
+            delay={0}
+            speed={0.48}
+            amplitude={8}
+            offset={0.5}
+            style={{ left: "-8px", top: "11%" }}
+            onMouseEnter={startHover}
+            onMouseLeave={endHover}
+          />
+          <FloatingImage
+            src="/hobby-travel.png"
+            alt="Travel"
+            rotateDeg={-3}
+            side="left"
+            isHovered={isHovered}
+            delay={0.08}
+            speed={0.42}
+            amplitude={10}
+            offset={2.2}
+            style={{ left: "-12px", bottom: "17%" }}
+            onMouseEnter={startHover}
+            onMouseLeave={endHover}
+          />
+
+          {/* Right hobby images (photography top, garden bottom) */}
+          <FloatingImage
+            src="/hobby-photography.png"
+            alt="Photography"
+            rotateDeg={3}
+            side="right"
+            isHovered={isHovered}
+            delay={0.04}
+            speed={0.52}
+            amplitude={7}
+            offset={1.1}
+            style={{ right: "-8px", top: "20%" }}
+            onMouseEnter={startHover}
+            onMouseLeave={endHover}
+          />
+          <FloatingImage
+            src="/hobby-garden.png"
+            alt="Gardening"
+            rotateDeg={6}
+            side="right"
+            isHovered={isHovered}
+            delay={0.12}
+            speed={0.46}
+            amplitude={9}
+            offset={3.0}
+            style={{ right: "-12px", bottom: "13%" }}
+            onMouseEnter={startHover}
+            onMouseLeave={endHover}
+          />
+
+          {/* Arch photo container */}
           <div
             className="absolute overflow-hidden"
             style={{
@@ -131,7 +267,10 @@ export default function HeroSection() {
               top: "4%",
               background: "#FFFFFF",
               boxShadow: "0 4px 40px rgba(0,0,0,0.08)",
+              zIndex: 5,
             }}
+            onMouseEnter={startHover}
+            onMouseLeave={endHover}
           >
             <img
               src="/adil-photo.jpg"
@@ -141,18 +280,17 @@ export default function HeroSection() {
             />
           </div>
 
-          {/* Coral quarter circle - top right, overlapping arch */}
+          {/* Coral quarter circle - top right, hides on hover */}
           <FloatingShape
             speed={0.55}
             amplitude={7}
             offset={0}
             className="absolute"
-            style={{ right: "6%", top: "2%" }}
+            style={{ right: "6%", top: "2%", zIndex: 6 }}
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.6, rotate: -20 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ duration: 0.9, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              animate={coralAnim}
             >
               <svg width="110" height="110" viewBox="0 0 110 110" fill="none">
                 <path d="M110 0 A110 110 0 0 0 0 110 L110 110 Z" fill="#E8654B" />
@@ -160,35 +298,34 @@ export default function HeroSection() {
             </motion.div>
           </FloatingShape>
 
-          {/* Sparkle glyph - top far right */}
+          {/* Sparkle glyph - top far right, stays visible */}
           <FloatingShape
             speed={0.7}
             amplitude={5}
             offset={1.2}
             className="absolute"
-            style={{ right: "-2%", top: "14%" }}
+            style={{ right: "-2%", top: "14%", zIndex: 6 }}
           >
             <motion.div
               initial={{ opacity: 0, rotate: -45 }}
               animate={{ opacity: 1, rotate: 0 }}
-              transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.8, delay: 0.7, ease: EASE }}
             >
               <SparkleGlyph />
             </motion.div>
           </FloatingShape>
 
-          {/* Teal rounded square - bottom left, overlapping arch */}
+          {/* Teal rounded square - bottom left, hides on hover */}
           <FloatingShape
             speed={0.5}
             amplitude={9}
             offset={2.1}
             className="absolute"
-            style={{ left: "0%", bottom: "20%" }}
+            style={{ left: "0%", bottom: "20%", zIndex: 6 }}
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.6, rotate: 15 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ duration: 0.9, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              animate={tealAnim}
             >
               <svg width="110" height="110" viewBox="0 0 110 110" fill="none">
                 <rect width="110" height="110" rx="22" fill="#3E9C7B" />
@@ -196,18 +333,18 @@ export default function HeroSection() {
             </motion.div>
           </FloatingShape>
 
-          {/* Gestural line eyelash - bottom far left */}
+          {/* Gestural line eyelash - bottom far left, stays visible */}
           <FloatingShape
             speed={0.65}
             amplitude={6}
             offset={0.7}
             className="absolute"
-            style={{ left: "-6%", bottom: "8%", transform: "rotate(-150deg)" }}
+            style={{ left: "-6%", bottom: "8%", transform: "rotate(-150deg)", zIndex: 6 }}
           >
             <motion.div
               initial={{ opacity: 0, x: -15 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.75, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.8, delay: 0.75, ease: EASE }}
             >
               <GesturalLineEyelash />
             </motion.div>
