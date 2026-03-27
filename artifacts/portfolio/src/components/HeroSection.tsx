@@ -113,7 +113,20 @@ function FloatingImage({
   );
 }
 
+function useFinePonter() {
+  const [fine, setFine] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
+    setFine(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setFine(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+  return fine;
+}
+
 export default function HeroSection() {
+  const isFinePointer = useFinePonter();
   const [isHovered, setIsHovered] = useState(false);
 
   const coralAnim = useAnimation();
@@ -125,12 +138,14 @@ export default function HeroSection() {
   }, [coralAnim, tealAnim]);
 
   const handleMouseEnter = () => {
+    if (!isFinePointer) return;
     setIsHovered(true);
-    coralAnim.start({ opacity: 0, scale: 0.55, transition: { duration: 0.32, ease: EASE } });
-    tealAnim.start({ opacity: 0, scale: 0.55, transition: { duration: 0.32, delay: 0.05, ease: EASE } });
+    coralAnim.start({ opacity: 0, scale: 0.7, transition: { duration: 0.32, ease: EASE } });
+    tealAnim.start({ opacity: 0, scale: 0.7, transition: { duration: 0.32, delay: 0.05, ease: EASE } });
   };
 
   const handleMouseLeave = () => {
+    if (!isFinePointer) return;
     setIsHovered(false);
     coralAnim.start({ opacity: 1, scale: 1, rotate: 0, transition: { duration: 0.55, ease: EASE } });
     tealAnim.start({ opacity: 1, scale: 1, rotate: 0, transition: { duration: 0.55, delay: 0.05, ease: EASE } });
