@@ -72,6 +72,7 @@ function FloatingCard({
   offset = 0,
   exitX = 0,
   exitY = 0,
+  flipDir = "left",
   zIndex = 10,
   style,
 }: {
@@ -85,34 +86,42 @@ function FloatingCard({
   offset?: number;
   exitX?: number;
   exitY?: number;
+  flipDir?: "left" | "right";
   zIndex?: number;
   style?: React.CSSProperties;
 }) {
   const y = useFloatY(speed, amplitude, offset);
+  const exitRotateY = flipDir === "left" ? -90 : 90;
 
   return (
     <div
       className="absolute"
-      style={{ ...style, transform: `translateY(${y}px)`, zIndex }}
+      style={{
+        ...style,
+        transform: `translateY(${y}px)`,
+        zIndex,
+        perspective: "800px",
+      }}
     >
       <motion.div
-        initial={{ opacity: 0, x: exitX, y: exitY, scale: 0.55, rotate: rotateDeg }}
+        initial={{ opacity: 0, x: exitX, y: exitY, rotateY: exitRotateY, rotate: rotateDeg }}
         animate={
           isHovered
-            ? { opacity: 1, x: 0, y: 0, scale: 1, rotate: rotateDeg }
-            : { opacity: 0, x: exitX, y: exitY, scale: 0.55, rotate: rotateDeg }
+            ? { opacity: 1, x: 0, y: 0, rotateY: 0, rotate: rotateDeg }
+            : { opacity: 0, x: exitX, y: exitY, rotateY: exitRotateY, rotate: rotateDeg }
         }
         transition={{
-          duration: 0.6,
+          duration: 0.65,
           delay: isHovered ? delay : 0,
           ease: EASE,
         }}
+        style={{ transformStyle: "preserve-3d" }}
       >
         <img
           src={src}
           alt={alt}
-          className="w-[155px] h-[155px] object-contain drop-shadow-2xl"
-          style={{ filter: "drop-shadow(0 12px 28px rgba(0,0,0,0.35))" }}
+          className="w-[185px] h-[185px] object-contain"
+          style={{ filter: "drop-shadow(0 14px 32px rgba(0,0,0,0.38))" }}
         />
       </motion.div>
     </div>
@@ -204,7 +213,7 @@ export default function HeroSection() {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          {/* ── BEHIND arch: painting (top-left) & photography (mid-left) ── */}
+          {/* ── LEFT cards: painting (top) & photography (mid) ── */}
           <FloatingCard
             src="/hobby-painting.png"
             alt="Painting"
@@ -214,10 +223,11 @@ export default function HeroSection() {
             speed={0.48}
             amplitude={7}
             offset={0.5}
-            exitX={90}
-            exitY={50}
-            zIndex={4}
-            style={{ left: 128, top: "5%" }}
+            exitX={60}
+            exitY={40}
+            flipDir="left"
+            zIndex={8}
+            style={{ left: 88, top: "5%" }}
           />
           <FloatingCard
             src="/hobby-photography.png"
@@ -228,10 +238,11 @@ export default function HeroSection() {
             speed={0.42}
             amplitude={9}
             offset={2.2}
-            exitX={70}
-            exitY={-40}
-            zIndex={4}
-            style={{ left: 96, top: "42%" }}
+            exitX={60}
+            exitY={-30}
+            flipDir="left"
+            zIndex={8}
+            style={{ left: 56, top: "42%" }}
           />
 
           {/* ── Arch inner container — z-index 5, sits between the two card layers ── */}
@@ -262,6 +273,18 @@ export default function HeroSection() {
                 alt="Adil Hussain"
                 className="absolute object-cover w-full h-full"
                 style={{ objectPosition: "center top" }}
+              />
+              {/* Red hue wash — always-on, intensifies on hover */}
+              <motion.div
+                className="absolute inset-0 pointer-events-none"
+                initial={{ opacity: 0.28 }}
+                animate={{ opacity: isHovered ? 0.55 : 0.28 }}
+                transition={{ duration: 0.45, ease: EASE }}
+                style={{
+                  background: "rgba(160, 12, 0, 0.6)",
+                  borderRadius: "inherit",
+                  mixBlendMode: "multiply",
+                }}
               />
               {/* Venetian-blind stripe overlay — always-on at rest, intensifies on hover */}
               <motion.div
@@ -310,7 +333,7 @@ export default function HeroSection() {
             </FloatingShape>
           </div>
 
-          {/* ── IN FRONT of arch: travel (top-right) & garden (mid-right) ── */}
+          {/* ── RIGHT cards: travel (top) & garden (mid) ── */}
           <FloatingCard
             src="/hobby-travel.png"
             alt="Travel"
@@ -320,10 +343,11 @@ export default function HeroSection() {
             speed={0.52}
             amplitude={7}
             offset={1.1}
-            exitX={-90}
-            exitY={50}
-            zIndex={6}
-            style={{ right: 102, top: "5%" }}
+            exitX={-60}
+            exitY={40}
+            flipDir="right"
+            zIndex={8}
+            style={{ right: 68, top: "5%" }}
           />
           <FloatingCard
             src="/hobby-garden.png"
@@ -334,10 +358,11 @@ export default function HeroSection() {
             speed={0.46}
             amplitude={9}
             offset={3.0}
-            exitX={-70}
+            exitX={-60}
             exitY={-30}
-            zIndex={6}
-            style={{ right: 72, bottom: "10%" }}
+            flipDir="right"
+            zIndex={8}
+            style={{ right: 42, bottom: "10%" }}
           />
         </motion.div>
       </div>
