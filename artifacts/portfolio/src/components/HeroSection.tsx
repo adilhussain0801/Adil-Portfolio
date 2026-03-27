@@ -39,7 +39,9 @@ function useFloatY(speed = 1, amplitude = 8, offset = 0) {
   return y;
 }
 
-function FloatingShape({ children, speed, amplitude, offset, className, style }: {
+function FloatingShape({
+  children, speed, amplitude, offset, className, style,
+}: {
   children: React.ReactNode;
   speed?: number;
   amplitude?: number;
@@ -70,8 +72,6 @@ function FloatingImage({
   amplitude = 8,
   offset = 0,
   style,
-  onMouseEnter,
-  onMouseLeave,
 }: {
   src: string;
   alt: string;
@@ -83,8 +83,6 @@ function FloatingImage({
   amplitude?: number;
   offset?: number;
   style?: React.CSSProperties;
-  onMouseEnter?: () => void;
-  onMouseLeave?: () => void;
 }) {
   const y = useFloatY(speed, amplitude, offset);
   const exitX = side === "left" ? -44 : 44;
@@ -93,8 +91,6 @@ function FloatingImage({
     <div
       className="absolute"
       style={{ ...style, transform: `translateY(${y}px)`, zIndex: 10 }}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
     >
       <motion.div
         initial={{ opacity: 0, x: exitX, rotate: rotateDeg }}
@@ -110,11 +106,7 @@ function FloatingImage({
         }}
       >
         <div className="w-[110px] h-[110px] rounded-2xl overflow-hidden shadow-xl bg-white">
-          <img
-            src={src}
-            alt={alt}
-            className="w-full h-full object-cover"
-          />
+          <img src={src} alt={alt} className="w-full h-full object-cover" />
         </div>
       </motion.div>
     </div>
@@ -123,7 +115,6 @@ function FloatingImage({
 
 export default function HeroSection() {
   const [isHovered, setIsHovered] = useState(false);
-  const hoverTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const coralAnim = useAnimation();
   const tealAnim = useAnimation();
@@ -131,24 +122,18 @@ export default function HeroSection() {
   useEffect(() => {
     coralAnim.start({ opacity: 1, scale: 1, rotate: 0, transition: { duration: 0.9, delay: 0.5, ease: EASE } });
     tealAnim.start({ opacity: 1, scale: 1, rotate: 0, transition: { duration: 0.9, delay: 0.6, ease: EASE } });
-    return () => {
-      if (hoverTimer.current) clearTimeout(hoverTimer.current);
-    };
   }, [coralAnim, tealAnim]);
 
-  const startHover = () => {
-    if (hoverTimer.current) clearTimeout(hoverTimer.current);
+  const handleMouseEnter = () => {
     setIsHovered(true);
     coralAnim.start({ opacity: 0, scale: 0.55, transition: { duration: 0.32, ease: EASE } });
     tealAnim.start({ opacity: 0, scale: 0.55, transition: { duration: 0.32, delay: 0.05, ease: EASE } });
   };
 
-  const endHover = () => {
-    hoverTimer.current = setTimeout(() => {
-      setIsHovered(false);
-      coralAnim.start({ opacity: 1, scale: 1, rotate: 0, transition: { duration: 0.55, ease: EASE } });
-      tealAnim.start({ opacity: 1, scale: 1, rotate: 0, transition: { duration: 0.55, delay: 0.05, ease: EASE } });
-    }, 80);
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    coralAnim.start({ opacity: 1, scale: 1, rotate: 0, transition: { duration: 0.55, ease: EASE } });
+    tealAnim.start({ opacity: 1, scale: 1, rotate: 0, transition: { duration: 0.55, delay: 0.05, ease: EASE } });
   };
 
   return (
@@ -188,15 +173,17 @@ export default function HeroSection() {
           </motion.h1>
         </motion.div>
 
-        {/* Right: Photo collage */}
+        {/* Right: Photo collage — wider hover zone (680px) with arch centred inside */}
         <motion.div
           className="relative shrink-0"
-          style={{ width: "min(440px, 90vw)", height: "min(580px, 85vw)" }}
+          style={{ width: "min(680px, 90vw)", height: "min(580px, 85vw)" }}
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.1, ease: EASE }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
-          {/* Left hobby images (painting top, travel bottom) */}
+          {/* ── Left hobby images (painting top, photography bottom) ── */}
           <FloatingImage
             src="/hobby-painting.png"
             alt="Painting"
@@ -207,13 +194,11 @@ export default function HeroSection() {
             speed={0.48}
             amplitude={8}
             offset={0.5}
-            style={{ left: "-8px", top: "11%" }}
-            onMouseEnter={startHover}
-            onMouseLeave={endHover}
+            style={{ left: 6, top: "13%" }}
           />
           <FloatingImage
-            src="/hobby-travel.png"
-            alt="Travel"
+            src="/hobby-photography.png"
+            alt="Photography"
             rotateDeg={-3}
             side="left"
             isHovered={isHovered}
@@ -221,15 +206,13 @@ export default function HeroSection() {
             speed={0.42}
             amplitude={10}
             offset={2.2}
-            style={{ left: "-12px", bottom: "17%" }}
-            onMouseEnter={startHover}
-            onMouseLeave={endHover}
+            style={{ left: 10, bottom: "18%" }}
           />
 
-          {/* Right hobby images (photography top, garden bottom) */}
+          {/* ── Right hobby images (travel top, garden bottom) ── */}
           <FloatingImage
-            src="/hobby-photography.png"
-            alt="Photography"
+            src="/hobby-travel.png"
+            alt="Travel"
             rotateDeg={3}
             side="right"
             isHovered={isHovered}
@@ -237,9 +220,7 @@ export default function HeroSection() {
             speed={0.52}
             amplitude={7}
             offset={1.1}
-            style={{ right: "-8px", top: "20%" }}
-            onMouseEnter={startHover}
-            onMouseLeave={endHover}
+            style={{ right: 6, top: "20%" }}
           />
           <FloatingImage
             src="/hobby-garden.png"
@@ -251,104 +232,109 @@ export default function HeroSection() {
             speed={0.46}
             amplitude={9}
             offset={3.0}
-            style={{ right: "-12px", bottom: "13%" }}
-            onMouseEnter={startHover}
-            onMouseLeave={endHover}
+            style={{ right: 10, bottom: "14%" }}
           />
 
-          {/* Arch photo container */}
+          {/* ── Inner arch photo container — centred inside the wider 680px zone ── */}
           <div
-            className="absolute overflow-hidden"
+            className="absolute top-0 bottom-0"
             style={{
-              borderRadius: "220px 220px 0 0",
-              width: "72%",
-              height: "90%",
-              left: "14%",
-              top: "4%",
-              background: "#FFFFFF",
-              boxShadow: "0 4px 40px rgba(0,0,0,0.08)",
-              zIndex: 5,
+              width: "min(440px, 64.7%)",
+              left: "50%",
+              transform: "translateX(-50%)",
             }}
-            onMouseEnter={startHover}
-            onMouseLeave={endHover}
           >
-            <img
-              src="/adil-photo.jpg"
-              alt="Adil Hussain"
-              className="absolute object-cover w-full h-full"
-              style={{ objectPosition: "center top" }}
-            />
+            {/* Arch photo */}
+            <div
+              className="absolute overflow-hidden"
+              style={{
+                borderRadius: "220px 220px 0 0",
+                width: "72%",
+                height: "90%",
+                left: "14%",
+                top: "4%",
+                background: "#FFFFFF",
+                boxShadow: "0 4px 40px rgba(0,0,0,0.08)",
+              }}
+            >
+              <img
+                src="/adil-photo.jpg"
+                alt="Adil Hussain"
+                className="absolute object-cover w-full h-full"
+                style={{ objectPosition: "center top" }}
+              />
+            </div>
+
+            {/* Coral quarter circle — top right, hides on hover */}
+            <FloatingShape
+              speed={0.55}
+              amplitude={7}
+              offset={0}
+              className="absolute"
+              style={{ right: "6%", top: "2%" }}
+            >
+              <motion.div
+                initial={{ opacity: 0, scale: 0.6, rotate: -20 }}
+                animate={coralAnim}
+              >
+                <svg width="110" height="110" viewBox="0 0 110 110" fill="none">
+                  <path d="M110 0 A110 110 0 0 0 0 110 L110 110 Z" fill="#E8654B" />
+                </svg>
+              </motion.div>
+            </FloatingShape>
+
+            {/* Sparkle glyph — stays visible */}
+            <FloatingShape
+              speed={0.7}
+              amplitude={5}
+              offset={1.2}
+              className="absolute"
+              style={{ right: "-2%", top: "14%" }}
+            >
+              <motion.div
+                initial={{ opacity: 0, rotate: -45 }}
+                animate={{ opacity: 1, rotate: 0 }}
+                transition={{ duration: 0.8, delay: 0.7, ease: EASE }}
+              >
+                <SparkleGlyph />
+              </motion.div>
+            </FloatingShape>
+
+            {/* Teal rounded square — bottom left, hides on hover */}
+            <FloatingShape
+              speed={0.5}
+              amplitude={9}
+              offset={2.1}
+              className="absolute"
+              style={{ left: "0%", bottom: "20%" }}
+            >
+              <motion.div
+                initial={{ opacity: 0, scale: 0.6, rotate: 15 }}
+                animate={tealAnim}
+              >
+                <svg width="110" height="110" viewBox="0 0 110 110" fill="none">
+                  <rect width="110" height="110" rx="22" fill="#3E9C7B" />
+                </svg>
+              </motion.div>
+            </FloatingShape>
+
+            {/* Gestural line eyelash — stays visible */}
+            <FloatingShape
+              speed={0.65}
+              amplitude={6}
+              offset={0.7}
+              className="absolute"
+              style={{ left: "-6%", bottom: "8%", transform: "rotate(-150deg)" }}
+            >
+              <motion.div
+                initial={{ opacity: 0, x: -15 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.75, ease: EASE }}
+              >
+                <GesturalLineEyelash />
+              </motion.div>
+            </FloatingShape>
           </div>
-
-          {/* Coral quarter circle - top right, hides on hover */}
-          <FloatingShape
-            speed={0.55}
-            amplitude={7}
-            offset={0}
-            className="absolute"
-            style={{ right: "6%", top: "2%", zIndex: 6 }}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.6, rotate: -20 }}
-              animate={coralAnim}
-            >
-              <svg width="110" height="110" viewBox="0 0 110 110" fill="none">
-                <path d="M110 0 A110 110 0 0 0 0 110 L110 110 Z" fill="#E8654B" />
-              </svg>
-            </motion.div>
-          </FloatingShape>
-
-          {/* Sparkle glyph - top far right, stays visible */}
-          <FloatingShape
-            speed={0.7}
-            amplitude={5}
-            offset={1.2}
-            className="absolute"
-            style={{ right: "-2%", top: "14%", zIndex: 6 }}
-          >
-            <motion.div
-              initial={{ opacity: 0, rotate: -45 }}
-              animate={{ opacity: 1, rotate: 0 }}
-              transition={{ duration: 0.8, delay: 0.7, ease: EASE }}
-            >
-              <SparkleGlyph />
-            </motion.div>
-          </FloatingShape>
-
-          {/* Teal rounded square - bottom left, hides on hover */}
-          <FloatingShape
-            speed={0.5}
-            amplitude={9}
-            offset={2.1}
-            className="absolute"
-            style={{ left: "0%", bottom: "20%", zIndex: 6 }}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.6, rotate: 15 }}
-              animate={tealAnim}
-            >
-              <svg width="110" height="110" viewBox="0 0 110 110" fill="none">
-                <rect width="110" height="110" rx="22" fill="#3E9C7B" />
-              </svg>
-            </motion.div>
-          </FloatingShape>
-
-          {/* Gestural line eyelash - bottom far left, stays visible */}
-          <FloatingShape
-            speed={0.65}
-            amplitude={6}
-            offset={0.7}
-            className="absolute"
-            style={{ left: "-6%", bottom: "8%", transform: "rotate(-150deg)", zIndex: 6 }}
-          >
-            <motion.div
-              initial={{ opacity: 0, x: -15 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.75, ease: EASE }}
-            >
-              <GesturalLineEyelash />
-            </motion.div>
-          </FloatingShape>
         </motion.div>
       </div>
 
