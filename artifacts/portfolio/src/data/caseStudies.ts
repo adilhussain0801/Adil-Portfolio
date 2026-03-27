@@ -17,6 +17,7 @@ export interface SolutionFeature {
 export interface CaseStudy {
   id: number;
   title: string;
+  subtitle?: string;
   category: string;
   company: string;
   year: string;
@@ -328,6 +329,7 @@ export const CASE_STUDIES: CaseStudy[] = [
   {
     id: 4,
     title: "Rovo Service",
+    subtitle: "Reimagining Jira Service Management with embedded AI agents that proactively detect, prevent, and resolve issues within workflows.",
     category: "Atlassian AI Assistant",
     company: "Atlassian",
     year: "2024",

@@ -164,11 +164,20 @@ function HeroSection({ study }: { study: CaseStudy }) {
           {study.category} · {study.year}
         </p>
         <h1
-          className="text-4xl md:text-6xl leading-[1.05] text-[#1a1a1a] mb-10 md:mb-14"
+          className="text-4xl md:text-6xl leading-[1.05] text-[#1a1a1a] mb-4"
           style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
         >
           {study.title}
         </h1>
+        {study.subtitle && (
+          <p
+            className="text-sm md:text-base leading-relaxed text-[#1a1a1a]/55 max-w-xl mb-10 md:mb-14"
+            style={{ fontFamily: "'Wotfard', sans-serif" }}
+          >
+            {study.subtitle}
+          </p>
+        )}
+        {!study.subtitle && <div className="mb-10 md:mb-14" />}
       </motion.div>
 
       <motion.div
