@@ -61,51 +61,54 @@ function FloatingShape({
   );
 }
 
-function FloatingImage({
+function FloatingCard({
   src,
   alt,
   rotateDeg,
-  side,
   isHovered,
   delay = 0,
   speed = 0.5,
   amplitude = 8,
   offset = 0,
+  exitX = 0,
+  exitY = 0,
+  zIndex = 10,
   style,
 }: {
   src: string;
   alt: string;
   rotateDeg: number;
-  side: "left" | "right";
   isHovered: boolean;
   delay?: number;
   speed?: number;
   amplitude?: number;
   offset?: number;
+  exitX?: number;
+  exitY?: number;
+  zIndex?: number;
   style?: React.CSSProperties;
 }) {
   const y = useFloatY(speed, amplitude, offset);
-  const exitX = side === "left" ? -44 : 44;
 
   return (
     <div
       className="absolute"
-      style={{ ...style, transform: `translateY(${y}px)`, zIndex: 10 }}
+      style={{ ...style, transform: `translateY(${y}px)`, zIndex }}
     >
       <motion.div
-        initial={{ opacity: 0, x: exitX, rotate: rotateDeg }}
+        initial={{ opacity: 0, x: exitX, y: exitY, scale: 0.55, rotate: rotateDeg }}
         animate={
           isHovered
-            ? { opacity: 1, x: 0, rotate: rotateDeg }
-            : { opacity: 0, x: exitX, rotate: rotateDeg }
+            ? { opacity: 1, x: 0, y: 0, scale: 1, rotate: rotateDeg }
+            : { opacity: 0, x: exitX, y: exitY, scale: 0.55, rotate: rotateDeg }
         }
         transition={{
-          duration: 0.55,
+          duration: 0.6,
           delay: isHovered ? delay : 0,
           ease: EASE,
         }}
       >
-        <div className="w-[110px] h-[110px] rounded-2xl overflow-hidden shadow-xl bg-white">
+        <div className="w-[125px] h-[155px] rounded-2xl overflow-hidden shadow-2xl bg-white">
           <img src={src} alt={alt} className="w-full h-full object-cover" />
         </div>
       </motion.div>
@@ -113,7 +116,7 @@ function FloatingImage({
   );
 }
 
-function useFinePonter() {
+function useFinePointer() {
   const [fine, setFine] = useState(false);
   useEffect(() => {
     const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
@@ -126,7 +129,7 @@ function useFinePonter() {
 }
 
 export default function HeroSection() {
-  const isFinePointer = useFinePonter();
+  const isFinePointer = useFinePointer();
   const [isHovered, setIsHovered] = useState(false);
 
   const coralAnim = useAnimation();
@@ -188,7 +191,7 @@ export default function HeroSection() {
           </motion.h1>
         </motion.div>
 
-        {/* Right: Photo collage — wider hover zone (680px) with arch centred inside */}
+        {/* Right: Photo collage — 680px wide hover zone, arch centred inside */}
         <motion.div
           className="relative shrink-0"
           style={{ width: "min(680px, 90vw)", height: "min(580px, 85vw)" }}
@@ -198,68 +201,47 @@ export default function HeroSection() {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          {/* ── Left hobby images (painting top, photography bottom) ── */}
-          <FloatingImage
+          {/* ── BEHIND arch: painting (top-left) & photography (mid-left) ── */}
+          <FloatingCard
             src="/hobby-painting.png"
             alt="Painting"
-            rotateDeg={-6}
-            side="left"
+            rotateDeg={-12}
             isHovered={isHovered}
-            delay={0}
+            delay={0.06}
             speed={0.48}
-            amplitude={8}
+            amplitude={7}
             offset={0.5}
-            style={{ left: 6, top: "13%" }}
+            exitX={90}
+            exitY={50}
+            zIndex={4}
+            style={{ left: 72, top: "8%" }}
           />
-          <FloatingImage
+          <FloatingCard
             src="/hobby-photography.png"
             alt="Photography"
-            rotateDeg={-3}
-            side="left"
+            rotateDeg={-7}
             isHovered={isHovered}
-            delay={0.08}
+            delay={0}
             speed={0.42}
-            amplitude={10}
-            offset={2.2}
-            style={{ left: 10, bottom: "18%" }}
-          />
-
-          {/* ── Right hobby images (travel top, garden bottom) ── */}
-          <FloatingImage
-            src="/hobby-travel.png"
-            alt="Travel"
-            rotateDeg={3}
-            side="right"
-            isHovered={isHovered}
-            delay={0.04}
-            speed={0.52}
-            amplitude={7}
-            offset={1.1}
-            style={{ right: 6, top: "20%" }}
-          />
-          <FloatingImage
-            src="/hobby-garden.png"
-            alt="Gardening"
-            rotateDeg={6}
-            side="right"
-            isHovered={isHovered}
-            delay={0.12}
-            speed={0.46}
             amplitude={9}
-            offset={3.0}
-            style={{ right: 10, bottom: "14%" }}
+            offset={2.2}
+            exitX={70}
+            exitY={-40}
+            zIndex={4}
+            style={{ left: 38, top: "44%" }}
           />
 
-          {/* ── Inner arch photo container — centred inside the wider 680px zone ── */}
+          {/* ── Arch inner container — z-index 5, sits between the two card layers ── */}
           <div
             className="absolute top-0 bottom-0"
             style={{
               width: "min(440px, 64.7%)",
               left: "50%",
               transform: "translateX(-50%)",
+              zIndex: 5,
             }}
           >
-            {/* Arch photo */}
+            {/* Arch photo with vertical stripe overlay on hover */}
             <div
               className="absolute overflow-hidden"
               style={{
@@ -278,78 +260,82 @@ export default function HeroSection() {
                 className="absolute object-cover w-full h-full"
                 style={{ objectPosition: "center top" }}
               />
+              {/* Venetian-blind stripe overlay */}
+              <motion.div
+                className="absolute inset-0 pointer-events-none"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: isHovered ? 1 : 0 }}
+                transition={{ duration: 0.45, ease: EASE }}
+                style={{
+                  background:
+                    "repeating-linear-gradient(90deg, rgba(60,5,0,0.52) 0px, rgba(60,5,0,0.52) 2px, transparent 2px, transparent 11px)",
+                  borderRadius: "inherit",
+                }}
+              />
             </div>
 
-            {/* Coral quarter circle — top right, hides on hover */}
-            <FloatingShape
-              speed={0.55}
-              amplitude={7}
-              offset={0}
-              className="absolute"
-              style={{ right: "6%", top: "2%" }}
-            >
-              <motion.div
-                initial={{ opacity: 0, scale: 0.6, rotate: -20 }}
-                animate={coralAnim}
-              >
+            {/* Coral quarter circle — hides on hover */}
+            <FloatingShape speed={0.55} amplitude={7} offset={0} className="absolute" style={{ right: "6%", top: "2%" }}>
+              <motion.div initial={{ opacity: 0, scale: 0.6, rotate: -20 }} animate={coralAnim}>
                 <svg width="110" height="110" viewBox="0 0 110 110" fill="none">
                   <path d="M110 0 A110 110 0 0 0 0 110 L110 110 Z" fill="#E8654B" />
                 </svg>
               </motion.div>
             </FloatingShape>
 
-            {/* Sparkle glyph — stays visible */}
-            <FloatingShape
-              speed={0.7}
-              amplitude={5}
-              offset={1.2}
-              className="absolute"
-              style={{ right: "-2%", top: "14%" }}
-            >
-              <motion.div
-                initial={{ opacity: 0, rotate: -45 }}
-                animate={{ opacity: 1, rotate: 0 }}
-                transition={{ duration: 0.8, delay: 0.7, ease: EASE }}
-              >
+            {/* Sparkle glyph — always visible */}
+            <FloatingShape speed={0.7} amplitude={5} offset={1.2} className="absolute" style={{ right: "-2%", top: "14%" }}>
+              <motion.div initial={{ opacity: 0, rotate: -45 }} animate={{ opacity: 1, rotate: 0 }} transition={{ duration: 0.8, delay: 0.7, ease: EASE }}>
                 <SparkleGlyph />
               </motion.div>
             </FloatingShape>
 
-            {/* Teal rounded square — bottom left, hides on hover */}
-            <FloatingShape
-              speed={0.5}
-              amplitude={9}
-              offset={2.1}
-              className="absolute"
-              style={{ left: "0%", bottom: "20%" }}
-            >
-              <motion.div
-                initial={{ opacity: 0, scale: 0.6, rotate: 15 }}
-                animate={tealAnim}
-              >
+            {/* Teal rounded square — hides on hover */}
+            <FloatingShape speed={0.5} amplitude={9} offset={2.1} className="absolute" style={{ left: "0%", bottom: "20%" }}>
+              <motion.div initial={{ opacity: 0, scale: 0.6, rotate: 15 }} animate={tealAnim}>
                 <svg width="110" height="110" viewBox="0 0 110 110" fill="none">
                   <rect width="110" height="110" rx="22" fill="#3E9C7B" />
                 </svg>
               </motion.div>
             </FloatingShape>
 
-            {/* Gestural line eyelash — stays visible */}
-            <FloatingShape
-              speed={0.65}
-              amplitude={6}
-              offset={0.7}
-              className="absolute"
-              style={{ left: "-6%", bottom: "8%", transform: "rotate(-150deg)" }}
-            >
-              <motion.div
-                initial={{ opacity: 0, x: -15 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.75, ease: EASE }}
-              >
+            {/* Gestural eyelash — always visible */}
+            <FloatingShape speed={0.65} amplitude={6} offset={0.7} className="absolute" style={{ left: "-6%", bottom: "8%", transform: "rotate(-150deg)" }}>
+              <motion.div initial={{ opacity: 0, x: -15 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.75, ease: EASE }}>
                 <GesturalLineEyelash />
               </motion.div>
             </FloatingShape>
           </div>
+
+          {/* ── IN FRONT of arch: travel (top-right) & garden (mid-right) ── */}
+          <FloatingCard
+            src="/hobby-travel.png"
+            alt="Travel"
+            rotateDeg={11}
+            isHovered={isHovered}
+            delay={0.04}
+            speed={0.52}
+            amplitude={7}
+            offset={1.1}
+            exitX={-90}
+            exitY={50}
+            zIndex={6}
+            style={{ right: 55, top: "6%" }}
+          />
+          <FloatingCard
+            src="/hobby-garden.png"
+            alt="Gardening"
+            rotateDeg={6}
+            isHovered={isHovered}
+            delay={0.1}
+            speed={0.46}
+            amplitude={9}
+            offset={3.0}
+            exitX={-70}
+            exitY={-30}
+            zIndex={6}
+            style={{ right: 28, bottom: "12%" }}
+          />
         </motion.div>
       </div>
 
@@ -365,11 +351,7 @@ export default function HeroSection() {
           className="w-11 h-11 rounded-full border border-[#2D2D2D]/25 flex items-center justify-center text-[#2D2D2D]/40 hover:text-[#2D2D2D] hover:border-[#2D2D2D] transition-all duration-300 group"
           aria-label="Scroll to work"
         >
-          <ArrowDown
-            size={16}
-            strokeWidth={1.5}
-            className="group-hover:translate-y-1 transition-transform"
-          />
+          <ArrowDown size={16} strokeWidth={1.5} className="group-hover:translate-y-1 transition-transform" />
         </a>
       </motion.div>
     </section>
