@@ -31,13 +31,132 @@ function SectionReveal({ children, className }: { children: React.ReactNode; cla
   );
 }
 
+function CaseStudyHeroBg() {
+  const hexPts = (cx: number, cy: number, r: number): string => {
+    const a = r * 0.866;
+    return [
+      `${cx + r},${cy}`,
+      `${cx + r / 2},${cy + a}`,
+      `${cx - r / 2},${cy + a}`,
+      `${cx - r},${cy}`,
+      `${cx - r / 2},${cy - a}`,
+      `${cx + r / 2},${cy - a}`,
+    ].join(" ");
+  };
+
+  const gridHexes: [number, number][] = [];
+  for (let row = 0; row < 8; row++) {
+    const offset = row % 2 === 0 ? 0 : 40;
+    for (let col = 0; col < 12; col++) {
+      gridHexes.push([col * 80 + offset + 10, row * 68 + 24]);
+    }
+  }
+
+  const flowLine = { stroke: "white", strokeWidth: 1.5, strokeOpacity: 0.18, strokeDasharray: "5 4" } as React.SVGProps<SVGPathElement>;
+
+  return (
+    <svg
+      viewBox="0 0 860 480"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="absolute inset-0 w-full h-full pointer-events-none select-none"
+      preserveAspectRatio="xMidYMid slice"
+    >
+      {/* Subtle hex grid */}
+      {gridHexes.map(([cx, cy], i) => (
+        <polygon key={i} points={hexPts(cx, cy, 34)} stroke="white" strokeOpacity={0.045} strokeWidth={1} fill="none" />
+      ))}
+
+      {/* Flow lines — left to centre AI */}
+      <path d="M 150 82 L 282 82 Q 312 82 332 128 L 380 214" {...flowLine} />
+      <path d="M 150 240 L 380 240" {...flowLine} />
+      <path d="M 150 398 L 282 398 Q 312 398 332 352 L 380 266" {...flowLine} />
+
+      {/* Flow lines — centre AI to right */}
+      <path d="M 540 214 L 568 148 Q 582 88 616 82 L 710 82" {...flowLine} />
+      <path d="M 540 240 L 710 240" {...flowLine} />
+      <path d="M 540 266 L 568 332 Q 582 392 616 398 L 710 398" {...flowLine} />
+
+      {/* Bend junction dots */}
+      {([[282, 82], [282, 398], [616, 82], [616, 398]] as [number, number][]).map(([cx, cy], i) => (
+        <circle key={i} cx={cx} cy={cy} r={4} fill="white" fillOpacity={0.3} />
+      ))}
+
+      {/* Left input cards (task cards) */}
+      {([[55, 54], [55, 212], [55, 370]] as [number, number][]).map(([x, y], i) => (
+        <g key={i}>
+          <rect x={x} y={y} width={95} height={56} rx={9} fill="white" fillOpacity={0.07} stroke="white" strokeOpacity={0.22} strokeWidth={1} />
+          <line x1={x + 10} y1={y + 17} x2={x + 78} y2={y + 17} stroke="white" strokeOpacity={0.22} strokeWidth={1.4} strokeLinecap="round" />
+          <line x1={x + 10} y1={y + 29} x2={x + 58} y2={y + 29} stroke="white" strokeOpacity={0.13} strokeWidth={1.4} strokeLinecap="round" />
+          <line x1={x + 10} y1={y + 41} x2={x + 70} y2={y + 41} stroke="white" strokeOpacity={0.13} strokeWidth={1.4} strokeLinecap="round" />
+        </g>
+      ))}
+
+      {/* Central AI agent node */}
+      <rect x={380} y={183} width={160} height={114} rx={14} fill="white" fillOpacity={0.1} stroke="white" strokeOpacity={0.38} strokeWidth={1.5} />
+      <text x={460} y={236} textAnchor="middle" fill="white" fillOpacity={0.9} fontSize={26} fontFamily="sans-serif">✦</text>
+      <line x1={400} y1={254} x2={520} y2={254} stroke="white" strokeOpacity={0.13} strokeWidth={1} />
+      <line x1={400} y1={264} x2={506} y2={264} stroke="white" strokeOpacity={0.09} strokeWidth={1} />
+      <line x1={400} y1={274} x2={490} y2={274} stroke="white" strokeOpacity={0.09} strokeWidth={1} />
+      <line x1={400} y1={284} x2={514} y2={284} stroke="white" strokeOpacity={0.07} strokeWidth={1} />
+
+      {/* Right output nodes (resolved) */}
+      {([[710, 54], [710, 212], [710, 370]] as [number, number][]).map(([x, y], i) => (
+        <g key={i}>
+          <rect x={x} y={y} width={95} height={56} rx={9} fill="white" fillOpacity={0.07} stroke="white" strokeOpacity={0.22} strokeWidth={1} />
+          <text x={x + 48} y={y + 35} textAnchor="middle" fill="white" fillOpacity={0.55} fontSize={18} fontFamily="sans-serif">✓</text>
+        </g>
+      ))}
+
+      {/* Hexagonal status badges */}
+      {[
+        { cx: 310, cy: 82, fill: "#4ecdc4", op: 0.6 },
+        { cx: 310, cy: 398, fill: "#E8654B", op: 0.6 },
+        { cx: 614, cy: 82, fill: "#4ecdc4", op: 0.6 },
+        { cx: 614, cy: 398, fill: "#E8654B", op: 0.6 },
+        { cx: 460, cy: 152, fill: "white", op: 0.2 },
+        { cx: 460, cy: 328, fill: "white", op: 0.2 },
+      ].map(({ cx, cy, fill, op }, i) => (
+        <polygon key={i} points={hexPts(cx, cy, 14)} fill={fill} fillOpacity={op} />
+      ))}
+
+      {/* Avatar circles */}
+      {([[102, 152], [102, 328], [757, 152], [757, 328], [460, 116]] as [number, number][]).map(([cx, cy], i) => (
+        <g key={i}>
+          <circle cx={cx} cy={cy} r={19} fill="white" fillOpacity={0.07} stroke="white" strokeOpacity={0.2} strokeWidth={1} />
+          <circle cx={cx} cy={cy - 5} r={5} fill="white" fillOpacity={0.18} />
+          <path d={`M ${cx - 7} ${cy + 12} Q ${cx} ${cy + 6} ${cx + 7} ${cy + 12}`} fill="white" fillOpacity={0.14} />
+        </g>
+      ))}
+
+      {/* Decorative glyphs */}
+      <text x={812} y={58} fill="white" fillOpacity={0.28} fontSize={18} fontFamily="sans-serif">✦</text>
+      <text x={36} y={168} fill="white" fillOpacity={0.17} fontSize={22} fontFamily="sans-serif">⊕</text>
+      <text x={36} y={422} fill="white" fillOpacity={0.17} fontSize={22} fontFamily="sans-serif">⊕</text>
+      <text x={822} y={422} fill="white" fillOpacity={0.17} fontSize={22} fontFamily="sans-serif">◇</text>
+      <text x={258} y={245} fill="white" fillOpacity={0.4} fontSize={13} fontFamily="sans-serif">→</text>
+      <text x={608} y={245} fill="white" fillOpacity={0.4} fontSize={13} fontFamily="sans-serif">→</text>
+
+      {/* Dot trails */}
+      {[0, 1, 2, 3, 4].map((i) => (
+        <circle key={i} cx={840} cy={180 + i * 42} r={3} fill="white" fillOpacity={Math.max(0.06, 0.16 - i * 0.025)} />
+      ))}
+      {[0, 1, 2, 3].map((i) => (
+        <circle key={i} cx={22} cy={100 + i * 74} r={3} fill="white" fillOpacity={0.2} />
+      ))}
+    </svg>
+  );
+}
+
 function HeroSection({ study }: { study: CaseStudy }) {
   return (
     <section
       className="relative min-h-[70vh] flex flex-col justify-end px-6 md:px-24 pt-32 pb-0 overflow-hidden"
       style={{ backgroundColor: study.heroColor }}
     >
-      <motion.div className="max-w-5xl" {...fadeUp(0.1)}>
+      <CaseStudyHeroBg />
+
+      <motion.div className="relative z-10 max-w-5xl" {...fadeUp(0.1)}>
         <p
           className="text-xs uppercase tracking-widest font-semibold text-black/50 mb-4"
           style={{ fontFamily: "'Wotfard', sans-serif" }}
@@ -53,7 +172,7 @@ function HeroSection({ study }: { study: CaseStudy }) {
       </motion.div>
 
       <motion.div
-        className="rounded-t-2xl bg-[#1a1a1a] px-6 md:px-10 py-6 flex flex-wrap items-center justify-between gap-6"
+        className="relative z-10 rounded-t-2xl bg-[#1a1a1a] px-6 md:px-10 py-6 flex flex-wrap items-center justify-between gap-6"
         {...fadeUp(0.25)}
       >
         <div className="flex flex-wrap gap-8">
