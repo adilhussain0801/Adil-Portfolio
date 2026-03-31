@@ -516,12 +516,6 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
             <div className="h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-0 md:pr-24 py-20">
               <SnapReveal>
                 <div>
-                  <p
-                    className="text-[10px] uppercase tracking-widest font-semibold text-foreground/30 mb-6"
-                    style={{ fontFamily: "'Wotfard', sans-serif" }}
-                  >
-                    Current state — Taylor's day
-                  </p>
                   <ChallengeTimeline
                     groups={groups}
                     bullets={study.challenge.bullets}
