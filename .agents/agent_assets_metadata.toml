@@ -1,0 +1,8 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "aaeuw53hhbYPG7NVS6cbb"
+uri = "file://artifacts/portfolio/public/opengraph.png"
+type = "image"
+title = "Design portfolio OG image"
