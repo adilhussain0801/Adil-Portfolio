@@ -62,7 +62,7 @@ export default function Footer() {
                 <TextWithUnderline>Instagram</TextWithUnderline>
               </a>
 
-              <div className="border-t border-border my-8" />
+              <div className="border-t border-border my-3" />
 
               <button
                 onClick={() => setResumeOpen(true)}
