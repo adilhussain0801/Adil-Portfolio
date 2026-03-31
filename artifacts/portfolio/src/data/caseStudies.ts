@@ -342,7 +342,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     overview:
       "Rovo Service is an AI-powered system designed to transform how enterprise support works shifting from reactive ticket handling to proactive, autonomous issue resolution.\n\nBuilt within Jira Service Management, the system embeds AI agents directly into service workflows, enabling them to understand requests, generate resolution plans, and execute actions across tools while keeping humans in control.",
     metrics: [
-      { label: "EFFICIENCY GAIN", value: "38%" },
+      { label: "EFFICIENCY GAIN", value: "48%" },
       { label: "ACTIVE TEAMS", value: "2.1K" },
     ],
     challenge: {
