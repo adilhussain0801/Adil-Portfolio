@@ -190,10 +190,6 @@ function HeroSection({ study }: { study: CaseStudy }) {
       >
         <div className="flex flex-wrap gap-8">
           <div>
-            <p className="text-[10px] uppercase tracking-widest text-white/40 mb-1">Company</p>
-            <p className="text-sm font-semibold text-white" style={{ fontFamily: "'Wotfard', sans-serif" }}>{study.company}</p>
-          </div>
-          <div>
             <p className="text-[10px] uppercase tracking-widest text-white/40 mb-1">Role</p>
             <p className="text-sm font-semibold text-white" style={{ fontFamily: "'Wotfard', sans-serif" }}>{study.role}</p>
           </div>
