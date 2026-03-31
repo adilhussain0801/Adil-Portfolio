@@ -312,44 +312,62 @@ function ChallengeTimeline({
   steps: Array<{ title: string; description: string }>;
   inView: boolean;
 }) {
-  const totalDuration = STEP_FIRST + steps.length * STEP_DELAY;
+  const colors = [
+    { bg: "bg-[#FEF3E2]", border: "border-[#F9D99D]", icon: "bg-[#FCC94C]", text: "text-[#D97706]" },
+    { bg: "bg-[#E0F2FE]", border: "border-[#BAE6FD]", icon: "bg-[#38BDF8]", text: "text-[#0284C7]" },
+    { bg: "bg-[#FCE7F3]", border: "border-[#FBCFE8]", icon: "bg-[#EC4899]", text: "text-[#BE185D]" },
+  ];
 
   return (
-    <div className="relative flex flex-col gap-0">
-      <div className="absolute left-[5px] top-3 bottom-3 w-[1px] overflow-hidden bg-[#e8e4de]">
-        <motion.div
-          className="w-full bg-[#E8654B]/50 origin-top"
-          initial={{ scaleY: 0 }}
-          animate={inView ? { scaleY: 1 } : { scaleY: 0 }}
-          transition={{ duration: totalDuration - 0.1, delay: STEP_FIRST + 0.1, ease: "linear" }}
-          style={{ height: "100%" }}
-        />
+    <div className="flex flex-col gap-8">
+      {/* Journey Cards */}
+      <div className="relative">
+        <div className="flex gap-4 md:gap-6 items-start">
+          {steps.map((step, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 12 }}
+              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+              transition={{ duration: 0.4, ease: EASE, delay: STEP_FIRST + i * STEP_DELAY }}
+              className="flex-1 flex flex-col gap-0"
+            >
+              <div className={`${colors[i].bg} border border-${colors[i].border.split('-')[1]} rounded-2xl p-6 flex-1 flex flex-col gap-3`}>
+                <div className="flex items-center gap-2">
+                  <div className={`${colors[i].icon} w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0`}>
+                    <span className="text-white text-sm font-bold">{i + 1}</span>
+                  </div>
+                  <h3
+                    className={`text-sm font-bold ${colors[i].text}`}
+                    style={{ fontFamily: "'Wotfard', sans-serif" }}
+                  >
+                    {step.title}
+                  </h3>
+                </div>
+                <ul className="flex flex-col gap-2">
+                  {step.description.split("\n").map((bullet, j) => (
+                    <li key={j} className="flex items-start gap-2">
+                      <span className={`${colors[i].icon} w-1.5 h-1.5 rounded-full flex-shrink-0 mt-1.5`} />
+                      <span
+                        className="text-xs leading-relaxed text-foreground/70"
+                        style={{ fontFamily: "'Wotfard', sans-serif" }}
+                      >
+                        {bullet}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              {i < steps.length - 1 && (
+                <div className="hidden md:flex items-center justify-center h-12 relative -mb-2">
+                  <svg className="w-8 h-8 text-[#e8e4de]" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" strokeWidth="2" d="M9 5l7 7-7 7" strokeLinecap="round" />
+                  </svg>
+                </div>
+              )}
+            </motion.div>
+          ))}
+        </div>
       </div>
-      {steps.map((step, i) => (
-        <motion.div
-          key={i}
-          initial={{ opacity: 0, x: 12 }}
-          animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 12 }}
-          transition={{ duration: 0.4, ease: EASE, delay: STEP_FIRST + i * STEP_DELAY }}
-          className="flex items-start gap-4 pl-0 pb-4 last:pb-0"
-        >
-          <div className="flex-shrink-0 mt-[5px] w-[11px] h-[11px] rounded-full border-2 border-[#E8654B] bg-[#FAF8F5] z-10" />
-          <div className="flex flex-col gap-0.5">
-            <p
-              className="text-sm font-semibold text-foreground leading-snug"
-              style={{ fontFamily: "'Wotfard', sans-serif" }}
-            >
-              {step.title}
-            </p>
-            <p
-              className="text-xs leading-relaxed text-foreground/50"
-              style={{ fontFamily: "'Wotfard', sans-serif" }}
-            >
-              {step.description}
-            </p>
-          </div>
-        </motion.div>
-      ))}
     </div>
   );
 }
