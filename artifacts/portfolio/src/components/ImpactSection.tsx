@@ -1,19 +1,28 @@
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useMotionValue, useTransform } from "framer-motion";
 
 const STATS = [
   {
     stat: "$1B+",
+    value: 1,
+    prefix: "$",
+    suffix: "B+",
     description:
       "Designed post-purchase and seller experiences at Amazon that contributed to over $1 billion in annual platform revenue.",
   },
   {
     stat: "50M+",
+    value: 50,
+    prefix: "",
+    suffix: "M+",
     description:
       "Shipped products used by over 50 million people across Atlassian and Amazon's global platforms.",
   },
   {
     stat: "89%",
+    value: 89,
+    prefix: "",
+    suffix: "%",
     description:
       "Average adoption rate across key product launches, measured 90 days post-release across multiple teams.",
   },
@@ -22,6 +31,12 @@ const STATS = [
 function StatCard({ stat, delay }: { stat: typeof STATS[0]; delay: number }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.4 });
+  const motionValue = useMotionValue(0);
+  const animatedValue = useTransform(motionValue, (v) => Math.round(v));
+
+  if (isInView) {
+    motionValue.set(stat.value);
+  }
 
   return (
     <motion.div
@@ -29,22 +44,30 @@ function StatCard({ stat, delay }: { stat: typeof STATS[0]; delay: number }) {
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
       transition={{ duration: 0.6, ease: "easeOut", delay }}
-      className="flex-1 rounded-2xl p-8 md:p-10 flex flex-col justify-between min-h-[260px]"
-      style={{ background: "#F0EDE8", border: "1px solid rgba(45,45,45,0.08)" }}
+      className="flex-1 rounded-xl p-8 md:p-10 flex flex-col justify-between min-h-[260px] border"
+      style={{
+        background: "#1a1a1a",
+        borderColor: "rgba(255, 255, 255, 0.08)",
+      }}
     >
       <div
         className="text-5xl md:text-6xl font-bold leading-none mb-6"
         style={{
           fontFamily: "'Wotfard', sans-serif",
-          color: "#2D2D2D",
+          color: "#ffffff",
           letterSpacing: "-0.02em",
         }}
       >
-        {stat.stat}
+        {stat.prefix}
+        <motion.span>{animatedValue}</motion.span>
+        {stat.suffix}
       </div>
       <p
         className="text-[15px] leading-relaxed"
-        style={{ color: "rgba(45,45,45,0.6)", fontFamily: "'Wotfard', sans-serif" }}
+        style={{
+          color: "rgba(255, 255, 255, 0.6)",
+          fontFamily: "'Wotfard', sans-serif",
+        }}
       >
         {stat.description}
       </p>
