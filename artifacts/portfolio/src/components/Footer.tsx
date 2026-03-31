@@ -36,7 +36,7 @@ export default function Footer() {
               LinkedIn
             </a>
             <a
-              href="https://instagram.com/adil0801"
+              href="https://www.instagram.com/adil0801/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-base font-bold text-foreground hover:text-muted-foreground transition-colors"
