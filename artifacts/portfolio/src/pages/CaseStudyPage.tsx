@@ -512,15 +512,42 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
               </SnapReveal>
             </div>
 
-            {/* Slide 2: Current State Journey (grouped cards + pain footer) */}
+            {/* Slide 2: Current State Journey (grouped cards) */}
             <div className="h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-0 md:pr-24 py-20">
               <SnapReveal>
                 <div>
                   <ChallengeTimeline
                     groups={groups}
-                    bullets={study.challenge.bullets}
+                    bullets={[]}
                     inView={true}
                   />
+                </div>
+              </SnapReveal>
+            </div>
+
+            {/* Slide 3: Pain Points */}
+            <div className="h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-0 md:pr-24 py-20">
+              <SnapReveal>
+                <div>
+                  <p
+                    className="text-[10px] uppercase tracking-widest font-semibold text-foreground/30 mb-8"
+                    style={{ fontFamily: "'Wotfard', sans-serif" }}
+                  >
+                    The pain
+                  </p>
+                  <ul className="flex flex-col gap-4">
+                    {study.challenge.bullets.map((bullet, i) => (
+                      <li key={i} className="flex items-start gap-3">
+                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#E8654B]/40 flex-shrink-0" />
+                        <span
+                          className="text-sm leading-relaxed text-foreground/80"
+                          style={{ fontFamily: "'Wotfard', sans-serif" }}
+                        >
+                          {bullet}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </SnapReveal>
             </div>
