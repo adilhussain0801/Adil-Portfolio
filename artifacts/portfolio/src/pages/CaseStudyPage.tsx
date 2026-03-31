@@ -528,27 +528,39 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
             {/* Slide 3: Pain Points */}
             <div className="h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-0 md:pr-24 py-20">
               <SnapReveal>
-                <div>
-                  <p
-                    className="text-[10px] uppercase tracking-widest font-semibold text-foreground/30 mb-8"
-                    style={{ fontFamily: "'Wotfard', sans-serif" }}
-                  >
-                    The pain
-                  </p>
-                  <ul className="flex flex-col gap-4">
-                    {study.challenge.bullets.map((bullet, i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#E8654B]/40 flex-shrink-0" />
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.45, ease: EASE, delay: 0.1 }}
+                  className="rounded-2xl px-6 py-5"
+                  style={{
+                    background: "linear-gradient(to right, #1a1a1a 0%, #3a1a10 100%)",
+                  }}
+                >
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-3">
+                    {study.challenge.bullets.map((b, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, x: -8 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.35, ease: EASE, delay: 0.25 + i * 0.08 }}
+                        className="flex items-center gap-2"
+                      >
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="flex-shrink-0">
+                          <path d="M7 1L13 12H1L7 1Z" stroke="#F59E0B" strokeWidth="1.2" strokeLinejoin="round" fill="none" />
+                          <line x1="7" y1="5" x2="7" y2="8" stroke="#F59E0B" strokeWidth="1.2" strokeLinecap="round" />
+                          <circle cx="7" cy="10" r="0.6" fill="#F59E0B" />
+                        </svg>
                         <span
-                          className="text-sm leading-relaxed text-foreground/80"
+                          className="text-xs text-white/70 leading-relaxed"
                           style={{ fontFamily: "'Wotfard', sans-serif" }}
                         >
-                          {bullet}
+                          {b}
                         </span>
-                      </li>
+                      </motion.div>
                     ))}
-                  </ul>
-                </div>
+                  </div>
+                </motion.div>
               </SnapReveal>
             </div>
           </div>
