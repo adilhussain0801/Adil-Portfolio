@@ -106,7 +106,7 @@ function ProjectCard({
       {project.type === "special" ? (
         <a
           href={`/work/${project.id}`}
-          className="group block rounded-2xl overflow-hidden relative cursor-pointer w-full h-[78vh]"
+          className="group block rounded-2xl overflow-hidden relative cursor-pointer w-full h-[78vh] hover:shadow-2xl transition-shadow duration-300"
           style={{ background: "linear-gradient(135deg, #3d1f6b 0%, #1a1040 50%, #0d0824 100%)" }}
           onMouseEnter={() => setHoveredId(project.id)}
           onMouseLeave={() => setHoveredId(null)}
@@ -132,7 +132,7 @@ function ProjectCard({
       ) : (
         <a
           href={`/work/${project.id}`}
-          className="group relative block rounded-2xl overflow-hidden cursor-pointer w-full h-[78vh]"
+          className="group relative block rounded-2xl overflow-hidden cursor-pointer w-full h-[78vh] hover:shadow-2xl transition-shadow duration-300"
           onMouseEnter={() => setHoveredId(project.id)}
           onMouseLeave={() => setHoveredId(null)}
         >
