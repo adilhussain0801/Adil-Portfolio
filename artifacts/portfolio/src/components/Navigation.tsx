@@ -38,7 +38,8 @@ export default function Navigation() {
         <a 
           href="#" 
           onClick={scrollToTop}
-          className="text-lg font-serif font-medium tracking-wide z-50 relative hover:opacity-70 transition-opacity"
+          className="text-lg font-serif font-medium tracking-wide z-50 relative hover:opacity-70 transition-opacity no-underline"
+          style={{ textDecoration: "none" }}
         >
           Adil Hussain
         </a>

@@ -3,11 +3,16 @@ import { Linkedin, Instagram, FileText } from "lucide-react";
 import ResumeModal from "./ResumeModal";
 
 const linkClass =
-  "flex items-center gap-2 text-base font-bold text-foreground hover:text-foreground transition-colors duration-300 relative group";
+  "flex items-center gap-2 text-base font-bold text-foreground hover:text-foreground transition-colors duration-300 group";
 
-const Underline = () => (
-  <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#1a1a1a] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-center" />
-);
+function TextWithUnderline({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="relative">
+      {children}
+      <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#1a1a1a] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-center" />
+    </span>
+  );
+}
 
 export default function Footer() {
   const [resumeOpen, setResumeOpen] = useState(false);
@@ -18,8 +23,6 @@ export default function Footer() {
 
       <footer id="contact" className="border-t border-border py-20 md:py-28 px-6 md:px-24 mt-8 border-t-[#d4d4d4] border-r-[#d4d4d4] border-b-[#d4d4d4] border-l-[#d4d4d4]" style={{ background: "#FAF8F5" }}>
         <div>
-
-          {/* Main footer content */}
           <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-12 mb-16">
 
             {/* Left: Reach out */}
@@ -47,8 +50,7 @@ export default function Footer() {
                 className={linkClass}
               >
                 <Linkedin size={16} />
-                LinkedIn
-                <Underline />
+                <TextWithUnderline>LinkedIn</TextWithUnderline>
               </a>
               <a
                 href="https://www.instagram.com/adil0801/"
@@ -57,11 +59,9 @@ export default function Footer() {
                 className={linkClass}
               >
                 <Instagram size={16} />
-                Instagram
-                <Underline />
+                <TextWithUnderline>Instagram</TextWithUnderline>
               </a>
 
-              {/* Separator before Resume */}
               <div className="border-t border-border my-8" />
 
               <button
@@ -69,12 +69,10 @@ export default function Footer() {
                 className={linkClass}
               >
                 <FileText size={16} />
-                Resume
-                <Underline />
+                <TextWithUnderline>Resume</TextWithUnderline>
               </button>
             </div>
           </div>
-
         </div>
       </footer>
     </>
