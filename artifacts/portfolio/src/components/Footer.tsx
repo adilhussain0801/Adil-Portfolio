@@ -35,9 +35,12 @@ export default function Footer() {
               </h2>
               <a
                 href="mailto:adilhussain0801@gmail.com"
-                className="text-muted-foreground hover:text-foreground transition-colors duration-300 text-xl md:text-[36px] font-black break-all"
+                className="text-foreground hover:text-foreground transition-colors duration-300 text-xl md:text-[36px] font-black break-all relative group inline-block"
               >
-                adilhussain0801@gmail.com
+                <span className="relative">
+                  adilhussain0801@gmail.com
+                  <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#1a1a1a] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-center" />
+                </span>
               </a>
             </div>
 
