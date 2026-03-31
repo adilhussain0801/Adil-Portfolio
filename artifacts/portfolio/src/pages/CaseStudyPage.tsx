@@ -368,7 +368,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
       >
         <div className="flex flex-col md:flex-row gap-8 md:gap-14">
           {/* Fixed left title */}
-          <div className="md:sticky md:top-0 md:h-screen md:w-1/3 flex-shrink-0 flex flex-col justify-start px-6 md:px-24 py-20 md:py-20">
+          <div className="md:sticky md:top-0 md:h-screen md:w-1/3 flex-shrink-0 flex flex-col justify-center px-6 md:px-24 py-20 md:py-0">
             <h2
               className="text-2xl md:text-3xl leading-tight text-foreground"
               style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
@@ -378,7 +378,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
           </div>
 
           {/* Scrolling right content */}
-          <div className="md:w-2/3 flex flex-col">
+          <div className="md:w-2/3 flex flex-col md:pt-[25vh]">
             {/* Slide 1: Hero Statement */}
             <div
               className="relative min-h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-0 md:pr-24 py-20"
