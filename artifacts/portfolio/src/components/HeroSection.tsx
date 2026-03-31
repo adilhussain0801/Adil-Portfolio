@@ -278,30 +278,6 @@ export default function HeroSection() {
                 className="absolute object-cover w-full h-full"
                 style={{ objectPosition: "center top" }}
               />
-              {/* Red hue wash — always-on, intensifies on hover */}
-              <motion.div
-                className="absolute inset-0 pointer-events-none"
-                initial={{ opacity: 0.28 }}
-                animate={{ opacity: isHovered ? 0.55 : 0.28 }}
-                transition={{ duration: 0.45, ease: EASE }}
-                style={{
-                  background: "rgba(160, 12, 0, 0.6)",
-                  borderRadius: "inherit",
-                  mixBlendMode: "multiply",
-                }}
-              />
-              {/* Venetian-blind stripe overlay — always-on at rest, intensifies on hover */}
-              <motion.div
-                className="absolute inset-0 pointer-events-none"
-                initial={{ opacity: 0.38 }}
-                animate={{ opacity: isHovered ? 0.88 : 0.38 }}
-                transition={{ duration: 0.45, ease: EASE }}
-                style={{
-                  background:
-                    "repeating-linear-gradient(90deg, rgba(80,5,0,0.7) 0px, rgba(80,5,0,0.7) 2px, transparent 2px, transparent 11px)",
-                  borderRadius: "inherit",
-                }}
-              />
             </motion.div>
 
             {/* Coral quarter circle — hides on hover */}
