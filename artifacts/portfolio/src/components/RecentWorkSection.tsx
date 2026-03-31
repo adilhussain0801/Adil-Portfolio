@@ -189,9 +189,9 @@ export default function RecentWorkSection() {
 
   return (
     <section id="work-showcase" className="py-24 md:py-40 px-6 md:px-24" style={{ background: "#FAF8F5" }}>
-      <div className="flex flex-col md:flex-row gap-12 md:gap-24 h-screen overflow-hidden">
+      <div className="flex flex-col md:flex-row gap-12 md:gap-24">
         {/* Left: Heading + dots */}
-        <div className="md:w-1/3 flex-shrink-0 overflow-y-auto">
+        <div className="md:w-1/3 flex-shrink-0">
           <div className="md:sticky md:top-32 flex flex-col gap-8">
             <h2
               style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
@@ -241,11 +241,11 @@ export default function RecentWorkSection() {
           </div>
         </div>
 
-        {/* Right: Projects - scroll snap */}
-        <div className="md:w-2/3 h-screen overflow-y-scroll" style={{ scrollSnapType: "y mandatory", scrollbarWidth: "none" }}>
+        {/* Right: Projects */}
+        <div className="md:w-2/3">
           <div className="flex flex-col gap-0">
             {PROJECTS.map((project, i) => (
-              <div key={project.id} className="h-screen snap-start snap-always">
+              <div key={project.id} className="h-screen">
                 <ProjectCard
                   project={project}
                   index={i}
