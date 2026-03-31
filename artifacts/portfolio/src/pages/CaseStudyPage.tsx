@@ -368,7 +368,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
       >
         <div className="flex flex-col md:flex-row gap-8 md:gap-14">
           {/* Fixed left title */}
-          <div className="md:sticky md:top-0 md:h-screen md:w-1/3 flex-shrink-0 flex flex-col justify-center px-6 md:px-24 py-20 md:py-0">
+          <div className="md:sticky md:top-0 md:h-screen md:w-1/3 flex-shrink-0 flex flex-col justify-start px-6 md:px-24 py-20 md:py-20">
             <h2
               className="text-2xl md:text-3xl leading-tight text-foreground"
               style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
@@ -385,12 +385,12 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
               style={{ background: "#FAF8F5" }}
             >
               <SnapReveal>
-                <div>
+                <div className="border-l-4 border-[#E8654B] pl-6">
                   <p
-                    className="text-lg md:text-xl leading-relaxed text-foreground"
+                    className="text-lg md:text-xl leading-relaxed text-foreground italic"
                     style={{ fontFamily: "'Wotfard', sans-serif" }}
                   >
-                    {heroStatement}
+                    "{heroStatement}"
                   </p>
                 </div>
               </SnapReveal>
