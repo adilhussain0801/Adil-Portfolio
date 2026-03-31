@@ -362,22 +362,25 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
 
   if (steps && steps.length > 0) {
     return (
-      <>
-        {/* Slide 1: Hero Statement */}
-        <section
-          className="relative h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-24 overflow-hidden"
-          style={{ background: "#FAF8F5" }}
-        >
-          <div className="flex flex-col md:flex-row gap-12 md:gap-24 max-w-5xl">
-            <div className="md:w-1/3 flex-shrink-0">
-              <h2
-                className="text-2xl md:text-3xl leading-tight text-foreground"
-                style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
-              >
-                The challenge
-              </h2>
-            </div>
-            <div className="md:w-2/3 flex flex-col gap-6">
+      <section
+        className="relative min-h-screen snap-start snap-always"
+        style={{ background: "#FAF8F5" }}
+      >
+        <div className="flex flex-col md:flex-row gap-8 md:gap-24">
+          {/* Sticky title on the left */}
+          <div className="md:sticky md:top-1/2 md:-translate-y-1/2 md:h-fit md:w-1/4 flex-shrink-0 px-6 md:px-24 py-20 md:py-0">
+            <h2
+              className="text-2xl md:text-3xl leading-tight text-foreground"
+              style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+            >
+              The challenge
+            </h2>
+          </div>
+
+          {/* Scrollable content on the right */}
+          <div className="md:w-3/4 flex flex-col">
+            {/* Slide 1: Hero Statement */}
+            <div className="h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-0 md:pr-24 py-20">
               <SnapReveal>
                 <div className="flex gap-4">
                   <Quote className="w-8 h-8 text-[#E8654B] flex-shrink-0 -rotate-180 mt-1" strokeWidth={1.5} />
@@ -390,24 +393,9 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                 </div>
               </SnapReveal>
             </div>
-          </div>
-        </section>
 
-        {/* Slide 2: Current State Journey */}
-        <section
-          className="relative h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-24 overflow-hidden"
-          style={{ background: "#FAF8F5" }}
-        >
-          <div className="flex flex-col md:flex-row gap-12 md:gap-24 max-w-5xl">
-            <div className="md:w-1/3 flex-shrink-0">
-              <h2
-                className="text-2xl md:text-3xl leading-tight text-foreground"
-                style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
-              >
-                The challenge
-              </h2>
-            </div>
-            <div className="md:w-2/3 flex flex-col gap-6">
+            {/* Slide 2: Current State Journey */}
+            <div className="h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-0 md:pr-24 py-20">
               <SnapReveal>
                 <div>
                   <p
@@ -420,24 +408,9 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                 </div>
               </SnapReveal>
             </div>
-          </div>
-        </section>
 
-        {/* Slide 3: Pain Points */}
-        <section
-          className="relative h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-24 overflow-hidden"
-          style={{ background: "#FAF8F5" }}
-        >
-          <div className="flex flex-col md:flex-row gap-12 md:gap-24 max-w-5xl">
-            <div className="md:w-1/3 flex-shrink-0">
-              <h2
-                className="text-2xl md:text-3xl leading-tight text-foreground"
-                style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
-              >
-                The challenge
-              </h2>
-            </div>
-            <div className="md:w-2/3 flex flex-col gap-6">
+            {/* Slide 3: Pain Points */}
+            <div className="h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-0 md:pr-24 py-20">
               <SnapReveal>
                 <div>
                   <p
@@ -463,8 +436,8 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
               </SnapReveal>
             </div>
           </div>
-        </section>
-      </>
+        </div>
+      </section>
     );
   }
 
