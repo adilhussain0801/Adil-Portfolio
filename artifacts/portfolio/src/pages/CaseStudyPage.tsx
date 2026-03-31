@@ -409,29 +409,45 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
               </SnapReveal>
             </div>
 
-            {/* Slide 3: Pain Points */}
+            {/* Slide 3: Pain Points as Journey */}
             <div className="h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-0 md:pr-24 py-20">
               <SnapReveal>
                 <div>
                   <p
-                    className="text-[10px] uppercase tracking-widest font-semibold text-foreground/30 mb-6"
+                    className="text-[10px] uppercase tracking-widest font-semibold text-foreground/30 mb-8"
                     style={{ fontFamily: "'Wotfard', sans-serif" }}
                   >
-                    Pain points
+                    The pain
                   </p>
-                  <ul className="flex flex-col gap-3">
+                  <div className="relative flex flex-col gap-6">
                     {study.challenge.bullets.map((bullet, i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#2D2D2D]/40 flex-shrink-0" />
-                        <span
-                          className="text-sm leading-relaxed text-foreground/70"
-                          style={{ fontFamily: "'Wotfard', sans-serif" }}
-                        >
-                          {bullet}
-                        </span>
-                      </li>
+                      <SnapReveal key={i} delay={0.05 + i * 0.1}>
+                        <div className="flex gap-4">
+                          <div className="flex flex-col items-center flex-shrink-0">
+                            <div className="w-12 h-12 rounded-full bg-[#E8654B]/10 border-2 border-[#E8654B] flex items-center justify-center">
+                              <span
+                                className="text-sm font-bold text-[#E8654B]"
+                                style={{ fontFamily: "'Wotfard', sans-serif" }}
+                              >
+                                {i + 1}
+                              </span>
+                            </div>
+                            {i < study.challenge.bullets.length - 1 && (
+                              <div className="w-0.5 h-12 bg-[#e8e4de] mt-2" />
+                            )}
+                          </div>
+                          <div className="flex-1 pt-1.5">
+                            <p
+                              className="text-sm leading-relaxed text-foreground/80"
+                              style={{ fontFamily: "'Wotfard', sans-serif" }}
+                            >
+                              {bullet}
+                            </p>
+                          </div>
+                        </div>
+                      </SnapReveal>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               </SnapReveal>
             </div>
