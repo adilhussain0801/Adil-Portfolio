@@ -35,14 +35,15 @@ function AnimatedCounter({ value, isInView }: { value: number; isInView: boolean
     if (!isInView) return;
 
     let animationFrameId: number;
-    let currentValue = 0;
-    const duration = 2000; // 2 seconds
+    const startValue = Math.floor(value / 2);
+    let currentValue = startValue;
+    const duration = 1000; // 1 second
     const startTime = Date.now();
 
     const animate = () => {
       const elapsed = Date.now() - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      currentValue = Math.floor(progress * value);
+      currentValue = Math.floor(startValue + progress * (value - startValue));
       setDisplayValue(currentValue);
 
       if (progress < 1) {
