@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { motion, useInView, useMotionValue, useTransform } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 
 const STATS = [
   {
@@ -28,15 +28,29 @@ const STATS = [
   },
 ];
 
+function AnimatedNumber({ value, isInView }: { value: number; isInView: boolean }) {
+  const displayValue = isInView ? value : 0;
+  
+  return (
+    <motion.span
+      initial={{ opacity: 0 }}
+      animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+    >
+      <motion.span
+        key={displayValue}
+        initial={{ y: 10, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        {displayValue}
+      </motion.span>
+    </motion.span>
+  );
+}
+
 function StatCard({ stat, delay }: { stat: typeof STATS[0]; delay: number }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.4 });
-  const motionValue = useMotionValue(0);
-  const animatedValue = useTransform(motionValue, (v) => Math.round(v));
-
-  if (isInView) {
-    motionValue.set(stat.value);
-  }
 
   return (
     <motion.div
@@ -44,9 +58,10 @@ function StatCard({ stat, delay }: { stat: typeof STATS[0]; delay: number }) {
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
       transition={{ duration: 0.6, ease: "easeOut", delay }}
-      className="flex-1 flex flex-col gap-2 py-6 border-b"
+      className="flex-1 rounded-xl p-8 md:p-10 flex flex-col gap-4 border"
       style={{
-        borderColor: "rgba(45, 45, 45, 0.1)",
+        background: "rgba(255, 255, 255, 0.5)",
+        borderColor: "rgba(45, 45, 45, 0.08)",
       }}
     >
       <div
@@ -58,7 +73,7 @@ function StatCard({ stat, delay }: { stat: typeof STATS[0]; delay: number }) {
         }}
       >
         {stat.prefix}
-        <motion.span>{animatedValue}</motion.span>
+        <AnimatedNumber value={stat.value} isInView={isInView} />
         {stat.suffix}
       </div>
       <p
