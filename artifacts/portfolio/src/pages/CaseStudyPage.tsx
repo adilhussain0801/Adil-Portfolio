@@ -249,13 +249,73 @@ function OverviewSection({ study }: { study: CaseStudy }) {
 const STEP_DELAY = 0.45;
 const STEP_FIRST = 0.3;
 
-function ChallengeTimeline({ steps }: { steps: Array<{ title: string; description: string }> }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-10% 0px" });
+const TAYLOR_MOODS = [
+  { label: "Trying to make sense of it…", tint: "rgba(0,0,0,0)", scale: 1.0 },
+  { label: "Messaging the requester again…", tint: "rgba(200,120,60,0.06)", scale: 1.01 },
+  { label: "Jumping between tools…", tint: "rgba(200,100,40,0.12)", scale: 1.02 },
+  { label: "Overwhelmed by documents…", tint: "rgba(180,70,30,0.18)", scale: 1.03 },
+  { label: "Manually collating everything…", tint: "rgba(160,50,20,0.22)", scale: 1.03 },
+  { label: "Finally done. Until the next one.", tint: "rgba(120,40,20,0.28)", scale: 1.04 },
+];
+
+function TaylorAvatar({ activeStep }: { activeStep: number }) {
+  const mood = activeStep >= 0 ? TAYLOR_MOODS[Math.min(activeStep, TAYLOR_MOODS.length - 1)] : null;
+
+  return (
+    <motion.div
+      className="relative rounded-2xl overflow-hidden flex-1 min-h-0"
+      style={{ background: "#e8e4de" }}
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: EASE, delay: 0.25 }}
+    >
+      <div
+        className="w-full h-full"
+        style={{
+          backgroundImage: "url('/taylor-storyboard.png')",
+          backgroundSize: "510% auto",
+          backgroundPosition: "0% 88%",
+          backgroundRepeat: "no-repeat",
+        }}
+      />
+      <motion.div
+        className="absolute inset-0"
+        animate={{ backgroundColor: mood?.tint ?? "rgba(0,0,0,0)" }}
+        transition={{ duration: 0.7, ease: APPLE }}
+      />
+      <div className="absolute bottom-0 left-0 right-0 px-4 py-3" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 100%)" }}>
+        <p
+          className="text-xs font-semibold text-white/60 uppercase tracking-widest mb-0.5"
+          style={{ fontFamily: "'Wotfard', sans-serif" }}
+        >
+          Taylor · Service Agent
+        </p>
+        <motion.p
+          key={activeStep}
+          className="text-sm text-white/90 leading-snug"
+          style={{ fontFamily: "'Wotfard', sans-serif" }}
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35, ease: EASE }}
+        >
+          {mood?.label ?? "Starting a new ticket…"}
+        </motion.p>
+      </div>
+    </motion.div>
+  );
+}
+
+function ChallengeTimeline({
+  steps,
+  inView,
+}: {
+  steps: Array<{ title: string; description: string }>;
+  inView: boolean;
+}) {
   const totalDuration = STEP_FIRST + steps.length * STEP_DELAY;
 
   return (
-    <div ref={ref} className="relative flex flex-col gap-0">
+    <div className="relative flex flex-col gap-0">
       <div className="absolute left-[5px] top-3 bottom-3 w-[1px] overflow-hidden bg-[#e8e4de]">
         <motion.div
           className="w-full bg-[#E8654B]/50 origin-top"
@@ -271,7 +331,7 @@ function ChallengeTimeline({ steps }: { steps: Array<{ title: string; descriptio
           initial={{ opacity: 0, x: 12 }}
           animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 12 }}
           transition={{ duration: 0.4, ease: EASE, delay: STEP_FIRST + i * STEP_DELAY }}
-          className="flex items-start gap-4 pl-0 pb-5 last:pb-0"
+          className="flex items-start gap-4 pl-0 pb-4 last:pb-0"
         >
           <div className="flex-shrink-0 mt-[5px] w-[11px] h-[11px] rounded-full border-2 border-[#E8654B] bg-[#FAF8F5] z-10" />
           <div className="flex flex-col gap-0.5">
@@ -297,6 +357,7 @@ function ChallengeTimeline({ steps }: { steps: Array<{ title: string; descriptio
 function ChallengeSection({ study }: { study: CaseStudy }) {
   const sectionRef = useRef<HTMLElement>(null);
   const inView = useInView(sectionRef, { once: true, margin: "-10% 0px" });
+  const [activeStep, setActiveStep] = useState(-1);
   const [bulletsVisible, setBulletsVisible] = useState(false);
 
   const steps = study.challenge.timelineSteps;
@@ -306,8 +367,17 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
 
   useEffect(() => {
     if (!inView || !steps) return;
-    const t = setTimeout(() => setBulletsVisible(true), totalDelay);
-    return () => clearTimeout(t);
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    steps.forEach((_, i) => {
+      const t = setTimeout(
+        () => setActiveStep(i),
+        (STEP_FIRST + i * STEP_DELAY) * 1000,
+      );
+      timers.push(t);
+    });
+    const bulletTimer = setTimeout(() => setBulletsVisible(true), totalDelay);
+    timers.push(bulletTimer);
+    return () => timers.forEach(clearTimeout);
   }, [inView, steps, totalDelay]);
 
   if (steps && steps.length > 0) {
@@ -317,10 +387,10 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
         className="relative h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-24 overflow-hidden"
         style={{ background: "#FAF8F5" }}
       >
-        <div className="flex flex-col md:flex-row gap-10 md:gap-20 max-w-5xl items-start">
-          <div className="md:w-[38%] flex-shrink-0 flex flex-col gap-6">
+        <div className="flex flex-col md:flex-row gap-8 md:gap-14 max-w-5xl h-[78vh] items-stretch">
+          <div className="md:w-[34%] flex-shrink-0 flex flex-col gap-5">
             <motion.h2
-              className="text-2xl md:text-3xl leading-tight text-foreground"
+              className="text-2xl md:text-3xl leading-tight text-foreground flex-shrink-0"
               style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -328,19 +398,29 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
             >
               The challenge
             </motion.h2>
-            <motion.p
-              className="text-sm md:text-base leading-relaxed text-foreground/70"
-              style={{ fontFamily: "'Wotfard', sans-serif" }}
-              initial={{ opacity: 0, y: 16 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, ease: EASE, delay: 0.2 }}
-            >
-              {study.challenge.text}
-            </motion.p>
+            <TaylorAvatar activeStep={activeStep} />
+          </div>
+
+          <div className="md:w-[66%] flex flex-col gap-5 justify-center">
             <motion.div
               initial={{ opacity: 0 }}
-              animate={bulletsVisible ? { opacity: 1 } : { opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.4, ease: EASE, delay: 0.2 }}
+            >
+              <p
+                className="text-[10px] uppercase tracking-widest font-semibold text-foreground/30 mb-3"
+                style={{ fontFamily: "'Wotfard', sans-serif" }}
+              >
+                Current state — Taylor's day
+              </p>
+              <ChallengeTimeline steps={steps} inView={inView} />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={bulletsVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
               transition={{ duration: 0.5, ease: APPLE }}
+              className="border-t border-[#e8e4de] pt-4"
             >
               <p
                 className="text-[10px] uppercase tracking-widest font-semibold text-foreground/30 mb-3"
@@ -348,18 +428,18 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
               >
                 Pain points
               </p>
-              <ul className="flex flex-col gap-3">
+              <ul className="grid grid-cols-2 gap-x-8 gap-y-2">
                 {study.challenge.bullets.map((bullet, i) => (
                   <motion.li
                     key={i}
-                    className="flex items-start gap-3"
-                    initial={{ opacity: 0, x: -8 }}
-                    animate={bulletsVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -8 }}
-                    transition={{ duration: 0.35, ease: EASE, delay: i * 0.08 }}
+                    className="flex items-start gap-2"
+                    initial={{ opacity: 0, x: -6 }}
+                    animate={bulletsVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -6 }}
+                    transition={{ duration: 0.3, ease: EASE, delay: i * 0.07 }}
                   >
                     <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#E8654B]/60 flex-shrink-0" />
                     <span
-                      className="text-sm leading-relaxed text-foreground/70"
+                      className="text-xs leading-relaxed text-foreground/70"
                       style={{ fontFamily: "'Wotfard', sans-serif" }}
                     >
                       {bullet}
@@ -369,21 +449,6 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
               </ul>
             </motion.div>
           </div>
-
-          <motion.div
-            className="md:w-[62%] flex flex-col gap-2"
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.4, ease: EASE, delay: 0.2 }}
-          >
-            <p
-              className="text-[10px] uppercase tracking-widest font-semibold text-foreground/30 mb-2"
-              style={{ fontFamily: "'Wotfard', sans-serif" }}
-            >
-              Current state — Taylor's day
-            </p>
-            <ChallengeTimeline steps={steps} />
-          </motion.div>
         </div>
       </section>
     );
