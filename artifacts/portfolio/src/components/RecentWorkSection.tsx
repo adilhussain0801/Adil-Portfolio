@@ -70,12 +70,14 @@ function ProjectCard({
   hoveredId,
   setHoveredId,
   onVisible,
+  activeIndex,
 }: {
   project: typeof PROJECTS[0];
   index: number;
   hoveredId: number | null;
   setHoveredId: (id: number | null) => void;
   onVisible: (index: number) => void;
+  activeIndex: number;
 }) {
   const animRef = useRef(null);
   const trackRef = useRef(null);
@@ -167,7 +169,7 @@ function ProjectCard({
             <div
               className="overflow-hidden"
               style={{
-                maxHeight: isHovered ? "100px" : "0px",
+                maxHeight: isHovered || index === activeIndex ? "100px" : "0px",
                 transition: "max-height 0.35s ease-in-out",
               }}
             >
@@ -263,6 +265,7 @@ export default function RecentWorkSection() {
                 hoveredId={hoveredId}
                 setHoveredId={setHoveredId}
                 onVisible={setActiveIndex}
+                activeIndex={activeIndex}
               />
             ))}
           </div>
