@@ -20,7 +20,6 @@ const ROW_ONE: TickerItem[] = [
   { id: 12, src: "/life/img_2888.jpg",       alt: "Life photo", w: "w-52" },
   { id: 13, src: "/life/img_6794.jpg",       alt: "Life photo", w: "w-64" },
   { id: 14, src: "/life/img_5839.jpg",       alt: "Life photo", w: "w-40" },
-  { id: 15, src: "/life/img_7039.jpg",       alt: "Life photo", w: "w-52" },
   { id: 16, src: "/life/img_0450.jpg",       alt: "Life photo", w: "w-44" },
   { id: 17, src: "/life/img_6912.jpg",       alt: "Life photo", w: "w-40" },
   { id: 18, src: "/life/img_3934.jpg",       alt: "Life photo", w: "w-48" },
