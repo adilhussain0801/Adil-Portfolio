@@ -2,6 +2,13 @@ import { useState } from "react";
 import { Linkedin, Instagram, FileText } from "lucide-react";
 import ResumeModal from "./ResumeModal";
 
+const linkClass =
+  "flex items-center gap-2 text-base font-bold text-foreground hover:text-foreground transition-colors relative group";
+
+const Underline = () => (
+  <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#4ecdc4] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-center" />
+);
+
 export default function Footer() {
   const [resumeOpen, setResumeOpen] = useState(false);
 
@@ -25,9 +32,10 @@ export default function Footer() {
               </h2>
               <a
                 href="mailto:adilhussain0801@gmail.com"
-                className="text-muted-foreground hover:text-foreground transition-colors text-xl md:text-[36px] font-black break-all"
+                className="text-muted-foreground hover:text-foreground transition-colors text-xl md:text-[36px] font-black break-all relative group"
               >
                 adilhussain0801@gmail.com
+                <Underline />
               </a>
             </div>
 
@@ -37,19 +45,21 @@ export default function Footer() {
                 href="https://www.linkedin.com/in/adil0801/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-base font-bold text-foreground hover:text-muted-foreground transition-colors"
+                className={linkClass}
               >
                 <Linkedin size={16} />
                 LinkedIn
+                <Underline />
               </a>
               <a
                 href="https://www.instagram.com/adil0801/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-base font-bold text-foreground hover:text-muted-foreground transition-colors"
+                className={linkClass}
               >
                 <Instagram size={16} />
                 Instagram
+                <Underline />
               </a>
 
               {/* Separator before Resume */}
@@ -57,10 +67,11 @@ export default function Footer() {
 
               <button
                 onClick={() => setResumeOpen(true)}
-                className="flex items-center gap-2 text-base font-bold text-foreground hover:text-muted-foreground transition-colors"
+                className={linkClass}
               >
                 <FileText size={16} />
                 Resume
+                <Underline />
               </button>
             </div>
           </div>
