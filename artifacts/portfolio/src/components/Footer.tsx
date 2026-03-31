@@ -3,7 +3,7 @@ import { Linkedin, Instagram, FileText } from "lucide-react";
 import ResumeModal from "./ResumeModal";
 
 const linkClass =
-  "flex items-center gap-2 text-base font-bold text-[#1a1a1a]/50 hover:text-[#1a1a1a] transition-colors duration-300 relative group";
+  "flex items-center gap-2 text-base font-bold text-foreground hover:text-foreground transition-colors duration-300 relative group";
 
 const Underline = () => (
   <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#1a1a1a] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-center" />
