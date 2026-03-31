@@ -323,49 +323,52 @@ function ChallengeTimeline({
       {/* Journey Cards */}
       <div className="relative">
         <div className="flex gap-4 md:gap-6 items-start">
-          {steps.map((step, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 12 }}
-              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
-              transition={{ duration: 0.4, ease: EASE, delay: STEP_FIRST + i * STEP_DELAY }}
-              className="flex-1 flex flex-col gap-0"
-            >
-              <div className={`${colors[i].bg} border border-${colors[i].border.split('-')[1]} rounded-2xl p-6 flex-1 flex flex-col gap-3`}>
-                <div className="flex items-center gap-2">
-                  <div className={`${colors[i].icon} w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0`}>
-                    <span className="text-white text-sm font-bold">{i + 1}</span>
+          {steps.map((step, i) => {
+            const color = colors[i % colors.length];
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 12 }}
+                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+                transition={{ duration: 0.4, ease: EASE, delay: STEP_FIRST + i * STEP_DELAY }}
+                className="flex-1 flex flex-col gap-0"
+              >
+                <div className={`${color.bg} ${color.border} rounded-2xl border p-6 flex-1 flex flex-col gap-3`}>
+                  <div className="flex items-center gap-2">
+                    <div className={`${color.icon} w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0`}>
+                      <span className="text-white text-sm font-bold">{i + 1}</span>
+                    </div>
+                    <h3
+                      className={`text-sm font-bold ${color.text}`}
+                      style={{ fontFamily: "'Wotfard', sans-serif" }}
+                    >
+                      {step.title}
+                    </h3>
                   </div>
-                  <h3
-                    className={`text-sm font-bold ${colors[i].text}`}
-                    style={{ fontFamily: "'Wotfard', sans-serif" }}
-                  >
-                    {step.title}
-                  </h3>
+                  <ul className="flex flex-col gap-2">
+                    {step.description.split("\n").map((bullet, j) => (
+                      <li key={j} className="flex items-start gap-2">
+                        <span className={`${color.icon} w-1.5 h-1.5 rounded-full flex-shrink-0 mt-1.5`} />
+                        <span
+                          className="text-xs leading-relaxed text-foreground/70"
+                          style={{ fontFamily: "'Wotfard', sans-serif" }}
+                        >
+                          {bullet}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <ul className="flex flex-col gap-2">
-                  {step.description.split("\n").map((bullet, j) => (
-                    <li key={j} className="flex items-start gap-2">
-                      <span className={`${colors[i].icon} w-1.5 h-1.5 rounded-full flex-shrink-0 mt-1.5`} />
-                      <span
-                        className="text-xs leading-relaxed text-foreground/70"
-                        style={{ fontFamily: "'Wotfard', sans-serif" }}
-                      >
-                        {bullet}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              {i < steps.length - 1 && (
-                <div className="hidden md:flex items-center justify-center h-12 relative -mb-2">
-                  <svg className="w-8 h-8 text-[#e8e4de]" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" strokeWidth="2" d="M9 5l7 7-7 7" strokeLinecap="round" />
-                  </svg>
-                </div>
-              )}
-            </motion.div>
-          ))}
+                {i < steps.length - 1 && (
+                  <div className="hidden md:flex items-center justify-center h-12 relative -mb-2">
+                    <svg className="w-8 h-8 text-[#e8e4de]" fill="none" viewBox="0 0 24 24">
+                      <path stroke="currentColor" strokeWidth="2" d="M9 5l7 7-7 7" strokeLinecap="round" />
+                    </svg>
+                  </div>
+                )}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </div>
