@@ -1,6 +1,6 @@
 import { ArrowUpRight, Zap } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 
 const PROJECTS = [
   {
@@ -166,19 +166,23 @@ function ProjectCard({
               </div>
             </div>
 
-            <div
-              className="overflow-hidden"
-              style={{
-                maxHeight: isHovered || index === activeIndex ? "100px" : "0px",
-                transition: "max-height 0.35s ease-in-out",
-              }}
-            >
-              <div className="px-5 pb-4 border-t border-white/10 pt-3">
-                <p className="text-sm text-white/70 leading-relaxed">
-                  {project.description}
-                </p>
-              </div>
-            </div>
+            <AnimatePresence>
+              {(isHovered || index === activeIndex) && (
+                <motion.div
+                  className="overflow-hidden"
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.4, ease: "easeInOut", delay: 0.08 }}
+                >
+                  <div className="px-5 pb-4 border-t border-white/10 pt-3">
+                    <p className="text-sm text-white/70 leading-relaxed">
+                      {project.description}
+                    </p>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </a>
       )}
