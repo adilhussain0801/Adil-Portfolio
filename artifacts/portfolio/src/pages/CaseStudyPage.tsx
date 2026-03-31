@@ -151,7 +151,14 @@ function HeroSection({ study }: { study: CaseStudy }) {
       className="relative h-screen snap-start snap-always flex flex-col justify-end px-6 md:px-24 pt-32 pb-0 overflow-hidden"
       style={{ backgroundColor: study.heroColor }}
     >
-      <CaseStudyHeroBg />
+      <motion.div
+        initial={{ opacity: 0, scale: 0.98 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="absolute inset-0"
+      >
+        <CaseStudyHeroBg />
+      </motion.div>
 
       <motion.div className="relative z-10 max-w-5xl" {...fadeUp(0.1)}>
         <p
