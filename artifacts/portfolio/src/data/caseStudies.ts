@@ -33,6 +33,7 @@ export interface CaseStudy {
     text: string;
     bullets: string[];
     image?: string;
+    timelineSteps?: Array<{ title: string; description: string }>;
   };
   process: ProcessStep[];
   solution: {
@@ -355,7 +356,14 @@ export const CASE_STUDIES: CaseStudy[] = [
         "High cognitive load from interpreting multiple documents",
         "Manual collation and execution prolong resolution time",
       ],
-      image: "/challenge-storyboard.png",
+      timelineSteps: [
+        { title: "A new request arrives", description: "An unstructured ticket lands with missing details and no clear owner." },
+        { title: "Reaching out for more info", description: "Taylor messages the requester several times to fill in the gaps." },
+        { title: "Hunting for info across tools", description: "Hours spent jumping between Confluence, Slack, and Jira." },
+        { title: "Opening multiple sources", description: "Several documents and past conversations — none structured for action." },
+        { title: "Piecing together a plan", description: "Manually combining scattered instructions into one workable approach." },
+        { title: "Finally resolving the ticket", description: "Hours later, after clarifying, searching, and collating, the ticket closes." },
+      ],
     },
     process: [
       {
