@@ -359,11 +359,15 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
   const inView = useInView(sectionRef, { once: true, margin: "-10% 0px" });
   const [activeStep, setActiveStep] = useState(-1);
   const [bulletsVisible, setBulletsVisible] = useState(false);
+  const [activeSlide, setActiveSlide] = useState(0);
 
   const steps = study.challenge.timelineSteps;
   const totalDelay = steps
     ? (STEP_FIRST + steps.length * STEP_DELAY + 0.5) * 1000
     : 0;
+
+  const heroStatement =
+    "Service agents spend more time understanding requests than resolving them. A single request requires navigating fragmented tools, clarifying missing information, and manually stitching together a resolution plan resulting in delays, inefficiencies, and high cognitive load.";
 
   useEffect(() => {
     if (!inView || !steps) return;
@@ -402,52 +406,116 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
           </div>
 
           <div className="md:w-[66%] flex flex-col gap-5 justify-center">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={inView ? { opacity: 1 } : {}}
-              transition={{ duration: 0.4, ease: EASE, delay: 0.2 }}
-            >
-              <p
-                className="text-[10px] uppercase tracking-widest font-semibold text-foreground/30 mb-3"
-                style={{ fontFamily: "'Wotfard', sans-serif" }}
-              >
-                Current state — Taylor's day
-              </p>
-              <ChallengeTimeline steps={steps} inView={inView} />
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              animate={bulletsVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
-              transition={{ duration: 0.5, ease: APPLE }}
-              className="border-t border-[#e8e4de] pt-4"
-            >
-              <p
-                className="text-[10px] uppercase tracking-widest font-semibold text-foreground/30 mb-3"
-                style={{ fontFamily: "'Wotfard', sans-serif" }}
-              >
-                Pain points
-              </p>
-              <ul className="grid grid-cols-2 gap-x-8 gap-y-2">
-                {study.challenge.bullets.map((bullet, i) => (
-                  <motion.li
-                    key={i}
-                    className="flex items-start gap-2"
-                    initial={{ opacity: 0, x: -6 }}
-                    animate={bulletsVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -6 }}
-                    transition={{ duration: 0.3, ease: EASE, delay: i * 0.07 }}
+            <div className="flex flex-col gap-5 text-right">
+              {/* Slide 1: Hero Statement */}
+              {activeSlide === 0 && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.5, ease: EASE }}
+                >
+                  <p
+                    className="text-[10px] uppercase tracking-widest font-semibold text-foreground/30 mb-3"
+                    style={{ fontFamily: "'Wotfard', sans-serif" }}
                   >
-                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#E8654B]/60 flex-shrink-0" />
-                    <span
-                      className="text-xs leading-relaxed text-foreground/70"
-                      style={{ fontFamily: "'Wotfard', sans-serif" }}
-                    >
-                      {bullet}
-                    </span>
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
+                    The problem
+                  </p>
+                  <p
+                    className="text-lg md:text-xl leading-relaxed text-foreground"
+                    style={{ fontFamily: "'Wotfard', sans-serif" }}
+                  >
+                    {heroStatement}
+                  </p>
+                </motion.div>
+              )}
+
+              {/* Slide 2: Current State Journey */}
+              {activeSlide === 1 && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.5, ease: EASE }}
+                >
+                  <p
+                    className="text-[10px] uppercase tracking-widest font-semibold text-foreground/30 mb-3"
+                    style={{ fontFamily: "'Wotfard', sans-serif" }}
+                  >
+                    Current state — Taylor's day
+                  </p>
+                  <ChallengeTimeline steps={steps} inView={inView} />
+                </motion.div>
+              )}
+
+              {/* Slide 3: Pain Points */}
+              {activeSlide === 2 && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.5, ease: EASE }}
+                >
+                  <p
+                    className="text-[10px] uppercase tracking-widest font-semibold text-foreground/30 mb-3"
+                    style={{ fontFamily: "'Wotfard', sans-serif" }}
+                  >
+                    Pain points
+                  </p>
+                  <ul className="flex flex-col gap-2">
+                    {study.challenge.bullets.map((bullet, i) => (
+                      <motion.li
+                        key={i}
+                        className="flex items-start gap-2 justify-end"
+                        initial={{ opacity: 0, x: 6 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, ease: EASE, delay: i * 0.07 }}
+                      >
+                        <span
+                          className="text-xs leading-relaxed text-foreground/70"
+                          style={{ fontFamily: "'Wotfard', sans-serif" }}
+                        >
+                          {bullet}
+                        </span>
+                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#E8654B]/60 flex-shrink-0" />
+                      </motion.li>
+                    ))}
+                  </ul>
+                </motion.div>
+              )}
+
+              {/* Slide Indicators and Navigation */}
+              <div className="flex items-center justify-end gap-4 pt-4 mt-4 border-t border-[#e8e4de]">
+                <button
+                  onClick={() => setActiveSlide(Math.max(0, activeSlide - 1))}
+                  className="w-8 h-8 rounded-full border border-[#e8e4de] flex items-center justify-center text-foreground/50 hover:text-foreground hover:border-foreground/30 transition-colors disabled:opacity-50"
+                  disabled={activeSlide === 0}
+                >
+                  <span className="text-xs">←</span>
+                </button>
+                <div className="flex gap-2">
+                  {[0, 1, 2].map((i) => (
+                    <button
+                      key={i}
+                      onClick={() => setActiveSlide(i)}
+                      className={`w-2 h-2 rounded-full transition-colors ${
+                        activeSlide === i
+                          ? "bg-[#E8654B]"
+                          : "bg-[#e8e4de] hover:bg-[#d8d4ce]"
+                      }`}
+                      aria-label={`Slide ${i + 1}`}
+                    />
+                  ))}
+                </div>
+                <button
+                  onClick={() => setActiveSlide(Math.min(2, activeSlide + 1))}
+                  className="w-8 h-8 rounded-full border border-[#e8e4de] flex items-center justify-center text-foreground/50 hover:text-foreground hover:border-foreground/30 transition-colors disabled:opacity-50"
+                  disabled={activeSlide === 2}
+                >
+                  <span className="text-xs">→</span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
