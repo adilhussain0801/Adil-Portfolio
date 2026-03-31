@@ -5,7 +5,7 @@ import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 
-pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.mjs`;
+pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
 
 interface ResumeModalProps {
   open: boolean;
@@ -78,9 +78,7 @@ export default function ResumeModal({ open, onClose }: ResumeModalProps) {
               <span
                 className="text-sm font-semibold text-[#1a1a1a]"
                 style={{ fontFamily: "'Wotfard', sans-serif" }}
-              >
-                Adil Hussain — Resume
-              </span>
+              >Adil Hussain - Resume</span>
               <div className="flex items-center gap-3">
                 <a
                   href="/resume.pdf"
