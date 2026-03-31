@@ -34,6 +34,10 @@ export interface CaseStudy {
     bullets: string[];
     image?: string;
     timelineSteps?: Array<{ title: string; description: string }>;
+    timelineGroups?: Array<{
+      phase: string;
+      steps: Array<{ title: string; description: string }>;
+    }>;
   };
   process: ProcessStep[];
   solution: {
@@ -363,6 +367,29 @@ export const CASE_STUDIES: CaseStudy[] = [
         { title: "Opening multiple sources", description: "Several documents and past conversations — none structured for action." },
         { title: "Piecing together a plan", description: "Manually combining scattered instructions into one workable approach." },
         { title: "Finally resolving the ticket", description: "Hours later, after clarifying, searching, and collating, the ticket closes." },
+      ],
+      timelineGroups: [
+        {
+          phase: "Intake & Ambiguity",
+          steps: [
+            { title: "A new request arrives", description: "Unstructured, missing info" },
+            { title: "Reaching out for clarity", description: "Multiple back-and-forth" },
+          ],
+        },
+        {
+          phase: "Investigation & Fragmentation",
+          steps: [
+            { title: "Searching across tools", description: "Slack, Confluence, Jira" },
+            { title: "Context is scattered", description: "Docs, chats, tickets" },
+          ],
+        },
+        {
+          phase: "Resolution & Effort",
+          steps: [
+            { title: "Piecing together a plan", description: "Manual, error-prone" },
+            { title: "Resolved after hours", description: "High effort, low efficiency" },
+          ],
+        },
       ],
     },
     process: [

@@ -306,82 +306,179 @@ function TaylorAvatar({ activeStep }: { activeStep: number }) {
 }
 
 function ChallengeTimeline({
-  steps,
+  groups,
+  bullets,
   inView,
 }: {
-  steps: Array<{ title: string; description: string }>;
+  groups: Array<{ phase: string; steps: Array<{ title: string; description: string }> }>;
+  bullets: string[];
   inView: boolean;
 }) {
-  const colors = [
-    { bg: "bg-[#FEF3E2]", border: "border-[#F9D99D]", icon: "bg-[#FCC94C]", text: "text-[#D97706]" },
-    { bg: "bg-[#E0F2FE]", border: "border-[#BAE6FD]", icon: "bg-[#38BDF8]", text: "text-[#0284C7]" },
-    { bg: "bg-[#FCE7F3]", border: "border-[#FBCFE8]", icon: "bg-[#EC4899]", text: "text-[#BE185D]" },
+  const palette = [
+    {
+      cardBg: "#FFFBEB",
+      cardBorder: "#FDE68A",
+      dotColor: "#F59E0B",
+      iconBg: "#FCD34D",
+      headerText: "#92400E",
+      arrowColor: "#FCD34D",
+    },
+    {
+      cardBg: "#EFF6FF",
+      cardBorder: "#BFDBFE",
+      dotColor: "#3B82F6",
+      iconBg: "#60A5FA",
+      headerText: "#1E40AF",
+      arrowColor: "#93C5FD",
+    },
+    {
+      cardBg: "#FFF1F2",
+      cardBorder: "#FECDD3",
+      dotColor: "#F43F5E",
+      iconBg: "#FB7185",
+      headerText: "#9F1239",
+      arrowColor: "#FCA5A5",
+    },
   ];
 
   return (
-    <div className="flex flex-col gap-8">
-      {/* Journey Cards */}
-      <div className="relative">
-        <div className="flex gap-4 md:gap-6 items-start">
-          {steps.map((step, i) => {
-            const color = colors[i % colors.length];
-            return (
+    <div className="flex flex-col gap-5">
+      {/* Phase Cards Row */}
+      <div className="flex items-stretch gap-0">
+        {groups.map((group, gi) => {
+          const p = palette[gi % palette.length];
+          return (
+            <div key={gi} className="flex items-center flex-1 min-w-0">
+              {/* Card */}
               <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 12 }}
-                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
-                transition={{ duration: 0.4, ease: EASE, delay: STEP_FIRST + i * STEP_DELAY }}
-                className="flex-1 flex flex-col gap-0"
+                initial={{ opacity: 0, y: 16 }}
+                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+                transition={{ duration: 0.45, ease: EASE, delay: 0.1 + gi * 0.15 }}
+                className="flex-1 rounded-2xl flex flex-col gap-4 p-5 min-w-0"
+                style={{
+                  backgroundColor: p.cardBg,
+                  border: `1.5px solid ${p.cardBorder}`,
+                }}
               >
-                <div className={`${color.bg} ${color.border} rounded-2xl border p-6 flex-1 flex flex-col gap-3`}>
-                  <div className="flex items-center gap-2">
-                    <div className={`${color.icon} w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0`}>
-                      <span className="text-white text-sm font-bold">{i + 1}</span>
-                    </div>
-                    <h3
-                      className={`text-sm font-bold ${color.text}`}
-                      style={{ fontFamily: "'Wotfard', sans-serif" }}
-                    >
-                      {step.title}
-                    </h3>
-                  </div>
-                  <ul className="flex flex-col gap-2">
-                    {step.description.split("\n").map((bullet, j) => (
-                      <li key={j} className="flex items-start gap-2">
-                        <span className={`${color.icon} w-1.5 h-1.5 rounded-full flex-shrink-0 mt-1.5`} />
-                        <span
-                          className="text-xs leading-relaxed text-foreground/70"
-                          style={{ fontFamily: "'Wotfard', sans-serif" }}
-                        >
-                          {bullet}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                {i < steps.length - 1 && (
-                  <div className="hidden md:flex items-center justify-center h-12 relative -mb-2">
-                    <svg className="w-8 h-8 text-[#e8e4de]" fill="none" viewBox="0 0 24 24">
-                      <path stroke="currentColor" strokeWidth="2" d="M9 5l7 7-7 7" strokeLinecap="round" />
+                {/* Phase header */}
+                <div className="flex items-center gap-2.5">
+                  <div
+                    className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+                    style={{ backgroundColor: p.iconBg }}
+                  >
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                      <rect x="1" y="1" width="5" height="5" rx="1" fill="white" fillOpacity="0.9" />
+                      <rect x="8" y="1" width="5" height="5" rx="1" fill="white" fillOpacity="0.9" />
+                      <rect x="1" y="8" width="5" height="5" rx="1" fill="white" fillOpacity="0.9" />
+                      <rect x="8" y="8" width="5" height="5" rx="1" fill="white" fillOpacity="0.5" />
                     </svg>
                   </div>
-                )}
+                  <h3
+                    className="text-sm font-bold leading-tight"
+                    style={{ color: p.headerText, fontFamily: "'Wotfard', sans-serif" }}
+                  >
+                    {group.phase}
+                  </h3>
+                </div>
+
+                {/* Steps */}
+                <ul className="flex flex-col gap-3">
+                  {group.steps.map((step, si) => (
+                    <motion.li
+                      key={si}
+                      initial={{ opacity: 0, x: 8 }}
+                      animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 8 }}
+                      transition={{ duration: 0.35, ease: EASE, delay: 0.25 + gi * 0.15 + si * 0.1 }}
+                      className="flex items-start gap-2.5"
+                    >
+                      <div className="flex-shrink-0 flex flex-col items-center gap-1 mt-0.5">
+                        <div
+                          className="w-2 h-2 rounded-full"
+                          style={{ backgroundColor: p.dotColor }}
+                        />
+                        {si < group.steps.length - 1 && (
+                          <div className="w-px h-full min-h-[16px]" style={{ backgroundColor: p.cardBorder }} />
+                        )}
+                      </div>
+                      <div className="flex flex-col gap-0.5">
+                        <p
+                          className="text-sm font-semibold text-[#1a1a1a] leading-snug"
+                          style={{ fontFamily: "'Wotfard', sans-serif" }}
+                        >
+                          {step.title}
+                        </p>
+                        <p
+                          className="text-xs text-[#1a1a1a]/50 leading-relaxed"
+                          style={{ fontFamily: "'Wotfard', sans-serif" }}
+                        >
+                          {step.description}
+                        </p>
+                      </div>
+                    </motion.li>
+                  ))}
+                </ul>
               </motion.div>
-            );
-          })}
-        </div>
+
+              {/* Arrow between cards */}
+              {gi < groups.length - 1 && (
+                <div className="flex-shrink-0 flex items-center px-2">
+                  <svg width="36" height="12" viewBox="0 0 36 12" fill="none">
+                    <line
+                      x1="0" y1="6" x2="28" y2="6"
+                      stroke={p.arrowColor}
+                      strokeWidth="1.5"
+                      strokeDasharray="4 3"
+                    />
+                    <path d="M26 2L32 6L26 10" stroke={p.arrowColor} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                  </svg>
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
+
+      {/* Dark footer — pain points */}
+      {bullets && bullets.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+          transition={{ duration: 0.45, ease: EASE, delay: 0.55 }}
+          className="rounded-2xl px-6 py-5"
+          style={{
+            background: "linear-gradient(to right, #1a1a1a 0%, #3a1a10 100%)",
+          }}
+        >
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-3">
+            {bullets.map((b, i) => (
+              <div key={i} className="flex items-center gap-2">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="flex-shrink-0">
+                  <path d="M7 1L13 12H1L7 1Z" stroke="#F59E0B" strokeWidth="1.2" strokeLinejoin="round" fill="none" />
+                  <line x1="7" y1="5" x2="7" y2="8" stroke="#F59E0B" strokeWidth="1.2" strokeLinecap="round" />
+                  <circle cx="7" cy="10" r="0.6" fill="#F59E0B" />
+                </svg>
+                <span
+                  className="text-xs text-white/70 leading-relaxed"
+                  style={{ fontFamily: "'Wotfard', sans-serif" }}
+                >
+                  {b}
+                </span>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      )}
     </div>
   );
 }
 
 function ChallengeSection({ study }: { study: CaseStudy }) {
-  const steps = study.challenge.timelineSteps;
+  const groups = study.challenge.timelineGroups;
 
   const heroStatement =
     "Service agents spend more time understanding requests than resolving them. A single request requires navigating fragmented tools, clarifying missing information, and manually stitching together a resolution plan resulting in delays, inefficiencies, and high cognitive load.";
 
-  if (steps && steps.length > 0) {
+  if (groups && groups.length > 0) {
     return (
       <section
         className="relative min-h-screen snap-start snap-always"
@@ -415,7 +512,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
               </SnapReveal>
             </div>
 
-            {/* Slide 2: Current State Journey */}
+            {/* Slide 2: Current State Journey (grouped cards + pain footer) */}
             <div className="h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-0 md:pr-24 py-20">
               <SnapReveal>
                 <div>
@@ -425,50 +522,11 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                   >
                     Current state — Taylor's day
                   </p>
-                  <ChallengeTimeline steps={steps} inView={true} />
-                </div>
-              </SnapReveal>
-            </div>
-
-            {/* Slide 3: Pain Points as Journey */}
-            <div className="h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-0 md:pr-24 py-20">
-              <SnapReveal>
-                <div>
-                  <p
-                    className="text-[10px] uppercase tracking-widest font-semibold text-foreground/30 mb-8"
-                    style={{ fontFamily: "'Wotfard', sans-serif" }}
-                  >
-                    The pain
-                  </p>
-                  <div className="relative flex flex-col gap-6">
-                    {study.challenge.bullets.map((bullet, i) => (
-                      <SnapReveal key={i} delay={0.05 + i * 0.1}>
-                        <div className="flex gap-4">
-                          <div className="flex flex-col items-center flex-shrink-0">
-                            <div className="w-12 h-12 rounded-full bg-[#E8654B]/10 border-2 border-[#E8654B] flex items-center justify-center">
-                              <span
-                                className="text-sm font-bold text-[#E8654B]"
-                                style={{ fontFamily: "'Wotfard', sans-serif" }}
-                              >
-                                {i + 1}
-                              </span>
-                            </div>
-                            {i < study.challenge.bullets.length - 1 && (
-                              <div className="w-0.5 h-12 bg-[#e8e4de] mt-2" />
-                            )}
-                          </div>
-                          <div className="flex-1 pt-1.5">
-                            <p
-                              className="text-sm leading-relaxed text-foreground/80"
-                              style={{ fontFamily: "'Wotfard', sans-serif" }}
-                            >
-                              {bullet}
-                            </p>
-                          </div>
-                        </div>
-                      </SnapReveal>
-                    ))}
-                  </div>
+                  <ChallengeTimeline
+                    groups={groups}
+                    bullets={study.challenge.bullets}
+                    inView={true}
+                  />
                 </div>
               </SnapReveal>
             </div>
