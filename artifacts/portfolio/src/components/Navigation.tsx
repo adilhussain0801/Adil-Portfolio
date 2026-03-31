@@ -49,10 +49,10 @@ export default function Navigation() {
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors relative group"
+              className="text-sm font-medium text-[#1a1a1a]/50 hover:text-[#1a1a1a] transition-colors duration-300 relative group"
             >
               {link.name}
-              <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#4ecdc4] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-center" />
+              <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#1a1a1a] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-center" />
             </a>
           ))}
         </nav>
