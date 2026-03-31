@@ -335,7 +335,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     year: "2024",
     role: "Senior Product Designer",
     platform: "Web App · Enterprise",
-    timeline: "Aug 2021 – Present",
+    timeline: "Aug '24 - Mar '25",
     heroColor: "#C5D9F9",
     image: "/project-jira-ai.png",
     imageAlt: "Rovo AI assistant service layer design",
