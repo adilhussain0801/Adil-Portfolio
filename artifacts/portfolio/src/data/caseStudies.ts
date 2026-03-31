@@ -32,6 +32,7 @@ export interface CaseStudy {
   challenge: {
     text: string;
     bullets: string[];
+    image?: string;
   };
   process: ProcessStep[];
   solution: {
@@ -347,13 +348,14 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     challenge: {
       text:
-        "As Atlassian's AI strategy evolved from conversational assistance to autonomous action, a new design challenge emerged: how do you let an AI agent act on your behalf across enterprise tools without eroding trust or creating dangerous ambiguity about what the agent did, why, and what happens next? Enterprise customers needed confidence, not just capability.",
+        "Taylor, a typical service agent, spends most of their day on low-value coordination work — not problem solving. Each ticket triggers a chain of context-switching, manual searching, and fragmented execution that breaks focus and delays resolution.",
       bullets: [
-        "No established design patterns for agentic AI in enterprise contexts",
-        "Users needed clear visibility into what actions AI had taken or was about to take",
-        "Enterprise security teams required audit trails and rollback mechanisms",
-        "The line between AI-assisted and AI-autonomous was unclear and anxiety-inducing",
+        "Too much back and forth just to understand the request",
+        "Significant time lost hunting for the right info across tools",
+        "High cognitive load from interpreting multiple documents",
+        "Manual collation and execution prolong resolution time",
       ],
+      image: "/challenge-storyboard.png",
     },
     process: [
       {

@@ -247,6 +247,62 @@ function OverviewSection({ study }: { study: CaseStudy }) {
 }
 
 function ChallengeSection({ study }: { study: CaseStudy }) {
+  if (study.challenge.image) {
+    return (
+      <section
+        className="relative h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-24 overflow-hidden"
+        style={{ background: "#FAF8F5" }}
+      >
+        <SnapReveal>
+          <div className="flex flex-col md:flex-row gap-8 md:gap-16 max-w-5xl items-center">
+            <div className="md:w-[42%] flex-shrink-0 flex flex-col gap-6">
+              <h2
+                className="text-2xl md:text-3xl leading-tight text-foreground"
+                style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+              >
+                The challenge
+              </h2>
+              <p
+                className="text-sm md:text-base leading-relaxed text-foreground/70"
+                style={{ fontFamily: "'Wotfard', sans-serif" }}
+              >
+                {study.challenge.text}
+              </p>
+              <ul className="flex flex-col gap-3">
+                {study.challenge.bullets.map((bullet, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#E8654B]/60 flex-shrink-0" />
+                    <span
+                      className="text-sm leading-relaxed text-foreground/70"
+                      style={{ fontFamily: "'Wotfard', sans-serif" }}
+                    >
+                      {bullet}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="md:w-[58%] flex flex-col gap-2">
+              <p
+                className="text-[10px] uppercase tracking-widest font-semibold text-foreground/30"
+                style={{ fontFamily: "'Wotfard', sans-serif" }}
+              >
+                Current state
+              </p>
+              <div className="rounded-2xl overflow-hidden border border-[#e8e4de] shadow-sm">
+                <img
+                  src={study.challenge.image}
+                  alt="Current state storyboard"
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </SnapReveal>
+      </section>
+    );
+  }
+
   return (
     <section
       className="relative h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-24 overflow-hidden"
