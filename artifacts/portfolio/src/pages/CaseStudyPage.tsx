@@ -209,7 +209,7 @@ function HeroSection({ study }: { study: CaseStudy }) {
         <div className="flex gap-8">
           {study.metrics.map((m, i) => (
             <div key={i} className="text-right">
-              <p className="text-2xl md:text-3xl font-bold text-[#4ecdc4]" style={{ fontFamily: "'Wotfard', sans-serif" }}>{m.value}</p>
+              <p className="text-2xl md:text-3xl font-bold text-[#E8654B]" style={{ fontFamily: "'Wotfard', sans-serif" }}>{m.value}</p>
               <p className="text-[10px] uppercase tracking-widest text-white/40">{m.label}</p>
             </div>
           ))}
@@ -386,7 +386,7 @@ function SolutionSection({ study }: { study: CaseStudy }) {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {study.solution.features.map((feature, i) => (
               <div key={i} className="flex flex-col gap-2">
-                <div className="w-5 h-[2px] bg-[#4ecdc4] rounded-full mb-1" />
+                <div className="w-5 h-[2px] bg-[#E8654B] rounded-full mb-1" />
                 <h4
                   className="text-sm font-bold text-foreground"
                   style={{ fontFamily: "'Wotfard', sans-serif" }}
@@ -430,7 +430,7 @@ function ImpactSection({ study }: { study: CaseStudy }) {
             className="flex-1 px-0 md:px-10 py-8 md:py-0 first:pl-0 last:pr-0 flex flex-col gap-2"
           >
             <p
-              className="text-4xl md:text-5xl font-bold text-[#4ecdc4]"
+              className="text-4xl md:text-5xl font-bold text-[#E8654B]"
               style={{ fontFamily: "'Wotfard', sans-serif" }}
             >
               {item.value}

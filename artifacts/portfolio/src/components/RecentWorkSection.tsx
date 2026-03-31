@@ -159,7 +159,7 @@ function ProjectCard({
               <div className="flex gap-5 ml-4 flex-shrink-0">
                 {project.metrics.map((metric, idx) => (
                   <div key={idx} className="text-right">
-                    <p className="text-lg md:text-xl font-bold text-[#4ecdc4]">{metric.value}</p>
+                    <p className="text-lg md:text-xl font-bold text-[#E8654B]">{metric.value}</p>
                     <p className="text-[10px] uppercase tracking-widest text-white/50">{metric.label}</p>
                   </div>
                 ))}
