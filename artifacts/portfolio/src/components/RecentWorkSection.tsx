@@ -92,6 +92,7 @@ function ProjectCard({
   return (
     <motion.div
       ref={animRef}
+      id={`project-${project.id}`}
       className="w-full py-6 relative"
       initial={{ opacity: 0, y: 80 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }}
@@ -215,10 +216,20 @@ export default function RecentWorkSection() {
             {/* Dots */}
             <div className="flex flex-col gap-2">
               {PROJECTS.map((project, i) => (
-                <div key={project.id} className="flex items-center gap-3 group">
+                <button
+                  key={project.id}
+                  onClick={() => {
+                    const element = document.getElementById(`project-${project.id}`);
+                    if (element) {
+                      element.scrollIntoView({ behavior: "smooth", block: "center" });
+                      setActiveIndex(i);
+                    }
+                  }}
+                  className="flex items-center gap-3 group cursor-pointer text-left hover:opacity-70 transition-opacity"
+                >
                   <motion.div
                     animate={{
-                      width: i === activeIndex ? 24 : 6,
+                      width: i === activeIndex ? 28 : 6,
                       backgroundColor: i === activeIndex ? "#2D2D2D" : "#2D2D2D33",
                     }}
                     transition={{ duration: 0.3, ease: "easeInOut" }}
@@ -235,7 +246,7 @@ export default function RecentWorkSection() {
                   >
                     {project.title}
                   </motion.span>
-                </div>
+                </button>
               ))}
             </div>
           </div>
