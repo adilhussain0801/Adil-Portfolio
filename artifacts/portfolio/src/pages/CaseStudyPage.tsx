@@ -552,19 +552,6 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
             >
               {study.challenge.text}
             </p>
-            <ul className="flex flex-col gap-3">
-              {study.challenge.bullets.map((bullet, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#2D2D2D]/40 flex-shrink-0" />
-                  <span
-                    className="text-sm leading-relaxed text-foreground/70"
-                    style={{ fontFamily: "'Wotfard', sans-serif" }}
-                  >
-                    {bullet}
-                  </span>
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </SnapReveal>
