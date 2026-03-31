@@ -363,12 +363,12 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
   if (steps && steps.length > 0) {
     return (
       <section
-        className="relative snap-start snap-always"
+        className="relative snap-start snap-always overflow-visible"
         style={{ background: "#FAF8F5" }}
       >
-        <div className="flex flex-col md:flex-row gap-8 md:gap-14 md:min-h-screen">
+        <div className="flex flex-col md:flex-row gap-8 md:gap-14">
           {/* Fixed left title */}
-          <div className="md:sticky md:top-1/2 md:-translate-y-1/2 md:w-1/3 flex-shrink-0 px-6 md:px-24 py-20 md:py-0">
+          <div className="md:fixed md:left-6 md:top-1/2 md:-translate-y-1/2 md:w-1/3 px-6 md:px-24 py-20 md:py-0 md:z-10">
             <h2
               className="text-2xl md:text-3xl leading-tight text-foreground"
               style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
@@ -378,7 +378,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
           </div>
 
           {/* Scrolling right content */}
-          <div className="md:w-2/3 flex flex-col md:pt-[50vh]">
+          <div className="md:ml-auto md:w-2/3 flex flex-col md:pt-[50vh]">
             {/* Slide 1: Hero Statement */}
             <div
               className="relative min-h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-0 md:pr-24 py-20"
