@@ -203,7 +203,7 @@ function HeroSection({ study }: { study: CaseStudy }) {
         <div className="flex gap-8">
           {study.metrics.map((m, i) => (
             <div key={i} className="text-right">
-              <p className="md:text-sm font-bold text-[#E8654B] text-[18px]" style={{ fontFamily: "'Wotfard', sans-serif" }}>{m.value}</p>
+              <p className="md:text-sm font-bold text-[#E8654B] text-[14px]" style={{ fontFamily: "'Wotfard', sans-serif" }}>{m.value}</p>
               <p className="text-[10px] uppercase tracking-widest text-white/40">{m.label}</p>
             </div>
           ))}
