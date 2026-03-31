@@ -92,7 +92,7 @@ function ProjectCard({
   return (
     <motion.div
       ref={animRef}
-      className="w-full h-full relative"
+      className="w-full py-6 relative"
       initial={{ opacity: 0, y: 80 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -103,7 +103,7 @@ function ProjectCard({
       {project.type === "special" ? (
         <a
           href={`/work/${project.id}`}
-          className="group block rounded-2xl overflow-hidden relative cursor-pointer w-full h-full"
+          className="group block rounded-2xl overflow-hidden relative cursor-pointer w-full h-[78vh]"
           style={{ background: "linear-gradient(135deg, #3d1f6b 0%, #1a1040 50%, #0d0824 100%)" }}
           onMouseEnter={() => setHoveredId(project.id)}
           onMouseLeave={() => setHoveredId(null)}
@@ -129,7 +129,7 @@ function ProjectCard({
       ) : (
         <a
           href={`/work/${project.id}`}
-          className="group relative block rounded-2xl overflow-hidden cursor-pointer w-full h-full"
+          className="group relative block rounded-2xl overflow-hidden cursor-pointer w-full h-[78vh]"
           onMouseEnter={() => setHoveredId(project.id)}
           onMouseLeave={() => setHoveredId(null)}
         >
@@ -245,15 +245,14 @@ export default function RecentWorkSection() {
         <div className="md:w-2/3">
           <div className="flex flex-col gap-0">
             {PROJECTS.map((project, i) => (
-              <div key={project.id} className="h-screen">
-                <ProjectCard
-                  project={project}
-                  index={i}
-                  hoveredId={hoveredId}
-                  setHoveredId={setHoveredId}
-                  onVisible={setActiveIndex}
-                />
-              </div>
+              <ProjectCard
+                key={project.id}
+                project={project}
+                index={i}
+                hoveredId={hoveredId}
+                setHoveredId={setHoveredId}
+                onVisible={setActiveIndex}
+              />
             ))}
           </div>
         </div>
