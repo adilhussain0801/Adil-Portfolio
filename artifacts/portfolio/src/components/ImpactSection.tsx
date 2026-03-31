@@ -44,17 +44,16 @@ function StatCard({ stat, delay }: { stat: typeof STATS[0]; delay: number }) {
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
       transition={{ duration: 0.6, ease: "easeOut", delay }}
-      className="flex-1 rounded-xl p-8 md:p-10 flex flex-col justify-between min-h-[260px] border"
+      className="flex-1 flex flex-col gap-2 py-6 border-b"
       style={{
-        background: "#1a1a1a",
-        borderColor: "rgba(255, 255, 255, 0.08)",
+        borderColor: "rgba(45, 45, 45, 0.1)",
       }}
     >
       <div
-        className="text-5xl md:text-6xl font-bold leading-none mb-6"
+        className="text-4xl md:text-5xl font-black leading-none"
         style={{
           fontFamily: "'Wotfard', sans-serif",
-          color: "#ffffff",
+          color: "#1a1a1a",
           letterSpacing: "-0.02em",
         }}
       >
@@ -63,9 +62,9 @@ function StatCard({ stat, delay }: { stat: typeof STATS[0]; delay: number }) {
         {stat.suffix}
       </div>
       <p
-        className="text-[15px] leading-relaxed"
+        className="text-sm leading-relaxed"
         style={{
-          color: "rgba(255, 255, 255, 0.6)",
+          color: "rgba(45, 45, 45, 0.6)",
           fontFamily: "'Wotfard', sans-serif",
         }}
       >
