@@ -1,5 +1,5 @@
-import { useRef } from "react";
-import { motion, useInView, useMotionValue, useTransform } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
+import { motion, useInView } from "framer-motion";
 
 const STATS = [
   {
@@ -29,23 +29,33 @@ const STATS = [
 ];
 
 function AnimatedCounter({ value, isInView }: { value: number; isInView: boolean }) {
-  const count = useMotionValue(0);
-  const rounded = useTransform(count, (latest) => Math.round(latest));
+  const [displayValue, setDisplayValue] = useState(0);
 
-  if (isInView) {
-    count.set(value);
-  }
+  useEffect(() => {
+    if (!isInView) return;
 
-  return (
-    <motion.span
-      transition={{
-        duration: 2,
-        ease: "easeOut",
-      }}
-    >
-      {rounded}
-    </motion.span>
-  );
+    let animationFrameId: number;
+    let currentValue = 0;
+    const duration = 2000; // 2 seconds
+    const startTime = Date.now();
+
+    const animate = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      currentValue = Math.floor(progress * value);
+      setDisplayValue(currentValue);
+
+      if (progress < 1) {
+        animationFrameId = requestAnimationFrame(animate);
+      }
+    };
+
+    animationFrameId = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [isInView, value]);
+
+  return <span>{displayValue}</span>;
 }
 
 function StatCard({ stat, delay }: { stat: typeof STATS[0]; delay: number }) {
