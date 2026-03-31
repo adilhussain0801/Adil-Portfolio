@@ -92,7 +92,7 @@ function ProjectCard({
   return (
     <motion.div
       ref={animRef}
-      className="w-full py-6 relative"
+      className="w-full h-full relative"
       initial={{ opacity: 0, y: 80 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -103,7 +103,7 @@ function ProjectCard({
       {project.type === "special" ? (
         <a
           href={`/work/${project.id}`}
-          className="group block rounded-2xl overflow-hidden relative cursor-pointer w-full h-[78vh]"
+          className="group block rounded-2xl overflow-hidden relative cursor-pointer w-full h-full"
           style={{ background: "linear-gradient(135deg, #3d1f6b 0%, #1a1040 50%, #0d0824 100%)" }}
           onMouseEnter={() => setHoveredId(project.id)}
           onMouseLeave={() => setHoveredId(null)}
@@ -129,7 +129,7 @@ function ProjectCard({
       ) : (
         <a
           href={`/work/${project.id}`}
-          className="group relative block rounded-2xl overflow-hidden cursor-pointer w-full h-[78vh]"
+          className="group relative block rounded-2xl overflow-hidden cursor-pointer w-full h-full"
           onMouseEnter={() => setHoveredId(project.id)}
           onMouseLeave={() => setHoveredId(null)}
         >
@@ -189,9 +189,9 @@ export default function RecentWorkSection() {
 
   return (
     <section id="work-showcase" className="py-24 md:py-40 px-6 md:px-24" style={{ background: "#FAF8F5" }}>
-      <div className="flex flex-col md:flex-row gap-12 md:gap-24">
+      <div className="flex flex-col md:flex-row gap-12 md:gap-24 h-screen overflow-hidden">
         {/* Left: Heading + dots */}
-        <div className="md:w-1/3 flex-shrink-0">
+        <div className="md:w-1/3 flex-shrink-0 overflow-y-auto">
           <div className="md:sticky md:top-32 flex flex-col gap-8">
             <h2
               style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
@@ -241,18 +241,19 @@ export default function RecentWorkSection() {
           </div>
         </div>
 
-        {/* Right: Projects */}
-        <div className="md:w-2/3">
+        {/* Right: Projects - scroll snap */}
+        <div className="md:w-2/3 h-screen overflow-y-scroll" style={{ scrollSnapType: "y mandatory", scrollbarWidth: "none" }}>
           <div className="flex flex-col gap-0">
             {PROJECTS.map((project, i) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                index={i}
-                hoveredId={hoveredId}
-                setHoveredId={setHoveredId}
-                onVisible={setActiveIndex}
-              />
+              <div key={project.id} className="h-screen snap-start snap-always">
+                <ProjectCard
+                  project={project}
+                  index={i}
+                  hoveredId={hoveredId}
+                  setHoveredId={setHoveredId}
+                  onVisible={setActiveIndex}
+                />
+              </div>
             ))}
           </div>
         </div>
