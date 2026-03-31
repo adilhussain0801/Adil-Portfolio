@@ -362,82 +362,92 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
 
   if (steps && steps.length > 0) {
     return (
-      <>
-        {/* Slide 1: Hero Statement */}
-        <section
-          className="relative min-h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-24 overflow-hidden py-20"
-          style={{ background: "#FAF8F5" }}
-        >
-          <SnapReveal>
-            <div className="max-w-5xl ml-auto text-right">
-              <h2
-                className="text-2xl md:text-3xl leading-tight text-foreground mb-6 flex-shrink-0"
-                style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
-              >
-                The challenge
-              </h2>
-              <p
-                className="text-lg md:text-xl leading-relaxed text-foreground"
-                style={{ fontFamily: "'Wotfard', sans-serif" }}
-              >
-                {heroStatement}
-              </p>
-            </div>
-          </SnapReveal>
-        </section>
+      <section
+        className="relative snap-start snap-always"
+        style={{ background: "#FAF8F5" }}
+      >
+        <div className="flex flex-col md:flex-row gap-8 md:gap-14">
+          {/* Fixed left title */}
+          <div className="md:sticky md:top-0 md:h-screen md:w-1/3 flex-shrink-0 flex flex-col justify-center px-6 md:px-24 py-20 md:py-0">
+            <h2
+              className="text-2xl md:text-3xl leading-tight text-foreground"
+              style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+            >
+              The challenge
+            </h2>
+          </div>
 
-        {/* Slide 2: Current State Journey */}
-        <section
-          className="relative min-h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-24 overflow-hidden py-20"
-          style={{ background: "#FAF8F5" }}
-        >
-          <SnapReveal>
-            <div className="max-w-5xl ml-auto text-right">
-              <p
-                className="text-[10px] uppercase tracking-widest font-semibold text-foreground/30 mb-6"
-                style={{ fontFamily: "'Wotfard', sans-serif" }}
-              >
-                Current state — Taylor's day
-              </p>
-              <div className="flex justify-end">
-                <ChallengeTimeline steps={steps} inView={true} />
-              </div>
+          {/* Scrolling right content */}
+          <div className="md:w-2/3 flex flex-col">
+            {/* Slide 1: Hero Statement */}
+            <div
+              className="relative min-h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-0 md:pr-24 py-20"
+              style={{ background: "#FAF8F5" }}
+            >
+              <SnapReveal>
+                <div>
+                  <p
+                    className="text-lg md:text-xl leading-relaxed text-foreground"
+                    style={{ fontFamily: "'Wotfard', sans-serif" }}
+                  >
+                    {heroStatement}
+                  </p>
+                </div>
+              </SnapReveal>
             </div>
-          </SnapReveal>
-        </section>
 
-        {/* Slide 3: Pain Points */}
-        <section
-          className="relative min-h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-24 overflow-hidden py-20"
-          style={{ background: "#FAF8F5" }}
-        >
-          <SnapReveal>
-            <div className="max-w-5xl ml-auto text-right">
-              <p
-                className="text-[10px] uppercase tracking-widest font-semibold text-foreground/30 mb-6"
-                style={{ fontFamily: "'Wotfard', sans-serif" }}
-              >
-                Pain points
-              </p>
-              <ul className="flex flex-col gap-2">
-                {study.challenge.bullets.map((bullet, i) => (
-                  <SnapReveal key={i} delay={0.05 + i * 0.06}>
-                    <li className="flex items-start gap-2 justify-end">
-                      <span
-                        className="text-xs leading-relaxed text-foreground/70"
-                        style={{ fontFamily: "'Wotfard', sans-serif" }}
-                      >
-                        {bullet}
-                      </span>
-                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#E8654B]/60 flex-shrink-0" />
-                    </li>
-                  </SnapReveal>
-                ))}
-              </ul>
+            {/* Slide 2: Current State Journey */}
+            <div
+              className="relative min-h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-0 md:pr-24 py-20"
+              style={{ background: "#FAF8F5" }}
+            >
+              <SnapReveal>
+                <div>
+                  <p
+                    className="text-[10px] uppercase tracking-widest font-semibold text-foreground/30 mb-6"
+                    style={{ fontFamily: "'Wotfard', sans-serif" }}
+                  >
+                    Current state — Taylor's day
+                  </p>
+                  <ChallengeTimeline steps={steps} inView={true} />
+                </div>
+              </SnapReveal>
             </div>
-          </SnapReveal>
-        </section>
-      </>
+
+            {/* Slide 3: Pain Points */}
+            <div
+              className="relative min-h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-0 md:pr-24 py-20"
+              style={{ background: "#FAF8F5" }}
+            >
+              <SnapReveal>
+                <div>
+                  <p
+                    className="text-[10px] uppercase tracking-widest font-semibold text-foreground/30 mb-6"
+                    style={{ fontFamily: "'Wotfard', sans-serif" }}
+                  >
+                    Pain points
+                  </p>
+                  <ul className="flex flex-col gap-2">
+                    {study.challenge.bullets.map((bullet, i) => (
+                      <SnapReveal key={i} delay={0.05 + i * 0.06}>
+                        <li className="flex items-start gap-2">
+                          <span
+                            className="text-xs leading-relaxed text-foreground/70"
+                            style={{ fontFamily: "'Wotfard', sans-serif" }}
+                          >
+                            {bullet}
+                          </span>
+                          <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#E8654B]/60 flex-shrink-0" />
+                        </li>
+                      </SnapReveal>
+                    ))}
+                  </ul>
+                </div>
+              </SnapReveal>
+            </div>
+          </div>
+        </div>
+      </section>
     );
   }
 
