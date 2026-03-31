@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useMotionValue, useTransform } from "framer-motion";
 
 const STATS = [
   {
@@ -28,22 +28,22 @@ const STATS = [
   },
 ];
 
-function AnimatedNumber({ value, isInView }: { value: number; isInView: boolean }) {
-  const displayValue = isInView ? value : 0;
-  
+function AnimatedCounter({ value, isInView }: { value: number; isInView: boolean }) {
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (latest) => Math.round(latest));
+
+  if (isInView) {
+    count.set(value);
+  }
+
   return (
     <motion.span
-      initial={{ opacity: 0 }}
-      animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+      transition={{
+        duration: 2,
+        ease: "easeOut",
+      }}
     >
-      <motion.span
-        key={displayValue}
-        initial={{ y: 10, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
-        {displayValue}
-      </motion.span>
+      {rounded}
     </motion.span>
   );
 }
@@ -73,7 +73,7 @@ function StatCard({ stat, delay }: { stat: typeof STATS[0]; delay: number }) {
         }}
       >
         {stat.prefix}
-        <AnimatedNumber value={stat.value} isInView={isInView} />
+        <AnimatedCounter value={stat.value} isInView={isInView} />
         {stat.suffix}
       </div>
       <p
