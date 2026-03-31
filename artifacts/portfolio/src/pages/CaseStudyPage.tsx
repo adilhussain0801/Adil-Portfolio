@@ -366,73 +366,75 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
         className="relative min-h-screen snap-start snap-always"
         style={{ background: "#FAF8F5" }}
       >
-        {/* Sticky title */}
-        <div className="md:fixed md:left-6 md:top-1/2 md:-translate-y-1/2 md:z-10 px-6 md:px-24 py-20 md:py-0">
-          <h2
-            className="text-2xl leading-tight text-foreground whitespace-nowrap"
-            style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
-          >
-            The challenge
-          </h2>
-        </div>
-
-        {/* Full-width scrollable content */}
-        <div className="flex flex-col">
-          {/* Slide 1: Hero Statement */}
-          <div className="h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-24 py-20">
-            <SnapReveal>
-              <div className="flex gap-4 max-w-5xl">
-                <Quote className="w-8 h-8 text-[#E8654B] flex-shrink-0 -rotate-180 mt-1" strokeWidth={1.5} />
-                <p
-                  className="text-lg md:text-xl leading-relaxed text-foreground italic"
-                  style={{ fontFamily: "'Wotfard', sans-serif" }}
-                >
-                  {heroStatement}
-                </p>
-              </div>
-            </SnapReveal>
+        <div className="flex flex-col md:flex-row gap-8 md:gap-24">
+          {/* Sticky title on the left */}
+          <div className="md:sticky md:top-1/2 md:-translate-y-1/2 md:h-fit md:w-1/4 flex-shrink-0 px-6 md:px-24 py-20 md:py-0">
+            <h2
+              className="text-2xl md:text-3xl leading-tight text-foreground"
+              style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+            >
+              The challenge
+            </h2>
           </div>
 
-          {/* Slide 2: Current State Journey */}
-          <div className="h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-24 py-20">
-            <SnapReveal>
-              <div className="max-w-5xl">
-                <p
-                  className="text-[10px] uppercase tracking-widest font-semibold text-foreground/30 mb-6"
-                  style={{ fontFamily: "'Wotfard', sans-serif" }}
-                >
-                  Current state — Taylor's day
-                </p>
-                <ChallengeTimeline steps={steps} inView={true} />
-              </div>
-            </SnapReveal>
-          </div>
+          {/* Scrollable content on the right */}
+          <div className="md:w-3/4 flex flex-col">
+            {/* Slide 1: Hero Statement */}
+            <div className="h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-0 md:pr-24 py-20">
+              <SnapReveal>
+                <div className="flex gap-4">
+                  <Quote className="w-8 h-8 text-[#E8654B] flex-shrink-0 -rotate-180 mt-1" strokeWidth={1.5} />
+                  <p
+                    className="text-lg md:text-xl leading-relaxed text-foreground italic"
+                    style={{ fontFamily: "'Wotfard', sans-serif" }}
+                  >
+                    {heroStatement}
+                  </p>
+                </div>
+              </SnapReveal>
+            </div>
 
-          {/* Slide 3: Pain Points */}
-          <div className="h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-24 py-20">
-            <SnapReveal>
-              <div className="max-w-5xl">
-                <p
-                  className="text-[10px] uppercase tracking-widest font-semibold text-foreground/30 mb-6"
-                  style={{ fontFamily: "'Wotfard', sans-serif" }}
-                >
-                  Pain points
-                </p>
-                <ul className="flex flex-col gap-3">
-                  {study.challenge.bullets.map((bullet, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#2D2D2D]/40 flex-shrink-0" />
-                      <span
-                        className="text-sm leading-relaxed text-foreground/70"
-                        style={{ fontFamily: "'Wotfard', sans-serif" }}
-                      >
-                        {bullet}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </SnapReveal>
+            {/* Slide 2: Current State Journey */}
+            <div className="h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-0 md:pr-24 py-20">
+              <SnapReveal>
+                <div>
+                  <p
+                    className="text-[10px] uppercase tracking-widest font-semibold text-foreground/30 mb-6"
+                    style={{ fontFamily: "'Wotfard', sans-serif" }}
+                  >
+                    Current state — Taylor's day
+                  </p>
+                  <ChallengeTimeline steps={steps} inView={true} />
+                </div>
+              </SnapReveal>
+            </div>
+
+            {/* Slide 3: Pain Points */}
+            <div className="h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-0 md:pr-24 py-20">
+              <SnapReveal>
+                <div>
+                  <p
+                    className="text-[10px] uppercase tracking-widest font-semibold text-foreground/30 mb-6"
+                    style={{ fontFamily: "'Wotfard', sans-serif" }}
+                  >
+                    Pain points
+                  </p>
+                  <ul className="flex flex-col gap-3">
+                    {study.challenge.bullets.map((bullet, i) => (
+                      <li key={i} className="flex items-start gap-3">
+                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#2D2D2D]/40 flex-shrink-0" />
+                        <span
+                          className="text-sm leading-relaxed text-foreground/70"
+                          style={{ fontFamily: "'Wotfard', sans-serif" }}
+                        >
+                          {bullet}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </SnapReveal>
+            </div>
           </div>
         </div>
       </section>
