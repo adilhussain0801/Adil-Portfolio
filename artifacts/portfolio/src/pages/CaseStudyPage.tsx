@@ -1,7 +1,7 @@
 import { useParams, Link } from "wouter";
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Quote } from "lucide-react";
 import { getCaseStudy, getNextCaseStudy, type CaseStudy } from "@/data/caseStudies";
 import NotFound from "@/pages/not-found";
 
@@ -366,9 +366,9 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
         className="relative snap-start snap-always"
         style={{ background: "#FAF8F5" }}
       >
-        <div className="flex flex-col md:flex-row gap-8 md:gap-14">
+        <div className="flex flex-col md:flex-row gap-8 md:gap-14 md:min-h-screen">
           {/* Fixed left title */}
-          <div className="md:sticky md:top-0 md:h-screen md:w-1/3 flex-shrink-0 flex flex-col justify-center px-6 md:px-24 py-20 md:py-0">
+          <div className="md:sticky md:top-1/2 md:-translate-y-1/2 md:w-1/3 flex-shrink-0 px-6 md:px-24 py-20 md:py-0">
             <h2
               className="text-2xl md:text-3xl leading-tight text-foreground"
               style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
@@ -378,19 +378,20 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
           </div>
 
           {/* Scrolling right content */}
-          <div className="md:w-2/3 flex flex-col md:pt-[25vh]">
+          <div className="md:w-2/3 flex flex-col md:pt-[50vh]">
             {/* Slide 1: Hero Statement */}
             <div
               className="relative min-h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-0 md:pr-24 py-20"
               style={{ background: "#FAF8F5" }}
             >
               <SnapReveal>
-                <div className="border-l-4 border-[#E8654B] pl-6">
+                <div className="flex gap-4">
+                  <Quote className="w-8 h-8 text-[#E8654B] flex-shrink-0 -rotate-180 mt-1" strokeWidth={1.5} />
                   <p
                     className="text-lg md:text-xl leading-relaxed text-foreground italic"
                     style={{ fontFamily: "'Wotfard', sans-serif" }}
                   >
-                    "{heroStatement}"
+                    {heroStatement}
                   </p>
                 </div>
               </SnapReveal>
