@@ -1,7 +1,7 @@
 import { useParams, Link } from "wouter";
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowLeft, ArrowUpRight, Quote } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Quote, Inbox, SearchCode, Clock } from "lucide-react";
 import { getCaseStudy, getNextCaseStudy, type CaseStudy } from "@/data/caseStudies";
 import NotFound from "@/pages/not-found";
 
@@ -339,28 +339,9 @@ function ChallengeTimeline({
   ];
 
   const icons = [
-    /* monitor/inbox icon */
-    (color: string) => (
-      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-        <rect x="1.5" y="1.5" width="15" height="11" rx="2" stroke={color} strokeWidth="1.3" fill="none" />
-        <path d="M1.5 10h4l1.5 3h4l1.5-3H18" stroke={color} strokeWidth="1.3" strokeLinejoin="round" />
-      </svg>
-    ),
-    /* asterisk/scatter icon */
-    (color: string) => (
-      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-        <line x1="9" y1="1" x2="9" y2="17" stroke={color} strokeWidth="1.4" strokeLinecap="round" />
-        <line x1="1" y1="5" x2="17" y2="13" stroke={color} strokeWidth="1.4" strokeLinecap="round" />
-        <line x1="17" y1="5" x2="1" y2="13" stroke={color} strokeWidth="1.4" strokeLinecap="round" />
-      </svg>
-    ),
-    /* clock icon */
-    (color: string) => (
-      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-        <circle cx="9" cy="9" r="7" stroke={color} strokeWidth="1.3" fill="none" />
-        <path d="M9 5v4l2.5 2" stroke={color} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
+    (color: string) => <Inbox size={18} color={color} strokeWidth={1.5} />,
+    (color: string) => <SearchCode size={18} color={color} strokeWidth={1.5} />,
+    (color: string) => <Clock size={18} color={color} strokeWidth={1.5} />,
   ];
 
   return (
