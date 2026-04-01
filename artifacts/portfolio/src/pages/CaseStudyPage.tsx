@@ -360,7 +360,6 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
             {/* Slides 2–4: One slide per challenge group */}
             {groups.map((group, gi) => {
               const p = CHALLENGE_PALETTE[gi % CHALLENGE_PALETTE.length];
-              const IconEl = CHALLENGE_ICONS[gi % CHALLENGE_ICONS.length];
               return (
                 <div
                   key={gi}
@@ -368,16 +367,13 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                 >
                   <SnapReveal>
                     <div className="flex flex-col gap-6 max-w-xl">
-                      {/* Number + Icon */}
-                      <div className="flex items-start justify-between">
-                        <p
-                          className="text-7xl font-bold tabular-nums leading-none"
-                          style={{ color: p.numColor, fontFamily: "'Wotfard', sans-serif" }}
-                        >
-                          {String(gi + 1).padStart(2, "0")}
-                        </p>
-                        {IconEl(p.accentColor)}
-                      </div>
+                      {/* Number */}
+                      <p
+                        className="text-7xl font-bold tabular-nums leading-none"
+                        style={{ color: p.numColor, fontFamily: "'Wotfard', sans-serif" }}
+                      >
+                        {String(gi + 1).padStart(2, "0")}
+                      </p>
 
                       {/* Stage label */}
                       <p
