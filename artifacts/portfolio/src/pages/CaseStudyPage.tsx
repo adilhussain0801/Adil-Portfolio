@@ -310,7 +310,7 @@ function ChallengeTimeline({
   bullets,
   inView,
 }: {
-  groups: Array<{ phase: string; steps: Array<{ title: string; description: string }> }>;
+  groups: Array<{ phase: string; description: string; label: string; steps: Array<{ title: string; description: string }> }>;
   bullets: string[];
   inView: boolean;
 }) {
@@ -318,136 +318,121 @@ function ChallengeTimeline({
     {
       cardBg: "#F5F3F0",
       cardBorder: "#E8DFD7",
-      dotColor: "#FCD34D",
-      iconBg: "#FCD34D",
-      headerText: "#92400E",
-      arrowColor: "#FCD34D",
+      numColor: "#D4C4B0",
+      iconBg: "#E8654B",
+      labelColor: "#E8654B",
     },
     {
       cardBg: "#F0F4F8",
       cardBorder: "#D6E4F0",
-      dotColor: "#60A5FA",
-      iconBg: "#60A5FA",
-      headerText: "#1E40AF",
-      arrowColor: "#93C5FD",
+      numColor: "#B8CDD9",
+      iconBg: "#3B82F6",
+      labelColor: "#3B82F6",
     },
     {
       cardBg: "#F5F0F3",
       cardBorder: "#EFDBEB",
-      dotColor: "#EC4899",
+      numColor: "#D4B8C8",
       iconBg: "#EC4899",
-      headerText: "#831843",
-      arrowColor: "#F472B6",
+      labelColor: "#EC4899",
     },
+  ];
+
+  const icons = [
+    /* inbox/tray icon */
+    <svg key="0" width="14" height="14" viewBox="0 0 14 14" fill="none">
+      <rect x="1" y="1" width="12" height="12" rx="2" stroke="white" strokeWidth="1.2" fill="none" />
+      <path d="M1 9h3l1 2h4l1-2h3" stroke="white" strokeWidth="1.2" strokeLinejoin="round" />
+    </svg>,
+    /* asterisk/scatter icon */
+    <svg key="1" width="14" height="14" viewBox="0 0 14 14" fill="none">
+      <line x1="7" y1="1" x2="7" y2="13" stroke="white" strokeWidth="1.3" strokeLinecap="round" />
+      <line x1="1" y1="4" x2="13" y2="10" stroke="white" strokeWidth="1.3" strokeLinecap="round" />
+      <line x1="13" y1="4" x2="1" y2="10" stroke="white" strokeWidth="1.3" strokeLinecap="round" />
+    </svg>,
+    /* clock icon */
+    <svg key="2" width="14" height="14" viewBox="0 0 14 14" fill="none">
+      <circle cx="7" cy="7" r="5.5" stroke="white" strokeWidth="1.2" fill="none" />
+      <path d="M7 4v3l2 1.5" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>,
   ];
 
   return (
     <div className="flex flex-col gap-5">
       {/* Phase Cards Row */}
-      <div className="flex items-stretch gap-0">
+      <div className="flex items-stretch gap-4">
         {groups.map((group, gi) => {
           const p = palette[gi % palette.length];
           return (
-            <div key={gi} className="flex items-center flex-1 min-w-0">
-              {/* Card */}
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-                transition={{ duration: 0.45, ease: EASE, delay: 0.1 + gi * 0.15 }}
-                className="flex-1 rounded-2xl flex flex-col gap-4 p-5 min-w-0"
-                style={{
-                  backgroundColor: p.cardBg,
-                  border: `1.5px solid ${p.cardBorder}`,
-                }}
+            <motion.div
+              key={gi}
+              initial={{ opacity: 0, y: 16 }}
+              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+              transition={{ duration: 0.5, ease: EASE, delay: 0.1 + gi * 0.15 }}
+              className="flex-1 rounded-2xl flex flex-col p-5 min-w-0"
+              style={{
+                backgroundColor: p.cardBg,
+                border: `1.5px solid ${p.cardBorder}`,
+              }}
+            >
+              {/* Top row: number + icon */}
+              <div className="flex items-start justify-between mb-5">
+                <p
+                  className="text-3xl font-bold tabular-nums leading-none"
+                  style={{ color: p.numColor, fontFamily: "'Wotfard', sans-serif" }}
+                >
+                  {String(gi + 1).padStart(2, "0")}
+                </p>
+                <div
+                  className="w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0"
+                  style={{ backgroundColor: p.iconBg }}
+                >
+                  {icons[gi % icons.length]}
+                </div>
+              </div>
+
+              {/* Phase title */}
+              <h3
+                className="text-base font-bold leading-snug text-[#1a1a1a] mb-3"
+                style={{ fontFamily: "'Wotfard', sans-serif" }}
               >
-                {/* Phase header */}
-                <div className="flex items-center gap-2.5">
-                  <div
-                    className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
-                    style={{ backgroundColor: p.iconBg }}
-                  >
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                      <rect x="1" y="1" width="5" height="5" rx="1" fill="white" fillOpacity="0.9" />
-                      <rect x="8" y="1" width="5" height="5" rx="1" fill="white" fillOpacity="0.9" />
-                      <rect x="1" y="8" width="5" height="5" rx="1" fill="white" fillOpacity="0.9" />
-                      <rect x="8" y="8" width="5" height="5" rx="1" fill="white" fillOpacity="0.5" />
-                    </svg>
-                  </div>
-                  <h3
-                    className="text-sm font-bold leading-tight"
-                    style={{ color: p.headerText, fontFamily: "'Wotfard', sans-serif" }}
-                  >
-                    {group.phase}
-                  </h3>
-                </div>
+                {group.phase}
+              </h3>
 
-                {/* Steps */}
-                <ul className="flex flex-col gap-3">
-                  {group.steps.map((step, si) => (
-                    <motion.li
-                      key={si}
-                      initial={{ opacity: 0, x: 8 }}
-                      animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 8 }}
-                      transition={{ duration: 0.35, ease: EASE, delay: 0.25 + gi * 0.15 + si * 0.1 }}
-                      className="flex items-start gap-2.5"
-                    >
-                      <div className="flex-shrink-0 flex flex-col items-center gap-1 mt-0.5">
-                        <div
-                          className="w-2 h-2 rounded-full"
-                          style={{ backgroundColor: p.dotColor }}
-                        />
-                        {si < group.steps.length - 1 && (
-                          <div className="w-px h-full min-h-[16px]" style={{ backgroundColor: p.cardBorder }} />
-                        )}
-                      </div>
-                      <div className="flex flex-col gap-0.5">
-                        <p
-                          className="text-sm font-semibold text-[#1a1a1a] leading-snug"
-                          style={{ fontFamily: "'Wotfard', sans-serif" }}
-                        >
-                          {step.title}
-                        </p>
-                        <p
-                          className="text-xs text-[#1a1a1a]/50 leading-relaxed"
-                          style={{ fontFamily: "'Wotfard', sans-serif" }}
-                        >
-                          {step.description}
-                        </p>
-                      </div>
-                    </motion.li>
-                  ))}
-                </ul>
-              </motion.div>
+              {/* Description */}
+              <p
+                className="text-xs leading-relaxed text-[#1a1a1a]/60 flex-1"
+                style={{ fontFamily: "'Wotfard', sans-serif" }}
+              >
+                {group.description}
+              </p>
 
-              {/* Arrow between cards */}
-              {gi < groups.length - 1 && (
-                <div className="flex-shrink-0 flex items-center px-2">
-                  <svg width="36" height="12" viewBox="0 0 36 12" fill="none">
-                    <line
-                      x1="0" y1="6" x2="28" y2="6"
-                      stroke={p.arrowColor}
-                      strokeWidth="1.5"
-                      strokeDasharray="4 3"
-                    />
-                    <path d="M26 2L32 6L26 10" stroke={p.arrowColor} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-                  </svg>
-                </div>
-              )}
-            </div>
+              {/* Label */}
+              <div className="flex items-center gap-1.5 mt-5">
+                <div
+                  className="w-2 h-2 rounded-full flex-shrink-0"
+                  style={{ backgroundColor: p.labelColor }}
+                />
+                <p
+                  className="text-[10px] font-bold tracking-widest uppercase"
+                  style={{ color: p.labelColor, fontFamily: "'Wotfard', sans-serif" }}
+                >
+                  {group.label}
+                </p>
+              </div>
+            </motion.div>
           );
         })}
       </div>
 
-      {/* Dark footer — pain points */}
+      {/* Footer — pain points */}
       {bullets && bullets.length > 0 && (
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
           transition={{ duration: 0.45, ease: EASE, delay: 0.55 }}
           className="rounded-2xl px-6 py-5"
-          style={{
-            background: "linear-gradient(to right, #1a1a1a 0%, #3a1a10 100%)",
-          }}
+          style={{ background: "linear-gradient(to right, #1a1a1a 0%, #3a1a10 100%)" }}
         >
           <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-3">
             {bullets.map((b, i) => (
@@ -457,10 +442,7 @@ function ChallengeTimeline({
                   <line x1="7" y1="5" x2="7" y2="8" stroke="#F59E0B" strokeWidth="1.2" strokeLinecap="round" />
                   <circle cx="7" cy="10" r="0.6" fill="#F59E0B" />
                 </svg>
-                <span
-                  className="text-xs text-white/70 leading-relaxed"
-                  style={{ fontFamily: "'Wotfard', sans-serif" }}
-                >
+                <span className="text-xs text-white/70 leading-relaxed" style={{ fontFamily: "'Wotfard', sans-serif" }}>
                   {b}
                 </span>
               </div>

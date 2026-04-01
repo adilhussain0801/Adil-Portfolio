@@ -36,6 +36,8 @@ export interface CaseStudy {
     timelineSteps?: Array<{ title: string; description: string }>;
     timelineGroups?: Array<{
       phase: string;
+      description: string;
+      label: string;
       steps: Array<{ title: string; description: string }>;
     }>;
   };
@@ -371,6 +373,8 @@ export const CASE_STUDIES: CaseStudy[] = [
       timelineGroups: [
         {
           phase: "Intake & Ambiguity",
+          description: "Unstructured requests arrive across multiple channels, requiring manual triage and clarification loops before work can begin.",
+          label: "HIGH FRICTION",
           steps: [
             { title: "A new request arrives", description: "Unstructured, missing info" },
             { title: "Reaching out for clarity", description: "Multiple back-and-forth" },
@@ -378,6 +382,8 @@ export const CASE_STUDIES: CaseStudy[] = [
         },
         {
           phase: "Investigation & Fragmentation",
+          description: "Context is scattered across disparate tools. Agents constantly switch context between Jira, Confluence, and internal wikis.",
+          label: "CONTEXT LOSS",
           steps: [
             { title: "Searching across tools", description: "Slack, Confluence, Jira" },
             { title: "Context is scattered", description: "Docs, chats, tickets" },
@@ -385,6 +391,8 @@ export const CASE_STUDIES: CaseStudy[] = [
         },
         {
           phase: "Resolution & Effort",
+          description: "Significant manual hours spent synthesizing data into actionable plans, delaying time-to-resolution.",
+          label: "MANUAL SINK",
           steps: [
             { title: "Piecing together a plan", description: "Manual, error-prone" },
             { title: "Resolved after hours", description: "High effort, low efficiency" },
