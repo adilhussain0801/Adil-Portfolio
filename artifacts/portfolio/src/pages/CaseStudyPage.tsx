@@ -316,28 +316,28 @@ function ChallengeTimeline({
 }) {
   const palette = [
     {
-      cardBg: "#FFFBEB",
-      cardBorder: "#FDE68A",
-      dotColor: "#F59E0B",
+      cardBg: "#F5F3F0",
+      cardBorder: "#E8DFD7",
+      dotColor: "#FCD34D",
       iconBg: "#FCD34D",
       headerText: "#92400E",
       arrowColor: "#FCD34D",
     },
     {
-      cardBg: "#EFF6FF",
-      cardBorder: "#BFDBFE",
-      dotColor: "#3B82F6",
+      cardBg: "#F0F4F8",
+      cardBorder: "#D6E4F0",
+      dotColor: "#60A5FA",
       iconBg: "#60A5FA",
       headerText: "#1E40AF",
       arrowColor: "#93C5FD",
     },
     {
-      cardBg: "#FFF1F2",
-      cardBorder: "#FECDD3",
-      dotColor: "#F43F5E",
-      iconBg: "#FB7185",
-      headerText: "#9F1239",
-      arrowColor: "#FCA5A5",
+      cardBg: "#F5F0F3",
+      cardBorder: "#EFDBEB",
+      dotColor: "#EC4899",
+      iconBg: "#EC4899",
+      headerText: "#831843",
+      arrowColor: "#F472B6",
     },
   ];
 
@@ -604,30 +604,6 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
 }
 
 function ProcessSection({ study }: { study: CaseStudy }) {
-  const lightPalette = [
-    {
-      cardBg: "#F5F3F0",
-      cardBorder: "#E8DFD7",
-      iconBg: "#FCD34D",
-      headerText: "#92400E",
-      descText: "#6B5B4B",
-    },
-    {
-      cardBg: "#F0F4F8",
-      cardBorder: "#D6E4F0",
-      iconBg: "#60A5FA",
-      headerText: "#1E40AF",
-      descText: "#3D4F63",
-    },
-    {
-      cardBg: "#F5F0F3",
-      cardBorder: "#EFDBEB",
-      iconBg: "#EC4899",
-      headerText: "#831843",
-      descText: "#6B4559",
-    },
-  ];
-
   return (
     <section
       className="relative h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-24 overflow-hidden"
@@ -641,60 +617,31 @@ function ProcessSection({ study }: { study: CaseStudy }) {
           Process
         </h2>
       </SnapReveal>
-      <div className="flex items-stretch gap-4 max-w-5xl">
-        {study.process.map((step, i) => {
-          const p = lightPalette[i % lightPalette.length];
-          return (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, ease: EASE, delay: 0.06 + i * 0.1 }}
-              className="flex-1 rounded-2xl flex flex-col gap-4 p-6 min-w-0 relative"
-              style={{
-                backgroundColor: p.cardBg,
-                border: `1.5px solid ${p.cardBorder}`,
-              }}
-            >
-              {/* Header with number and icon */}
-              <div className="flex items-start justify-between">
-                <p
-                  className="text-sm font-bold tabular-nums"
-                  style={{ color: p.headerText, fontFamily: "'Wotfard', sans-serif" }}
-                >
-                  {step.number}
-                </p>
-                <div
-                  className="w-6 h-6 rounded flex items-center justify-center flex-shrink-0"
-                  style={{ backgroundColor: p.iconBg }}
-                >
-                  <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
-                    <rect x="1" y="1" width="5" height="5" rx="1" fill="white" fillOpacity="0.9" />
-                    <rect x="8" y="1" width="5" height="5" rx="1" fill="white" fillOpacity="0.9" />
-                    <rect x="1" y="8" width="5" height="5" rx="1" fill="white" fillOpacity="0.9" />
-                    <rect x="8" y="8" width="5" height="5" rx="1" fill="white" fillOpacity="0.5" />
-                  </svg>
-                </div>
-              </div>
-
-              {/* Title */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl">
+        {study.process.map((step, i) => (
+          <SnapReveal key={i} delay={0.06 + i * 0.07}>
+            <div className="rounded-2xl bg-[#F0EDE8] px-6 py-6 flex flex-col gap-2">
+              <p
+                className="text-xs font-bold text-[#2D2D2D]/30 tabular-nums"
+                style={{ fontFamily: "'Wotfard', sans-serif" }}
+              >
+                {step.number}
+              </p>
               <h3
-                className="text-base font-bold leading-tight"
-                style={{ color: p.headerText, fontFamily: "'Wotfard', sans-serif" }}
+                className="text-base md:text-lg font-bold text-[#2D2D2D]"
+                style={{ fontFamily: "'Wotfard', sans-serif" }}
               >
                 {step.title}
               </h3>
-
-              {/* Description */}
               <p
-                className="text-xs leading-relaxed"
-                style={{ color: p.descText, fontFamily: "'Wotfard', sans-serif" }}
+                className="text-sm leading-relaxed text-[#2D2D2D]/70"
+                style={{ fontFamily: "'Wotfard', sans-serif" }}
               >
                 {step.description}
               </p>
-            </motion.div>
-          );
-        })}
+            </div>
+          </SnapReveal>
+        ))}
       </div>
     </section>
   );
