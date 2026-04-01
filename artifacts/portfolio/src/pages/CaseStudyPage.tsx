@@ -339,22 +339,28 @@ function ChallengeTimeline({
   ];
 
   const icons = [
-    /* inbox/tray icon */
-    <svg key="0" width="14" height="14" viewBox="0 0 14 14" fill="none">
-      <rect x="1" y="1" width="12" height="12" rx="2" stroke="white" strokeWidth="1.2" fill="none" />
-      <path d="M1 9h3l1 2h4l1-2h3" stroke="white" strokeWidth="1.2" strokeLinejoin="round" />
-    </svg>,
+    /* monitor/inbox icon */
+    (color: string) => (
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <rect x="1.5" y="1.5" width="15" height="11" rx="2" stroke={color} strokeWidth="1.3" fill="none" />
+        <path d="M1.5 10h4l1.5 3h4l1.5-3H18" stroke={color} strokeWidth="1.3" strokeLinejoin="round" />
+      </svg>
+    ),
     /* asterisk/scatter icon */
-    <svg key="1" width="14" height="14" viewBox="0 0 14 14" fill="none">
-      <line x1="7" y1="1" x2="7" y2="13" stroke="white" strokeWidth="1.3" strokeLinecap="round" />
-      <line x1="1" y1="4" x2="13" y2="10" stroke="white" strokeWidth="1.3" strokeLinecap="round" />
-      <line x1="13" y1="4" x2="1" y2="10" stroke="white" strokeWidth="1.3" strokeLinecap="round" />
-    </svg>,
+    (color: string) => (
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <line x1="9" y1="1" x2="9" y2="17" stroke={color} strokeWidth="1.4" strokeLinecap="round" />
+        <line x1="1" y1="5" x2="17" y2="13" stroke={color} strokeWidth="1.4" strokeLinecap="round" />
+        <line x1="17" y1="5" x2="1" y2="13" stroke={color} strokeWidth="1.4" strokeLinecap="round" />
+      </svg>
+    ),
     /* clock icon */
-    <svg key="2" width="14" height="14" viewBox="0 0 14 14" fill="none">
-      <circle cx="7" cy="7" r="5.5" stroke="white" strokeWidth="1.2" fill="none" />
-      <path d="M7 4v3l2 1.5" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>,
+    (color: string) => (
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="7" stroke={color} strokeWidth="1.3" fill="none" />
+        <path d="M9 5v4l2.5 2" stroke={color} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
   ];
 
   return (
@@ -378,16 +384,13 @@ function ChallengeTimeline({
               {/* Top row: number + icon */}
               <div className="flex items-start justify-between mb-5">
                 <p
-                  className="text-3xl font-bold tabular-nums leading-none"
+                  className="text-5xl font-bold tabular-nums leading-none"
                   style={{ color: p.numColor, fontFamily: "'Wotfard', sans-serif" }}
                 >
                   {String(gi + 1).padStart(2, "0")}
                 </p>
-                <div
-                  className="w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0"
-                  style={{ backgroundColor: p.iconBg }}
-                >
-                  {icons[gi % icons.length]}
+                <div className="flex-shrink-0">
+                  {icons[gi % icons.length](p.iconBg)}
                 </div>
               </div>
 
