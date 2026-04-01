@@ -38,6 +38,10 @@ export interface CaseStudy {
       phase: string;
       description: string;
       label: string;
+      timelineProgress: number;
+      timelineEndLabel: string;
+      timelineMarkers: [string, string, string];
+      metric: { value: string; label: string };
       steps: Array<{ title: string; description: string }>;
     }>;
   };
@@ -375,6 +379,10 @@ export const CASE_STUDIES: CaseStudy[] = [
           phase: "Intake & Ambiguity",
           description: "Unstructured requests arrive across multiple channels, requiring manual triage and clarification loops before work can begin.",
           label: "HIGH FRICTION",
+          timelineProgress: 22,
+          timelineEndLabel: "HIGH FRICTION",
+          timelineMarkers: ["Ticket received", "Clarification loop", "Assignment"] as [string, string, string],
+          metric: { value: "65%", label: "of incoming tickets lack complete information" },
           steps: [
             { title: "A new request arrives", description: "Unstructured, missing info" },
             { title: "Reaching out for clarity", description: "Multiple back-and-forth" },
@@ -384,6 +392,10 @@ export const CASE_STUDIES: CaseStudy[] = [
           phase: "Investigation & Fragmentation",
           description: "Context is scattered across disparate tools. Agents constantly switch context between Jira, Confluence, and internal wikis.",
           label: "CONTEXT LOSS",
+          timelineProgress: 58,
+          timelineEndLabel: "CONTEXT SCATTERED",
+          timelineMarkers: ["Intake", "Tool switching", "Context found"] as [string, string, string],
+          metric: { value: "3+", label: "tools opened per request on average" },
           steps: [
             { title: "Searching across tools", description: "Slack, Confluence, Jira" },
             { title: "Context is scattered", description: "Docs, chats, tickets" },
@@ -391,8 +403,12 @@ export const CASE_STUDIES: CaseStudy[] = [
         },
         {
           phase: "Resolution & Effort",
-          description: "Significant manual hours spent synthesizing data into actionable plans, delaying time-to-resolution.",
+          description: "Manual synthesis of fragmented context leads to extensive delays before a resolution plan is even drafted.",
           label: "MANUAL SINK",
+          timelineProgress: 84,
+          timelineEndLabel: "RESOLUTION DRAFTED",
+          timelineMarkers: ["0h", "Context gathering", "Action"] as [string, string, string],
+          metric: { value: "2.5hrs", label: "average manual resolution time per request" },
           steps: [
             { title: "Piecing together a plan", description: "Manual, error-prone" },
             { title: "Resolved after hours", description: "High effort, low efficiency" },

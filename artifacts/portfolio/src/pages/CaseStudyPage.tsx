@@ -305,138 +305,17 @@ function TaylorAvatar({ activeStep }: { activeStep: number }) {
   );
 }
 
-function ChallengeTimeline({
-  groups,
-  bullets,
-  inView,
-}: {
-  groups: Array<{ phase: string; description: string; label: string; steps: Array<{ title: string; description: string }> }>;
-  bullets: string[];
-  inView: boolean;
-}) {
-  const palette = [
-    {
-      cardBg: "#F5F3F0",
-      cardBorder: "#E8DFD7",
-      numColor: "#D4C4B0",
-      iconBg: "#E8654B",
-      labelColor: "#E8654B",
-    },
-    {
-      cardBg: "#F0F4F8",
-      cardBorder: "#D6E4F0",
-      numColor: "#B8CDD9",
-      iconBg: "#3B82F6",
-      labelColor: "#3B82F6",
-    },
-    {
-      cardBg: "#F5F0F3",
-      cardBorder: "#EFDBEB",
-      numColor: "#D4B8C8",
-      iconBg: "#EC4899",
-      labelColor: "#EC4899",
-    },
-  ];
+const CHALLENGE_PALETTE = [
+  { cardBg: "#F5F3F0", cardBorder: "#E8DFD7", numColor: "#D4C4B0", accentColor: "#E8654B" },
+  { cardBg: "#F0F4F8", cardBorder: "#D6E4F0", numColor: "#B8CDD9", accentColor: "#3B82F6" },
+  { cardBg: "#F5F0F3", cardBorder: "#EFDBEB", numColor: "#D4B8C8", accentColor: "#EC4899" },
+];
 
-  const icons = [
-    (color: string) => <Inbox size={18} color={color} strokeWidth={1.5} />,
-    (color: string) => <SearchCode size={18} color={color} strokeWidth={1.5} />,
-    (color: string) => <Clock size={18} color={color} strokeWidth={1.5} />,
-  ];
-
-  return (
-    <div className="flex flex-col gap-5">
-      {/* Phase Cards Row */}
-      <div className="flex items-stretch gap-4">
-        {groups.map((group, gi) => {
-          const p = palette[gi % palette.length];
-          return (
-            <motion.div
-              key={gi}
-              initial={{ opacity: 0, y: 16 }}
-              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-              transition={{ duration: 0.5, ease: EASE, delay: 0.1 + gi * 0.15 }}
-              className="flex-1 rounded-2xl flex flex-col p-5 min-w-0"
-              style={{
-                backgroundColor: p.cardBg,
-                border: `1.5px solid ${p.cardBorder}`,
-              }}
-            >
-              {/* Top row: number + icon */}
-              <div className="flex items-start justify-between mb-5">
-                <p
-                  className="text-5xl font-bold tabular-nums leading-none"
-                  style={{ color: p.numColor, fontFamily: "'Wotfard', sans-serif" }}
-                >
-                  {String(gi + 1).padStart(2, "0")}
-                </p>
-                <div className="flex-shrink-0">
-                  {icons[gi % icons.length](p.iconBg)}
-                </div>
-              </div>
-
-              {/* Phase title */}
-              <h3
-                className="text-base font-bold leading-snug text-[#1a1a1a] mb-3"
-                style={{ fontFamily: "'Wotfard', sans-serif" }}
-              >
-                {group.phase}
-              </h3>
-
-              {/* Description */}
-              <p
-                className="text-xs leading-relaxed text-[#1a1a1a]/60 flex-1"
-                style={{ fontFamily: "'Wotfard', sans-serif" }}
-              >
-                {group.description}
-              </p>
-
-              {/* Label */}
-              <div className="flex items-center gap-1.5 mt-5">
-                <div
-                  className="w-2 h-2 rounded-full flex-shrink-0"
-                  style={{ backgroundColor: p.labelColor }}
-                />
-                <p
-                  className="text-[10px] font-bold tracking-widest uppercase"
-                  style={{ color: p.labelColor, fontFamily: "'Wotfard', sans-serif" }}
-                >
-                  {group.label}
-                </p>
-              </div>
-            </motion.div>
-          );
-        })}
-      </div>
-
-      {/* Footer — pain points */}
-      {bullets && bullets.length > 0 && (
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
-          transition={{ duration: 0.45, ease: EASE, delay: 0.55 }}
-          className="rounded-2xl px-6 py-5"
-          style={{ background: "linear-gradient(to right, #1a1a1a 0%, #3a1a10 100%)" }}
-        >
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-3">
-            {bullets.map((b, i) => (
-              <div key={i} className="flex items-center gap-2">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="flex-shrink-0">
-                  <path d="M7 1L13 12H1L7 1Z" stroke="#F59E0B" strokeWidth="1.2" strokeLinejoin="round" fill="none" />
-                  <line x1="7" y1="5" x2="7" y2="8" stroke="#F59E0B" strokeWidth="1.2" strokeLinecap="round" />
-                  <circle cx="7" cy="10" r="0.6" fill="#F59E0B" />
-                </svg>
-                <span className="text-xs text-white/70 leading-relaxed" style={{ fontFamily: "'Wotfard', sans-serif" }}>
-                  {b}
-                </span>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-      )}
-    </div>
-  );
-}
+const CHALLENGE_ICONS = [
+  (color: string) => <Inbox size={20} color={color} strokeWidth={1.5} />,
+  (color: string) => <SearchCode size={20} color={color} strokeWidth={1.5} />,
+  (color: string) => <Clock size={20} color={color} strokeWidth={1.5} />,
+];
 
 function ChallengeSection({ study }: { study: CaseStudy }) {
   const groups = study.challenge.timelineGroups;
@@ -478,20 +357,117 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
               </SnapReveal>
             </div>
 
-            {/* Slide 2: Current State Journey (grouped cards) */}
-            <div className="h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-0 md:pr-24 py-20">
-              <SnapReveal>
-                <div>
-                  <ChallengeTimeline
-                    groups={groups}
-                    bullets={[]}
-                    inView={true}
-                  />
-                </div>
-              </SnapReveal>
-            </div>
+            {/* Slides 2–4: One slide per challenge group */}
+            {groups.map((group, gi) => {
+              const p = CHALLENGE_PALETTE[gi % CHALLENGE_PALETTE.length];
+              const IconEl = CHALLENGE_ICONS[gi % CHALLENGE_ICONS.length];
+              return (
+                <div
+                  key={gi}
+                  className="h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-0 md:pr-24 py-20"
+                >
+                  <SnapReveal>
+                    <div className="flex flex-col gap-6 max-w-xl">
+                      {/* Number + Icon */}
+                      <div className="flex items-start justify-between">
+                        <p
+                          className="text-7xl font-bold tabular-nums leading-none"
+                          style={{ color: p.numColor, fontFamily: "'Wotfard', sans-serif" }}
+                        >
+                          {String(gi + 1).padStart(2, "0")}
+                        </p>
+                        {IconEl(p.accentColor)}
+                      </div>
 
-            {/* Slide 3: Pain Points */}
+                      {/* Stage label */}
+                      <p
+                        className="text-xs font-bold tracking-widest uppercase"
+                        style={{ color: p.accentColor, fontFamily: "'Wotfard', sans-serif" }}
+                      >
+                        Stage {gi + 1} friction
+                      </p>
+
+                      {/* Phase title */}
+                      <h3
+                        className="text-2xl md:text-3xl font-bold leading-tight text-[#1a1a1a] -mt-3"
+                        style={{ fontFamily: "'Wotfard', sans-serif" }}
+                      >
+                        {group.phase}
+                      </h3>
+
+                      {/* Description */}
+                      <p
+                        className="text-sm leading-relaxed text-[#1a1a1a]/60"
+                        style={{ fontFamily: "'Wotfard', sans-serif" }}
+                      >
+                        {group.description}
+                      </p>
+
+                      {/* Progress bar */}
+                      <div className="flex flex-col gap-2">
+                        <div className="flex items-center justify-between">
+                          <span
+                            className="text-[10px] font-bold tracking-widest uppercase text-[#1a1a1a]/40"
+                            style={{ fontFamily: "'Wotfard', sans-serif" }}
+                          >
+                            Intake
+                          </span>
+                          <span
+                            className="text-[10px] font-bold tracking-widest uppercase"
+                            style={{ color: p.accentColor, fontFamily: "'Wotfard', sans-serif" }}
+                          >
+                            {group.timelineEndLabel}
+                          </span>
+                        </div>
+                        <div className="relative h-2 rounded-full overflow-hidden bg-[#E8E4DE]">
+                          <motion.div
+                            className="absolute left-0 top-0 h-full rounded-full"
+                            initial={{ width: 0 }}
+                            animate={{ width: `${group.timelineProgress}%` }}
+                            transition={{ duration: 1, ease: EASE, delay: 0.3 }}
+                            style={{
+                              background: "linear-gradient(to right, #22c55e 0%, #eab308 50%, #ef4444 100%)",
+                            }}
+                          />
+                        </div>
+                        <div className="flex items-center justify-between">
+                          {group.timelineMarkers.map((m, mi) => (
+                            <span
+                              key={mi}
+                              className="text-[10px] text-[#1a1a1a]/40"
+                              style={{ fontFamily: "'Wotfard', sans-serif" }}
+                            >
+                              {m}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Metric callout */}
+                      <div
+                        className="rounded-2xl px-6 py-5 text-center"
+                        style={{ backgroundColor: p.cardBg, border: `1.5px solid ${p.cardBorder}` }}
+                      >
+                        <p
+                          className="text-4xl font-bold mb-1"
+                          style={{ color: p.accentColor, fontFamily: "'Wotfard', sans-serif" }}
+                        >
+                          {group.metric.value}
+                        </p>
+                        <p
+                          className="text-[10px] font-bold tracking-widest uppercase text-[#1a1a1a]/50"
+                          style={{ fontFamily: "'Wotfard', sans-serif" }}
+                        >
+                          {group.metric.label}
+                        </p>
+                      </div>
+                    </div>
+                  </SnapReveal>
+                </div>
+              );
+            })}
+
+            {/* Final slide: Pain Points */}
             <div className="h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-0 md:pr-24 py-20">
               <SnapReveal>
                 <ul className="flex flex-col gap-5">
