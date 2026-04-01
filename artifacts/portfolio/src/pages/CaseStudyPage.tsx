@@ -148,7 +148,7 @@ function CaseStudyHeroBg() {
 function HeroSection({ study }: { study: CaseStudy }) {
   return (
     <section
-      className="relative h-screen snap-start snap-always flex flex-col justify-end px-6 md:px-24 pt-32 pb-0 overflow-hidden"
+      className="relative h-screen snap-start snap-always flex flex-col justify-end pt-32 pb-0 overflow-hidden"
       style={{ backgroundColor: study.heroColor }}
     >
       <motion.div
@@ -159,7 +159,7 @@ function HeroSection({ study }: { study: CaseStudy }) {
       >
         <CaseStudyHeroBg />
       </motion.div>
-      <motion.div className="relative z-10 max-w-5xl" {...fadeUp(0.1)}>
+      <motion.div className="relative z-10 max-w-3xl mx-auto w-full px-6" {...fadeUp(0.1)}>
         <p
           className="text-xs uppercase tracking-widest font-semibold text-black/50 mb-4"
           style={{ fontFamily: "'Wotfard', sans-serif" }}
@@ -183,30 +183,32 @@ function HeroSection({ study }: { study: CaseStudy }) {
         {!study.subtitle && <div className="mb-10 md:mb-14" />}
       </motion.div>
       <motion.div
-        className="relative z-10 rounded-t-2xl bg-[#1a1a1a] px-6 md:px-10 py-6 flex flex-wrap items-center justify-between gap-6"
+        className="relative z-10 max-w-3xl mx-auto w-full px-6"
         {...fadeUp(0.25)}
       >
-        <div className="flex flex-wrap gap-8">
-          <div>
-            <p className="text-[10px] uppercase tracking-widest text-white/40 mb-1">Role</p>
-            <p className="text-sm font-semibold text-white" style={{ fontFamily: "'Wotfard', sans-serif" }}>{study.role}</p>
-          </div>
-          <div>
-            <p className="text-[10px] uppercase tracking-widest text-white/40 mb-1">Platform</p>
-            <p className="text-sm font-semibold text-white" style={{ fontFamily: "'Wotfard', sans-serif" }}>{study.platform}</p>
-          </div>
-          <div>
-            <p className="text-[10px] uppercase tracking-widest text-white/40 mb-1">Timeline</p>
-            <p className="text-sm font-semibold text-white" style={{ fontFamily: "'Wotfard', sans-serif" }}>{study.timeline}</p>
-          </div>
-        </div>
-        <div className="flex gap-8">
-          {study.metrics.map((m, i) => (
-            <div key={i} className="text-right">
-              <p className="md:text-sm font-bold text-[#E8654B] text-[14px]" style={{ fontFamily: "'Wotfard', sans-serif" }}>{m.value}</p>
-              <p className="text-[10px] uppercase tracking-widest text-white/40">{m.label}</p>
+        <div className="rounded-t-2xl bg-[#1a1a1a] px-6 md:px-10 py-6 flex flex-wrap items-center justify-between gap-6">
+          <div className="flex flex-wrap gap-8">
+            <div>
+              <p className="text-[10px] uppercase tracking-widest text-white/40 mb-1">Role</p>
+              <p className="text-sm font-semibold text-white" style={{ fontFamily: "'Wotfard', sans-serif" }}>{study.role}</p>
             </div>
-          ))}
+            <div>
+              <p className="text-[10px] uppercase tracking-widest text-white/40 mb-1">Platform</p>
+              <p className="text-sm font-semibold text-white" style={{ fontFamily: "'Wotfard', sans-serif" }}>{study.platform}</p>
+            </div>
+            <div>
+              <p className="text-[10px] uppercase tracking-widest text-white/40 mb-1">Timeline</p>
+              <p className="text-sm font-semibold text-white" style={{ fontFamily: "'Wotfard', sans-serif" }}>{study.timeline}</p>
+            </div>
+          </div>
+          <div className="flex gap-8">
+            {study.metrics.map((m, i) => (
+              <div key={i} className="text-right">
+                <p className="md:text-sm font-bold text-[#E8654B] text-[14px]" style={{ fontFamily: "'Wotfard', sans-serif" }}>{m.value}</p>
+                <p className="text-[10px] uppercase tracking-widest text-white/40">{m.label}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </motion.div>
     </section>
@@ -216,20 +218,18 @@ function HeroSection({ study }: { study: CaseStudy }) {
 function OverviewSection({ study }: { study: CaseStudy }) {
   return (
     <section
-      className="relative h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-24 overflow-hidden"
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
       style={{ background: "#FAF8F5" }}
     >
       <SnapReveal>
-        <div className="flex flex-col md:flex-row gap-12 md:gap-24 max-w-5xl">
-          <div className="md:w-1/3 flex-shrink-0">
-            <h2
-              className="text-2xl md:text-3xl leading-tight text-foreground"
-              style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
-            >
-              Overview
-            </h2>
-          </div>
-          <div className="md:w-2/3 flex flex-col gap-5">
+        <div className="max-w-3xl mx-auto w-full px-6">
+          <h2
+            className="text-2xl md:text-3xl leading-tight text-foreground mb-8"
+            style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+          >
+            Overview
+          </h2>
+          <div className="flex flex-col gap-5">
             {study.overview.split("\n\n").map((para, i) => (
               <p
                 key={i}
@@ -329,44 +329,39 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
         className="relative min-h-screen snap-start snap-always"
         style={{ background: "#FAF8F5" }}
       >
-        <div className="flex flex-col md:flex-row gap-8 md:gap-24">
-          {/* Sticky title on the left */}
-          <div className="md:sticky md:top-1/2 md:-translate-y-1/2 md:h-fit md:w-1/4 flex-shrink-0 px-6 md:px-24 py-20 md:py-0">
-            <h2
-              className="text-2xl md:text-3xl leading-tight text-foreground"
-              style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+        {/* Slide 1: Hero Statement */}
+        <div className="h-screen snap-start snap-always flex flex-col justify-center py-20">
+          <div className="max-w-3xl mx-auto w-full px-6">
+            <p
+              className="text-xs uppercase tracking-widest font-semibold text-[#2D2D2D]/40 mb-8"
+              style={{ fontFamily: "'Wotfard', sans-serif" }}
             >
               The challenge
-            </h2>
-          </div>
-
-          {/* Scrollable content on the right */}
-          <div className="md:w-3/4 flex flex-col">
-            {/* Slide 1: Hero Statement */}
-            <div className="h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-0 md:pr-24 py-20">
-              <SnapReveal>
-                <div className="flex gap-4">
-                  <Quote className="w-8 h-8 text-[#E8654B] flex-shrink-0 -rotate-180 mt-1" strokeWidth={1.5} />
-                  <p
-                    className="text-lg md:text-xl leading-relaxed text-foreground italic"
-                    style={{ fontFamily: "'Wotfard', sans-serif" }}
-                  >
-                    {heroStatement}
-                  </p>
-                </div>
-              </SnapReveal>
-            </div>
-
-            {/* Slides 2–4: One slide per challenge group */}
-            {groups.map((group, gi) => {
-              const p = CHALLENGE_PALETTE[gi % CHALLENGE_PALETTE.length];
-              return (
-                <div
-                  key={gi}
-                  className="h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-0 md:pr-24 py-20"
+            </p>
+            <SnapReveal>
+              <div className="flex gap-4">
+                <Quote className="w-8 h-8 text-[#E8654B] flex-shrink-0 -rotate-180 mt-1" strokeWidth={1.5} />
+                <p
+                  className="text-lg md:text-xl leading-relaxed text-foreground italic"
+                  style={{ fontFamily: "'Wotfard', sans-serif" }}
                 >
-                  <SnapReveal>
-                    <div className="flex flex-col gap-6 max-w-xl">
+                  {heroStatement}
+                </p>
+              </div>
+            </SnapReveal>
+          </div>
+        </div>
+
+        {/* Slides 2–4: One slide per challenge group */}
+        {groups.map((group, gi) => {
+          const p = CHALLENGE_PALETTE[gi % CHALLENGE_PALETTE.length];
+          return (
+            <div
+              key={gi}
+              className="h-screen snap-start snap-always flex flex-col justify-center py-20"
+            >
+              <SnapReveal>
+                <div className="max-w-2xl mx-auto w-full px-6 flex flex-col gap-6">
                       {/* Number */}
                       <p
                         className="text-7xl font-bold tabular-nums leading-none"
@@ -457,42 +452,42 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                           {group.metric.label}
                         </p>
                       </div>
-                    </div>
-                  </SnapReveal>
                 </div>
-              );
-            })}
-
-            {/* Final slide: Pain Points */}
-            <div className="h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-0 md:pr-24 py-20">
-              <SnapReveal>
-                <ul className="flex flex-col gap-5">
-                  {study.challenge.bullets.map((b, i) => (
-                    <motion.li
-                      key={i}
-                      initial={{ opacity: 0, x: -16 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.4, ease: EASE, delay: 0.1 + i * 0.1 }}
-                      className="flex items-start gap-3 p-4 rounded-xl transition-colors hover:bg-[#E8654B]/5 group"
-                    >
-                      <div className="flex-shrink-0 mt-1 w-6 h-6 rounded-full bg-[#E8654B]/15 flex items-center justify-center group-hover:bg-[#E8654B]/25">
-                        <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
-                          <path d="M7 1L13 12H1L7 1Z" stroke="#E8654B" strokeWidth="1.2" strokeLinejoin="round" fill="none" />
-                          <line x1="7" y1="5" x2="7" y2="8" stroke="#E8654B" strokeWidth="1.2" strokeLinecap="round" />
-                          <circle cx="7" cy="10" r="0.6" fill="#E8654B" />
-                        </svg>
-                      </div>
-                      <span
-                        className="text-sm leading-relaxed text-foreground/80 pt-0.5"
-                        style={{ fontFamily: "'Wotfard', sans-serif" }}
-                      >
-                        {b}
-                      </span>
-                    </motion.li>
-                  ))}
-                </ul>
               </SnapReveal>
             </div>
+          );
+        })}
+
+        {/* Final slide: Pain Points */}
+        <div className="h-screen snap-start snap-always flex flex-col justify-center py-20">
+          <div className="max-w-3xl mx-auto w-full px-6">
+            <SnapReveal>
+              <ul className="flex flex-col gap-5">
+                {study.challenge.bullets.map((b, i) => (
+                  <motion.li
+                    key={i}
+                    initial={{ opacity: 0, x: -16 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, ease: EASE, delay: 0.1 + i * 0.1 }}
+                    className="flex items-start gap-3 p-4 rounded-xl transition-colors hover:bg-[#E8654B]/5 group"
+                  >
+                    <div className="flex-shrink-0 mt-1 w-6 h-6 rounded-full bg-[#E8654B]/15 flex items-center justify-center group-hover:bg-[#E8654B]/25">
+                      <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+                        <path d="M7 1L13 12H1L7 1Z" stroke="#E8654B" strokeWidth="1.2" strokeLinejoin="round" fill="none" />
+                        <line x1="7" y1="5" x2="7" y2="8" stroke="#E8654B" strokeWidth="1.2" strokeLinecap="round" />
+                        <circle cx="7" cy="10" r="0.6" fill="#E8654B" />
+                      </svg>
+                    </div>
+                    <span
+                      className="text-sm leading-relaxed text-foreground/80 pt-0.5"
+                      style={{ fontFamily: "'Wotfard', sans-serif" }}
+                    >
+                      {b}
+                    </span>
+                  </motion.li>
+                ))}
+              </ul>
+            </SnapReveal>
           </div>
         </div>
       </section>
@@ -501,40 +496,36 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
 
   return (
     <section
-      className="relative h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-24 overflow-hidden"
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
       style={{ background: "#FAF8F5" }}
     >
       <SnapReveal>
-        <div className="flex flex-col md:flex-row gap-12 md:gap-24 max-w-5xl">
-          <div className="md:w-1/3 flex-shrink-0">
-            <h2
-              className="text-2xl md:text-3xl leading-tight text-foreground"
-              style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
-            >
-              The challenge
-            </h2>
-          </div>
-          <div className="md:w-2/3 flex flex-col gap-6">
-            <p
-              className="text-base md:text-lg leading-relaxed text-foreground/80"
-              style={{ fontFamily: "'Wotfard', sans-serif" }}
-            >
-              {study.challenge.text}
-            </p>
-            <ul className="flex flex-col gap-3">
-              {study.challenge.bullets.map((bullet, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#2D2D2D]/40 flex-shrink-0" />
-                  <span
-                    className="text-sm leading-relaxed text-foreground/70"
-                    style={{ fontFamily: "'Wotfard', sans-serif" }}
-                  >
-                    {bullet}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
+        <div className="max-w-3xl mx-auto w-full px-6 flex flex-col gap-6">
+          <h2
+            className="text-2xl md:text-3xl leading-tight text-foreground"
+            style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+          >
+            The challenge
+          </h2>
+          <p
+            className="text-base md:text-lg leading-relaxed text-foreground/80"
+            style={{ fontFamily: "'Wotfard', sans-serif" }}
+          >
+            {study.challenge.text}
+          </p>
+          <ul className="flex flex-col gap-3">
+            {study.challenge.bullets.map((bullet, i) => (
+              <li key={i} className="flex items-start gap-3">
+                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#2D2D2D]/40 flex-shrink-0" />
+                <span
+                  className="text-sm leading-relaxed text-foreground/70"
+                  style={{ fontFamily: "'Wotfard', sans-serif" }}
+                >
+                  {bullet}
+                </span>
+              </li>
+            ))}
+          </ul>
         </div>
       </SnapReveal>
     </section>
@@ -544,18 +535,19 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
 function ProcessSection({ study }: { study: CaseStudy }) {
   return (
     <section
-      className="relative h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-24 overflow-hidden"
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
       style={{ background: "#FAF8F5" }}
     >
-      <SnapReveal>
-        <h2
-          className="text-2xl md:text-3xl leading-tight text-foreground mb-10 max-w-5xl"
-          style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
-        >
-          Process
-        </h2>
-      </SnapReveal>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl">
+      <div className="max-w-3xl mx-auto w-full px-6">
+        <SnapReveal>
+          <h2
+            className="text-2xl md:text-3xl leading-tight text-foreground mb-10"
+            style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+          >
+            Process
+          </h2>
+        </SnapReveal>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {study.process.map((step, i) => (
           <SnapReveal key={i} delay={0.06 + i * 0.07}>
             <div className="rounded-2xl bg-[#F0EDE8] px-6 py-6 flex flex-col gap-2">
@@ -580,6 +572,7 @@ function ProcessSection({ study }: { study: CaseStudy }) {
             </div>
           </SnapReveal>
         ))}
+        </div>
       </div>
     </section>
   );
@@ -588,39 +581,35 @@ function ProcessSection({ study }: { study: CaseStudy }) {
 function SolutionSection({ study }: { study: CaseStudy }) {
   return (
     <section
-      className="relative h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-24 overflow-hidden"
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
       style={{ background: "#FAF8F5" }}
     >
       <SnapReveal>
-        <div className="max-w-5xl flex flex-col gap-8">
-          <div className="flex flex-col md:flex-row gap-10 md:gap-24">
-            <div className="md:w-1/3 flex-shrink-0">
-              <h2
-                className="text-2xl md:text-3xl leading-tight text-foreground"
-                style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
-              >
-                The solution
-              </h2>
-            </div>
-            <div className="md:w-2/3 flex flex-col gap-3">
-              <h3
-                className="text-xl md:text-2xl font-bold text-foreground"
-                style={{ fontFamily: "'Wotfard', sans-serif" }}
-              >
-                {study.solution.title}
-              </h3>
-              <p
-                className="text-base leading-relaxed text-foreground/70"
-                style={{ fontFamily: "'Wotfard', sans-serif" }}
-              >
-                {study.solution.description}
-              </p>
-            </div>
+        <div className="max-w-3xl mx-auto w-full px-6 flex flex-col gap-8">
+          <div>
+            <h2
+              className="text-2xl md:text-3xl leading-tight text-foreground mb-3"
+              style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+            >
+              The solution
+            </h2>
+            <h3
+              className="text-lg md:text-xl font-bold text-foreground mb-2"
+              style={{ fontFamily: "'Wotfard', sans-serif" }}
+            >
+              {study.solution.title}
+            </h3>
+            <p
+              className="text-base leading-relaxed text-foreground/70"
+              style={{ fontFamily: "'Wotfard', sans-serif" }}
+            >
+              {study.solution.description}
+            </p>
           </div>
 
           <div
             className="w-full rounded-2xl overflow-hidden flex-shrink-0"
-            style={{ backgroundColor: study.heroColor, height: "180px" }}
+            style={{ backgroundColor: study.heroColor, height: "160px" }}
           >
             <img
               src={study.image}
@@ -657,24 +646,25 @@ function SolutionSection({ study }: { study: CaseStudy }) {
 function ImpactSection({ study }: { study: CaseStudy }) {
   return (
     <section
-      className="relative h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-24 overflow-hidden"
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
       style={{ background: "#FAF8F5" }}
     >
-      <SnapReveal>
-        <h2
-          className="text-2xl md:text-3xl leading-tight text-foreground mb-14 max-w-5xl"
-          style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
-        >
-          Impact
-        </h2>
-      </SnapReveal>
-      <div className="flex flex-col md:flex-row gap-0 divide-y md:divide-y-0 md:divide-x divide-[#e8e4de] max-w-5xl">
-        {study.impact.map((item, i) => (
-          <SnapReveal
-            key={i}
-            delay={0.08 + i * 0.1}
-            className="flex-1 px-0 md:px-10 py-8 md:py-0 first:pl-0 last:pr-0 flex flex-col gap-2"
+      <div className="max-w-3xl mx-auto w-full px-6">
+        <SnapReveal>
+          <h2
+            className="text-2xl md:text-3xl leading-tight text-foreground mb-14"
+            style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
           >
+            Impact
+          </h2>
+        </SnapReveal>
+        <div className="flex flex-col md:flex-row gap-0 divide-y md:divide-y-0 md:divide-x divide-[#e8e4de]">
+          {study.impact.map((item, i) => (
+            <SnapReveal
+              key={i}
+              delay={0.08 + i * 0.1}
+              className="flex-1 px-0 md:px-8 py-8 md:py-0 first:pl-0 last:pr-0 flex flex-col gap-2"
+            >
             <p
               className="text-4xl md:text-5xl font-bold text-[#E8654B]"
               style={{ fontFamily: "'Wotfard', sans-serif" }}
@@ -693,8 +683,9 @@ function ImpactSection({ study }: { study: CaseStudy }) {
             >
               {item.description}
             </p>
-          </SnapReveal>
-        ))}
+            </SnapReveal>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -706,11 +697,11 @@ function NextProjectSection({ study }: { study: CaseStudy }) {
 
   return (
     <section
-      className="relative h-screen snap-start snap-always flex flex-col justify-center px-6 md:px-24 overflow-hidden"
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
       style={{ background: "#FAF8F5" }}
     >
       <SnapReveal>
-        <div className="max-w-5xl">
+        <div className="max-w-3xl mx-auto w-full px-6">
           <p
             className="text-xs uppercase tracking-widest font-semibold text-[#2D2D2D]/40 mb-6"
             style={{ fontFamily: "'Wotfard', sans-serif" }}
