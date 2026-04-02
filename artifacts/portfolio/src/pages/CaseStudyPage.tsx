@@ -159,7 +159,7 @@ function HeroSection({ study }: { study: CaseStudy }) {
       >
         <CaseStudyHeroBg />
       </motion.div>
-      <motion.div className="relative z-10 max-w-3xl mx-auto w-full px-6" {...fadeUp(0.1)}>
+      <motion.div className="relative z-10 w-full px-6 md:px-24" {...fadeUp(0.1)}>
         <p
           className="text-xs uppercase tracking-widest font-semibold text-black/50 mb-4"
           style={{ fontFamily: "'Wotfard', sans-serif" }}
@@ -183,7 +183,7 @@ function HeroSection({ study }: { study: CaseStudy }) {
         {!study.subtitle && <div className="mb-10 md:mb-14" />}
       </motion.div>
       <motion.div
-        className="relative z-10 max-w-3xl mx-auto w-full px-6"
+        className="relative z-10 w-full px-6 md:px-24"
         {...fadeUp(0.25)}
       >
         <div className="rounded-t-2xl bg-[#1a1a1a] px-6 md:px-10 py-6 flex flex-wrap items-center justify-between gap-6">
