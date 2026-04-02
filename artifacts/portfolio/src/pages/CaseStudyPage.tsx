@@ -1051,7 +1051,6 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
   const [hovered, setHovered] = useState<string | null>(null);
 
   const sections = useMemo(() => [
-    { id: "section-hero", label: "Introduction" },
     { id: "section-overview", label: "Overview" },
     { id: "section-challenge", label: "Challenge" },
     { id: "section-process", label: study.id === 4 ? "Competitors" : "Process" },
@@ -1060,6 +1059,11 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
     { id: "section-impact", label: "Impact" },
     { id: "section-next", label: "Next Project" },
   ], [study.id]);
+
+  const allSections = useMemo(() => [
+    { id: "section-hero" },
+    ...sections,
+  ], [sections]);
 
   useEffect(() => {
     const container = scrollRef.current;
@@ -1072,12 +1076,12 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
       },
       { root: container, threshold: 0.5 }
     );
-    sections.forEach(({ id }) => {
+    allSections.forEach(({ id }) => {
       const el = container.querySelector(`#${id}`);
       if (el) observer.observe(el);
     });
     return () => observer.disconnect();
-  }, [scrollRef, sections]);
+  }, [scrollRef, allSections]);
 
   const scrollTo = (id: string) => {
     const container = scrollRef.current;
@@ -1086,42 +1090,51 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
     if (el) (el as HTMLElement).scrollIntoView({ behavior: "smooth" });
   };
 
+  const visible = active !== "section-hero";
+
   return (
-    <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-3 items-end pointer-events-none">
+    <motion.div
+      className="fixed left-6 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-3 items-start pointer-events-none"
+      initial={{ opacity: 0, x: -16 }}
+      animate={{ opacity: visible ? 1 : 0, x: visible ? 0 : -16 }}
+      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+    >
       {sections.map(({ id, label }) => {
         const isActive = active === id;
         const isHovered = hovered === id;
         return (
           <div
             key={id}
-            className="relative flex items-center gap-2 pointer-events-auto"
+            className="relative flex items-center gap-3 pointer-events-auto"
             style={{ cursor: "pointer" }}
             onMouseEnter={() => setHovered(id)}
             onMouseLeave={() => setHovered(null)}
             onClick={() => scrollTo(id)}
           >
+            <motion.div
+              className="flex-shrink-0"
+              style={{ borderRadius: 6 }}
+              animate={{
+                width: 10,
+                height: isActive ? 36 : 10,
+                borderRadius: isActive ? 6 : 5,
+                backgroundColor: isActive ? "#E8654B" : "rgba(45,45,45,0.22)",
+              }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            />
             <motion.span
-              className="text-[10px] font-semibold whitespace-nowrap"
-              style={{ fontFamily: "'Wotfard', sans-serif", color: "rgba(45,45,45,0.55)" }}
+              className="text-sm font-semibold whitespace-nowrap"
+              style={{ fontFamily: "'Wotfard', sans-serif", color: "rgba(45,45,45,0.6)" }}
               initial={false}
-              animate={{ opacity: isHovered ? 1 : 0, x: isHovered ? 0 : 8 }}
+              animate={{ opacity: isHovered ? 1 : 0, x: isHovered ? 0 : -8 }}
               transition={{ duration: 0.15, ease: "easeOut" }}
             >
               {label}
             </motion.span>
-            <motion.div
-              className="rounded-full flex-shrink-0"
-              animate={{
-                width: isActive ? 8 : 5,
-                height: isActive ? 8 : 5,
-                backgroundColor: isActive ? "#E8654B" : "rgba(45,45,45,0.25)",
-              }}
-              transition={{ duration: 0.2 }}
-            />
           </div>
         );
       })}
-    </div>
+    </motion.div>
   );
 }
 
