@@ -1,7 +1,7 @@
 import { useParams, Link } from "wouter";
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowLeft, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, TrendingUp } from "lucide-react";
 import { getCaseStudy, getNextCaseStudy, type CaseStudy } from "@/data/caseStudies";
 import NotFound from "@/pages/not-found";
 
@@ -732,12 +732,34 @@ function IndustryTrendsSection() {
         </div>
 
         <SnapReveal delay={0.5}>
-          <p className="text-center text-sm text-[#1a1a1a]/55" style={{ fontFamily: "'Wotfard', sans-serif" }}>
-            The market is converging toward{" "}
-            <strong className="text-[#1a1a1a] font-semibold">AI agents</strong>
-            {" "}— yet only a few players combine deep workflow context with{" "}
-            <strong className="text-[#1a1a1a] font-semibold">autonomous execution</strong>.
-          </p>
+          <div
+            className="w-full rounded-2xl px-8 py-6 flex items-center gap-10 mt-4"
+            style={{ background: "#0F1117", border: "1px solid rgba(255,255,255,0.08)" }}
+          >
+            <div className="flex-1 flex flex-col gap-3">
+              <div className="flex items-center gap-2">
+                <TrendingUp size={13} style={{ color: "#06B6D4" }} />
+                <span className="text-[9px] font-bold tracking-[0.18em] uppercase" style={{ color: "#06B6D4", fontFamily: "'Wotfard', sans-serif" }}>
+                  Strategic Observation
+                </span>
+              </div>
+              <p className="text-base font-medium leading-snug text-white" style={{ fontFamily: "'Wotfard', sans-serif" }}>
+                'The market is converging toward AI agents — yet no player combines deep workflow context with autonomous execution.'
+              </p>
+            </div>
+            <div className="flex items-center gap-6 flex-shrink-0">
+              <div className="flex flex-col gap-0.5">
+                <p className="text-[9px] uppercase tracking-widest text-white/35" style={{ fontFamily: "'Wotfard', sans-serif" }}>Market Gap Index</p>
+                <p className="text-3xl font-bold text-white leading-none" style={{ fontFamily: "'Wotfard', sans-serif" }}>84.2<span className="text-lg">%</span></p>
+              </div>
+              <div
+                className="px-5 py-3 rounded-xl border text-[10px] font-bold tracking-[0.14em] uppercase text-white/70 flex-shrink-0"
+                style={{ borderColor: "rgba(255,255,255,0.18)", fontFamily: "'Wotfard', sans-serif" }}
+              >
+                Deep Dive Report
+              </div>
+            </div>
+          </div>
         </SnapReveal>
       </div>
     </section>
