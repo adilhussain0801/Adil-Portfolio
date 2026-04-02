@@ -333,49 +333,60 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
         <div className="h-screen snap-start snap-always flex flex-col justify-center py-20">
           <div className="max-w-3xl mx-auto w-full px-6">
             <SnapReveal>
-              <div
-                className="rounded-2xl px-8 pt-10 pb-8 relative"
-                style={{
-                  background: "#fff",
-                  border: "1.5px solid #E8E4DE",
-                  transform: "rotate(-1deg)",
-                }}
-              >
-                {/* Decorative quote marks image */}
+              <div className="relative pl-10">
+                {/* Quote mark image — sits left of card, overlapping its edge */}
                 <img
                   src="/quote-mark.png"
                   alt=""
-                  className="absolute -top-6 left-6 w-16 h-auto select-none pointer-events-none"
-                  style={{ mixBlendMode: "multiply" }}
+                  className="absolute left-0 top-6 w-14 h-auto z-10 select-none pointer-events-none"
                 />
 
-                {/* Label */}
-                <p
-                  className="text-[10px] font-bold tracking-widest uppercase mb-4"
-                  style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
+                {/* Card */}
+                <div
+                  className="rounded-2xl px-8 pt-7 pb-8 relative"
+                  style={{
+                    background: "#FCE8E4",
+                    transform: "rotate(1.2deg)",
+                  }}
                 >
-                  The challenge
-                </p>
+                  {/* Service Agents tag — top right */}
+                  <div className="flex justify-end mb-3">
+                    <span
+                      className="text-[10px] font-semibold text-white px-3 py-1 rounded-full"
+                      style={{ background: "#3B82F6", fontFamily: "'Wotfard', sans-serif" }}
+                    >
+                      Service Agents
+                    </span>
+                  </div>
 
-                {/* Quote text with highlights */}
-                <p
-                  className="text-lg md:text-xl leading-relaxed text-foreground italic"
-                  style={{ fontFamily: "'Wotfard', sans-serif" }}
-                >
-                  Service agents{" "}
-                  <mark style={{ background: "rgba(232,101,75,0.12)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
-                    spend more time understanding requests than resolving them
-                  </mark>
-                  . A single request requires{" "}
-                  <mark style={{ background: "rgba(232,101,75,0.12)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
-                    navigating fragmented tools
-                  </mark>
-                  , clarifying missing information, and manually stitching together a resolution plan — resulting in{" "}
-                  <mark style={{ background: "rgba(232,101,75,0.12)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
-                    delays, inefficiencies, and high cognitive load
-                  </mark>
-                  .
-                </p>
+                  {/* Label */}
+                  <p
+                    className="text-[10px] font-bold tracking-widest uppercase mb-4"
+                    style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
+                  >
+                    The challenge
+                  </p>
+
+                  {/* Quote text with highlights */}
+                  <p
+                    className="text-lg md:text-xl leading-relaxed text-[#1a1a1a]"
+                    style={{ fontFamily: "'Wotfard', sans-serif" }}
+                  >
+                    Service agents{" "}
+                    <mark style={{ background: "rgba(99,102,241,0.18)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
+                      spend more time understanding requests than resolving them
+                    </mark>
+                    . A single request requires{" "}
+                    <mark style={{ background: "rgba(99,102,241,0.18)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
+                      navigating fragmented tools
+                    </mark>
+                    , clarifying missing information, and manually stitching together a resolution plan — resulting in{" "}
+                    <mark style={{ background: "rgba(99,102,241,0.18)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
+                      delays, inefficiencies, and high cognitive load
+                    </mark>
+                    .
+                  </p>
+                </div>
               </div>
             </SnapReveal>
           </div>
