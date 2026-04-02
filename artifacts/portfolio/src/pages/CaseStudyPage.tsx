@@ -1,7 +1,7 @@
 import { useParams, Link } from "wouter";
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowLeft, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare } from "lucide-react";
 import { getCaseStudy, getNextCaseStudy, type CaseStudy } from "@/data/caseStudies";
 import NotFound from "@/pages/not-found";
 
@@ -758,6 +758,115 @@ function IndustryTrendsSection() {
   );
 }
 
+function EmergingThemesSection() {
+  const themes = [
+    {
+      number: "01",
+      watermark: "1",
+      icon: <RefreshCw size={16} />,
+      title: "Autonomous Resolution",
+      description: "Service tools are evolving from ticketing facilitators into active agents capable of resolving complex, high-volume requests end-to-end without human intervention.",
+      bottom: "stat" as const,
+    },
+    {
+      number: "02",
+      watermark: "2",
+      icon: <Network size={16} />,
+      title: "Cross-system Orchestration",
+      description: "Intelligent agents now navigate the entire enterprise stack, seamlessly executing workflows across IT infrastructure, HR systems, Identity providers, and SaaS applications.",
+      bottom: "tags" as const,
+    },
+    {
+      number: "03",
+      watermark: "3",
+      icon: <MessageSquare size={16} />,
+      title: "Conversational Interfaces",
+      description: "The interface of the future is natural language. Users and operators command complex planning and execution through sophisticated dialogue, bypassing traditional UIs.",
+      bottom: "quote" as const,
+    },
+  ];
+
+  return (
+    <section
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#0A0C0F" }}
+    >
+      <div className="max-w-5xl mx-auto w-full px-6 flex flex-col gap-5">
+        <SnapReveal>
+          <p className="text-[10px] font-bold tracking-[0.2em] uppercase" style={{ color: "#0DD9CF", fontFamily: "'Wotfard', sans-serif" }}>
+            Emerging Themes
+          </p>
+        </SnapReveal>
+        <div className="grid grid-cols-3 gap-4 h-[480px]">
+          {themes.map((t, i) => (
+            <SnapReveal key={i} delay={0.1 + i * 0.12}>
+              <div
+                className="relative h-full rounded-2xl flex flex-col justify-between p-6 overflow-hidden"
+                style={{ background: "#111318", border: "1px solid rgba(255,255,255,0.07)" }}
+              >
+                <div
+                  className="absolute right-4 top-2 font-bold select-none pointer-events-none leading-none"
+                  style={{ fontSize: "160px", color: "#0DD9CF", opacity: 0.06, fontFamily: "'Wotfard', sans-serif" }}
+                >
+                  {t.watermark}
+                </div>
+
+                <div className="flex flex-col gap-4 relative z-10">
+                  <div
+                    className="w-9 h-9 rounded-xl flex items-center justify-center"
+                    style={{ background: "rgba(13,217,207,0.15)", color: "#0DD9CF" }}
+                  >
+                    {t.icon}
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <p className="text-4xl font-bold leading-none" style={{ color: "#0DD9CF", fontFamily: "'Wotfard', sans-serif" }}>{t.number}</p>
+                    <h3 className="text-lg font-bold text-white leading-snug" style={{ fontFamily: "'Wotfard', sans-serif" }}>{t.title}</h3>
+                  </div>
+                  <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.5)", fontFamily: "'Wotfard', sans-serif" }}>{t.description}</p>
+                </div>
+
+                <div className="relative z-10 mt-4">
+                  {t.bottom === "stat" && (
+                    <div className="flex flex-col gap-2">
+                      <div className="flex items-center gap-2">
+                        <span className="text-[9px] tracking-[0.16em] uppercase font-semibold" style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'Wotfard', sans-serif" }}>Current Efficiency</span>
+                        <span className="text-[9px] font-bold" style={{ color: "#0DD9CF", fontFamily: "'Wotfard', sans-serif" }}>84.2%</span>
+                      </div>
+                      <div className="h-[3px] w-full rounded-full" style={{ background: "rgba(255,255,255,0.1)" }}>
+                        <div className="h-full rounded-full" style={{ width: "84.2%", background: "#0DD9CF" }} />
+                      </div>
+                    </div>
+                  )}
+                  {t.bottom === "tags" && (
+                    <div className="flex flex-wrap gap-2">
+                      {["ACTIVE_IT", "SEC_IDENTITY", "HR_CORE"].map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2 py-1 rounded text-[8px] font-bold tracking-widest"
+                          style={{ border: "1px solid rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.45)", fontFamily: "'Wotfard', sans-serif" }}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  {t.bottom === "quote" && (
+                    <div className="pl-3 border-l-2" style={{ borderColor: "#0DD9CF" }}>
+                      <p className="text-xs italic leading-relaxed" style={{ color: "rgba(255,255,255,0.45)", fontFamily: "'Wotfard', sans-serif" }}>
+                        "Execute full security sweep of region-west and report all drift by midnight."
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </SnapReveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function ProcessSection({ study }: { study: CaseStudy }) {
   if (study.id === 4) {
     return <IndustryTrendsSection />;
@@ -1013,6 +1122,7 @@ export default function CaseStudyPage() {
         <OverviewSection study={study} />
         <ChallengeSection study={study} />
         <ProcessSection study={study} />
+        {study.id === 4 && <EmergingThemesSection />}
         <SolutionSection study={study} />
         <ImpactSection study={study} />
         <NextProjectSection study={study} />
