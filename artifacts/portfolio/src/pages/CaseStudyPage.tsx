@@ -219,7 +219,6 @@ function OverviewSection({ study }: { study: CaseStudy }) {
   return (
     <section
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
-      style={{ background: "#FAF8F5" }}
     >
       <SnapReveal>
         <div className="max-w-3xl mx-auto w-full px-6">
@@ -327,7 +326,6 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
     return (
       <section
         className="relative min-h-screen snap-start snap-always"
-        style={{ background: "#FAF8F5" }}
       >
         {/* Slide 1: Hero Statement */}
         <div className="h-screen snap-start snap-always flex flex-col justify-center py-20">
@@ -594,7 +592,6 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
   return (
     <section
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
-      style={{ background: "#FAF8F5" }}
     >
       <SnapReveal>
         <div className="max-w-3xl mx-auto w-full px-6 flex flex-col gap-6">
@@ -633,7 +630,6 @@ function ProcessSection({ study }: { study: CaseStudy }) {
   return (
     <section
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
-      style={{ background: "#FAF8F5" }}
     >
       <div className="max-w-3xl mx-auto w-full px-6">
         <SnapReveal>
@@ -679,7 +675,6 @@ function SolutionSection({ study }: { study: CaseStudy }) {
   return (
     <section
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
-      style={{ background: "#FAF8F5" }}
     >
       <SnapReveal>
         <div className="max-w-3xl mx-auto w-full px-6 flex flex-col gap-8">
@@ -744,7 +739,6 @@ function ImpactSection({ study }: { study: CaseStudy }) {
   return (
     <section
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
-      style={{ background: "#FAF8F5" }}
     >
       <div className="max-w-3xl mx-auto w-full px-6">
         <SnapReveal>
@@ -795,7 +789,6 @@ function NextProjectSection({ study }: { study: CaseStudy }) {
   return (
     <section
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
-      style={{ background: "#FAF8F5" }}
     >
       <SnapReveal>
         <div className="max-w-3xl mx-auto w-full px-6">
@@ -861,8 +854,7 @@ export default function CaseStudyPage() {
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          opacity: 0.45,
-          mixBlendMode: "multiply",
+          opacity: 0.6,
         }}
       />
 
