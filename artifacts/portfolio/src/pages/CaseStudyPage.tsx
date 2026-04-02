@@ -219,6 +219,7 @@ function OverviewSection({ study }: { study: CaseStudy }) {
   return (
     <section
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#FAF8F5" }}
     >
       <SnapReveal>
         <div className="max-w-3xl mx-auto w-full px-6">
@@ -326,6 +327,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
     return (
       <section
         className="relative min-h-screen snap-start snap-always"
+        style={{ background: "#FAF8F5" }}
       >
         {/* Slide 1: Hero Statement */}
         <div className="h-screen snap-start snap-always flex flex-col justify-center py-20">
@@ -592,6 +594,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
   return (
     <section
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#FAF8F5" }}
     >
       <SnapReveal>
         <div className="max-w-3xl mx-auto w-full px-6 flex flex-col gap-6">
@@ -630,6 +633,7 @@ function ProcessSection({ study }: { study: CaseStudy }) {
   return (
     <section
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#FAF8F5" }}
     >
       <div className="max-w-3xl mx-auto w-full px-6">
         <SnapReveal>
@@ -675,6 +679,7 @@ function SolutionSection({ study }: { study: CaseStudy }) {
   return (
     <section
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#FAF8F5" }}
     >
       <SnapReveal>
         <div className="max-w-3xl mx-auto w-full px-6 flex flex-col gap-8">
@@ -739,6 +744,7 @@ function ImpactSection({ study }: { study: CaseStudy }) {
   return (
     <section
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#FAF8F5" }}
     >
       <div className="max-w-3xl mx-auto w-full px-6">
         <SnapReveal>
@@ -789,6 +795,7 @@ function NextProjectSection({ study }: { study: CaseStudy }) {
   return (
     <section
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#FAF8F5" }}
     >
       <SnapReveal>
         <div className="max-w-3xl mx-auto w-full px-6">
@@ -846,18 +853,6 @@ export default function CaseStudyPage() {
       className="h-screen overflow-hidden relative selection:bg-foreground selection:text-background"
       style={{ background: "#FAF8F5" }}
     >
-      {/* Decorative swirl background */}
-      <div
-        className="fixed inset-0 pointer-events-none z-0"
-        style={{
-          backgroundImage: "url('/bg-swirl.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          opacity: 0.6,
-        }}
-      />
-
       <header className="fixed top-0 left-0 right-0 z-50 py-5 px-6 md:px-24 flex items-center justify-between bg-transparent">
         <Link
           href="/"
