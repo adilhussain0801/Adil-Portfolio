@@ -644,10 +644,10 @@ function IndustryTrendsSection() {
     },
     {
       name: "zendesk",
-      nameColor: "#1F73B7",
+      nameColor: "#D97706",
       descriptor: "Clean, but ticket-bound",
-      cardBg: "#EAF3FB",
-      borderColor: "rgba(31,115,183,0.25)",
+      cardBg: "#FDF5E6",
+      borderColor: "rgba(217,119,6,0.25)",
       bgX: 201,
     },
     {
@@ -707,13 +707,8 @@ function IndustryTrendsSection() {
               className="rounded-2xl overflow-hidden flex flex-col"
               style={{ background: c.cardBg, border: `1px solid ${c.borderColor}` }}
             >
-              <div className="px-4 pt-4 pb-3">
-                <p className="text-sm font-bold leading-none" style={{ color: c.nameColor, fontFamily: "'Wotfard', sans-serif" }}>
-                  {c.name}
-                </p>
-              </div>
               <div
-                className="mx-3 rounded-xl overflow-hidden flex-shrink-0"
+                className="mx-3 mt-3 rounded-xl overflow-hidden flex-shrink-0"
                 style={{
                   height: "200px",
                   backgroundImage: "url(/competitor-overview.png)",
