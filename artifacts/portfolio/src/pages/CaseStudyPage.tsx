@@ -1,7 +1,7 @@
 import { useParams, Link } from "wouter";
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowLeft, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb } from "lucide-react";
 import { getCaseStudy, getNextCaseStudy, type CaseStudy } from "@/data/caseStudies";
 import NotFound from "@/pages/not-found";
 
@@ -636,30 +636,34 @@ function IndustryTrendsSection() {
   const competitors = [
     {
       name: "servicenow.",
-      nameColor: "#1a1a1a",
+      nameColor: "#62D84E",
       descriptor: "Workflow-heavy, AI layered",
-      cardBg: "#FFFFFF",
+      cardBg: "#EDFAE5",
+      borderColor: "rgba(98,216,78,0.25)",
       bgX: 22,
     },
     {
       name: "zendesk",
-      nameColor: "#1F73B7",
+      nameColor: "#78CD51",
       descriptor: "Clean, but ticket-bound",
-      cardBg: "#FFFFFF",
+      cardBg: "#F0FAE9",
+      borderColor: "rgba(120,205,81,0.25)",
       bgX: 201,
     },
     {
       name: "freshservice",
       nameColor: "#00A751",
       descriptor: "Automation-led ITSM",
-      cardBg: "#FFFFFF",
+      cardBg: "#E6F6EE",
+      borderColor: "rgba(0,167,81,0.25)",
       bgX: 379,
     },
     {
       name: "INTERCOM",
       nameColor: "#1F8DED",
       descriptor: "Conversation-first",
-      cardBg: "#FFFFFF",
+      cardBg: "#E9F4FE",
+      borderColor: "rgba(31,141,237,0.25)",
       bgX: 557,
     },
     {
@@ -667,6 +671,7 @@ function IndustryTrendsSection() {
       nameColor: "#6366F1",
       descriptor: "AI-native resolution",
       cardBg: "#F5F4FF",
+      borderColor: "rgba(99,102,241,0.25)",
       bgX: 735,
     },
   ];
@@ -700,7 +705,7 @@ function IndustryTrendsSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, ease: EASE, delay: 0.1 + i * 0.07 }}
               className="rounded-2xl overflow-hidden flex flex-col"
-              style={{ background: c.cardBg, border: "1px solid #E8E4DE" }}
+              style={{ background: c.cardBg, border: `1px solid ${c.borderColor}` }}
             >
               <div className="px-4 pt-4 pb-3">
                 <p className="text-sm font-bold leading-none" style={{ color: c.nameColor, fontFamily: "'Wotfard', sans-serif" }}>
@@ -710,16 +715,16 @@ function IndustryTrendsSection() {
               <div
                 className="mx-3 rounded-xl overflow-hidden flex-shrink-0"
                 style={{
-                  height: "170px",
+                  height: "200px",
                   backgroundImage: "url(/competitor-overview.png)",
                   backgroundSize: BG_SIZE,
                   backgroundPosition: `-${c.bgX}px ${BG_Y}px`,
                   backgroundRepeat: "no-repeat",
                 }}
               />
-              <div className="px-4 pt-3 pb-4">
-                <p className="text-[10px] font-bold text-[#1a1a1a] mb-0.5" style={{ fontFamily: "'Wotfard', sans-serif" }}>{c.name}</p>
-                <p className="text-[10px] text-[#1a1a1a]/45" style={{ fontFamily: "'Wotfard', sans-serif" }}>{c.descriptor}</p>
+              <div className="px-4 pt-3 pb-4 flex items-start gap-2">
+                <Lightbulb size={14} className="flex-shrink-0 mt-0.5" style={{ color: c.nameColor }} />
+                <p className="text-xs leading-snug text-[#1a1a1a]/65" style={{ fontFamily: "'Wotfard', sans-serif" }}>{c.descriptor}</p>
               </div>
             </motion.div>
           ))}
