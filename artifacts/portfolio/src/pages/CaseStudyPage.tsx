@@ -629,7 +629,192 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
   );
 }
 
+function IndustryTrendsSection() {
+  return (
+    <section
+      className="relative h-screen snap-start snap-always flex flex-col overflow-hidden"
+      style={{ background: "#FAF8F5" }}
+    >
+      <div className="flex flex-col gap-4 py-14 px-8 md:px-16 h-full overflow-hidden">
+        <SnapReveal>
+          <div className="flex-shrink-0">
+            <h2
+              className="text-2xl md:text-3xl font-bold text-[#1a1a1a] leading-tight"
+              style={{ fontFamily: "'Wotfard', sans-serif" }}
+            >
+              Industry trends
+            </h2>
+            <p
+              className="text-sm text-[#1a1a1a]/45 mt-1"
+              style={{ fontFamily: "'Wotfard', sans-serif" }}
+            >
+              Emerging themes from the competitor study
+            </p>
+          </div>
+        </SnapReveal>
+
+        <SnapReveal delay={0.12}>
+          <div
+            className="grid gap-3"
+            style={{
+              gridTemplateColumns: "1fr 1.15fr 1fr",
+              gridTemplateRows: "1fr 1fr 0.85fr",
+              gridTemplateAreas: `
+                "freshworks zendesk    salesforce"
+                "freshworks insight    intercom"
+                "servicenow servicenow intercom"
+              `,
+              height: "calc(100vh - 175px)",
+            }}
+          >
+            {/* ── Freshworks ── */}
+            <div
+              className="rounded-2xl p-5 flex flex-col overflow-hidden"
+              style={{ gridArea: "freshworks", background: "#FFFFFF", border: "1px solid #E8E4DE" }}
+            >
+              <span className="text-[8px] font-bold tracking-[0.15em] uppercase mb-4" style={{ color: "#00B87D" }}>FRESHWORKS</span>
+              <div className="flex flex-col gap-2.5 flex-1 overflow-hidden">
+                <div className="self-start bg-[#F5F5F5] rounded-xl rounded-tl-sm px-3 py-2 text-[11px] text-[#1a1a1a]/70 max-w-[85%]">
+                  Hi, can I get an update on my order?
+                </div>
+                <div className="self-end bg-[#F0FAF5] rounded-xl rounded-tr-sm px-3 py-2 text-[11px] text-[#1a1a1a]/70 max-w-[88%]">
+                  <span className="text-[8px] font-semibold block mb-1" style={{ color: "#00B87D" }}>AI Agent ✦</span>
+                  Sure. Per our records, your last order is: #7874, Black suede shoes, US size 8.
+                </div>
+                <div className="self-end bg-[#F0FAF5] rounded-xl rounded-tr-sm px-3 py-2 text-[11px] text-[#1a1a1a]/70 max-w-[80%]">
+                  Your order is out for delivery! 🎉
+                </div>
+                <div className="flex items-center gap-2 mt-1">
+                  <span className="text-[9px] font-medium px-2 py-0.5 rounded-full" style={{ background: "#DCFCE7", color: "#16A34A" }}>Arriving today</span>
+                </div>
+                <p className="text-[10px]" style={{ color: "#3B82F6", fontFamily: "'Wotfard', sans-serif" }}>Track it live here</p>
+              </div>
+            </div>
+
+            {/* ── Zendesk ── */}
+            <div
+              className="rounded-2xl p-5 flex flex-col overflow-hidden"
+              style={{ gridArea: "zendesk", background: "#111" }}
+            >
+              <span className="text-[8px] font-bold tracking-[0.15em] uppercase mb-4" style={{ color: "#78CD51" }}>ZENDESK</span>
+              <div className="self-start rounded-xl rounded-tl-sm px-3 py-2 text-[11px] max-w-[72%] mb-3" style={{ background: "#222", color: "rgba(255,255,255,0.65)" }}>
+                I'd like to return my order #44433.
+              </div>
+              <p className="text-[8px] uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.25)" }}>AI chain of thought</p>
+              <div className="flex flex-col gap-1.5">
+                {["Search knowledge", "Retrieve order details", "Verify order is eligible for return", "Verify item selection for return"].map((step, i) => (
+                  <div key={i} className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "rgba(120,205,81,0.15)" }}>
+                      <div className="w-1.5 h-1.5 rounded-full" style={{ background: "#78CD51" }} />
+                    </div>
+                    <span className="text-[10px]" style={{ color: "rgba(255,255,255,0.55)", fontFamily: "'Wotfard', sans-serif" }}>{step}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* ── Salesforce ── */}
+            <div
+              className="rounded-2xl p-5 flex flex-col overflow-hidden"
+              style={{ gridArea: "salesforce", background: "#EBF5FF", border: "1px solid #BFDBFE" }}
+            >
+              <span className="text-[8px] font-bold tracking-[0.15em] uppercase mb-3" style={{ color: "#0070D2" }}>SALESFORCE</span>
+              <h3 className="text-[13px] font-bold text-[#1a1a1a] leading-snug mb-3" style={{ fontFamily: "'Wotfard', sans-serif" }}>
+                Elevate Customer Service AI with Agentforce.
+              </h3>
+              <div className="flex-1 bg-white rounded-xl p-3 border border-blue-100 flex flex-col gap-2 overflow-hidden">
+                <div className="flex gap-2 mb-1">
+                  <div className="w-2 h-2 rounded-full" style={{ background: "#FF5F57" }} />
+                  <div className="w-2 h-2 rounded-full" style={{ background: "#FEBC2E" }} />
+                  <div className="w-2 h-2 rounded-full" style={{ background: "#28C840" }} />
+                </div>
+                <div className="w-full h-1.5 rounded-full" style={{ background: "#DBEAFE" }} />
+                <div className="w-4/5 h-1.5 rounded-full" style={{ background: "#DBEAFE" }} />
+                <div className="w-2/3 h-1.5 rounded-full" style={{ background: "#DBEAFE" }} />
+                <div className="mt-auto pt-2 border-t border-blue-50">
+                  <p className="text-[9px] font-semibold" style={{ color: "#0070D2", fontFamily: "'Wotfard', sans-serif" }}>
+                    Agentforce resolves 85% of Salesforce's customer service requests.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* ── Insight text card ── */}
+            <div
+              className="rounded-2xl p-5 flex flex-col overflow-hidden"
+              style={{ gridArea: "insight", background: "#FFFFFF", border: "1px solid #E8E4DE" }}
+            >
+              <h3 className="text-[13px] font-bold text-[#1a1a1a] leading-snug mb-2" style={{ fontFamily: "'Wotfard', sans-serif" }}>
+                Auto-resolve issues with AI agents
+              </h3>
+              <p className="text-[11px] leading-relaxed mb-3" style={{ color: "rgba(26,26,26,0.5)", fontFamily: "'Wotfard', sans-serif" }}>
+                AI agents go beyond suggestions. They take action — resolving queries, updating records, and handling tickets automatically. No waiting, no hand-holding.
+              </p>
+              <div className="mt-auto flex flex-col gap-1.5">
+                {["Be resolution ready with a single workspace", "Work smarter with AI Copilot and AI Insights", "Streamline every queue, every time"].map((pt, i) => (
+                  <p key={i} className="text-[10px]" style={{ color: "rgba(26,26,26,0.28)", fontFamily: "'Wotfard', sans-serif" }}>{pt}</p>
+                ))}
+              </div>
+            </div>
+
+            {/* ── Intercom ── */}
+            <div
+              className="rounded-2xl p-5 flex flex-col overflow-hidden"
+              style={{ gridArea: "intercom", background: "#080808" }}
+            >
+              <span className="text-[8px] font-bold tracking-[0.15em] uppercase mb-3" style={{ color: "rgba(255,255,255,0.35)" }}>INTERCOM</span>
+              <div className="flex-1 flex flex-col justify-end">
+                <p className="text-[10px] mb-2" style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'Wotfard', sans-serif" }}>
+                  The highest performing AI Agent just got even better.
+                </p>
+                <h2 className="text-5xl font-black text-white leading-none mb-2" style={{ fontFamily: "'Wotfard', sans-serif" }}>
+                  Fin 3
+                </h2>
+                <p className="text-[13px] font-semibold leading-snug" style={{ color: "rgba(255,255,255,0.65)", fontFamily: "'Wotfard', sans-serif" }}>
+                  The #1 AI Agent for all your customer service
+                </p>
+              </div>
+            </div>
+
+            {/* ── ServiceNow ── */}
+            <div
+              className="rounded-2xl p-5 flex flex-col overflow-hidden"
+              style={{ gridArea: "servicenow", background: "#132016" }}
+            >
+              <span className="text-[8px] font-bold tracking-[0.15em] uppercase mb-3" style={{ color: "#62D84E" }}>SERVICENOW</span>
+              <div className="flex items-center gap-2 mb-3">
+                <p className="text-[11px]" style={{ color: "rgba(255,255,255,0.5)", fontFamily: "'Wotfard', sans-serif" }}>All workers</p>
+                <div className="flex gap-1">
+                  <div className="w-1.5 h-1.5 rounded-full" style={{ background: "#62D84E" }} />
+                  <div className="w-1.5 h-1.5 rounded-full" style={{ background: "rgba(98,216,78,0.35)" }} />
+                </div>
+              </div>
+              <p className="text-[8px] uppercase tracking-widest mb-2.5" style={{ color: "rgba(255,255,255,0.25)" }}>Activity Breakdown</p>
+              <div className="grid grid-cols-3 gap-4">
+                {[
+                  { label: "Total Executions", value: "42816", change: "+100%" },
+                  { label: "Completed", value: "36865", change: "+100%" },
+                  { label: "Failed", value: "5853", change: "+100%" },
+                ].map((m, i) => (
+                  <div key={i}>
+                    <p className="text-[8px] uppercase mb-1" style={{ color: "rgba(255,255,255,0.28)", fontFamily: "'Wotfard', sans-serif" }}>{m.label}</p>
+                    <p className="text-xl font-bold text-white leading-none" style={{ fontFamily: "'Wotfard', sans-serif" }}>{m.value}</p>
+                    <p className="text-[9px] mt-0.5" style={{ color: "#62D84E", fontFamily: "'Wotfard', sans-serif" }}>{m.change} vs last month</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </SnapReveal>
+      </div>
+    </section>
+  );
+}
+
 function ProcessSection({ study }: { study: CaseStudy }) {
+  if (study.id === 4) {
+    return <IndustryTrendsSection />;
+  }
   return (
     <section
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
