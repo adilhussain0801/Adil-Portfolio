@@ -729,7 +729,7 @@ function IndustryTrendsSection() {
           <p className="text-center text-sm text-[#1a1a1a]/55" style={{ fontFamily: "'Wotfard', sans-serif" }}>
             The market is converging toward{" "}
             <strong className="text-[#1a1a1a] font-semibold">AI agents</strong>
-            {" "}— yet no player combines deep workflow context with{" "}
+            {" "}— yet only a few players combine deep workflow context with{" "}
             <strong className="text-[#1a1a1a] font-semibold">autonomous execution</strong>.
           </p>
         </SnapReveal>
