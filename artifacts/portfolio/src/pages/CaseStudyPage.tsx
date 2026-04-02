@@ -644,10 +644,10 @@ function IndustryTrendsSection() {
     },
     {
       name: "zendesk",
-      nameColor: "#78CD51",
+      nameColor: "#1F73B7",
       descriptor: "Clean, but ticket-bound",
-      cardBg: "#F0FAE9",
-      borderColor: "rgba(120,205,81,0.25)",
+      cardBg: "#EAF3FB",
+      borderColor: "rgba(31,115,183,0.25)",
       bgX: 201,
     },
     {
