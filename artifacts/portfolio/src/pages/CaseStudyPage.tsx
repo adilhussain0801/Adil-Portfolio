@@ -1,5 +1,5 @@
 import { useParams, Link } from "wouter";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useMemo, type RefObject } from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowLeft, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare } from "lucide-react";
 import { getCaseStudy, getNextCaseStudy, type CaseStudy } from "@/data/caseStudies";
@@ -148,6 +148,7 @@ function CaseStudyHeroBg() {
 function HeroSection({ study }: { study: CaseStudy }) {
   return (
     <section
+      id="section-hero"
       className="relative h-screen snap-start snap-always flex flex-col justify-end pt-32 pb-0 overflow-hidden"
       style={{ backgroundColor: study.heroColor }}
     >
@@ -218,6 +219,7 @@ function HeroSection({ study }: { study: CaseStudy }) {
 function OverviewSection({ study }: { study: CaseStudy }) {
   return (
     <section
+      id="section-overview"
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
       style={{ background: "#FAF8F5" }}
     >
@@ -326,6 +328,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
   if (groups && groups.length > 0) {
     return (
       <section
+        id="section-challenge"
         className="relative min-h-screen snap-start snap-always"
         style={{ background: "#FAF8F5" }}
       >
@@ -593,6 +596,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
 
   return (
     <section
+      id="section-challenge"
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
       style={{ background: "#FAF8F5" }}
     >
@@ -683,6 +687,7 @@ function IndustryTrendsSection() {
 
   return (
     <section
+      id="section-process"
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
       style={{ background: "#FAF8F5" }}
     >
@@ -785,6 +790,7 @@ function EmergingThemesSection() {
 
   return (
     <section
+      id="section-emerging"
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
       style={{ background: "#FAF8F5" }}
     >
@@ -882,6 +888,7 @@ function ProcessSection({ study }: { study: CaseStudy }) {
 function SolutionSection({ study }: { study: CaseStudy }) {
   return (
     <section
+      id="section-solution"
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
       style={{ background: "#FAF8F5" }}
     >
@@ -947,6 +954,7 @@ function SolutionSection({ study }: { study: CaseStudy }) {
 function ImpactSection({ study }: { study: CaseStudy }) {
   return (
     <section
+      id="section-impact"
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
       style={{ background: "#FAF8F5" }}
     >
@@ -998,6 +1006,7 @@ function NextProjectSection({ study }: { study: CaseStudy }) {
 
   return (
     <section
+      id="section-next"
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
       style={{ background: "#FAF8F5" }}
     >
@@ -1034,6 +1043,85 @@ function NextProjectSection({ study }: { study: CaseStudy }) {
         </div>
       </SnapReveal>
     </section>
+  );
+}
+
+function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObject<HTMLDivElement> }) {
+  const [active, setActive] = useState("section-hero");
+  const [hovered, setHovered] = useState<string | null>(null);
+
+  const sections = useMemo(() => [
+    { id: "section-hero", label: "Introduction" },
+    { id: "section-overview", label: "Overview" },
+    { id: "section-challenge", label: "Challenge" },
+    { id: "section-process", label: study.id === 4 ? "Competitors" : "Process" },
+    ...(study.id === 4 ? [{ id: "section-emerging", label: "Emerging Themes" }] : []),
+    { id: "section-solution", label: "Solution" },
+    { id: "section-impact", label: "Impact" },
+    { id: "section-next", label: "Next Project" },
+  ], [study.id]);
+
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(entry.target.id);
+        });
+      },
+      { root: container, threshold: 0.5 }
+    );
+    sections.forEach(({ id }) => {
+      const el = container.querySelector(`#${id}`);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, [scrollRef, sections]);
+
+  const scrollTo = (id: string) => {
+    const container = scrollRef.current;
+    if (!container) return;
+    const el = container.querySelector(`#${id}`);
+    if (el) (el as HTMLElement).scrollIntoView({ behavior: "smooth" });
+  };
+
+  return (
+    <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-3 items-end pointer-events-none">
+      {sections.map(({ id, label }) => {
+        const isActive = active === id;
+        const isHovered = hovered === id;
+        return (
+          <div
+            key={id}
+            className="relative flex items-center gap-2 pointer-events-auto"
+            style={{ cursor: "pointer" }}
+            onMouseEnter={() => setHovered(id)}
+            onMouseLeave={() => setHovered(null)}
+            onClick={() => scrollTo(id)}
+          >
+            <motion.span
+              className="text-[10px] font-semibold whitespace-nowrap"
+              style={{ fontFamily: "'Wotfard', sans-serif", color: "rgba(45,45,45,0.55)" }}
+              initial={false}
+              animate={{ opacity: isHovered ? 1 : 0, x: isHovered ? 0 : 8 }}
+              transition={{ duration: 0.15, ease: "easeOut" }}
+            >
+              {label}
+            </motion.span>
+            <motion.div
+              className="rounded-full flex-shrink-0"
+              animate={{
+                width: isActive ? 8 : 5,
+                height: isActive ? 8 : 5,
+                backgroundColor: isActive ? "#E8654B" : "rgba(45,45,45,0.25)",
+              }}
+              transition={{ duration: 0.2 }}
+            />
+          </div>
+        );
+      })}
+    </div>
   );
 }
 
@@ -1075,6 +1163,8 @@ export default function CaseStudyPage() {
           Adil Hussain
         </Link>
       </header>
+
+      <SectionNav study={study} scrollRef={scrollRef} />
 
       <div
         ref={scrollRef}
