@@ -332,6 +332,12 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
         {/* Slide 1: Hero Statement */}
         <div className="h-screen snap-start snap-always flex flex-col justify-center py-20">
           <div className="max-w-3xl mx-auto w-full px-6">
+            <h2
+              className="text-2xl md:text-3xl leading-tight text-foreground mb-8"
+              style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+            >
+              The challenge
+            </h2>
             <SnapReveal>
               <div className="relative pl-10">
                 {/* Quote mark image — sits left of card, overlapping its edge */}
@@ -351,14 +357,6 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                 >
                   {/* Counter-skew wrapper keeps content straight */}
                   <div style={{ transform: "skewY(3deg)" }}>
-                    {/* Label */}
-                    <p
-                      className="text-[10px] font-bold tracking-widest uppercase mb-4"
-                      style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
-                    >
-                      The challenge
-                    </p>
-
                     {/* Quote text with highlights */}
                     <p
                       className="text-lg md:text-xl leading-relaxed text-[#1a1a1a]"
