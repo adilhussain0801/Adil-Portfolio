@@ -637,7 +637,8 @@ function IndustryTrendsSection() {
     {
       name: "servicenow.",
       nameColor: "#62D84E",
-      descriptor: "Workflow-heavy, AI layered",
+      descriptor: "Workflow-heavy platform with newly integrated AI layers for enterprise automation.",
+      tag: "LEGACY CONTEXT",
       cardBg: "#EDFAE5",
       borderColor: "rgba(98,216,78,0.25)",
       bgX: 22,
@@ -645,7 +646,8 @@ function IndustryTrendsSection() {
     {
       name: "zendesk",
       nameColor: "#D97706",
-      descriptor: "Clean, but ticket-bound",
+      descriptor: "CX-centric approach focusing on agent productivity and omnichannel AI assistance.",
+      tag: "CX DOMINANCE",
       cardBg: "#FDF5E6",
       borderColor: "rgba(217,119,6,0.25)",
       bgX: 201,
@@ -653,7 +655,8 @@ function IndustryTrendsSection() {
     {
       name: "freshservice",
       nameColor: "#00A751",
-      descriptor: "Automation-led ITSM",
+      descriptor: "Intuitive ITSM solution leveraging Freddy AI for predictive service management.",
+      tag: "MID-MARKET KING",
       cardBg: "#E6F6EE",
       borderColor: "rgba(0,167,81,0.25)",
       bgX: 379,
@@ -661,7 +664,8 @@ function IndustryTrendsSection() {
     {
       name: "INTERCOM",
       nameColor: "#1F8DED",
-      descriptor: "Conversation-first",
+      descriptor: "Fin AI agent leader, moving aggressively into autonomous resolution for support.",
+      tag: "RESOLUTION FAST",
       cardBg: "#E9F4FE",
       borderColor: "rgba(31,141,237,0.25)",
       bgX: 557,
@@ -669,7 +673,8 @@ function IndustryTrendsSection() {
     {
       name: "Moveworks",
       nameColor: "#6366F1",
-      descriptor: "AI-native resolution",
+      descriptor: "AI-native resolution engine built to automate enterprise support across all departments.",
+      tag: "PURE AUTONOMOUS",
       cardBg: "#F5F4FF",
       borderColor: "rgba(99,102,241,0.25)",
       bgX: 735,
@@ -718,9 +723,9 @@ function IndustryTrendsSection() {
                   backgroundRepeat: "no-repeat",
                 }}
               />
-              <div className="px-4 pt-3 pb-4 flex items-start gap-2">
-                <Lightbulb size={14} className="flex-shrink-0 mt-0.5" style={{ color: c.nameColor }} />
-                <p className="text-xs leading-snug text-[#1a1a1a]/65" style={{ fontFamily: "'Wotfard', sans-serif" }}>{c.descriptor}</p>
+              <div className="px-4 pt-3 pb-4 flex flex-col gap-3">
+                <p className="text-xs leading-relaxed text-[#1a1a1a]/65" style={{ fontFamily: "'Wotfard', sans-serif" }}>{c.descriptor}</p>
+                <p className="text-[9px] font-bold tracking-[0.12em] uppercase mt-auto" style={{ color: c.nameColor, fontFamily: "'Wotfard', sans-serif" }}>{c.tag}</p>
               </div>
             </motion.div>
           ))}
