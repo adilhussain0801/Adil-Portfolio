@@ -630,132 +630,45 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
 }
 
 function IndustryTrendsSection() {
+  const BG_SIZE = "930px auto";
+  const BG_Y = -150;
+
   const competitors = [
     {
       name: "servicenow.",
-      nameSize: "text-base",
       nameColor: "#1a1a1a",
       descriptor: "Workflow-heavy, AI layered",
       cardBg: "#FFFFFF",
-      mockup: (
-        <div className="w-full h-full flex overflow-hidden rounded-xl" style={{ background: "#F0F2F4" }}>
-          <div className="w-8 flex-shrink-0 h-full" style={{ background: "#1B2A3B" }}>
-            {[...Array(6)].map((_, i) => <div key={i} className="w-4 h-4 rounded mx-auto mt-2" style={{ background: "rgba(255,255,255,0.12)" }} />)}
-          </div>
-          <div className="flex-1 p-2 flex flex-col gap-1">
-            <div className="w-full h-2 rounded" style={{ background: "#D1D5DB" }} />
-            {[...Array(5)].map((_, i) => (
-              <div key={i} className="flex gap-1">
-                <div className="h-1.5 rounded flex-1" style={{ background: i % 2 === 0 ? "#E5E7EB" : "#F3F4F6" }} />
-                <div className="h-1.5 rounded w-8" style={{ background: "#E5E7EB" }} />
-                <div className="h-1.5 rounded w-6" style={{ background: "#F3F4F6" }} />
-              </div>
-            ))}
-          </div>
-        </div>
-      ),
+      bgX: 22,
     },
     {
       name: "zendesk",
-      nameSize: "text-base",
       nameColor: "#1F73B7",
       descriptor: "Clean, but ticket-bound",
       cardBg: "#FFFFFF",
-      mockup: (
-        <div className="w-full h-full rounded-xl overflow-hidden flex flex-col" style={{ background: "#F8F9FA" }}>
-          <div className="px-3 py-2 border-b border-gray-100 flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full" style={{ background: "#1F73B7" }} />
-            <div className="h-1.5 w-16 rounded" style={{ background: "#D1D5DB" }} />
-          </div>
-          <div className="p-2 flex flex-col gap-1.5 flex-1">
-            <div className="rounded-lg p-2" style={{ background: "#EBF5FF" }}>
-              <div className="h-1.5 w-20 rounded mb-1" style={{ background: "#BFDBFE" }} />
-              <div className="h-1 w-full rounded" style={{ background: "#DBEAFE" }} />
-              <div className="h-1 w-3/4 rounded mt-0.5" style={{ background: "#DBEAFE" }} />
-            </div>
-            <div className="flex gap-1">
-              <div className="h-5 w-12 rounded" style={{ background: "#E5E7EB" }} />
-              <div className="h-5 w-10 rounded" style={{ background: "#E5E7EB" }} />
-            </div>
-          </div>
-        </div>
-      ),
+      bgX: 201,
     },
     {
       name: "freshservice",
       subName: "by Freshworks",
-      nameSize: "text-sm",
       nameColor: "#00A751",
       descriptor: "Automation-led ITSM",
       cardBg: "#FFFFFF",
-      mockup: (
-        <div className="w-full h-full rounded-xl overflow-hidden flex flex-col" style={{ background: "#F0FBF4" }}>
-          <div className="px-3 py-1.5 flex gap-2 border-b border-green-50">
-            <div className="h-1.5 w-10 rounded" style={{ background: "#BBF7D0" }} />
-            <div className="h-1.5 w-14 rounded" style={{ background: "#D1FAE5" }} />
-          </div>
-          <div className="flex-1 p-2 flex items-center justify-center gap-2">
-            <div className="w-8 h-8 rounded-lg border-2 border-dashed flex items-center justify-center text-[8px]" style={{ borderColor: "#00A751", color: "#00A751" }}>A</div>
-            <div className="flex flex-col gap-1">
-              <div className="w-12 h-0.5 rounded" style={{ background: "#00A751" }} />
-              <div className="w-12 h-0.5 rounded opacity-40" style={{ background: "#00A751" }} />
-            </div>
-            <div className="w-8 h-8 rounded-lg border-2 border-dashed flex items-center justify-center text-[8px]" style={{ borderColor: "#00A751", color: "#00A751" }}>B</div>
-            <div className="w-8 h-8 rounded-lg border-2 border-dashed flex items-center justify-center text-[8px]" style={{ borderColor: "#6EE7B7", color: "#6EE7B7" }}>C</div>
-          </div>
-        </div>
-      ),
+      bgX: 379,
     },
     {
       name: "INTERCOM",
-      nameSize: "text-sm",
       nameColor: "#1F8DED",
       descriptor: "Conversation-first",
       cardBg: "#FFFFFF",
-      mockup: (
-        <div className="w-full h-full rounded-xl overflow-hidden flex" style={{ background: "#0B1B35" }}>
-          <div className="w-7 flex-shrink-0" style={{ background: "#0A1628" }}>
-            {[...Array(4)].map((_, i) => <div key={i} className="w-3.5 h-3.5 rounded mx-auto mt-2" style={{ background: "rgba(255,255,255,0.1)" }} />)}
-          </div>
-          <div className="flex-1 p-2 flex flex-col gap-1.5">
-            <div className="self-end rounded-lg px-2 py-1 text-[7px] leading-tight max-w-[80%]" style={{ background: "#1F8DED", color: "white" }}>
-              I need help with my account.
-            </div>
-            <div className="self-start rounded-lg px-2 py-1 text-[7px] leading-tight max-w-[80%]" style={{ background: "#162035", color: "rgba(255,255,255,0.7)" }}>
-              Sure! I can help with that right now.
-            </div>
-            <div className="self-start rounded-lg px-2 py-1 text-[7px] leading-tight max-w-[90%]" style={{ background: "#162035", color: "rgba(255,255,255,0.7)" }}>
-              Your plan is Business · renewed Jan 3, 2025.
-            </div>
-          </div>
-        </div>
-      ),
+      bgX: 557,
     },
     {
       name: "Moveworks",
-      nameSize: "text-sm",
       nameColor: "#6366F1",
       descriptor: "AI-native resolution",
       cardBg: "#F5F4FF",
-      mockup: (
-        <div className="w-full h-full rounded-xl overflow-hidden flex flex-col" style={{ background: "#EEF0FE" }}>
-          <div className="px-3 py-1.5 flex items-center gap-2 border-b border-indigo-100">
-            <div className="w-3 h-3 rounded-full" style={{ background: "#6366F1" }} />
-            <div className="h-1.5 w-14 rounded" style={{ background: "#C7D2FE" }} />
-          </div>
-          <div className="flex-1 p-2 flex flex-col gap-1.5">
-            <div className="self-end rounded-xl px-2 py-1 text-[7px]" style={{ background: "#6366F1", color: "white" }}>
-              What's my laptop status?
-            </div>
-            <div className="self-start rounded-xl px-2 py-1 text-[7px] max-w-[85%]" style={{ background: "white", color: "#374151" }}>
-              Your laptop shipped yesterday. Arriving Friday — tracking updated.
-            </div>
-            <div className="self-start rounded px-2 py-0.5 text-[6px] font-semibold" style={{ background: "#E0E7FF", color: "#4338CA" }}>
-              ✓ Resolved automatically
-            </div>
-          </div>
-        </div>
-      ),
+      bgX: 735,
     },
   ];
 
@@ -764,7 +677,7 @@ function IndustryTrendsSection() {
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
       style={{ background: "#FAF8F5" }}
     >
-      <div className="max-w-5xl mx-auto w-full px-6 flex flex-col gap-7">
+      <div className="max-w-5xl mx-auto w-full px-6 flex flex-col gap-6">
         <SnapReveal>
           <div className="text-center">
             <h2
@@ -791,16 +704,23 @@ function IndustryTrendsSection() {
               style={{ background: c.cardBg, border: "1px solid #E8E4DE" }}
             >
               <div className="px-4 pt-4 pb-3">
-                <p className={`${c.nameSize} font-bold leading-none`} style={{ color: c.nameColor, fontFamily: "'Wotfard', sans-serif" }}>
+                <p className="text-sm font-bold leading-none" style={{ color: c.nameColor, fontFamily: "'Wotfard', sans-serif" }}>
                   {c.name}
                 </p>
                 {"subName" in c && (
-                  <p className="text-[8px] mt-0.5" style={{ color: "#9CA3AF", fontFamily: "'Wotfard', sans-serif" }}>{c.subName}</p>
+                  <p className="text-[8px] mt-0.5" style={{ color: "#9CA3AF", fontFamily: "'Wotfard', sans-serif" }}>{(c as typeof c & { subName: string }).subName}</p>
                 )}
               </div>
-              <div className="mx-3 rounded-xl overflow-hidden flex-shrink-0" style={{ height: "140px" }}>
-                {c.mockup}
-              </div>
+              <div
+                className="mx-3 rounded-xl overflow-hidden flex-shrink-0"
+                style={{
+                  height: "170px",
+                  backgroundImage: "url(/competitor-overview.png)",
+                  backgroundSize: BG_SIZE,
+                  backgroundPosition: `-${c.bgX}px ${BG_Y}px`,
+                  backgroundRepeat: "no-repeat",
+                }}
+              />
               <div className="px-4 pt-3 pb-4">
                 <p className="text-[10px] font-bold text-[#1a1a1a] mb-0.5" style={{ fontFamily: "'Wotfard', sans-serif" }}>{c.name}</p>
                 <p className="text-[10px] text-[#1a1a1a]/45" style={{ fontFamily: "'Wotfard', sans-serif" }}>{c.descriptor}</p>
