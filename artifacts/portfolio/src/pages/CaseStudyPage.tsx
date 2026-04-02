@@ -351,16 +351,6 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                 >
                   {/* Counter-skew wrapper keeps content straight */}
                   <div style={{ transform: "skewY(3deg)" }}>
-                    {/* Service Agents tag — top right */}
-                    <div className="flex justify-end mb-3">
-                      <span
-                        className="text-[10px] font-semibold text-white px-3 py-1 rounded-full"
-                        style={{ background: "#3B82F6", fontFamily: "'Wotfard', sans-serif" }}
-                      >
-                        Service Agents
-                      </span>
-                    </div>
-
                     {/* Label */}
                     <p
                       className="text-[10px] font-bold tracking-widest uppercase mb-4"
