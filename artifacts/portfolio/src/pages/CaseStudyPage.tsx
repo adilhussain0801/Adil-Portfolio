@@ -341,51 +341,54 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                   className="absolute left-0 top-6 w-14 h-auto z-10 select-none pointer-events-none"
                 />
 
-                {/* Card */}
+                {/* Card — skewed to create parallelogram shape */}
                 <div
-                  className="rounded-2xl px-8 pt-7 pb-8 relative"
+                  className="rounded-xl px-8 pt-7 pb-8 relative overflow-hidden"
                   style={{
                     background: "#FCE8E4",
-                    transform: "rotate(1.2deg)",
+                    transform: "skewY(-3deg)",
                   }}
                 >
-                  {/* Service Agents tag — top right */}
-                  <div className="flex justify-end mb-3">
-                    <span
-                      className="text-[10px] font-semibold text-white px-3 py-1 rounded-full"
-                      style={{ background: "#3B82F6", fontFamily: "'Wotfard', sans-serif" }}
+                  {/* Counter-skew wrapper keeps content straight */}
+                  <div style={{ transform: "skewY(3deg)" }}>
+                    {/* Service Agents tag — top right */}
+                    <div className="flex justify-end mb-3">
+                      <span
+                        className="text-[10px] font-semibold text-white px-3 py-1 rounded-full"
+                        style={{ background: "#3B82F6", fontFamily: "'Wotfard', sans-serif" }}
+                      >
+                        Service Agents
+                      </span>
+                    </div>
+
+                    {/* Label */}
+                    <p
+                      className="text-[10px] font-bold tracking-widest uppercase mb-4"
+                      style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
                     >
-                      Service Agents
-                    </span>
+                      The challenge
+                    </p>
+
+                    {/* Quote text with highlights */}
+                    <p
+                      className="text-lg md:text-xl leading-relaxed text-[#1a1a1a]"
+                      style={{ fontFamily: "'Wotfard', sans-serif" }}
+                    >
+                      Service agents{" "}
+                      <mark style={{ background: "rgba(99,102,241,0.18)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
+                        spend more time understanding requests than resolving them
+                      </mark>
+                      . A single request requires{" "}
+                      <mark style={{ background: "rgba(99,102,241,0.18)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
+                        navigating fragmented tools
+                      </mark>
+                      , clarifying missing information, and manually stitching together a resolution plan — resulting in{" "}
+                      <mark style={{ background: "rgba(99,102,241,0.18)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
+                        delays, inefficiencies, and high cognitive load
+                      </mark>
+                      .
+                    </p>
                   </div>
-
-                  {/* Label */}
-                  <p
-                    className="text-[10px] font-bold tracking-widest uppercase mb-4"
-                    style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
-                  >
-                    The challenge
-                  </p>
-
-                  {/* Quote text with highlights */}
-                  <p
-                    className="text-lg md:text-xl leading-relaxed text-[#1a1a1a]"
-                    style={{ fontFamily: "'Wotfard', sans-serif" }}
-                  >
-                    Service agents{" "}
-                    <mark style={{ background: "rgba(99,102,241,0.18)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
-                      spend more time understanding requests than resolving them
-                    </mark>
-                    . A single request requires{" "}
-                    <mark style={{ background: "rgba(99,102,241,0.18)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
-                      navigating fragmented tools
-                    </mark>
-                    , clarifying missing information, and manually stitching together a resolution plan — resulting in{" "}
-                    <mark style={{ background: "rgba(99,102,241,0.18)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
-                      delays, inefficiencies, and high cognitive load
-                    </mark>
-                    .
-                  </p>
                 </div>
               </div>
             </SnapReveal>
