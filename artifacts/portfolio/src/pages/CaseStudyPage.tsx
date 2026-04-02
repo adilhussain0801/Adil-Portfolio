@@ -1046,6 +1046,11 @@ function NextProjectSection({ study }: { study: CaseStudy }) {
   );
 }
 
+const DOT_SIZE = 10;
+const DOT_GAP = 14;
+const PILL_HEIGHT = 32;
+const DOT_STRIDE = DOT_SIZE + DOT_GAP;
+
 function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObject<HTMLDivElement> }) {
   const [active, setActive] = useState("section-hero");
   const [hovered, setHovered] = useState<string | null>(null);
@@ -1060,10 +1065,7 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
     { id: "section-next", label: "Next Project" },
   ], [study.id]);
 
-  const allSections = useMemo(() => [
-    { id: "section-hero" },
-    ...sections,
-  ], [sections]);
+  const allSections = useMemo(() => [{ id: "section-hero" }, ...sections], [sections]);
 
   useEffect(() => {
     const container = scrollRef.current;
@@ -1091,49 +1093,56 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
   };
 
   const visible = active !== "section-hero";
+  const activeIndex = sections.findIndex((s) => s.id === active);
+  const indicatorTop = activeIndex >= 0
+    ? activeIndex * DOT_STRIDE - (PILL_HEIGHT - DOT_SIZE) / 2
+    : 0;
 
   return (
     <motion.div
-      className="fixed left-6 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-3 items-start pointer-events-none"
+      className="fixed left-6 top-1/2 -translate-y-1/2 z-50 pointer-events-none"
       initial={{ opacity: 0, x: -16 }}
       animate={{ opacity: visible ? 1 : 0, x: visible ? 0 : -16 }}
       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
     >
-      {sections.map(({ id, label }) => {
-        const isActive = active === id;
-        const isHovered = hovered === id;
-        return (
-          <div
-            key={id}
-            className="relative flex items-center gap-3 pointer-events-auto"
-            style={{ cursor: "pointer" }}
-            onMouseEnter={() => setHovered(id)}
-            onMouseLeave={() => setHovered(null)}
-            onClick={() => scrollTo(id)}
-          >
-            <motion.div
-              className="flex-shrink-0"
-              style={{ borderRadius: 6 }}
-              animate={{
-                width: 10,
-                height: isActive ? 36 : 10,
-                borderRadius: isActive ? 6 : 5,
-                backgroundColor: isActive ? "#E8654B" : "rgba(45,45,45,0.22)",
-              }}
-              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            />
-            <motion.span
-              className="text-sm font-semibold whitespace-nowrap"
-              style={{ fontFamily: "'Wotfard', sans-serif", color: "rgba(45,45,45,0.6)" }}
-              initial={false}
-              animate={{ opacity: isHovered ? 1 : 0, x: isHovered ? 0 : -8 }}
-              transition={{ duration: 0.15, ease: "easeOut" }}
+      <div className="relative flex flex-col items-start" style={{ gap: DOT_GAP }}>
+        {/* Sliding pill indicator */}
+        <motion.div
+          className="absolute rounded-md pointer-events-none"
+          style={{ width: DOT_SIZE, backgroundColor: "#E8654B", height: PILL_HEIGHT, left: 0 }}
+          animate={{ top: indicatorTop }}
+          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        />
+
+        {/* Static dots + hover labels */}
+        {sections.map(({ id, label }) => {
+          const isHovered = hovered === id;
+          return (
+            <div
+              key={id}
+              className="relative flex items-center pointer-events-auto"
+              style={{ gap: 14, cursor: "pointer" }}
+              onMouseEnter={() => setHovered(id)}
+              onMouseLeave={() => setHovered(null)}
+              onClick={() => scrollTo(id)}
             >
-              {label}
-            </motion.span>
-          </div>
-        );
-      })}
+              <div
+                className="flex-shrink-0 rounded-full"
+                style={{ width: DOT_SIZE, height: DOT_SIZE, backgroundColor: "rgba(45,45,45,0.2)" }}
+              />
+              <motion.span
+                className="text-sm font-semibold whitespace-nowrap"
+                style={{ fontFamily: "'Wotfard', sans-serif", color: "rgba(45,45,45,0.6)" }}
+                initial={false}
+                animate={{ opacity: isHovered ? 1 : 0, x: isHovered ? 0 : -6 }}
+                transition={{ duration: 0.15, ease: "easeOut" }}
+              >
+                {label}
+              </motion.span>
+            </div>
+          );
+        })}
+      </div>
     </motion.div>
   );
 }
