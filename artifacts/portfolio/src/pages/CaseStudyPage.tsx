@@ -334,31 +334,49 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
           <div className="max-w-3xl mx-auto w-full px-6">
             <SnapReveal>
               <div
-                className="rounded-2xl px-8 py-8 relative"
-                style={{ background: "#fff", border: "1.5px solid #E8E4DE" }}
+                className="rounded-2xl px-8 pt-10 pb-8 relative"
+                style={{
+                  background: "#fff",
+                  border: "1.5px solid #E8E4DE",
+                  transform: "rotate(-1deg)",
+                }}
               >
-                {/* Decorative quote mark */}
-                <div className="mb-5 flex items-center gap-3">
-                  <div className="relative w-10 h-10 flex-shrink-0">
-                    <div className="absolute inset-0 rounded-full" style={{ background: "#E8654B", opacity: 0.15 }} />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-2xl font-bold leading-none select-none" style={{ color: "#E8654B", fontFamily: "Georgia, serif" }}>"</span>
-                    </div>
+                {/* Decorative overlapping circle quote marks */}
+                <div className="absolute -top-5 left-7 flex">
+                  <div className="relative w-11 h-11 rounded-full flex items-end justify-center pb-1" style={{ background: "#E8654B" }}>
+                    <span className="text-2xl font-black leading-none text-white select-none" style={{ fontFamily: "Georgia, serif", lineHeight: 1 }}>"</span>
                   </div>
-                  <span
-                    className="text-[10px] font-bold tracking-widest uppercase"
-                    style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
-                  >
-                    The challenge
-                  </span>
+                  <div className="relative w-11 h-11 rounded-full flex items-end justify-center pb-1 -ml-3" style={{ background: "#3B82F6" }}>
+                    <span className="text-2xl font-black leading-none text-white select-none" style={{ fontFamily: "Georgia, serif", lineHeight: 1 }}>"</span>
+                  </div>
                 </div>
 
-                {/* Quote text */}
+                {/* Label */}
                 <p
-                  className="text-xl md:text-2xl font-semibold leading-snug text-[#1a1a1a]"
+                  className="text-[10px] font-bold tracking-widest uppercase mb-4"
+                  style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
+                >
+                  The challenge
+                </p>
+
+                {/* Quote text with highlights */}
+                <p
+                  className="text-lg md:text-xl leading-relaxed text-foreground italic"
                   style={{ fontFamily: "'Wotfard', sans-serif" }}
                 >
-                  {heroStatement}
+                  Service agents{" "}
+                  <mark style={{ background: "rgba(232,101,75,0.12)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
+                    spend more time understanding requests than resolving them
+                  </mark>
+                  . A single request requires{" "}
+                  <mark style={{ background: "rgba(232,101,75,0.12)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
+                    navigating fragmented tools
+                  </mark>
+                  , clarifying missing information, and manually stitching together a resolution plan — resulting in{" "}
+                  <mark style={{ background: "rgba(232,101,75,0.12)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
+                    delays, inefficiencies, and high cognitive load
+                  </mark>
+                  .
                 </p>
               </div>
             </SnapReveal>
