@@ -1,7 +1,7 @@
 import { useParams, Link } from "wouter";
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowLeft, ArrowUpRight, Quote, Inbox, SearchCode, Clock } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle } from "lucide-react";
 import { getCaseStudy, getNextCaseStudy, type CaseStudy } from "@/data/caseStudies";
 import NotFound from "@/pages/not-found";
 
@@ -493,31 +493,97 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
         <div className="h-screen snap-start snap-always flex flex-col justify-center py-20">
           <div className="max-w-3xl mx-auto w-full px-6">
             <SnapReveal>
-              <ul className="flex flex-col gap-5">
-                {study.challenge.bullets.map((b, i) => (
-                  <motion.li
-                    key={i}
-                    initial={{ opacity: 0, x: -16 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.4, ease: EASE, delay: 0.1 + i * 0.1 }}
-                    className="flex items-start gap-3 p-4 rounded-xl transition-colors hover:bg-[#E8654B]/5 group"
-                  >
-                    <div className="flex-shrink-0 mt-1 w-6 h-6 rounded-full bg-[#E8654B]/15 flex items-center justify-center group-hover:bg-[#E8654B]/25">
-                      <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
-                        <path d="M7 1L13 12H1L7 1Z" stroke="#E8654B" strokeWidth="1.2" strokeLinejoin="round" fill="none" />
-                        <line x1="7" y1="5" x2="7" y2="8" stroke="#E8654B" strokeWidth="1.2" strokeLinecap="round" />
-                        <circle cx="7" cy="10" r="0.6" fill="#E8654B" />
-                      </svg>
-                    </div>
-                    <span
-                      className="text-sm leading-relaxed text-foreground/80 pt-0.5"
-                      style={{ fontFamily: "'Wotfard', sans-serif" }}
+              {study.challenge.painPoints ? (
+                <div className="flex flex-col gap-4">
+                  {study.challenge.painPoints.map((pt, i) => {
+                    const BADGE_STYLES: Record<string, { bg: string; color: string }> = {
+                      "HIGH FRICTION":    { bg: "#FEE2E2", color: "#B91C1C" },
+                      "SYSTEMIC WASTE":   { bg: "#CCFBF1", color: "#0F766E" },
+                      "CRITICAL BARRIER": { bg: "#FFE4E6", color: "#BE123C" },
+                      "PROCESS LAG":      { bg: "#DBEAFE", color: "#1D4ED8" },
+                    };
+                    const ICON_MAP: Record<string, { icon: JSX.Element; bg: string; color: string }> = {
+                      repeat: { icon: <Repeat2 size={18} />, bg: "#FEE2E2", color: "#B91C1C" },
+                      search: { icon: <Search size={18} />, bg: "#CCFBF1", color: "#0F766E" },
+                      brain:  { icon: <Brain size={18} />, bg: "#FFE4E6", color: "#BE123C" },
+                      zap:    { icon: <Zap size={18} />, bg: "#DBEAFE", color: "#1D4ED8" },
+                    };
+                    const badge = BADGE_STYLES[pt.badge] ?? { bg: "#F3F4F6", color: "#6B7280" };
+                    const iconDef = ICON_MAP[pt.icon] ?? ICON_MAP["zap"];
+                    return (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, y: 12 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, ease: EASE, delay: 0.08 + i * 0.08 }}
+                        className="bg-white rounded-2xl border border-[#E8E4DE] px-5 py-5 flex flex-col gap-3"
+                      >
+                        <div className="flex items-start gap-4">
+                          <div
+                            className="rounded-xl p-2.5 flex-shrink-0"
+                            style={{ background: iconDef.bg, color: iconDef.color }}
+                          >
+                            {iconDef.icon}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-start justify-between gap-3 mb-1.5">
+                              <h3
+                                className="text-sm font-bold text-[#1a1a1a] leading-snug"
+                                style={{ fontFamily: "'Wotfard', sans-serif" }}
+                              >
+                                {pt.title}
+                              </h3>
+                              <span
+                                className="text-[8px] font-bold tracking-widest uppercase px-2 py-1 rounded flex-shrink-0 whitespace-nowrap"
+                                style={{ background: badge.bg, color: badge.color }}
+                              >
+                                {pt.badge}
+                              </span>
+                            </div>
+                            <p
+                              className="text-xs leading-relaxed text-[#1a1a1a]/55"
+                              style={{ fontFamily: "'Wotfard', sans-serif" }}
+                            >
+                              {pt.description}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="flex gap-2 flex-wrap pl-[52px]">
+                          {pt.stats.map((s, si) => (
+                            <span
+                              key={si}
+                              className="text-[10px] text-[#1a1a1a]/50 bg-[#F5F3EF] px-3 py-1 rounded-full"
+                              style={{ fontFamily: "'Wotfard', sans-serif" }}
+                            >
+                              {s}
+                            </span>
+                          ))}
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              ) : (
+                <ul className="flex flex-col gap-5">
+                  {study.challenge.bullets.map((b, i) => (
+                    <motion.li
+                      key={i}
+                      initial={{ opacity: 0, x: -16 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, ease: EASE, delay: 0.1 + i * 0.1 }}
+                      className="flex items-start gap-3 p-4 rounded-xl transition-colors hover:bg-[#E8654B]/5"
                     >
-                      {b}
-                    </span>
-                  </motion.li>
-                ))}
-              </ul>
+                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#E8654B]/40 flex-shrink-0" />
+                      <span
+                        className="text-sm leading-relaxed text-foreground/80"
+                        style={{ fontFamily: "'Wotfard', sans-serif" }}
+                      >
+                        {b}
+                      </span>
+                    </motion.li>
+                  ))}
+                </ul>
+              )}
             </SnapReveal>
           </div>
         </div>

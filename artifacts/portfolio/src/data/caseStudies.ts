@@ -44,6 +44,13 @@ export interface CaseStudy {
       metric: { value: string; label: string };
       steps: Array<{ title: string; description: string }>;
     }>;
+    painPoints?: Array<{
+      title: string;
+      description: string;
+      badge: string;
+      stats: string[];
+      icon: string;
+    }>;
   };
   process: ProcessStep[];
   solution: {
@@ -365,6 +372,36 @@ export const CASE_STUDIES: CaseStudy[] = [
         "Significant time lost hunting for the right info across tools",
         "High cognitive load from interpreting multiple documents",
         "Manual collation and execution prolong resolution time",
+      ],
+      painPoints: [
+        {
+          title: "Too much back and forth just to understand the request",
+          description: "The communication cycle suffers from high-latency information exchange, leading to multiple redundant touchpoints before the primary diagnostic scope is even established.",
+          badge: "HIGH FRICTION",
+          stats: ["4.2h Average Delay", "12+ Interchanges"],
+          icon: "repeat",
+        },
+        {
+          title: "Significant time lost hunting for the right info across tools",
+          description: "Information silos across fragmented legacy systems force technicians into deep context switching, resulting in significant \"hunting\" time that degrades actual analysis hours.",
+          badge: "SYSTEMIC WASTE",
+          stats: ["6 Distinct Platforms", "25% Efficiency Loss"],
+          icon: "search",
+        },
+        {
+          title: "High cognitive load from interpreting multiple documents",
+          description: "Unstructured data inputs require manual mental mapping. Technicians spend more cognitive energy on data synthesis than on high-value diagnostic decision-making.",
+          badge: "CRITICAL BARRIER",
+          stats: ["14+ Avg. Docs/Case", "Fatigue Risk: Elevated"],
+          icon: "brain",
+        },
+        {
+          title: "Manual collation and execution prolong resolution time",
+          description: "The lack of automated orchestration means every step of the resolution path must be manually triggered, checked, and validated—creating avoidable latency in the final delivery.",
+          badge: "PROCESS LAG",
+          stats: ["85% Manual Steps", "48h Resolution Target"],
+          icon: "zap",
+        },
       ],
       timelineSteps: [
         { title: "A new request arrives", description: "An unstructured ticket lands with missing details and no clear owner." },
