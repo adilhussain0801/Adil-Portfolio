@@ -853,6 +853,19 @@ export default function CaseStudyPage() {
       className="h-screen overflow-hidden relative selection:bg-foreground selection:text-background"
       style={{ background: "#FAF8F5" }}
     >
+      {/* Decorative swirl background */}
+      <div
+        className="fixed inset-0 pointer-events-none z-0"
+        style={{
+          backgroundImage: "url('/bg-swirl.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          opacity: 0.45,
+          mixBlendMode: "multiply",
+        }}
+      />
+
       <header className="fixed top-0 left-0 right-0 z-50 py-5 px-6 md:px-24 flex items-center justify-between bg-transparent">
         <Link
           href="/"
