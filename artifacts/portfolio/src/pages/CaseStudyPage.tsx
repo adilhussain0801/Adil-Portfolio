@@ -341,15 +341,13 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                   transform: "rotate(-1deg)",
                 }}
               >
-                {/* Decorative overlapping circle quote marks */}
-                <div className="absolute -top-5 left-7 flex">
-                  <div className="relative w-11 h-11 rounded-full flex items-end justify-center pb-1" style={{ background: "#E8654B" }}>
-                    <span className="text-2xl font-black leading-none text-white select-none" style={{ fontFamily: "Georgia, serif", lineHeight: 1 }}>"</span>
-                  </div>
-                  <div className="relative w-11 h-11 rounded-full flex items-end justify-center pb-1 -ml-3" style={{ background: "#3B82F6" }}>
-                    <span className="text-2xl font-black leading-none text-white select-none" style={{ fontFamily: "Georgia, serif", lineHeight: 1 }}>"</span>
-                  </div>
-                </div>
+                {/* Decorative quote marks image */}
+                <img
+                  src="/quote-mark.png"
+                  alt=""
+                  className="absolute -top-6 left-6 w-16 h-auto select-none pointer-events-none"
+                  style={{ mixBlendMode: "multiply" }}
+                />
 
                 {/* Label */}
                 <p
