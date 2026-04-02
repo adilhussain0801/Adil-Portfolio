@@ -332,17 +332,30 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
         {/* Slide 1: Hero Statement */}
         <div className="h-screen snap-start snap-always flex flex-col justify-center py-20">
           <div className="max-w-3xl mx-auto w-full px-6">
-            <p
-              className="text-xs uppercase tracking-widest font-semibold text-[#2D2D2D]/40 mb-8"
-              style={{ fontFamily: "'Wotfard', sans-serif" }}
-            >
-              The challenge
-            </p>
             <SnapReveal>
-              <div className="flex gap-4">
-                <Quote className="w-8 h-8 text-[#E8654B] flex-shrink-0 -rotate-180 mt-1" strokeWidth={1.5} />
+              <div
+                className="rounded-2xl px-8 py-8 relative"
+                style={{ background: "#fff", border: "1.5px solid #E8E4DE" }}
+              >
+                {/* Decorative quote mark */}
+                <div className="mb-5 flex items-center gap-3">
+                  <div className="relative w-10 h-10 flex-shrink-0">
+                    <div className="absolute inset-0 rounded-full" style={{ background: "#E8654B", opacity: 0.15 }} />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="text-2xl font-bold leading-none select-none" style={{ color: "#E8654B", fontFamily: "Georgia, serif" }}>"</span>
+                    </div>
+                  </div>
+                  <span
+                    className="text-[10px] font-bold tracking-widest uppercase"
+                    style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
+                  >
+                    The challenge
+                  </span>
+                </div>
+
+                {/* Quote text */}
                 <p
-                  className="text-lg md:text-xl leading-relaxed text-foreground italic"
+                  className="text-xl md:text-2xl font-semibold leading-snug text-[#1a1a1a]"
                   style={{ fontFamily: "'Wotfard', sans-serif" }}
                 >
                   {heroStatement}
