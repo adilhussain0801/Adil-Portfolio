@@ -635,7 +635,7 @@ function IndustryTrendsSection() {
       className="relative h-screen snap-start snap-always flex flex-col overflow-hidden"
       style={{ background: "#FAF8F5" }}
     >
-      <div className="flex flex-col gap-4 py-14 px-8 md:px-16 h-full overflow-hidden">
+      <div className="flex flex-col gap-4 pt-20 pb-6 px-8 md:px-16 h-full overflow-hidden">
         <SnapReveal>
           <div className="flex-shrink-0">
             <h2
@@ -664,7 +664,7 @@ function IndustryTrendsSection() {
                 "freshworks insight    intercom"
                 "servicenow servicenow intercom"
               `,
-              height: "calc(100vh - 175px)",
+              height: "calc(100vh - 205px)",
             }}
           >
             {/* ── Freshworks ── */}
@@ -739,21 +739,51 @@ function IndustryTrendsSection() {
               </div>
             </div>
 
-            {/* ── Insight text card ── */}
+            {/* ── Insight / trends card ── */}
             <div
               className="rounded-2xl p-5 flex flex-col overflow-hidden"
               style={{ gridArea: "insight", background: "#FFFFFF", border: "1px solid #E8E4DE" }}
             >
-              <h3 className="text-[13px] font-bold text-[#1a1a1a] leading-snug mb-2" style={{ fontFamily: "'Wotfard', sans-serif" }}>
-                Auto-resolve issues with AI agents
-              </h3>
-              <p className="text-[11px] leading-relaxed mb-3" style={{ color: "rgba(26,26,26,0.5)", fontFamily: "'Wotfard', sans-serif" }}>
-                AI agents go beyond suggestions. They take action — resolving queries, updating records, and handling tickets automatically. No waiting, no hand-holding.
-              </p>
-              <div className="mt-auto flex flex-col gap-1.5">
-                {["Be resolution ready with a single workspace", "Work smarter with AI Copilot and AI Insights", "Streamline every queue, every time"].map((pt, i) => (
-                  <p key={i} className="text-[10px]" style={{ color: "rgba(26,26,26,0.28)", fontFamily: "'Wotfard', sans-serif" }}>{pt}</p>
-                ))}
+              {[
+                {
+                  num: "1",
+                  label: "Autonomous resolution",
+                  labelColor: "#7C3AED",
+                  numGradient: "linear-gradient(135deg, #7C3AED, #a855f7)",
+                  text: <>Service tools are <strong>evolving</strong> from assisting agents → resolving requests end-to-end.</>,
+                },
+                {
+                  num: "2",
+                  label: "Cross-system orchestration",
+                  labelColor: "#EA580C",
+                  numGradient: "linear-gradient(135deg, #EA580C, #f59e0b)",
+                  text: <>Agents execute <strong>workflows</strong> across IT, HR, Identity, and SaaS tools.</>,
+                },
+                {
+                  num: "3",
+                  label: "Conversational interfaces",
+                  labelColor: "#2563EB",
+                  numGradient: "linear-gradient(135deg, #2563EB, #06b6d4)",
+                  text: <>Natural language is becoming the primary interface for planning and execution.</>,
+                },
+              ].map((item, i) => (
+                <div key={i} className={`flex gap-3 ${i < 2 ? "mb-3" : ""}`}>
+                  <div
+                    className="text-xl font-black leading-none flex-shrink-0 w-5"
+                    style={{ fontFamily: "'Wotfard', sans-serif", background: item.numGradient, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
+                  >
+                    {item.num}
+                  </div>
+                  <div>
+                    <p className="text-[11px] font-bold mb-0.5" style={{ color: item.labelColor, fontFamily: "'Wotfard', sans-serif" }}>{item.label}</p>
+                    <p className="text-[10px] leading-relaxed text-[#1a1a1a]/60" style={{ fontFamily: "'Wotfard', sans-serif" }}>{item.text}</p>
+                  </div>
+                </div>
+              ))}
+              <div className="mt-auto pt-3 border-t border-[#E8E4DE]">
+                <p className="text-[10px] leading-relaxed text-[#1a1a1a]/45" style={{ fontFamily: "'Wotfard', sans-serif" }}>
+                  These shifts redefine service management — from reactive workflows to <strong style={{ color: "#1a1a1a", fontWeight: 700 }}>proactive, autonomous systems</strong>.
+                </p>
               </div>
             </div>
 
