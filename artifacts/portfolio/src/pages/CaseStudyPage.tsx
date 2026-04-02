@@ -631,7 +631,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
 
 function IndustryTrendsSection() {
   const BG_SIZE = "930px auto";
-  const BG_Y = -150;
+  const BG_Y = -200;
 
   const competitors = [
     {
