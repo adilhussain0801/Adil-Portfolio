@@ -650,7 +650,6 @@ function IndustryTrendsSection() {
     },
     {
       name: "freshservice",
-      subName: "by Freshworks",
       nameColor: "#00A751",
       descriptor: "Automation-led ITSM",
       cardBg: "#FFFFFF",
@@ -707,9 +706,6 @@ function IndustryTrendsSection() {
                 <p className="text-sm font-bold leading-none" style={{ color: c.nameColor, fontFamily: "'Wotfard', sans-serif" }}>
                   {c.name}
                 </p>
-                {"subName" in c && (
-                  <p className="text-[8px] mt-0.5" style={{ color: "#9CA3AF", fontFamily: "'Wotfard', sans-serif" }}>{(c as typeof c & { subName: string }).subName}</p>
-                )}
               </div>
               <div
                 className="mx-3 rounded-xl overflow-hidden flex-shrink-0"
