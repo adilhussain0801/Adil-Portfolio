@@ -349,7 +349,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
 
                 {/* Card — skewed to create parallelogram shape */}
                 <div
-                  className="rounded-xl px-8 pt-7 pb-8 relative overflow-hidden"
+                  className="rounded-xl px-8 pt-14 pb-8 relative overflow-hidden"
                   style={{
                     background: "#FCE8E4",
                     transform: "skewY(-3deg)",
