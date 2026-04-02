@@ -1109,7 +1109,7 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
         {/* Sliding pill indicator */}
         <motion.div
           className="absolute rounded-md pointer-events-none"
-          style={{ width: DOT_SIZE, backgroundColor: "#E8654B", height: PILL_HEIGHT, left: 0 }}
+          style={{ width: DOT_SIZE, backgroundColor: "#E8654B", height: PILL_HEIGHT, left: 0, zIndex: 2 }}
           animate={{ top: indicatorTop }}
           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
         />
@@ -1121,7 +1121,7 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
             <div
               key={id}
               className="relative flex items-center pointer-events-auto"
-              style={{ gap: 14, cursor: "pointer" }}
+              style={{ gap: 14, cursor: "pointer", zIndex: 1 }}
               onMouseEnter={() => setHovered(id)}
               onMouseLeave={() => setHovered(null)}
               onClick={() => scrollTo(id)}
