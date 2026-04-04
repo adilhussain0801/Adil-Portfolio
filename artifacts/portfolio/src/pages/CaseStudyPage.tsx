@@ -1057,13 +1057,21 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
     { id: "section-overview", label: "Overview" },
     { id: "section-challenge", label: "Challenge" },
     { id: "section-process", label: study.id === 4 ? "Competitors" : "Process" },
-    ...(study.id === 4 ? [{ id: "section-emerging", label: "Emerging Themes" }] : []),
     { id: "section-solution", label: "Solution" },
     { id: "section-impact", label: "Impact" },
     { id: "section-next", label: "Next Project" },
   ], [study.id]);
 
-  const allSections = useMemo(() => [{ id: "section-hero" }, ...sections], [sections]);
+  // Sections that should activate a different dot (alias → canonical dot id)
+  const aliases: Record<string, string> = useMemo(() => (
+    study.id === 4 ? { "section-emerging": "section-process" } : {}
+  ), [study.id]);
+
+  const observeIds = useMemo(() => [
+    "section-hero",
+    ...sections.map((s) => s.id),
+    ...Object.keys(aliases),
+  ], [sections, aliases]);
 
   useEffect(() => {
     const container = scrollRef.current;
@@ -1071,17 +1079,20 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) setActive(entry.target.id);
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            setActive(aliases[id] ?? id);
+          }
         });
       },
       { root: container, threshold: 0.5 }
     );
-    allSections.forEach(({ id }) => {
+    observeIds.forEach((id) => {
       const el = container.querySelector(`#${id}`);
       if (el) observer.observe(el);
     });
     return () => observer.disconnect();
-  }, [scrollRef, allSections]);
+  }, [scrollRef, observeIds, aliases]);
 
   const scrollTo = (id: string) => {
     const container = scrollRef.current;
