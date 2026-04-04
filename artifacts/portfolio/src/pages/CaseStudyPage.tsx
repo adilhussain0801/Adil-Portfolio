@@ -986,83 +986,101 @@ function EarlyStageConceptsSection() {
 
         {/* RIGHT: card stack */}
         <div className="flex-1 min-h-0 flex flex-col justify-center">
+          {/* Outer wrapper: relative so peek zone can be absolutely positioned
+              without affecting the active card's layout flow */}
+          <div className="relative w-full flex-shrink-0">
 
-          {/* Peek zone — clips the chrome bars of non-active cards */}
-          <div
-            className="relative overflow-hidden flex-shrink-0"
-            style={{ height: PEEK_ZONE_H }}
-          >
-            {PEEK_SLOTS.map((slot, si) => {
-              const peekOffset = PEEK_SLOTS.length - si;
-              const peekIdx = (activeIndex + peekOffset) % total;
-              const frame = CONCEPT_FRAMES[peekIdx];
-              return (
-                <div
-                  key={`peek-${si}`}
-                  className="absolute overflow-hidden rounded-xl"
-                  style={{
-                    top: slot.topInZone,
-                    left: slot.inset,
-                    right: slot.inset,
-                    height: 500,
-                    zIndex: slot.zIndex,
-                    filter: `brightness(${slot.brightness})`,
-                    background: "#fff",
-                    border: "1.5px solid #E8DFD7",
-                  }}
-                >
-                  <div
-                    className="flex items-center gap-1.5 px-3"
-                    style={{ height: 24, background: "#F0EDEA", borderBottom: "1px solid #E8DFD7", flexShrink: 0 }}
-                  >
-                    <div className="w-2 h-2 rounded-full" style={{ background: "rgba(200,185,170,0.5)" }} />
-                    <div className="w-2 h-2 rounded-full" style={{ background: "rgba(212,196,176,0.55)" }} />
-                    <div className="w-2 h-2 rounded-full" style={{ background: "rgba(212,196,176,0.4)" }} />
-                  </div>
-                  <img src={frame.src} alt="" className="w-full block" style={{ height: "auto" }} />
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Active card: rounded-xl, image at natural aspect ratio — no cropping */}
-          <AnimatePresence mode="popLayout">
-            <motion.div
-              key={activeIndex}
-              variants={{
-                enter: { y: -PEEK_ZONE_H, opacity: 0 },
-                center: { y: 0, opacity: 1 },
-                exit: { y: 60, opacity: 0 },
-              }}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ duration: 0.42, ease: APPLE }}
-              className="rounded-xl overflow-hidden flex-shrink-0"
-              style={{
-                zIndex: 10,
-                border: "1.5px solid #E8DFD7",
-              }}
+            {/* Peek zone: absolutely positioned at top, clips chrome bars */}
+            <div
+              className="absolute left-0 right-0 overflow-hidden"
+              style={{ top: 0, height: PEEK_ZONE_H, zIndex: 11 }}
             >
-              {/* Chrome bar */}
-              <div
-                className="flex items-center gap-1.5 px-3"
-                style={{ height: 24, background: "#F0EDEA", borderBottom: "1px solid #E8DFD7", flexShrink: 0 }}
-              >
-                <div className="w-2 h-2 rounded-full" style={{ background: "rgba(232,101,75,0.55)" }} />
-                <div className="w-2 h-2 rounded-full" style={{ background: "rgba(212,196,176,0.7)" }} />
-                <div className="w-2 h-2 rounded-full" style={{ background: "rgba(212,196,176,0.5)" }} />
-              </div>
-              {/* Image at natural 1008×631 ratio — edge-to-edge, no padding */}
-              <img
-                src={current.src}
-                alt={current.title}
-                className="w-full block"
-                style={{ height: "auto", aspectRatio: "1008 / 631" }}
-              />
-            </motion.div>
-          </AnimatePresence>
+              {PEEK_SLOTS.map((slot, si) => {
+                const peekOffset = PEEK_SLOTS.length - si;
+                const peekIdx = (activeIndex + peekOffset) % total;
+                const frame = CONCEPT_FRAMES[peekIdx];
+                return (
+                  <AnimatePresence key={si}>
+                    <motion.div
+                      key={peekIdx}
+                      className="absolute overflow-hidden rounded-xl"
+                      style={{
+                        top: slot.topInZone,
+                        left: slot.inset,
+                        right: slot.inset,
+                        height: 500,
+                        zIndex: slot.zIndex,
+                        filter: `brightness(${slot.brightness})`,
+                        background: "#fff",
+                        border: "1.5px solid #E8DFD7",
+                      }}
+                      initial={{ y: direction > 0 ? PEEK_ZONE_H : -PEEK_ZONE_H }}
+                      animate={{ y: 0 }}
+                      exit={{ y: direction > 0 ? -PEEK_ZONE_H : PEEK_ZONE_H }}
+                      transition={{ duration: 0.38, ease: APPLE }}
+                    >
+                      <div
+                        className="flex items-center gap-1.5 px-3"
+                        style={{ height: 24, background: "#F0EDEA", borderBottom: "1px solid #E8DFD7", flexShrink: 0 }}
+                      >
+                        <div className="w-2 h-2 rounded-full" style={{ background: "rgba(200,185,170,0.5)" }} />
+                        <div className="w-2 h-2 rounded-full" style={{ background: "rgba(212,196,176,0.55)" }} />
+                        <div className="w-2 h-2 rounded-full" style={{ background: "rgba(212,196,176,0.4)" }} />
+                      </div>
+                      <img src={frame.src} alt="" className="w-full block" style={{ height: "auto" }} />
+                    </motion.div>
+                  </AnimatePresence>
+                );
+              })}
+            </div>
 
+            {/* Spacer pushes active card below the peek zone */}
+            <div style={{ height: PEEK_ZONE_H }} />
+
+            {/* Active card: mode="wait" (exit then enter) so only one card
+                is in flow at a time — no layout height doubling */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeIndex}
+                className="rounded-xl overflow-hidden"
+                style={{ zIndex: 10, border: "1.5px solid #E8DFD7" }}
+                variants={{
+                  enter: { y: direction > 0 ? 60 : -60, opacity: 0 },
+                  center: {
+                    y: 0,
+                    opacity: 1,
+                    transition: { duration: 0.42, ease: APPLE },
+                  },
+                  exit: {
+                    y: direction > 0 ? -30 : 30,
+                    opacity: 0,
+                    transition: { duration: 0.18, ease: APPLE },
+                  },
+                }}
+                initial="enter"
+                animate="center"
+                exit="exit"
+              >
+                {/* Chrome bar */}
+                <div
+                  className="flex items-center gap-1.5 px-3"
+                  style={{ height: 24, background: "#F0EDEA", borderBottom: "1px solid #E8DFD7", flexShrink: 0 }}
+                >
+                  <div className="w-2 h-2 rounded-full" style={{ background: "rgba(232,101,75,0.55)" }} />
+                  <div className="w-2 h-2 rounded-full" style={{ background: "rgba(212,196,176,0.7)" }} />
+                  <div className="w-2 h-2 rounded-full" style={{ background: "rgba(212,196,176,0.5)" }} />
+                </div>
+                {/* Image at natural 1008×631 ratio — edge-to-edge, no padding */}
+                <img
+                  src={current.src}
+                  alt={current.title}
+                  className="w-full block"
+                  style={{ height: "auto", aspectRatio: "1008 / 631" }}
+                />
+              </motion.div>
+            </AnimatePresence>
+
+          </div>
         </div>
       </div>
     </section>
