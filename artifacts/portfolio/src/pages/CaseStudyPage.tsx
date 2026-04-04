@@ -822,7 +822,7 @@ function EmergingThemesSection() {
                     {t.icon}
                   </div>
                   <div className="flex flex-col gap-2">
-                    <h3 className="text-2xl md:text-3xl font-bold leading-tight" style={{ color: "#1a1a1a", fontFamily: "'Wotfard', sans-serif", maxWidth: "8ch" }}>{t.title}</h3>
+                    <h3 className="text-2xl md:text-3xl font-bold leading-tight" style={{ color: "#1a1a1a", fontFamily: "'Wotfard', sans-serif", maxWidth: "13ch" }}>{t.title}</h3>
                   </div>
                   <p className="text-sm leading-relaxed" style={{ color: "rgba(26,26,26,0.55)", fontFamily: "'Wotfard', sans-serif" }}>{t.description}</p>
                 </div>
