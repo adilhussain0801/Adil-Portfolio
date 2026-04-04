@@ -1053,7 +1053,9 @@ const DOT_STRIDE = DOT_SIZE + DOT_GAP;
 
 function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObject<HTMLDivElement> }) {
   const [active, setActive] = useState("section-hero");
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const [hovered, setHovered] = useState<string | null>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const sections = useMemo(() => [
     { id: "section-overview", label: "Overview" },
@@ -1073,7 +1075,17 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) setActive(entry.target.id);
+          if (entry.isIntersecting) {
+            const newId = entry.target.id;
+            setActive((prev) => {
+              if (newId !== prev) {
+                setIsTransitioning(true);
+                if (timerRef.current) clearTimeout(timerRef.current);
+                timerRef.current = setTimeout(() => setIsTransitioning(false), 500);
+              }
+              return newId;
+            });
+          }
         });
       },
       { root: container, threshold: 0.5 }
@@ -1082,7 +1094,7 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
       const el = container.querySelector(`#${id}`);
       if (el) observer.observe(el);
     });
-    return () => observer.disconnect();
+    return () => { observer.disconnect(); if (timerRef.current) clearTimeout(timerRef.current); };
   }, [scrollRef, allSections]);
 
   const scrollTo = (id: string) => {
@@ -1106,16 +1118,17 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className="relative flex flex-col items-start" style={{ gap: DOT_GAP }}>
-        {/* Sliding pill indicator */}
+        {/* Orange pill — visible only while transitioning between sections */}
         <motion.div
           className="absolute rounded-md pointer-events-none"
-          style={{ width: DOT_SIZE, backgroundColor: "#E8654B", height: PILL_HEIGHT, left: 0, zIndex: 2 }}
-          animate={{ top: indicatorTop }}
+          style={{ width: DOT_SIZE, height: PILL_HEIGHT, left: 0, zIndex: 2, backgroundColor: "#E8654B" }}
+          animate={{ top: indicatorTop, opacity: isTransitioning ? 1 : 0 }}
           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
         />
 
-        {/* Static dots + hover labels */}
+        {/* Dots + hover labels */}
         {sections.map(({ id, label }) => {
+          const isActive = id === active;
           const isHovered = hovered === id;
           return (
             <div
@@ -1126,9 +1139,15 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
               onMouseLeave={() => setHovered(null)}
               onClick={() => scrollTo(id)}
             >
-              <div
+              <motion.div
                 className="flex-shrink-0 rounded-full"
-                style={{ width: DOT_SIZE, height: DOT_SIZE, backgroundColor: "rgba(45,45,45,0.2)" }}
+                style={{ width: DOT_SIZE, height: DOT_SIZE }}
+                animate={{
+                  backgroundColor: isActive && !isTransitioning
+                    ? "rgba(45,45,45,0.65)"
+                    : "rgba(45,45,45,0.2)",
+                }}
+                transition={{ duration: 0.25 }}
               />
               <motion.span
                 className="text-sm font-semibold whitespace-nowrap"
