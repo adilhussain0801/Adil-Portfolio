@@ -852,53 +852,6 @@ const CONCEPT_FRAMES = [
   },
 ];
 
-const WIREFRAME_FILTER = "grayscale(1) contrast(0.68) brightness(1.28) saturate(0)";
-
-function WireframeOverlay() {
-  return (
-    <svg
-      className="absolute inset-0 w-full h-full pointer-events-none"
-      viewBox="0 0 1008 631"
-      preserveAspectRatio="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <defs>
-        <pattern id="wf-grid" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
-          <path d="M 32 0 L 0 0 0 32" fill="none" stroke="rgba(80,110,200,0.07)" strokeWidth="0.8" />
-        </pattern>
-      </defs>
-      <rect width="1008" height="631" fill="url(#wf-grid)" />
-      <rect x="10" y="10" width="988" height="611" rx="2" fill="none" stroke="rgba(80,110,200,0.14)" strokeWidth="1" strokeDasharray="6,5" />
-      {/* Corner brackets */}
-      <polyline points="8,26 8,8 26,8"       fill="none" stroke="rgba(70,100,210,0.55)" strokeWidth="1.8" />
-      <polyline points="1000,26 1000,8 982,8"  fill="none" stroke="rgba(70,100,210,0.55)" strokeWidth="1.8" />
-      <polyline points="8,605 8,623 26,623"    fill="none" stroke="rgba(70,100,210,0.55)" strokeWidth="1.8" />
-      <polyline points="1000,605 1000,623 982,623" fill="none" stroke="rgba(70,100,210,0.55)" strokeWidth="1.8" />
-      {/* Sidebar divider */}
-      <line x1="228" y1="44" x2="228" y2="631" stroke="rgba(80,110,200,0.1)" strokeWidth="0.8" strokeDasharray="4,4" />
-      {/* Header divider */}
-      <line x1="228" y1="44" x2="1008" y2="44" stroke="rgba(80,110,200,0.1)" strokeWidth="0.8" strokeDasharray="4,4" />
-      {/* Text placeholder lines in main content */}
-      <rect x="248" y="68" width="340" height="7" rx="3.5" fill="rgba(80,110,200,0.12)" />
-      <rect x="248" y="88" width="260" height="6" rx="3" fill="rgba(80,110,200,0.08)" />
-      <rect x="248" y="106" width="300" height="6" rx="3" fill="rgba(80,110,200,0.08)" />
-      {/* Row/item placeholders (table rows) */}
-      {[0, 1, 2, 3, 4].map((i) => (
-        <rect key={i} x="234" y={154 + i * 52} width="456" height="40" rx="4"
-          fill="rgba(80,110,200,0.03)" stroke="rgba(80,110,200,0.1)" strokeWidth="0.8" />
-      ))}
-      {/* Right panel placeholder */}
-      <rect x="714" y="56" width="278" height="380" rx="6"
-        fill="rgba(80,110,200,0.04)" stroke="rgba(80,110,200,0.18)" strokeWidth="1" strokeDasharray="5,4" />
-      {/* Image/icon placeholder box inside right panel */}
-      <rect x="726" y="68" width="254" height="80" rx="4"
-        fill="rgba(80,110,200,0.06)" stroke="rgba(80,110,200,0.14)" strokeWidth="0.8" />
-      <line x1="726" y1="68" x2="980" y2="148" stroke="rgba(80,110,200,0.1)" strokeWidth="0.8" />
-      <line x1="980" y1="68" x2="726" y2="148" stroke="rgba(80,110,200,0.1)" strokeWidth="0.8" />
-    </svg>
-  );
-}
-
 const PEEK_SLOTS = [
   { topInZone: 6,  inset: 44, zIndex: 7, opacity: 0.2  },
   { topInZone: 14, inset: 24, zIndex: 8, opacity: 0.38 },
@@ -923,8 +876,11 @@ function EarlyStageConceptsSection() {
       className="relative h-screen snap-start snap-always flex flex-col overflow-hidden"
       style={{ background: "#FAF8F5" }}
     >
-      {/* TOP HEADER: title left, frame info + chevrons right */}
-      <div className="flex-shrink-0 flex items-end justify-between px-8 md:px-20 pt-10 pb-5">
+      {/* Spacer pushes all content down toward the cards */}
+      <div className="flex-1" />
+
+      {/* HEADER + CARD STACK grouped together at bottom */}
+      <div className="flex-shrink-0 flex items-end justify-between px-8 md:px-20 pb-5">
         <div>
           <p
             className="text-[11px] uppercase tracking-widest font-semibold mb-2"
@@ -1000,8 +956,8 @@ function EarlyStageConceptsSection() {
         </div>
       </div>
 
-      {/* CARD STACK: peek zone clips non-active tops, active card at natural ratio */}
-      <div className="flex-1 flex flex-col justify-end pb-8 px-8 md:px-20 min-h-0">
+      {/* CARD STACK: sits directly below the header */}
+      <div className="flex-shrink-0 px-8 md:px-20 pb-10">
         <div className="mx-auto w-full" style={{ maxWidth: 780 }}>
 
           {/* Peek zone — shows chrome bars of non-active cards */}
@@ -1038,7 +994,7 @@ function EarlyStageConceptsSection() {
                     src={frame.src}
                     alt=""
                     className="w-full block"
-                    style={{ height: "auto", filter: WIREFRAME_FILTER }}
+                    style={{ height: "auto" }}
                   />
                 </div>
               );
@@ -1076,21 +1032,13 @@ function EarlyStageConceptsSection() {
                 <div className="w-2 h-2 rounded-full" style={{ background: "rgba(212,196,176,0.7)" }} />
                 <div className="w-2 h-2 rounded-full" style={{ background: "rgba(212,196,176,0.5)" }} />
               </div>
-              {/* Image at full natural aspect ratio */}
-              <div className="relative">
-                <img
-                  src={current.src}
-                  alt={current.title}
-                  className="w-full block"
-                  style={{ height: "auto", filter: WIREFRAME_FILTER }}
-                />
-                <WireframeOverlay />
-                {/* Blue tint */}
-                <div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{ background: "rgba(90,120,200,0.07)", mixBlendMode: "multiply" }}
-                />
-              </div>
+              {/* Image at full natural aspect ratio — original colors */}
+              <img
+                src={current.src}
+                alt={current.title}
+                className="w-full block"
+                style={{ height: "auto" }}
+              />
             </motion.div>
           </AnimatePresence>
 
