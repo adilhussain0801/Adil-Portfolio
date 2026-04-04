@@ -1048,14 +1048,10 @@ function NextProjectSection({ study }: { study: CaseStudy }) {
 
 const DOT_SIZE = 10;
 const DOT_GAP = 14;
-const PILL_HEIGHT = 32;
-const DOT_STRIDE = DOT_SIZE + DOT_GAP;
 
 function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObject<HTMLDivElement> }) {
   const [active, setActive] = useState("section-hero");
-  const [transitioning, setTransitioning] = useState(false);
   const [hovered, setHovered] = useState<string | null>(null);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const sections = useMemo(() => [
     { id: "section-overview", label: "Overview" },
@@ -1075,17 +1071,7 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const newId = entry.target.id;
-            setActive((prev) => {
-              if (newId !== prev) {
-                setTransitioning(true);
-                if (timerRef.current) clearTimeout(timerRef.current);
-                timerRef.current = setTimeout(() => setTransitioning(false), 450);
-              }
-              return newId;
-            });
-          }
+          if (entry.isIntersecting) setActive(entry.target.id);
         });
       },
       { root: container, threshold: 0.5 }
@@ -1094,10 +1080,7 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
       const el = container.querySelector(`#${id}`);
       if (el) observer.observe(el);
     });
-    return () => {
-      observer.disconnect();
-      if (timerRef.current) clearTimeout(timerRef.current);
-    };
+    return () => observer.disconnect();
   }, [scrollRef, allSections]);
 
   const scrollTo = (id: string) => {
@@ -1108,12 +1091,6 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
   };
 
   const visible = active !== "section-hero";
-  const activeIndex = sections.findIndex((s) => s.id === active);
-
-  // Indicator: centered on the active dot at all times
-  const dotCenter = activeIndex >= 0 ? activeIndex * DOT_STRIDE + DOT_SIZE / 2 : DOT_SIZE / 2;
-  const indH = transitioning ? PILL_HEIGHT : DOT_SIZE;
-  const indTop = dotCenter - indH / 2;
 
   return (
     <motion.div
@@ -1122,35 +1099,24 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
       animate={{ opacity: visible ? 1 : 0, x: visible ? 0 : -16 }}
       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
     >
-      <div className="relative flex flex-col items-start" style={{ gap: DOT_GAP }}>
-        {/* Single indicator: dot at rest, pill while moving */}
-        <motion.div
-          className="absolute pointer-events-none"
-          style={{ width: DOT_SIZE, left: 0, zIndex: 2 }}
-          animate={{
-            top: indTop,
-            height: indH,
-            borderRadius: transitioning ? 6 : DOT_SIZE / 2,
-            backgroundColor: transitioning ? "#E8654B" : "rgba(45,45,45,0.7)",
-          }}
-          transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
-        />
-
-        {/* Ghost dots — always light gray */}
+      <div className="flex flex-col items-start" style={{ gap: DOT_GAP }}>
         {sections.map(({ id, label }) => {
+          const isActive = id === active;
           const isHovered = hovered === id;
           return (
             <div
               key={id}
               className="relative flex items-center pointer-events-auto"
-              style={{ gap: 14, cursor: "pointer", zIndex: 1 }}
+              style={{ gap: 14, cursor: "pointer" }}
               onMouseEnter={() => setHovered(id)}
               onMouseLeave={() => setHovered(null)}
               onClick={() => scrollTo(id)}
             >
-              <div
+              <motion.div
                 className="flex-shrink-0 rounded-full"
-                style={{ width: DOT_SIZE, height: DOT_SIZE, backgroundColor: "rgba(45,45,45,0.18)" }}
+                style={{ width: DOT_SIZE, height: DOT_SIZE }}
+                animate={{ backgroundColor: isActive ? "rgba(45,45,45,0.7)" : "rgba(45,45,45,0.18)" }}
+                transition={{ duration: 0.2 }}
               />
               <motion.span
                 className="text-sm font-semibold whitespace-nowrap"
