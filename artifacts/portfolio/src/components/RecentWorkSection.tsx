@@ -9,7 +9,7 @@ const PROJECTS = [
     category: "Atlassian AI Assistant",
     description: "Designed the service layer experience for Rovo, Atlassian's AI assistant — enabling agents to take action across tools, reducing manual workflows for enterprise teams.",
     year: "2024",
-    image: null,
+    image: "/orchestration-map.png",
     placeholderColor: "#C5D9F9",
     metrics: [
       { label: "EFFICIENCY GAIN", value: "38%" },
@@ -138,7 +138,16 @@ function ProjectCard({
         >
           <div
             className="absolute inset-0"
-            style={{ backgroundColor: project.placeholderColor }}
+            style={{
+              backgroundColor: project.placeholderColor,
+              ...(project.image
+                ? {
+                    backgroundImage: `url(${project.image})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }
+                : {}),
+            }}
           />
 
           <div className={`absolute top-4 right-4 w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center transition-all duration-300 z-10 ${isHovered ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"}`}>
