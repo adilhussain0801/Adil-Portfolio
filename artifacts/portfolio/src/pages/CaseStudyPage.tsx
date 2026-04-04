@@ -1,7 +1,7 @@
 import { useParams, Link } from "wouter";
 import { useRef, useEffect, useState, useMemo, type RefObject } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowLeft, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare, BookOpen, CheckCheck, Bot, UserPlus, LayoutList, TrendingUp, GraduationCap } from "lucide-react";
 import { getCaseStudy, getNextCaseStudy, type CaseStudy } from "@/data/caseStudies";
 import NotFound from "@/pages/not-found";
 
@@ -41,8 +41,8 @@ function SnapReveal({
 }
 
 function CaseStudyHeroBg() {
-  const CX = 600, CY = 310;
-  const PW = 182, PH = 30;
+  const CX = 880, CY = 297;
+  const VW = 1600, VH = 900;
 
   const hexPoints = (cx: number, cy: number, r: number) =>
     [0, 60, 120, 180, 240, 300]
@@ -52,86 +52,132 @@ function CaseStudyHeroBg() {
       })
       .join(" ");
 
-  const nodes: { x: number; y: number; label: string }[] = [
-    { x: 712, y: 310, label: "Service triage" },
-    { x: 544, y: 407, label: "Internal knowledge" },
-    { x: 544, y: 213, label: "Work item resolution" },
-    { x: 795, y: 219, label: "Automation Rules" },
-    { x: 674, y: 512, label: "Rovo custom agent" },
-    { x: 435, y: 448, label: "Virtual service agent" },
-    { x: 414, y: 202, label: "Employee onboarding" },
-    { x: 656, y: 102, label: "Jobs Queue" },
-    { x: 916, y: 366, label: "Performance management" },
-    { x: 660, y: 596, label: "Alumni relations" },
-    { x: 308, y: 445, label: "Learning & development" },
-    { x: 323, y: 150, label: "Preboarding of new hires" },
-    { x: 742, y: 52, label: "Internal mobility" },
-    { x: 910, y: 228, label: "Partner onboarding" },
+  const nodes = [
+    { x: 979,  y: 297, label: "Service triage",          icon: <Inbox size={11} /> },
+    { x: 838,  y: 387, label: "Internal knowledge",       icon: <BookOpen size={11} /> },
+    { x: 837,  y: 207, label: "Work item resolution",     icon: <CheckCheck size={11} /> },
+    { x: 1039, y: 223, label: "Automation Rules",         icon: <Zap size={11} /> },
+    { x: 954,  y: 456, label: "Rovo custom agent",        icon: <Bot size={11} /> },
+    { x: 737,  y: 397, label: "Virtual service agent",    icon: <Network size={11} /> },
+    { x: 716,  y: 237, label: "Employee onboarding",      icon: <UserPlus size={11} /> },
+    { x: 895,  y: 123, label: "Jobs Queue",               icon: <LayoutList size={11} /> },
+    { x: 1120, y: 384, label: "Performance management",   icon: <TrendingUp size={11} /> },
+    { x: 649,  y: 405, label: "Learning & development",   icon: <GraduationCap size={11} /> },
+    { x: 659,  y: 170, label: "Preboarding of new hires", icon: <Sparkles size={11} /> },
+    { x: 1089, y: 151, label: "Internal mobility",        icon: <ArrowUpRight size={11} /> },
   ];
 
   return (
-    <svg
-      viewBox="0 0 1200 650"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="absolute inset-0 w-full h-full pointer-events-none select-none"
-      preserveAspectRatio="xMidYMid slice"
-    >
-      <defs>
-        <pattern id="hero-dot-grid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-          <circle cx="1" cy="1" r="1" fill="rgba(0,20,100,0.07)" />
-        </pattern>
-      </defs>
+    <div className="absolute inset-0 overflow-hidden">
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 75% 65% at 55% 26%, rgba(255,255,255,0.45) 0%, transparent 70%)",
+        }}
+      />
 
-      <rect width="1200" height="650" fill="url(#hero-dot-grid)" />
+      <svg
+        viewBox={`0 0 ${VW} ${VH}`}
+        className="absolute inset-0 w-full h-full pointer-events-none select-none"
+        preserveAspectRatio="xMidYMid slice"
+      >
+        <defs>
+          <pattern id="hero-grid" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+            <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(0,40,120,0.05)" strokeWidth="0.8" />
+          </pattern>
+        </defs>
 
-      <circle cx={CX} cy={CY} r={112} stroke="rgba(40,90,210,0.22)" strokeWidth={1.5} strokeDasharray="5 7" />
-      <circle cx={CX} cy={CY} r={215} stroke="rgba(190,120,15,0.3)" strokeWidth={1.5} strokeDasharray="4 10" />
-      <circle cx={CX} cy={CY} r={320} stroke="rgba(40,90,210,0.16)" strokeWidth={1.5} strokeDasharray="5 7" />
+        <rect width={VW} height={VH} fill="url(#hero-grid)" />
+
+        <circle cx={CX} cy={CY} r={110} stroke="rgba(50,100,220,0.24)" strokeWidth={1.5} fill="none" strokeDasharray="8 12">
+          <animateTransform attributeName="transform" type="rotate" from={`0 ${CX} ${CY}`} to={`360 ${CX} ${CY}`} dur="50s" repeatCount="indefinite" />
+        </circle>
+        <circle cx={CX} cy={CY} r={195} stroke="rgba(200,130,20,0.28)" strokeWidth={1.5} fill="none" strokeDasharray="5 14">
+          <animateTransform attributeName="transform" type="rotate" from={`0 ${CX} ${CY}`} to={`-360 ${CX} ${CY}`} dur="75s" repeatCount="indefinite" />
+        </circle>
+        <circle cx={CX} cy={CY} r={285} stroke="rgba(50,100,220,0.17)" strokeWidth={1.5} fill="none" strokeDasharray="8 12">
+          <animateTransform attributeName="transform" type="rotate" from={`0 ${CX} ${CY}`} to={`360 ${CX} ${CY}`} dur="100s" repeatCount="indefinite" />
+        </circle>
+
+        {nodes.map((n, i) => (
+          <line
+            key={i}
+            x1={CX} y1={CY}
+            x2={n.x} y2={n.y}
+            stroke="rgba(30,70,180,0.12)"
+            strokeWidth={1}
+            strokeDasharray="4 8"
+          >
+            <animate attributeName="stroke-opacity" values="0.12;0.28;0.12" dur={`${2.8 + (i % 5) * 0.6}s`} repeatCount="indefinite" />
+          </line>
+        ))}
+
+        {nodes.map((n, i) => (
+          <circle key={i} cx={n.x} cy={n.y} r={3.5} fill="rgba(50,100,220,0.35)" />
+        ))}
+
+        <circle cx={CX} cy={CY} r={84} fill="rgba(242,166,23,0.15)" />
+        <circle cx={CX} cy={CY} r={66} fill="rgba(242,166,23,0.22)" />
+        <polygon points={hexPoints(CX, CY, 48)} fill="#F2A617" />
+        <polygon points={hexPoints(CX, CY, 26)} fill="none" stroke="rgba(255,255,255,0.88)" strokeWidth={2.5} />
+        <polygon points={hexPoints(CX, CY, 12)} fill="rgba(255,255,255,0.92)" />
+      </svg>
 
       {nodes.map((n, i) => (
-        <line
+        <div
           key={i}
-          x1={CX} y1={CY}
-          x2={n.x} y2={n.y}
-          stroke="rgba(0,20,100,0.09)"
-          strokeWidth={1}
-          strokeDasharray="3 5"
-        />
-      ))}
-
-      {nodes.map((n, i) => {
-        const px = n.x - PW / 2;
-        const py = n.y - PH / 2;
-        return (
-          <g key={i}>
-            <rect x={px + 1} y={py + 2} width={PW} height={PH} rx={8} fill="rgba(0,20,100,0.05)" />
-            <rect x={px} y={py} width={PW} height={PH} rx={8} fill="rgba(255,255,255,0.82)" stroke="rgba(0,20,100,0.12)" strokeWidth={1} />
-            <circle cx={px + 14} cy={n.y} r={4.5} fill="rgba(40,90,210,0.15)" stroke="rgba(40,90,210,0.3)" strokeWidth={0.75} />
-            <text
-              x={px + 26}
-              y={n.y + 4}
-              fontSize={10}
-              fontFamily="'Wotfard', sans-serif"
-              fill="rgba(10,20,60,0.7)"
-              fontWeight={600}
+          className="absolute"
+          style={{
+            left: `${(n.x / VW) * 100}%`,
+            top: `${(n.y / VH) * 100}%`,
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          <motion.div
+            animate={{ y: [0, -7, 0] }}
+            transition={{
+              duration: 3.2 + (i % 6) * 0.55,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.18,
+            }}
+            whileHover={{ scale: 1.1, transition: { duration: 0.18 } }}
+            className="pointer-events-auto cursor-default"
+          >
+            <div
+              className="flex items-center gap-2 px-3 py-[6px] rounded-full select-none"
+              style={{
+                background: "rgba(255,255,255,0.88)",
+                border: "1px solid rgba(50,100,220,0.14)",
+                boxShadow: "0 2px 16px rgba(30,70,180,0.1), 0 1px 3px rgba(0,0,0,0.07)",
+                backdropFilter: "blur(10px)",
+                WebkitBackdropFilter: "blur(10px)",
+              }}
             >
-              {n.label}
-            </text>
-          </g>
-        );
-      })}
-
-      {nodes.map((n, i) => (
-        <circle key={i} cx={n.x} cy={n.y} r={2.5} fill="rgba(40,90,210,0.32)" />
+              <div
+                className="w-[18px] h-[18px] rounded-full flex items-center justify-center flex-shrink-0"
+                style={{
+                  background: "rgba(50,100,220,0.12)",
+                  color: "rgba(40,90,200,0.85)",
+                }}
+              >
+                {n.icon}
+              </div>
+              <span
+                className="text-[11px] font-semibold whitespace-nowrap"
+                style={{
+                  color: "rgba(12,25,70,0.72)",
+                  fontFamily: "'Wotfard', sans-serif",
+                }}
+              >
+                {n.label}
+              </span>
+            </div>
+          </motion.div>
+        </div>
       ))}
-
-      <circle cx={CX} cy={CY} r={70} fill="rgba(242,166,23,0.18)" />
-      <circle cx={CX} cy={CY} r={56} fill="rgba(242,166,23,0.26)" />
-      <polygon points={hexPoints(CX, CY, 40)} fill="#F2A617" />
-      <polygon points={hexPoints(CX, CY, 22)} fill="none" stroke="rgba(255,255,255,0.82)" strokeWidth={2} />
-      <polygon points={hexPoints(CX, CY, 10)} fill="rgba(255,255,255,0.88)" />
-    </svg>
+    </div>
   );
 }
 
