@@ -53,14 +53,18 @@ function CaseStudyHeroBg() {
       <img
         src="/rovo-hero-diagram.png"
         alt=""
-        className="absolute inset-0 w-full h-full pointer-events-none select-none"
+        className="absolute pointer-events-none select-none"
         style={{
-          objectFit: "cover",
-          objectPosition: "right center",
+          right: 0,
+          top: "50%",
+          transform: "translateY(-50%)",
+          height: "min(100%, 768px)",
+          width: "auto",
+          maxWidth: "none",
           maskImage:
-            "linear-gradient(to right, transparent 0%, transparent 28%, rgba(0,0,0,0.4) 42%, black 56%, black 100%)",
+            "linear-gradient(to right, transparent 0%, transparent 50%, rgba(0,0,0,0.5) 58%, black 66%, black 100%)",
           WebkitMaskImage:
-            "linear-gradient(to right, transparent 0%, transparent 28%, rgba(0,0,0,0.4) 42%, black 56%, black 100%)",
+            "linear-gradient(to right, transparent 0%, transparent 50%, rgba(0,0,0,0.5) 58%, black 66%, black 100%)",
         }}
       />
     </div>
