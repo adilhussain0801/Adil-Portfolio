@@ -43,6 +43,13 @@ function SnapReveal({
 function CaseStudyHeroBg() {
   return (
     <div className="absolute inset-0 overflow-hidden">
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 55% 75% at 70% 46%, rgba(255,255,255,0.38) 0%, transparent 65%)",
+        }}
+      />
       <img
         src="/rovo-hero-diagram.png"
         alt=""
