@@ -9,7 +9,7 @@ const PROJECTS = [
     category: "Atlassian AI Assistant",
     description: "Designed the service layer experience for Rovo, Atlassian's AI assistant — enabling agents to take action across tools, reducing manual workflows for enterprise teams.",
     year: "2024",
-    image: "/orchestration-map-2.png",
+    image: "/Screenshot_2026-04-04_at_20.12.35.png",
     placeholderColor: "#C5D9F9",
     metrics: [
       { label: "EFFICIENCY GAIN", value: "38%" },
