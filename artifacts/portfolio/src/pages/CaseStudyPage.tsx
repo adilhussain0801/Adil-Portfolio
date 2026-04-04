@@ -870,20 +870,26 @@ function EarlyStageConceptsSection() {
     setActiveIndex((prev) => (prev + dir + total) % total);
   };
 
+  // Auto-cycle; resets 3.5 s timer whenever index changes (incl. manual nav)
+  useEffect(() => {
+    const id = setInterval(() => {
+      setDirection(1);
+      setActiveIndex((prev) => (prev + 1) % total);
+    }, 3500);
+    return () => clearInterval(id);
+  }, [activeIndex, total]);
+
   return (
     <section
       id="section-concepts"
       className="relative h-screen snap-start snap-always flex flex-col overflow-hidden"
       style={{ background: "#FAF8F5" }}
     >
-      {/* Spacer pushes all content down toward the cards */}
-      <div className="flex-1" />
-
-      {/* HEADER + CARD STACK grouped together at bottom */}
-      <div className="flex-shrink-0 flex items-end justify-between px-8 md:px-20 pb-5">
+      {/* Compact header */}
+      <div className="flex-shrink-0 flex items-end justify-between px-8 md:px-20 pt-8 pb-4">
         <div>
           <p
-            className="text-[11px] uppercase tracking-widest font-semibold mb-2"
+            className="text-[11px] uppercase tracking-widest font-semibold mb-1.5"
             style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
           >
             Design Process
@@ -956,12 +962,16 @@ function EarlyStageConceptsSection() {
         </div>
       </div>
 
-      {/* CARD STACK: sits directly below the header */}
-      <div className="flex-shrink-0 px-8 md:px-20 pb-10">
-        <div className="mx-auto w-full" style={{ maxWidth: 780 }}>
+      {/* CARD STACK: fills remaining height */}
+      <div className="flex-1 flex justify-center px-8 md:px-20 pb-10 min-h-0">
+        {/* Relative container — positioned children fill this */}
+        <div className="relative flex-1" style={{ maxWidth: 900 }}>
 
-          {/* Peek zone — shows chrome bars of non-active cards */}
-          <div className="relative overflow-hidden" style={{ height: PEEK_ZONE_H }}>
+          {/* Peek zone — absolute at top, clips chrome bars of non-active cards */}
+          <div
+            className="absolute overflow-hidden"
+            style={{ top: 0, left: 0, right: 0, height: PEEK_ZONE_H, zIndex: 1 }}
+          >
             {PEEK_SLOTS.map((slot, si) => {
               const peekOffset = PEEK_SLOTS.length - si;
               const peekIdx = (activeIndex + peekOffset) % total;
@@ -974,7 +984,7 @@ function EarlyStageConceptsSection() {
                     top: slot.topInZone,
                     left: slot.inset,
                     right: slot.inset,
-                    height: 400,
+                    height: 500,
                     zIndex: slot.zIndex,
                     opacity: slot.opacity,
                     background: "#fff",
@@ -1001,22 +1011,25 @@ function EarlyStageConceptsSection() {
             })}
           </div>
 
-          {/* Active card: natural aspect ratio, no cropping */}
-          <AnimatePresence mode="popLayout" custom={direction}>
+          {/* Active card: fills from peek zone bottom to section bottom, image covers */}
+          <AnimatePresence mode="popLayout">
             <motion.div
               key={activeIndex}
-              custom={direction}
               variants={{
-                enter: (dir: number) => ({ x: dir > 0 ? 60 : -60, opacity: 0 }),
-                center: { x: 0, opacity: 1 },
-                exit: (dir: number) => ({ x: dir > 0 ? -60 : 60, opacity: 0 }),
+                enter: { y: -PEEK_ZONE_H, opacity: 0 },
+                center: { y: 0, opacity: 1 },
+                exit: { y: 60, opacity: 0 },
               }}
               initial="enter"
               animate="center"
               exit="exit"
-              transition={{ duration: 0.38, ease: APPLE }}
-              className="relative rounded-b-xl overflow-hidden"
+              transition={{ duration: 0.42, ease: APPLE }}
+              className="absolute flex flex-col rounded-b-xl overflow-hidden"
               style={{
+                top: PEEK_ZONE_H,
+                left: 0,
+                right: 0,
+                bottom: 0,
                 zIndex: 10,
                 background: "#fff",
                 border: "1.5px solid #E8DFD7",
@@ -1025,20 +1038,22 @@ function EarlyStageConceptsSection() {
             >
               {/* Chrome bar */}
               <div
-                className="flex items-center gap-1.5 px-3"
-                style={{ height: 24, background: "#F0EDEA", borderBottom: "1px solid #E8DFD7", flexShrink: 0 }}
+                className="flex-shrink-0 flex items-center gap-1.5 px-3"
+                style={{ height: 24, background: "#F0EDEA", borderBottom: "1px solid #E8DFD7" }}
               >
                 <div className="w-2 h-2 rounded-full" style={{ background: "rgba(232,101,75,0.55)" }} />
                 <div className="w-2 h-2 rounded-full" style={{ background: "rgba(212,196,176,0.7)" }} />
                 <div className="w-2 h-2 rounded-full" style={{ background: "rgba(212,196,176,0.5)" }} />
               </div>
-              {/* Image at full natural aspect ratio — original colors */}
-              <img
-                src={current.src}
-                alt={current.title}
-                className="w-full block"
-                style={{ height: "auto" }}
-              />
+              {/* Image fills the remaining card height */}
+              <div className="flex-1 relative overflow-hidden">
+                <img
+                  src={current.src}
+                  alt={current.title}
+                  className="absolute inset-0 w-full h-full"
+                  style={{ objectFit: "cover", objectPosition: "top" }}
+                />
+              </div>
             </motion.div>
           </AnimatePresence>
 
