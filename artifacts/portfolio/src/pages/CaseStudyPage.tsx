@@ -852,38 +852,59 @@ const CONCEPT_FRAMES = [
   },
 ];
 
-const WIREFRAME_FILTER = "grayscale(1) contrast(0.72) brightness(1.22)";
-const BLUE_TINT = "rgba(100, 130, 210, 0.09)";
+const WIREFRAME_FILTER = "grayscale(1) contrast(0.68) brightness(1.28) saturate(0)";
 
-function ConceptCard({
-  frame,
-  isActive,
-}: {
-  frame: typeof CONCEPT_FRAMES[0];
-  isActive: boolean;
-}) {
+function WireframeOverlay() {
   return (
-    <div className="absolute inset-0 flex flex-col rounded-xl overflow-hidden" style={{ background: "#fff", border: "1.5px solid #E8DFD7" }}>
-      <div
-        className="flex-shrink-0 flex items-center gap-1.5 px-3"
-        style={{ height: 24, background: "#F0EDEA", borderBottom: "1px solid #E8DFD7" }}
-      >
-        <div className="w-2 h-2 rounded-full" style={{ background: isActive ? "rgba(232,101,75,0.5)" : "rgba(200,185,170,0.5)" }} />
-        <div className="w-2 h-2 rounded-full" style={{ background: "rgba(212,196,176,0.65)" }} />
-        <div className="w-2 h-2 rounded-full" style={{ background: "rgba(212,196,176,0.45)" }} />
-      </div>
-      <div className="flex-1 relative overflow-hidden">
-        <img
-          src={frame.src}
-          alt={frame.title}
-          className="w-full h-full block"
-          style={{ objectFit: "cover", objectPosition: "top", filter: WIREFRAME_FILTER }}
-        />
-        <div className="absolute inset-0 pointer-events-none" style={{ background: BLUE_TINT, mixBlendMode: "multiply" }} />
-      </div>
-    </div>
+    <svg
+      className="absolute inset-0 w-full h-full pointer-events-none"
+      viewBox="0 0 1008 631"
+      preserveAspectRatio="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <pattern id="wf-grid" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+          <path d="M 32 0 L 0 0 0 32" fill="none" stroke="rgba(80,110,200,0.07)" strokeWidth="0.8" />
+        </pattern>
+      </defs>
+      <rect width="1008" height="631" fill="url(#wf-grid)" />
+      <rect x="10" y="10" width="988" height="611" rx="2" fill="none" stroke="rgba(80,110,200,0.14)" strokeWidth="1" strokeDasharray="6,5" />
+      {/* Corner brackets */}
+      <polyline points="8,26 8,8 26,8"       fill="none" stroke="rgba(70,100,210,0.55)" strokeWidth="1.8" />
+      <polyline points="1000,26 1000,8 982,8"  fill="none" stroke="rgba(70,100,210,0.55)" strokeWidth="1.8" />
+      <polyline points="8,605 8,623 26,623"    fill="none" stroke="rgba(70,100,210,0.55)" strokeWidth="1.8" />
+      <polyline points="1000,605 1000,623 982,623" fill="none" stroke="rgba(70,100,210,0.55)" strokeWidth="1.8" />
+      {/* Sidebar divider */}
+      <line x1="228" y1="44" x2="228" y2="631" stroke="rgba(80,110,200,0.1)" strokeWidth="0.8" strokeDasharray="4,4" />
+      {/* Header divider */}
+      <line x1="228" y1="44" x2="1008" y2="44" stroke="rgba(80,110,200,0.1)" strokeWidth="0.8" strokeDasharray="4,4" />
+      {/* Text placeholder lines in main content */}
+      <rect x="248" y="68" width="340" height="7" rx="3.5" fill="rgba(80,110,200,0.12)" />
+      <rect x="248" y="88" width="260" height="6" rx="3" fill="rgba(80,110,200,0.08)" />
+      <rect x="248" y="106" width="300" height="6" rx="3" fill="rgba(80,110,200,0.08)" />
+      {/* Row/item placeholders (table rows) */}
+      {[0, 1, 2, 3, 4].map((i) => (
+        <rect key={i} x="234" y={154 + i * 52} width="456" height="40" rx="4"
+          fill="rgba(80,110,200,0.03)" stroke="rgba(80,110,200,0.1)" strokeWidth="0.8" />
+      ))}
+      {/* Right panel placeholder */}
+      <rect x="714" y="56" width="278" height="380" rx="6"
+        fill="rgba(80,110,200,0.04)" stroke="rgba(80,110,200,0.18)" strokeWidth="1" strokeDasharray="5,4" />
+      {/* Image/icon placeholder box inside right panel */}
+      <rect x="726" y="68" width="254" height="80" rx="4"
+        fill="rgba(80,110,200,0.06)" stroke="rgba(80,110,200,0.14)" strokeWidth="0.8" />
+      <line x1="726" y1="68" x2="980" y2="148" stroke="rgba(80,110,200,0.1)" strokeWidth="0.8" />
+      <line x1="980" y1="68" x2="726" y2="148" stroke="rgba(80,110,200,0.1)" strokeWidth="0.8" />
+    </svg>
   );
 }
+
+const PEEK_SLOTS = [
+  { topInZone: 6,  inset: 44, zIndex: 7, opacity: 0.2  },
+  { topInZone: 14, inset: 24, zIndex: 8, opacity: 0.38 },
+  { topInZone: 24, inset: 8,  zIndex: 9, opacity: 0.6  },
+];
+const PEEK_ZONE_H = 54;
 
 function EarlyStageConceptsSection() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -896,138 +917,183 @@ function EarlyStageConceptsSection() {
     setActiveIndex((prev) => (prev + dir + total) % total);
   };
 
-  const PEEK_CONFIG = [
-    { topOffset: 52, inset: 30, zIndex: 9, opacity: 0.55 },
-    { topOffset: 28, inset: 52, zIndex: 8, opacity: 0.35 },
-    { topOffset: 10, inset: 72, zIndex: 7, opacity: 0.2 },
-  ];
-
   return (
     <section
       id="section-concepts"
       className="relative h-screen snap-start snap-always flex flex-col overflow-hidden"
       style={{ background: "#FAF8F5" }}
     >
-      <div className="flex-1 flex gap-10 px-8 md:px-20 py-12 min-h-0">
-        {/* LEFT: title + animated caption + chevrons */}
-        <div className="w-60 md:w-72 flex-shrink-0 flex flex-col justify-center gap-6">
-          <div>
-            <p
-              className="text-[11px] uppercase tracking-widest font-semibold mb-4"
-              style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
-            >
-              Design Process
-            </p>
-            <h2
-              className="text-2xl md:text-[1.75rem] leading-tight text-[#1a1a1a]"
-              style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
-            >
-              Early stage concepts
-            </h2>
-          </div>
+      {/* TOP HEADER: title left, frame info + chevrons right */}
+      <div className="flex-shrink-0 flex items-end justify-between px-8 md:px-20 pt-10 pb-5">
+        <div>
+          <p
+            className="text-[11px] uppercase tracking-widest font-semibold mb-2"
+            style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
+          >
+            Design Process
+          </p>
+          <h2
+            className="text-2xl md:text-[1.75rem] leading-tight text-[#1a1a1a]"
+            style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+          >
+            Early stage concepts
+          </h2>
+        </div>
 
+        <div className="flex items-center gap-8">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeIndex}
-              className="flex flex-col gap-2"
-              initial={{ opacity: 0, y: 8 }}
+              className="flex flex-col items-end gap-1"
+              initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.28, ease: EASE }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.24, ease: EASE }}
             >
-              <div className="flex items-baseline gap-2">
+              <div className="flex items-baseline gap-1.5">
                 <span
-                  className="text-[2.25rem] font-bold tabular-nums leading-none"
+                  className="text-[1.6rem] font-bold tabular-nums leading-none"
                   style={{ color: "#D4C4B0", fontFamily: "'Wotfard', sans-serif" }}
                 >
                   {current.label}
                 </span>
                 <span
-                  className="text-[11px] font-semibold uppercase tracking-widest text-[#1a1a1a]/25"
-                  style={{ fontFamily: "'Wotfard', sans-serif" }}
+                  className="text-[10px] font-semibold uppercase tracking-widest"
+                  style={{ color: "rgba(26,26,26,0.22)", fontFamily: "'Wotfard', sans-serif" }}
                 >
                   / {String(total).padStart(2, "0")}
                 </span>
               </div>
-              <h3
-                className="text-[14px] font-bold text-[#1a1a1a] leading-snug"
+              <p
+                className="text-[13px] font-semibold text-[#1a1a1a] leading-snug text-right"
                 style={{ fontFamily: "'Wotfard', sans-serif" }}
               >
                 {current.title}
-              </h3>
+              </p>
               <p
-                className="text-[12px] leading-relaxed text-[#1a1a1a]/50"
-                style={{ fontFamily: "'Wotfard', sans-serif" }}
+                className="text-[11px] leading-relaxed text-right max-w-[260px]"
+                style={{ color: "rgba(26,26,26,0.45)", fontFamily: "'Wotfard', sans-serif" }}
               >
                 {current.caption}
               </p>
             </motion.div>
           </AnimatePresence>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <button
               onClick={() => navigate(-1)}
-              className="w-10 h-10 rounded-full flex items-center justify-center transition-colors"
+              className="w-9 h-9 rounded-full flex items-center justify-center"
               style={{ border: "1.5px solid #D4C4B0", background: "#fff", color: "rgba(26,26,26,0.6)" }}
               aria-label="Previous concept"
             >
-              <ChevronLeft size={17} />
+              <ChevronLeft size={16} />
             </button>
             <button
               onClick={() => navigate(1)}
-              className="w-10 h-10 rounded-full flex items-center justify-center transition-colors"
+              className="w-9 h-9 rounded-full flex items-center justify-center"
               style={{ background: "#1a1a1a", color: "#fff", border: "1.5px solid #1a1a1a" }}
               aria-label="Next concept"
             >
-              <ChevronRight size={17} />
+              <ChevronRight size={16} />
             </button>
           </div>
         </div>
+      </div>
 
-        {/* RIGHT: card stack */}
-        <div className="flex-1 relative min-h-0">
-          {/* Peek cards: furthest first (lowest z), closest last */}
-          {[...PEEK_CONFIG].reverse().map((cfg, ri) => {
-            const peekOffset = PEEK_CONFIG.length - ri; // 3=furthest, 1=closest
-            const peekIdx = (activeIndex + peekOffset) % total;
-            return (
-              <div
-                key={`peek-${peekOffset}`}
-                className="absolute rounded-xl overflow-hidden"
-                style={{
-                  top: cfg.topOffset,
-                  left: cfg.inset,
-                  right: cfg.inset,
-                  bottom: 0,
-                  zIndex: cfg.zIndex,
-                  opacity: cfg.opacity,
-                }}
-              >
-                <ConceptCard frame={CONCEPT_FRAMES[peekIdx]} isActive={false} />
-              </div>
-            );
-          })}
+      {/* CARD STACK: peek zone clips non-active tops, active card at natural ratio */}
+      <div className="flex-1 flex flex-col justify-end pb-8 px-8 md:px-20 min-h-0">
+        <div className="mx-auto w-full" style={{ maxWidth: 780 }}>
 
-          {/* Active card — starts below the peek zone so chrome bars above are visible */}
+          {/* Peek zone — shows chrome bars of non-active cards */}
+          <div className="relative overflow-hidden" style={{ height: PEEK_ZONE_H }}>
+            {PEEK_SLOTS.map((slot, si) => {
+              const peekOffset = PEEK_SLOTS.length - si;
+              const peekIdx = (activeIndex + peekOffset) % total;
+              const frame = CONCEPT_FRAMES[peekIdx];
+              return (
+                <div
+                  key={`peek-${si}`}
+                  className="absolute overflow-hidden rounded-t-xl"
+                  style={{
+                    top: slot.topInZone,
+                    left: slot.inset,
+                    right: slot.inset,
+                    height: 400,
+                    zIndex: slot.zIndex,
+                    opacity: slot.opacity,
+                    background: "#fff",
+                    border: "1.5px solid #E8DFD7",
+                    borderBottom: "none",
+                  }}
+                >
+                  <div
+                    className="flex items-center gap-1.5 px-3 flex-shrink-0"
+                    style={{ height: 24, background: "#F0EDEA", borderBottom: "1px solid #E8DFD7" }}
+                  >
+                    <div className="w-2 h-2 rounded-full" style={{ background: "rgba(200,185,170,0.5)" }} />
+                    <div className="w-2 h-2 rounded-full" style={{ background: "rgba(212,196,176,0.55)" }} />
+                    <div className="w-2 h-2 rounded-full" style={{ background: "rgba(212,196,176,0.4)" }} />
+                  </div>
+                  <img
+                    src={frame.src}
+                    alt=""
+                    className="w-full block"
+                    style={{ height: "auto", filter: WIREFRAME_FILTER }}
+                  />
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Active card: natural aspect ratio, no cropping */}
           <AnimatePresence mode="popLayout" custom={direction}>
             <motion.div
               key={activeIndex}
               custom={direction}
               variants={{
-                enter: (dir: number) => ({ x: dir > 0 ? 80 : -80, opacity: 0, scale: 0.97 }),
-                center: { x: 0, opacity: 1, scale: 1 },
-                exit: (dir: number) => ({ x: dir > 0 ? -80 : 80, opacity: 0, scale: 0.97 }),
+                enter: (dir: number) => ({ x: dir > 0 ? 60 : -60, opacity: 0 }),
+                center: { x: 0, opacity: 1 },
+                exit: (dir: number) => ({ x: dir > 0 ? -60 : 60, opacity: 0 }),
               }}
               initial="enter"
               animate="center"
               exit="exit"
-              transition={{ duration: 0.42, ease: APPLE }}
-              className="absolute"
-              style={{ top: 80, left: 0, right: 0, bottom: 0, zIndex: 10 }}
+              transition={{ duration: 0.38, ease: APPLE }}
+              className="relative rounded-b-xl overflow-hidden"
+              style={{
+                zIndex: 10,
+                background: "#fff",
+                border: "1.5px solid #E8DFD7",
+                borderTop: "none",
+              }}
             >
-              <ConceptCard frame={current} isActive={true} />
+              {/* Chrome bar */}
+              <div
+                className="flex items-center gap-1.5 px-3"
+                style={{ height: 24, background: "#F0EDEA", borderBottom: "1px solid #E8DFD7", flexShrink: 0 }}
+              >
+                <div className="w-2 h-2 rounded-full" style={{ background: "rgba(232,101,75,0.55)" }} />
+                <div className="w-2 h-2 rounded-full" style={{ background: "rgba(212,196,176,0.7)" }} />
+                <div className="w-2 h-2 rounded-full" style={{ background: "rgba(212,196,176,0.5)" }} />
+              </div>
+              {/* Image at full natural aspect ratio */}
+              <div className="relative">
+                <img
+                  src={current.src}
+                  alt={current.title}
+                  className="w-full block"
+                  style={{ height: "auto", filter: WIREFRAME_FILTER }}
+                />
+                <WireframeOverlay />
+                {/* Blue tint */}
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{ background: "rgba(90,120,200,0.07)", mixBlendMode: "multiply" }}
+                />
+              </div>
             </motion.div>
           </AnimatePresence>
+
         </div>
       </div>
     </section>
