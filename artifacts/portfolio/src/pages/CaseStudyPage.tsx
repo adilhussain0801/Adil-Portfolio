@@ -852,10 +852,11 @@ const CONCEPT_FRAMES = [
   },
 ];
 
+// brightness values: index 0 = furthest peek, 2 = closest peek
 const PEEK_SLOTS = [
-  { topInZone: 6,  inset: 44, zIndex: 7, opacity: 0.2  },
-  { topInZone: 14, inset: 24, zIndex: 8, opacity: 0.38 },
-  { topInZone: 24, inset: 8,  zIndex: 9, opacity: 0.6  },
+  { topInZone: 6,  inset: 44, zIndex: 7, brightness: 0.55 },
+  { topInZone: 14, inset: 24, zIndex: 8, brightness: 0.72 },
+  { topInZone: 24, inset: 8,  zIndex: 9, brightness: 0.88 },
 ];
 const PEEK_ZONE_H = 54;
 
@@ -870,7 +871,6 @@ function EarlyStageConceptsSection() {
     setActiveIndex((prev) => (prev + dir + total) % total);
   };
 
-  // Auto-cycle; resets 3.5 s timer whenever index changes (incl. manual nav)
   useEffect(() => {
     const id = setInterval(() => {
       setDirection(1);
@@ -885,36 +885,49 @@ function EarlyStageConceptsSection() {
       className="relative h-screen snap-start snap-always flex flex-col overflow-hidden"
       style={{ background: "#FAF8F5" }}
     >
-      {/* Compact header */}
-      <div className="flex-shrink-0 flex items-end justify-between px-8 md:px-20 pt-8 pb-4">
-        <div>
-          <p
-            className="text-[11px] uppercase tracking-widest font-semibold mb-1.5"
-            style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
-          >
-            Design Process
-          </p>
-          <h2
-            className="text-2xl md:text-[1.75rem] leading-tight text-[#1a1a1a]"
-            style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
-          >
-            Early stage concepts
-          </h2>
-        </div>
+      {/* Breathing room below page nav */}
+      <div style={{ height: 72 }} />
 
-        <div className="flex items-center gap-8">
+      {/* Two-column body */}
+      <div className="flex-1 flex gap-12 px-8 md:px-20 pb-10 min-h-0">
+
+        {/* LEFT: eyebrow, title, description, animated frame info, chevrons */}
+        <div className="w-72 flex-shrink-0 flex flex-col">
+          <div>
+            <p
+              className="text-[11px] uppercase tracking-widest font-semibold mb-3"
+              style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
+            >
+              Design Process
+            </p>
+            <h2
+              className="text-2xl md:text-[1.75rem] leading-tight text-[#1a1a1a] mb-4"
+              style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+            >
+              Early stage concepts
+            </h2>
+            <p
+              className="text-[13px] leading-relaxed"
+              style={{ color: "rgba(26,26,26,0.5)", fontFamily: "'Wotfard', sans-serif" }}
+            >
+              Five concepts exploring how an embedded AI agent surfaces context, reasons through solutions, and guides operators toward resolution.
+            </p>
+          </div>
+
+          <div className="flex-1" />
+
           <AnimatePresence mode="wait">
             <motion.div
               key={activeIndex}
-              className="flex flex-col items-end gap-1"
+              className="flex flex-col gap-1.5"
               initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -6 }}
               transition={{ duration: 0.24, ease: EASE }}
             >
-              <div className="flex items-baseline gap-1.5">
+              <div className="flex items-baseline gap-2">
                 <span
-                  className="text-[1.6rem] font-bold tabular-nums leading-none"
+                  className="text-[2rem] font-bold tabular-nums leading-none"
                   style={{ color: "#D4C4B0", fontFamily: "'Wotfard', sans-serif" }}
                 >
                   {current.label}
@@ -927,13 +940,13 @@ function EarlyStageConceptsSection() {
                 </span>
               </div>
               <p
-                className="text-[13px] font-semibold text-[#1a1a1a] leading-snug text-right"
+                className="text-[14px] font-semibold text-[#1a1a1a] leading-snug"
                 style={{ fontFamily: "'Wotfard', sans-serif" }}
               >
                 {current.title}
               </p>
               <p
-                className="text-[11px] leading-relaxed text-right max-w-[260px]"
+                className="text-[12px] leading-relaxed"
                 style={{ color: "rgba(26,26,26,0.45)", fontFamily: "'Wotfard', sans-serif" }}
               >
                 {current.caption}
@@ -941,7 +954,7 @@ function EarlyStageConceptsSection() {
             </motion.div>
           </AnimatePresence>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 mt-5">
             <button
               onClick={() => navigate(-1)}
               className="w-9 h-9 rounded-full flex items-center justify-center"
@@ -960,17 +973,14 @@ function EarlyStageConceptsSection() {
             </button>
           </div>
         </div>
-      </div>
 
-      {/* CARD STACK: fills remaining height */}
-      <div className="flex-1 flex justify-center px-8 md:px-20 pb-10 min-h-0">
-        {/* Relative container — positioned children fill this */}
-        <div className="relative flex-1" style={{ maxWidth: 900 }}>
+        {/* RIGHT: card stack */}
+        <div className="flex-1 min-h-0 flex flex-col justify-center">
 
-          {/* Peek zone — absolute at top, clips chrome bars of non-active cards */}
+          {/* Peek zone — clips the chrome bars of non-active cards */}
           <div
-            className="absolute overflow-hidden"
-            style={{ top: 0, left: 0, right: 0, height: PEEK_ZONE_H, zIndex: 1 }}
+            className="relative overflow-hidden flex-shrink-0"
+            style={{ height: PEEK_ZONE_H }}
           >
             {PEEK_SLOTS.map((slot, si) => {
               const peekOffset = PEEK_SLOTS.length - si;
@@ -979,39 +989,33 @@ function EarlyStageConceptsSection() {
               return (
                 <div
                   key={`peek-${si}`}
-                  className="absolute overflow-hidden rounded-t-xl"
+                  className="absolute overflow-hidden rounded-xl"
                   style={{
                     top: slot.topInZone,
                     left: slot.inset,
                     right: slot.inset,
-                    height: 500,
+                    height: 600,
                     zIndex: slot.zIndex,
-                    opacity: slot.opacity,
+                    filter: `brightness(${slot.brightness})`,
                     background: "#fff",
                     border: "1.5px solid #E8DFD7",
-                    borderBottom: "none",
                   }}
                 >
                   <div
-                    className="flex items-center gap-1.5 px-3 flex-shrink-0"
-                    style={{ height: 24, background: "#F0EDEA", borderBottom: "1px solid #E8DFD7" }}
+                    className="flex items-center gap-1.5 px-3"
+                    style={{ height: 24, background: "#F0EDEA", borderBottom: "1px solid #E8DFD7", flexShrink: 0 }}
                   >
                     <div className="w-2 h-2 rounded-full" style={{ background: "rgba(200,185,170,0.5)" }} />
                     <div className="w-2 h-2 rounded-full" style={{ background: "rgba(212,196,176,0.55)" }} />
                     <div className="w-2 h-2 rounded-full" style={{ background: "rgba(212,196,176,0.4)" }} />
                   </div>
-                  <img
-                    src={frame.src}
-                    alt=""
-                    className="w-full block"
-                    style={{ height: "auto" }}
-                  />
+                  <img src={frame.src} alt="" className="w-full block" style={{ height: "auto" }} />
                 </div>
               );
             })}
           </div>
 
-          {/* Active card: fills from peek zone bottom to section bottom, image covers */}
+          {/* Active card: rounded-xl, image at natural aspect ratio — no cropping */}
           <AnimatePresence mode="popLayout">
             <motion.div
               key={activeIndex}
@@ -1024,36 +1028,28 @@ function EarlyStageConceptsSection() {
               animate="center"
               exit="exit"
               transition={{ duration: 0.42, ease: APPLE }}
-              className="absolute flex flex-col rounded-b-xl overflow-hidden"
+              className="rounded-xl overflow-hidden flex-shrink-0"
               style={{
-                top: PEEK_ZONE_H,
-                left: 0,
-                right: 0,
-                bottom: 0,
                 zIndex: 10,
-                background: "#fff",
                 border: "1.5px solid #E8DFD7",
-                borderTop: "none",
               }}
             >
               {/* Chrome bar */}
               <div
-                className="flex-shrink-0 flex items-center gap-1.5 px-3"
-                style={{ height: 24, background: "#F0EDEA", borderBottom: "1px solid #E8DFD7" }}
+                className="flex items-center gap-1.5 px-3"
+                style={{ height: 24, background: "#F0EDEA", borderBottom: "1px solid #E8DFD7", flexShrink: 0 }}
               >
                 <div className="w-2 h-2 rounded-full" style={{ background: "rgba(232,101,75,0.55)" }} />
                 <div className="w-2 h-2 rounded-full" style={{ background: "rgba(212,196,176,0.7)" }} />
                 <div className="w-2 h-2 rounded-full" style={{ background: "rgba(212,196,176,0.5)" }} />
               </div>
-              {/* Image fills the remaining card height */}
-              <div className="flex-1 relative overflow-hidden">
-                <img
-                  src={current.src}
-                  alt={current.title}
-                  className="absolute inset-0 w-full h-full"
-                  style={{ objectFit: "cover", objectPosition: "top" }}
-                />
-              </div>
+              {/* Image at natural 1008×631 ratio — edge-to-edge, no padding */}
+              <img
+                src={current.src}
+                alt={current.title}
+                className="w-full block"
+                style={{ height: "auto" }}
+              />
             </motion.div>
           </AnimatePresence>
 
