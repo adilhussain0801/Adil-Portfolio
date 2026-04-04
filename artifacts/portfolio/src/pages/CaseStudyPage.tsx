@@ -1,7 +1,7 @@
 import { useParams, Link } from "wouter";
 import { useRef, useEffect, useState, useMemo, type RefObject } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowLeft, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare, BookOpen, CheckCheck, Bot, UserPlus, LayoutList, TrendingUp, GraduationCap } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare } from "lucide-react";
 import { getCaseStudy, getNextCaseStudy, type CaseStudy } from "@/data/caseStudies";
 import NotFound from "@/pages/not-found";
 
@@ -41,189 +41,21 @@ function SnapReveal({
 }
 
 function CaseStudyHeroBg() {
-  const CX = 1100, CY = 420;
-  const VW = 1600, VH = 900;
-
-  const hexPoints = (cx: number, cy: number, r: number) =>
-    [0, 60, 120, 180, 240, 300]
-      .map((a) => {
-        const rad = (a * Math.PI) / 180;
-        return `${(cx + r * Math.cos(rad)).toFixed(1)},${(cy + r * Math.sin(rad)).toFixed(1)}`;
-      })
-      .join(" ");
-
-  const nodes = [
-    { x: 1234, y: 498, label: "Rovo custom agent",        icon: <Bot size={11} /> },
-    { x: 1100, y: 575, label: "Internal knowledge",       icon: <BookOpen size={11} /> },
-    { x: 966,  y: 498, label: "Learning & development",   icon: <GraduationCap size={11} /> },
-    { x: 966,  y: 342, label: "Employee onboarding",      icon: <UserPlus size={11} /> },
-    { x: 1100, y: 265, label: "Work item resolution",     icon: <CheckCheck size={11} /> },
-    { x: 1234, y: 342, label: "Automation Rules",         icon: <Zap size={11} /> },
-    { x: 1360, y: 420, label: "Service triage",           icon: <Inbox size={11} /> },
-    { x: 1230, y: 645, label: "Performance management",   icon: <TrendingUp size={11} /> },
-    { x: 970,  y: 645, label: "Virtual service agent",    icon: <Network size={11} /> },
-    { x: 840,  y: 420, label: "Internal mobility",        icon: <ArrowUpRight size={11} /> },
-    { x: 970,  y: 195, label: "Preboarding of new hires", icon: <Sparkles size={11} /> },
-    { x: 1230, y: 195, label: "Jobs Queue",               icon: <LayoutList size={11} /> },
-  ];
-
   return (
     <div className="absolute inset-0 overflow-hidden">
-      <div
-        className="absolute inset-0"
+      <img
+        src="/rovo-hero-diagram.png"
+        alt=""
+        className="absolute inset-0 w-full h-full pointer-events-none select-none"
         style={{
-          background:
-            "radial-gradient(ellipse 55% 75% at 70% 46%, rgba(255,255,255,0.52) 0%, transparent 65%)",
+          objectFit: "cover",
+          objectPosition: "right center",
+          maskImage:
+            "linear-gradient(to right, transparent 0%, transparent 28%, rgba(0,0,0,0.4) 42%, black 56%, black 100%)",
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent 0%, transparent 28%, rgba(0,0,0,0.4) 42%, black 56%, black 100%)",
         }}
       />
-
-      <svg
-        viewBox={`0 0 ${VW} ${VH}`}
-        className="absolute inset-0 w-full h-full pointer-events-none select-none"
-        preserveAspectRatio="xMidYMid slice"
-      >
-        <defs>
-          <pattern id="hero-grid" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-            <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(0,40,120,0.04)" strokeWidth="0.8" />
-          </pattern>
-
-          <filter id="connector-glow" x="-300%" y="-300%" width="700%" height="700%">
-            <feGaussianBlur stdDeviation="5" />
-          </filter>
-
-          <radialGradient id="hex-dome" cx="42%" cy="34%" r="68%" fx="38%" fy="28%">
-            <stop offset="0%"   stopColor="#FFDF6B" />
-            <stop offset="32%"  stopColor="#F4AD1A" />
-            <stop offset="72%"  stopColor="#E09000" />
-            <stop offset="100%" stopColor="#A86000" />
-          </radialGradient>
-
-          <linearGradient id="hex-shine" x1="28%" y1="0%" x2="62%" y2="100%">
-            <stop offset="0%"   stopColor="rgba(255,255,255,0.42)" />
-            <stop offset="42%"  stopColor="rgba(255,255,255,0.06)" />
-            <stop offset="100%" stopColor="rgba(255,255,255,0)" />
-          </linearGradient>
-
-          <filter id="hex-elevation" x="-70%" y="-70%" width="240%" height="240%">
-            <feDropShadow dx="0" dy="9" stdDeviation="14" floodColor="#C47800" floodOpacity="0.72" />
-          </filter>
-
-          <radialGradient id="hex-ambient" cx="50%" cy="50%" r="50%">
-            <stop offset="0%"   stopColor="#F2A617" stopOpacity="0.65" />
-            <stop offset="100%" stopColor="#F2A617" stopOpacity="0" />
-          </radialGradient>
-        </defs>
-
-        <rect width={VW} height={VH} fill="url(#hero-grid)" />
-
-        <circle cx={CX} cy={CY} r={155} stroke="rgba(200,130,20,0.28)" strokeWidth={1.5} fill="none" strokeDasharray="6 13">
-          <animateTransform attributeName="transform" type="rotate" from={`0 ${CX} ${CY}`} to={`360 ${CX} ${CY}`} dur="60s" repeatCount="indefinite" />
-        </circle>
-        <circle cx={CX} cy={CY} r={260} stroke="rgba(50,100,220,0.2)" strokeWidth={1.5} fill="none" strokeDasharray="8 12">
-          <animateTransform attributeName="transform" type="rotate" from={`0 ${CX} ${CY}`} to={`-360 ${CX} ${CY}`} dur="90s" repeatCount="indefinite" />
-        </circle>
-
-        {nodes.map((n, i) => (
-          <line
-            key={`glow-${i}`}
-            x1={CX} y1={CY}
-            x2={n.x} y2={n.y}
-            stroke="rgba(100,170,255,0.55)"
-            strokeWidth={8}
-            filter="url(#connector-glow)"
-          >
-            <animate attributeName="stroke-opacity" values="0.22;0.6;0.22" dur={`${2.8 + (i % 5) * 0.6}s`} repeatCount="indefinite" />
-          </line>
-        ))}
-
-        {nodes.map((n, i) => (
-          <line
-            key={`core-${i}`}
-            x1={CX} y1={CY}
-            x2={n.x} y2={n.y}
-            stroke="rgba(210,232,255,0.92)"
-            strokeWidth={0.9}
-          >
-            <animate attributeName="stroke-opacity" values="0.4;0.92;0.4" dur={`${2.8 + (i % 5) * 0.6}s`} repeatCount="indefinite" />
-          </line>
-        ))}
-
-        {nodes.map((n, i) => (
-          <circle key={`dot-${i}`} cx={n.x} cy={n.y} r={3.5} fill="rgba(50,100,220,0.32)" />
-        ))}
-
-        <ellipse cx={CX} cy={CY} rx={155} ry={135} fill="url(#hex-ambient)" />
-        <circle cx={CX} cy={CY} r={90}  fill="rgba(242,166,23,0.20)" />
-        <circle cx={CX} cy={CY} r={72}  fill="rgba(242,166,23,0.28)" />
-        <circle cx={CX} cy={CY} r={58}  fill="rgba(242,166,23,0.36)" />
-
-        <g filter="url(#hex-elevation)">
-          <polygon points={hexPoints(CX, CY, 50)} fill="url(#hex-dome)" />
-        </g>
-
-        <polygon points={hexPoints(CX, CY, 50)} fill="url(#hex-shine)" />
-
-        <polygon points={hexPoints(CX, CY, 47)} fill="none" stroke="rgba(255,230,120,0.45)" strokeWidth={1.5} />
-
-        <ellipse cx={CX - 10} cy={CY - 20} rx={19} ry={11} fill="rgba(255,255,255,0.32)" />
-
-        <polygon points={hexPoints(CX, CY, 27)} fill="none" stroke="rgba(255,255,255,0.88)" strokeWidth={2.5} />
-        <polygon points={hexPoints(CX, CY, 13)} fill="rgba(255,255,255,0.95)" />
-      </svg>
-
-      {nodes.map((n, i) => (
-        <div
-          key={i}
-          className="absolute"
-          style={{
-            left: `${(n.x / VW) * 100}%`,
-            top: `${(n.y / VH) * 100}%`,
-            transform: "translate(-50%, -50%)",
-          }}
-        >
-          <motion.div
-            animate={{ y: [0, -7, 0] }}
-            transition={{
-              duration: 3.2 + (i % 6) * 0.55,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 0.18,
-            }}
-            whileHover={{ scale: 1.1, transition: { duration: 0.18 } }}
-            className="pointer-events-auto cursor-default"
-          >
-            <motion.div
-              className="flex items-center gap-2 px-3 py-[6px] rounded-full select-none"
-              style={{
-                background: "rgba(255,255,255,0.88)",
-                border: "1px solid rgba(50,100,220,0.14)",
-                boxShadow: "0 2px 16px rgba(30,70,180,0.1), 0 1px 3px rgba(0,0,0,0.07)",
-                backdropFilter: "blur(10px)",
-                WebkitBackdropFilter: "blur(10px)",
-              }}
-              whileHover={{
-                background: "rgba(255,255,255,0.97)",
-                boxShadow: "0 4px 28px rgba(40,90,220,0.28), 0 2px 8px rgba(0,0,0,0.08)",
-                border: "1px solid rgba(50,100,220,0.35)",
-                transition: { duration: 0.18 },
-              }}
-            >
-              <div
-                className="w-[18px] h-[18px] rounded-full flex items-center justify-center flex-shrink-0"
-                style={{ background: "rgba(50,100,220,0.12)", color: "rgba(40,90,200,0.85)" }}
-              >
-                {n.icon}
-              </div>
-              <span
-                className="text-[11px] font-semibold whitespace-nowrap"
-                style={{ color: "rgba(12,25,70,0.72)", fontFamily: "'Wotfard', sans-serif" }}
-              >
-                {n.label}
-              </span>
-            </motion.div>
-          </motion.div>
-        </div>
-      ))}
     </div>
   );
 }
