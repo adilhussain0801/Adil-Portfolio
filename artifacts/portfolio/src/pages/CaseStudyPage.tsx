@@ -994,7 +994,7 @@ function EarlyStageConceptsSection() {
                     top: slot.topInZone,
                     left: slot.inset,
                     right: slot.inset,
-                    height: 600,
+                    height: 500,
                     zIndex: slot.zIndex,
                     filter: `brightness(${slot.brightness})`,
                     background: "#fff",
@@ -1048,7 +1048,7 @@ function EarlyStageConceptsSection() {
                 src={current.src}
                 alt={current.title}
                 className="w-full block"
-                style={{ height: "auto" }}
+                style={{ height: "auto", aspectRatio: "1008 / 631" }}
               />
             </motion.div>
           </AnimatePresence>
