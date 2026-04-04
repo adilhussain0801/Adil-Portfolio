@@ -145,7 +145,7 @@ function CaseStudyHeroBg() {
             whileHover={{ scale: 1.1, transition: { duration: 0.18 } }}
             className="pointer-events-auto cursor-default"
           >
-            <div
+            <motion.div
               className="flex items-center gap-2 px-3 py-[6px] rounded-full select-none"
               style={{
                 background: "rgba(255,255,255,0.88)",
@@ -153,6 +153,12 @@ function CaseStudyHeroBg() {
                 boxShadow: "0 2px 16px rgba(30,70,180,0.1), 0 1px 3px rgba(0,0,0,0.07)",
                 backdropFilter: "blur(10px)",
                 WebkitBackdropFilter: "blur(10px)",
+              }}
+              whileHover={{
+                background: "rgba(255,255,255,0.96)",
+                boxShadow: "0 4px 28px rgba(40,90,220,0.28), 0 2px 8px rgba(0,0,0,0.08)",
+                border: "1px solid rgba(50,100,220,0.35)",
+                transition: { duration: 0.18 },
               }}
             >
               <div
@@ -173,7 +179,7 @@ function CaseStudyHeroBg() {
               >
                 {n.label}
               </span>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       ))}
