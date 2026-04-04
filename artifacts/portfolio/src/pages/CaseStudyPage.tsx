@@ -41,106 +41,96 @@ function SnapReveal({
 }
 
 function CaseStudyHeroBg() {
-  const hexPts = (cx: number, cy: number, r: number): string => {
-    const a = r * 0.866;
-    return [
-      `${cx + r},${cy}`,
-      `${cx + r / 2},${cy + a}`,
-      `${cx - r / 2},${cy + a}`,
-      `${cx - r},${cy}`,
-      `${cx - r / 2},${cy - a}`,
-      `${cx + r / 2},${cy - a}`,
-    ].join(" ");
-  };
+  const CX = 600, CY = 310;
+  const PW = 182, PH = 30;
 
-  const gridHexes: [number, number][] = [];
-  for (let row = 0; row < 8; row++) {
-    const offset = row % 2 === 0 ? 0 : 40;
-    for (let col = 0; col < 12; col++) {
-      gridHexes.push([col * 80 + offset + 10, row * 68 + 24]);
-    }
-  }
+  const hexPoints = (cx: number, cy: number, r: number) =>
+    [0, 60, 120, 180, 240, 300]
+      .map((a) => {
+        const rad = (a * Math.PI) / 180;
+        return `${(cx + r * Math.cos(rad)).toFixed(1)},${(cy + r * Math.sin(rad)).toFixed(1)}`;
+      })
+      .join(" ");
 
-  const flowLine = { stroke: "white", strokeWidth: 1.5, strokeOpacity: 0.18, strokeDasharray: "5 4" } as React.SVGProps<SVGPathElement>;
+  const nodes: { x: number; y: number; label: string }[] = [
+    { x: 712, y: 310, label: "Service triage" },
+    { x: 544, y: 407, label: "Internal knowledge" },
+    { x: 544, y: 213, label: "Work item resolution" },
+    { x: 795, y: 219, label: "Automation Rules" },
+    { x: 674, y: 512, label: "Rovo custom agent" },
+    { x: 435, y: 448, label: "Virtual service agent" },
+    { x: 414, y: 202, label: "Employee onboarding" },
+    { x: 656, y: 102, label: "Jobs Queue" },
+    { x: 916, y: 366, label: "Performance management" },
+    { x: 660, y: 596, label: "Alumni relations" },
+    { x: 308, y: 445, label: "Learning & development" },
+    { x: 323, y: 150, label: "Preboarding of new hires" },
+    { x: 742, y: 52, label: "Internal mobility" },
+    { x: 910, y: 228, label: "Partner onboarding" },
+  ];
 
   return (
     <svg
-      viewBox="0 0 860 480"
+      viewBox="0 0 1200 650"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className="absolute inset-0 w-full h-full pointer-events-none select-none"
       preserveAspectRatio="xMidYMid slice"
     >
-      {gridHexes.map(([cx, cy], i) => (
-        <polygon key={i} points={hexPts(cx, cy, 34)} stroke="white" strokeOpacity={0.045} strokeWidth={1} fill="none" />
+      <defs>
+        <pattern id="hero-dot-grid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+          <circle cx="1" cy="1" r="1" fill="rgba(0,20,100,0.07)" />
+        </pattern>
+      </defs>
+
+      <rect width="1200" height="650" fill="url(#hero-dot-grid)" />
+
+      <circle cx={CX} cy={CY} r={112} stroke="rgba(40,90,210,0.22)" strokeWidth={1.5} strokeDasharray="5 7" />
+      <circle cx={CX} cy={CY} r={215} stroke="rgba(190,120,15,0.3)" strokeWidth={1.5} strokeDasharray="4 10" />
+      <circle cx={CX} cy={CY} r={320} stroke="rgba(40,90,210,0.16)" strokeWidth={1.5} strokeDasharray="5 7" />
+
+      {nodes.map((n, i) => (
+        <line
+          key={i}
+          x1={CX} y1={CY}
+          x2={n.x} y2={n.y}
+          stroke="rgba(0,20,100,0.09)"
+          strokeWidth={1}
+          strokeDasharray="3 5"
+        />
       ))}
 
-      <path d="M 150 82 L 282 82 Q 312 82 332 128 L 380 214" {...flowLine} />
-      <path d="M 150 240 L 380 240" {...flowLine} />
-      <path d="M 150 398 L 282 398 Q 312 398 332 352 L 380 266" {...flowLine} />
-      <path d="M 540 214 L 568 148 Q 582 88 616 82 L 710 82" {...flowLine} />
-      <path d="M 540 240 L 710 240" {...flowLine} />
-      <path d="M 540 266 L 568 332 Q 582 392 616 398 L 710 398" {...flowLine} />
+      {nodes.map((n, i) => {
+        const px = n.x - PW / 2;
+        const py = n.y - PH / 2;
+        return (
+          <g key={i}>
+            <rect x={px + 1} y={py + 2} width={PW} height={PH} rx={8} fill="rgba(0,20,100,0.05)" />
+            <rect x={px} y={py} width={PW} height={PH} rx={8} fill="rgba(255,255,255,0.82)" stroke="rgba(0,20,100,0.12)" strokeWidth={1} />
+            <circle cx={px + 14} cy={n.y} r={4.5} fill="rgba(40,90,210,0.15)" stroke="rgba(40,90,210,0.3)" strokeWidth={0.75} />
+            <text
+              x={px + 26}
+              y={n.y + 4}
+              fontSize={10}
+              fontFamily="'Wotfard', sans-serif"
+              fill="rgba(10,20,60,0.7)"
+              fontWeight={600}
+            >
+              {n.label}
+            </text>
+          </g>
+        );
+      })}
 
-      {([[282, 82], [282, 398], [616, 82], [616, 398]] as [number, number][]).map(([cx, cy], i) => (
-        <circle key={i} cx={cx} cy={cy} r={4} fill="white" fillOpacity={0.3} />
+      {nodes.map((n, i) => (
+        <circle key={i} cx={n.x} cy={n.y} r={2.5} fill="rgba(40,90,210,0.32)" />
       ))}
 
-      {([[55, 54], [55, 212], [55, 370]] as [number, number][]).map(([x, y], i) => (
-        <g key={i}>
-          <rect x={x} y={y} width={95} height={56} rx={9} fill="white" fillOpacity={0.07} stroke="white" strokeOpacity={0.22} strokeWidth={1} />
-          <line x1={x + 10} y1={y + 17} x2={x + 78} y2={y + 17} stroke="white" strokeOpacity={0.22} strokeWidth={1.4} strokeLinecap="round" />
-          <line x1={x + 10} y1={y + 29} x2={x + 58} y2={y + 29} stroke="white" strokeOpacity={0.13} strokeWidth={1.4} strokeLinecap="round" />
-          <line x1={x + 10} y1={y + 41} x2={x + 70} y2={y + 41} stroke="white" strokeOpacity={0.13} strokeWidth={1.4} strokeLinecap="round" />
-        </g>
-      ))}
-
-      <rect x={380} y={183} width={160} height={114} rx={14} fill="white" fillOpacity={0.1} stroke="white" strokeOpacity={0.38} strokeWidth={1.5} />
-      <text x={460} y={236} textAnchor="middle" fill="white" fillOpacity={0.9} fontSize={26} fontFamily="sans-serif">✦</text>
-      <line x1={400} y1={254} x2={520} y2={254} stroke="white" strokeOpacity={0.13} strokeWidth={1} />
-      <line x1={400} y1={264} x2={506} y2={264} stroke="white" strokeOpacity={0.09} strokeWidth={1} />
-      <line x1={400} y1={274} x2={490} y2={274} stroke="white" strokeOpacity={0.09} strokeWidth={1} />
-      <line x1={400} y1={284} x2={514} y2={284} stroke="white" strokeOpacity={0.07} strokeWidth={1} />
-
-      {([[710, 54], [710, 212], [710, 370]] as [number, number][]).map(([x, y], i) => (
-        <g key={i}>
-          <rect x={x} y={y} width={95} height={56} rx={9} fill="white" fillOpacity={0.07} stroke="white" strokeOpacity={0.22} strokeWidth={1} />
-          <text x={x + 48} y={y + 35} textAnchor="middle" fill="white" fillOpacity={0.55} fontSize={18} fontFamily="sans-serif">✓</text>
-        </g>
-      ))}
-
-      {[
-        { cx: 310, cy: 82, fill: "#4ecdc4", op: 0.6 },
-        { cx: 310, cy: 398, fill: "#E8654B", op: 0.6 },
-        { cx: 614, cy: 82, fill: "#4ecdc4", op: 0.6 },
-        { cx: 614, cy: 398, fill: "#E8654B", op: 0.6 },
-        { cx: 460, cy: 152, fill: "white", op: 0.2 },
-        { cx: 460, cy: 328, fill: "white", op: 0.2 },
-      ].map(({ cx, cy, fill, op }, i) => (
-        <polygon key={i} points={hexPts(cx, cy, 14)} fill={fill} fillOpacity={op} />
-      ))}
-
-      {([[102, 152], [102, 328], [757, 152], [757, 328], [460, 116]] as [number, number][]).map(([cx, cy], i) => (
-        <g key={i}>
-          <circle cx={cx} cy={cy} r={19} fill="white" fillOpacity={0.07} stroke="white" strokeOpacity={0.2} strokeWidth={1} />
-          <circle cx={cx} cy={cy - 5} r={5} fill="white" fillOpacity={0.18} />
-          <path d={`M ${cx - 7} ${cy + 12} Q ${cx} ${cy + 6} ${cx + 7} ${cy + 12}`} fill="white" fillOpacity={0.14} />
-        </g>
-      ))}
-
-      <text x={812} y={58} fill="white" fillOpacity={0.28} fontSize={18} fontFamily="sans-serif">✦</text>
-      <text x={36} y={168} fill="white" fillOpacity={0.17} fontSize={22} fontFamily="sans-serif">⊕</text>
-      <text x={36} y={422} fill="white" fillOpacity={0.17} fontSize={22} fontFamily="sans-serif">⊕</text>
-      <text x={822} y={422} fill="white" fillOpacity={0.17} fontSize={22} fontFamily="sans-serif">◇</text>
-      <text x={258} y={245} fill="white" fillOpacity={0.4} fontSize={13} fontFamily="sans-serif">→</text>
-      <text x={608} y={245} fill="white" fillOpacity={0.4} fontSize={13} fontFamily="sans-serif">→</text>
-
-      {[0, 1, 2, 3, 4].map((i) => (
-        <circle key={i} cx={840} cy={180 + i * 42} r={3} fill="white" fillOpacity={Math.max(0.06, 0.16 - i * 0.025)} />
-      ))}
-      {[0, 1, 2, 3].map((i) => (
-        <circle key={i} cx={22} cy={100 + i * 74} r={3} fill="white" fillOpacity={0.2} />
-      ))}
+      <circle cx={CX} cy={CY} r={70} fill="rgba(242,166,23,0.18)" />
+      <circle cx={CX} cy={CY} r={56} fill="rgba(242,166,23,0.26)" />
+      <polygon points={hexPoints(CX, CY, 40)} fill="#F2A617" />
+      <polygon points={hexPoints(CX, CY, 22)} fill="none" stroke="rgba(255,255,255,0.82)" strokeWidth={2} />
+      <polygon points={hexPoints(CX, CY, 10)} fill="rgba(255,255,255,0.88)" />
     </svg>
   );
 }
