@@ -1053,7 +1053,7 @@ const DOT_STRIDE = DOT_SIZE + DOT_GAP;
 
 function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObject<HTMLDivElement> }) {
   const [active, setActive] = useState("section-hero");
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [transitioning, setTransitioning] = useState(false);
   const [hovered, setHovered] = useState<string | null>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -1079,9 +1079,9 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
             const newId = entry.target.id;
             setActive((prev) => {
               if (newId !== prev) {
-                setIsTransitioning(true);
+                setTransitioning(true);
                 if (timerRef.current) clearTimeout(timerRef.current);
-                timerRef.current = setTimeout(() => setIsTransitioning(false), 500);
+                timerRef.current = setTimeout(() => setTransitioning(false), 450);
               }
               return newId;
             });
@@ -1094,7 +1094,10 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
       const el = container.querySelector(`#${id}`);
       if (el) observer.observe(el);
     });
-    return () => { observer.disconnect(); if (timerRef.current) clearTimeout(timerRef.current); };
+    return () => {
+      observer.disconnect();
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
   }, [scrollRef, allSections]);
 
   const scrollTo = (id: string) => {
@@ -1106,9 +1109,11 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
 
   const visible = active !== "section-hero";
   const activeIndex = sections.findIndex((s) => s.id === active);
-  const indicatorTop = activeIndex >= 0
-    ? activeIndex * DOT_STRIDE - (PILL_HEIGHT - DOT_SIZE) / 2
-    : 0;
+
+  // Indicator: centered on the active dot at all times
+  const dotCenter = activeIndex >= 0 ? activeIndex * DOT_STRIDE + DOT_SIZE / 2 : DOT_SIZE / 2;
+  const indH = transitioning ? PILL_HEIGHT : DOT_SIZE;
+  const indTop = dotCenter - indH / 2;
 
   return (
     <motion.div
@@ -1118,17 +1123,21 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className="relative flex flex-col items-start" style={{ gap: DOT_GAP }}>
-        {/* Orange pill — visible only while transitioning between sections */}
+        {/* Single indicator: dot at rest, pill while moving */}
         <motion.div
-          className="absolute rounded-md pointer-events-none"
-          style={{ width: DOT_SIZE, height: PILL_HEIGHT, left: 0, zIndex: 2, backgroundColor: "#E8654B" }}
-          animate={{ top: indicatorTop, opacity: isTransitioning ? 1 : 0 }}
-          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute pointer-events-none"
+          style={{ width: DOT_SIZE, left: 0, zIndex: 2 }}
+          animate={{
+            top: indTop,
+            height: indH,
+            borderRadius: transitioning ? 6 : DOT_SIZE / 2,
+            backgroundColor: transitioning ? "#E8654B" : "rgba(45,45,45,0.7)",
+          }}
+          transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
         />
 
-        {/* Dots + hover labels */}
+        {/* Ghost dots — always light gray */}
         {sections.map(({ id, label }) => {
-          const isActive = id === active;
           const isHovered = hovered === id;
           return (
             <div
@@ -1139,15 +1148,9 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
               onMouseLeave={() => setHovered(null)}
               onClick={() => scrollTo(id)}
             >
-              <motion.div
+              <div
                 className="flex-shrink-0 rounded-full"
-                style={{ width: DOT_SIZE, height: DOT_SIZE }}
-                animate={{
-                  backgroundColor: isActive && !isTransitioning
-                    ? "rgba(45,45,45,0.65)"
-                    : "rgba(45,45,45,0.2)",
-                }}
-                transition={{ duration: 0.25 }}
+                style={{ width: DOT_SIZE, height: DOT_SIZE, backgroundColor: "rgba(45,45,45,0.18)" }}
               />
               <motion.span
                 className="text-sm font-semibold whitespace-nowrap"
