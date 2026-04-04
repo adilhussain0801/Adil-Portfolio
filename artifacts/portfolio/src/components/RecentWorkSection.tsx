@@ -9,7 +9,7 @@ const PROJECTS = [
     category: "Atlassian AI Assistant",
     description: "Designed the service layer experience for Rovo, Atlassian's AI assistant — enabling agents to take action across tools, reducing manual workflows for enterprise teams.",
     year: "2024",
-    image: "/orchestration-map.png",
+    image: "/orchestration-map-2.png",
     placeholderColor: "#C5D9F9",
     metrics: [
       { label: "EFFICIENCY GAIN", value: "38%" },
@@ -100,7 +100,6 @@ function ProjectCard({
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      {/* Invisible tracking sentinel centered in the card */}
       <div ref={trackRef} className="absolute inset-0 pointer-events-none" />
 
       {project.type === "special" ? (
@@ -206,7 +205,6 @@ export default function RecentWorkSection() {
   return (
     <section id="work-showcase" className="py-24 md:py-40 px-6 md:px-24" style={{ background: "#FAF8F5" }}>
       <div className="flex flex-col md:flex-row gap-12 md:gap-24">
-        {/* Left: Heading + dots */}
         <div className="md:w-1/3 flex-shrink-0">
           <div className="md:sticky md:top-32 flex flex-col gap-8">
             <h2
@@ -216,7 +214,6 @@ export default function RecentWorkSection() {
               Recent work
             </h2>
 
-            {/* Counter */}
             <div className="flex items-center gap-3">
               <span
                 style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 600 }}
@@ -228,7 +225,6 @@ export default function RecentWorkSection() {
               </span>
             </div>
 
-            {/* Dots */}
             <div className="flex flex-col gap-2">
               {PROJECTS.map((project, i) => (
                 <button
@@ -267,7 +263,6 @@ export default function RecentWorkSection() {
           </div>
         </div>
 
-        {/* Right: Projects */}
         <div className="md:w-2/3">
           <div className="flex flex-col gap-0">
             {PROJECTS.map((project, i) => (
