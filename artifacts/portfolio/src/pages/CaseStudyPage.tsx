@@ -86,8 +86,30 @@ function CaseStudyHeroBg() {
           <pattern id="hero-grid" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
             <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(0,40,120,0.04)" strokeWidth="0.8" />
           </pattern>
-          <radialGradient id="hex-glow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#F2A617" stopOpacity="0.55" />
+
+          <filter id="connector-glow" x="-300%" y="-300%" width="700%" height="700%">
+            <feGaussianBlur stdDeviation="5" />
+          </filter>
+
+          <radialGradient id="hex-dome" cx="42%" cy="34%" r="68%" fx="38%" fy="28%">
+            <stop offset="0%"   stopColor="#FFDF6B" />
+            <stop offset="32%"  stopColor="#F4AD1A" />
+            <stop offset="72%"  stopColor="#E09000" />
+            <stop offset="100%" stopColor="#A86000" />
+          </radialGradient>
+
+          <linearGradient id="hex-shine" x1="28%" y1="0%" x2="62%" y2="100%">
+            <stop offset="0%"   stopColor="rgba(255,255,255,0.42)" />
+            <stop offset="42%"  stopColor="rgba(255,255,255,0.06)" />
+            <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+          </linearGradient>
+
+          <filter id="hex-elevation" x="-70%" y="-70%" width="240%" height="240%">
+            <feDropShadow dx="0" dy="9" stdDeviation="14" floodColor="#C47800" floodOpacity="0.72" />
+          </filter>
+
+          <radialGradient id="hex-ambient" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"   stopColor="#F2A617" stopOpacity="0.65" />
             <stop offset="100%" stopColor="#F2A617" stopOpacity="0" />
           </radialGradient>
         </defs>
@@ -103,27 +125,49 @@ function CaseStudyHeroBg() {
 
         {nodes.map((n, i) => (
           <line
-            key={i}
+            key={`glow-${i}`}
             x1={CX} y1={CY}
             x2={n.x} y2={n.y}
-            stroke="rgba(30,70,180,0.11)"
-            strokeWidth={1}
-            strokeDasharray="4 8"
+            stroke="rgba(100,170,255,0.55)"
+            strokeWidth={8}
+            filter="url(#connector-glow)"
           >
-            <animate attributeName="stroke-opacity" values="0.11;0.26;0.11" dur={`${2.8 + (i % 5) * 0.6}s`} repeatCount="indefinite" />
+            <animate attributeName="stroke-opacity" values="0.22;0.6;0.22" dur={`${2.8 + (i % 5) * 0.6}s`} repeatCount="indefinite" />
           </line>
         ))}
 
         {nodes.map((n, i) => (
-          <circle key={i} cx={n.x} cy={n.y} r={3.5} fill="rgba(50,100,220,0.32)" />
+          <line
+            key={`core-${i}`}
+            x1={CX} y1={CY}
+            x2={n.x} y2={n.y}
+            stroke="rgba(210,232,255,0.92)"
+            strokeWidth={0.9}
+          >
+            <animate attributeName="stroke-opacity" values="0.4;0.92;0.4" dur={`${2.8 + (i % 5) * 0.6}s`} repeatCount="indefinite" />
+          </line>
         ))}
 
-        <ellipse cx={CX} cy={CY} rx={140} ry={120} fill="url(#hex-glow)" />
-        <circle cx={CX} cy={CY} r={88} fill="rgba(242,166,23,0.18)" />
-        <circle cx={CX} cy={CY} r={70} fill="rgba(242,166,23,0.26)" />
-        <circle cx={CX} cy={CY} r={56} fill="rgba(242,166,23,0.32)" />
-        <polygon points={hexPoints(CX, CY, 50)} fill="#F2A617" />
-        <polygon points={hexPoints(CX, CY, 27)} fill="none" stroke="rgba(255,255,255,0.9)" strokeWidth={2.5} />
+        {nodes.map((n, i) => (
+          <circle key={`dot-${i}`} cx={n.x} cy={n.y} r={3.5} fill="rgba(50,100,220,0.32)" />
+        ))}
+
+        <ellipse cx={CX} cy={CY} rx={155} ry={135} fill="url(#hex-ambient)" />
+        <circle cx={CX} cy={CY} r={90}  fill="rgba(242,166,23,0.20)" />
+        <circle cx={CX} cy={CY} r={72}  fill="rgba(242,166,23,0.28)" />
+        <circle cx={CX} cy={CY} r={58}  fill="rgba(242,166,23,0.36)" />
+
+        <g filter="url(#hex-elevation)">
+          <polygon points={hexPoints(CX, CY, 50)} fill="url(#hex-dome)" />
+        </g>
+
+        <polygon points={hexPoints(CX, CY, 50)} fill="url(#hex-shine)" />
+
+        <polygon points={hexPoints(CX, CY, 47)} fill="none" stroke="rgba(255,230,120,0.45)" strokeWidth={1.5} />
+
+        <ellipse cx={CX - 10} cy={CY - 20} rx={19} ry={11} fill="rgba(255,255,255,0.32)" />
+
+        <polygon points={hexPoints(CX, CY, 27)} fill="none" stroke="rgba(255,255,255,0.88)" strokeWidth={2.5} />
         <polygon points={hexPoints(CX, CY, 13)} fill="rgba(255,255,255,0.95)" />
       </svg>
 
