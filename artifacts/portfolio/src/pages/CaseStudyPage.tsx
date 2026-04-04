@@ -1,7 +1,7 @@
 import { useParams, Link } from "wouter";
 import { useRef, useEffect, useState, useMemo, type RefObject } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare, ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import { getCaseStudy, getNextCaseStudy, type CaseStudy } from "@/data/caseStudies";
 import NotFound from "@/pages/not-found";
 
@@ -854,15 +854,16 @@ const CONCEPT_FRAMES = [
 
 // brightness values: index 0 = furthest peek, 2 = closest peek
 const PEEK_SLOTS = [
-  { topInZone: 6,  inset: 44, zIndex: 7, brightness: 0.55 },
-  { topInZone: 14, inset: 24, zIndex: 8, brightness: 0.72 },
-  { topInZone: 24, inset: 8,  zIndex: 9, brightness: 0.88 },
+  { topInZone: 6,  inset: 44, zIndex: 7, brightness: 0.82 },
+  { topInZone: 14, inset: 24, zIndex: 8, brightness: 0.90 },
+  { topInZone: 24, inset: 8,  zIndex: 9, brightness: 0.96 },
 ];
 const PEEK_ZONE_H = 54;
 
 function EarlyStageConceptsSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(1);
+  const [isPaused, setIsPaused] = useState(false);
   const total = CONCEPT_FRAMES.length;
   const current = CONCEPT_FRAMES[activeIndex];
 
@@ -872,12 +873,13 @@ function EarlyStageConceptsSection() {
   };
 
   useEffect(() => {
+    if (isPaused) return;
     const id = setInterval(() => {
       setDirection(1);
       setActiveIndex((prev) => (prev + 1) % total);
     }, 3500);
     return () => clearInterval(id);
-  }, [activeIndex, total]);
+  }, [activeIndex, total, isPaused]);
 
   return (
     <section
@@ -970,6 +972,14 @@ function EarlyStageConceptsSection() {
               aria-label="Next concept"
             >
               <ChevronRight size={16} />
+            </button>
+            <button
+              onClick={() => setIsPaused((p) => !p)}
+              className="w-9 h-9 rounded-full flex items-center justify-center"
+              style={{ border: "1.5px solid #D4C4B0", background: "#fff", color: "rgba(26,26,26,0.6)" }}
+              aria-label={isPaused ? "Resume auto-play" : "Pause auto-play"}
+            >
+              {isPaused ? <Play size={14} /> : <Pause size={14} />}
             </button>
           </div>
         </div>
