@@ -1,7 +1,7 @@
 import { useParams, Link } from "wouter";
 import { useRef, useEffect, useState, useMemo, type RefObject } from "react";
-import { motion, useInView } from "framer-motion";
-import { ArrowLeft, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare } from "lucide-react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { ArrowLeft, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare, ChevronLeft, ChevronRight } from "lucide-react";
 import { getCaseStudy, getNextCaseStudy, type CaseStudy } from "@/data/caseStudies";
 import NotFound from "@/pages/not-found";
 
@@ -852,91 +852,184 @@ const CONCEPT_FRAMES = [
   },
 ];
 
+const WIREFRAME_FILTER = "grayscale(1) contrast(0.72) brightness(1.22)";
+const BLUE_TINT = "rgba(100, 130, 210, 0.09)";
+
+function ConceptCard({
+  frame,
+  isActive,
+}: {
+  frame: typeof CONCEPT_FRAMES[0];
+  isActive: boolean;
+}) {
+  return (
+    <div className="absolute inset-0 flex flex-col rounded-xl overflow-hidden" style={{ background: "#fff", border: "1.5px solid #E8DFD7" }}>
+      <div
+        className="flex-shrink-0 flex items-center gap-1.5 px-3"
+        style={{ height: 24, background: "#F0EDEA", borderBottom: "1px solid #E8DFD7" }}
+      >
+        <div className="w-2 h-2 rounded-full" style={{ background: isActive ? "rgba(232,101,75,0.5)" : "rgba(200,185,170,0.5)" }} />
+        <div className="w-2 h-2 rounded-full" style={{ background: "rgba(212,196,176,0.65)" }} />
+        <div className="w-2 h-2 rounded-full" style={{ background: "rgba(212,196,176,0.45)" }} />
+      </div>
+      <div className="flex-1 relative overflow-hidden">
+        <img
+          src={frame.src}
+          alt={frame.title}
+          className="w-full h-full block"
+          style={{ objectFit: "cover", objectPosition: "top", filter: WIREFRAME_FILTER }}
+        />
+        <div className="absolute inset-0 pointer-events-none" style={{ background: BLUE_TINT, mixBlendMode: "multiply" }} />
+      </div>
+    </div>
+  );
+}
+
 function EarlyStageConceptsSection() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const total = CONCEPT_FRAMES.length;
+  const current = CONCEPT_FRAMES[activeIndex];
+
+  const navigate = (dir: number) => {
+    setDirection(dir);
+    setActiveIndex((prev) => (prev + dir + total) % total);
+  };
+
+  const PEEK_CONFIG = [
+    { topOffset: 52, inset: 30, zIndex: 9, opacity: 0.55 },
+    { topOffset: 28, inset: 52, zIndex: 8, opacity: 0.35 },
+    { topOffset: 10, inset: 72, zIndex: 7, opacity: 0.2 },
+  ];
+
   return (
     <section
       id="section-concepts"
-      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      className="relative h-screen snap-start snap-always flex flex-col overflow-hidden"
       style={{ background: "#FAF8F5" }}
     >
-      <SnapReveal>
-        <div className="w-full px-8 md:px-20 flex flex-col gap-7">
-          <div className="max-w-xl">
+      <div className="flex-1 flex gap-10 px-8 md:px-20 py-12 min-h-0">
+        {/* LEFT: title + animated caption + chevrons */}
+        <div className="w-60 md:w-72 flex-shrink-0 flex flex-col justify-center gap-6">
+          <div>
             <p
-              className="text-[11px] uppercase tracking-widest font-semibold mb-3"
+              className="text-[11px] uppercase tracking-widest font-semibold mb-4"
               style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
             >
               Design Process
             </p>
             <h2
-              className="text-2xl md:text-3xl leading-tight text-[#1a1a1a] mb-3"
+              className="text-2xl md:text-[1.75rem] leading-tight text-[#1a1a1a]"
               style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
             >
               Early stage concepts
             </h2>
-            <p
-              className="text-sm leading-relaxed text-[#1a1a1a]/55"
-              style={{ fontFamily: "'Wotfard', sans-serif" }}
-            >
-              Before landing on the final design, these explorations shaped how AI transparency
-              and human oversight should be expressed across the Jira Service Management interface.
-            </p>
           </div>
 
-          <div
-            className="flex gap-4 overflow-x-auto pb-1"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-          >
-            {CONCEPT_FRAMES.map((c, i) => (
-              <motion.div
-                key={i}
-                className="flex-shrink-0 flex flex-col gap-2.5"
-                style={{ width: "clamp(240px, 26vw, 360px)" }}
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.52, ease: EASE, delay: 0.08 + i * 0.07 }}
-              >
-                <div
-                  className="rounded-xl overflow-hidden shadow-sm"
-                  style={{ border: "1.5px solid #E8DFD7", background: "#fff" }}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeIndex}
+              className="flex flex-col gap-2"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.28, ease: EASE }}
+            >
+              <div className="flex items-baseline gap-2">
+                <span
+                  className="text-[2.25rem] font-bold tabular-nums leading-none"
+                  style={{ color: "#D4C4B0", fontFamily: "'Wotfard', sans-serif" }}
                 >
-                  <div
-                    className="flex items-center gap-1.5 px-3 border-b"
-                    style={{ height: 24, background: "#F0EDEA", borderColor: "#E8DFD7" }}
-                  >
-                    <div className="w-2 h-2 rounded-full" style={{ background: "rgba(232,101,75,0.45)" }} />
-                    <div className="w-2 h-2 rounded-full" style={{ background: "rgba(212,196,176,0.7)" }} />
-                    <div className="w-2 h-2 rounded-full" style={{ background: "rgba(212,196,176,0.5)" }} />
-                  </div>
-                  <img src={c.src} alt={c.title} className="w-full h-auto block" />
-                </div>
-                <div className="flex flex-col gap-0.5 px-0.5">
-                  <div className="flex items-center gap-2">
-                    <span
-                      className="text-[10px] font-bold tabular-nums"
-                      style={{ color: "#D4C4B0", fontFamily: "'Wotfard', sans-serif" }}
-                    >
-                      {c.label}
-                    </span>
-                    <span
-                      className="text-[11px] font-semibold text-[#1a1a1a]"
-                      style={{ fontFamily: "'Wotfard', sans-serif" }}
-                    >
-                      {c.title}
-                    </span>
-                  </div>
-                  <p
-                    className="text-[11px] leading-relaxed text-[#1a1a1a]/45"
-                    style={{ fontFamily: "'Wotfard', sans-serif" }}
-                  >
-                    {c.caption}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
+                  {current.label}
+                </span>
+                <span
+                  className="text-[11px] font-semibold uppercase tracking-widest text-[#1a1a1a]/25"
+                  style={{ fontFamily: "'Wotfard', sans-serif" }}
+                >
+                  / 0{total}
+                </span>
+              </div>
+              <h3
+                className="text-[14px] font-bold text-[#1a1a1a] leading-snug"
+                style={{ fontFamily: "'Wotfard', sans-serif" }}
+              >
+                {current.title}
+              </h3>
+              <p
+                className="text-[12px] leading-relaxed text-[#1a1a1a]/50"
+                style={{ fontFamily: "'Wotfard', sans-serif" }}
+              >
+                {current.caption}
+              </p>
+            </motion.div>
+          </AnimatePresence>
+
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => navigate(-1)}
+              className="w-10 h-10 rounded-full flex items-center justify-center transition-colors"
+              style={{ border: "1.5px solid #D4C4B0", background: "#fff", color: "#1a1a1a/60" }}
+              aria-label="Previous concept"
+            >
+              <ChevronLeft size={17} />
+            </button>
+            <button
+              onClick={() => navigate(1)}
+              className="w-10 h-10 rounded-full flex items-center justify-center transition-colors"
+              style={{ background: "#1a1a1a", color: "#fff", border: "1.5px solid #1a1a1a" }}
+              aria-label="Next concept"
+            >
+              <ChevronRight size={17} />
+            </button>
           </div>
         </div>
-      </SnapReveal>
+
+        {/* RIGHT: card stack */}
+        <div className="flex-1 relative min-h-0">
+          {/* Peek cards: furthest first (lowest z), closest last */}
+          {[...PEEK_CONFIG].reverse().map((cfg, ri) => {
+            const peekOffset = PEEK_CONFIG.length - ri; // 3=furthest, 1=closest
+            const peekIdx = (activeIndex + peekOffset) % total;
+            return (
+              <div
+                key={`peek-${peekOffset}`}
+                className="absolute rounded-xl overflow-hidden"
+                style={{
+                  top: cfg.topOffset,
+                  left: cfg.inset,
+                  right: cfg.inset,
+                  bottom: 0,
+                  zIndex: cfg.zIndex,
+                  opacity: cfg.opacity,
+                }}
+              >
+                <ConceptCard frame={CONCEPT_FRAMES[peekIdx]} isActive={false} />
+              </div>
+            );
+          })}
+
+          {/* Active card — starts below the peek zone so chrome bars above are visible */}
+          <AnimatePresence mode="popLayout" custom={direction}>
+            <motion.div
+              key={activeIndex}
+              custom={direction}
+              variants={{
+                enter: (dir: number) => ({ x: dir > 0 ? 80 : -80, opacity: 0, scale: 0.97 }),
+                center: { x: 0, opacity: 1, scale: 1 },
+                exit: (dir: number) => ({ x: dir > 0 ? -80 : 80, opacity: 0, scale: 0.97 }),
+              }}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.42, ease: APPLE }}
+              className="absolute"
+              style={{ top: 80, left: 0, right: 0, bottom: 0, zIndex: 10 }}
+            >
+              <ConceptCard frame={current} isActive={true} />
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </div>
     </section>
   );
 }
