@@ -41,7 +41,7 @@ function SnapReveal({
 }
 
 function CaseStudyHeroBg() {
-  const CX = 880, CY = 297;
+  const CX = 1100, CY = 420;
   const VW = 1600, VH = 900;
 
   const hexPoints = (cx: number, cy: number, r: number) =>
@@ -53,18 +53,18 @@ function CaseStudyHeroBg() {
       .join(" ");
 
   const nodes = [
-    { x: 979,  y: 297, label: "Service triage",          icon: <Inbox size={11} /> },
-    { x: 838,  y: 387, label: "Internal knowledge",       icon: <BookOpen size={11} /> },
-    { x: 837,  y: 207, label: "Work item resolution",     icon: <CheckCheck size={11} /> },
-    { x: 1039, y: 223, label: "Automation Rules",         icon: <Zap size={11} /> },
-    { x: 954,  y: 456, label: "Rovo custom agent",        icon: <Bot size={11} /> },
-    { x: 737,  y: 397, label: "Virtual service agent",    icon: <Network size={11} /> },
-    { x: 716,  y: 237, label: "Employee onboarding",      icon: <UserPlus size={11} /> },
-    { x: 895,  y: 123, label: "Jobs Queue",               icon: <LayoutList size={11} /> },
-    { x: 1120, y: 384, label: "Performance management",   icon: <TrendingUp size={11} /> },
-    { x: 649,  y: 405, label: "Learning & development",   icon: <GraduationCap size={11} /> },
-    { x: 659,  y: 170, label: "Preboarding of new hires", icon: <Sparkles size={11} /> },
-    { x: 1089, y: 151, label: "Internal mobility",        icon: <ArrowUpRight size={11} /> },
+    { x: 1234, y: 498, label: "Rovo custom agent",        icon: <Bot size={11} /> },
+    { x: 1100, y: 575, label: "Internal knowledge",       icon: <BookOpen size={11} /> },
+    { x: 966,  y: 498, label: "Learning & development",   icon: <GraduationCap size={11} /> },
+    { x: 966,  y: 342, label: "Employee onboarding",      icon: <UserPlus size={11} /> },
+    { x: 1100, y: 265, label: "Work item resolution",     icon: <CheckCheck size={11} /> },
+    { x: 1234, y: 342, label: "Automation Rules",         icon: <Zap size={11} /> },
+    { x: 1360, y: 420, label: "Service triage",           icon: <Inbox size={11} /> },
+    { x: 1230, y: 645, label: "Performance management",   icon: <TrendingUp size={11} /> },
+    { x: 970,  y: 645, label: "Virtual service agent",    icon: <Network size={11} /> },
+    { x: 840,  y: 420, label: "Internal mobility",        icon: <ArrowUpRight size={11} /> },
+    { x: 970,  y: 195, label: "Preboarding of new hires", icon: <Sparkles size={11} /> },
+    { x: 1230, y: 195, label: "Jobs Queue",               icon: <LayoutList size={11} /> },
   ];
 
   return (
@@ -73,7 +73,7 @@ function CaseStudyHeroBg() {
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 75% 65% at 55% 26%, rgba(255,255,255,0.45) 0%, transparent 70%)",
+            "radial-gradient(ellipse 55% 75% at 70% 46%, rgba(255,255,255,0.52) 0%, transparent 65%)",
         }}
       />
 
@@ -84,20 +84,21 @@ function CaseStudyHeroBg() {
       >
         <defs>
           <pattern id="hero-grid" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-            <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(0,40,120,0.05)" strokeWidth="0.8" />
+            <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(0,40,120,0.04)" strokeWidth="0.8" />
           </pattern>
+          <radialGradient id="hex-glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#F2A617" stopOpacity="0.55" />
+            <stop offset="100%" stopColor="#F2A617" stopOpacity="0" />
+          </radialGradient>
         </defs>
 
         <rect width={VW} height={VH} fill="url(#hero-grid)" />
 
-        <circle cx={CX} cy={CY} r={110} stroke="rgba(50,100,220,0.24)" strokeWidth={1.5} fill="none" strokeDasharray="8 12">
-          <animateTransform attributeName="transform" type="rotate" from={`0 ${CX} ${CY}`} to={`360 ${CX} ${CY}`} dur="50s" repeatCount="indefinite" />
+        <circle cx={CX} cy={CY} r={155} stroke="rgba(200,130,20,0.28)" strokeWidth={1.5} fill="none" strokeDasharray="6 13">
+          <animateTransform attributeName="transform" type="rotate" from={`0 ${CX} ${CY}`} to={`360 ${CX} ${CY}`} dur="60s" repeatCount="indefinite" />
         </circle>
-        <circle cx={CX} cy={CY} r={195} stroke="rgba(200,130,20,0.28)" strokeWidth={1.5} fill="none" strokeDasharray="5 14">
-          <animateTransform attributeName="transform" type="rotate" from={`0 ${CX} ${CY}`} to={`-360 ${CX} ${CY}`} dur="75s" repeatCount="indefinite" />
-        </circle>
-        <circle cx={CX} cy={CY} r={285} stroke="rgba(50,100,220,0.17)" strokeWidth={1.5} fill="none" strokeDasharray="8 12">
-          <animateTransform attributeName="transform" type="rotate" from={`0 ${CX} ${CY}`} to={`360 ${CX} ${CY}`} dur="100s" repeatCount="indefinite" />
+        <circle cx={CX} cy={CY} r={260} stroke="rgba(50,100,220,0.2)" strokeWidth={1.5} fill="none" strokeDasharray="8 12">
+          <animateTransform attributeName="transform" type="rotate" from={`0 ${CX} ${CY}`} to={`-360 ${CX} ${CY}`} dur="90s" repeatCount="indefinite" />
         </circle>
 
         {nodes.map((n, i) => (
@@ -105,23 +106,25 @@ function CaseStudyHeroBg() {
             key={i}
             x1={CX} y1={CY}
             x2={n.x} y2={n.y}
-            stroke="rgba(30,70,180,0.12)"
+            stroke="rgba(30,70,180,0.11)"
             strokeWidth={1}
             strokeDasharray="4 8"
           >
-            <animate attributeName="stroke-opacity" values="0.12;0.28;0.12" dur={`${2.8 + (i % 5) * 0.6}s`} repeatCount="indefinite" />
+            <animate attributeName="stroke-opacity" values="0.11;0.26;0.11" dur={`${2.8 + (i % 5) * 0.6}s`} repeatCount="indefinite" />
           </line>
         ))}
 
         {nodes.map((n, i) => (
-          <circle key={i} cx={n.x} cy={n.y} r={3.5} fill="rgba(50,100,220,0.35)" />
+          <circle key={i} cx={n.x} cy={n.y} r={3.5} fill="rgba(50,100,220,0.32)" />
         ))}
 
-        <circle cx={CX} cy={CY} r={84} fill="rgba(242,166,23,0.15)" />
-        <circle cx={CX} cy={CY} r={66} fill="rgba(242,166,23,0.22)" />
-        <polygon points={hexPoints(CX, CY, 48)} fill="#F2A617" />
-        <polygon points={hexPoints(CX, CY, 26)} fill="none" stroke="rgba(255,255,255,0.88)" strokeWidth={2.5} />
-        <polygon points={hexPoints(CX, CY, 12)} fill="rgba(255,255,255,0.92)" />
+        <ellipse cx={CX} cy={CY} rx={140} ry={120} fill="url(#hex-glow)" />
+        <circle cx={CX} cy={CY} r={88} fill="rgba(242,166,23,0.18)" />
+        <circle cx={CX} cy={CY} r={70} fill="rgba(242,166,23,0.26)" />
+        <circle cx={CX} cy={CY} r={56} fill="rgba(242,166,23,0.32)" />
+        <polygon points={hexPoints(CX, CY, 50)} fill="#F2A617" />
+        <polygon points={hexPoints(CX, CY, 27)} fill="none" stroke="rgba(255,255,255,0.9)" strokeWidth={2.5} />
+        <polygon points={hexPoints(CX, CY, 13)} fill="rgba(255,255,255,0.95)" />
       </svg>
 
       {nodes.map((n, i) => (
@@ -155,7 +158,7 @@ function CaseStudyHeroBg() {
                 WebkitBackdropFilter: "blur(10px)",
               }}
               whileHover={{
-                background: "rgba(255,255,255,0.96)",
+                background: "rgba(255,255,255,0.97)",
                 boxShadow: "0 4px 28px rgba(40,90,220,0.28), 0 2px 8px rgba(0,0,0,0.08)",
                 border: "1px solid rgba(50,100,220,0.35)",
                 transition: { duration: 0.18 },
@@ -163,19 +166,13 @@ function CaseStudyHeroBg() {
             >
               <div
                 className="w-[18px] h-[18px] rounded-full flex items-center justify-center flex-shrink-0"
-                style={{
-                  background: "rgba(50,100,220,0.12)",
-                  color: "rgba(40,90,200,0.85)",
-                }}
+                style={{ background: "rgba(50,100,220,0.12)", color: "rgba(40,90,200,0.85)" }}
               >
                 {n.icon}
               </div>
               <span
                 className="text-[11px] font-semibold whitespace-nowrap"
-                style={{
-                  color: "rgba(12,25,70,0.72)",
-                  fontFamily: "'Wotfard', sans-serif",
-                }}
+                style={{ color: "rgba(12,25,70,0.72)", fontFamily: "'Wotfard', sans-serif" }}
               >
                 {n.label}
               </span>
@@ -191,7 +188,7 @@ function HeroSection({ study }: { study: CaseStudy }) {
   return (
     <section
       id="section-hero"
-      className="relative h-screen snap-start snap-always flex flex-col justify-end pt-32 pb-0 overflow-hidden"
+      className="relative h-screen snap-start snap-always flex flex-col pb-0 overflow-hidden"
       style={{ backgroundColor: study.heroColor }}
     >
       <motion.div
@@ -202,31 +199,40 @@ function HeroSection({ study }: { study: CaseStudy }) {
       >
         <CaseStudyHeroBg />
       </motion.div>
-      <motion.div className="relative z-10 w-full px-6 md:px-24" {...fadeUp(0.1)}>
-        <p
-          className="text-xs uppercase tracking-widest font-semibold text-black/50 mb-4"
-          style={{ fontFamily: "'Wotfard', sans-serif" }}
+
+      <div className="h-20 flex-shrink-0" />
+
+      <div className="relative z-10 flex-1 flex items-center px-8 md:px-20">
+        <motion.div
+          className="flex flex-col gap-5 max-w-[44%]"
+          {...fadeUp(0.1)}
         >
-          {study.category} · {study.year}
-        </p>
-        <h1
-          className="text-4xl md:text-6xl leading-[1.05] text-[#1a1a1a] mb-4"
-          style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
-        >
-          {study.title}
-        </h1>
-        {study.subtitle && (
           <p
-            className="text-sm md:text-base leading-relaxed text-[#1a1a1a]/55 mb-10 md:mb-14"
+            className="text-[11px] uppercase tracking-widest font-semibold text-black/40"
             style={{ fontFamily: "'Wotfard', sans-serif" }}
           >
-            {study.subtitle}
+            {study.category} · {study.year}
           </p>
-        )}
-        {!study.subtitle && <div className="mb-10 md:mb-14" />}
-      </motion.div>
+          <h1
+            className="text-5xl md:text-[3.75rem] leading-[1.02] text-[#1a1a1a]"
+            style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+          >
+            {study.title}
+          </h1>
+          <div className="w-10 h-[3px] rounded-full" style={{ background: "#E8654B" }} />
+          {study.subtitle && (
+            <p
+              className="text-sm md:text-[15px] leading-relaxed text-[#1a1a1a]/58 max-w-sm"
+              style={{ fontFamily: "'Wotfard', sans-serif" }}
+            >
+              {study.subtitle}
+            </p>
+          )}
+        </motion.div>
+      </div>
+
       <motion.div
-        className="relative z-10 w-full px-6 md:px-24"
+        className="relative z-10 w-full px-6 md:px-20"
         {...fadeUp(0.25)}
       >
         <div className="rounded-t-2xl bg-[#1a1a1a] px-6 md:px-10 py-6 flex flex-wrap items-center justify-between gap-6">
