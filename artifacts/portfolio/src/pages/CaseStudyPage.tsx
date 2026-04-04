@@ -946,7 +946,7 @@ function EarlyStageConceptsSection() {
                   className="text-[11px] font-semibold uppercase tracking-widest text-[#1a1a1a]/25"
                   style={{ fontFamily: "'Wotfard', sans-serif" }}
                 >
-                  / 0{total}
+                  / {String(total).padStart(2, "0")}
                 </span>
               </div>
               <h3
@@ -968,7 +968,7 @@ function EarlyStageConceptsSection() {
             <button
               onClick={() => navigate(-1)}
               className="w-10 h-10 rounded-full flex items-center justify-center transition-colors"
-              style={{ border: "1.5px solid #D4C4B0", background: "#fff", color: "#1a1a1a/60" }}
+              style={{ border: "1.5px solid #D4C4B0", background: "#fff", color: "rgba(26,26,26,0.6)" }}
               aria-label="Previous concept"
             >
               <ChevronLeft size={17} />
