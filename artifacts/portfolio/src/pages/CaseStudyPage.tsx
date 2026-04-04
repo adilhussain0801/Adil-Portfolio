@@ -1085,7 +1085,7 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
           }
         });
       },
-      { root: container, threshold: 0.5 }
+      { root: container, threshold: 0, rootMargin: "-50% 0px -50% 0px" }
     );
     observeIds.forEach((id) => {
       const el = container.querySelector(`#${id}`);
