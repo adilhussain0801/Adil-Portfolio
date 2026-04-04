@@ -819,6 +819,128 @@ function ProcessSection({ study }: { study: CaseStudy }) {
   );
 }
 
+const CONCEPT_FRAMES = [
+  {
+    label: "01",
+    title: "Service entry point",
+    caption: "Space settings landing — configuring Rovo Service capabilities per team",
+    src: "/concept-landing.png",
+  },
+  {
+    label: "02",
+    title: "Queue list view",
+    caption: "All open queue with smart triage, AI assignee, and status at a glance",
+    src: "/concept-queue-list.png",
+  },
+  {
+    label: "03",
+    title: "Thinking state",
+    caption: "Resolution plan generated from knowledge base and similar past requests",
+    src: "/concept-thinking.png",
+  },
+  {
+    label: "04",
+    title: "Plan ready for review",
+    caption: "Human-readable plan presented for agent review before any action is taken",
+    src: "/concept-thinking-1.png",
+  },
+  {
+    label: "05",
+    title: "Execution in progress",
+    caption: "Step-by-step plan executing with real-time progress and override capability",
+    src: "/concept-plan-executing.png",
+  },
+];
+
+function EarlyStageConceptsSection() {
+  return (
+    <section
+      id="section-concepts"
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#FAF8F5" }}
+    >
+      <SnapReveal>
+        <div className="w-full px-8 md:px-20 flex flex-col gap-7">
+          <div className="max-w-xl">
+            <p
+              className="text-[11px] uppercase tracking-widest font-semibold mb-3"
+              style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
+            >
+              Design Process
+            </p>
+            <h2
+              className="text-2xl md:text-3xl leading-tight text-[#1a1a1a] mb-3"
+              style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+            >
+              Early stage concepts
+            </h2>
+            <p
+              className="text-sm leading-relaxed text-[#1a1a1a]/55"
+              style={{ fontFamily: "'Wotfard', sans-serif" }}
+            >
+              Before landing on the final design, these explorations shaped how AI transparency
+              and human oversight should be expressed across the Jira Service Management interface.
+            </p>
+          </div>
+
+          <div
+            className="flex gap-4 overflow-x-auto pb-1"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
+            {CONCEPT_FRAMES.map((c, i) => (
+              <motion.div
+                key={i}
+                className="flex-shrink-0 flex flex-col gap-2.5"
+                style={{ width: "clamp(240px, 26vw, 360px)" }}
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.52, ease: EASE, delay: 0.08 + i * 0.07 }}
+              >
+                <div
+                  className="rounded-xl overflow-hidden shadow-sm"
+                  style={{ border: "1.5px solid #E8DFD7", background: "#fff" }}
+                >
+                  <div
+                    className="flex items-center gap-1.5 px-3 border-b"
+                    style={{ height: 24, background: "#F0EDEA", borderColor: "#E8DFD7" }}
+                  >
+                    <div className="w-2 h-2 rounded-full" style={{ background: "rgba(232,101,75,0.45)" }} />
+                    <div className="w-2 h-2 rounded-full" style={{ background: "rgba(212,196,176,0.7)" }} />
+                    <div className="w-2 h-2 rounded-full" style={{ background: "rgba(212,196,176,0.5)" }} />
+                  </div>
+                  <img src={c.src} alt={c.title} className="w-full h-auto block" />
+                </div>
+                <div className="flex flex-col gap-0.5 px-0.5">
+                  <div className="flex items-center gap-2">
+                    <span
+                      className="text-[10px] font-bold tabular-nums"
+                      style={{ color: "#D4C4B0", fontFamily: "'Wotfard', sans-serif" }}
+                    >
+                      {c.label}
+                    </span>
+                    <span
+                      className="text-[11px] font-semibold text-[#1a1a1a]"
+                      style={{ fontFamily: "'Wotfard', sans-serif" }}
+                    >
+                      {c.title}
+                    </span>
+                  </div>
+                  <p
+                    className="text-[11px] leading-relaxed text-[#1a1a1a]/45"
+                    style={{ fontFamily: "'Wotfard', sans-serif" }}
+                  >
+                    {c.caption}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </SnapReveal>
+    </section>
+  );
+}
+
 function SolutionSection({ study }: { study: CaseStudy }) {
   return (
     <section
@@ -991,6 +1113,7 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
     { id: "section-overview", label: "Overview" },
     { id: "section-challenge", label: "Challenge" },
     { id: "section-process", label: study.id === 4 ? "Competitors" : "Process" },
+    ...(study.id === 4 ? [{ id: "section-concepts", label: "Concepts" }] : []),
     { id: "section-solution", label: "Solution" },
     { id: "section-impact", label: "Impact" },
     { id: "section-next", label: "Next Project" },
@@ -1131,6 +1254,7 @@ export default function CaseStudyPage() {
         <ChallengeSection study={study} />
         <ProcessSection study={study} />
         {study.id === 4 && <EmergingThemesSection />}
+        {study.id === 4 && <EarlyStageConceptsSection />}
         <SolutionSection study={study} />
         <ImpactSection study={study} />
         <NextProjectSection study={study} />
