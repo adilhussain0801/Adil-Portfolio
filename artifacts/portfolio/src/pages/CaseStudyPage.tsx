@@ -841,7 +841,7 @@ function ScreenCard({
         position: "absolute",
         borderRadius: 6,
         overflow: "hidden",
-        boxShadow: "0 20px 60px rgba(0,0,0,0.26), 0 6px 16px rgba(0,0,0,0.14)",
+        boxShadow: "0 8px 28px rgba(0,0,0,0.14), 0 2px 8px rgba(0,0,0,0.07)",
         background: "#fff",
         ...style,
       }}
@@ -957,8 +957,8 @@ function EarlyStageConceptsSection() {
 
         {/* Design wall — centered, perspective 3D */}
         <div ref={wallRef} className="flex-1 mx-auto mb-4" style={{ width: "94%", maxWidth: 1280, position: "relative", perspective: "1100px" }}>
-          {/* Inner tilt wrapper — rotateX gives the "table top" depth */}
-          <div style={{ position: "absolute", inset: 0, transform: "rotateX(14deg)", transformOrigin: "50% 0%", transformStyle: "preserve-3d" }}>
+          {/* Inner tilt wrapper — rotateY gives left-to-right depth */}
+          <div style={{ position: "absolute", inset: 0, transform: "rotateY(-12deg)", transformOrigin: "50% 50%", transformStyle: "preserve-3d" }}>
 
             {/* Row 1: 4 screens */}
             <ScreenCard
