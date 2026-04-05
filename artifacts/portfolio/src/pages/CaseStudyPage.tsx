@@ -51,39 +51,51 @@ function CaseStudyHeroBg() {
         }}
       />
       <div
-        className="absolute pointer-events-none select-none inset-0"
+        className="absolute pointer-events-none select-none flex items-center justify-center"
         style={{
-          borderRadius: "12px",
-          overflow: "hidden",
+          inset: 0,
+          paddingTop: "60px",
+          paddingBottom: "200px",
         }}
       >
-        <video
-          src="/rovo-hero-video.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-          style={{
-            width: "100%",
-            height: "100%",
-            display: "block",
-            objectFit: "cover",
-            objectPosition: "center",
-          }}
-        />
-        {/* Fade overlay at bottom */}
         <div
           style={{
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: "200px",
-            background: "linear-gradient(to top, rgba(255, 255, 255, 1) 0%, transparent 100%)",
-            pointerEvents: "none",
+            width: "calc(100% - 192px)",
+            height: "100%",
+            borderRadius: "12px",
+            overflow: "hidden",
+            position: "relative",
           }}
-        />
+        >
+          <video
+            src="/rovo-hero-video.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            style={{
+              width: "100%",
+              height: "100%",
+              display: "block",
+              objectFit: "cover",
+              objectPosition: "center",
+            }}
+          />
+        </div>
       </div>
+      {/* Fade overlay at bottom */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: "200px",
+          background: "linear-gradient(to top, rgba(255, 255, 255, 1) 0%, transparent 100%)",
+          pointerEvents: "none",
+          zIndex: 5,
+        }}
+      />
     </div>
   );
 }
@@ -106,9 +118,9 @@ function HeroSection({ study }: { study: CaseStudy }) {
       </motion.div>
 
       {/* Title & Subtitle at bottom */}
-      <div className="relative z-10 w-full px-8 md:px-20 pb-12">
+      <div className="relative z-10 w-full pb-12">
         <motion.div
-          className="flex flex-col gap-5 max-w-[70%]"
+          className="flex flex-col gap-5 px-8 md:px-20"
           {...fadeUp(0.1)}
         >
           <p
