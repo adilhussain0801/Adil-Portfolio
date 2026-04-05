@@ -51,18 +51,10 @@ function CaseStudyHeroBg() {
         }}
       />
       <div
-        className="absolute pointer-events-none select-none"
+        className="absolute pointer-events-none select-none inset-0"
         style={{
-          right: 40,
-          top: "50%",
-          transform: "translateY(-50%)",
-          height: "min(100%, 420px)",
-          width: "auto",
-          maxWidth: "none",
           borderRadius: "12px",
           overflow: "hidden",
-          boxShadow: "0 20px 60px rgba(0,0,0,0.15)",
-          border: "4px solid rgba(200, 220, 240, 0.5)",
         }}
       >
         <video
@@ -77,6 +69,18 @@ function CaseStudyHeroBg() {
             display: "block",
             objectFit: "cover",
             objectPosition: "center",
+          }}
+        />
+        {/* Fade overlay at bottom */}
+        <div
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: "200px",
+            background: "linear-gradient(to top, rgba(255, 255, 255, 1) 0%, transparent 100%)",
+            pointerEvents: "none",
           }}
         />
       </div>
@@ -102,9 +106,9 @@ function HeroSection({ study }: { study: CaseStudy }) {
       </motion.div>
 
       {/* Title & Subtitle at bottom */}
-      <div className="relative z-10 px-8 md:px-20 pb-8">
+      <div className="relative z-10 w-full px-8 md:px-20 pb-12">
         <motion.div
-          className="flex flex-col gap-5 max-w-[60%]"
+          className="flex flex-col gap-5 max-w-[70%]"
           {...fadeUp(0.1)}
         >
           <p
