@@ -91,20 +91,20 @@ function HeroSection({ study }: { study: CaseStudy }) {
       className="relative h-screen snap-start snap-always flex flex-col pb-0 overflow-hidden"
       style={{ backgroundColor: study.heroColor }}
     >
+      {/* Center video */}
       <motion.div
         initial={{ opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="absolute inset-0"
+        className="flex-1 flex items-center justify-center relative z-10"
       >
         <CaseStudyHeroBg />
       </motion.div>
 
-      <div className="h-20 flex-shrink-0" />
-
-      <div className="relative z-10 flex-1 flex items-center px-8 md:px-20">
+      {/* Title & Subtitle at bottom */}
+      <div className="relative z-10 px-8 md:px-20 pb-8">
         <motion.div
-          className="flex flex-col gap-5 max-w-[44%]"
+          className="flex flex-col gap-5 max-w-[60%]"
           {...fadeUp(0.1)}
         >
           <p
