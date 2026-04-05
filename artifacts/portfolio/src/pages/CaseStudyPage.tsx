@@ -1047,6 +1047,12 @@ function DesignPrinciplesSection() {
             >
               Principles guiding the product direction
             </h2>
+            <p
+              className="text-sm leading-relaxed text-[#1a1a1a]/58 mt-2"
+              style={{ fontFamily: "'Wotfard', sans-serif" }}
+            >
+              These principles emerged from identifying that AI was present in the workflow, but not meaningfully improving how users think or act.
+            </p>
           </div>
 
           {/* Principles grid */}
