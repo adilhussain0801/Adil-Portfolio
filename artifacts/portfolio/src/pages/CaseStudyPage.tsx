@@ -1123,7 +1123,7 @@ function EarlyStageConceptsSection() {
                 background: "#fff",
                 borderRadius: 14,
                 overflow: "hidden",
-                maxWidth: 1025,
+                maxWidth: 1200,
                 width: "100%",
                 boxShadow: "0 32px 80px rgba(0,0,0,0.4)",
                 display: "flex",
