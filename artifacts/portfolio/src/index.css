@@ -166,19 +166,24 @@
 
 /* Modal button hover states */
 .modal-close-btn:hover {
-  background: rgba(0, 0, 0, 0.12) !important;
-  transform: scale(1.08);
+  background: rgba(0, 0, 0, 0.12);
+  transform: scale(1.06);
 }
 
 .modal-nav-btn:hover {
-  background: rgba(0, 0, 0, 0.05) !important;
+  background: rgba(0, 0, 0, 0.04);
 }
 
 .modal-dot-btn:hover {
-  opacity: 0.7;
+  opacity: 0.6;
+  transition: opacity 0.15s ease, width 0.15s ease;
 }
 
-/* Bento cell clear hover state */
+/* Bento cell subtle hover lift */
+.bento-cell {
+  transition: box-shadow 0.2s ease;
+}
+
 .bento-cell:hover {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14), 0 2px 6px rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14), 0 2px 6px rgba(0, 0, 0, 0.08);
 }
