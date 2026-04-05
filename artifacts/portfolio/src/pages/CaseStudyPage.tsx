@@ -981,14 +981,19 @@ function EarlyStageConceptsSection() {
             preserveAspectRatio="none"
             style={{ position: "absolute", inset: 0, width: "100%", height: "100%", zIndex: 16, pointerEvents: "none" }}
           >
+            <defs>
+              <marker id="wall-tip" markerWidth="4" markerHeight="4" refX="3.5" refY="2" orient="auto" markerUnits="userSpaceOnUse">
+                <polygon points="0,0 4,2 0,4" fill="rgba(45,45,45,0.3)" />
+              </marker>
+            </defs>
             {/* "Too workflow-heavy" → Screen 1 */}
-            <path d="M 7,83 C 10,74 14,63 17,52" stroke="rgba(45,45,45,0.18)" strokeWidth="0.5" fill="none" strokeDasharray="1.2 1.8" />
+            <path d="M 7,83 C 10,74 14,63 17,52" stroke="rgba(45,45,45,0.2)" strokeWidth="0.5" fill="none" markerEnd="url(#wall-tip)" />
             {/* "Focused on guided resolution" → Screen 2 */}
-            <path d="M 36,55 C 38,47 41,39 44,30" stroke="rgba(45,45,45,0.18)" strokeWidth="0.5" fill="none" strokeDasharray="1.2 1.8" />
+            <path d="M 36,55 C 38,47 41,39 44,30" stroke="rgba(45,45,45,0.2)" strokeWidth="0.5" fill="none" markerEnd="url(#wall-tip)" />
             {/* "Complex logic overwhelming" → Screen 3 */}
-            <path d="M 79,11 C 78,14 76,18 74,22" stroke="rgba(45,45,45,0.18)" strokeWidth="0.5" fill="none" strokeDasharray="1.2 1.8" />
+            <path d="M 79,11 C 78,14 76,18 74,22" stroke="rgba(45,45,45,0.2)" strokeWidth="0.5" fill="none" markerEnd="url(#wall-tip)" />
             {/* "Lacked AI visibility" → Screen 5 */}
-            <path d="M 80,76 C 78,72 75,68 72,64" stroke="rgba(45,45,45,0.18)" strokeWidth="0.5" fill="none" strokeDasharray="1.2 1.8" />
+            <path d="M 80,76 C 78,72 75,68 72,64" stroke="rgba(45,45,45,0.2)" strokeWidth="0.5" fill="none" markerEnd="url(#wall-tip)" />
           </svg>
 
           {/* Screen 1: concept-landing — left, mid-height, tilted left */}
@@ -1038,7 +1043,7 @@ function EarlyStageConceptsSection() {
 
           {/* Sticky notes */}
           <StickyNote
-            text="Too workflow-heavy"
+            text="Too workflow-heavy to scan"
             rotate={-3}
             delay={0.5}
             isInView={isInView}
@@ -1053,14 +1058,14 @@ function EarlyStageConceptsSection() {
             style={{ left: "32%", top: "52%" }}
           />
           <StickyNote
-            text="Complex logic overwhelming"
+            text="Complex logic is overwhelming"
             rotate={4}
             delay={0.62}
             isInView={isInView}
             style={{ left: "76%", top: "4%" }}
           />
           <StickyNote
-            text="Lacked AI visibility"
+            text="Lacked clear AI visibility"
             rotate={-2}
             color="#FEF9C3"
             delay={0.68}
