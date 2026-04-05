@@ -652,14 +652,14 @@ function IndustryTrendsSection() {
     >
       <div className="max-w-5xl mx-auto w-full px-6 flex flex-col gap-6">
         <SnapReveal>
-          <div className="text-center">
+          <div className="flex flex-col gap-2">
             <h2
               className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight mb-2"
               style={{ fontFamily: "'Wotfard', sans-serif" }}
             >
               Top competitors
             </h2>
-            <p className="text-sm text-[#1a1a1a]/55" style={{ fontFamily: "'Wotfard', sans-serif" }}>
+            <p className="text-sm text-[#1a1a1a]/55 max-w-3xl" style={{ fontFamily: "'Wotfard', sans-serif" }}>
               The competitive landscape is witnessing a seismic shift from traditional ticketing systems toward{" "}
               <strong className="text-[#1a1a1a] font-semibold">AI-powered autonomous agents</strong>
               {" "}capable of resolving complex enterprise workflows.
