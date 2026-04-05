@@ -66,10 +66,6 @@ function CaseStudyHeroBg() {
           maxWidth: "none",
           objectFit: "cover",
           objectPosition: "center",
-          maskImage:
-            "linear-gradient(to right, transparent 0%, transparent 50%, rgba(0,0,0,0.5) 58%, black 66%, black 100%)",
-          WebkitMaskImage:
-            "linear-gradient(to right, transparent 0%, transparent 50%, rgba(0,0,0,0.5) 58%, black 66%, black 100%)",
         }}
       />
     </div>
