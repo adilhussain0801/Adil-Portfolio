@@ -1004,7 +1004,7 @@ const DESIGN_PRINCIPLES = [
     cardBg: "#FEF0EC",
     borderColor: "rgba(232,101,75,0.2)",
     numColor: "#F9C5B8",
-    title: "Shift from workflows to outcomes",
+    title: "Prioritize outcomes over process visibility",
     description: "Design for outcomes, not for process visibility.",
     insight: "Early designs exposed logic — plans, trees, steps. But users care about resolution, not how the machine thinks.",
   },
