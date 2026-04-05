@@ -78,7 +78,7 @@ function CaseStudyHeroBg() {
               height: "100%",
               display: "block",
               objectFit: "cover",
-              objectPosition: "center",
+              objectPosition: "top",
             }}
           />
           {/* Fade overlay — inside the video container so it only fades the video */}
@@ -88,8 +88,8 @@ function CaseStudyHeroBg() {
               bottom: 0,
               left: 0,
               right: 0,
-              height: "45%",
-              background: "linear-gradient(to top, rgba(255, 255, 255, 1) 0%, rgba(255,255,255,0.6) 40%, transparent 100%)",
+              height: "65%",
+              background: "linear-gradient(to top, rgba(255, 255, 255, 1) 0%, rgba(255,255,255,0.95) 25%, rgba(255,255,255,0.7) 55%, transparent 100%)",
               pointerEvents: "none",
             }}
           />
