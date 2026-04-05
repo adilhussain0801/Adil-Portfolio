@@ -158,7 +158,7 @@
 }
 
 .bento-cell img {
-  transition: opacity 0.12s ease, transform 0.18s ease;
+  transition: opacity 0.15s ease, transform 0.42s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .bento-cell:hover img {
   opacity: 0.88;
