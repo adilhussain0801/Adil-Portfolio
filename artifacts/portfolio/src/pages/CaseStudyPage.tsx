@@ -1,7 +1,7 @@
 import { useParams, Link } from "wouter";
 import { useRef, useEffect, useState, useMemo, type RefObject } from "react";
-import { motion, useInView } from "framer-motion";
-import { ArrowLeft, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare } from "lucide-react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { ArrowLeft, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { getCaseStudy, getNextCaseStudy, type CaseStudy } from "@/data/caseStudies";
 import NotFound from "@/pages/not-found";
 
@@ -894,9 +894,81 @@ function StickyNote({
   );
 }
 
+const CONCEPT_SCREENS = [
+  {
+    src: "/concept-v2-thinking.png",
+    alt: "AI Thinking State",
+    area: "a",
+    delay: 0.06,
+    title: "AI Thinking State",
+    description: "Rovo surfaces its reasoning in real-time as it analyses each service request, making the process transparent to the operator.",
+  },
+  {
+    src: "/concept-v2-landing.png",
+    alt: "Rovo Service Landing",
+    area: "b",
+    delay: 0.10,
+    title: "Rovo Service Landing",
+    description: "Configure how Rovo operates per space — with resolution management, onboarding journeys, and self-service setup in one place.",
+  },
+  {
+    src: "/concept-v2-queue-list.png",
+    alt: "Queue List View",
+    area: "c",
+    delay: 0.14,
+    title: "Queue List View",
+    description: "At-a-glance status across all open requests, with Rovo's resolution state and assignment surfaced directly in the list.",
+  },
+  {
+    src: "/concept-v2-plan-preview.png",
+    alt: "Resolution Plan Preview",
+    area: "d",
+    delay: 0.18,
+    title: "Resolution Plan Preview",
+    description: "Structured plan surfaces context and recommended actions before any action is taken, keeping the operator in control.",
+  },
+  {
+    src: "/concept-v2-plan-detail.png",
+    alt: "Plan Detail View",
+    area: "e",
+    delay: 0.22,
+    title: "Plan Detail View",
+    description: "Step-by-step resolution plan with conditional branching for complex, multi-path work items.",
+  },
+  {
+    src: "/concept-v2-plan-editing.png",
+    alt: "Plan Editing",
+    area: "f",
+    delay: 0.26,
+    title: "Plan Editing",
+    description: "Operators can refine AI-generated plans before assigning Rovo to execute — maintaining human oversight at every step.",
+  },
+  {
+    src: "/concept-v2-plan-executing.png",
+    alt: "Plan Executing",
+    area: "g",
+    delay: 0.30,
+    title: "Plan Executing",
+    description: "Live execution state showing Rovo's progress in real-time as it completes each step and updates the work item.",
+  },
+  {
+    src: "/concept-v2-it-general.png",
+    alt: "IT Execution Settings",
+    area: "h",
+    delay: 0.34,
+    title: "IT Execution Settings",
+    description: "Fine-grained controls that map request types to execution modes — Auto, Supervised, or Assistive — across the team.",
+  },
+];
+
 function EarlyStageConceptsSection() {
   const wallRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(wallRef, { once: false, amount: 0.15 });
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  const closeLightbox = () => setLightboxIndex(null);
+  const prev = () => setLightboxIndex((i) => i !== null ? (i - 1 + CONCEPT_SCREENS.length) % CONCEPT_SCREENS.length : null);
+  const next = () => setLightboxIndex((i) => i !== null ? (i + 1) % CONCEPT_SCREENS.length : null);
 
   return (
     <section
@@ -971,27 +1043,21 @@ function EarlyStageConceptsSection() {
             gap: 7,
           }}
         >
-          {([
-            { src: "/concept-v2-landing.png",       alt: "Rovo Service landing", area: "a", delay: 0.06 },
-            { src: "/concept-v2-queue-list.png",    alt: "Queue list view",      area: "b", delay: 0.10 },
-            { src: "/concept-v2-thinking.png",      alt: "Rovo thinking",        area: "c", delay: 0.14 },
-            { src: "/concept-v2-plan-preview.png",  alt: "Plan preview",         area: "d", delay: 0.18 },
-            { src: "/concept-v2-plan-detail.png",   alt: "Plan detail",          area: "e", delay: 0.22 },
-            { src: "/concept-v2-plan-editing.png",  alt: "Plan editing",         area: "f", delay: 0.26 },
-            { src: "/concept-v2-plan-executing.png",alt: "Plan executing",       area: "g", delay: 0.30 },
-            { src: "/concept-v2-it-general.png",    alt: "IT general settings",  area: "h", delay: 0.34 },
-          ] as { src: string; alt: string; area: string; delay: number }[]).map((screen, i) => (
+          {CONCEPT_SCREENS.map((screen, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, scale: 0.97 }}
               animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.97 }}
               transition={{ duration: 0.55, ease: EASE, delay: screen.delay }}
+              onClick={() => setLightboxIndex(i)}
               style={{
                 gridArea: screen.area,
                 borderRadius: 8,
                 overflow: "hidden",
                 boxShadow: "0 4px 16px rgba(0,0,0,0.09), 0 1px 4px rgba(0,0,0,0.05)",
                 background: "#fff",
+                cursor: "pointer",
+                position: "relative",
               }}
             >
               <img
@@ -999,10 +1065,216 @@ function EarlyStageConceptsSection() {
                 alt={screen.alt}
                 style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top left", display: "block" }}
               />
+              {/* Hover overlay hint */}
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  background: "rgba(0,0,0,0)",
+                  transition: "background 0.2s ease",
+                }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.background = "rgba(0,0,0,0.08)"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.background = "rgba(0,0,0,0)"; }}
+              />
             </motion.div>
           ))}
         </div>
       </div>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightboxIndex !== null && (() => {
+          const screen = CONCEPT_SCREENS[lightboxIndex];
+          return (
+            <motion.div
+              key="lightbox-backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.22 }}
+              onClick={closeLightbox}
+              style={{
+                position: "fixed",
+                inset: 0,
+                zIndex: 999,
+                background: "rgba(15,15,15,0.82)",
+                backdropFilter: "blur(8px)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "32px",
+              }}
+            >
+              <motion.div
+                key={`lightbox-card-${lightboxIndex}`}
+                initial={{ opacity: 0, scale: 0.94, y: 16 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.96, y: 8 }}
+                transition={{ duration: 0.3, ease: EASE }}
+                onClick={(e) => e.stopPropagation()}
+                style={{
+                  background: "#fff",
+                  borderRadius: 14,
+                  overflow: "hidden",
+                  maxWidth: 820,
+                  width: "100%",
+                  boxShadow: "0 32px 80px rgba(0,0,0,0.4)",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                {/* Modal header */}
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    justifyContent: "space-between",
+                    padding: "18px 22px 14px",
+                    borderBottom: "1px solid rgba(0,0,0,0.07)",
+                  }}
+                >
+                  <div>
+                    <p
+                      style={{
+                        fontSize: 10,
+                        fontWeight: 600,
+                        textTransform: "uppercase",
+                        letterSpacing: "0.1em",
+                        color: "#E8654B",
+                        fontFamily: "'Wotfard', sans-serif",
+                        marginBottom: 4,
+                      }}
+                    >
+                      {lightboxIndex + 1} / {CONCEPT_SCREENS.length}
+                    </p>
+                    <h3
+                      style={{
+                        fontSize: 16,
+                        fontWeight: 700,
+                        color: "#1a1a1a",
+                        fontFamily: "'Wotfard', sans-serif",
+                        margin: 0,
+                      }}
+                    >
+                      {screen.title}
+                    </h3>
+                    <p
+                      style={{
+                        fontSize: 12.5,
+                        color: "rgba(26,26,26,0.52)",
+                        fontFamily: "'Wotfard', sans-serif",
+                        marginTop: 4,
+                        lineHeight: 1.5,
+                        maxWidth: 560,
+                      }}
+                    >
+                      {screen.description}
+                    </p>
+                  </div>
+                  <button
+                    onClick={closeLightbox}
+                    style={{
+                      background: "rgba(0,0,0,0.06)",
+                      border: "none",
+                      borderRadius: "50%",
+                      width: 32,
+                      height: 32,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      cursor: "pointer",
+                      flexShrink: 0,
+                      marginLeft: 16,
+                    }}
+                  >
+                    <X size={16} color="#2D2D2D" />
+                  </button>
+                </div>
+
+                {/* Image */}
+                <div style={{ background: "#F6F4F0" }}>
+                  <img
+                    src={screen.src}
+                    alt={screen.alt}
+                    style={{ width: "100%", height: "auto", display: "block" }}
+                  />
+                </div>
+
+                {/* Nav footer */}
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    padding: "12px 18px",
+                    borderTop: "1px solid rgba(0,0,0,0.07)",
+                  }}
+                >
+                  <button
+                    onClick={prev}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 6,
+                      background: "none",
+                      border: "none",
+                      cursor: "pointer",
+                      color: "#2D2D2D",
+                      fontFamily: "'Wotfard', sans-serif",
+                      fontSize: 13,
+                      fontWeight: 600,
+                      padding: "6px 10px",
+                      borderRadius: 6,
+                    }}
+                  >
+                    <ChevronLeft size={16} />
+                    Previous
+                  </button>
+                  {/* Dots */}
+                  <div style={{ display: "flex", gap: 6 }}>
+                    {CONCEPT_SCREENS.map((_, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setLightboxIndex(idx)}
+                        style={{
+                          width: idx === lightboxIndex ? 18 : 7,
+                          height: 7,
+                          borderRadius: 4,
+                          border: "none",
+                          cursor: "pointer",
+                          background: idx === lightboxIndex ? "#E8654B" : "rgba(45,45,45,0.18)",
+                          padding: 0,
+                          transition: "all 0.2s ease",
+                        }}
+                      />
+                    ))}
+                  </div>
+                  <button
+                    onClick={next}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 6,
+                      background: "none",
+                      border: "none",
+                      cursor: "pointer",
+                      color: "#2D2D2D",
+                      fontFamily: "'Wotfard', sans-serif",
+                      fontSize: 13,
+                      fontWeight: 600,
+                      padding: "6px 10px",
+                      borderRadius: 6,
+                    }}
+                  >
+                    Next
+                    <ChevronRight size={16} />
+                  </button>
+                </div>
+              </motion.div>
+            </motion.div>
+          );
+        })()}
+      </AnimatePresence>
     </section>
   );
 }
