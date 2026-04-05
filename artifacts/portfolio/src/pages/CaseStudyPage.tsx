@@ -659,7 +659,7 @@ function IndustryTrendsSection() {
             >
               Top competitors
             </h2>
-            <p className="text-sm text-[#1a1a1a]/55 max-w-3xl" style={{ fontFamily: "'Wotfard', sans-serif" }}>
+            <p className="text-sm text-[#1a1a1a]/55 w-full" style={{ fontFamily: "'Wotfard', sans-serif" }}>
               The competitive landscape is witnessing a seismic shift from traditional ticketing systems toward{" "}
               <strong className="text-[#1a1a1a] font-semibold">AI-powered autonomous agents</strong>
               {" "}capable of resolving complex enterprise workflows.
