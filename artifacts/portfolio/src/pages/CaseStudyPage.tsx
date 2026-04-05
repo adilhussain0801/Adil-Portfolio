@@ -764,7 +764,7 @@ function EmergingThemesSection() {
               Patterns that shaped the direction
             </h2>
             <p
-              className="text-sm leading-relaxed text-[#1a1a1a]/58 max-w-2xl"
+              className="text-sm leading-relaxed text-[#1a1a1a]/58 w-full"
               style={{ fontFamily: "'Wotfard', sans-serif" }}
             >Through early research and competitive studies, we recognized three key patterns in how service tools were evolving.</p>
           </div>
