@@ -1122,33 +1122,34 @@ function EarlyStageConceptsSection() {
                   minWidth: 0,
                 }}
               >
-                <div style={{ display: "flex", alignItems: "center", gap: 14, minWidth: 0, flex: 1 }}>
-                  <p
-                    style={{
-                      fontSize: 10,
-                      fontWeight: 600,
-                      textTransform: "uppercase",
-                      letterSpacing: "0.1em",
-                      color: "#E8654B",
-                      fontFamily: "'Wotfard', sans-serif",
-                      margin: 0,
-                      flexShrink: 0,
-                    }}
-                  >
-                    {lastIndex + 1}/{CONCEPT_SCREENS.length}
-                  </p>
-                  <h3
-                    style={{
-                      fontSize: 15,
-                      fontWeight: 700,
-                      color: "#1a1a1a",
-                      fontFamily: "'Wotfard', sans-serif",
-                      margin: 0,
-                      flexShrink: 0,
-                    }}
-                  >
-                    {screen.title}
-                  </h3>
+                <div style={{ display: "flex", flexDirection: "column", gap: 3, minWidth: 0, flex: 1 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                    <p
+                      style={{
+                        fontSize: 10,
+                        fontWeight: 600,
+                        textTransform: "uppercase",
+                        letterSpacing: "0.1em",
+                        color: "#E8654B",
+                        fontFamily: "'Wotfard', sans-serif",
+                        margin: 0,
+                        flexShrink: 0,
+                      }}
+                    >
+                      {lastIndex + 1}/{CONCEPT_SCREENS.length}
+                    </p>
+                    <h3
+                      style={{
+                        fontSize: 15,
+                        fontWeight: 700,
+                        color: "#1a1a1a",
+                        fontFamily: "'Wotfard', sans-serif",
+                        margin: 0,
+                      }}
+                    >
+                      {screen.title}
+                    </h3>
+                  </div>
                   <p
                     style={{
                       fontSize: 12.5,
@@ -1158,7 +1159,6 @@ function EarlyStageConceptsSection() {
                       whiteSpace: "nowrap",
                       overflow: "hidden",
                       textOverflow: "ellipsis",
-                      minWidth: 0,
                     }}
                   >
                     {screen.description}
