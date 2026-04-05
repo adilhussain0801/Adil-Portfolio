@@ -156,3 +156,10 @@
     -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
   }
 }
+
+.bento-cell img {
+  transition: opacity 0.12s ease;
+}
+.bento-cell:hover img {
+  opacity: 0.88;
+}

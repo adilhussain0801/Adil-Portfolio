@@ -1044,12 +1044,10 @@ function EarlyStageConceptsSection() {
           }}
         >
           {CONCEPT_SCREENS.map((screen, i) => (
-            <motion.div
+            <div
               key={i}
-              initial={{ opacity: 0, y: 12 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
-              transition={{ duration: 0.28, ease: EASE, delay: screen.delay }}
               onClick={() => setLightboxIndex(i)}
+              className="bento-cell"
               style={{
                 gridArea: screen.area,
                 borderRadius: 8,
@@ -1057,26 +1055,16 @@ function EarlyStageConceptsSection() {
                 boxShadow: "0 4px 16px rgba(0,0,0,0.09), 0 1px 4px rgba(0,0,0,0.05)",
                 background: "#fff",
                 cursor: "pointer",
-                position: "relative",
               }}
             >
               <img
                 src={screen.src}
                 alt={screen.alt}
-                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top left", display: "block" }}
+                loading="eager"
+                decoding="async"
+                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top left", display: "block", transition: "opacity 0.15s ease" }}
               />
-              {/* Hover overlay hint */}
-              <div
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  background: "rgba(0,0,0,0)",
-                  transition: "background 0.2s ease",
-                }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.background = "rgba(0,0,0,0.08)"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.background = "rgba(0,0,0,0)"; }}
-              />
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
@@ -1097,8 +1085,7 @@ function EarlyStageConceptsSection() {
                 position: "fixed",
                 inset: 0,
                 zIndex: 999,
-                background: "rgba(15,15,15,0.82)",
-                backdropFilter: "blur(8px)",
+                background: "rgba(10,10,10,0.88)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -1116,7 +1103,7 @@ function EarlyStageConceptsSection() {
                   background: "#fff",
                   borderRadius: 14,
                   overflow: "hidden",
-                  maxWidth: 820,
+                  maxWidth: 1025,
                   width: "100%",
                   boxShadow: "0 32px 80px rgba(0,0,0,0.4)",
                   display: "flex",
