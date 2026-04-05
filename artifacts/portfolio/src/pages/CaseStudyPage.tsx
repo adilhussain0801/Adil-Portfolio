@@ -839,30 +839,13 @@ function ScreenCard({
       transition={{ duration: 0.65, ease: EASE, delay }}
       style={{
         position: "absolute",
-        borderRadius: 8,
+        borderRadius: 6,
         overflow: "hidden",
-        boxShadow: "0 8px 32px rgba(0,0,0,0.13), 0 2px 8px rgba(0,0,0,0.07)",
-        border: "1.5px solid #E4DDD6",
+        boxShadow: "0 20px 60px rgba(0,0,0,0.26), 0 6px 16px rgba(0,0,0,0.14)",
         background: "#fff",
         ...style,
       }}
     >
-      <div
-        style={{
-          height: 18,
-          background: "#F0EDEA",
-          borderBottom: "1px solid #E8DFD7",
-          display: "flex",
-          alignItems: "center",
-          gap: 5,
-          padding: "0 10px",
-          flexShrink: 0,
-        }}
-      >
-        <div style={{ width: 6, height: 6, borderRadius: "50%", background: "rgba(232,101,75,0.4)" }} />
-        <div style={{ width: 6, height: 6, borderRadius: "50%", background: "rgba(212,196,176,0.55)" }} />
-        <div style={{ width: 6, height: 6, borderRadius: "50%", background: "rgba(212,196,176,0.4)" }} />
-      </div>
       <img src={src} alt={alt} style={{ width: "100%", display: "block", height: "auto" }} />
     </motion.div>
   );
@@ -972,100 +955,103 @@ function EarlyStageConceptsSection() {
           </motion.div>
         </div>
 
-        {/* Design wall — centered block */}
-        <div ref={wallRef} className="flex-1 relative mx-auto mb-8" style={{ width: "92%", maxWidth: 1200 }}>
+        {/* Design wall — centered, perspective 3D */}
+        <div ref={wallRef} className="flex-1 mx-auto mb-4" style={{ width: "94%", maxWidth: 1280, position: "relative", perspective: "1100px" }}>
+          {/* Inner tilt wrapper — rotateX gives the "table top" depth */}
+          <div style={{ position: "absolute", inset: 0, transform: "rotateX(14deg)", transformOrigin: "50% 0%", transformStyle: "preserve-3d" }}>
 
-          {/* Row 1: 4 screens */}
-          <ScreenCard
-            src="/concept-v2-landing.png"
-            alt="Rovo Service landing"
-            delay={0.06}
-            isInView={isInView}
-            style={{ left: "0%", top: "5%", width: "23%", transform: "rotate(-2.5deg)", zIndex: 2 }}
-          />
-          <ScreenCard
-            src="/concept-v2-queue-list.png"
-            alt="Queue list view"
-            delay={0.12}
-            isInView={isInView}
-            style={{ left: "24%", top: "1%", width: "24%", transform: "rotate(2deg)", zIndex: 3 }}
-          />
-          <ScreenCard
-            src="/concept-v2-thinking.png"
-            alt="Rovo thinking state"
-            delay={0.18}
-            isInView={isInView}
-            style={{ left: "49%", top: "3%", width: "23%", transform: "rotate(-2deg)", zIndex: 4 }}
-          />
-          <ScreenCard
-            src="/concept-v2-it-general.png"
-            alt="IT execution settings"
-            delay={0.24}
-            isInView={isInView}
-            style={{ left: "73%", top: "0%", width: "24%", transform: "rotate(2.5deg)", zIndex: 3 }}
-          />
+            {/* Row 1: 4 screens */}
+            <ScreenCard
+              src="/concept-v2-landing.png"
+              alt="Rovo Service landing"
+              delay={0.06}
+              isInView={isInView}
+              style={{ left: "-3%", top: "4%", width: "31%", transform: "rotate(-2.5deg)", zIndex: 2 }}
+            />
+            <ScreenCard
+              src="/concept-v2-queue-list.png"
+              alt="Queue list view"
+              delay={0.12}
+              isInView={isInView}
+              style={{ left: "21%", top: "-2%", width: "33%", transform: "rotate(2deg)", zIndex: 3 }}
+            />
+            <ScreenCard
+              src="/concept-v2-thinking.png"
+              alt="Rovo thinking state"
+              delay={0.18}
+              isInView={isInView}
+              style={{ left: "46%", top: "1%", width: "31%", transform: "rotate(-2deg)", zIndex: 4 }}
+            />
+            <ScreenCard
+              src="/concept-v2-it-general.png"
+              alt="IT execution settings"
+              delay={0.24}
+              isInView={isInView}
+              style={{ left: "70%", top: "-3%", width: "32%", transform: "rotate(3deg)", zIndex: 3 }}
+            />
 
-          {/* Row 2: 4 screens */}
-          <ScreenCard
-            src="/concept-v2-plan-preview.png"
-            alt="Plan preview"
-            delay={0.30}
-            isInView={isInView}
-            style={{ left: "2%", top: "47%", width: "23%", transform: "rotate(3deg)", zIndex: 5 }}
-          />
-          <ScreenCard
-            src="/concept-v2-plan-detail.png"
-            alt="Plan detail view"
-            delay={0.36}
-            isInView={isInView}
-            style={{ left: "26%", top: "43%", width: "24%", transform: "rotate(-1.5deg)", zIndex: 4 }}
-          />
-          <ScreenCard
-            src="/concept-v2-plan-editing.png"
-            alt="Plan editing"
-            delay={0.42}
-            isInView={isInView}
-            style={{ left: "51%", top: "45%", width: "23%", transform: "rotate(2deg)", zIndex: 5 }}
-          />
-          <ScreenCard
-            src="/concept-v2-plan-executing.png"
-            alt="Plan executing"
-            delay={0.48}
-            isInView={isInView}
-            style={{ left: "75%", top: "49%", width: "23%", transform: "rotate(-2.5deg)", zIndex: 4 }}
-          />
+            {/* Row 2: 4 screens */}
+            <ScreenCard
+              src="/concept-v2-plan-preview.png"
+              alt="Plan preview"
+              delay={0.30}
+              isInView={isInView}
+              style={{ left: "-1%", top: "45%", width: "31%", transform: "rotate(3.5deg)", zIndex: 5 }}
+            />
+            <ScreenCard
+              src="/concept-v2-plan-detail.png"
+              alt="Plan detail view"
+              delay={0.36}
+              isInView={isInView}
+              style={{ left: "23%", top: "40%", width: "33%", transform: "rotate(-1.5deg)", zIndex: 4 }}
+            />
+            <ScreenCard
+              src="/concept-v2-plan-editing.png"
+              alt="Plan editing"
+              delay={0.42}
+              isInView={isInView}
+              style={{ left: "48%", top: "43%", width: "31%", transform: "rotate(2deg)", zIndex: 5 }}
+            />
+            <ScreenCard
+              src="/concept-v2-plan-executing.png"
+              alt="Plan executing"
+              delay={0.48}
+              isInView={isInView}
+              style={{ left: "72%", top: "47%", width: "31%", transform: "rotate(-2.5deg)", zIndex: 4 }}
+            />
 
-          {/* Sticky notes — no arrows */}
-          <StickyNote
-            text="Too workflow-heavy to scan"
-            rotate={-3}
-            delay={0.58}
-            isInView={isInView}
-            style={{ left: "1%", top: "82%" }}
-          />
-          <StickyNote
-            text="Focused on guided resolution"
-            rotate={2}
-            color="#FEF9C3"
-            delay={0.63}
-            isInView={isInView}
-            style={{ left: "31%", top: "78%" }}
-          />
-          <StickyNote
-            text="Complex logic is overwhelming"
-            rotate={4}
-            delay={0.68}
-            isInView={isInView}
-            style={{ left: "54%", top: "80%" }}
-          />
-          <StickyNote
-            text="Lacked clear AI visibility"
-            rotate={-2}
-            color="#FEF9C3"
-            delay={0.73}
-            isInView={isInView}
-            style={{ left: "77%", top: "82%" }}
-          />
+            {/* Sticky notes */}
+            <StickyNote
+              text="Too workflow-heavy to scan"
+              rotate={-3}
+              delay={0.58}
+              isInView={isInView}
+              style={{ left: "0%", top: "80%" }}
+            />
+            <StickyNote
+              text="Focused on guided resolution"
+              rotate={2}
+              color="#FEF9C3"
+              delay={0.63}
+              isInView={isInView}
+              style={{ left: "29%", top: "76%" }}
+            />
+            <StickyNote
+              text="Complex logic is overwhelming"
+              rotate={4}
+              delay={0.68}
+              isInView={isInView}
+              style={{ left: "54%", top: "78%" }}
+            />
+            <StickyNote
+              text="Lacked clear AI visibility"
+              rotate={-2}
+              color="#FEF9C3"
+              delay={0.73}
+              isInView={isInView}
+              style={{ left: "77%", top: "82%" }}
+            />
+          </div>
         </div>
       </div>
     </section>
