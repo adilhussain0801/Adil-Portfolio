@@ -1124,20 +1124,6 @@ function EarlyStageConceptsSection() {
               >
                 <div style={{ display: "flex", flexDirection: "column", gap: 3, minWidth: 0, flex: 1 }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                    <p
-                      style={{
-                        fontSize: 10,
-                        fontWeight: 600,
-                        textTransform: "uppercase",
-                        letterSpacing: "0.1em",
-                        color: "#E8654B",
-                        fontFamily: "'Wotfard', sans-serif",
-                        margin: 0,
-                        flexShrink: 0,
-                      }}
-                    >
-                      {lastIndex + 1}/{CONCEPT_SCREENS.length}
-                    </p>
                     <h3
                       style={{
                         fontSize: 15,
