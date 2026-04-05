@@ -897,7 +897,6 @@ function StickyNote({
 function EarlyStageConceptsSection() {
   const wallRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(wallRef, { once: false, amount: 0.15 });
-  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
 
   return (
     <section
@@ -905,7 +904,6 @@ function EarlyStageConceptsSection() {
       className="relative h-screen snap-start snap-always overflow-hidden"
       style={{ background: "#F6F4F0" }}
     >
-      <style>{`.bento-img:hover { object-fit: contain !important; background: #fff; }`}</style>
       {/* Subtle paper noise texture */}
       <svg style={{ position: "absolute", width: 0, height: 0 }}>
         <defs>
@@ -960,7 +958,7 @@ function EarlyStageConceptsSection() {
         {/* Bento grid */}
         <div
           ref={wallRef}
-          className="flex-1 px-8 md:px-14 pb-8"
+          className="flex-1 px-8 md:px-14 pb-8 overflow-hidden"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(5, 1fr)",
@@ -971,7 +969,6 @@ function EarlyStageConceptsSection() {
               "g g g h h"
             `,
             gap: 7,
-            perspective: "900px",
           }}
         >
           {([
@@ -986,49 +983,21 @@ function EarlyStageConceptsSection() {
           ] as { src: string; alt: string; area: string; delay: number }[]).map((screen, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={isInView ? {
-                opacity: 1,
-                scale: 1,
-                z: [0, 7 + (i % 3) * 3, 0, -(4 + (i % 2) * 2), 0],
-              } : { opacity: 0, scale: 0.96 }}
-              whileHover={{ scale: 1.55, zIndex: 50 }}
-              transition={{
-                opacity: { duration: 0.5, ease: EASE, delay: screen.delay },
-                scale: { duration: 0.4, ease: [0.16, 1, 0.3, 1] },
-                z: {
-                  duration: 3.2 + i * 0.28,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: i * 0.22,
-                },
-              }}
-              onHoverStart={() => setHoveredIdx(i)}
-              onHoverEnd={() => setHoveredIdx(null)}
+              initial={{ opacity: 0, scale: 0.97 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.97 }}
+              transition={{ duration: 0.55, ease: EASE, delay: screen.delay }}
               style={{
                 gridArea: screen.area,
                 borderRadius: 8,
                 overflow: "hidden",
-                boxShadow: hoveredIdx === i
-                  ? "0 24px 60px rgba(0,0,0,0.22), 0 6px 16px rgba(0,0,0,0.12)"
-                  : "0 4px 16px rgba(0,0,0,0.09), 0 1px 4px rgba(0,0,0,0.05)",
+                boxShadow: "0 4px 16px rgba(0,0,0,0.09), 0 1px 4px rgba(0,0,0,0.05)",
                 background: "#fff",
-                cursor: "pointer",
-                zIndex: hoveredIdx === i ? 50 : 1,
-                transition: "box-shadow 0.3s ease",
               }}
             >
               <img
                 src={screen.src}
                 alt={screen.alt}
-                className="bento-img"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  objectPosition: "top left",
-                  display: "block",
-                }}
+                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top left", display: "block" }}
               />
             </motion.div>
           ))}
