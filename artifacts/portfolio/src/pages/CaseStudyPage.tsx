@@ -50,9 +50,12 @@ function CaseStudyHeroBg() {
             "radial-gradient(ellipse 55% 75% at 70% 46%, rgba(255,255,255,0.38) 0%, transparent 65%)",
         }}
       />
-      <img
-        src="/rovo-hero-diagram.png"
-        alt=""
+      <video
+        src="/rovo-hero-video.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
         className="absolute pointer-events-none select-none"
         style={{
           right: 0,
@@ -61,6 +64,8 @@ function CaseStudyHeroBg() {
           height: "min(100%, 768px)",
           width: "auto",
           maxWidth: "none",
+          objectFit: "cover",
+          objectPosition: "center",
           maskImage:
             "linear-gradient(to right, transparent 0%, transparent 50%, rgba(0,0,0,0.5) 58%, black 66%, black 100%)",
           WebkitMaskImage:
