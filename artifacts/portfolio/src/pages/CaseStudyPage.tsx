@@ -909,7 +909,7 @@ const CONCEPT_SCREENS = [
     area: "b",
     delay: 0.04,
     title: "AI Thinking State",
-    description: "Rovo surfaces its reasoning in real-time as it analyses each service request, making the process transparent to the operator.",
+    description: "Rovo surfaces its reasoning in real-time as it analyses each service request, making the process transparent to Service Agents.",
   },
   {
     src: "/concept-v2-plan-preview.webp",
@@ -917,7 +917,7 @@ const CONCEPT_SCREENS = [
     area: "c",
     delay: 0.08,
     title: "Resolution Plan Preview",
-    description: "Structured plan surfaces context and recommended actions before any action is taken, keeping the operator in control.",
+    description: "Structured plan surfaces context and recommended actions before any action is taken, keeping Service Agents in control.",
   },
   {
     src: "/concept-v2-plan-detail.webp",
@@ -933,7 +933,7 @@ const CONCEPT_SCREENS = [
     area: "e",
     delay: 0.13,
     title: "Plan Editing",
-    description: "Operators can refine AI-generated plans before assigning Rovo to execute — maintaining human oversight at every step.",
+    description: "Service Agents can refine AI-generated plans before assigning Rovo to execute — maintaining human oversight at every step.",
   },
   {
     src: "/concept-v2-plan-executing.webp",
