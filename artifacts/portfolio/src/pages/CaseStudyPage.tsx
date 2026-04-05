@@ -1152,6 +1152,7 @@ function EarlyStageConceptsSection() {
                 </div>
                 <button
                   onClick={closeLightbox}
+                  className="modal-close-btn"
                   style={{
                     background: "rgba(0,0,0,0.06)",
                     border: "none",
@@ -1163,6 +1164,7 @@ function EarlyStageConceptsSection() {
                     justifyContent: "center",
                     cursor: "pointer",
                     flexShrink: 0,
+                    transition: "background 0.18s ease, transform 0.18s ease",
                   }}
                 >
                   <X size={16} color="#2D2D2D" />
@@ -1190,11 +1192,12 @@ function EarlyStageConceptsSection() {
               >
                 <button
                   onClick={prev}
+                  className="modal-nav-btn"
                   style={{
                     display: "flex",
                     alignItems: "center",
                     gap: 6,
-                    background: "none",
+                    background: "rgba(0,0,0,0)",
                     border: "none",
                     cursor: "pointer",
                     color: "#2D2D2D",
@@ -1203,6 +1206,7 @@ function EarlyStageConceptsSection() {
                     fontWeight: 600,
                     padding: "6px 10px",
                     borderRadius: 6,
+                    transition: "background 0.18s ease",
                   }}
                 >
                   <ChevronLeft size={16} />
@@ -1214,6 +1218,7 @@ function EarlyStageConceptsSection() {
                     <button
                       key={idx}
                       onClick={() => openLightbox(idx)}
+                      className="modal-dot-btn"
                       style={{
                         width: idx === lastIndex ? 18 : 7,
                         height: 7,
@@ -1222,18 +1227,19 @@ function EarlyStageConceptsSection() {
                         cursor: "pointer",
                         background: idx === lastIndex ? "#E8654B" : "rgba(45,45,45,0.18)",
                         padding: 0,
-                        transition: "width 0.15s ease, background 0.15s ease",
+                        transition: "width 0.15s ease, background 0.15s ease, opacity 0.15s ease",
                       }}
                     />
                   ))}
                 </div>
                 <button
                   onClick={next}
+                  className="modal-nav-btn"
                   style={{
                     display: "flex",
                     alignItems: "center",
                     gap: 6,
-                    background: "none",
+                    background: "rgba(0,0,0,0)",
                     border: "none",
                     cursor: "pointer",
                     color: "#2D2D2D",
@@ -1242,6 +1248,7 @@ function EarlyStageConceptsSection() {
                     fontWeight: 600,
                     padding: "6px 10px",
                     borderRadius: 6,
+                    transition: "background 0.18s ease",
                   }}
                 >
                   Next
