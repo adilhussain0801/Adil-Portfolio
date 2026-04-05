@@ -123,12 +123,6 @@ function HeroSection({ study }: { study: CaseStudy }) {
           className="flex flex-col gap-5 px-8 md:px-20"
           {...fadeUp(0.1)}
         >
-          <p
-            className="text-[11px] uppercase tracking-widest font-semibold text-black/40"
-            style={{ fontFamily: "'Wotfard', sans-serif" }}
-          >
-            {study.category} · {study.year}
-          </p>
           <h1
             className="text-5xl md:text-[3.75rem] leading-[1.02] text-[#1a1a1a]"
             style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
