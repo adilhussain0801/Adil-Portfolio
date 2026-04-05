@@ -40,6 +40,100 @@ function SnapReveal({
   );
 }
 
+function BeforeAfterSlider({ before, after, bgColor }: { before: string; after: string; bgColor: string }) {
+  const [sliderPos, setSliderPos] = useState(50);
+  const [dragging, setDragging] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const getPos = (clientX: number) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
+    setSliderPos((x / rect.width) * 100);
+  };
+
+  const onMouseDown = (e: React.MouseEvent) => { e.preventDefault(); setDragging(true); };
+  const onMouseMove = (e: React.MouseEvent) => { if (dragging) getPos(e.clientX); };
+  const onMouseUp = () => setDragging(false);
+  const onTouchMove = (e: React.TouchEvent) => { getPos(e.touches[0].clientX); };
+
+  return (
+    <div
+      ref={containerRef}
+      onMouseMove={onMouseMove}
+      onMouseUp={onMouseUp}
+      onMouseLeave={onMouseUp}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onMouseUp}
+      style={{ position: "relative", width: "100%", height: "100%", overflow: "hidden", userSelect: "none", cursor: dragging ? "ew-resize" : "default" }}
+    >
+      {/* After image (full width, base layer) */}
+      <img
+        src={after}
+        alt="After"
+        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "top left", display: "block" }}
+        draggable={false}
+      />
+
+      {/* Before image clipped to left portion */}
+      <div style={{ position: "absolute", inset: 0, clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}>
+        <img
+          src={before}
+          alt="Before"
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top left", display: "block" }}
+          draggable={false}
+        />
+      </div>
+
+      {/* Labels */}
+      <div style={{ position: "absolute", top: 14, left: 16, background: "rgba(0,0,0,0.55)", color: "#fff", fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", padding: "4px 10px", borderRadius: 20, fontFamily: "'Wotfard', sans-serif", pointerEvents: "none", opacity: sliderPos > 12 ? 1 : 0, transition: "opacity 0.2s" }}>BEFORE</div>
+      <div style={{ position: "absolute", top: 14, right: 16, background: "rgba(0,0,0,0.55)", color: "#fff", fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", padding: "4px 10px", borderRadius: 20, fontFamily: "'Wotfard', sans-serif", pointerEvents: "none", opacity: sliderPos < 88 ? 1 : 0, transition: "opacity 0.2s" }}>AFTER</div>
+
+      {/* Divider line */}
+      <div style={{ position: "absolute", top: 0, bottom: 0, left: `${sliderPos}%`, transform: "translateX(-50%)", width: 2, background: "rgba(255,255,255,0.9)", boxShadow: "0 0 8px rgba(0,0,0,0.3)", pointerEvents: "none" }} />
+
+      {/* Handle */}
+      <div
+        onMouseDown={onMouseDown}
+        onTouchStart={(e) => { e.preventDefault(); setDragging(true); }}
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: `${sliderPos}%`,
+          transform: "translate(-50%, -50%)",
+          width: 44,
+          height: 44,
+          borderRadius: "50%",
+          background: "#fff",
+          boxShadow: "0 2px 12px rgba(0,0,0,0.22), 0 0 0 2px rgba(255,255,255,0.6)",
+          cursor: "ew-resize",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          zIndex: 10,
+        }}
+      >
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M7 5L3 10L7 15M13 5L17 10L13 15" stroke="#555" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </div>
+
+      {/* Fade overlay */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: "65%",
+          background: `linear-gradient(to top, ${bgColor} 0%, ${bgColor}f5 20%, ${bgColor}cc 40%, ${bgColor}66 60%, transparent 100%)`,
+          pointerEvents: "none",
+        }}
+      />
+    </div>
+  );
+}
+
 function CaseStudyHeroBg({ bgColor }: { bgColor: string }) {
   return (
     <div className="absolute inset-0 overflow-hidden" style={{ perspective: "1200px" }}>
@@ -51,7 +145,7 @@ function CaseStudyHeroBg({ bgColor }: { bgColor: string }) {
         }}
       />
       <div
-        className="absolute pointer-events-none select-none flex items-center justify-center"
+        className="absolute select-none flex items-center justify-center"
         style={{
           inset: 0,
           paddingTop: "100px",
@@ -69,31 +163,10 @@ function CaseStudyHeroBg({ bgColor }: { bgColor: string }) {
             boxShadow: "0 20px 60px rgba(0,0,0,0.12)",
           }}
         >
-          <video
-            src="/rovo-hero-video.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            style={{
-              width: "100%",
-              height: "100%",
-              display: "block",
-              objectFit: "cover",
-              objectPosition: "top",
-            }}
-          />
-          {/* Fade overlay using hero background color for seamless transition */}
-          <div
-            style={{
-              position: "absolute",
-              bottom: 0,
-              left: 0,
-              right: 0,
-              height: "65%",
-              background: `linear-gradient(to top, ${bgColor} 0%, ${bgColor}f5 20%, ${bgColor}cc 40%, ${bgColor}66 60%, transparent 100%)`,
-              pointerEvents: "none",
-            }}
+          <BeforeAfterSlider
+            before="/rovo-before.png"
+            after="/rovo-after.png"
+            bgColor={bgColor}
           />
         </div>
       </div>
