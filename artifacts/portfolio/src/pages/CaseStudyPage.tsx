@@ -955,50 +955,52 @@ function EarlyStageConceptsSection() {
           </motion.div>
         </div>
 
-        {/* Fan layout — screens in a horizontal arc with Y-axis perspective */}
+        {/* Bento grid */}
         <div
           ref={wallRef}
-          className="flex-1 flex items-center overflow-hidden"
-          style={{ perspective: "1400px" }}
+          className="flex-1 px-8 md:px-14 pb-8 overflow-hidden"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(5, 1fr)",
+            gridTemplateRows: "repeat(3, 1fr)",
+            gridTemplateAreas: `
+              "a a a b c"
+              "d e e f f"
+              "g g g h h"
+            `,
+            gap: 7,
+          }}
         >
-          <div
-            className="flex items-center justify-center w-full"
-            style={{ transformStyle: "preserve-3d" }}
-          >
-            {([
-              { src: "/concept-v2-landing.png",       alt: "Rovo Service landing",  rotateY: 32,  delay: 0.06 },
-              { src: "/concept-v2-queue-list.png",    alt: "Queue list view",       rotateY: 21,  delay: 0.11 },
-              { src: "/concept-v2-thinking.png",      alt: "Rovo thinking",         rotateY: 11,  delay: 0.16 },
-              { src: "/concept-v2-plan-preview.png",  alt: "Plan preview",          rotateY: 3,   delay: 0.21 },
-              { src: "/concept-v2-plan-detail.png",   alt: "Plan detail",           rotateY: -3,  delay: 0.26 },
-              { src: "/concept-v2-plan-editing.png",  alt: "Plan editing",          rotateY: -11, delay: 0.31 },
-              { src: "/concept-v2-plan-executing.png",alt: "Plan executing",        rotateY: -21, delay: 0.36 },
-              { src: "/concept-v2-it-general.png",    alt: "IT general settings",   rotateY: -32, delay: 0.41 },
-            ] as { src: string; alt: string; rotateY: number; delay: number }[]).map((screen, i) => {
-              const zIdx = 8 - Math.floor(Math.abs(i - 3.5));
-              return (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.65, ease: EASE, delay: screen.delay }}
-                  style={{
-                    flex: "0 0 185px",
-                    width: 185,
-                    marginLeft: i > 0 ? -52 : 0,
-                    zIndex: zIdx,
-                    rotateY: screen.rotateY,
-                    borderRadius: 6,
-                    overflow: "hidden",
-                    boxShadow: "0 8px 28px rgba(0,0,0,0.13), 0 2px 8px rgba(0,0,0,0.07)",
-                    background: "#fff",
-                  }}
-                >
-                  <img src={screen.src} alt={screen.alt} style={{ width: "100%", display: "block", height: "auto" }} />
-                </motion.div>
-              );
-            })}
-          </div>
+          {([
+            { src: "/concept-v2-landing.png",       alt: "Rovo Service landing", area: "a", delay: 0.06 },
+            { src: "/concept-v2-queue-list.png",    alt: "Queue list view",      area: "b", delay: 0.10 },
+            { src: "/concept-v2-thinking.png",      alt: "Rovo thinking",        area: "c", delay: 0.14 },
+            { src: "/concept-v2-plan-preview.png",  alt: "Plan preview",         area: "d", delay: 0.18 },
+            { src: "/concept-v2-plan-detail.png",   alt: "Plan detail",          area: "e", delay: 0.22 },
+            { src: "/concept-v2-plan-editing.png",  alt: "Plan editing",         area: "f", delay: 0.26 },
+            { src: "/concept-v2-plan-executing.png",alt: "Plan executing",       area: "g", delay: 0.30 },
+            { src: "/concept-v2-it-general.png",    alt: "IT general settings",  area: "h", delay: 0.34 },
+          ] as { src: string; alt: string; area: string; delay: number }[]).map((screen, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, scale: 0.97 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.97 }}
+              transition={{ duration: 0.55, ease: EASE, delay: screen.delay }}
+              style={{
+                gridArea: screen.area,
+                borderRadius: 8,
+                overflow: "hidden",
+                boxShadow: "0 4px 16px rgba(0,0,0,0.09), 0 1px 4px rgba(0,0,0,0.05)",
+                background: "#fff",
+              }}
+            >
+              <img
+                src={screen.src}
+                alt={screen.alt}
+                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top left", display: "block" }}
+              />
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
