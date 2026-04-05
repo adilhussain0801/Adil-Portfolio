@@ -159,12 +159,12 @@
 
 .bento-cell img {
   transform: scale(1);
-  transition: opacity 0.15s ease, transform 0.72s cubic-bezier(0.05, 1.35, 0.5, 1);
+  transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: transform;
 }
 .bento-cell:hover img {
   opacity: 0.92;
-  transform: scale(1.09);
+  transform: scale(1.07);
 }
 
 /* Modal button hover states */
@@ -184,7 +184,7 @@
 
 /* Bento cell subtle hover lift */
 .bento-cell {
-  transition: box-shadow 0.2s ease;
+  transition: box-shadow 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .bento-cell:hover {
