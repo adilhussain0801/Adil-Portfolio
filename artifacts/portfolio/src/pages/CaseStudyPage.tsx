@@ -55,7 +55,7 @@ function CaseStudyHeroBg() {
         style={{
           inset: 0,
           paddingTop: "60px",
-          paddingBottom: "200px",
+          paddingBottom: "100px",
         }}
       >
         <div
@@ -90,10 +90,11 @@ function CaseStudyHeroBg() {
           bottom: 0,
           left: 0,
           right: 0,
-          height: "200px",
+          height: "400px",
           background: "linear-gradient(to top, rgba(255, 255, 255, 1) 0%, transparent 100%)",
           pointerEvents: "none",
           zIndex: 5,
+          transition: "all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
         }}
       />
     </div>
