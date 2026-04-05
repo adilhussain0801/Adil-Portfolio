@@ -996,7 +996,6 @@ const DESIGN_PRINCIPLES = [
     title: "Make AI intent visible",
     description: "AI should clearly communicate what it is doing, why it is doing it, and what happens next.",
     insight: "Showing AI as \u2018thinking\u2026\u2019 exposes the biggest gap \u2014 invisible reasoning erodes trust before action is even taken.",
-    badge: "CORE PRINCIPLE",
   },
   {
     num: "02",
@@ -1008,7 +1007,6 @@ const DESIGN_PRINCIPLES = [
     title: "Shift from workflows to outcomes",
     description: "Design for outcomes, not for process visibility.",
     insight: "Early designs exposed logic — plans, trees, steps. But users care about resolution, not how the machine thinks.",
-    badge: "PRODUCT MATURITY",
   },
   {
     num: "03",
@@ -1020,7 +1018,6 @@ const DESIGN_PRINCIPLES = [
     title: "Reduce cognitive load, don't redistribute it",
     description: "AI should eliminate decisions, not create new ones.",
     insight: "Users had to interpret plans, validate steps, and fix flows. AI added work instead of removing it — the opposite of the promise.",
-    badge: "KEY INSIGHT",
   },
 ];
 
@@ -1084,14 +1081,6 @@ function DesignPrinciplesSection() {
                     {p.icon(p.accentColor)}
                   </div>
                 </div>
-
-                {/* Badge */}
-                <span
-                  className="self-start text-[9px] font-bold tracking-widest uppercase px-2 py-1 rounded"
-                  style={{ background: `${p.accentColor}18`, color: p.accentColor }}
-                >
-                  {p.badge}
-                </span>
 
                 {/* Title */}
                 <h3
