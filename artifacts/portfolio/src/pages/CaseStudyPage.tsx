@@ -1088,7 +1088,7 @@ function EarlyStageConceptsSection() {
                 alt={screen.alt}
                 loading="eager"
                 decoding="async"
-                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top left", display: "block", transition: "opacity 0.15s ease" }}
+                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top left", display: "block" }}
               />
             </div>
           ))}
