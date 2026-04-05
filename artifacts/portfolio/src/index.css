@@ -159,11 +159,12 @@
 
 .bento-cell img {
   transform: scale(1);
-  transition: opacity 0.15s ease, transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: opacity 0.15s ease, transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
 }
 .bento-cell:hover img {
-  opacity: 0.88;
-  transform: scale(1.065);
+  opacity: 0.92;
+  transform: scale(1.08);
 }
 
 /* Modal button hover states */
