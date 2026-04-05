@@ -55,15 +55,14 @@ function CaseStudyHeroBg() {
         style={{
           right: 40,
           top: "50%",
-          transform: "translateY(-50%) rotateX(2deg) rotateZ(-1deg) rotateY(-3deg)",
+          transform: "translateY(-50%)",
           height: "min(100%, 420px)",
           width: "auto",
           maxWidth: "none",
           borderRadius: "12px",
           overflow: "hidden",
-          boxShadow: "0 40px 80px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.3)",
+          boxShadow: "0 20px 60px rgba(0,0,0,0.15)",
           border: "4px solid rgba(200, 220, 240, 0.5)",
-          transformStyle: "preserve-3d",
         }}
       >
         <video
