@@ -1002,7 +1002,7 @@ function EarlyStageConceptsSection() {
       <div className="relative z-10 h-full flex flex-col">
 
         {/* Header row */}
-        <div className="flex-shrink-0 px-10 md:px-20 pt-20 pb-6 max-w-sm">
+        <div className="flex-shrink-0 px-10 md:px-20 pt-20 pb-6 w-full">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
