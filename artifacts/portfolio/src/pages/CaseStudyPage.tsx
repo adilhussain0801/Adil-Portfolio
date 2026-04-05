@@ -725,23 +725,17 @@ function IndustryTrendsSection() {
 function EmergingThemesSection() {
   const themes = [
     {
-      number: "01",
-      watermark: "1",
-      icon: <RefreshCw size={16} />,
+      icon: <RefreshCw size={20} />,
       title: "Autonomous Resolution",
       description: "Service tools are evolving from ticketing facilitators into active agents capable of resolving complex, high-volume requests end-to-end without human intervention.",
     },
     {
-      number: "02",
-      watermark: "2",
-      icon: <Network size={16} />,
+      icon: <Network size={20} />,
       title: "Cross-system Orchestration",
       description: "Intelligent agents now navigate the entire enterprise stack, seamlessly executing workflows across IT infrastructure, HR systems, Identity providers, and SaaS applications.",
     },
     {
-      number: "03",
-      watermark: "3",
-      icon: <MessageSquare size={16} />,
+      icon: <MessageSquare size={20} />,
       title: "Conversational Interfaces",
       description: "The interface of the future is natural language. Users and operators command complex planning and execution through sophisticated dialogue, bypassing traditional UIs.",
     },
@@ -753,38 +747,57 @@ function EmergingThemesSection() {
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
       style={{ background: "#FAF8F5" }}
     >
-      <div className="max-w-5xl mx-auto w-full px-6 flex flex-col gap-5">
+      <div className="w-full px-8 md:px-20 flex flex-col gap-10">
+        {/* Header */}
         <SnapReveal>
-          <p className="text-[10px] font-bold tracking-[0.2em] uppercase" style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}>
-            Emerging Themes
-          </p>
+          <div className="flex flex-col gap-3">
+            <p
+              className="text-[10px] uppercase tracking-widest font-bold text-[#E8654B]"
+              style={{ fontFamily: "'Wotfard', sans-serif" }}
+            >
+              Insights from exploration
+            </p>
+            <h2
+              className="text-2xl md:text-3xl leading-tight text-[#1a1a1a]"
+              style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+            >
+              Patterns that shaped the direction
+            </h2>
+            <p
+              className="text-sm leading-relaxed text-[#1a1a1a]/58 max-w-2xl"
+              style={{ fontFamily: "'Wotfard', sans-serif" }}
+            >
+              Through early design explorations, we recognized three key patterns in how service tools were evolving.
+            </p>
+          </div>
         </SnapReveal>
-        <div className="grid grid-cols-3 gap-4 h-[420px]">
+
+        {/* Cards grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {themes.map((t, i) => (
-            <SnapReveal key={i} delay={0.1 + i * 0.12}>
+            <SnapReveal key={i} delay={0.1 + i * 0.1}>
               <div
-                className="relative h-full rounded-2xl flex flex-col p-6 overflow-hidden"
+                className="rounded-2xl flex flex-col p-6"
                 style={{ background: "#F0EDE8", border: "1px solid #E8E4DE" }}
               >
                 <div
-                  className="absolute right-3 top-1 font-bold select-none pointer-events-none leading-none"
-                  style={{ fontSize: "160px", color: "#E8654B", opacity: 0.06, fontFamily: "'Wotfard', sans-serif" }}
+                  className="w-10 h-10 rounded-xl flex items-center justify-center mb-5"
+                  style={{ background: "rgba(232,101,75,0.12)", color: "#E8654B" }}
                 >
-                  {t.watermark}
+                  {t.icon}
                 </div>
-
-                <div className="flex flex-col gap-4 relative z-10">
-                  <div
-                    className="w-9 h-9 rounded-xl flex items-center justify-center"
-                    style={{ background: "rgba(232,101,75,0.12)", color: "#E8654B" }}
-                  >
-                    {t.icon}
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <h3 className="text-2xl md:text-3xl font-bold leading-tight" style={{ color: "#1a1a1a", fontFamily: "'Wotfard', sans-serif", maxWidth: "13ch" }}>{t.title}</h3>
-                  </div>
-                  <p className="text-sm leading-relaxed" style={{ color: "rgba(26,26,26,0.55)", fontFamily: "'Wotfard', sans-serif" }}>{t.description}</p>
-                </div>
+                <h3
+                  className="text-lg md:text-xl font-bold leading-tight mb-3"
+                  style={{ color: "#1a1a1a", fontFamily: "'Wotfard', sans-serif" }}
+                >
+                  {t.title}
+                </h3>
+                <p
+                  className="text-sm leading-relaxed"
+                  style={{ color: "rgba(26,26,26,0.58)", fontFamily: "'Wotfard', sans-serif" }}
+                >
+                  {t.description}
+                </p>
               </div>
             </SnapReveal>
           ))}
