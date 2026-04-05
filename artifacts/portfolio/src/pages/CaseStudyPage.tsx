@@ -1015,7 +1015,7 @@ const DESIGN_PRINCIPLES = [
     cardBg: "#EFF6FF",
     borderColor: "rgba(59,130,246,0.2)",
     numColor: "#BFDBFE",
-    title: "Reduce cognitive load, don't redistribute it",
+    title: "Reduce cognitive load, don't shift it",
     description: "AI should eliminate decisions, not create new ones.",
     insight: "Users had to interpret plans, validate steps, and fix flows. AI added work instead of removing it — the opposite of the promise.",
   },
