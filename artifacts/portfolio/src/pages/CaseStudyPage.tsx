@@ -985,6 +985,145 @@ const CONCEPT_SCREENS = [
   },
 ];
 
+const DESIGN_PRINCIPLES = [
+  {
+    num: "01",
+    icon: (color: string) => <Lightbulb size={22} color={color} strokeWidth={1.6} />,
+    accentColor: "#6366F1",
+    cardBg: "#F0F0FE",
+    borderColor: "rgba(99,102,241,0.2)",
+    numColor: "#C7C8F8",
+    title: "Make AI intent visible",
+    description: "AI should clearly communicate what it is doing, why it is doing it, and what happens next.",
+    insight: "Showing AI as \u2018thinking\u2026\u2019 exposes the biggest gap \u2014 invisible reasoning erodes trust before action is even taken.",
+    badge: "CORE PRINCIPLE",
+  },
+  {
+    num: "02",
+    icon: (color: string) => <TrendingDown size={22} color={color} strokeWidth={1.6} />,
+    accentColor: "#E8654B",
+    cardBg: "#FEF0EC",
+    borderColor: "rgba(232,101,75,0.2)",
+    numColor: "#F9C5B8",
+    title: "Shift from workflows to outcomes",
+    description: "Design for outcomes, not for process visibility.",
+    insight: "Early designs exposed logic — plans, trees, steps. But users care about resolution, not how the machine thinks.",
+    badge: "PRODUCT MATURITY",
+  },
+  {
+    num: "03",
+    icon: (color: string) => <Brain size={22} color={color} strokeWidth={1.6} />,
+    accentColor: "#3B82F6",
+    cardBg: "#EFF6FF",
+    borderColor: "rgba(59,130,246,0.2)",
+    numColor: "#BFDBFE",
+    title: "Reduce cognitive load, don't redistribute it",
+    description: "AI should eliminate decisions, not create new ones.",
+    insight: "Users had to interpret plans, validate steps, and fix flows. AI added work instead of removing it — the opposite of the promise.",
+    badge: "KEY INSIGHT",
+  },
+];
+
+function DesignPrinciplesSection() {
+  return (
+    <section
+      id="section-principles"
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#FAF8F5" }}
+    >
+      <SnapReveal>
+        <div className="w-full px-8 md:px-20 flex flex-col gap-10">
+          {/* Header */}
+          <div className="flex flex-col gap-2">
+            <p
+              className="text-[10px] uppercase tracking-widest font-bold text-[#E8654B]"
+              style={{ fontFamily: "'Wotfard', sans-serif" }}
+            >
+              Design philosophy
+            </p>
+            <h2
+              className="text-2xl md:text-3xl leading-tight text-[#1a1a1a]"
+              style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+            >
+              Principles guiding the product direction
+            </h2>
+          </div>
+
+          {/* Principles grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {DESIGN_PRINCIPLES.map((p, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, ease: APPLE, delay: 0.1 + i * 0.1 }}
+                className="flex flex-col gap-4 rounded-2xl p-6"
+                style={{
+                  background: p.cardBg,
+                  border: `1.5px solid ${p.borderColor}`,
+                }}
+              >
+                {/* Number + icon row */}
+                <div className="flex items-start justify-between">
+                  <span
+                    className="text-5xl font-bold tabular-nums leading-none"
+                    style={{ color: p.numColor, fontFamily: "'Wotfard', sans-serif" }}
+                  >
+                    {p.num}
+                  </span>
+                  <div
+                    className="rounded-xl p-2.5"
+                    style={{ background: `${p.accentColor}18` }}
+                  >
+                    {p.icon(p.accentColor)}
+                  </div>
+                </div>
+
+                {/* Badge */}
+                <span
+                  className="self-start text-[9px] font-bold tracking-widest uppercase px-2 py-1 rounded"
+                  style={{ background: `${p.accentColor}18`, color: p.accentColor }}
+                >
+                  {p.badge}
+                </span>
+
+                {/* Title */}
+                <h3
+                  className="text-base font-bold leading-snug text-[#1a1a1a]"
+                  style={{ fontFamily: "'Wotfard', sans-serif" }}
+                >
+                  {p.title}
+                </h3>
+
+                {/* Description */}
+                <p
+                  className="text-sm leading-relaxed text-[#1a1a1a]/60"
+                  style={{ fontFamily: "'Wotfard', sans-serif" }}
+                >
+                  {p.description}
+                </p>
+
+                {/* Insight callout */}
+                <div
+                  className="mt-auto rounded-xl px-4 py-3"
+                  style={{ background: "rgba(0,0,0,0.04)" }}
+                >
+                  <p
+                    className="text-[12px] leading-relaxed"
+                    style={{ color: `${p.accentColor}`, fontFamily: "'Wotfard', sans-serif", fontWeight: 600 }}
+                  >
+                    {p.insight}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </SnapReveal>
+    </section>
+  );
+}
+
 function EarlyStageConceptsSection() {
   const wallRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(wallRef, { once: true, amount: 0.1 });
@@ -1459,6 +1598,7 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
     { id: "section-overview", label: "Overview" },
     { id: "section-challenge", label: "Challenge" },
     { id: "section-process", label: study.id === 4 ? "Competitors" : "Process" },
+    ...(study.id === 4 ? [{ id: "section-principles", label: "Principles" }] : []),
     ...(study.id === 4 ? [{ id: "section-concepts", label: "Concepts" }] : []),
     { id: "section-solution", label: "Solution" },
     { id: "section-impact", label: "Impact" },
@@ -1600,6 +1740,7 @@ export default function CaseStudyPage() {
         <ChallengeSection study={study} />
         <ProcessSection study={study} />
         {study.id === 4 && <EmergingThemesSection />}
+        {study.id === 4 && <DesignPrinciplesSection />}
         {study.id === 4 && <EarlyStageConceptsSection />}
         <SolutionSection study={study} />
         <ImpactSection study={study} />
