@@ -42,7 +42,7 @@ function SnapReveal({
 
 function CaseStudyHeroBg() {
   return (
-    <div className="absolute inset-0 overflow-hidden">
+    <div className="absolute inset-0 overflow-hidden" style={{ perspective: "1200px" }}>
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -50,24 +50,37 @@ function CaseStudyHeroBg() {
             "radial-gradient(ellipse 55% 75% at 70% 46%, rgba(255,255,255,0.38) 0%, transparent 65%)",
         }}
       />
-      <video
-        src="/rovo-hero-video.mp4"
-        autoPlay
-        muted
-        loop
-        playsInline
+      <div
         className="absolute pointer-events-none select-none"
         style={{
-          right: 0,
+          right: 40,
           top: "50%",
-          transform: "translateY(-50%)",
+          transform: "translateY(-50%) rotateX(8deg) rotateZ(-6deg) rotateY(-12deg)",
           height: "min(100%, 420px)",
           width: "auto",
           maxWidth: "none",
-          objectFit: "cover",
-          objectPosition: "center",
+          borderRadius: "20px",
+          overflow: "hidden",
+          boxShadow: "0 40px 80px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.3)",
+          border: "1px solid rgba(255,255,255,0.15)",
+          transformStyle: "preserve-3d",
         }}
-      />
+      >
+        <video
+          src="/rovo-hero-video.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          style={{
+            width: "100%",
+            height: "100%",
+            display: "block",
+            objectFit: "cover",
+            objectPosition: "center",
+          }}
+        />
+      </div>
     </div>
   );
 }
