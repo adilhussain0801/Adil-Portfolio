@@ -61,7 +61,7 @@ function CaseStudyHeroBg() {
           right: 0,
           top: "50%",
           transform: "translateY(-50%)",
-          height: "min(100%, 768px)",
+          height: "min(100%, 420px)",
           width: "auto",
           maxWidth: "none",
           objectFit: "cover",
