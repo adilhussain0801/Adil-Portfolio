@@ -896,7 +896,7 @@ function StickyNote({
 
 const CONCEPT_SCREENS = [
   {
-    src: "/concept-v2-thinking.png",
+    src: "/concept-v2-thinking.webp",
     alt: "AI Thinking State",
     area: "a",
     delay: 0,
@@ -904,7 +904,7 @@ const CONCEPT_SCREENS = [
     description: "Rovo surfaces its reasoning in real-time as it analyses each service request, making the process transparent to the operator.",
   },
   {
-    src: "/concept-v2-landing.png",
+    src: "/concept-v2-landing.webp",
     alt: "Rovo Service Landing",
     area: "b",
     delay: 0.04,
@@ -912,7 +912,7 @@ const CONCEPT_SCREENS = [
     description: "Configure how Rovo operates per space — with resolution management, onboarding journeys, and self-service setup in one place.",
   },
   {
-    src: "/concept-v2-queue-list.png",
+    src: "/concept-v2-queue-list.webp",
     alt: "Queue List View",
     area: "c",
     delay: 0.08,
@@ -920,7 +920,7 @@ const CONCEPT_SCREENS = [
     description: "At-a-glance status across all open requests, with Rovo's resolution state and assignment surfaced directly in the list.",
   },
   {
-    src: "/concept-v2-plan-preview.png",
+    src: "/concept-v2-plan-preview.webp",
     alt: "Resolution Plan Preview",
     area: "d",
     delay: 0.11,
@@ -928,7 +928,7 @@ const CONCEPT_SCREENS = [
     description: "Structured plan surfaces context and recommended actions before any action is taken, keeping the operator in control.",
   },
   {
-    src: "/concept-v2-plan-detail.png",
+    src: "/concept-v2-plan-detail.webp",
     alt: "Plan Detail View",
     area: "e",
     delay: 0.13,
@@ -936,7 +936,7 @@ const CONCEPT_SCREENS = [
     description: "Step-by-step resolution plan with conditional branching for complex, multi-path work items.",
   },
   {
-    src: "/concept-v2-plan-editing.png",
+    src: "/concept-v2-plan-editing.webp",
     alt: "Plan Editing",
     area: "f",
     delay: 0.15,
@@ -944,7 +944,7 @@ const CONCEPT_SCREENS = [
     description: "Operators can refine AI-generated plans before assigning Rovo to execute — maintaining human oversight at every step.",
   },
   {
-    src: "/concept-v2-plan-executing.png",
+    src: "/concept-v2-plan-executing.webp",
     alt: "Plan Executing",
     area: "g",
     delay: 0.17,
@@ -952,7 +952,7 @@ const CONCEPT_SCREENS = [
     description: "Live execution state showing Rovo's progress in real-time as it completes each step and updates the work item.",
   },
   {
-    src: "/concept-v2-it-general.png",
+    src: "/concept-v2-it-general.webp",
     alt: "IT Execution Settings",
     area: "h",
     delay: 0.19,
@@ -965,10 +965,12 @@ function EarlyStageConceptsSection() {
   const wallRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(wallRef, { once: true, amount: 0.1 });
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [lastIndex, setLastIndex] = useState(0);
 
+  const openLightbox = (i: number) => { setLastIndex(i); setLightboxIndex(i); };
   const closeLightbox = () => setLightboxIndex(null);
-  const prev = () => setLightboxIndex((i) => i !== null ? (i - 1 + CONCEPT_SCREENS.length) % CONCEPT_SCREENS.length : null);
-  const next = () => setLightboxIndex((i) => i !== null ? (i + 1) % CONCEPT_SCREENS.length : null);
+  const prev = () => { const n = (lastIndex - 1 + CONCEPT_SCREENS.length) % CONCEPT_SCREENS.length; setLastIndex(n); setLightboxIndex(n); };
+  const next = () => { const n = (lastIndex + 1) % CONCEPT_SCREENS.length; setLastIndex(n); setLightboxIndex(n); };
 
   return (
     <section
@@ -1046,7 +1048,7 @@ function EarlyStageConceptsSection() {
           {CONCEPT_SCREENS.map((screen, i) => (
             <div
               key={i}
-              onClick={() => setLightboxIndex(i)}
+              onClick={() => openLightbox(i)}
               className="bento-cell"
               style={{
                 gridArea: screen.area,
@@ -1069,199 +1071,201 @@ function EarlyStageConceptsSection() {
         </div>
       </div>
 
-      {/* Lightbox */}
-      <AnimatePresence>
-        {lightboxIndex !== null && (() => {
-          const screen = CONCEPT_SCREENS[lightboxIndex];
-          return (
-            <motion.div
-              key="lightbox-backdrop"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.22 }}
-              onClick={closeLightbox}
+      {/* Lightbox — always in DOM, CSS-only visibility */}
+      {(() => {
+        const screen = CONCEPT_SCREENS[lastIndex];
+        const open = lightboxIndex !== null;
+        return (
+          <div
+            onClick={closeLightbox}
+            style={{
+              position: "fixed",
+              inset: 0,
+              zIndex: 999,
+              background: "rgba(10,10,10,0.88)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "32px",
+              opacity: open ? 1 : 0,
+              pointerEvents: open ? "auto" : "none",
+              transition: "opacity 0.14s ease",
+              willChange: "opacity",
+            }}
+          >
+            <div
+              onClick={(e) => e.stopPropagation()}
               style={{
-                position: "fixed",
-                inset: 0,
-                zIndex: 999,
-                background: "rgba(10,10,10,0.88)",
+                background: "#fff",
+                borderRadius: 14,
+                overflow: "hidden",
+                maxWidth: 1025,
+                width: "100%",
+                boxShadow: "0 32px 80px rgba(0,0,0,0.4)",
                 display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                padding: "32px",
+                flexDirection: "column",
+                transform: open ? "scale(1) translateY(0)" : "scale(0.97) translateY(10px)",
+                opacity: open ? 1 : 0,
+                transition: "transform 0.14s ease, opacity 0.14s ease",
+                willChange: "transform, opacity",
               }}
             >
-              <motion.div
-                key={`lightbox-card-${lightboxIndex}`}
-                initial={{ opacity: 0, scale: 0.96, y: 12 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.98, y: 6 }}
-                transition={{ duration: 0.18, ease: EASE }}
-                onClick={(e) => e.stopPropagation()}
+              {/* Modal header */}
+              <div
                 style={{
-                  background: "#fff",
-                  borderRadius: 14,
-                  overflow: "hidden",
-                  maxWidth: 1025,
-                  width: "100%",
-                  boxShadow: "0 32px 80px rgba(0,0,0,0.4)",
                   display: "flex",
-                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  padding: "14px 22px",
+                  borderBottom: "1px solid rgba(0,0,0,0.07)",
+                  gap: 16,
+                  minWidth: 0,
                 }}
               >
-                {/* Modal header */}
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "flex-start",
-                    justifyContent: "space-between",
-                    padding: "18px 22px 14px",
-                    borderBottom: "1px solid rgba(0,0,0,0.07)",
-                  }}
-                >
-                  <div>
-                    <p
-                      style={{
-                        fontSize: 10,
-                        fontWeight: 600,
-                        textTransform: "uppercase",
-                        letterSpacing: "0.1em",
-                        color: "#E8654B",
-                        fontFamily: "'Wotfard', sans-serif",
-                        marginBottom: 4,
-                      }}
-                    >
-                      {lightboxIndex + 1} / {CONCEPT_SCREENS.length}
-                    </p>
-                    <h3
-                      style={{
-                        fontSize: 16,
-                        fontWeight: 700,
-                        color: "#1a1a1a",
-                        fontFamily: "'Wotfard', sans-serif",
-                        margin: 0,
-                      }}
-                    >
-                      {screen.title}
-                    </h3>
-                    <p
-                      style={{
-                        fontSize: 12.5,
-                        color: "rgba(26,26,26,0.52)",
-                        fontFamily: "'Wotfard', sans-serif",
-                        marginTop: 4,
-                        lineHeight: 1.5,
-                        maxWidth: 560,
-                      }}
-                    >
-                      {screen.description}
-                    </p>
-                  </div>
-                  <button
-                    onClick={closeLightbox}
+                <div style={{ display: "flex", alignItems: "center", gap: 14, minWidth: 0, flex: 1 }}>
+                  <p
                     style={{
-                      background: "rgba(0,0,0,0.06)",
-                      border: "none",
-                      borderRadius: "50%",
-                      width: 32,
-                      height: 32,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      cursor: "pointer",
+                      fontSize: 10,
+                      fontWeight: 600,
+                      textTransform: "uppercase",
+                      letterSpacing: "0.1em",
+                      color: "#E8654B",
+                      fontFamily: "'Wotfard', sans-serif",
+                      margin: 0,
                       flexShrink: 0,
-                      marginLeft: 16,
                     }}
                   >
-                    <X size={16} color="#2D2D2D" />
-                  </button>
+                    {lastIndex + 1}/{CONCEPT_SCREENS.length}
+                  </p>
+                  <h3
+                    style={{
+                      fontSize: 15,
+                      fontWeight: 700,
+                      color: "#1a1a1a",
+                      fontFamily: "'Wotfard', sans-serif",
+                      margin: 0,
+                      flexShrink: 0,
+                    }}
+                  >
+                    {screen.title}
+                  </h3>
+                  <p
+                    style={{
+                      fontSize: 12.5,
+                      color: "rgba(26,26,26,0.52)",
+                      fontFamily: "'Wotfard', sans-serif",
+                      margin: 0,
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      minWidth: 0,
+                    }}
+                  >
+                    {screen.description}
+                  </p>
                 </div>
+                <button
+                  onClick={closeLightbox}
+                  style={{
+                    background: "rgba(0,0,0,0.06)",
+                    border: "none",
+                    borderRadius: "50%",
+                    width: 32,
+                    height: 32,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    cursor: "pointer",
+                    flexShrink: 0,
+                  }}
+                >
+                  <X size={16} color="#2D2D2D" />
+                </button>
+              </div>
 
-                {/* Image */}
-                <div style={{ background: "#F6F4F0" }}>
-                  <img
-                    src={screen.src}
-                    alt={screen.alt}
-                    style={{ width: "100%", height: "auto", display: "block" }}
-                  />
-                </div>
+              {/* Image */}
+              <div style={{ background: "#F6F4F0" }}>
+                <img
+                  src={screen.src}
+                  alt={screen.alt}
+                  style={{ width: "100%", height: "auto", display: "block" }}
+                />
+              </div>
 
-                {/* Nav footer */}
-                <div
+              {/* Nav footer */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  padding: "10px 18px",
+                  borderTop: "1px solid rgba(0,0,0,0.07)",
+                }}
+              >
+                <button
+                  onClick={prev}
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "space-between",
-                    padding: "12px 18px",
-                    borderTop: "1px solid rgba(0,0,0,0.07)",
+                    gap: 6,
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    color: "#2D2D2D",
+                    fontFamily: "'Wotfard', sans-serif",
+                    fontSize: 13,
+                    fontWeight: 600,
+                    padding: "6px 10px",
+                    borderRadius: 6,
                   }}
                 >
-                  <button
-                    onClick={prev}
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 6,
-                      background: "none",
-                      border: "none",
-                      cursor: "pointer",
-                      color: "#2D2D2D",
-                      fontFamily: "'Wotfard', sans-serif",
-                      fontSize: 13,
-                      fontWeight: 600,
-                      padding: "6px 10px",
-                      borderRadius: 6,
-                    }}
-                  >
-                    <ChevronLeft size={16} />
-                    Previous
-                  </button>
-                  {/* Dots */}
-                  <div style={{ display: "flex", gap: 6 }}>
-                    {CONCEPT_SCREENS.map((_, idx) => (
-                      <button
-                        key={idx}
-                        onClick={() => setLightboxIndex(idx)}
-                        style={{
-                          width: idx === lightboxIndex ? 18 : 7,
-                          height: 7,
-                          borderRadius: 4,
-                          border: "none",
-                          cursor: "pointer",
-                          background: idx === lightboxIndex ? "#E8654B" : "rgba(45,45,45,0.18)",
-                          padding: 0,
-                          transition: "all 0.2s ease",
-                        }}
-                      />
-                    ))}
-                  </div>
-                  <button
-                    onClick={next}
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 6,
-                      background: "none",
-                      border: "none",
-                      cursor: "pointer",
-                      color: "#2D2D2D",
-                      fontFamily: "'Wotfard', sans-serif",
-                      fontSize: 13,
-                      fontWeight: 600,
-                      padding: "6px 10px",
-                      borderRadius: 6,
-                    }}
-                  >
-                    Next
-                    <ChevronRight size={16} />
-                  </button>
+                  <ChevronLeft size={16} />
+                  Previous
+                </button>
+                {/* Dots */}
+                <div style={{ display: "flex", gap: 6 }}>
+                  {CONCEPT_SCREENS.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => openLightbox(idx)}
+                      style={{
+                        width: idx === lastIndex ? 18 : 7,
+                        height: 7,
+                        borderRadius: 4,
+                        border: "none",
+                        cursor: "pointer",
+                        background: idx === lastIndex ? "#E8654B" : "rgba(45,45,45,0.18)",
+                        padding: 0,
+                        transition: "width 0.15s ease, background 0.15s ease",
+                      }}
+                    />
+                  ))}
                 </div>
-              </motion.div>
-            </motion.div>
-          );
-        })()}
-      </AnimatePresence>
+                <button
+                  onClick={next}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 6,
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    color: "#2D2D2D",
+                    fontFamily: "'Wotfard', sans-serif",
+                    fontSize: 13,
+                    fontWeight: 600,
+                    padding: "6px 10px",
+                    borderRadius: 6,
+                  }}
+                >
+                  Next
+                  <ChevronRight size={16} />
+                </button>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
     </section>
   );
 }
