@@ -899,7 +899,7 @@ const CONCEPT_SCREENS = [
     src: "/concept-v2-thinking.png",
     alt: "AI Thinking State",
     area: "a",
-    delay: 0.06,
+    delay: 0,
     title: "AI Thinking State",
     description: "Rovo surfaces its reasoning in real-time as it analyses each service request, making the process transparent to the operator.",
   },
@@ -907,7 +907,7 @@ const CONCEPT_SCREENS = [
     src: "/concept-v2-landing.png",
     alt: "Rovo Service Landing",
     area: "b",
-    delay: 0.10,
+    delay: 0.04,
     title: "Rovo Service Landing",
     description: "Configure how Rovo operates per space — with resolution management, onboarding journeys, and self-service setup in one place.",
   },
@@ -915,7 +915,7 @@ const CONCEPT_SCREENS = [
     src: "/concept-v2-queue-list.png",
     alt: "Queue List View",
     area: "c",
-    delay: 0.14,
+    delay: 0.08,
     title: "Queue List View",
     description: "At-a-glance status across all open requests, with Rovo's resolution state and assignment surfaced directly in the list.",
   },
@@ -923,7 +923,7 @@ const CONCEPT_SCREENS = [
     src: "/concept-v2-plan-preview.png",
     alt: "Resolution Plan Preview",
     area: "d",
-    delay: 0.18,
+    delay: 0.11,
     title: "Resolution Plan Preview",
     description: "Structured plan surfaces context and recommended actions before any action is taken, keeping the operator in control.",
   },
@@ -931,7 +931,7 @@ const CONCEPT_SCREENS = [
     src: "/concept-v2-plan-detail.png",
     alt: "Plan Detail View",
     area: "e",
-    delay: 0.22,
+    delay: 0.13,
     title: "Plan Detail View",
     description: "Step-by-step resolution plan with conditional branching for complex, multi-path work items.",
   },
@@ -939,7 +939,7 @@ const CONCEPT_SCREENS = [
     src: "/concept-v2-plan-editing.png",
     alt: "Plan Editing",
     area: "f",
-    delay: 0.26,
+    delay: 0.15,
     title: "Plan Editing",
     description: "Operators can refine AI-generated plans before assigning Rovo to execute — maintaining human oversight at every step.",
   },
@@ -947,7 +947,7 @@ const CONCEPT_SCREENS = [
     src: "/concept-v2-plan-executing.png",
     alt: "Plan Executing",
     area: "g",
-    delay: 0.30,
+    delay: 0.17,
     title: "Plan Executing",
     description: "Live execution state showing Rovo's progress in real-time as it completes each step and updates the work item.",
   },
@@ -955,7 +955,7 @@ const CONCEPT_SCREENS = [
     src: "/concept-v2-it-general.png",
     alt: "IT Execution Settings",
     area: "h",
-    delay: 0.34,
+    delay: 0.19,
     title: "IT Execution Settings",
     description: "Fine-grained controls that map request types to execution modes — Auto, Supervised, or Assistive — across the team.",
   },
@@ -963,7 +963,7 @@ const CONCEPT_SCREENS = [
 
 function EarlyStageConceptsSection() {
   const wallRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(wallRef, { once: false, amount: 0.15 });
+  const isInView = useInView(wallRef, { once: true, amount: 0.1 });
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const closeLightbox = () => setLightboxIndex(null);
@@ -1046,9 +1046,9 @@ function EarlyStageConceptsSection() {
           {CONCEPT_SCREENS.map((screen, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, scale: 0.97 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.97 }}
-              transition={{ duration: 0.55, ease: EASE, delay: screen.delay }}
+              initial={{ opacity: 0, y: 12 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+              transition={{ duration: 0.28, ease: EASE, delay: screen.delay }}
               onClick={() => setLightboxIndex(i)}
               style={{
                 gridArea: screen.area,
@@ -1107,10 +1107,10 @@ function EarlyStageConceptsSection() {
             >
               <motion.div
                 key={`lightbox-card-${lightboxIndex}`}
-                initial={{ opacity: 0, scale: 0.94, y: 16 }}
+                initial={{ opacity: 0, scale: 0.96, y: 12 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.96, y: 8 }}
-                transition={{ duration: 0.3, ease: EASE }}
+                exit={{ opacity: 0, scale: 0.98, y: 6 }}
+                transition={{ duration: 0.18, ease: EASE }}
                 onClick={(e) => e.stopPropagation()}
                 style={{
                   background: "#fff",
