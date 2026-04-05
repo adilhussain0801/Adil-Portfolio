@@ -896,60 +896,60 @@ function StickyNote({
 
 const CONCEPT_SCREENS = [
   {
-    src: "/concept-v2-thinking.webp",
-    alt: "AI Thinking State",
-    area: "a",
-    delay: 0,
-    title: "AI Thinking State",
-    description: "Rovo surfaces its reasoning in real-time as it analyses each service request, making the process transparent to the operator.",
-  },
-  {
-    src: "/concept-v2-landing.webp",
-    alt: "Rovo Service Landing",
-    area: "b",
-    delay: 0.04,
-    title: "Rovo Service Landing",
-    description: "Configure how Rovo operates per space — with resolution management, onboarding journeys, and self-service setup in one place.",
-  },
-  {
     src: "/concept-v2-queue-list.webp",
     alt: "Queue List View",
-    area: "c",
-    delay: 0.08,
+    area: "a",
+    delay: 0,
     title: "Queue List View",
     description: "At-a-glance status across all open requests, with Rovo's resolution state and assignment surfaced directly in the list.",
   },
   {
+    src: "/concept-v2-thinking.webp",
+    alt: "AI Thinking State",
+    area: "b",
+    delay: 0.04,
+    title: "AI Thinking State",
+    description: "Rovo surfaces its reasoning in real-time as it analyses each service request, making the process transparent to the operator.",
+  },
+  {
     src: "/concept-v2-plan-preview.webp",
     alt: "Resolution Plan Preview",
-    area: "d",
-    delay: 0.11,
+    area: "c",
+    delay: 0.08,
     title: "Resolution Plan Preview",
     description: "Structured plan surfaces context and recommended actions before any action is taken, keeping the operator in control.",
   },
   {
     src: "/concept-v2-plan-detail.webp",
     alt: "Plan Detail View",
-    area: "e",
-    delay: 0.13,
+    area: "d",
+    delay: 0.11,
     title: "Plan Detail View",
     description: "Step-by-step resolution plan with conditional branching for complex, multi-path work items.",
   },
   {
     src: "/concept-v2-plan-editing.webp",
     alt: "Plan Editing",
-    area: "f",
-    delay: 0.15,
+    area: "e",
+    delay: 0.13,
     title: "Plan Editing",
     description: "Operators can refine AI-generated plans before assigning Rovo to execute — maintaining human oversight at every step.",
   },
   {
     src: "/concept-v2-plan-executing.webp",
     alt: "Plan Executing",
-    area: "g",
-    delay: 0.17,
+    area: "f",
+    delay: 0.15,
     title: "Plan Executing",
     description: "Live execution state showing Rovo's progress in real-time as it completes each step and updates the work item.",
+  },
+  {
+    src: "/concept-v2-landing.webp",
+    alt: "Rovo Service Landing",
+    area: "g",
+    delay: 0.17,
+    title: "Rovo Service Landing",
+    description: "Configure how Rovo operates per space — with resolution management, onboarding journeys, and self-service setup in one place.",
   },
   {
     src: "/concept-v2-it-general.webp",
@@ -1039,7 +1039,7 @@ function EarlyStageConceptsSection() {
             gridTemplateRows: "repeat(3, 1fr)",
             gridTemplateAreas: `
               "a a a b c"
-              "d e e f f"
+              "d e e e f"
               "g g g h h"
             `,
             gap: 7,
