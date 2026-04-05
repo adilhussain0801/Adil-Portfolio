@@ -955,102 +955,49 @@ function EarlyStageConceptsSection() {
           </motion.div>
         </div>
 
-        {/* Design wall — centered, perspective 3D */}
-        <div ref={wallRef} className="flex-1 mx-auto mb-4" style={{ width: "94%", maxWidth: 1280, position: "relative", perspective: "1100px" }}>
-          {/* Inner tilt wrapper — rotateY gives left-to-right depth */}
-          <div style={{ position: "absolute", inset: 0, transform: "rotateY(-12deg)", transformOrigin: "50% 50%", transformStyle: "preserve-3d" }}>
-
-            {/* Row 1: 4 screens */}
-            <ScreenCard
-              src="/concept-v2-landing.png"
-              alt="Rovo Service landing"
-              delay={0.06}
-              isInView={isInView}
-              style={{ left: "-3%", top: "4%", width: "31%", transform: "rotate(-2.5deg)", zIndex: 2 }}
-            />
-            <ScreenCard
-              src="/concept-v2-queue-list.png"
-              alt="Queue list view"
-              delay={0.12}
-              isInView={isInView}
-              style={{ left: "21%", top: "-2%", width: "33%", transform: "rotate(2deg)", zIndex: 3 }}
-            />
-            <ScreenCard
-              src="/concept-v2-thinking.png"
-              alt="Rovo thinking state"
-              delay={0.18}
-              isInView={isInView}
-              style={{ left: "46%", top: "1%", width: "31%", transform: "rotate(-2deg)", zIndex: 4 }}
-            />
-            <ScreenCard
-              src="/concept-v2-it-general.png"
-              alt="IT execution settings"
-              delay={0.24}
-              isInView={isInView}
-              style={{ left: "70%", top: "-3%", width: "32%", transform: "rotate(3deg)", zIndex: 3 }}
-            />
-
-            {/* Row 2: 4 screens */}
-            <ScreenCard
-              src="/concept-v2-plan-preview.png"
-              alt="Plan preview"
-              delay={0.30}
-              isInView={isInView}
-              style={{ left: "-1%", top: "45%", width: "31%", transform: "rotate(3.5deg)", zIndex: 5 }}
-            />
-            <ScreenCard
-              src="/concept-v2-plan-detail.png"
-              alt="Plan detail view"
-              delay={0.36}
-              isInView={isInView}
-              style={{ left: "23%", top: "40%", width: "33%", transform: "rotate(-1.5deg)", zIndex: 4 }}
-            />
-            <ScreenCard
-              src="/concept-v2-plan-editing.png"
-              alt="Plan editing"
-              delay={0.42}
-              isInView={isInView}
-              style={{ left: "48%", top: "43%", width: "31%", transform: "rotate(2deg)", zIndex: 5 }}
-            />
-            <ScreenCard
-              src="/concept-v2-plan-executing.png"
-              alt="Plan executing"
-              delay={0.48}
-              isInView={isInView}
-              style={{ left: "72%", top: "47%", width: "31%", transform: "rotate(-2.5deg)", zIndex: 4 }}
-            />
-
-            {/* Sticky notes */}
-            <StickyNote
-              text="Too workflow-heavy to scan"
-              rotate={-3}
-              delay={0.58}
-              isInView={isInView}
-              style={{ left: "0%", top: "80%" }}
-            />
-            <StickyNote
-              text="Focused on guided resolution"
-              rotate={2}
-              color="#FEF9C3"
-              delay={0.63}
-              isInView={isInView}
-              style={{ left: "29%", top: "76%" }}
-            />
-            <StickyNote
-              text="Complex logic is overwhelming"
-              rotate={4}
-              delay={0.68}
-              isInView={isInView}
-              style={{ left: "54%", top: "78%" }}
-            />
-            <StickyNote
-              text="Lacked clear AI visibility"
-              rotate={-2}
-              color="#FEF9C3"
-              delay={0.73}
-              isInView={isInView}
-              style={{ left: "77%", top: "82%" }}
-            />
+        {/* Fan layout — screens in a horizontal arc with Y-axis perspective */}
+        <div
+          ref={wallRef}
+          className="flex-1 flex items-center overflow-hidden"
+          style={{ perspective: "1400px" }}
+        >
+          <div
+            className="flex items-center justify-center w-full"
+            style={{ transformStyle: "preserve-3d" }}
+          >
+            {([
+              { src: "/concept-v2-landing.png",       alt: "Rovo Service landing",  rotateY: 32,  delay: 0.06 },
+              { src: "/concept-v2-queue-list.png",    alt: "Queue list view",       rotateY: 21,  delay: 0.11 },
+              { src: "/concept-v2-thinking.png",      alt: "Rovo thinking",         rotateY: 11,  delay: 0.16 },
+              { src: "/concept-v2-plan-preview.png",  alt: "Plan preview",          rotateY: 3,   delay: 0.21 },
+              { src: "/concept-v2-plan-detail.png",   alt: "Plan detail",           rotateY: -3,  delay: 0.26 },
+              { src: "/concept-v2-plan-editing.png",  alt: "Plan editing",          rotateY: -11, delay: 0.31 },
+              { src: "/concept-v2-plan-executing.png",alt: "Plan executing",        rotateY: -21, delay: 0.36 },
+              { src: "/concept-v2-it-general.png",    alt: "IT general settings",   rotateY: -32, delay: 0.41 },
+            ] as { src: string; alt: string; rotateY: number; delay: number }[]).map((screen, i) => {
+              const zIdx = 8 - Math.floor(Math.abs(i - 3.5));
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  transition={{ duration: 0.65, ease: EASE, delay: screen.delay }}
+                  style={{
+                    flex: "0 0 185px",
+                    width: 185,
+                    marginLeft: i > 0 ? -52 : 0,
+                    zIndex: zIdx,
+                    rotateY: screen.rotateY,
+                    borderRadius: 6,
+                    overflow: "hidden",
+                    boxShadow: "0 8px 28px rgba(0,0,0,0.13), 0 2px 8px rgba(0,0,0,0.07)",
+                    background: "#fff",
+                  }}
+                >
+                  <img src={screen.src} alt={screen.alt} style={{ width: "100%", display: "block", height: "auto" }} />
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </div>
