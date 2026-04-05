@@ -1,7 +1,7 @@
 import { useParams, Link } from "wouter";
 import { useRef, useEffect, useState, useMemo, type RefObject } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare, ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { ArrowLeft, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare } from "lucide-react";
 import { getCaseStudy, getNextCaseStudy, type CaseStudy } from "@/data/caseStudies";
 import NotFound from "@/pages/not-found";
 
@@ -819,268 +819,254 @@ function ProcessSection({ study }: { study: CaseStudy }) {
   );
 }
 
-const CONCEPT_FRAMES = [
-  {
-    label: "01",
-    title: "Service entry point",
-    caption: "Space settings landing — configuring Rovo Service capabilities per team",
-    src: "/concept-landing.png",
-  },
-  {
-    label: "02",
-    title: "Queue list view",
-    caption: "All open queue with smart triage, AI assignee, and status at a glance",
-    src: "/concept-queue-list.png",
-  },
-  {
-    label: "03",
-    title: "Thinking state",
-    caption: "Resolution plan generated from knowledge base and similar past requests",
-    src: "/concept-thinking.png",
-  },
-  {
-    label: "04",
-    title: "Plan ready for review",
-    caption: "Human-readable plan presented for agent review before any action is taken",
-    src: "/concept-thinking-1.png",
-  },
-  {
-    label: "05",
-    title: "Execution in progress",
-    caption: "Step-by-step plan executing with real-time progress and override capability",
-    src: "/concept-plan-executing.png",
-  },
-];
+function ScreenCard({
+  src,
+  alt,
+  style,
+  delay = 0,
+  isInView,
+}: {
+  src: string;
+  alt: string;
+  style: React.CSSProperties;
+  delay?: number;
+  isInView: boolean;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 22, scale: 0.97 }}
+      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 22, scale: 0.97 }}
+      transition={{ duration: 0.65, ease: EASE, delay }}
+      style={{
+        position: "absolute",
+        borderRadius: 8,
+        overflow: "hidden",
+        boxShadow: "0 8px 32px rgba(0,0,0,0.13), 0 2px 8px rgba(0,0,0,0.07)",
+        border: "1.5px solid #E4DDD6",
+        background: "#fff",
+        ...style,
+      }}
+    >
+      <div
+        style={{
+          height: 18,
+          background: "#F0EDEA",
+          borderBottom: "1px solid #E8DFD7",
+          display: "flex",
+          alignItems: "center",
+          gap: 5,
+          padding: "0 10px",
+          flexShrink: 0,
+        }}
+      >
+        <div style={{ width: 6, height: 6, borderRadius: "50%", background: "rgba(232,101,75,0.4)" }} />
+        <div style={{ width: 6, height: 6, borderRadius: "50%", background: "rgba(212,196,176,0.55)" }} />
+        <div style={{ width: 6, height: 6, borderRadius: "50%", background: "rgba(212,196,176,0.4)" }} />
+      </div>
+      <img src={src} alt={alt} style={{ width: "100%", display: "block", height: "auto" }} />
+    </motion.div>
+  );
+}
 
-// brightness values: index 0 = furthest peek, 2 = closest peek
-const PEEK_SLOTS = [
-  { topInZone: 6,  inset: 44, zIndex: 7, brightness: 0.82 },
-  { topInZone: 14, inset: 24, zIndex: 8, brightness: 0.90 },
-  { topInZone: 24, inset: 8,  zIndex: 9, brightness: 0.96 },
-];
-const PEEK_ZONE_H = 54;
+function StickyNote({
+  text,
+  rotate,
+  color = "#FEFCE8",
+  delay = 0,
+  isInView,
+  style,
+}: {
+  text: string;
+  rotate: number;
+  color?: string;
+  delay?: number;
+  isInView: boolean;
+  style: React.CSSProperties;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.88 }}
+      animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.88 }}
+      transition={{ duration: 0.5, ease: EASE, delay }}
+      style={{
+        position: "absolute",
+        background: color,
+        padding: "9px 13px",
+        borderRadius: 3,
+        transform: `rotate(${rotate}deg)`,
+        boxShadow: "0 3px 10px rgba(0,0,0,0.10), 0 1px 3px rgba(0,0,0,0.06)",
+        fontFamily: "'Wotfard', sans-serif",
+        fontSize: 11.5,
+        fontWeight: 600,
+        color: "#2D2D2D",
+        maxWidth: 148,
+        lineHeight: 1.45,
+        zIndex: 20,
+        pointerEvents: "none",
+        ...style,
+      }}
+    >
+      {text}
+    </motion.div>
+  );
+}
 
 function EarlyStageConceptsSection() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [direction, setDirection] = useState(1);
-  const [isPaused, setIsPaused] = useState(false);
-  const total = CONCEPT_FRAMES.length;
-  const current = CONCEPT_FRAMES[activeIndex];
-
-  const navigate = (dir: number) => {
-    setDirection(dir);
-    setActiveIndex((prev) => (prev + dir + total) % total);
-  };
-
-  useEffect(() => {
-    if (isPaused) return;
-    const id = setInterval(() => {
-      setDirection(1);
-      setActiveIndex((prev) => (prev + 1) % total);
-    }, 3500);
-    return () => clearInterval(id);
-  }, [activeIndex, total, isPaused]);
+  const wallRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(wallRef, { once: false, amount: 0.15 });
 
   return (
     <section
       id="section-concepts"
-      className="relative h-screen snap-start snap-always flex flex-col overflow-hidden"
-      style={{ background: "#FAF8F5" }}
+      className="relative h-screen snap-start snap-always overflow-hidden"
+      style={{ background: "#F6F4F0" }}
     >
-      {/* Breathing room below page nav */}
-      <div style={{ height: 72 }} />
+      {/* Subtle paper noise texture */}
+      <svg style={{ position: "absolute", width: 0, height: 0 }}>
+        <defs>
+          <filter id="concepts-noise">
+            <feTurbulence type="fractalNoise" baseFrequency="0.68" numOctaves="4" stitchTiles="stitch" />
+          </filter>
+        </defs>
+      </svg>
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          inset: 0,
+          filter: "url(#concepts-noise)",
+          opacity: 0.028,
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
 
-      {/* Two-column body */}
-      <div className="flex-1 flex gap-12 px-8 md:px-20 pb-10 min-h-0">
+      {/* Main layout: top-left header + full-bleed wall */}
+      <div className="relative z-10 h-full flex flex-col">
 
-        {/* LEFT: eyebrow, title, description, animated frame info, chevrons */}
-        <div className="w-72 flex-shrink-0 flex flex-col">
-          <div>
+        {/* Header row */}
+        <div className="flex-shrink-0 px-10 md:px-20 pt-20 pb-6 max-w-sm">
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
+            transition={{ duration: 0.6, ease: EASE }}
+          >
             <p
-              className="text-[11px] uppercase tracking-widest font-semibold mb-3"
+              className="text-[11px] uppercase tracking-widest font-semibold mb-2"
               style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
             >
               Design Process
             </p>
             <h2
-              className="text-2xl md:text-[1.75rem] leading-tight text-[#1a1a1a] mb-4"
+              className="text-2xl md:text-[1.75rem] leading-tight text-[#1a1a1a] mb-3"
               style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
             >
               Early stage concepts
             </h2>
             <p
               className="text-[13px] leading-relaxed"
-              style={{ color: "rgba(26,26,26,0.5)", fontFamily: "'Wotfard', sans-serif" }}
+              style={{ color: "rgba(26,26,26,0.48)", fontFamily: "'Wotfard', sans-serif" }}
             >
-              Five concepts exploring how an embedded AI agent surfaces context, reasons through solutions, and guides operators toward resolution.
+              Exploring multiple approaches — exposing context, surfacing AI reasoning, and reducing operator effort.
             </p>
-          </div>
-
-          <div className="flex-1" />
-
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeIndex}
-              className="flex flex-col gap-1.5"
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
-              transition={{ duration: 0.24, ease: EASE }}
-            >
-              <div className="flex items-baseline gap-2">
-                <span
-                  className="text-[2rem] font-bold tabular-nums leading-none"
-                  style={{ color: "#D4C4B0", fontFamily: "'Wotfard', sans-serif" }}
-                >
-                  {current.label}
-                </span>
-                <span
-                  className="text-[10px] font-semibold uppercase tracking-widest"
-                  style={{ color: "rgba(26,26,26,0.22)", fontFamily: "'Wotfard', sans-serif" }}
-                >
-                  / {String(total).padStart(2, "0")}
-                </span>
-              </div>
-              <p
-                className="text-[14px] font-semibold text-[#1a1a1a] leading-snug"
-                style={{ fontFamily: "'Wotfard', sans-serif" }}
-              >
-                {current.title}
-              </p>
-              <p
-                className="text-[12px] leading-relaxed"
-                style={{ color: "rgba(26,26,26,0.45)", fontFamily: "'Wotfard', sans-serif" }}
-              >
-                {current.caption}
-              </p>
-            </motion.div>
-          </AnimatePresence>
-
-          <div className="flex items-center gap-2 mt-5">
-            <button
-              onClick={() => navigate(-1)}
-              className="w-9 h-9 rounded-full flex items-center justify-center"
-              style={{ border: "1.5px solid #D4C4B0", background: "#fff", color: "rgba(26,26,26,0.6)" }}
-              aria-label="Previous concept"
-            >
-              <ChevronLeft size={16} />
-            </button>
-            <button
-              onClick={() => navigate(1)}
-              className="w-9 h-9 rounded-full flex items-center justify-center"
-              style={{ background: "#1a1a1a", color: "#fff", border: "1.5px solid #1a1a1a" }}
-              aria-label="Next concept"
-            >
-              <ChevronRight size={16} />
-            </button>
-            <button
-              onClick={() => setIsPaused((p) => !p)}
-              className="w-9 h-9 rounded-full flex items-center justify-center"
-              style={{ border: "1.5px solid #D4C4B0", background: "#fff", color: "rgba(26,26,26,0.6)" }}
-              aria-label={isPaused ? "Resume auto-play" : "Pause auto-play"}
-            >
-              {isPaused ? <Play size={14} /> : <Pause size={14} />}
-            </button>
-          </div>
+          </motion.div>
         </div>
 
-        {/* RIGHT: card stack */}
-        <div className="flex-1 min-h-0 flex flex-col justify-center">
-          {/* Outer wrapper: relative so peek zone can be absolutely positioned
-              without affecting the active card's layout flow */}
-          <div className="relative w-full flex-shrink-0">
+        {/* Design wall — fills remaining space */}
+        <div ref={wallRef} className="flex-1 relative mx-6 md:mx-12 mb-8">
 
-            {/* Peek zone: absolutely positioned at top, clips chrome bars */}
-            <div
-              className="absolute left-0 right-0 overflow-hidden"
-              style={{ top: 0, height: PEEK_ZONE_H, zIndex: 11 }}
-            >
-              {PEEK_SLOTS.map((slot, si) => {
-                const peekOffset = PEEK_SLOTS.length - si;
-                const peekIdx = (activeIndex + peekOffset) % total;
-                const frame = CONCEPT_FRAMES[peekIdx];
-                return (
-                  <AnimatePresence key={si}>
-                    <motion.div
-                      key={peekIdx}
-                      className="absolute overflow-hidden rounded-xl"
-                      style={{
-                        top: slot.topInZone,
-                        left: slot.inset,
-                        right: slot.inset,
-                        height: 500,
-                        zIndex: slot.zIndex,
-                        filter: `brightness(${slot.brightness})`,
-                        background: "#fff",
-                        border: "1.5px solid #E8DFD7",
-                      }}
-                      initial={{ y: direction > 0 ? PEEK_ZONE_H : -PEEK_ZONE_H }}
-                      animate={{ y: 0 }}
-                      exit={{ y: direction > 0 ? -PEEK_ZONE_H : PEEK_ZONE_H }}
-                      transition={{ duration: 0.38, ease: APPLE }}
-                    >
-                      <div
-                        className="flex items-center gap-1.5 px-3"
-                        style={{ height: 24, background: "#F0EDEA", borderBottom: "1px solid #E8DFD7", flexShrink: 0 }}
-                      >
-                        <div className="w-2 h-2 rounded-full" style={{ background: "rgba(200,185,170,0.5)" }} />
-                        <div className="w-2 h-2 rounded-full" style={{ background: "rgba(212,196,176,0.55)" }} />
-                        <div className="w-2 h-2 rounded-full" style={{ background: "rgba(212,196,176,0.4)" }} />
-                      </div>
-                      <img src={frame.src} alt="" className="w-full block" style={{ height: "auto" }} />
-                    </motion.div>
-                  </AnimatePresence>
-                );
-              })}
-            </div>
+          {/* SVG connector lines — viewBox 0 0 100 100 maps to container % */}
+          <svg
+            viewBox="0 0 100 100"
+            preserveAspectRatio="none"
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", zIndex: 16, pointerEvents: "none" }}
+          >
+            {/* "Too workflow-heavy" → Screen 1 */}
+            <path d="M 7,83 C 10,74 14,63 17,52" stroke="rgba(45,45,45,0.18)" strokeWidth="0.5" fill="none" strokeDasharray="1.2 1.8" />
+            {/* "Focused on guided resolution" → Screen 2 */}
+            <path d="M 36,55 C 38,47 41,39 44,30" stroke="rgba(45,45,45,0.18)" strokeWidth="0.5" fill="none" strokeDasharray="1.2 1.8" />
+            {/* "Complex logic overwhelming" → Screen 3 */}
+            <path d="M 79,11 C 78,14 76,18 74,22" stroke="rgba(45,45,45,0.18)" strokeWidth="0.5" fill="none" strokeDasharray="1.2 1.8" />
+            {/* "Lacked AI visibility" → Screen 5 */}
+            <path d="M 80,76 C 78,72 75,68 72,64" stroke="rgba(45,45,45,0.18)" strokeWidth="0.5" fill="none" strokeDasharray="1.2 1.8" />
+          </svg>
 
-            {/* Spacer pushes active card below the peek zone */}
-            <div style={{ height: PEEK_ZONE_H }} />
+          {/* Screen 1: concept-landing — left, mid-height, tilted left */}
+          <ScreenCard
+            src="/concept-landing.png"
+            alt="Service entry point"
+            delay={0.08}
+            isInView={isInView}
+            style={{ left: "0%", top: "8%", width: "32%", transform: "rotate(-3deg)", zIndex: 2 }}
+          />
 
-            {/* Active card: mode="wait" (exit then enter) so only one card
-                is in flow at a time — no layout height doubling */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeIndex}
-                className="rounded-xl overflow-hidden"
-                style={{ zIndex: 10, border: "1.5px solid #E8DFD7" }}
-                variants={{
-                  enter: { y: direction > 0 ? 60 : -60, opacity: 0 },
-                  center: {
-                    y: 0,
-                    opacity: 1,
-                    transition: { duration: 0.42, ease: APPLE },
-                  },
-                  exit: {
-                    y: direction > 0 ? -30 : 30,
-                    opacity: 0,
-                    transition: { duration: 0.18, ease: APPLE },
-                  },
-                }}
-                initial="enter"
-                animate="center"
-                exit="exit"
-              >
-                {/* Chrome bar */}
-                <div
-                  className="flex items-center gap-1.5 px-3"
-                  style={{ height: 24, background: "#F0EDEA", borderBottom: "1px solid #E8DFD7", flexShrink: 0 }}
-                >
-                  <div className="w-2 h-2 rounded-full" style={{ background: "rgba(232,101,75,0.55)" }} />
-                  <div className="w-2 h-2 rounded-full" style={{ background: "rgba(212,196,176,0.7)" }} />
-                  <div className="w-2 h-2 rounded-full" style={{ background: "rgba(212,196,176,0.5)" }} />
-                </div>
-                {/* Image at natural 1008×631 ratio — edge-to-edge, no padding */}
-                <img
-                  src={current.src}
-                  alt={current.title}
-                  className="w-full block"
-                  style={{ height: "auto", aspectRatio: "1008 / 631" }}
-                />
-              </motion.div>
-            </AnimatePresence>
+          {/* Screen 2: concept-queue-list — center, top, tilted right */}
+          <ScreenCard
+            src="/concept-queue-list.png"
+            alt="Queue list view"
+            delay={0.16}
+            isInView={isInView}
+            style={{ left: "28%", top: "0%", width: "38%", transform: "rotate(2deg)", zIndex: 3 }}
+          />
 
-          </div>
+          {/* Screen 3: concept-thinking — right, top, tilted left */}
+          <ScreenCard
+            src="/concept-thinking.png"
+            alt="Thinking state"
+            delay={0.24}
+            isInView={isInView}
+            style={{ left: "60%", top: "4%", width: "36%", transform: "rotate(-2.5deg)", zIndex: 4 }}
+          />
+
+          {/* Screen 4: concept-thinking-1 — left, bottom, tilted right */}
+          <ScreenCard
+            src="/concept-thinking-1.png"
+            alt="Plan ready for review"
+            delay={0.32}
+            isInView={isInView}
+            style={{ left: "8%", top: "46%", width: "33%", transform: "rotate(3.5deg)", zIndex: 3 }}
+          />
+
+          {/* Screen 5: concept-plan-executing — center-right, bottom, slight tilt */}
+          <ScreenCard
+            src="/concept-plan-executing.png"
+            alt="Execution in progress"
+            delay={0.40}
+            isInView={isInView}
+            style={{ left: "40%", top: "44%", width: "35%", transform: "rotate(-1.5deg)", zIndex: 5 }}
+          />
+
+          {/* Sticky notes */}
+          <StickyNote
+            text="Too workflow-heavy"
+            rotate={-3}
+            delay={0.5}
+            isInView={isInView}
+            style={{ left: "0%", top: "78%" }}
+          />
+          <StickyNote
+            text="Focused on guided resolution"
+            rotate={2}
+            color="#FEF9C3"
+            delay={0.56}
+            isInView={isInView}
+            style={{ left: "32%", top: "52%" }}
+          />
+          <StickyNote
+            text="Complex logic overwhelming"
+            rotate={4}
+            delay={0.62}
+            isInView={isInView}
+            style={{ left: "76%", top: "4%" }}
+          />
+          <StickyNote
+            text="Lacked AI visibility"
+            rotate={-2}
+            color="#FEF9C3"
+            delay={0.68}
+            isInView={isInView}
+            style={{ left: "76%", top: "74%" }}
+          />
         </div>
       </div>
     </section>
