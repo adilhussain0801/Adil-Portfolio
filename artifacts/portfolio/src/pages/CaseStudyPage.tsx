@@ -40,7 +40,7 @@ function SnapReveal({
   );
 }
 
-function CaseStudyHeroBg() {
+function CaseStudyHeroBg({ bgColor }: { bgColor: string }) {
   return (
     <div className="absolute inset-0 overflow-hidden" style={{ perspective: "1200px" }}>
       <div
@@ -54,7 +54,7 @@ function CaseStudyHeroBg() {
         className="absolute pointer-events-none select-none flex items-center justify-center"
         style={{
           inset: 0,
-          paddingTop: "60px",
+          paddingTop: "100px",
           paddingBottom: "40px",
         }}
       >
@@ -62,9 +62,11 @@ function CaseStudyHeroBg() {
           style={{
             width: "calc(100% - 192px)",
             height: "100%",
-            borderRadius: "12px",
+            borderRadius: "16px",
             overflow: "hidden",
             position: "relative",
+            border: "4px solid rgba(255, 255, 255, 0.45)",
+            boxShadow: "0 20px 60px rgba(0,0,0,0.12)",
           }}
         >
           <video
@@ -81,7 +83,7 @@ function CaseStudyHeroBg() {
               objectPosition: "top",
             }}
           />
-          {/* Fade overlay — inside the video container so it only fades the video */}
+          {/* Fade overlay using hero background color for seamless transition */}
           <div
             style={{
               position: "absolute",
@@ -89,7 +91,7 @@ function CaseStudyHeroBg() {
               left: 0,
               right: 0,
               height: "65%",
-              background: "linear-gradient(to top, rgba(255, 255, 255, 1) 0%, rgba(255,255,255,0.95) 25%, rgba(255,255,255,0.7) 55%, transparent 100%)",
+              background: `linear-gradient(to top, ${bgColor} 0%, ${bgColor}f5 20%, ${bgColor}cc 40%, ${bgColor}66 60%, transparent 100%)`,
               pointerEvents: "none",
             }}
           />
@@ -113,7 +115,7 @@ function HeroSection({ study }: { study: CaseStudy }) {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="flex-1 flex items-center justify-center relative z-10"
       >
-        <CaseStudyHeroBg />
+        <CaseStudyHeroBg bgColor={study.heroColor} />
       </motion.div>
 
       {/* Title & Subtitle at bottom */}
