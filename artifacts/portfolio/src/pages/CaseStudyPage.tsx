@@ -540,7 +540,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
 
                       {/* Question */}
                       <p
-                        className="text-[10px] font-semibold italic text-center leading-snug px-1"
+                        className="text-xs font-semibold italic text-center leading-snug px-1"
                         style={{ color: step.color, fontFamily: "'Wotfard', sans-serif" }}
                       >
                         "{step.question}"
@@ -548,7 +548,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
 
                       {/* Description */}
                       <p
-                        className="text-[10px] leading-relaxed text-center text-[#1a1a1a]/50 px-1"
+                        className="text-xs leading-relaxed text-center text-[#1a1a1a]/50 px-1"
                         style={{ fontFamily: "'Wotfard', sans-serif" }}
                       >
                         {step.description}
@@ -556,22 +556,11 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
 
                       {/* Friction line */}
                       <p
-                        className="text-[9px] leading-snug text-center px-1"
-                        style={{ color: step.issueColor, opacity: 0.7, fontFamily: "'Wotfard', sans-serif" }}
+                        className="text-[11px] leading-snug text-center px-1"
+                        style={{ color: step.issueColor, opacity: 0.75, fontFamily: "'Wotfard', sans-serif" }}
                       >
                         → {step.friction}
                       </p>
-
-                      {/* Warning label */}
-                      <div className="flex items-center gap-1 mt-0.5">
-                        <AlertTriangle size={11} style={{ color: step.issueColor }} />
-                        <span
-                          className="text-[9px] font-bold tracking-[0.14em] uppercase"
-                          style={{ color: step.issueColor, fontFamily: "'Wotfard', sans-serif" }}
-                        >
-                          {step.issue}
-                        </span>
-                      </div>
                     </div>,
                   ];
                   if (i < arr.length - 1) {
