@@ -494,7 +494,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
         </div>
         {/* Why Resolution Breaks Down slide */}
         <div className="h-screen snap-start snap-always flex flex-col justify-center py-16">
-          <div className="w-full flex flex-col gap-8" style={{ paddingLeft: 96, paddingRight: 96 }}>
+          <div className="w-full flex flex-col gap-8" style={{ paddingLeft: 144, paddingRight: 144 }}>
 
             <SnapReveal>
               <h2
@@ -568,44 +568,11 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                       ))}
                     </div>
 
-                    {/* Row 4: friction observations — all on same line */}
-                    <div className="grid grid-cols-5 gap-4">
-                      {steps.map((step, i) => (
-                        <div key={i} className="flex items-start justify-center gap-1.5 px-2">
-                          <Lightbulb size={11} style={{ color: step.issueColor, marginTop: 1, flexShrink: 0, opacity: 0.8 }} />
-                          <p className="text-[11px] leading-snug" style={{ color: step.issueColor, opacity: 0.8, fontFamily: "'Wotfard', sans-serif" }}>
-                            {step.friction}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-
                   </div>
                 );
               })()}
             </SnapReveal>
 
-            {/* Callout */}
-            <SnapReveal delay={0.35}>
-              <div
-                className="rounded-2xl px-8 py-6"
-                style={{ background: "#FEF0EC", border: "1px solid rgba(232,101,75,0.2)" }}
-              >
-                <p
-                  className="text-base font-bold mb-1"
-                  style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
-                >
-                  The system doesn't fail at one step — it fails at every transition.
-                </p>
-                <p
-                  className="text-base leading-relaxed"
-                  style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
-                >
-                  Understanding, context gathering, and execution are all{" "}
-                  <strong>disconnected</strong> — forcing humans to bridge the gaps.
-                </p>
-              </div>
-            </SnapReveal>
 
           </div>
         </div>
