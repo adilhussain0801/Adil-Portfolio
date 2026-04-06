@@ -497,7 +497,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
 
         {/* Why Resolution Breaks Down slide */}
         <div className="h-screen snap-start snap-always flex flex-col justify-center py-16">
-          <div className="max-w-5xl mx-auto w-full px-6 flex flex-col gap-12">
+          <div className="max-w-5xl mx-auto w-full px-6 flex flex-col gap-8">
 
             <SnapReveal>
               <h2
@@ -512,14 +512,14 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
             <SnapReveal delay={0.1}>
               <div className="flex items-start">
                 {[
-                  { label: "Request",       color: "#2563EB", headerBg: "rgba(37,99,235,0.12)",   icon: <Inbox size={32} />,        issue: "Latency",            issueColor: "#2563EB" },
-                  { label: "Understand",    color: "#7C3AED", headerBg: "rgba(124,58,237,0.12)", icon: <Network size={32} />,       issue: "Fragmentation",      issueColor: "#7C3AED" },
-                  { label: "Gather context",color: "#B45309", headerBg: "rgba(180,83,9,0.12)",   icon: <Brain size={32} />,         issue: "Cognitive overload", issueColor: "#B45309" },
-                  { label: "Execute",       color: "#0F766E", headerBg: "rgba(15,118,110,0.12)", icon: <Settings size={32} />,      issue: "Execution gap",      issueColor: "#0F766E" },
-                  { label: "Resolve",       color: "#4338CA", headerBg: "rgba(67,56,202,0.12)",  icon: <CheckCircle2 size={32} />,  issue: "Execution gap",      issueColor: "#4338CA" },
+                  { label: "Request",        color: "#2563EB", headerBg: "rgba(37,99,235,0.12)",   icon: <Inbox size={24} />,        question: "What is the user asking for?",          description: "A request comes in via email, portal, or chat — often incomplete or unclear.",                                                                                  friction: "Often missing key details — triggers back-and-forth",                   issue: "Latency",            issueColor: "#2563EB" },
+                  { label: "Understand",     color: "#7C3AED", headerBg: "rgba(124,58,237,0.12)", icon: <Network size={24} />,       question: "What exactly needs to be done?",         description: "The agent interprets the request, clarifies intent, and identifies the actual problem to solve.",                                                                friction: "Ambiguity leads to misinterpretation",                                  issue: "Fragmentation",      issueColor: "#7C3AED" },
+                  { label: "Gather context", color: "#B45309", headerBg: "rgba(180,83,9,0.12)",   icon: <Brain size={24} />,         question: "What information do I need?",            description: "The agent pulls data from multiple systems — Jira, Confluence, internal tools, logs, past tickets — to build a complete picture.",                              friction: "Information is fragmented across tools",                                issue: "Cognitive overload", issueColor: "#B45309" },
+                  { label: "Execute",        color: "#0F766E", headerBg: "rgba(15,118,110,0.12)", icon: <Settings size={24} />,      question: "How do I resolve this?",                 description: "The agent performs actions across systems — approvals, access changes, configurations, or escalations.",                                                          friction: "Manual coordination slows things down",                                 issue: "Execution gap",      issueColor: "#0F766E" },
+                  { label: "Resolve",        color: "#4338CA", headerBg: "rgba(67,56,202,0.12)",  icon: <CheckCircle2 size={24} />,  question: "Is the issue fully addressed?",          description: "The request is completed, validated, and communicated back to the user.",                                                                                        friction: "Outcomes depend on human stitching everything together",                issue: "Execution gap",      issueColor: "#4338CA" },
                 ].flatMap((step, i, arr) => {
                   const items: JSX.Element[] = [
-                    <div key={`step-${i}`} className="flex flex-col items-center gap-3 flex-1 min-w-0">
+                    <div key={`step-${i}`} className="flex flex-col items-center gap-2.5 flex-1 min-w-0">
                       {/* Label pill */}
                       <div
                         className="rounded-full px-4 py-1.5"
@@ -534,12 +534,36 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                       </div>
 
                       {/* Icon */}
-                      <div style={{ color: step.color, opacity: 0.8 }}>
+                      <div style={{ color: step.color, opacity: 0.75 }}>
                         {step.icon}
                       </div>
 
+                      {/* Question */}
+                      <p
+                        className="text-[10px] font-semibold italic text-center leading-snug px-1"
+                        style={{ color: step.color, fontFamily: "'Wotfard', sans-serif" }}
+                      >
+                        "{step.question}"
+                      </p>
+
+                      {/* Description */}
+                      <p
+                        className="text-[10px] leading-relaxed text-center text-[#1a1a1a]/50 px-1"
+                        style={{ fontFamily: "'Wotfard', sans-serif" }}
+                      >
+                        {step.description}
+                      </p>
+
+                      {/* Friction line */}
+                      <p
+                        className="text-[9px] leading-snug text-center px-1"
+                        style={{ color: step.issueColor, opacity: 0.7, fontFamily: "'Wotfard', sans-serif" }}
+                      >
+                        → {step.friction}
+                      </p>
+
                       {/* Warning label */}
-                      <div className="flex items-center gap-1">
+                      <div className="flex items-center gap-1 mt-0.5">
                         <AlertTriangle size={11} style={{ color: step.issueColor }} />
                         <span
                           className="text-[9px] font-bold tracking-[0.14em] uppercase"
