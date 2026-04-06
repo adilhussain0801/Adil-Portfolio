@@ -424,9 +424,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
               <h2
                 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight"
                 style={{ fontFamily: "'Wotfard', sans-serif" }}
-              >
-                The system doesn't scale
-              </h2>
+              >Context</h2>
             </SnapReveal>
 
             {/* Two-column: text left, metrics right */}
@@ -494,10 +492,9 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
 
           </div>
         </div>
-
         {/* Why Resolution Breaks Down slide */}
         <div className="h-screen snap-start snap-always flex flex-col justify-center py-16">
-          <div className="max-w-5xl mx-auto w-full px-6 flex flex-col gap-8">
+          <div className="w-full px-8 md:px-16 flex flex-col gap-8">
 
             <SnapReveal>
               <h2
@@ -510,69 +507,72 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
 
             {/* Flow diagram */}
             <SnapReveal delay={0.1}>
-              <div className="flex items-start">
-                {[
-                  { label: "Request",        color: "#2563EB", headerBg: "rgba(37,99,235,0.12)",   icon: <Inbox size={24} />,        question: "What is the user asking for?",          description: "A request comes in via email, portal, or chat — often incomplete or unclear.",                                                                                  friction: "Often missing key details — triggers back-and-forth",                   issue: "Latency",            issueColor: "#2563EB" },
-                  { label: "Understand",     color: "#7C3AED", headerBg: "rgba(124,58,237,0.12)", icon: <Network size={24} />,       question: "What exactly needs to be done?",         description: "The agent interprets the request, clarifies intent, and identifies the actual problem to solve.",                                                                friction: "Ambiguity leads to misinterpretation",                                  issue: "Fragmentation",      issueColor: "#7C3AED" },
-                  { label: "Gather context", color: "#B45309", headerBg: "rgba(180,83,9,0.12)",   icon: <Brain size={24} />,         question: "What information do I need?",            description: "The agent pulls data from multiple systems — Jira, Confluence, internal tools, logs, past tickets — to build a complete picture.",                              friction: "Information is fragmented across tools",                                issue: "Cognitive overload", issueColor: "#B45309" },
-                  { label: "Execute",        color: "#0F766E", headerBg: "rgba(15,118,110,0.12)", icon: <Settings size={24} />,      question: "How do I resolve this?",                 description: "The agent performs actions across systems — approvals, access changes, configurations, or escalations.",                                                          friction: "Manual coordination slows things down",                                 issue: "Execution gap",      issueColor: "#0F766E" },
-                  { label: "Resolve",        color: "#4338CA", headerBg: "rgba(67,56,202,0.12)",  icon: <CheckCircle2 size={24} />,  question: "Is the issue fully addressed?",          description: "The request is completed, validated, and communicated back to the user.",                                                                                        friction: "Outcomes depend on human stitching everything together",                issue: "Execution gap",      issueColor: "#4338CA" },
-                ].flatMap((step, i, arr) => {
-                  const items: JSX.Element[] = [
-                    <div key={`step-${i}`} className="flex flex-col items-center gap-2.5 flex-1 min-w-0">
-                      {/* Label pill */}
-                      <div
-                        className="rounded-full px-4 py-1.5"
-                        style={{ background: step.headerBg }}
-                      >
-                        <span
-                          className="text-sm font-bold whitespace-nowrap"
-                          style={{ color: step.color, fontFamily: "'Wotfard', sans-serif" }}
-                        >
-                          {step.label}
-                        </span>
-                      </div>
+              {(() => {
+                const steps = [
+                  { label: "Request",        color: "#2563EB", headerBg: "rgba(37,99,235,0.12)",   icon: <Inbox size={16} />,        question: "What is the user asking for?",       description: "A request comes in via email, portal, or chat — often incomplete or unclear.",                                                              friction: "Often missing key details — triggers back-and-forth",        issueColor: "#2563EB" },
+                  { label: "Understand",     color: "#7C3AED", headerBg: "rgba(124,58,237,0.12)", icon: <Network size={16} />,       question: "What exactly needs to be done?",     description: "The agent interprets the request, clarifies intent, and identifies the actual problem to solve.",                                            friction: "Ambiguity leads to misinterpretation",                       issueColor: "#7C3AED" },
+                  { label: "Gather context", color: "#B45309", headerBg: "rgba(180,83,9,0.12)",   icon: <Brain size={16} />,         question: "What information do I need?",        description: "The agent pulls data from Jira, Confluence, internal tools, logs, and past tickets to build a complete picture.",                            friction: "Information is fragmented across tools",                     issueColor: "#B45309" },
+                  { label: "Execute",        color: "#0F766E", headerBg: "rgba(15,118,110,0.12)", icon: <Settings size={16} />,      question: "How do I resolve this?",             description: "The agent performs actions across systems — approvals, access changes, configurations, or escalations.",                                      friction: "Manual coordination slows things down",                      issueColor: "#0F766E" },
+                  { label: "Resolve",        color: "#4338CA", headerBg: "rgba(67,56,202,0.12)",  icon: <CheckCircle2 size={16} />,  question: "Is the issue fully addressed?",      description: "The request is completed, validated, and communicated back to the user.",                                                                    friction: "Outcomes depend on human stitching everything together",     issueColor: "#4338CA" },
+                ];
+                return (
+                  <div className="flex flex-col gap-5">
 
-                      {/* Icon */}
-                      <div style={{ color: step.color, opacity: 0.75 }}>
-                        {step.icon}
-                      </div>
+                    {/* Row 1: icon + label combined, with chevron arrows */}
+                    <div className="flex items-center">
+                      {steps.flatMap((step, i) => {
+                        const items: JSX.Element[] = [
+                          <div key={`h-${i}`} className="flex-1 flex justify-center">
+                            <div className="flex items-center gap-2 rounded-full px-4 py-1.5" style={{ background: step.headerBg }}>
+                              <span style={{ color: step.color, opacity: 0.85, display: "flex" }}>{step.icon}</span>
+                              <span className="text-sm font-bold whitespace-nowrap" style={{ color: step.color, fontFamily: "'Wotfard', sans-serif" }}>{step.label}</span>
+                            </div>
+                          </div>,
+                        ];
+                        if (i < steps.length - 1) {
+                          items.push(
+                            <div key={`a-${i}`} className="flex-shrink-0">
+                              <ChevronRight size={18} strokeWidth={1.5} style={{ color: "#C8C2BB" }} />
+                            </div>
+                          );
+                        }
+                        return items;
+                      })}
+                    </div>
 
-                      {/* Question */}
-                      <p
-                        className="text-xs font-semibold italic text-center leading-snug px-1"
-                        style={{ color: step.color, fontFamily: "'Wotfard', sans-serif" }}
-                      >
-                        "{step.question}"
-                      </p>
+                    {/* Row 2: questions — all on same line */}
+                    <div className="grid grid-cols-5 gap-4">
+                      {steps.map((step, i) => (
+                        <p key={i} className="text-xs font-semibold italic text-center leading-snug px-2" style={{ color: step.color, fontFamily: "'Wotfard', sans-serif" }}>
+                          "{step.question}"
+                        </p>
+                      ))}
+                    </div>
 
-                      {/* Description */}
-                      <p
-                        className="text-xs leading-relaxed text-center text-[#1a1a1a]/50 px-1"
-                        style={{ fontFamily: "'Wotfard', sans-serif" }}
-                      >
-                        {step.description}
-                      </p>
+                    {/* Row 3: descriptions — all on same line */}
+                    <div className="grid grid-cols-5 gap-4">
+                      {steps.map((step, i) => (
+                        <p key={i} className="text-xs leading-relaxed text-center text-[#1a1a1a]/50 px-2" style={{ fontFamily: "'Wotfard', sans-serif" }}>
+                          {step.description}
+                        </p>
+                      ))}
+                    </div>
 
-                      {/* Friction line */}
-                      <p
-                        className="text-[11px] leading-snug text-center px-1"
-                        style={{ color: step.issueColor, opacity: 0.75, fontFamily: "'Wotfard', sans-serif" }}
-                      >
-                        → {step.friction}
-                      </p>
-                    </div>,
-                  ];
-                  if (i < arr.length - 1) {
-                    items.push(
-                      <div key={`arrow-${i}`} className="flex-shrink-0 flex items-start" style={{ paddingTop: "9px" }}>
-                        <ChevronRight size={20} strokeWidth={1.5} style={{ color: "#C8C2BB" }} />
-                      </div>
-                    );
-                  }
-                  return items;
-                })}
-              </div>
+                    {/* Row 4: friction observations — all on same line */}
+                    <div className="grid grid-cols-5 gap-4">
+                      {steps.map((step, i) => (
+                        <div key={i} className="flex items-start justify-center gap-1.5 px-2">
+                          <Lightbulb size={11} style={{ color: step.issueColor, marginTop: 1, flexShrink: 0, opacity: 0.8 }} />
+                          <p className="text-[11px] leading-snug" style={{ color: step.issueColor, opacity: 0.8, fontFamily: "'Wotfard', sans-serif" }}>
+                            {step.friction}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+
+                  </div>
+                );
+              })()}
             </SnapReveal>
 
             {/* Callout */}
@@ -599,7 +599,6 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
 
           </div>
         </div>
-
         {/* Slides 2–4: One slide per challenge group */}
         {groups.map((group, gi) => {
           const p = CHALLENGE_PALETTE[gi % CHALLENGE_PALETTE.length];
@@ -705,7 +704,6 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
             </div>
           );
         })}
-
         {/* Final slide: Pain Points */}
         <div className="h-screen snap-start snap-always flex flex-col justify-center py-20">
           <div className="max-w-3xl mx-auto w-full px-6">
