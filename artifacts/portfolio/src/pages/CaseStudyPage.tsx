@@ -512,11 +512,11 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
             <SnapReveal delay={0.1}>
               <div className="flex items-start">
                 {[
-                  { label: "Request",       color: "#E8654B", headerBg: "rgba(232,101,75,0.12)", icon: <Inbox size={32} />,        issue: "Latency",           issueColor: "#E8654B" },
-                  { label: "Understand",    color: "#16a34a", headerBg: "rgba(22,163,74,0.12)",  icon: <Network size={32} />,       issue: "Fragmentation",     issueColor: "#16a34a" },
-                  { label: "Gather context",color: "#1a1a1a", headerBg: "rgba(0,0,0,0.06)",      icon: <Brain size={32} />,         issue: "Cognitive overload", issueColor: "#E8654B" },
-                  { label: "Execute",       color: "#1a1a1a", headerBg: "rgba(0,0,0,0.06)",      icon: <Settings size={32} />,      issue: "Execution gap",     issueColor: "#E8654B" },
-                  { label: "Resolve",       color: "#6366F1", headerBg: "rgba(99,102,241,0.12)", icon: <CheckCircle2 size={32} />,  issue: "Execution gap",     issueColor: "#6366F1" },
+                  { label: "Request",       color: "#2563EB", headerBg: "rgba(37,99,235,0.12)",   icon: <Inbox size={32} />,        issue: "Latency",            issueColor: "#2563EB" },
+                  { label: "Understand",    color: "#7C3AED", headerBg: "rgba(124,58,237,0.12)", icon: <Network size={32} />,       issue: "Fragmentation",      issueColor: "#7C3AED" },
+                  { label: "Gather context",color: "#B45309", headerBg: "rgba(180,83,9,0.12)",   icon: <Brain size={32} />,         issue: "Cognitive overload", issueColor: "#B45309" },
+                  { label: "Execute",       color: "#0F766E", headerBg: "rgba(15,118,110,0.12)", icon: <Settings size={32} />,      issue: "Execution gap",      issueColor: "#0F766E" },
+                  { label: "Resolve",       color: "#4338CA", headerBg: "rgba(67,56,202,0.12)",  icon: <CheckCircle2 size={32} />,  issue: "Execution gap",      issueColor: "#4338CA" },
                 ].map((step, i, arr) => (
                   <div key={i} className="flex items-start flex-1">
                     {/* Step column */}
