@@ -279,17 +279,48 @@ function OverviewSection({ study }: { study: CaseStudy }) {
               }}
             >
               <div style={{ transform: "skewY(3deg)" }}>
-                <div className="flex flex-col gap-4">
-                  {study.overview.split("\n\n").map((para, i) => (
-                    <p
-                      key={i}
-                      className="text-base md:text-lg leading-relaxed text-[#1a1a1a]"
-                      style={{ fontFamily: "'Wotfard', sans-serif" }}
-                    >
-                      {para}
+                {study.id === 4 ? (
+                  <div className="flex flex-col gap-4">
+                    <p className="text-base md:text-lg leading-relaxed text-[#1a1a1a]" style={{ fontFamily: "'Wotfard', sans-serif" }}>
+                      Rovo Service is an AI-powered system designed to{" "}
+                      <mark style={{ background: "rgba(99,102,241,0.18)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
+                        transform how enterprise support works
+                      </mark>
+                      {" "}— shifting from{" "}
+                      <mark style={{ background: "rgba(232,101,75,0.15)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
+                        reactive ticket handling
+                      </mark>
+                      {" "}to{" "}
+                      <mark style={{ background: "rgba(99,102,241,0.18)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
+                        proactive, autonomous issue resolution
+                      </mark>
+                      .
                     </p>
-                  ))}
-                </div>
+                    <p className="text-base md:text-lg leading-relaxed text-[#1a1a1a]" style={{ fontFamily: "'Wotfard', sans-serif" }}>
+                      Built within Jira Service Management, the system{" "}
+                      <mark style={{ background: "rgba(99,102,241,0.18)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
+                        embeds AI agents directly into service workflows
+                      </mark>
+                      , enabling them to understand requests, generate resolution plans, and execute actions across tools — while{" "}
+                      <mark style={{ background: "rgba(99,102,241,0.18)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
+                        keeping humans in control
+                      </mark>
+                      .
+                    </p>
+                  </div>
+                ) : (
+                  <div className="flex flex-col gap-4">
+                    {study.overview.split("\n\n").map((para, i) => (
+                      <p
+                        key={i}
+                        className="text-base md:text-lg leading-relaxed text-[#1a1a1a]"
+                        style={{ fontFamily: "'Wotfard', sans-serif" }}
+                      >
+                        {para}
+                      </p>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           </div>
