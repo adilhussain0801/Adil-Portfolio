@@ -419,7 +419,7 @@ export const CASE_STUDIES: CaseStudy[] = [
           timelineProgress: 22,
           timelineEndLabel: "HIGH FRICTION",
           timelineMarkers: ["Ticket received", "Clarification loop", "Assignment"] as [string, string, string],
-          metric: { value: "65%", label: "of incoming tickets lack complete information" },
+          metric: { value: "65%", label: "of incoming tickets lack complete information — increasing handling time and reducing SLA compliance" },
           steps: [
             { title: "A new request arrives", description: "Unstructured, missing info" },
             { title: "Reaching out for clarity", description: "Multiple back-and-forth" },
