@@ -552,9 +552,16 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                   ];
                   if (i < arr.length - 1) {
                     items.push(
-                      <div key={`arrow-${i}`} className="flex-shrink-0 flex items-start pt-2.5">
-                        <svg width="24" height="14" viewBox="0 0 24 14" fill="none">
-                          <path d="M0 7H18M18 7L12 2M18 7L12 12" stroke="#C8C2BB" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                      <div key={`arrow-${i}`} className="flex-shrink-0 flex items-start" style={{ paddingTop: "9px" }}>
+                        <svg width="36" height="16" viewBox="0 0 36 16" fill="none">
+                          <defs>
+                            <linearGradient id={`ag-${i}`} x1="0" y1="0" x2="36" y2="0" gradientUnits="userSpaceOnUse">
+                              <stop offset="0%" stopColor={arr[i].color} stopOpacity="0.55" />
+                              <stop offset="100%" stopColor={arr[i + 1].color} stopOpacity="0.55" />
+                            </linearGradient>
+                          </defs>
+                          <path d="M2 8H28" stroke={`url(#ag-${i})`} strokeWidth="2" strokeLinecap="round" />
+                          <path d="M22 3L30 8L22 13" stroke={`url(#ag-${i})`} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                       </div>
                     );
