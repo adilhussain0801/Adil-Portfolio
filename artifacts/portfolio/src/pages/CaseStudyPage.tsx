@@ -507,11 +507,11 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
             <SnapReveal delay={0.1}>
               {(() => {
                 const steps = [
-                  { label: "Request",        color: "#2563EB", headerBg: "rgba(37,99,235,0.12)",   icon: <Inbox size={16} />,        question: "What is the user asking for?",       description: "A request comes in via email, portal, or chat — often incomplete or unclear.",                                                              friction: "Often missing key details — triggers back-and-forth",        issueColor: "#2563EB" },
-                  { label: "Understand",     color: "#7C3AED", headerBg: "rgba(124,58,237,0.12)", icon: <Network size={16} />,       question: "What exactly needs to be done?",     description: "The agent interprets the request, clarifies intent, and identifies the actual problem to solve.",                                            friction: "Ambiguity leads to misinterpretation",                       issueColor: "#7C3AED" },
-                  { label: "Gather context", color: "#B45309", headerBg: "rgba(180,83,9,0.12)",   icon: <Brain size={16} />,         question: "What information do I need?",        description: "The agent pulls data from Jira, Confluence, internal tools, logs, and past tickets to build a complete picture.",                            friction: "Information is fragmented across tools",                     issueColor: "#B45309" },
-                  { label: "Execute",        color: "#0F766E", headerBg: "rgba(15,118,110,0.12)", icon: <Settings size={16} />,      question: "How do I resolve this?",             description: "The agent performs actions across systems — approvals, access changes, configurations, or escalations.",                                      friction: "Manual coordination slows things down",                      issueColor: "#0F766E" },
-                  { label: "Resolve",        color: "#4338CA", headerBg: "rgba(67,56,202,0.12)",  icon: <CheckCircle2 size={16} />,  question: "Is the issue fully addressed?",      description: "The request is completed, validated, and communicated back to the user.",                                                                    friction: "Outcomes depend on human stitching everything together",     issueColor: "#4338CA" },
+                  { label: "Request",        color: "#2563EB", headerBg: "rgba(37,99,235,0.12)",   icon: <Inbox size={22} />,        question: "What is the user asking for?",       description: "A request comes in via email, portal, or chat — often incomplete or unclear.",                                                              friction: "Often missing key details — triggers back-and-forth",        issueColor: "#2563EB" },
+                  { label: "Understand",     color: "#7C3AED", headerBg: "rgba(124,58,237,0.12)", icon: <Network size={22} />,       question: "What exactly needs to be done?",     description: "The agent interprets the request, clarifies intent, and identifies the actual problem to solve.",                                            friction: "Ambiguity leads to misinterpretation",                       issueColor: "#7C3AED" },
+                  { label: "Gather context", color: "#B45309", headerBg: "rgba(180,83,9,0.12)",   icon: <Brain size={22} />,         question: "What information do I need?",        description: "The agent pulls data from Jira, Confluence, internal tools, logs, and past tickets to build a complete picture.",                            friction: "Information is fragmented across tools",                     issueColor: "#B45309" },
+                  { label: "Execute",        color: "#0F766E", headerBg: "rgba(15,118,110,0.12)", icon: <Settings size={22} />,      question: "How do I resolve this?",             description: "The agent performs actions across systems — approvals, access changes, configurations, or escalations.",                                      friction: "Manual coordination slows things down",                      issueColor: "#0F766E" },
+                  { label: "Resolve",        color: "#4338CA", headerBg: "rgba(67,56,202,0.12)",  icon: <CheckCircle2 size={22} />,  question: "Is the issue fully addressed?",      description: "The request is completed, validated, and communicated back to the user.",                                                                    friction: "Outcomes depend on human stitching everything together",     issueColor: "#4338CA" },
                 ];
                 return (
                   <div className="flex flex-col gap-5">
@@ -523,14 +523,14 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                         {/* Dotted connector line behind icons */}
                         <div
                           className="absolute border-t border-dashed border-[#C8C2BB]"
-                          style={{ top: 24, left: "10%", right: "10%" }}
+                          style={{ top: 32, left: "10%", right: "10%" }}
                         />
-                        {/* Filled chevrons between steps */}
+                        {/* Filled chevrons between steps — top=26 so center (26+6)=32 aligns with line */}
                         {[20, 40, 60, 80].map((pct, ci) => (
                           <div
                             key={ci}
                             className="absolute z-20"
-                            style={{ left: `calc(${pct}% - 4px)`, top: 18 }}
+                            style={{ left: `calc(${pct}% - 4px)`, top: 26 }}
                           >
                             <svg width="8" height="12" viewBox="0 0 8 12">
                               <polygon points="0,0 8,6 0,12" fill="#C8C2BB" />
@@ -540,9 +540,9 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                         {steps.map((step, i) => (
                           <div key={i} className="flex justify-center relative z-10">
                             {/* Page-color buffer hides the dotted line behind the icon */}
-                            <div className="rounded-full p-1.5" style={{ background: "#FAF8F5" }}>
+                            <div className="rounded-full p-2" style={{ background: "#FAF8F5" }}>
                               <div
-                                className="w-9 h-9 rounded-full flex items-center justify-center"
+                                className="w-12 h-12 rounded-full flex items-center justify-center"
                                 style={{ background: step.headerBg, color: step.color }}
                               >
                                 {step.icon}
@@ -552,11 +552,11 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                         ))}
                       </div>
                       {/* Label row below icons */}
-                      <div className="grid grid-cols-5">
+                      <div className="grid grid-cols-5 mt-1">
                         {steps.map((step, i) => (
                           <p
                             key={i}
-                            className="text-sm font-bold text-center whitespace-nowrap"
+                            className="text-base font-bold text-center whitespace-nowrap"
                             style={{ color: step.color, fontFamily: "'Wotfard', sans-serif" }}
                           >
                             {step.label}
@@ -568,7 +568,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                     {/* Row 2: questions — all on same line */}
                     <div className="grid grid-cols-5 gap-4">
                       {steps.map((step, i) => (
-                        <p key={i} className="text-xs font-semibold italic text-center leading-snug px-2" style={{ color: step.color, fontFamily: "'Wotfard', sans-serif" }}>
+                        <p key={i} className="text-sm font-semibold italic text-center leading-snug px-2" style={{ color: step.color, fontFamily: "'Wotfard', sans-serif" }}>
                           "{step.question}"
                         </p>
                       ))}
@@ -577,7 +577,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                     {/* Row 3: descriptions — all on same line */}
                     <div className="grid grid-cols-5 gap-4">
                       {steps.map((step, i) => (
-                        <p key={i} className="text-xs leading-relaxed text-center text-[#1a1a1a]/50 px-2" style={{ fontFamily: "'Wotfard', sans-serif" }}>
+                        <p key={i} className="text-sm leading-relaxed text-center text-[#1a1a1a]/50 px-2" style={{ fontFamily: "'Wotfard', sans-serif" }}>
                           {step.description}
                         </p>
                       ))}
