@@ -283,26 +283,26 @@ function OverviewSection({ study }: { study: CaseStudy }) {
                   <div className="flex flex-col gap-4">
                     <p className="text-base md:text-lg leading-relaxed text-[#1a1a1a]" style={{ fontFamily: "'Wotfard', sans-serif" }}>
                       Rovo Service is an AI-powered system designed to{" "}
-                      <mark style={{ background: "rgba(59,130,246,0.18)", color: "#1D4ED8", borderRadius: "5px", padding: "2px 7px", fontWeight: 700 }}>
+                      <mark style={{ background: "rgba(99,102,241,0.14)", color: "#4338CA", borderRadius: "5px", padding: "2px 7px", fontWeight: 700 }}>
                         transform how enterprise support works
                       </mark>
                       {" "}— shifting from{" "}
-                      <mark style={{ background: "rgba(239,68,68,0.12)", color: "#B91C1C", borderRadius: "5px", padding: "2px 7px", fontWeight: 700 }}>
+                      <mark style={{ background: "rgba(232,101,75,0.14)", color: "#C05437", borderRadius: "5px", padding: "2px 7px", fontWeight: 700 }}>
                         reactive ticket handling
                       </mark>
                       {" "}to{" "}
-                      <mark style={{ background: "rgba(16,185,129,0.16)", color: "#065F46", borderRadius: "5px", padding: "2px 7px", fontWeight: 700 }}>
+                      <mark style={{ background: "rgba(99,102,241,0.14)", color: "#4338CA", borderRadius: "5px", padding: "2px 7px", fontWeight: 700 }}>
                         proactive, autonomous issue resolution
                       </mark>
                       .
                     </p>
                     <p className="text-base md:text-lg leading-relaxed text-[#1a1a1a]" style={{ fontFamily: "'Wotfard', sans-serif" }}>
                       Built within Jira Service Management, the system{" "}
-                      <mark style={{ background: "rgba(139,92,246,0.16)", color: "#5B21B6", borderRadius: "5px", padding: "2px 7px", fontWeight: 700 }}>
+                      <mark style={{ background: "rgba(99,102,241,0.14)", color: "#4338CA", borderRadius: "5px", padding: "2px 7px", fontWeight: 700 }}>
                         embeds AI agents directly into service workflows
                       </mark>
                       , enabling them to understand requests, generate resolution plans, and execute actions across tools — while{" "}
-                      <mark style={{ background: "rgba(6,182,212,0.16)", color: "#0E7490", borderRadius: "5px", padding: "2px 7px", fontWeight: 700 }}>
+                      <mark style={{ background: "rgba(99,102,241,0.14)", color: "#4338CA", borderRadius: "5px", padding: "2px 7px", fontWeight: 700 }}>
                         keeping humans in control
                       </mark>
                       .
