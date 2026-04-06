@@ -263,17 +263,37 @@ function OverviewSection({ study }: { study: CaseStudy }) {
           >
             Overview
           </h2>
-          <div className="flex flex-col gap-5">
-            {study.overview.split("\n\n").map((para, i) => (
-              <p
-                key={i}
-                className="text-base md:text-lg leading-relaxed text-foreground/80"
-                style={{ fontFamily: "'Wotfard', sans-serif" }}
-              >
-                {para}
-              </p>
-            ))}
+
+          {/* Quote card — skewed parallelogram style */}
+          <div className="relative pl-10">
+            <img
+              src="/quote-mark.png"
+              alt=""
+              className="absolute left-0 top-6 w-14 h-auto z-10 select-none pointer-events-none"
+            />
+            <div
+              className="rounded-xl px-8 pt-14 pb-8 relative overflow-hidden"
+              style={{
+                background: "#FCE8E4",
+                transform: "skewY(-3deg)",
+              }}
+            >
+              <div style={{ transform: "skewY(3deg)" }}>
+                <div className="flex flex-col gap-4">
+                  {study.overview.split("\n\n").map((para, i) => (
+                    <p
+                      key={i}
+                      className="text-base md:text-lg leading-relaxed text-[#1a1a1a]"
+                      style={{ fontFamily: "'Wotfard', sans-serif" }}
+                    >
+                      {para}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
+
         </div>
       </SnapReveal>
     </section>
