@@ -517,10 +517,9 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                   { label: "Gather context",color: "#B45309", headerBg: "rgba(180,83,9,0.12)",   icon: <Brain size={32} />,         issue: "Cognitive overload", issueColor: "#B45309" },
                   { label: "Execute",       color: "#0F766E", headerBg: "rgba(15,118,110,0.12)", icon: <Settings size={32} />,      issue: "Execution gap",      issueColor: "#0F766E" },
                   { label: "Resolve",       color: "#4338CA", headerBg: "rgba(67,56,202,0.12)",  icon: <CheckCircle2 size={32} />,  issue: "Execution gap",      issueColor: "#4338CA" },
-                ].map((step, i, arr) => (
-                  <div key={i} className="flex items-start flex-1">
-                    {/* Step column */}
-                    <div className="flex flex-col items-center gap-3 flex-1">
+                ].flatMap((step, i, arr) => {
+                  const items: JSX.Element[] = [
+                    <div key={`step-${i}`} className="flex flex-col items-center gap-3 flex-1 min-w-0">
                       {/* Label pill */}
                       <div
                         className="rounded-full px-4 py-1.5"
@@ -549,18 +548,19 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                           {step.issue}
                         </span>
                       </div>
-                    </div>
-
-                    {/* Arrow between steps */}
-                    {i < arr.length - 1 && (
-                      <div className="flex items-center self-start mt-2.5 mx-1">
-                        <svg width="28" height="14" viewBox="0 0 28 14" fill="none">
-                          <path d="M0 7H22M22 7L16 2M22 7L16 12" stroke="#C8C2BB" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                    </div>,
+                  ];
+                  if (i < arr.length - 1) {
+                    items.push(
+                      <div key={`arrow-${i}`} className="flex-shrink-0 flex items-start pt-2.5">
+                        <svg width="24" height="14" viewBox="0 0 24 14" fill="none">
+                          <path d="M0 7H18M18 7L12 2M18 7L12 12" stroke="#C8C2BB" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                       </div>
-                    )}
-                  </div>
-                ))}
+                    );
+                  }
+                  return items;
+                })}
               </div>
             </SnapReveal>
 
