@@ -393,24 +393,50 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                   {/* Counter-skew wrapper keeps content straight */}
                   <div style={{ transform: "skewY(3deg)" }}>
                     {/* Quote text with highlights */}
-                    <p
-                      className="text-lg md:text-xl leading-relaxed text-[#1a1a1a]"
-                      style={{ fontFamily: "'Wotfard', sans-serif" }}
-                    >
-                      Service agents{" "}
-                      <mark style={{ background: "rgba(99,102,241,0.18)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
-                        spend more time understanding requests than resolving them
-                      </mark>
-                      . A single request requires{" "}
-                      <mark style={{ background: "rgba(99,102,241,0.18)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
-                        navigating fragmented tools
-                      </mark>
-                      , clarifying missing information, and manually stitching together a resolution plan — resulting in{" "}
-                      <mark style={{ background: "rgba(99,102,241,0.18)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
-                        delays, inefficiencies, and high cognitive load
-                      </mark>
-                      .
-                    </p>
+                    <div className="flex flex-col gap-4">
+                      <p
+                        className="text-lg md:text-xl leading-relaxed text-[#1a1a1a]"
+                        style={{ fontFamily: "'Wotfard', sans-serif" }}
+                      >
+                        Enterprise support teams operate at{" "}
+                        <mark style={{ background: "rgba(99,102,241,0.18)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
+                          massive scale
+                        </mark>
+                        , where even small inefficiencies{" "}
+                        <mark style={{ background: "rgba(99,102,241,0.18)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
+                          compound into significant operational cost
+                        </mark>
+                        .
+                      </p>
+                      <p
+                        className="text-lg md:text-xl leading-relaxed text-[#1a1a1a]"
+                        style={{ fontFamily: "'Wotfard', sans-serif" }}
+                      >
+                        Agents spend up to{" "}
+                        <mark style={{ background: "rgba(99,102,241,0.18)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
+                          40–60% of their time not resolving issues
+                        </mark>
+                        , but understanding them — through{" "}
+                        <mark style={{ background: "rgba(99,102,241,0.18)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
+                          navigating fragmented tools, clarifying incomplete requests, and manually assembling context
+                        </mark>
+                        .
+                      </p>
+                      <p
+                        className="text-lg md:text-xl leading-relaxed text-[#1a1a1a]"
+                        style={{ fontFamily: "'Wotfard', sans-serif" }}
+                      >
+                        This results in{" "}
+                        <mark style={{ background: "rgba(99,102,241,0.18)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
+                          slower resolution times, higher cognitive load
+                        </mark>
+                        , and a system that{" "}
+                        <mark style={{ background: "rgba(99,102,241,0.18)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
+                          scales linearly with headcount
+                        </mark>
+                        {" "}— making it increasingly inefficient as demand grows.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
