@@ -591,6 +591,26 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
 
           </div>
         </div>
+        {/* Transition: 3 stages of friction */}
+        <div className="h-screen snap-start snap-always flex flex-col items-center justify-center" style={{ background: "#FAF8F5" }}>
+          <SnapReveal>
+            <div className="flex flex-col items-center gap-4 text-center px-6">
+              <p
+                className="text-[10px] uppercase tracking-widest font-bold"
+                style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
+              >
+                Current journey breakdown
+              </p>
+              <h2
+                className="text-4xl md:text-5xl font-bold text-[#1a1a1a] leading-tight"
+                style={{ fontFamily: "'Wotfard', sans-serif" }}
+              >
+                3 stages of friction
+              </h2>
+            </div>
+          </SnapReveal>
+        </div>
+
         {/* Slides 2–4: One slide per challenge group */}
         {groups.map((group, gi) => {
           const p = CHALLENGE_PALETTE[gi % CHALLENGE_PALETTE.length];
