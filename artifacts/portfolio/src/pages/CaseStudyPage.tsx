@@ -441,6 +441,37 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                 </div>
               </div>
             </SnapReveal>
+
+            {/* Business Impact Metrics */}
+            <SnapReveal delay={0.2}>
+              <div className="grid grid-cols-3 gap-4 mt-8">
+                {[
+                  { value: "$15–$50", label: "average cost per ticket", icon: "💸" },
+                  { value: "3–6", label: "tools used per request", icon: "🔧" },
+                  { value: "40–60%", label: "of time spent understanding, not resolving", icon: "⏱" },
+                ].map((stat, i) => (
+                  <div
+                    key={i}
+                    className="rounded-2xl px-5 py-5 flex flex-col gap-2"
+                    style={{ background: "#F0EDE8", border: "1px solid #E8E4DE" }}
+                  >
+                    <span className="text-xl">{stat.icon}</span>
+                    <p
+                      className="text-2xl md:text-3xl font-bold leading-none"
+                      style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
+                    >
+                      {stat.value}
+                    </p>
+                    <p
+                      className="text-xs leading-relaxed"
+                      style={{ color: "rgba(26,26,26,0.55)", fontFamily: "'Wotfard', sans-serif" }}
+                    >
+                      {stat.label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </SnapReveal>
           </div>
         </div>
 
