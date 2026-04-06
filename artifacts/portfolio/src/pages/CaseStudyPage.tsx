@@ -553,16 +553,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                   if (i < arr.length - 1) {
                     items.push(
                       <div key={`arrow-${i}`} className="flex-shrink-0 flex items-start" style={{ paddingTop: "9px" }}>
-                        <svg width="36" height="16" viewBox="0 0 36 16" fill="none">
-                          <defs>
-                            <linearGradient id={`ag-${i}`} x1="0" y1="0" x2="36" y2="0" gradientUnits="userSpaceOnUse">
-                              <stop offset="0%" stopColor={arr[i].color} stopOpacity="0.55" />
-                              <stop offset="100%" stopColor={arr[i + 1].color} stopOpacity="0.55" />
-                            </linearGradient>
-                          </defs>
-                          <path d="M2 8H28" stroke={`url(#ag-${i})`} strokeWidth="2" strokeLinecap="round" />
-                          <path d="M22 3L30 8L22 13" stroke={`url(#ag-${i})`} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
+                        <ChevronRight size={20} strokeWidth={1.5} style={{ color: "#C8C2BB" }} />
                       </div>
                     );
                   }
