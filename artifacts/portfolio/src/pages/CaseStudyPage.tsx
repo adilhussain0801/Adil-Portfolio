@@ -523,14 +523,14 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                         {/* Dotted connector line behind icons */}
                         <div
                           className="absolute border-t border-dashed border-[#C8C2BB]"
-                          style={{ top: 18, left: "10%", right: "10%" }}
+                          style={{ top: 24, left: "10%", right: "10%" }}
                         />
                         {/* Filled chevrons between steps */}
                         {[20, 40, 60, 80].map((pct, ci) => (
                           <div
                             key={ci}
                             className="absolute z-20 flex items-center justify-center"
-                            style={{ left: `${pct}%`, top: 18, transform: "translate(-50%, -50%)" }}
+                            style={{ left: `${pct}%`, top: 24, transform: "translate(-50%, -50%)" }}
                           >
                             <div style={{
                               width: 0, height: 0,
