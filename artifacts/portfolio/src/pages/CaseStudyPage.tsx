@@ -494,7 +494,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
         </div>
         {/* Why Resolution Breaks Down slide */}
         <div className="h-screen snap-start snap-always flex flex-col justify-center py-16">
-          <div className="w-full flex flex-col gap-8" style={{ paddingLeft: 144, paddingRight: 144 }}>
+          <div className="w-full flex flex-col gap-14" style={{ paddingLeft: 144, paddingRight: 144 }}>
 
             <SnapReveal>
               <h2
@@ -517,21 +517,39 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                   <div className="flex flex-col gap-5">
 
                     {/* Row 1: icon (with dotted connector) then label below */}
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-3">
                       {/* Icon row with dotted line running through */}
                       <div className="relative grid grid-cols-5">
                         {/* Dotted connector line behind icons */}
                         <div
-                          className="absolute border-t border-dashed border-[#D4CEC9]"
+                          className="absolute border-t border-dashed border-[#C8C2BB]"
                           style={{ top: 18, left: "10%", right: "10%" }}
                         />
+                        {/* Filled chevrons between steps */}
+                        {[20, 40, 60, 80].map((pct, ci) => (
+                          <div
+                            key={ci}
+                            className="absolute z-20 flex items-center justify-center"
+                            style={{ left: `${pct}%`, top: 18, transform: "translate(-50%, -50%)" }}
+                          >
+                            <div style={{
+                              width: 0, height: 0,
+                              borderTop: "5px solid transparent",
+                              borderBottom: "5px solid transparent",
+                              borderLeft: "7px solid #C8C2BB",
+                            }} />
+                          </div>
+                        ))}
                         {steps.map((step, i) => (
                           <div key={i} className="flex justify-center relative z-10">
-                            <div
-                              className="w-9 h-9 rounded-full flex items-center justify-center"
-                              style={{ background: step.headerBg, color: step.color }}
-                            >
-                              {step.icon}
+                            {/* Page-color buffer hides the dotted line behind the icon */}
+                            <div className="rounded-full p-1.5" style={{ background: "#FAF8F5" }}>
+                              <div
+                                className="w-9 h-9 rounded-full flex items-center justify-center"
+                                style={{ background: step.headerBg, color: step.color }}
+                              >
+                                {step.icon}
+                              </div>
                             </div>
                           </div>
                         ))}
