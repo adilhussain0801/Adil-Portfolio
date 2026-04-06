@@ -691,6 +691,19 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                           {group.metric.label}
                         </p>
                       </div>
+
+                      {/* Business impact */}
+                      {group.businessImpact && (
+                        <div className="flex items-start gap-2.5 rounded-xl px-4 py-3" style={{ background: "rgba(232,101,75,0.07)" }}>
+                          <TrendingDown size={14} className="flex-shrink-0 mt-0.5" style={{ color: "#C05437" }} />
+                          <p
+                            className="text-xs leading-relaxed"
+                            style={{ color: "#C05437", fontFamily: "'Wotfard', sans-serif" }}
+                          >
+                            {group.businessImpact}
+                          </p>
+                        </div>
+                      )}
                 </div>
               </SnapReveal>
             </div>

@@ -42,6 +42,7 @@ export interface CaseStudy {
       timelineEndLabel: string;
       timelineMarkers: [string, string, string];
       metric: { value: string; label: string };
+      businessImpact?: string;
       steps: Array<{ title: string; description: string }>;
     }>;
     painPoints?: Array<{
@@ -420,6 +421,7 @@ export const CASE_STUDIES: CaseStudy[] = [
           timelineEndLabel: "HIGH FRICTION",
           timelineMarkers: ["Ticket received", "Clarification loop", "Assignment"] as [string, string, string],
           metric: { value: "65%", label: "of incoming tickets lack complete information — increasing handling time and reducing SLA compliance" },
+          businessImpact: "Leads to repeated back-and-forth, increasing resolution time and operational cost per ticket",
           steps: [
             { title: "A new request arrives", description: "Unstructured, missing info" },
             { title: "Reaching out for clarity", description: "Multiple back-and-forth" },
@@ -433,6 +435,7 @@ export const CASE_STUDIES: CaseStudy[] = [
           timelineEndLabel: "CONTEXT SCATTERED",
           timelineMarkers: ["Intake", "Tool switching", "Context found"] as [string, string, string],
           metric: { value: "3+", label: "tools opened per request on average" },
+          businessImpact: "Fragments agent focus and raises the risk of missed context, resulting in incorrect resolutions and repeat tickets",
           steps: [
             { title: "Searching across tools", description: "Slack, Confluence, Jira" },
             { title: "Context is scattered", description: "Docs, chats, tickets" },
@@ -446,6 +449,7 @@ export const CASE_STUDIES: CaseStudy[] = [
           timelineEndLabel: "RESOLUTION DRAFTED",
           timelineMarkers: ["0h", "Context gathering", "Action"] as [string, string, string],
           metric: { value: "2.5hrs", label: "average manual resolution time per request" },
+          businessImpact: "Drives up cost per ticket and degrades SLA performance, directly impacting customer satisfaction and team throughput",
           steps: [
             { title: "Piecing together a plan", description: "Manual, error-prone" },
             { title: "Resolved after hours", description: "High effort, low efficiency" },
