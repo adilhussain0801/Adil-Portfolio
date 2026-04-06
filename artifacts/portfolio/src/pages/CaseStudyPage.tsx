@@ -553,7 +553,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
 
                     {/* Arrow between steps */}
                     {i < arr.length - 1 && (
-                      <div className="flex items-center self-center mb-8 mx-1">
+                      <div className="flex items-center self-start mt-2.5 mx-1">
                         <svg width="28" height="14" viewBox="0 0 28 14" fill="none">
                           <path d="M0 7H22M22 7L16 2M22 7L16 12" stroke="#C8C2BB" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
