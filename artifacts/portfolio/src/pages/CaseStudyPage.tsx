@@ -365,113 +365,82 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
         style={{ background: "#FAF8F5" }}
       >
         {/* Slide 1: Hero Statement */}
-        <div className="h-screen snap-start snap-always flex flex-col justify-center py-20">
-          <div className="max-w-3xl mx-auto w-full px-6">
-            <h2
-              className="text-2xl md:text-3xl leading-tight text-foreground mb-8"
-              style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
-            >
-              The challenge
-            </h2>
-            <SnapReveal>
-              <div className="relative pl-10">
-                {/* Quote mark image — sits left of card, overlapping its edge */}
-                <img
-                  src="/quote-mark.png"
-                  alt=""
-                  className="absolute left-0 top-6 w-14 h-auto z-10 select-none pointer-events-none"
-                />
+        <div className="h-screen snap-start snap-always flex flex-col justify-center py-16">
+          <div className="max-w-5xl mx-auto w-full px-6 flex flex-col gap-8">
 
-                {/* Card — skewed to create parallelogram shape */}
-                <div
-                  className="rounded-xl px-8 pt-14 pb-8 relative overflow-hidden"
-                  style={{
-                    background: "#FCE8E4",
-                    transform: "skewY(-3deg)",
-                  }}
-                >
-                  {/* Counter-skew wrapper keeps content straight */}
-                  <div style={{ transform: "skewY(3deg)" }}>
-                    {/* Quote text with highlights */}
-                    <div className="flex flex-col gap-4">
-                      <p
-                        className="text-lg md:text-xl leading-relaxed text-[#1a1a1a]"
-                        style={{ fontFamily: "'Wotfard', sans-serif" }}
-                      >
-                        Enterprise support teams operate at{" "}
-                        <mark style={{ background: "rgba(99,102,241,0.18)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
-                          massive scale
-                        </mark>
-                        , where even small inefficiencies{" "}
-                        <mark style={{ background: "rgba(99,102,241,0.18)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
-                          compound into significant operational cost
-                        </mark>
-                        .
-                      </p>
-                      <p
-                        className="text-lg md:text-xl leading-relaxed text-[#1a1a1a]"
-                        style={{ fontFamily: "'Wotfard', sans-serif" }}
-                      >
-                        Agents spend up to{" "}
-                        <mark style={{ background: "rgba(99,102,241,0.18)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
-                          40–60% of their time not resolving issues
-                        </mark>
-                        , but understanding them — through{" "}
-                        <mark style={{ background: "rgba(99,102,241,0.18)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
-                          navigating fragmented tools, clarifying incomplete requests, and manually assembling context
-                        </mark>
-                        .
-                      </p>
-                      <p
-                        className="text-lg md:text-xl leading-relaxed text-[#1a1a1a]"
-                        style={{ fontFamily: "'Wotfard', sans-serif" }}
-                      >
-                        This results in{" "}
-                        <mark style={{ background: "rgba(99,102,241,0.18)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
-                          slower resolution times, higher cognitive load
-                        </mark>
-                        , and a system that{" "}
-                        <mark style={{ background: "rgba(99,102,241,0.18)", color: "inherit", borderRadius: "3px", padding: "0 2px" }}>
-                          scales linearly with headcount
-                        </mark>
-                        {" "}— making it increasingly inefficient as demand grows.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            {/* Title */}
+            <SnapReveal>
+              <h2
+                className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight"
+                style={{ fontFamily: "'Wotfard', sans-serif" }}
+              >
+                The system doesn't scale
+              </h2>
             </SnapReveal>
 
-            {/* Business Impact Metrics */}
-            <SnapReveal delay={0.2}>
-              <div className="grid grid-cols-3 gap-4 mt-8">
+            {/* Two-column: text left, metrics right */}
+            <div className="flex gap-10 items-start">
+
+              {/* Left: paragraphs */}
+              <SnapReveal className="flex-1">
+                <div className="flex flex-col gap-5">
+                  <p className="text-sm md:text-base leading-relaxed text-[#1a1a1a]/70" style={{ fontFamily: "'Wotfard', sans-serif" }}>
+                    Enterprise support operates at massive scale, where even small inefficiencies compound into significant{" "}
+                    <strong className="text-[#1a1a1a] font-semibold">operational cost.</strong>
+                  </p>
+                  <p className="text-sm md:text-base leading-relaxed text-[#1a1a1a]/70" style={{ fontFamily: "'Wotfard', sans-serif" }}>
+                    Agents spend up to <strong className="text-[#1a1a1a] font-semibold">40–60%</strong> of their time not resolving issues, but{" "}
+                    <strong className="text-[#1a1a1a] font-semibold">understanding</strong> them — navigating fragmented tools, clarifying incomplete requests, and manually assembling context.
+                  </p>
+                  <p className="text-sm md:text-base leading-relaxed text-[#1a1a1a]/70" style={{ fontFamily: "'Wotfard', sans-serif" }}>
+                    This results in <strong className="text-[#1a1a1a] font-semibold">slower resolution times</strong>, higher{" "}
+                    <strong className="text-[#1a1a1a] font-semibold">cognitive load</strong>, and a model that{" "}
+                    <strong className="text-[#1a1a1a] font-semibold">scales linearly with headcount</strong> — making it increasingly{" "}
+                    <strong className="text-[#1a1a1a] font-semibold">unsustainable</strong> as demand grows.
+                  </p>
+                </div>
+              </SnapReveal>
+
+              {/* Right: metrics stacked */}
+              <SnapReveal delay={0.15} className="flex-shrink-0 w-52 flex flex-col gap-3">
                 {[
-                  { value: "$15–$50", label: "average cost per ticket", icon: "💸" },
-                  { value: "3–6", label: "tools used per request", icon: "🔧" },
-                  { value: "40–60%", label: "of time spent understanding, not resolving", icon: "⏱" },
+                  { value: "$15–$50", label: "Average cost per ticket", color: "#E8654B", bg: "#FEF0EC", border: "rgba(232,101,75,0.18)" },
+                  { value: "3–6 tools", label: "Used per request", color: "#16a34a", bg: "#F0FDF4", border: "rgba(22,163,74,0.18)" },
+                  { value: "40–60%", label: "Time spent on understanding, not resolving", color: "#6366F1", bg: "#F0F0FE", border: "rgba(99,102,241,0.18)" },
                 ].map((stat, i) => (
                   <div
                     key={i}
-                    className="rounded-2xl px-5 py-5 flex flex-col gap-2"
-                    style={{ background: "#F0EDE8", border: "1px solid #E8E4DE" }}
+                    className="rounded-2xl px-5 py-4 flex flex-col gap-1"
+                    style={{ background: stat.bg, border: `1px solid ${stat.border}` }}
                   >
-                    <span className="text-xl">{stat.icon}</span>
-                    <p
-                      className="text-2xl md:text-3xl font-bold leading-none"
-                      style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
-                    >
+                    <p className="text-xl font-bold leading-tight" style={{ color: stat.color, fontFamily: "'Wotfard', sans-serif" }}>
                       {stat.value}
                     </p>
-                    <p
-                      className="text-xs leading-relaxed"
-                      style={{ color: "rgba(26,26,26,0.55)", fontFamily: "'Wotfard', sans-serif" }}
-                    >
+                    <p className="text-xs leading-relaxed text-[#1a1a1a]/55" style={{ fontFamily: "'Wotfard', sans-serif" }}>
                       {stat.label}
                     </p>
                   </div>
                 ))}
+              </SnapReveal>
+            </div>
+
+            {/* Callout */}
+            <SnapReveal delay={0.3}>
+              <div
+                className="rounded-2xl px-8 py-6"
+                style={{ background: "#F5F1EB", border: "1px solid #E8E4DE" }}
+              >
+                <p
+                  className="text-xl md:text-2xl font-bold leading-snug"
+                  style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
+                >
+                  The problem wasn't just{" "}
+                  <span style={{ color: "#5B8A72" }}>inefficiency</span>
+                  {" "}— it was a system that fundamentally didn't scale.
+                </p>
               </div>
             </SnapReveal>
+
           </div>
         </div>
 
