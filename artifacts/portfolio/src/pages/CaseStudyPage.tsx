@@ -494,15 +494,13 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
         </div>
         {/* Why Resolution Breaks Down slide */}
         <div className="h-screen snap-start snap-always flex flex-col justify-center py-16">
-          <div className="w-full px-8 md:px-16 flex flex-col gap-8">
+          <div className="w-full flex flex-col gap-8" style={{ paddingLeft: 96, paddingRight: 96 }}>
 
             <SnapReveal>
               <h2
                 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight text-center"
                 style={{ fontFamily: "'Wotfard', sans-serif" }}
-              >
-                Why resolution breaks down
-              </h2>
+              >Breakdown of the current journey</h2>
             </SnapReveal>
 
             {/* Flow diagram */}
@@ -518,26 +516,38 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                 return (
                   <div className="flex flex-col gap-5">
 
-                    {/* Row 1: icon + label combined, with chevron arrows */}
-                    <div className="flex items-center">
-                      {steps.flatMap((step, i) => {
-                        const items: JSX.Element[] = [
-                          <div key={`h-${i}`} className="flex-1 flex justify-center">
-                            <div className="flex items-center gap-2 rounded-full px-4 py-1.5" style={{ background: step.headerBg }}>
-                              <span style={{ color: step.color, opacity: 0.85, display: "flex" }}>{step.icon}</span>
-                              <span className="text-sm font-bold whitespace-nowrap" style={{ color: step.color, fontFamily: "'Wotfard', sans-serif" }}>{step.label}</span>
+                    {/* Row 1: icon (with dotted connector) then label below */}
+                    <div className="flex flex-col gap-2">
+                      {/* Icon row with dotted line running through */}
+                      <div className="relative grid grid-cols-5">
+                        {/* Dotted connector line behind icons */}
+                        <div
+                          className="absolute border-t border-dashed border-[#D4CEC9]"
+                          style={{ top: 18, left: "10%", right: "10%" }}
+                        />
+                        {steps.map((step, i) => (
+                          <div key={i} className="flex justify-center relative z-10">
+                            <div
+                              className="w-9 h-9 rounded-full flex items-center justify-center"
+                              style={{ background: step.headerBg, color: step.color }}
+                            >
+                              {step.icon}
                             </div>
-                          </div>,
-                        ];
-                        if (i < steps.length - 1) {
-                          items.push(
-                            <div key={`a-${i}`} className="flex-shrink-0">
-                              <ChevronRight size={18} strokeWidth={1.5} style={{ color: "#C8C2BB" }} />
-                            </div>
-                          );
-                        }
-                        return items;
-                      })}
+                          </div>
+                        ))}
+                      </div>
+                      {/* Label row below icons */}
+                      <div className="grid grid-cols-5">
+                        {steps.map((step, i) => (
+                          <p
+                            key={i}
+                            className="text-sm font-bold text-center whitespace-nowrap"
+                            style={{ color: step.color, fontFamily: "'Wotfard', sans-serif" }}
+                          >
+                            {step.label}
+                          </p>
+                        ))}
+                      </div>
                     </div>
 
                     {/* Row 2: questions — all on same line */}
