@@ -1,7 +1,7 @@
 import { useParams, Link } from "wouter";
 import { useRef, useEffect, useState, useMemo, type RefObject } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare, ChevronLeft, ChevronRight, X } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare, ChevronLeft, ChevronRight, X, CheckCircle2, Settings } from "lucide-react";
 import { getCaseStudy, getNextCaseStudy, type CaseStudy } from "@/data/caseStudies";
 import NotFound from "@/pages/not-found";
 
@@ -488,6 +488,100 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                   The problem wasn't just{" "}
                   <span style={{ color: "#5B8A72" }}>inefficiency</span>
                   {" "}— it was a system that fundamentally didn't scale.
+                </p>
+              </div>
+            </SnapReveal>
+
+          </div>
+        </div>
+
+        {/* Why Resolution Breaks Down slide */}
+        <div className="h-screen snap-start snap-always flex flex-col justify-center py-16">
+          <div className="max-w-5xl mx-auto w-full px-6 flex flex-col gap-12">
+
+            <SnapReveal>
+              <h2
+                className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight text-center"
+                style={{ fontFamily: "'Wotfard', sans-serif" }}
+              >
+                Why resolution breaks down
+              </h2>
+            </SnapReveal>
+
+            {/* Flow diagram */}
+            <SnapReveal delay={0.1}>
+              <div className="flex items-start">
+                {[
+                  { label: "Request",       color: "#E8654B", headerBg: "rgba(232,101,75,0.12)", icon: <Inbox size={32} />,        issue: "Latency",           issueColor: "#E8654B" },
+                  { label: "Understand",    color: "#16a34a", headerBg: "rgba(22,163,74,0.12)",  icon: <Network size={32} />,       issue: "Fragmentation",     issueColor: "#16a34a" },
+                  { label: "Gather context",color: "#1a1a1a", headerBg: "rgba(0,0,0,0.06)",      icon: <Brain size={32} />,         issue: "Cognitive overload", issueColor: "#E8654B" },
+                  { label: "Execute",       color: "#1a1a1a", headerBg: "rgba(0,0,0,0.06)",      icon: <Settings size={32} />,      issue: "Execution gap",     issueColor: "#E8654B" },
+                  { label: "Resolve",       color: "#6366F1", headerBg: "rgba(99,102,241,0.12)", icon: <CheckCircle2 size={32} />,  issue: "Execution gap",     issueColor: "#6366F1" },
+                ].map((step, i, arr) => (
+                  <div key={i} className="flex items-start flex-1">
+                    {/* Step column */}
+                    <div className="flex flex-col items-center gap-3 flex-1">
+                      {/* Label pill */}
+                      <div
+                        className="rounded-full px-4 py-1.5"
+                        style={{ background: step.headerBg }}
+                      >
+                        <span
+                          className="text-sm font-bold whitespace-nowrap"
+                          style={{ color: step.color, fontFamily: "'Wotfard', sans-serif" }}
+                        >
+                          {step.label}
+                        </span>
+                      </div>
+
+                      {/* Icon */}
+                      <div style={{ color: step.color, opacity: 0.8 }}>
+                        {step.icon}
+                      </div>
+
+                      {/* Warning label */}
+                      <div className="flex items-center gap-1">
+                        <AlertTriangle size={11} style={{ color: step.issueColor }} />
+                        <span
+                          className="text-[9px] font-bold tracking-[0.14em] uppercase"
+                          style={{ color: step.issueColor, fontFamily: "'Wotfard', sans-serif" }}
+                        >
+                          {step.issue}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Arrow between steps */}
+                    {i < arr.length - 1 && (
+                      <div className="flex items-center self-center mb-8 mx-1">
+                        <svg width="28" height="14" viewBox="0 0 28 14" fill="none">
+                          <path d="M0 7H22M22 7L16 2M22 7L16 12" stroke="#C8C2BB" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </SnapReveal>
+
+            {/* Callout */}
+            <SnapReveal delay={0.35}>
+              <div
+                className="rounded-2xl px-8 py-6"
+                style={{ background: "#FEF0EC", border: "1px solid rgba(232,101,75,0.2)" }}
+              >
+                <p
+                  className="text-base font-bold mb-1"
+                  style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
+                >
+                  The system doesn't fail at one step — it fails at every transition.
+                </p>
+                <p
+                  className="text-base leading-relaxed"
+                  style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
+                >
+                  Understanding, context gathering, and execution are all{" "}
+                  <strong>disconnected</strong> — forcing humans to bridge the gaps.
                 </p>
               </div>
             </SnapReveal>
