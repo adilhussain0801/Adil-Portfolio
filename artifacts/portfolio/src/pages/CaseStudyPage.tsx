@@ -529,15 +529,12 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                         {[20, 40, 60, 80].map((pct, ci) => (
                           <div
                             key={ci}
-                            className="absolute z-20 flex items-center justify-center"
-                            style={{ left: `${pct}%`, top: 24, transform: "translate(-50%, -50%)" }}
+                            className="absolute z-20"
+                            style={{ left: `calc(${pct}% - 4px)`, top: 18 }}
                           >
-                            <div style={{
-                              width: 0, height: 0,
-                              borderTop: "5px solid transparent",
-                              borderBottom: "5px solid transparent",
-                              borderLeft: "7px solid #C8C2BB",
-                            }} />
+                            <svg width="8" height="12" viewBox="0 0 8 12">
+                              <polygon points="0,0 8,6 0,12" fill="#C8C2BB" />
+                            </svg>
                           </div>
                         ))}
                         {steps.map((step, i) => (
