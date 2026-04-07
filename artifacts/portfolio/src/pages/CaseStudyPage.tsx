@@ -561,7 +561,7 @@ function JourneyFocusDiagram() {
         {/* Customer */}
         <motion.g {...nodeAnim(0)}>
           <circle cx={CX} cy={CY} r={R_RING} fill="white" stroke="#af59e1" strokeWidth="2"/>
-          <circle cx={CX} cy={CY} r={R_LG} fill="#c07adf" stroke="none"/>
+          <circle cx={CX} cy={CY} r={R_LG} fill="#e7c6f3" stroke="none"/>
           <image href="/journey-focus/customer-overlay.png"
             x={CX - (R_LG - 2)} y={CY - (R_LG - 2)}
             width={(R_LG - 2) * 2} height={(R_LG - 2) * 2}
@@ -599,7 +599,7 @@ function JourneyFocusDiagram() {
         {/* Service Agent */}
         <motion.g {...nodeAnim(1.72)}>
           <circle cx={SAX} cy={SAY} r={R_RING} fill="white" stroke="#fca700" strokeWidth="2"/>
-          <circle cx={SAX} cy={SAY} r={R_LG} fill="#f5a623" stroke="none"/>
+          <circle cx={SAX} cy={SAY} r={R_LG} fill="#ffd98a" stroke="none"/>
           <image href="/journey-focus/agent-overlay.png"
             x={SAX - (R_LG - 2)} y={SAY - (R_LG - 2)}
             width={(R_LG - 2) * 2} height={(R_LG - 2) * 2}
