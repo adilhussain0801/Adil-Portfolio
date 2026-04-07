@@ -451,8 +451,8 @@ function JourneyFocusDiagram() {
   const R_SM_INNER = 38;
 
   // Pill icon circles
-  const HPcx = 358, HPcy = HPY + HPH / 2;
-  const WIcx = 728, WIcy = WIY + WIH / 2;
+  const HPcx = 348, HPcy = HPY + HPH / 2;
+  const WIcx = 718, WIcy = WIY + WIH / 2;
   const R_ICON = 26;
 
   // Row 1 arrow endpoints — arrows start/end at outer ring edge
