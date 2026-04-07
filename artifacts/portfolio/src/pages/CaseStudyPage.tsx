@@ -467,6 +467,7 @@ function JourneyFocusDiagram() {
         <defs>
           <clipPath id="jf-c-cust"><circle cx={CX} cy={CY} r={R_LG - 2}/></clipPath>
           <clipPath id="jf-c-agent"><circle cx={SAX} cy={SAY} r={R_LG - 2}/></clipPath>
+          <clipPath id="jf-c-wi"><circle cx={WIcx} cy={WIcy} r={R_ICON}/></clipPath>
 
           <marker id="jf-m-gray" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
             <polygon points="0 0, 8 3, 0 6" fill="#9CA3AF"/>
@@ -560,10 +561,10 @@ function JourneyFocusDiagram() {
         <motion.g {...nodeAnim(1.28)}>
           <rect x={WIX} y={WIY} width={WIW} height={WIH} rx="26"
             fill="white" stroke="#cf9f02" strokeWidth="2"/>
-          <circle cx={WIcx} cy={WIcy} r={R_ICON} fill="#cf9f02"/>
-          {/* Lightning bolt centered in icon circle */}
-          <path d={`M${WIcx + 5} ${WIcy - 14} L${WIcx - 9} ${WIcy + 2} L${WIcx - 2} ${WIcy + 2} L${WIcx - 7} ${WIcy + 14} L${WIcx + 10} ${WIcy - 2} L${WIcx + 3} ${WIcy - 2} Z`}
-            fill="white"/>
+          {/* JSM icon image fills the icon circle */}
+          <image href="/journey-focus/jsm-icon.png"
+            x={WIcx - R_ICON} y={WIcy - R_ICON} width={R_ICON * 2} height={R_ICON * 2}
+            clipPath="url(#jf-c-wi)" preserveAspectRatio="xMidYMid slice"/>
           {/* Text: centered in the pill area right of icon */}
           <text x={(WIcx + R_ICON + WIX + WIW) / 2} y={WIcy + 6}
             textAnchor="middle" fontSize="16" fill="#172b4d"
