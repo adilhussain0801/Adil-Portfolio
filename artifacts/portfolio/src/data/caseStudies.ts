@@ -414,7 +414,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       ],
       timelineGroups: [
         {
-          phase: "Intake & Ambiguity",
+          phase: "Intake",
           description: "Unstructured requests arrive across multiple channels, requiring manual triage and clarification loops before work can begin.",
           label: "HIGH FRICTION",
           timelineProgress: 22,
@@ -428,7 +428,7 @@ export const CASE_STUDIES: CaseStudy[] = [
           ],
         },
         {
-          phase: "Investigation & Fragmentation",
+          phase: "Investigation",
           description: "Context is scattered across disparate tools. Agents constantly switch context between Jira, Confluence, and internal wikis.",
           label: "CONTEXT LOSS",
           timelineProgress: 58,
@@ -442,7 +442,7 @@ export const CASE_STUDIES: CaseStudy[] = [
           ],
         },
         {
-          phase: "Resolution & Effort",
+          phase: "Resolution",
           description: "Manual synthesis of fragmented context leads to extensive delays before a resolution plan is even drafted.",
           label: "MANUAL SINK",
           timelineProgress: 84,
