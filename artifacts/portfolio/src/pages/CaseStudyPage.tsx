@@ -1991,6 +1991,7 @@ export default function CaseStudyPage() {
   const params = useParams<{ id: string }>();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [headerScrolled, setHeaderScrolled] = useState(false);
+  const [headerHovered, setHeaderHovered] = useState(false);
 
   const id = parseInt(params.id ?? "", 10);
   const study = getCaseStudy(id);
@@ -1998,6 +1999,7 @@ export default function CaseStudyPage() {
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: 0 });
     setHeaderScrolled(false);
+    setHeaderHovered(false);
   }, [id]);
 
   useEffect(() => {
@@ -2017,12 +2019,23 @@ export default function CaseStudyPage() {
       className="h-screen overflow-hidden relative selection:bg-foreground selection:text-background"
       style={{ background: "#FAF8F5" }}
     >
+      {/* Invisible hover zone — only active after scrolling past hero */}
+      {headerScrolled && (
+        <div
+          className="fixed top-0 left-0 right-0 z-40 h-16 pointer-events-auto"
+          onMouseEnter={() => setHeaderHovered(true)}
+          onMouseLeave={() => setHeaderHovered(false)}
+        />
+      )}
+
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 md:px-24 flex items-center justify-between ${
-          headerScrolled
-            ? "py-4 opacity-100 translate-y-0 bg-[#FAF8F5]/80 backdrop-blur-md border-b border-[#2D2D2D]/10 shadow-sm"
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 px-6 md:px-24 flex items-center justify-between ${
+          headerScrolled && headerHovered
+            ? "py-4 opacity-100 translate-y-0 bg-[#FAF8F5]/80 backdrop-blur-md border-b border-[#2D2D2D]/10 shadow-sm pointer-events-auto"
             : "py-5 opacity-0 -translate-y-2 pointer-events-none bg-transparent border-b border-transparent"
         }`}
+        onMouseEnter={() => setHeaderHovered(true)}
+        onMouseLeave={() => setHeaderHovered(false)}
       >
         <Link
           href="/"
