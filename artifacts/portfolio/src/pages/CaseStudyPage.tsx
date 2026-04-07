@@ -2092,7 +2092,7 @@ export default function CaseStudyPage() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -8, scale: 0.97 }}
                 transition={{ duration: 0.2, ease: EASE }}
-                className="absolute top-full right-0 mt-3 w-72 rounded-2xl overflow-hidden shadow-xl border border-[#2D2D2D]/8"
+                className="absolute top-full right-0 mt-3 w-96 rounded-2xl overflow-hidden shadow-xl border border-[#2D2D2D]/8"
                 style={{ background: "rgba(250,248,245,0.95)", backdropFilter: "blur(16px)" }}
               >
                 <div className="px-4 pt-4 pb-2">
