@@ -160,26 +160,71 @@ function CaseStudyHeroBg({ bgColor }: { bgColor: string }) {
         className="absolute select-none flex items-center justify-center"
         style={{
           inset: 0,
-          paddingTop: "100px",
-          paddingBottom: "40px",
+          paddingTop: "90px",
+          paddingBottom: "30px",
+          paddingLeft: "72px",
+          paddingRight: "72px",
         }}
       >
+        {/* Bentofy-style stamp card */}
         <div
           style={{
-            width: "calc(100% - 192px)",
+            width: "100%",
             height: "100%",
-            borderRadius: "16px",
-            overflow: "hidden",
             position: "relative",
-            border: "4px solid rgba(255, 255, 255, 0.45)",
-            boxShadow: "0 20px 60px rgba(0,0,0,0.12)",
-          }}
+            background: "#2B35C4",
+            WebkitMaskImage: [
+              "radial-gradient(circle at 0 50%, transparent 10px, black 10px) 0 0 / 10px 20px repeat-y",
+              "radial-gradient(circle at 100% 50%, transparent 10px, black 10px) right 0 / 10px 20px repeat-y",
+              "radial-gradient(circle at 50% 0, transparent 10px, black 10px) 0 0 / 20px 10px repeat-x",
+              "radial-gradient(circle at 50% 100%, transparent 10px, black 10px) 0 bottom / 20px 10px repeat-x",
+            ].join(", "),
+            maskImage: [
+              "radial-gradient(circle at 0 50%, transparent 10px, black 10px) 0 0 / 10px 20px repeat-y",
+              "radial-gradient(circle at 100% 50%, transparent 10px, black 10px) right 0 / 10px 20px repeat-y",
+              "radial-gradient(circle at 50% 0, transparent 10px, black 10px) 0 0 / 20px 10px repeat-x",
+              "radial-gradient(circle at 50% 100%, transparent 10px, black 10px) 0 bottom / 20px 10px repeat-x",
+            ].join(", "),
+            WebkitMaskComposite: "source-over, source-in, source-in, source-in",
+            maskComposite: "add, intersect, intersect, intersect" as React.CSSProperties["maskComposite"],
+          } as React.CSSProperties}
         >
-          <BeforeAfterSlider
-            before="/rovo-before.png"
-            after="/rovo-after.png"
-            bgColor={bgColor}
-          />
+          {/* Radial glow */}
+          <div style={{
+            position: "absolute", inset: 0, pointerEvents: "none",
+            background: "radial-gradient(ellipse 60% 60% at 50% 50%, rgba(255,255,255,0.07) 0%, transparent 70%)",
+          }} />
+
+          {/* Product image */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <img
+              src="/rovo-after.png"
+              alt="Rovo Service Management"
+              style={{
+                maxHeight: "82%",
+                maxWidth: "42%",
+                objectFit: "contain",
+                filter: "drop-shadow(0 24px 48px rgba(0,0,0,0.42))",
+              }}
+            />
+          </div>
+
+          {/* Paper plane — top right */}
+          <div style={{ position: "absolute", top: "16%", right: "11%", transform: "rotate(-15deg)" }}>
+            <svg width="68" height="56" viewBox="0 0 68 56" fill="none">
+              <polygon points="0,52 34,2 64,30 34,40" fill="#F5A623"/>
+              <polygon points="34,40 34,2 64,30" fill="#C8851A"/>
+              <polygon points="24,40 34,40 30,52" fill="#C8851A"/>
+            </svg>
+          </div>
+
+          {/* Swoosh ribbon — left */}
+          <div style={{ position: "absolute", top: "20%", left: "5%", transform: "rotate(-10deg)" }}>
+            <svg width="88" height="140" viewBox="0 0 88 140" fill="none">
+              <path d="M 78 14 C 4 14 4 126 78 126" stroke="#E870B4" strokeWidth="3.5" fill="none" opacity="0.9"/>
+              <path d="M 10 14 C 84 14 84 126 10 126" stroke="#E870B4" strokeWidth="3.5" fill="none" opacity="0.45"/>
+            </svg>
+          </div>
         </div>
       </div>
     </div>
