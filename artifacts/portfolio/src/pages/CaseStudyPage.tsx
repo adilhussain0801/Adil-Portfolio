@@ -156,16 +156,16 @@ function CaseStudyHeroBg({ bgColor }: { bgColor: string }) {
             "radial-gradient(ellipse 55% 75% at 70% 46%, rgba(255,255,255,0.38) 0%, transparent 65%)",
         }}
       />
-      {/* Perspective-tilted product screenshot — Atlassian-style angle */}
+      {/* Perspective-tilted product screenshot — flat lay Atlassian-style */}
       <div
         className="absolute select-none"
         style={{
-          top: "56px",
-          bottom: "-60px",
-          left: "-20px",
-          right: "-80px",
-          perspective: "1100px",
-          perspectiveOrigin: "5% 45%",
+          top: "40px",
+          bottom: "-80px",
+          left: "0",
+          right: "-60px",
+          perspective: "1200px",
+          perspectiveOrigin: "50% 100%",
         }}
       >
         <img
@@ -176,9 +176,9 @@ function CaseStudyHeroBg({ bgColor }: { bgColor: string }) {
             height: "100%",
             objectFit: "cover",
             objectPosition: "top left",
-            borderRadius: "14px",
-            transform: "rotateX(7deg) rotateY(-26deg)",
-            transformOrigin: "left center",
+            borderRadius: "12px",
+            transform: "rotateX(22deg) rotateY(-6deg)",
+            transformOrigin: "center bottom",
             boxShadow: "0 40px 100px rgba(0,0,0,0.22), 0 12px 32px rgba(0,0,0,0.12)",
           }}
         />
