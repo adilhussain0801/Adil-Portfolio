@@ -437,7 +437,7 @@ function JourneyFocusDiagram() {
 
   // Row 1 node positions
   const CX = 85,  CY = 155;
-  const HPX = 220, HPY = 122, HPW = 252, HPH = 66;
+  const HPX = 310, HPY = 122, HPW = 252, HPH = 66;
   const WIX = 680, WIY = 122, WIW = 220, WIH = 66;
   const SAX = 1115, SAY = 155;
 
@@ -451,7 +451,7 @@ function JourneyFocusDiagram() {
   const R_SM_INNER = 38;
 
   // Pill icon circles
-  const HPcx = 263, HPcy = HPY + HPH / 2;
+  const HPcx = 353, HPcy = HPY + HPH / 2;
   const WIcx = 722, WIcy = WIY + WIH / 2;
   const R_ICON = 26;
 
@@ -461,7 +461,7 @@ function JourneyFocusDiagram() {
   const arr3x1 = SAX - R_RING - 2, arr3x2 = WIX + WIW + 2;   // SA → WI (reversed)
 
   // HP → Row 2 elbow tree (exact spec values)
-  const HP_BX = 345;     // trunk x — HP bottom center (spec)
+  const HP_BX = 436;     // trunk x — HP bottom center (HPX + HPW/2 = 310+126)
   const HP_BY = 190;     // trunk y — HP bottom (spec, +2 from stroke edge)
   const SPLIT_Y = 242;   // y where trunk splits into branches
 
@@ -502,7 +502,7 @@ function JourneyFocusDiagram() {
         {/* 1. Customer → Help portal (horizontal) */}
         <motion.line x1={arr1x1} y1={CY} x2={arr1x2} y2={CY}
           stroke="#9CA3AF" strokeWidth="1.5" markerEnd="url(#jf-m-gray)" {...arrowAnim(0.15)} />
-        <motion.text x={180} y={CY - 14}
+        <motion.text x={232} y={CY - 14}
           textAnchor="middle" fontSize="15" fill="#803fa5" fontFamily={MONO} {...lblAnim(0.32)}>
           needs IT help
         </motion.text>
@@ -519,9 +519,9 @@ function JourneyFocusDiagram() {
           assigned
         </motion.text>
 
-        {/* 4. HP → Virtual: vertical trunk (345,190)→(345,242), left to 328, Q corner, drop to Virtual top (320,323) */}
+        {/* 4. HP → Virtual: vertical trunk (436,190)→(436,242), left to 328, Q corner, drop to Virtual top (320,323) */}
         <motion.path
-          d="M 345 190 V 242 H 328 Q 320 242 320 250 V 323"
+          d="M 436 190 V 242 H 328 Q 320 242 320 250 V 323"
           stroke="#357de8" strokeWidth="1.5" fill="none"
           markerEnd="url(#jf-m-blue)" {...arrowAnim(0.74)} />
         <motion.text x={292} y={287}
@@ -529,9 +529,9 @@ function JourneyFocusDiagram() {
           deflection
         </motion.text>
 
-        {/* 5. HP → Help articles: vertical trunk (345,190)→(345,242), right to 504, Q corner, drop to HA top (490,323) */}
+        {/* 5. HP → Help articles: vertical trunk (436,190)→(436,242), right to 504, Q corner, drop to HA top (490,323) */}
         <motion.path
-          d="M 345 190 V 242 H 504 Q 490 242 490 250 V 323"
+          d="M 436 190 V 242 H 504 Q 490 242 490 250 V 323"
           stroke="#357de8" strokeWidth="1.5" fill="none"
           markerEnd="url(#jf-m-blue)" {...arrowAnim(0.80)} />
         <motion.text x={518} y={287}
