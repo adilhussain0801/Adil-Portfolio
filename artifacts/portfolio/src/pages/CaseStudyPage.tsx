@@ -426,40 +426,54 @@ function JourneyFocusDiagram() {
   });
 
   /*
-   * Compact coordinate space (1160 × 490 units) — all content fits within container,
-   * no clipping by scroll container overflow.
+   * Large coordinate space (1160 × 490 units).
+   * Nodes are bigger for legibility. ViewBox "0 0 1160 490".
    *
-   * Row 1 (y=190): Customer ── Help portal pill ── Work item pill ── Service Agent
-   * Row 2 (y=358): Virtual service agent           Help articles
+   * Row 1 (y=155): Customer ── Help portal pill ── Work item pill ── Service Agent
+   * Row 2 (y=370): Virtual service agent                Help articles
    *
-   * ViewBox "20 100 1160 390" → shows x=[20,1180], y=[100,490]
+   * Arrow styles:
+   *   - Horizontal: straight lines
+   *   - Deflection / self serve: straight diagonal lines (angled)
+   *   - Could not resolve: L-shaped with rounded corners (Q arcs)
    */
 
-  // Node centers
-  const CX = 80,  CY = 190;                    // Customer
-  const HPX = 208, HPY = 164, HPW = 210, HPH = 52;  // Help portal pill (rx=26)
-  const WIX = 546, WIY = 164, WIW = 200, WIH = 52;  // Work item pill (rx=26)
-  const SAX = 1100, SAY = 190;                 // Service Agent
-  const VX = 285, VY = 358;                    // Virtual service agent
-  const HAX = 636, HAY = 358;                  // Help articles
+  // Row 1 node positions
+  const CX = 80,  CY = 155;
+  const HPX = 215, HPY = 122, HPW = 232, HPH = 66;   // Help portal pill
+  const WIX = 660, WIY = 122, WIW = 218, WIH = 66;   // Work item pill
+  const SAX = 1080, SAY = 155;
 
-  const R_LG = 46;   // radius Customer / Service Agent
-  const R_SM = 37;   // radius Virtual / Help articles
+  // Row 2 node positions
+  const VX = 295, VY = 370;
+  const HAX = 740, HAY = 370;
 
-  // Derived geometry
-  const HPcx = HPX + 40, HPcy = HPY + HPH / 2;   // HP icon circle center
-  const WIcx = WIX + 39, WIcy = WIY + WIH / 2;   // WI icon circle center
-  const R_ICON = 21;                               // icon circle radius
+  const R_LG = 58;                // Customer / Service Agent radius
+  const R_SM = 58;                // Virtual / Help articles outer radius
+  const R_SM_INNER = 42;         // inner icon circle radius
 
-  // Arrow endpoints
-  const arr1x1 = CX + R_LG + 2, arr1x2 = HPX - 2;              // Cust→HP
-  const arr2x1 = HPX + HPW + 2, arr2x2 = WIX - 2;              // HP→WI
-  const arr3x1 = SAX - R_LG - 2, arr3x2 = WIX + WIW + 2;      // SA→WI (reversed)
+  // Pill icon circles
+  const HPcx = HPX + 42, HPcy = HPY + HPH / 2;   // = 257, 155
+  const WIcx = WIX + 42, WIcy = WIY + WIH / 2;   // = 702, 155
+  const R_ICON = 26;
+
+  // Derived arrow points
+  const arr1x1 = CX + R_LG + 2, arr1x2 = HPX - 2;
+  const arr2x1 = HPX + HPW + 2, arr2x2 = WIX - 2;
+  const arr3x1 = SAX - R_LG - 2, arr3x2 = WIX + WIW + 2;
+
+  // L-shape "could not resolve" geometry
+  const LANE_Y = 466;   // horizontal lane y
+  const LR = 14;        // corner arc radius
+  // WI pill bottom: two separate landing x's to avoid overlapping arrowheads
+  const WI_BX1 = WIX + WIW / 2 - 10;   // Virtual arrow lands here  = 759
+  const WI_BX2 = WIX + WIW / 2 + 10;   // HA arrow lands here        = 779
+  const WI_BY  = WIY + WIH;             // pill bottom y              = 188
 
   return (
     <div ref={ref} className="w-full">
       <svg
-        viewBox="20 100 1160 390"
+        viewBox="0 0 1160 490"
         style={{ width: "100%", height: "auto" }}
         aria-label="Journey focus: service management workflow diagram"
         role="img"
@@ -469,64 +483,89 @@ function JourneyFocusDiagram() {
           <clipPath id="jf-c-agent"><circle cx={SAX} cy={SAY} r={R_LG - 2}/></clipPath>
           <clipPath id="jf-c-wi"><circle cx={WIcx} cy={WIcy} r={R_ICON}/></clipPath>
 
-          <marker id="jf-m-gray" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-            <polygon points="0 0, 8 3, 0 6" fill="#9CA3AF"/>
+          <marker id="jf-m-gray" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#9CA3AF"/>
           </marker>
-          <marker id="jf-m-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-            <polygon points="0 0, 8 3, 0 6" fill="#357de8"/>
+          <marker id="jf-m-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#357de8"/>
           </marker>
-          <marker id="jf-m-lime" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-            <polygon points="0 0, 8 3, 0 6" fill="#6a9a23"/>
+          <marker id="jf-m-lime" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#6a9a23"/>
           </marker>
-          <marker id="jf-m-orange" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-            <polygon points="0 0, 8 3, 0 6" fill="#e06c00"/>
+          <marker id="jf-m-orange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#e06c00"/>
           </marker>
         </defs>
 
-        {/* ── ARROWS first (behind nodes) ── */}
+        {/* ── ARROWS (behind nodes) ── */}
 
-        {/* 1. Customer → Help portal */}
+        {/* 1. Customer → Help portal (horizontal) */}
         <motion.line x1={arr1x1} y1={CY} x2={arr1x2} y2={CY}
-          stroke="#9CA3AF" markerEnd="url(#jf-m-gray)" {...arrowAnim(0.15)} />
-        <motion.text x={(arr1x1 + arr1x2) / 2} y={CY - 12}
-          textAnchor="middle" fontSize="13" fill="#803fa5" fontFamily={MONO} {...lblAnim(0.32)}>
+          stroke="#9CA3AF" strokeWidth="1.5" markerEnd="url(#jf-m-gray)" {...arrowAnim(0.15)} />
+        <motion.text x={(arr1x1 + arr1x2) / 2} y={CY - 14}
+          textAnchor="middle" fontSize="15" fill="#803fa5" fontFamily={MONO} {...lblAnim(0.32)}>
           needs IT help
         </motion.text>
 
-        {/* 2. Help portal → Work item */}
+        {/* 2. Help portal → Work item (horizontal) */}
         <motion.line x1={arr2x1} y1={CY} x2={arr2x2} y2={CY}
-          stroke="#9CA3AF" markerEnd="url(#jf-m-gray)" {...arrowAnim(0.68)} />
+          stroke="#9CA3AF" strokeWidth="1.5" markerEnd="url(#jf-m-gray)" {...arrowAnim(0.68)} />
 
-        {/* 3. Service Agent → Work item ("assigned", arrow points left) */}
+        {/* 3. Service Agent → Work item (horizontal, reversed) */}
         <motion.line x1={arr3x1} y1={SAY} x2={arr3x2} y2={SAY}
-          stroke="#e06c00" markerEnd="url(#jf-m-orange)" {...arrowAnim(1.55)} />
-        <motion.text x={(arr3x1 + arr3x2) / 2} y={SAY - 12}
-          textAnchor="middle" fontSize="13" fill="#e06c00" fontFamily={MONO} {...lblAnim(1.72)}>
+          stroke="#e06c00" strokeWidth="1.5" markerEnd="url(#jf-m-orange)" {...arrowAnim(1.55)} />
+        <motion.text x={(arr3x1 + arr3x2) / 2} y={SAY - 14}
+          textAnchor="middle" fontSize="15" fill="#e06c00" fontFamily={MONO} {...lblAnim(1.72)}>
           assigned
         </motion.text>
 
-        {/* 4. Help portal ↘ Virtual service agent ("deflection") */}
-        <motion.path d={`M ${HPcx - 20} ${HPY + HPH} C ${HPcx - 42} 270 ${VX - 10} 318 ${VX} ${VY - R_SM}`}
-          stroke="#357de8" markerEnd="url(#jf-m-blue)" {...arrowAnim(0.74)} />
-        <motion.text x="215" y="272" textAnchor="middle" fontSize="13" fill="#1558bc"
-          fontFamily={MONO} {...lblAnim(0.92)}>deflection</motion.text>
+        {/* 4. Help portal → Virtual (straight diagonal) */}
+        <motion.line
+          x1={HPcx - 10} y1={HPY + HPH}
+          x2={VX} y2={VY - R_SM}
+          stroke="#357de8" strokeWidth="1.5" markerEnd="url(#jf-m-blue)" {...arrowAnim(0.74)} />
+        <motion.text
+          x={(HPcx - 10 + VX) / 2 - 28} y={(HPY + HPH + VY - R_SM) / 2 + 6}
+          textAnchor="middle" fontSize="15" fill="#1558bc" fontFamily={MONO} {...lblAnim(0.92)}>
+          deflection
+        </motion.text>
 
-        {/* 5. Help portal ↘ Help articles ("self serve") */}
-        <motion.path d={`M ${HPcx + 60} ${HPY + HPH} C 440 270 560 310 ${HAX} ${HAY - R_SM}`}
-          stroke="#357de8" markerEnd="url(#jf-m-blue)" {...arrowAnim(0.80)} />
-        <motion.text x="518" y="270" textAnchor="middle" fontSize="13" fill="#1558bc"
-          fontFamily={MONO} {...lblAnim(0.96)}>self serve</motion.text>
+        {/* 5. Help portal → Help articles (straight diagonal) */}
+        <motion.line
+          x1={HPcx + 65} y1={HPY + HPH}
+          x2={HAX} y2={HAY - R_SM}
+          stroke="#357de8" strokeWidth="1.5" markerEnd="url(#jf-m-blue)" {...arrowAnim(0.80)} />
+        <motion.text
+          x={(HPcx + 65 + HAX) / 2 + 24} y={(HPY + HPH + HAY - R_SM) / 2 - 6}
+          textAnchor="middle" fontSize="15" fill="#1558bc" fontFamily={MONO} {...lblAnim(0.96)}>
+          self serve
+        </motion.text>
 
-        {/* 6. Virtual svc agent → Work item (curves below) */}
-        <motion.path d={`M ${VX} ${VY + R_SM} C 295 452 615 452 ${WIX + WIW / 2} ${WIY + WIH}`}
-          stroke="#6a9a23" markerEnd="url(#jf-m-lime)" {...arrowAnim(1.15)} />
+        {/* 6. Virtual → Work item (L-shape: down → right → up, rounded corners) */}
+        <motion.path
+          d={`M ${VX} ${VY + R_SM}
+              V ${LANE_Y - LR}
+              Q ${VX} ${LANE_Y} ${VX + LR} ${LANE_Y}
+              H ${WI_BX1 - LR}
+              Q ${WI_BX1} ${LANE_Y} ${WI_BX1} ${LANE_Y - LR}
+              V ${WI_BY}`}
+          stroke="#6a9a23" strokeWidth="1.5" fill="none"
+          markerEnd="url(#jf-m-lime)" {...arrowAnim(1.15)} />
 
-        {/* 7. Help articles → Work item (curves below) */}
-        <motion.path d={`M ${HAX} ${HAY + R_SM} C 644 448 658 444 ${WIX + WIW / 2} ${WIY + WIH}`}
-          stroke="#6a9a23" markerEnd="url(#jf-m-lime)" {...arrowAnim(1.22)} />
+        {/* 7. Help articles → Work item (L-shape: down → right → up, rounded corners) */}
+        <motion.path
+          d={`M ${HAX} ${HAY + R_SM}
+              V ${LANE_Y - LR}
+              Q ${HAX} ${LANE_Y} ${HAX + LR} ${LANE_Y}
+              H ${WI_BX2 - LR}
+              Q ${WI_BX2} ${LANE_Y} ${WI_BX2} ${LANE_Y - LR}
+              V ${WI_BY}`}
+          stroke="#6a9a23" strokeWidth="1.5" fill="none"
+          markerEnd="url(#jf-m-lime)" {...arrowAnim(1.22)} />
 
-        {/* "could not resolve" label */}
-        <motion.text x={(VX + HAX) / 2} y="472" textAnchor="middle" fontSize="13" fill="#4c6b1f"
+        {/* "could not resolve" label — below the lane */}
+        <motion.text x={(VX + HAX) / 2} y={LANE_Y + 18}
+          textAnchor="middle" fontSize="15" fill="#4c6b1f"
           fontFamily={MONO} {...lblAnim(1.4)}>could not resolve</motion.text>
 
         {/* ── NODES ── */}
@@ -535,39 +574,36 @@ function JourneyFocusDiagram() {
         <motion.g {...nodeAnim(0)}>
           <circle cx={CX} cy={CY} r={R_LG} fill="#f8eefe" stroke="#af59e1" strokeWidth="2.5"/>
           <image href="/journey-focus/customer-overlay.png"
-            x={CX - R_LG + 2} y={CY - R_LG + 2} width={(R_LG - 2) * 2} height={(R_LG - 2) * 2}
+            x={CX - (R_LG - 2)} y={CY - (R_LG - 2)}
+            width={(R_LG - 2) * 2} height={(R_LG - 2) * 2}
             clipPath="url(#jf-c-cust)" preserveAspectRatio="xMidYMid slice"/>
-          <text x={CX} y={CY + R_LG + 20} textAnchor="middle" fontSize="17" fill="#803fa5"
+          <text x={CX} y={CY + R_LG + 22} textAnchor="middle" fontSize="20" fill="#803fa5"
             fontFamily={FF} fontWeight="600">Customer</text>
         </motion.g>
 
         {/* Help portal pill */}
         <motion.g {...nodeAnim(0.5)}>
-          <rect x={HPX} y={HPY} width={HPW} height={HPH} rx="26"
+          <rect x={HPX} y={HPY} width={HPW} height={HPH} rx="33"
             fill="white" stroke="#357de8" strokeWidth="2"/>
           <circle cx={HPcx} cy={HPcy} r={R_ICON} fill="#357de8"/>
-          {/* Portal / target icon centered in circle */}
-          <g transform={`translate(${HPcx - R_ICON + 2} ${HPcy - R_ICON + 2}) scale(${(R_ICON * 2 - 4) / 48})`}>
+          <g transform={`translate(${HPcx - R_ICON + 3} ${HPcy - R_ICON + 3}) scale(${(R_ICON * 2 - 6) / 48})`}>
             <path fillRule="evenodd" clipRule="evenodd" d="M11.8932 8.71122L17.2546 14.0726C21.312 11.3091 26.688 11.3091 30.7454 14.0726L36.1068 8.71122C29.0342 3.09626 18.9658 3.09626 11.8932 8.71122ZM39.2888 11.8932L33.9274 17.2546C36.6909 21.312 36.6909 26.688 33.9274 30.7454L39.2888 36.1068C44.9037 29.0342 44.9037 18.9658 39.2888 11.8932ZM36.1068 39.2888L30.7454 33.9274C26.688 36.6909 21.312 36.6909 17.2546 33.9274L11.8932 39.2888C18.9658 44.9037 29.0342 44.9037 36.1068 39.2888ZM8.71122 36.1068L14.0726 30.7454C11.3091 26.688 11.3091 21.312 14.0726 17.2546L8.71122 11.8932C3.09626 18.9658 3.09626 29.0342 8.71122 36.1068ZM7.02944 7.02944C16.402 -2.34315 31.598 -2.34315 40.9706 7.02944C50.3431 16.402 50.3431 31.598 40.9706 40.9706C31.598 50.3431 16.402 50.3431 7.02944 40.9706C-2.34315 31.598 -2.34315 16.402 7.02944 7.02944ZM29.3033 18.6967C26.3744 15.7678 21.6256 15.7678 18.6967 18.6967C15.7678 21.6256 15.7678 26.3744 18.6967 29.3033C21.6256 32.2322 26.3744 32.2322 29.3033 29.3033C32.2322 26.3744 32.2322 21.6256 29.3033 18.6967Z"
               fill="white"/>
           </g>
-          {/* Text: centered in the pill area right of icon */}
-          <text x={(HPcx + R_ICON + HPX + HPW) / 2} y={HPcy + 6}
-            textAnchor="middle" fontSize="16" fill="#172b4d"
+          <text x={(HPcx + R_ICON + HPX + HPW) / 2} y={HPcy + 7}
+            textAnchor="middle" fontSize="19" fill="#172b4d"
             fontFamily={FF} fontWeight="700">Help portal</text>
         </motion.g>
 
         {/* Work item pill */}
         <motion.g {...nodeAnim(1.28)}>
-          <rect x={WIX} y={WIY} width={WIW} height={WIH} rx="26"
+          <rect x={WIX} y={WIY} width={WIW} height={WIH} rx="33"
             fill="white" stroke="#cf9f02" strokeWidth="2"/>
-          {/* JSM icon image fills the icon circle */}
           <image href="/journey-focus/jsm-icon.png"
             x={WIcx - R_ICON} y={WIcy - R_ICON} width={R_ICON * 2} height={R_ICON * 2}
             clipPath="url(#jf-c-wi)" preserveAspectRatio="xMidYMid slice"/>
-          {/* Text: centered in the pill area right of icon */}
-          <text x={(WIcx + R_ICON + WIX + WIW) / 2} y={WIcy + 6}
-            textAnchor="middle" fontSize="16" fill="#172b4d"
+          <text x={(WIcx + R_ICON + WIX + WIW) / 2} y={WIcy + 7}
+            textAnchor="middle" fontSize="19" fill="#172b4d"
             fontFamily={FF} fontWeight="700">Work item</text>
         </motion.g>
 
@@ -575,37 +611,36 @@ function JourneyFocusDiagram() {
         <motion.g {...nodeAnim(1.72)}>
           <circle cx={SAX} cy={SAY} r={R_LG} fill="#fff5db" stroke="#fca700" strokeWidth="2.5"/>
           <image href="/journey-focus/agent-overlay.png"
-            x={SAX - R_LG + 2} y={SAY - R_LG + 2} width={(R_LG - 2) * 2} height={(R_LG - 2) * 2}
+            x={SAX - (R_LG - 2)} y={SAY - (R_LG - 2)}
+            width={(R_LG - 2) * 2} height={(R_LG - 2) * 2}
             clipPath="url(#jf-c-agent)" preserveAspectRatio="xMidYMid slice"/>
-          <text x={SAX} y={SAY + R_LG + 20} textAnchor="middle" fontSize="17" fill="#e06c00"
+          <text x={SAX} y={SAY + R_LG + 22} textAnchor="middle" fontSize="20" fill="#e06c00"
             fontFamily={FF} fontWeight="600">Service Agent</text>
         </motion.g>
 
         {/* Virtual service agent */}
         <motion.g {...nodeAnim(0.92)}>
           <circle cx={VX} cy={VY} r={R_SM} fill="#efffd6" stroke="#6a9a23" strokeWidth="2"/>
-          <circle cx={VX} cy={VY} r={R_SM - 11} fill="#6a9a23"/>
-          {/* Hexagon icon centered in inner circle */}
-          <g transform={`translate(${VX - 13} ${VY - 13}) scale(${26 / 31.5})`}>
+          <circle cx={VX} cy={VY} r={R_SM_INNER} fill="#6a9a23"/>
+          <g transform={`translate(${VX - R_SM_INNER * 0.76} ${VY - R_SM_INNER * 0.84}) scale(${R_SM_INNER * 1.52 / 31.5})`}>
             <path fillRule="evenodd" clipRule="evenodd" d="M13.4348 0.641282C14.8598 -0.213761 16.6402 -0.21376 18.0652 0.641282L29.3152 7.39128C30.6707 8.20454 31.5 9.66932 31.5 11.25V23.8152C31.5 25.3959 30.6707 26.8606 29.3152 27.6739L18.0652 34.4239C16.6402 35.2789 14.8598 35.2789 13.4348 34.4239L2.18477 27.6739C0.829342 26.8606 0 25.3959 0 23.8152V11.25C0 9.66932 0.829345 8.20454 2.18477 7.39128L13.4348 0.641282ZM16.3288 3.53532C15.9725 3.32156 15.5275 3.32156 15.1712 3.53532L3.92119 10.2853C3.58234 10.4886 3.375 10.8548 3.375 11.25V23.8152C3.375 24.2104 3.58234 24.5765 3.92119 24.7799L6.39279 26.2628C6.25825 25.6239 6.1875 24.9615 6.1875 24.2826C6.1875 19.0014 10.4688 14.7201 15.75 14.7201C21.0312 14.7201 25.3125 19.0014 25.3125 24.2826C25.3125 24.9615 25.2417 25.6239 25.1072 26.2628L27.5788 24.7799C27.9177 24.5765 28.125 24.2104 28.125 23.8152V11.25C28.125 10.8548 27.9177 10.4886 27.5788 10.2853L16.3288 3.53532ZM15.75 18.0951C12.3327 18.0951 9.5625 20.8653 9.5625 24.2826C9.5625 27.6999 12.3327 30.4701 15.75 30.4701C19.1673 30.4701 21.9375 27.6999 21.9375 24.2826C21.9375 20.8653 19.1673 18.0951 15.75 18.0951Z"
               fill="white"/>
           </g>
-          <text x={VX} y={VY + R_SM + 18} textAnchor="middle" fontSize="15" fill="#4c6b1f"
+          <text x={VX} y={VY + R_SM + 22} textAnchor="middle" fontSize="18" fill="#4c6b1f"
             fontFamily={FF} fontWeight="600">Virtual service agent</text>
         </motion.g>
 
         {/* Help articles */}
         <motion.g {...nodeAnim(0.97)}>
           <circle cx={HAX} cy={HAY} r={R_SM} fill="#ffecf8" stroke="#cd519d" strokeWidth="2"/>
-          <circle cx={HAX} cy={HAY} r={R_SM - 11} fill="#cd519d"/>
-          {/* Book/bookmark icon centered in inner circle */}
-          <g transform={`translate(${HAX - 10} ${HAY - 13}) scale(${26 / 35.58})`}>
+          <circle cx={HAX} cy={HAY} r={R_SM_INNER} fill="#cd519d"/>
+          <g transform={`translate(${HAX - R_SM_INNER * 0.6} ${HAY - R_SM_INNER * 0.84}) scale(${R_SM_INNER * 1.68 / 35.58})`}>
             <path fillRule="evenodd" clipRule="evenodd" d="M0 6.46875C0 2.89616 2.89616 0 6.46875 0H25.3125C26.2445 0 27 0.755519 27 1.6875V21.375C27 22.307 26.2445 23.0625 25.3125 23.0625V29.25H27V32.625H19.125V29.25H21.9375V23.0625H6.46875C4.76012 23.0625 3.375 24.4476 3.375 26.1562C3.375 27.8649 4.76012 29.25 6.46875 29.25H7.875V32.625H6.46875C2.89616 32.625 0 29.7288 0 26.1562V6.46875ZM3.375 20.4739C4.29402 19.9725 5.34811 19.6875 6.46875 19.6875H23.625V3.375H6.46875C4.76012 3.375 3.375 4.76012 3.375 6.46875V20.4739Z"
               fill="white"/>
             <path d="M10.125 35.0183V25.875H16.875V35.0183C16.875 35.5433 16.2195 35.7821 15.8818 35.3801L13.5 32.5446L11.1182 35.3801C10.7805 35.7821 10.125 35.5433 10.125 35.0183Z"
               fill="white"/>
           </g>
-          <text x={HAX} y={HAY + R_SM + 18} textAnchor="middle" fontSize="15" fill="#943d73"
+          <text x={HAX} y={HAY + R_SM + 22} textAnchor="middle" fontSize="18" fill="#943d73"
             fontFamily={FF} fontWeight="600">Help articles</text>
         </motion.g>
       </svg>
