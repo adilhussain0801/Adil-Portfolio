@@ -152,7 +152,7 @@ function CaseStudyHeroBg({ bgColor }: { bgColor: string }) {
       <div
         className="absolute select-none"
         style={{
-          top: "-40px",
+          top: "-100px",
           left: "-20px",
           right: "-200px",
           overflow: "visible",
