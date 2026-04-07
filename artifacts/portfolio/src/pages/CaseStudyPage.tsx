@@ -743,7 +743,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
         <div className="h-screen snap-start snap-always flex flex-col justify-center py-10" style={{ background: "#f8f8f8" }}>
           <div className="max-w-5xl mx-auto w-full px-6 flex flex-col gap-5">
             <SnapReveal>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight"
+              <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight text-center"
                 style={{ fontFamily: "'Wotfard', sans-serif" }}>
                 Service management journey
               </h2>
