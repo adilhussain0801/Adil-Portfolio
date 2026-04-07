@@ -149,6 +149,76 @@ function BeforeAfterSlider({ before, after, bgColor }: { before: string; after: 
 function CaseStudyHeroBg({ bgColor }: { bgColor: string }) {
   return (
     <div className="absolute inset-0" style={{ overflow: "visible" }}>
+
+      {/* ── Background decorations ── */}
+      <div className="absolute inset-0 pointer-events-none select-none" style={{ zIndex: 0 }}>
+
+        {/* Concentric rings — top right */}
+        <svg
+          style={{ position: "absolute", top: "-120px", right: "-100px", opacity: 0.13 }}
+          width="480" height="480" viewBox="0 0 480 480" fill="none"
+        >
+          <circle cx="240" cy="240" r="220" stroke="#1E2D7A" strokeWidth="1.5" />
+          <circle cx="240" cy="240" r="170" stroke="#1E2D7A" strokeWidth="1" />
+          <circle cx="240" cy="240" r="115" stroke="#1E2D7A" strokeWidth="0.8" />
+        </svg>
+
+        {/* Warm gradient orb — upper left area */}
+        <div style={{
+          position: "absolute",
+          top: "-40px",
+          left: "5%",
+          width: "320px",
+          height: "320px",
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(255,180,100,0.18) 0%, transparent 68%)",
+          filter: "blur(24px)",
+        }} />
+
+        {/* Dot grid — bottom left */}
+        <svg
+          style={{ position: "absolute", bottom: "48px", left: "24px", opacity: 0.18 }}
+          width="130" height="110" viewBox="0 0 130 110" fill="none"
+        >
+          {Array.from({ length: 5 }, (_, row) =>
+            Array.from({ length: 6 }, (_, col) => (
+              <circle key={`${row}-${col}`} cx={col * 24 + 5} cy={row * 22 + 5} r="2.2" fill="#1E2D7A" />
+            ))
+          )}
+        </svg>
+
+        {/* Curved arc — mid background */}
+        <svg
+          style={{ position: "absolute", top: "30%", left: "30%", opacity: 0.08 }}
+          width="260" height="160" viewBox="0 0 260 160" fill="none"
+        >
+          <path d="M 10 140 C 60 10, 200 10, 250 80" stroke="#1E2D7A" strokeWidth="2" strokeLinecap="round" />
+          <path d="M 10 110 C 60 0, 180 20, 230 70" stroke="#1E2D7A" strokeWidth="1.2" strokeLinecap="round" strokeDasharray="6 6" />
+        </svg>
+
+        {/* Small asterisk / cross — accent */}
+        <svg
+          style={{ position: "absolute", top: "18%", left: "45%", opacity: 0.14 }}
+          width="28" height="28" viewBox="0 0 28 28" fill="none"
+        >
+          <line x1="14" y1="2" x2="14" y2="26" stroke="#1E2D7A" strokeWidth="2" strokeLinecap="round" />
+          <line x1="2" y1="14" x2="26" y2="14" stroke="#1E2D7A" strokeWidth="2" strokeLinecap="round" />
+          <line x1="5" y1="5" x2="23" y2="23" stroke="#1E2D7A" strokeWidth="1.2" strokeLinecap="round" />
+          <line x1="23" y1="5" x2="5" y2="23" stroke="#1E2D7A" strokeWidth="1.2" strokeLinecap="round" />
+        </svg>
+
+        {/* Tiny ring — lower right accent */}
+        <svg
+          style={{ position: "absolute", bottom: "22%", right: "18%", opacity: 0.16 }}
+          width="56" height="56" viewBox="0 0 56 56" fill="none"
+        >
+          <circle cx="28" cy="28" r="24" stroke="#1E2D7A" strokeWidth="1.5" />
+          <circle cx="28" cy="28" r="10" stroke="#1E2D7A" strokeWidth="1" />
+        </svg>
+
+      </div>
+
+      {/* ── Product screenshot ── */}
       <div
         className="absolute select-none"
         style={{
@@ -156,6 +226,7 @@ function CaseStudyHeroBg({ bgColor }: { bgColor: string }) {
           left: "-20px",
           right: "-200px",
           overflow: "visible",
+          zIndex: 1,
         }}
       >
         <img
