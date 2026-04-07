@@ -445,7 +445,8 @@ function JourneyFocusDiagram() {
   const VX = 320, VY = 375;
   const HAX = 490, HAY = 375;
 
-  const R_LG = 55;
+  const R_LG = 55;          // inner coloured circle (avatar background)
+  const R_RING = 69;        // outer bounding ring radius
   const R_SM = 52;
   const R_SM_INNER = 38;
 
@@ -454,10 +455,10 @@ function JourneyFocusDiagram() {
   const WIcx = 722, WIcy = WIY + WIH / 2;
   const R_ICON = 26;
 
-  // Row 1 arrow endpoints
-  const arr1x1 = CX + R_LG + 2, arr1x2 = HPX - 2;          // Customer → HP
-  const arr2x1 = HPX + HPW + 2, arr2x2 = WIX - 2;           // HP → WI
-  const arr3x1 = SAX - R_LG - 2, arr3x2 = WIX + WIW + 2;   // SA → WI (reversed)
+  // Row 1 arrow endpoints — arrows start/end at outer ring edge
+  const arr1x1 = CX + R_RING + 2, arr1x2 = HPX - 2;          // Customer → HP
+  const arr2x1 = HPX + HPW + 2, arr2x2 = WIX - 2;             // HP → WI
+  const arr3x1 = SAX - R_RING - 2, arr3x2 = WIX + WIW + 2;   // SA → WI (reversed)
 
   // HP → Row 2 elbow tree (exact spec values)
   const HP_BX = 345;     // trunk x — HP bottom center (spec)
@@ -559,12 +560,13 @@ function JourneyFocusDiagram() {
 
         {/* Customer */}
         <motion.g {...nodeAnim(0)}>
-          <circle cx={CX} cy={CY} r={R_LG} fill="#f8eefe" stroke="#af59e1" strokeWidth="2.5"/>
+          <circle cx={CX} cy={CY} r={R_RING} fill="white" stroke="#af59e1" strokeWidth="2"/>
+          <circle cx={CX} cy={CY} r={R_LG} fill="#c07adf" stroke="none"/>
           <image href="/journey-focus/customer-overlay.png"
             x={CX - (R_LG - 2)} y={CY - (R_LG - 2)}
             width={(R_LG - 2) * 2} height={(R_LG - 2) * 2}
             clipPath="url(#jf-c-cust)" preserveAspectRatio="xMidYMid slice"/>
-          <text x={CX} y={CY + R_LG + 22} textAnchor="middle" fontSize="20" fill="#803fa5"
+          <text x={CX} y={CY + R_RING + 22} textAnchor="middle" fontSize="20" fill="#803fa5"
             fontFamily={FF} fontWeight="600">Customer</text>
         </motion.g>
 
@@ -596,12 +598,13 @@ function JourneyFocusDiagram() {
 
         {/* Service Agent */}
         <motion.g {...nodeAnim(1.72)}>
-          <circle cx={SAX} cy={SAY} r={R_LG} fill="#fff5db" stroke="#fca700" strokeWidth="2.5"/>
+          <circle cx={SAX} cy={SAY} r={R_RING} fill="white" stroke="#fca700" strokeWidth="2"/>
+          <circle cx={SAX} cy={SAY} r={R_LG} fill="#f5a623" stroke="none"/>
           <image href="/journey-focus/agent-overlay.png"
             x={SAX - (R_LG - 2)} y={SAY - (R_LG - 2)}
             width={(R_LG - 2) * 2} height={(R_LG - 2) * 2}
             clipPath="url(#jf-c-agent)" preserveAspectRatio="xMidYMid slice"/>
-          <text x={SAX} y={SAY + R_LG + 22} textAnchor="middle" fontSize="20" fill="#e06c00"
+          <text x={SAX} y={SAY + R_RING + 22} textAnchor="middle" fontSize="20" fill="#e06c00"
             fontFamily={FF} fontWeight="600">Service Agent</text>
         </motion.g>
 
