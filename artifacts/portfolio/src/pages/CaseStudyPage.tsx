@@ -148,16 +148,14 @@ function BeforeAfterSlider({ before, after, bgColor }: { before: string; after: 
 
 function CaseStudyHeroBg({ bgColor }: { bgColor: string }) {
   return (
-    <div className="absolute inset-0 overflow-hidden">
-      {/* Flat-lay screenshot — rotateX dominant, natural aspect ratio */}
+    <div className="absolute inset-0" style={{ overflow: "visible" }}>
       <div
         className="absolute select-none"
         style={{
-          top: "10px",
-          left: "40px",
-          right: "-80px",
-          perspective: "1100px",
-          perspectiveOrigin: "50% -10%",
+          top: "-40px",
+          left: "-20px",
+          right: "-200px",
+          overflow: "visible",
         }}
       >
         <img
@@ -167,10 +165,10 @@ function CaseStudyHeroBg({ bgColor }: { bgColor: string }) {
             width: "100%",
             height: "auto",
             display: "block",
-            borderRadius: "12px 12px 0 0",
-            transform: "rotateX(28deg) rotate(-12deg)",
-            transformOrigin: "center top",
-            boxShadow: "0 40px 80px rgba(0,0,0,0.20), 0 8px 24px rgba(0,0,0,0.10)",
+            borderRadius: "12px",
+            transform: "rotate(-12deg)",
+            transformOrigin: "center center",
+            boxShadow: "0 24px 60px rgba(0,0,0,0.18), 0 8px 24px rgba(0,0,0,0.10)",
           }}
         />
       </div>
