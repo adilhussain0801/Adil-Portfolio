@@ -752,6 +752,26 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
           </div>
         </div>
 
+        {/* Service Management Journey slide */}
+        <div className="h-screen snap-start snap-always flex flex-col justify-center py-10" style={{ background: "#f8f8f8" }}>
+          <div className="max-w-5xl mx-auto w-full px-6 flex flex-col gap-5">
+            <SnapReveal>
+              <h2 className="text-5xl md:text-[3.5rem] font-black text-[#292a2e] leading-tight"
+                style={{ fontFamily: "'Wotfard', sans-serif" }}>
+                Service management journey
+              </h2>
+            </SnapReveal>
+            <SnapReveal delay={0.15}>
+              <img
+                src="/journey-focus/service-management-journey.png"
+                alt="Service management journey diagram"
+                className="w-full h-auto rounded-xl"
+                style={{ maxHeight: "60vh", objectFit: "contain", objectPosition: "left center" }}
+              />
+            </SnapReveal>
+          </div>
+        </div>
+
         {/* Why Resolution Breaks Down slide */}
         <div className="h-screen snap-start snap-always flex flex-col justify-center py-16">
           <div className="w-full flex flex-col gap-14" style={{ paddingLeft: 144, paddingRight: 144 }}>
