@@ -451,8 +451,8 @@ function JourneyFocusDiagram() {
   const R_SM_INNER = 38;
 
   // Pill icon circles
-  const HPcx = 353, HPcy = HPY + HPH / 2;
-  const WIcx = 722, WIcy = WIY + WIH / 2;
+  const HPcx = 340, HPcy = HPY + HPH / 2;
+  const WIcx = 710, WIcy = WIY + WIH / 2;
   const R_ICON = 26;
 
   // Row 1 arrow endpoints — arrows start/end at outer ring edge
@@ -481,6 +481,7 @@ function JourneyFocusDiagram() {
         <defs>
           <clipPath id="jf-c-cust"><circle cx={CX} cy={CY} r={R_LG - 2}/></clipPath>
           <clipPath id="jf-c-agent"><circle cx={SAX} cy={SAY} r={R_LG - 2}/></clipPath>
+          <clipPath id="jf-c-hp"><circle cx={HPcx} cy={HPcy} r={R_ICON}/></clipPath>
           <clipPath id="jf-c-wi"><circle cx={WIcx} cy={WIcy} r={R_ICON}/></clipPath>
 
           <marker id="jf-m-gray" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
@@ -574,13 +575,11 @@ function JourneyFocusDiagram() {
         <motion.g {...nodeAnim(0.5)}>
           <rect x={HPX} y={HPY} width={HPW} height={HPH} rx="33"
             fill="white" stroke="#357de8" strokeWidth="2"/>
-          <circle cx={HPcx} cy={HPcy} r={R_ICON} fill="#357de8"/>
-          <g transform={`translate(${HPcx - R_ICON + 3} ${HPcy - R_ICON + 3}) scale(${(R_ICON * 2 - 6) / 48})`}>
-            <path fillRule="evenodd" clipRule="evenodd" d="M11.8932 8.71122L17.2546 14.0726C21.312 11.3091 26.688 11.3091 30.7454 14.0726L36.1068 8.71122C29.0342 3.09626 18.9658 3.09626 11.8932 8.71122ZM39.2888 11.8932L33.9274 17.2546C36.6909 21.312 36.6909 26.688 33.9274 30.7454L39.2888 36.1068C44.9037 29.0342 44.9037 18.9658 39.2888 11.8932ZM36.1068 39.2888L30.7454 33.9274C26.688 36.6909 21.312 36.6909 17.2546 33.9274L11.8932 39.2888C18.9658 44.9037 29.0342 44.9037 36.1068 39.2888ZM8.71122 36.1068L14.0726 30.7454C11.3091 26.688 11.3091 21.312 14.0726 17.2546L8.71122 11.8932C3.09626 18.9658 3.09626 29.0342 8.71122 36.1068ZM7.02944 7.02944C16.402 -2.34315 31.598 -2.34315 40.9706 7.02944C50.3431 16.402 50.3431 31.598 40.9706 40.9706C31.598 50.3431 16.402 50.3431 7.02944 40.9706C-2.34315 31.598 -2.34315 16.402 7.02944 7.02944ZM29.3033 18.6967C26.3744 15.7678 21.6256 15.7678 18.6967 18.6967C15.7678 21.6256 15.7678 26.3744 18.6967 29.3033C21.6256 32.2322 26.3744 32.2322 29.3033 29.3033C32.2322 26.3744 32.2322 21.6256 29.3033 18.6967Z"
-              fill="white"/>
-          </g>
-          <text x={(HPcx + R_ICON + HPX + HPW) / 2} y={HPcy + 7}
-            textAnchor="middle" fontSize="19" fill="#172b4d"
+          <image href="/journey-focus/hp-icon.png"
+            x={HPcx - R_ICON} y={HPcy - R_ICON} width={R_ICON * 2} height={R_ICON * 2}
+            clipPath="url(#jf-c-hp)" preserveAspectRatio="xMidYMid slice"/>
+          <text x={HPcx + R_ICON + 12} y={HPcy + 7}
+            textAnchor="start" fontSize="19" fill="#172b4d"
             fontFamily={FF} fontWeight="700">Help portal</text>
         </motion.g>
 
@@ -588,11 +587,11 @@ function JourneyFocusDiagram() {
         <motion.g {...nodeAnim(1.28)}>
           <rect x={WIX} y={WIY} width={WIW} height={WIH} rx="33"
             fill="white" stroke="#cf9f02" strokeWidth="2"/>
-          <image href="/journey-focus/jsm-icon.png"
+          <image href="/journey-focus/jsm-avatar.png"
             x={WIcx - R_ICON} y={WIcy - R_ICON} width={R_ICON * 2} height={R_ICON * 2}
             clipPath="url(#jf-c-wi)" preserveAspectRatio="xMidYMid slice"/>
-          <text x={(WIcx + R_ICON + WIX + WIW) / 2} y={WIcy + 7}
-            textAnchor="middle" fontSize="19" fill="#172b4d"
+          <text x={WIcx + R_ICON + 12} y={WIcy + 7}
+            textAnchor="start" fontSize="19" fill="#172b4d"
             fontFamily={FF} fontWeight="700">Work item</text>
         </motion.g>
 
