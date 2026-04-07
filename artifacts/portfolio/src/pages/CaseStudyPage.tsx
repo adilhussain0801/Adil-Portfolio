@@ -160,10 +160,10 @@ function CaseStudyHeroBg({ bgColor }: { bgColor: string }) {
         className="absolute select-none flex items-center justify-center"
         style={{
           inset: 0,
-          paddingTop: "90px",
-          paddingBottom: "30px",
-          paddingLeft: "72px",
-          paddingRight: "72px",
+          paddingTop: "80px",
+          paddingBottom: "20px",
+          paddingLeft: "32px",
+          paddingRight: "40px",
         }}
       >
         {/* Bentofy-style stamp card */}
@@ -238,20 +238,12 @@ function HeroSection({ study }: { study: CaseStudy }) {
       className="relative h-screen snap-start snap-always flex flex-col pb-0 overflow-hidden"
       style={{ backgroundColor: study.heroColor }}
     >
-      {/* Center video */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.98 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="flex-1 flex items-center justify-center relative z-10"
-      >
-        <CaseStudyHeroBg bgColor={study.heroColor} />
-      </motion.div>
+      {/* Main: left text + right image */}
+      <div className="flex-1 flex flex-row relative z-10 min-h-0">
 
-      {/* Title & Subtitle at bottom */}
-      <div className="relative z-10 w-full pb-12">
+        {/* Left: title + subtitle */}
         <motion.div
-          className="flex flex-col px-8 md:px-20"
+          className="flex flex-col justify-center w-5/12 px-8 md:px-20 pb-12 flex-shrink-0"
           {...fadeUp(0.1)}
         >
           <h1
@@ -270,6 +262,17 @@ function HeroSection({ study }: { study: CaseStudy }) {
             </p>
           )}
         </motion.div>
+
+        {/* Right: stamp card image */}
+        <motion.div
+          className="flex-1 relative min-h-0"
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <CaseStudyHeroBg bgColor={study.heroColor} />
+        </motion.div>
+
       </div>
 
       <motion.div
