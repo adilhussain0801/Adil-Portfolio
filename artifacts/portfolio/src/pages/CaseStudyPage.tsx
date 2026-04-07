@@ -239,17 +239,30 @@ function CaseStudyHeroBg({ bgColor }: { bgColor: string }) {
 
       </div>
 
-      {/* ── Product screenshot ── */}
+      {/* ── Product screenshot — true 3/4 perspective ── */}
       <div
         className="absolute select-none"
         style={{
-          top: "-100px",
-          left: "-20px",
-          right: "-200px",
+          bottom: "-80px",
+          right: "-100px",
+          width: "72%",
+          perspective: "800px",
+          perspectiveOrigin: "10% 80%",
           overflow: "visible",
           zIndex: 1,
         }}
       >
+        {/* Haze / glow behind image */}
+        <div style={{
+          position: "absolute",
+          inset: "15% 10% -10% 5%",
+          background: "radial-gradient(ellipse 70% 60% at 35% 60%, rgba(120,150,255,0.30) 0%, transparent 70%)",
+          filter: "blur(36px)",
+          transform: "rotateX(16deg) rotateY(-24deg)",
+          transformOrigin: "left bottom",
+          borderRadius: "50%",
+        }} />
+
         <img
           src="/rovo-banner.png"
           alt="Rovo Service Management interface"
@@ -257,10 +270,12 @@ function CaseStudyHeroBg({ bgColor }: { bgColor: string }) {
             width: "100%",
             height: "auto",
             display: "block",
-            borderRadius: "12px",
-            transform: "rotate(-12deg) scale(0.78)",
-            transformOrigin: "center center",
-            boxShadow: "0 24px 60px rgba(0,0,0,0.18), 0 8px 24px rgba(0,0,0,0.10)",
+            borderRadius: "10px",
+            transform: "rotateX(16deg) rotateY(-24deg)",
+            transformOrigin: "left bottom",
+            WebkitMaskImage: "linear-gradient(to right, black 35%, black 58%, rgba(0,0,0,0.4) 78%, transparent 96%)",
+            maskImage: "linear-gradient(to right, black 35%, black 58%, rgba(0,0,0,0.4) 78%, transparent 96%)",
+            boxShadow: "-20px 40px 70px rgba(0,0,0,0.22), -6px 12px 28px rgba(0,0,0,0.12)",
           }}
         />
       </div>
