@@ -459,15 +459,15 @@ function JourneyFocusDiagram() {
   const arr2x1 = HPX + HPW + 2, arr2x2 = WIX - 2;           // HP → WI
   const arr3x1 = SAX - R_LG - 2, arr3x2 = WIX + WIW + 2;   // SA → WI (reversed)
 
-  // HP → Row 2 elbow tree: trunk exits HP bottom at x=345
-  const HP_BX = HPX + HPW / 2;          // 346 — bottom-center of HP pill
-  const HP_BY = HPY + HPH;              // 188
-  const SPLIT_Y = 242;                  // y where trunk splits into branches
+  // HP → Row 2 elbow tree (exact spec values)
+  const HP_BX = 345;     // trunk x — HP bottom center (spec)
+  const HP_BY = 190;     // trunk y — HP bottom (spec, +2 from stroke edge)
+  const SPLIT_Y = 242;   // y where trunk splits into branches
 
-  // Row 2 → WI L-shape
+  // Row 2 → WI L-shape (exact spec values)
   const LANE_Y = 468;
-  const WI_BCX = WIX + WIW / 2;        // 790 — WI bottom center x
-  const WI_BY  = WIY + WIH;            // 188
+  const WI_BCX = 790;    // WI bottom center x (spec)
+  const WI_BY  = 190;    // WI bottom y (spec, +2 from stroke edge)
 
   return (
     <div ref={ref} className="w-full">
@@ -501,7 +501,7 @@ function JourneyFocusDiagram() {
         {/* 1. Customer → Help portal (horizontal) */}
         <motion.line x1={arr1x1} y1={CY} x2={arr1x2} y2={CY}
           stroke="#9CA3AF" strokeWidth="1.5" markerEnd="url(#jf-m-gray)" {...arrowAnim(0.15)} />
-        <motion.text x={(arr1x1 + arr1x2) / 2} y={CY - 14}
+        <motion.text x={180} y={CY - 14}
           textAnchor="middle" fontSize="15" fill="#803fa5" fontFamily={MONO} {...lblAnim(0.32)}>
           needs IT help
         </motion.text>
@@ -513,45 +513,45 @@ function JourneyFocusDiagram() {
         {/* 3. Service Agent → Work item (horizontal, arrow points left) */}
         <motion.line x1={arr3x1} y1={SAY} x2={arr3x2} y2={SAY}
           stroke="#e06c00" strokeWidth="1.5" markerEnd="url(#jf-m-orange)" {...arrowAnim(1.55)} />
-        <motion.text x={(arr3x1 + arr3x2) / 2} y={SAY - 14}
+        <motion.text x={980} y={SAY - 14}
           textAnchor="middle" fontSize="15" fill="#e06c00" fontFamily={MONO} {...lblAnim(1.72)}>
           assigned
         </motion.text>
 
-        {/* 4. HP → Virtual: vertical trunk → horizontal left → vertical drop (orthogonal elbow) */}
+        {/* 4. HP → Virtual: vertical trunk (345,190)→(345,242), left to 328, Q corner, drop to Virtual top (320,323) */}
         <motion.path
-          d={`M ${HP_BX} ${HP_BY} V ${SPLIT_Y} H ${VX + 8} Q ${VX} ${SPLIT_Y} ${VX} ${SPLIT_Y + 8} V ${VY - R_SM}`}
+          d="M 345 190 V 242 H 328 Q 320 242 320 250 V 323"
           stroke="#357de8" strokeWidth="1.5" fill="none"
           markerEnd="url(#jf-m-blue)" {...arrowAnim(0.74)} />
-        <motion.text x={VX - 8} y={SPLIT_Y + (VY - R_SM - SPLIT_Y) / 2}
+        <motion.text x={292} y={287}
           textAnchor="end" fontSize="15" fill="#1558bc" fontFamily={MONO} {...lblAnim(0.92)}>
           deflection
         </motion.text>
 
-        {/* 5. HP → Help articles: vertical trunk → horizontal right → vertical drop (orthogonal elbow) */}
+        {/* 5. HP → Help articles: vertical trunk (345,190)→(345,242), right to 504, Q corner, drop to HA top (490,323) */}
         <motion.path
-          d={`M ${HP_BX} ${HP_BY} V ${SPLIT_Y} H ${HAX - 8} Q ${HAX} ${SPLIT_Y} ${HAX} ${SPLIT_Y + 8} V ${HAY - R_SM}`}
+          d="M 345 190 V 242 H 504 Q 490 242 490 250 V 323"
           stroke="#357de8" strokeWidth="1.5" fill="none"
           markerEnd="url(#jf-m-blue)" {...arrowAnim(0.80)} />
-        <motion.text x={HAX + 8} y={SPLIT_Y + (HAY - R_SM - SPLIT_Y) / 2}
+        <motion.text x={518} y={287}
           textAnchor="start" fontSize="15" fill="#1558bc" fontFamily={MONO} {...lblAnim(0.96)}>
           self serve
         </motion.text>
 
-        {/* 6. Virtual → WI: down → right → up (L-shape with rounded corners) */}
+        {/* 6. Virtual → WI: down to lane y=468, right to 776, up to WI bottom (790,190) */}
         <motion.path
-          d={`M ${VX} ${VY + R_SM} V ${LANE_Y - 14} Q ${VX} ${LANE_Y} ${VX + 14} ${LANE_Y} H ${WI_BCX - 14} Q ${WI_BCX} ${LANE_Y} ${WI_BCX} ${LANE_Y - 14} V ${WI_BY}`}
+          d="M 320 427 V 454 Q 320 468 334 468 H 776 Q 790 468 790 454 V 190"
           stroke="#6a9a23" strokeWidth="1.5" fill="none"
           markerEnd="url(#jf-m-lime)" {...arrowAnim(1.15)} />
 
-        {/* 7. Help articles → WI: down → right → up (L-shape with rounded corners) */}
+        {/* 7. Help articles → WI: down to lane y=468, right to 776, up to WI bottom (790,190) */}
         <motion.path
-          d={`M ${HAX} ${HAY + R_SM} V ${LANE_Y - 14} Q ${HAX} ${LANE_Y} ${HAX + 14} ${LANE_Y} H ${WI_BCX - 24} Q ${WI_BCX - 10} ${LANE_Y} ${WI_BCX - 10} ${LANE_Y - 14} V ${WI_BY}`}
+          d="M 490 427 V 454 Q 490 468 504 468 H 776 Q 790 468 790 454 V 190"
           stroke="#6a9a23" strokeWidth="1.5" fill="none"
           markerEnd="url(#jf-m-lime)" {...arrowAnim(1.22)} />
 
         {/* "could not resolve" label */}
-        <motion.text x={(VX + WI_BCX) / 2} y={LANE_Y + 18}
+        <motion.text x={520} y={484}
           textAnchor="middle" fontSize="15" fill="#4c6b1f"
           fontFamily={MONO} {...lblAnim(1.4)}>could not resolve</motion.text>
 
