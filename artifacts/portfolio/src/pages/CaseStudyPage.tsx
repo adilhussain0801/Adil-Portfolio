@@ -739,19 +739,6 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
 
           </div>
         </div>
-        {/* Journey Focus: service workflow orientation slide */}
-        <div className="h-screen snap-start snap-always flex flex-col justify-center py-10" style={{ background: "#f8f8f8" }}>
-          <div className="max-w-5xl mx-auto w-full px-6 flex flex-col gap-5">
-            <SnapReveal>
-              <h2 className="text-5xl md:text-[3.5rem] font-black text-[#292a2e] leading-tight"
-                style={{ fontFamily: "'Wotfard', sans-serif" }}>
-                Journey focus
-              </h2>
-            </SnapReveal>
-            <JourneyFocusDiagram />
-          </div>
-        </div>
-
         {/* Service Management Journey slide */}
         <div className="h-screen snap-start snap-always flex flex-col justify-center py-10" style={{ background: "#f8f8f8" }}>
           <div className="max-w-5xl mx-auto w-full px-6 flex flex-col gap-5">
