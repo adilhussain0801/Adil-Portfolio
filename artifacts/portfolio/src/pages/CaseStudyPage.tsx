@@ -461,7 +461,7 @@ function JourneyFocusDiagram() {
   const arr3x1 = SAX - R_RING - 2, arr3x2 = WIX + WIW + 2;   // SA → WI (reversed)
 
   // HP → Row 2 elbow tree (exact spec values)
-  const HP_BX = 436;     // trunk x — HP bottom center (HPX + HPW/2 = 310+126)
+  const HP_BX = 405;     // trunk x — midpoint of VX(320) and HAX(490) for equal arms
   const HP_BY = 190;     // trunk y — HP bottom (spec, +2 from stroke edge)
   const SPLIT_Y = 242;   // y where trunk splits into branches
 
@@ -522,7 +522,7 @@ function JourneyFocusDiagram() {
 
         {/* 4. HP → Virtual: vertical trunk (436,190)→(436,242), left to 328, Q corner, drop to Virtual top (320,323) */}
         <motion.path
-          d="M 436 190 V 242 H 328 Q 320 242 320 250 V 323"
+          d={`M ${HP_BX} ${HP_BY} V ${SPLIT_Y} H ${VX + 8} Q ${VX} ${SPLIT_Y} ${VX} ${SPLIT_Y + 8} V 323`}
           stroke="#357de8" strokeWidth="1.5" fill="none"
           markerEnd="url(#jf-m-blue)" {...arrowAnim(0.74)} />
         <motion.text x={292} y={287}
@@ -532,7 +532,7 @@ function JourneyFocusDiagram() {
 
         {/* 5. HP → Help articles: vertical trunk (436,190)→(436,242), right to 482, Q corner at (490,242), drop to HA top (490,323) */}
         <motion.path
-          d="M 436 190 V 242 H 482 Q 490 242 490 250 V 323"
+          d={`M ${HP_BX} ${HP_BY} V ${SPLIT_Y} H ${HAX - 8} Q ${HAX} ${SPLIT_Y} ${HAX} ${SPLIT_Y + 8} V 323`}
           stroke="#357de8" strokeWidth="1.5" fill="none"
           markerEnd="url(#jf-m-blue)" {...arrowAnim(0.80)} />
         <motion.text x={518} y={287}
