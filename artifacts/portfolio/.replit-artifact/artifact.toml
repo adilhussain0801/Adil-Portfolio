@@ -15,7 +15,7 @@ paths = [ "/" ]
 localPort = 5000
 
 [services.development]
-run = "pnpm --filter @workspace/portfolio run dev"
+run = "bash -c 'pnpm install --frozen-lockfile 2>/dev/null; pnpm --filter @workspace/portfolio run dev'"
 
 [services.production]
 build = [ "pnpm", "--filter", "@workspace/portfolio", "run", "build" ]
