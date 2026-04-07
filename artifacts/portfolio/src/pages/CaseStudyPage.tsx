@@ -148,7 +148,7 @@ function BeforeAfterSlider({ before, after, bgColor }: { before: string; after: 
 
 function CaseStudyHeroBg({ bgColor }: { bgColor: string }) {
   return (
-    <div className="absolute inset-0 overflow-hidden" style={{ perspective: "1200px" }}>
+    <div className="absolute inset-0 overflow-hidden">
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -156,20 +156,16 @@ function CaseStudyHeroBg({ bgColor }: { bgColor: string }) {
             "radial-gradient(ellipse 55% 75% at 70% 46%, rgba(255,255,255,0.38) 0%, transparent 65%)",
         }}
       />
-      {/* Perspective-tilted product screenshot */}
+      {/* Perspective-tilted product screenshot — Atlassian-style angle */}
       <div
         className="absolute select-none"
         style={{
-          top: "60px",
-          bottom: "-40px",
-          left: "0",
-          right: "-60px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "flex-start",
-          perspective: "1400px",
-          perspectiveOrigin: "30% 50%",
-          overflow: "hidden",
+          top: "56px",
+          bottom: "-60px",
+          left: "-20px",
+          right: "-80px",
+          perspective: "1100px",
+          perspectiveOrigin: "5% 45%",
         }}
       >
         <img
@@ -180,10 +176,10 @@ function CaseStudyHeroBg({ bgColor }: { bgColor: string }) {
             height: "100%",
             objectFit: "cover",
             objectPosition: "top left",
-            borderRadius: "12px",
-            transform: "rotateY(-14deg) rotateX(4deg) scale(1.04)",
+            borderRadius: "14px",
+            transform: "rotateX(7deg) rotateY(-26deg)",
             transformOrigin: "left center",
-            boxShadow: "0 32px 80px rgba(0,0,0,0.18), 0 8px 24px rgba(0,0,0,0.10)",
+            boxShadow: "0 40px 100px rgba(0,0,0,0.22), 0 12px 32px rgba(0,0,0,0.12)",
           }}
         />
       </div>
