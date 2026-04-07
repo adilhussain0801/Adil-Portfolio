@@ -1,7 +1,7 @@
 import { useParams, Link } from "wouter";
 import { useRef, useEffect, useState, useMemo, type RefObject } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare, ChevronLeft, ChevronRight, X, CheckCircle2, Settings } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare, ChevronLeft, ChevronRight, X, CheckCircle2, Settings } from "lucide-react";
 import { getCaseStudy, getNextCaseStudy, type CaseStudy } from "@/data/caseStudies";
 import NotFound from "@/pages/not-found";
 
@@ -2018,11 +2018,11 @@ export default function CaseStudyPage() {
       style={{ background: "#FAF8F5" }}
     >
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 md:px-24 flex items-center justify-between ${
           headerScrolled
-            ? "py-4 bg-[#FAF8F5]/80 backdrop-blur-md border-b border-[#2D2D2D]/10 shadow-sm"
-            : "py-5 bg-transparent border-b border-transparent"
-        } px-6 md:px-24 flex items-center justify-between`}
+            ? "py-4 opacity-100 translate-y-0 bg-[#FAF8F5]/80 backdrop-blur-md border-b border-[#2D2D2D]/10 shadow-sm"
+            : "py-5 opacity-0 -translate-y-2 pointer-events-none bg-transparent border-b border-transparent"
+        }`}
       >
         <Link
           href="/"
@@ -2035,11 +2035,7 @@ export default function CaseStudyPage() {
           <span>Back</span>
         </Link>
 
-        <div
-          className={`absolute left-1/2 -translate-x-1/2 flex flex-col items-center transition-all duration-500 ${
-            headerScrolled ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"
-          }`}
-        >
+        <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center">
           <span
             className="text-xs font-bold tracking-widest uppercase text-[#2D2D2D]/40"
             style={{ fontFamily: "'Wotfard', sans-serif" }}
@@ -2055,10 +2051,14 @@ export default function CaseStudyPage() {
         </div>
 
         <Link
-          href="/"
-          className="text-lg font-serif font-medium tracking-wide hover:opacity-70 transition-opacity text-[#2D2D2D]"
+          href={`/work/${study.nextProjectId}`}
+          className="flex items-center gap-2 text-sm font-medium text-[#2D2D2D]/70 hover:text-[#2D2D2D] transition-colors group"
+          style={{ fontFamily: "'Wotfard', sans-serif" }}
         >
-          Adil Hussain
+          <span>Switch Work</span>
+          <div className="w-8 h-8 rounded-full border border-[#2D2D2D]/20 flex items-center justify-center group-hover:border-[#2D2D2D]/50 transition-colors">
+            <ArrowRight size={14} strokeWidth={1.5} />
+          </div>
         </Link>
       </header>
 
