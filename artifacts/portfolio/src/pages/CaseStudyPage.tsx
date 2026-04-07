@@ -153,68 +153,89 @@ function CaseStudyHeroBg({ bgColor }: { bgColor: string }) {
       {/* ── Background decorations ── */}
       <div className="absolute inset-0 pointer-events-none select-none" style={{ zIndex: 0 }}>
 
-        {/* Concentric rings — top right */}
-        <svg
-          style={{ position: "absolute", top: "-120px", right: "-100px", opacity: 0.13 }}
-          width="480" height="480" viewBox="0 0 480 480" fill="none"
-        >
-          <circle cx="240" cy="240" r="220" stroke="#1E2D7A" strokeWidth="1.5" />
-          <circle cx="240" cy="240" r="170" stroke="#1E2D7A" strokeWidth="1" />
-          <circle cx="240" cy="240" r="115" stroke="#1E2D7A" strokeWidth="0.8" />
-        </svg>
-
-        {/* Warm gradient orb — upper left area */}
+        {/* Aurora blob — violet, top right */}
         <div style={{
-          position: "absolute",
-          top: "-40px",
-          left: "5%",
-          width: "320px",
-          height: "320px",
-          borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(255,180,100,0.18) 0%, transparent 68%)",
-          filter: "blur(24px)",
+          position: "absolute", top: "-80px", right: "5%",
+          width: "500px", height: "500px", borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(140,90,255,0.28) 0%, transparent 62%)",
+          filter: "blur(50px)",
         }} />
 
-        {/* Dot grid — bottom left */}
+        {/* Aurora blob — cyan, bottom left */}
+        <div style={{
+          position: "absolute", bottom: "-40px", left: "8%",
+          width: "420px", height: "420px", borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(60,190,255,0.24) 0%, transparent 62%)",
+          filter: "blur(48px)",
+        }} />
+
+        {/* Aurora blob — warm pink, center */}
+        <div style={{
+          position: "absolute", top: "10%", left: "35%",
+          width: "340px", height: "340px", borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(255,100,180,0.14) 0%, transparent 60%)",
+          filter: "blur(44px)",
+        }} />
+
+        {/* Neural network graph */}
         <svg
-          style={{ position: "absolute", bottom: "48px", left: "24px", opacity: 0.18 }}
-          width="130" height="110" viewBox="0 0 130 110" fill="none"
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0.28 }}
+          viewBox="0 0 1000 480" fill="none" preserveAspectRatio="xMidYMid slice"
         >
-          {Array.from({ length: 5 }, (_, row) =>
-            Array.from({ length: 6 }, (_, col) => (
-              <circle key={`${row}-${col}`} cx={col * 24 + 5} cy={row * 22 + 5} r="2.2" fill="#1E2D7A" />
-            ))
-          )}
+          {/* Connection lines */}
+          {[
+            [120,90, 280,60], [280,60, 430,170], [280,60, 520,90],
+            [120,90, 200,250], [200,250, 350,320], [350,320, 520,90],
+            [520,90, 600,240], [520,90, 700,110], [600,240, 700,110],
+            [700,110, 820,260], [700,110, 900,80], [820,260, 900,80],
+            [820,260, 960,380], [430,170, 600,240], [200,250, 430,170],
+          ].map(([x1,y1,x2,y2], i) => (
+            <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
+              stroke="#2B35C4" strokeWidth="1.2" strokeOpacity="0.5" />
+          ))}
+          {/* Nodes */}
+          {[
+            [120,90,6], [280,60,8], [430,170,5], [200,250,6],
+            [350,320,5], [520,90,9], [600,240,6], [700,110,7],
+            [820,260,5], [900,80,6], [960,380,5],
+          ].map(([cx,cy,r], i) => (
+            <g key={i}>
+              <circle cx={cx} cy={cy} r={(r as number)+6} fill="#2B35C4" fillOpacity="0.08" />
+              <circle cx={cx} cy={cy} r={r} fill="#2B35C4" fillOpacity="0.55" />
+            </g>
+          ))}
         </svg>
 
-        {/* Curved arc — mid background */}
+        {/* Signal waveform — bottom strip */}
         <svg
-          style={{ position: "absolute", top: "30%", left: "30%", opacity: 0.08 }}
-          width="260" height="160" viewBox="0 0 260 160" fill="none"
+          style={{ position: "absolute", bottom: "56px", left: 0, right: 0, width: "100%", opacity: 0.22 }}
+          height="48" viewBox="0 0 1000 48" preserveAspectRatio="none" fill="none"
         >
-          <path d="M 10 140 C 60 10, 200 10, 250 80" stroke="#1E2D7A" strokeWidth="2" strokeLinecap="round" />
-          <path d="M 10 110 C 60 0, 180 20, 230 70" stroke="#1E2D7A" strokeWidth="1.2" strokeLinecap="round" strokeDasharray="6 6" />
+          <path
+            d="M0 24 C40 4,80 4,120 24 S200 44,240 24 S320 4,360 24 S440 44,480 24 S560 4,600 24 S680 44,720 24 S800 4,840 24 S920 44,960 24 L1000 24"
+            stroke="#2B35C4" strokeWidth="1.8" strokeLinecap="round"
+          />
+          <path
+            d="M0 24 C60 8,120 8,180 24 S300 40,360 24 S480 8,540 24 S660 40,720 24 S840 8,900 24 L1000 24"
+            stroke="#2B35C4" strokeWidth="0.9" strokeOpacity="0.5" strokeLinecap="round" strokeDasharray="4 4"
+          />
         </svg>
 
-        {/* Small asterisk / cross — accent */}
-        <svg
-          style={{ position: "absolute", top: "18%", left: "45%", opacity: 0.14 }}
-          width="28" height="28" viewBox="0 0 28 28" fill="none"
-        >
-          <line x1="14" y1="2" x2="14" y2="26" stroke="#1E2D7A" strokeWidth="2" strokeLinecap="round" />
-          <line x1="2" y1="14" x2="26" y2="14" stroke="#1E2D7A" strokeWidth="2" strokeLinecap="round" />
-          <line x1="5" y1="5" x2="23" y2="23" stroke="#1E2D7A" strokeWidth="1.2" strokeLinecap="round" />
-          <line x1="23" y1="5" x2="5" y2="23" stroke="#1E2D7A" strokeWidth="1.2" strokeLinecap="round" />
-        </svg>
+        {/* Glowing node accent — top left */}
+        <div style={{
+          position: "absolute", top: "22%", left: "6%",
+          width: "18px", height: "18px", borderRadius: "50%",
+          background: "#6B4EFF",
+          boxShadow: "0 0 0 8px rgba(107,78,255,0.15), 0 0 0 16px rgba(107,78,255,0.07)",
+        }} />
 
-        {/* Tiny ring — lower right accent */}
-        <svg
-          style={{ position: "absolute", bottom: "22%", right: "18%", opacity: 0.16 }}
-          width="56" height="56" viewBox="0 0 56 56" fill="none"
-        >
-          <circle cx="28" cy="28" r="24" stroke="#1E2D7A" strokeWidth="1.5" />
-          <circle cx="28" cy="28" r="10" stroke="#1E2D7A" strokeWidth="1" />
-        </svg>
+        {/* Glowing node accent — mid right */}
+        <div style={{
+          position: "absolute", top: "55%", right: "22%",
+          width: "12px", height: "12px", borderRadius: "50%",
+          background: "#00C2FF",
+          boxShadow: "0 0 0 6px rgba(0,194,255,0.15), 0 0 0 14px rgba(0,194,255,0.07)",
+        }} />
 
       </div>
 
