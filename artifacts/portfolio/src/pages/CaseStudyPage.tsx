@@ -530,9 +530,9 @@ function JourneyFocusDiagram() {
           deflection
         </motion.text>
 
-        {/* 5. HP → Help articles: vertical trunk (436,190)→(436,242), right to 504, Q corner, drop to HA top (490,323) */}
+        {/* 5. HP → Help articles: vertical trunk (436,190)→(436,242), right to 482, Q corner at (490,242), drop to HA top (490,323) */}
         <motion.path
-          d="M 436 190 V 242 H 504 Q 490 242 490 250 V 323"
+          d="M 436 190 V 242 H 482 Q 490 242 490 250 V 323"
           stroke="#357de8" strokeWidth="1.5" fill="none"
           markerEnd="url(#jf-m-blue)" {...arrowAnim(0.80)} />
         <motion.text x={518} y={287}
