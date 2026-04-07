@@ -148,24 +148,17 @@ function BeforeAfterSlider({ before, after, bgColor }: { before: string; after: 
 
 function CaseStudyHeroBg({ bgColor }: { bgColor: string }) {
   return (
-    <div className="absolute inset-0 overflow-hidden">
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 55% 75% at 70% 46%, rgba(255,255,255,0.38) 0%, transparent 65%)",
-        }}
-      />
-      {/* Perspective-tilted product screenshot — flat lay Atlassian-style */}
+    <div className="absolute inset-0 overflow-visible">
+      {/* Flat-perspective product screenshot */}
       <div
         className="absolute select-none"
         style={{
-          top: "40px",
-          bottom: "-80px",
-          left: "0",
-          right: "-60px",
-          perspective: "1200px",
-          perspectiveOrigin: "50% 100%",
+          top: 0,
+          bottom: "-100px",
+          left: "40px",
+          right: "-120px",
+          perspective: "1000px",
+          perspectiveOrigin: "40% 0%",
         }}
       >
         <img
@@ -176,10 +169,10 @@ function CaseStudyHeroBg({ bgColor }: { bgColor: string }) {
             height: "100%",
             objectFit: "cover",
             objectPosition: "top left",
-            borderRadius: "12px",
-            transform: "rotateX(22deg) rotateY(-6deg)",
-            transformOrigin: "center bottom",
-            boxShadow: "0 40px 100px rgba(0,0,0,0.22), 0 12px 32px rgba(0,0,0,0.12)",
+            borderRadius: "14px 14px 0 0",
+            transform: "rotateX(18deg) rotateY(-8deg)",
+            transformOrigin: "left bottom",
+            boxShadow: "0 -8px 60px rgba(0,0,0,0.12), 0 30px 80px rgba(0,0,0,0.20)",
           }}
         />
       </div>
@@ -194,46 +187,41 @@ function HeroSection({ study }: { study: CaseStudy }) {
       className="relative h-screen snap-start snap-always flex flex-col pb-0 overflow-hidden"
       style={{ backgroundColor: study.heroColor }}
     >
-      {/* Main: left text + right image */}
-      <div className="flex-1 flex flex-row relative z-10 min-h-0">
-
-        {/* Left: title + subtitle */}
-        <motion.div
-          className="flex flex-col justify-center w-5/12 px-8 md:px-20 pb-12 flex-shrink-0"
-          {...fadeUp(0.1)}
+      {/* Title + description — top left */}
+      <motion.div
+        className="relative z-10 px-8 md:px-20 pt-20 md:pt-24 pb-0 max-w-xl"
+        {...fadeUp(0.1)}
+      >
+        <h1
+          className="text-5xl md:text-[3.6rem] leading-[1.05] text-[#1a1a1a] mb-4"
+          style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
         >
-          <h1
-            className="text-5xl md:text-[3.75rem] leading-[1.02] text-[#1a1a1a] mb-4"
-            style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+          {study.title}
+        </h1>
+        {study.subtitle && (
+          <p
+            className="text-sm md:text-[15px] leading-relaxed text-[#1a1a1a]/65 max-w-sm"
+            style={{ fontFamily: "'Wotfard', sans-serif" }}
           >
-            {study.title}
-          </h1>
-          <div className="w-10 h-[3px] rounded-full mb-5" style={{ background: "#E8654B" }} />
-          {study.subtitle && (
-            <p
-              className="text-sm md:text-[15px] leading-relaxed text-[#1a1a1a]/70"
-              style={{ fontFamily: "'Wotfard', sans-serif" }}
-            >
-              {study.subtitle}
-            </p>
-          )}
-        </motion.div>
+            {study.subtitle}
+          </p>
+        )}
+      </motion.div>
 
-        {/* Right: stamp card image */}
-        <motion.div
-          className="flex-1 relative min-h-0"
-          initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          <CaseStudyHeroBg bgColor={study.heroColor} />
-        </motion.div>
+      {/* Screenshot — fills remaining height */}
+      <motion.div
+        className="flex-1 relative min-h-0 mt-6"
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.9, ease: "easeOut", delay: 0.15 }}
+      >
+        <CaseStudyHeroBg bgColor={study.heroColor} />
+      </motion.div>
 
-      </div>
-
+      {/* Bottom metadata bar */}
       <motion.div
         className="relative z-10 w-full px-6 md:px-20"
-        {...fadeUp(0.25)}
+        {...fadeUp(0.3)}
       >
         <div className="rounded-t-2xl bg-[#1a1a1a] px-6 md:px-10 py-6 flex flex-wrap items-center justify-between gap-6">
           <div className="flex flex-wrap gap-8">
