@@ -264,7 +264,7 @@ function OverviewSection({ study }: { study: CaseStudy }) {
             Overview
           </h2>
 
-          {/* Quote card — skewed parallelogram style */}
+          {/* Quote card - skewed parallelogram style */}
           <div className="relative pl-10">
             <img
               src="/quote-mark.png"
@@ -286,7 +286,7 @@ function OverviewSection({ study }: { study: CaseStudy }) {
                       <mark style={{ background: "rgba(99,102,241,0.14)", color: "#4338CA", borderRadius: "5px", padding: "2px 7px", fontWeight: 700 }}>
                         transform how enterprise support works
                       </mark>
-                      {" "}— shifting from{" "}
+                      {" "}- shifting from{" "}
                       <mark style={{ background: "rgba(232,101,75,0.14)", color: "#C05437", borderRadius: "5px", padding: "2px 7px", fontWeight: 700 }}>
                         reactive ticket handling
                       </mark>
@@ -301,7 +301,7 @@ function OverviewSection({ study }: { study: CaseStudy }) {
                       <mark style={{ background: "rgba(99,102,241,0.14)", color: "#4338CA", borderRadius: "5px", padding: "2px 7px", fontWeight: 700 }}>
                         embeds AI agents directly into service workflows
                       </mark>
-                      , enabling them to understand requests, generate resolution plans, and execute actions across tools — while{" "}
+                      , enabling them to understand requests, generate resolution plans, and execute actions across tools - while{" "}
                       <mark style={{ background: "rgba(99,102,241,0.14)", color: "#4338CA", borderRadius: "5px", padding: "2px 7px", fontWeight: 700 }}>
                         keeping humans in control
                       </mark>
@@ -439,12 +439,12 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                   </p>
                   <p className="text-sm md:text-base leading-relaxed text-[#1a1a1a]/70" style={{ fontFamily: "'Wotfard', sans-serif" }}>
                     Agents spend up to <strong className="text-[#1a1a1a] font-semibold">40–60%</strong> of their time not resolving issues, but{" "}
-                    <strong className="text-[#1a1a1a] font-semibold">understanding</strong> them — navigating fragmented tools, clarifying incomplete requests, and manually assembling context.
+                    <strong className="text-[#1a1a1a] font-semibold">understanding</strong> them - navigating fragmented tools, clarifying incomplete requests, and manually assembling context.
                   </p>
                   <p className="text-sm md:text-base leading-relaxed text-[#1a1a1a]/70" style={{ fontFamily: "'Wotfard', sans-serif" }}>
                     This results in <strong className="text-[#1a1a1a] font-semibold">slower resolution times</strong>, higher{" "}
                     <strong className="text-[#1a1a1a] font-semibold">cognitive load</strong>, and a model that{" "}
-                    <strong className="text-[#1a1a1a] font-semibold">scales linearly with headcount</strong> — making it increasingly{" "}
+                    <strong className="text-[#1a1a1a] font-semibold">scales linearly with headcount</strong> - making it increasingly{" "}
                     <strong className="text-[#1a1a1a] font-semibold">unsustainable</strong> as demand grows.
                   </p>
                 </div>
@@ -485,7 +485,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                 >
                   The problem wasn't just{" "}
                   <span style={{ color: "#5B8A72" }}>inefficiency</span>
-                  {" "}— it was a system that fundamentally didn't scale.
+                  {" "}- it was a system that fundamentally didn't scale.
                 </p>
               </div>
             </SnapReveal>
@@ -507,10 +507,10 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
             <SnapReveal delay={0.1}>
               {(() => {
                 const steps = [
-                  { label: "Request",        color: "#2563EB", headerBg: "rgba(37,99,235,0.12)",   icon: <Inbox size={22} />,        question: "What is the user asking for?",       description: "A request comes in via email, portal, or chat — often incomplete or unclear.",                                                              friction: "Often missing key details — triggers back-and-forth",        issueColor: "#2563EB" },
+                  { label: "Request",        color: "#2563EB", headerBg: "rgba(37,99,235,0.12)",   icon: <Inbox size={22} />,        question: "What is the user asking for?",       description: "A request comes in via email, portal, or chat - often incomplete or unclear.",                                                              friction: "Often missing key details - triggers back-and-forth",        issueColor: "#2563EB" },
                   { label: "Understand",     color: "#7C3AED", headerBg: "rgba(124,58,237,0.12)", icon: <Network size={22} />,       question: "What exactly needs to be done?",     description: "The agent interprets the request, clarifies intent, and identifies the actual problem to solve.",                                            friction: "Ambiguity leads to misinterpretation",                       issueColor: "#7C3AED" },
                   { label: "Gather context", color: "#B45309", headerBg: "rgba(180,83,9,0.12)",   icon: <Brain size={22} />,         question: "What information do I need?",        description: "The agent pulls data from Jira, Confluence, internal tools, logs, and past tickets to build a complete picture.",                            friction: "Information is fragmented across tools",                     issueColor: "#B45309" },
-                  { label: "Execute",        color: "#0F766E", headerBg: "rgba(15,118,110,0.12)", icon: <Settings size={22} />,      question: "How do I resolve this?",             description: "The agent performs actions across systems — approvals, access changes, configurations, or escalations.",                                      friction: "Manual coordination slows things down",                      issueColor: "#0F766E" },
+                  { label: "Execute",        color: "#0F766E", headerBg: "rgba(15,118,110,0.12)", icon: <Settings size={22} />,      question: "How do I resolve this?",             description: "The agent performs actions across systems - approvals, access changes, configurations, or escalations.",                                      friction: "Manual coordination slows things down",                      issueColor: "#0F766E" },
                   { label: "Resolve",        color: "#4338CA", headerBg: "rgba(67,56,202,0.12)",  icon: <CheckCircle2 size={22} />,  question: "Is the issue fully addressed?",      description: "The request is completed, validated, and communicated back to the user.",                                                                    friction: "Outcomes depend on human stitching everything together",     issueColor: "#4338CA" },
                 ];
                 return (
@@ -525,7 +525,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                           className="absolute border-t border-dashed border-[#C8C2BB]"
                           style={{ top: 32, left: "10%", right: "10%" }}
                         />
-                        {/* Filled chevrons between steps — top=26 so center (26+6)=32 aligns with line */}
+                        {/* Filled chevrons between steps - top=26 so center (26+6)=32 aligns with line */}
                         {[20, 40, 60, 80].map((pct, ci) => (
                           <div
                             key={ci}
@@ -565,7 +565,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                       </div>
                     </div>
 
-                    {/* Row 2: questions — all on same line */}
+                    {/* Row 2: questions - all on same line */}
                     <div className="grid grid-cols-5 gap-4">
                       {steps.map((step, i) => (
                         <p key={i} className="text-sm font-semibold italic text-center leading-snug px-2" style={{ color: step.color, fontFamily: "'Wotfard', sans-serif" }}>
@@ -574,7 +574,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                       ))}
                     </div>
 
-                    {/* Row 3: descriptions — all on same line */}
+                    {/* Row 3: descriptions - all on same line */}
                     <div className="grid grid-cols-5 gap-4">
                       {steps.map((step, i) => (
                         <p key={i} className="text-sm leading-relaxed text-center text-[#1a1a1a]/50 px-2" style={{ fontFamily: "'Wotfard', sans-serif" }}>
@@ -745,7 +745,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                   className="text-sm leading-relaxed text-[#1a1a1a]/55"
                   style={{ fontFamily: "'Wotfard', sans-serif" }}
                 >
-                  While friction appears across different stages, the root cause is consistent — the system offloads complexity onto the agent.
+                  While friction appears across different stages, the root cause is consistent - the system offloads complexity onto the agent.
                 </p>
               </div>
               {study.challenge.painPoints ? (
@@ -1002,7 +1002,7 @@ function IndustryTrendsSection() {
                 </span>
               </div>
               <p className="text-base font-medium leading-snug text-[#1a1a1a]" style={{ fontFamily: "'Wotfard', sans-serif" }}>
-                'The market is converging toward AI agents — yet no player combines deep workflow context with autonomous execution.'
+                'The market is converging toward AI agents - yet no player combines deep workflow context with autonomous execution.'
               </p>
             </div>
             <div className="flex flex-col gap-0.5 flex-shrink-0 pl-8 border-l border-[#E8E4DE]">
@@ -1260,7 +1260,7 @@ const CONCEPT_SCREENS = [
     area: "e",
     delay: 0.13,
     title: "Plan Editing",
-    description: "Service Agents can refine AI-generated plans before assigning Rovo to execute — maintaining human oversight at every step.",
+    description: "Service Agents can refine AI-generated plans before assigning Rovo to execute - maintaining human oversight at every step.",
   },
   {
     src: "/concept-v2-plan-executing.webp",
@@ -1276,7 +1276,7 @@ const CONCEPT_SCREENS = [
     area: "g",
     delay: 0.17,
     title: "Rovo Service Landing",
-    description: "Configure how Rovo operates per space — with resolution management, onboarding journeys, and self-service setup in one place.",
+    description: "Configure how Rovo operates per space - with resolution management, onboarding journeys, and self-service setup in one place.",
   },
   {
     src: "/concept-v2-it-general.webp",
@@ -1284,7 +1284,7 @@ const CONCEPT_SCREENS = [
     area: "h",
     delay: 0.19,
     title: "IT Execution Settings",
-    description: "Fine-grained controls that map request types to execution modes — Auto, Supervised, or Assistive — across the team.",
+    description: "Fine-grained controls that map request types to execution modes - Auto, Supervised, or Assistive - across the team.",
   },
 ];
 
@@ -1309,7 +1309,7 @@ const DESIGN_PRINCIPLES = [
     numColor: "#F9C5B8",
     title: "Prioritize outcomes over process visibility",
     description: "Design for outcomes, not for process visibility.",
-    insight: "Early designs exposed logic — plans, trees, steps. But users care about resolution, not how the machine thinks.",
+    insight: "Early designs exposed logic - plans, trees, steps. But users care about resolution, not how the machine thinks.",
   },
   {
     num: "03",
@@ -1320,7 +1320,7 @@ const DESIGN_PRINCIPLES = [
     numColor: "#BFDBFE",
     title: "Reduce cognitive load, don't shift it",
     description: "AI should eliminate decisions, not create new ones.",
-    insight: "Users had to interpret plans, validate steps, and fix flows. AI added work instead of removing it — the opposite of the promise.",
+    insight: "Users had to interpret plans, validate steps, and fix flows. AI added work instead of removing it - the opposite of the promise.",
   },
 ];
 
@@ -1485,7 +1485,7 @@ function EarlyStageConceptsSection() {
               className="text-[13px] leading-relaxed"
               style={{ color: "rgba(26,26,26,0.48)", fontFamily: "'Wotfard', sans-serif" }}
             >
-              Exploring multiple approaches — exposing context, surfacing AI reasoning, and reducing operator effort.
+              Exploring multiple approaches - exposing context, surfacing AI reasoning, and reducing operator effort.
             </p>
           </motion.div>
         </div>
@@ -1532,7 +1532,7 @@ function EarlyStageConceptsSection() {
         </div>
       </div>
 
-      {/* Lightbox — always in DOM, CSS-only visibility */}
+      {/* Lightbox - always in DOM, CSS-only visibility */}
       {(() => {
         const screen = CONCEPT_SCREENS[lastIndex];
         const open = lightboxIndex !== null;

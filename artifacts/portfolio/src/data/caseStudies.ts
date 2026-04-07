@@ -77,15 +77,15 @@ export const CASE_STUDIES: CaseStudy[] = [
     image: "/project-amazon-orders.png",
     imageAlt: "Amazon post-purchase experience redesign",
     overview:
-      "Led a cross-functional redesign of Amazon India's post-purchase support experience — from order tracking to seller communication — reducing contact rates and dramatically improving resolution speed.",
+      "Led a cross-functional redesign of Amazon India's post-purchase support experience - from order tracking to seller communication - reducing contact rates and dramatically improving resolution speed.",
     metrics: [{ label: "SUCCESS RATE", value: "65.2%" }],
     challenge: {
       text:
-        "Amazon India's post-purchase support was fragmented across disconnected touchpoints. Customers navigating order issues, returns, or seller disputes had to jump between Help, Your Orders, Contact Us, and Message Center — often without resolution. The support volume was growing and satisfaction scores were declining.",
+        "Amazon India's post-purchase support was fragmented across disconnected touchpoints. Customers navigating order issues, returns, or seller disputes had to jump between Help, Your Orders, Contact Us, and Message Center - often without resolution. The support volume was growing and satisfaction scores were declining.",
       bullets: [
         "High support ticket volumes driven by customers unable to self-serve",
         "Fragmented UX across Contact Us, Your Orders, and Message Center",
-        "No proactive issue surfacing — customers discovered problems only after contact",
+        "No proactive issue surfacing - customers discovered problems only after contact",
         "India-specific nuances (COD orders, regional language needs) were unaddressed",
       ],
     },
@@ -118,12 +118,12 @@ export const CASE_STUDIES: CaseStudy[] = [
     solution: {
       title: "A unified, proactive support experience",
       description:
-        "Redesigned the full post-purchase stack — Order status pages now surface issues before customers encounter them. Contact Us intelligently routes based on order type and issue context. Message Center provides threaded, real-time seller communication.",
+        "Redesigned the full post-purchase stack - Order status pages now surface issues before customers encounter them. Contact Us intelligently routes based on order type and issue context. Message Center provides threaded, real-time seller communication.",
       features: [
         {
           title: "Proactive issue detection",
           description:
-            "Partnered with data science to embed predictive models into order status pages — surfacing delays, fraud flags, and return eligibility before customers need to ask.",
+            "Partnered with data science to embed predictive models into order status pages - surfacing delays, fraud flags, and return eligibility before customers need to ask.",
         },
         {
           title: "Smart routing in Contact Us",
@@ -133,7 +133,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         {
           title: "Unified Message Center",
           description:
-            "Redesigned seller communication into a threaded inbox with read receipts, structured dispute flows, and automated status updates — eliminating duplicate contacts.",
+            "Redesigned seller communication into a threaded inbox with read receipts, structured dispute flows, and automated status updates - eliminating duplicate contacts.",
         },
       ],
     },
@@ -169,14 +169,14 @@ export const CASE_STUDIES: CaseStudy[] = [
     image: "/project-iot-platform.png",
     imageAlt: "Foresight mobile app design",
     overview:
-      "Designed an AI-powered mobile support automation system for Amazon India — enabling customers to predict, prevent, and resolve delivery and order issues before they escalate.",
+      "Designed an AI-powered mobile support automation system for Amazon India - enabling customers to predict, prevent, and resolve delivery and order issues before they escalate.",
     metrics: [
       { label: "ADOPTION", value: "89%" },
       { label: "MONTHLY ACTIONS", value: "1.5M" },
     ],
     challenge: {
       text:
-        "Amazon's mobile app was reactive — customers discovered problems only after they occurred. Support interactions required agent involvement for issues that could be resolved autonomously. The mobile channel was underutilised for proactive engagement, despite being the primary touchpoint for Indian customers.",
+        "Amazon's mobile app was reactive - customers discovered problems only after they occurred. Support interactions required agent involvement for issues that could be resolved autonomously. The mobile channel was underutilised for proactive engagement, despite being the primary touchpoint for Indian customers.",
       bullets: [
         "No predictive capability to flag delivery risks or order anomalies",
         "High agent dependency for issues solvable through self-serve automation",
@@ -189,13 +189,13 @@ export const CASE_STUDIES: CaseStudy[] = [
         number: "01",
         title: "Behavioural Analysis",
         description:
-          "Analysed 6 months of support ticket data alongside in-app behaviour logs to identify issue patterns by order type, pin code, and delivery partner — revealing predictable failure windows.",
+          "Analysed 6 months of support ticket data alongside in-app behaviour logs to identify issue patterns by order type, pin code, and delivery partner - revealing predictable failure windows.",
       },
       {
         number: "02",
         title: "AI Integration Design",
         description:
-          "Worked with the data science team to design UX patterns for surfacing model outputs — including confidence thresholds, explainability, and graceful fallback when predictions were uncertain.",
+          "Worked with the data science team to design UX patterns for surfacing model outputs - including confidence thresholds, explainability, and graceful fallback when predictions were uncertain.",
       },
       {
         number: "03",
@@ -213,17 +213,17 @@ export const CASE_STUDIES: CaseStudy[] = [
     solution: {
       title: "AI automation that feels like intuition",
       description:
-        "Foresight is a proactive intelligence layer embedded in the Amazon mobile app — surfacing likely issues, offering one-tap resolutions, and closing the loop without agent involvement.",
+        "Foresight is a proactive intelligence layer embedded in the Amazon mobile app - surfacing likely issues, offering one-tap resolutions, and closing the loop without agent involvement.",
       features: [
         {
           title: "Predictive issue cards",
           description:
-            "Smart cards surface predicted delays, availability risks, or return windows before customers notice — giving them agency to act early with a single tap.",
+            "Smart cards surface predicted delays, availability risks, or return windows before customers notice - giving them agency to act early with a single tap.",
         },
         {
           title: "One-tap resolution flows",
           description:
-            "Common resolutions (reschedule delivery, initiate return, contact seller) are distilled into single-action flows with auto-filled context — no form filling, no navigation.",
+            "Common resolutions (reschedule delivery, initiate return, contact seller) are distilled into single-action flows with auto-filled context - no form filling, no navigation.",
         },
         {
           title: "Notification intelligence",
@@ -264,14 +264,14 @@ export const CASE_STUDIES: CaseStudy[] = [
     image: "/project-design-system.png",
     imageAlt: "Atlassian Marketplace trust and transparency features",
     overview:
-      "Designed transparency and trust features for the Atlassian Marketplace that surfaced security certifications, privacy details, and compliance status — converting hesitant enterprise buyers into confident installers.",
+      "Designed transparency and trust features for the Atlassian Marketplace that surfaced security certifications, privacy details, and compliance status - converting hesitant enterprise buyers into confident installers.",
     metrics: [
       { label: "FEWER TICKETS", value: "67%" },
       { label: "FEWER DETRACTORS", value: "16%" },
     ],
     challenge: {
       text:
-        "Enterprise security teams were blocking Atlassian Marketplace app installs due to insufficient visibility into third-party apps' security posture. Security-conscious buyers had no clear way to evaluate compliance, data handling, or vendor credibility — causing significant drop-off at the install step and increasing support burden for both Atlassian and partners.",
+        "Enterprise security teams were blocking Atlassian Marketplace app installs due to insufficient visibility into third-party apps' security posture. Security-conscious buyers had no clear way to evaluate compliance, data handling, or vendor credibility - causing significant drop-off at the install step and increasing support burden for both Atlassian and partners.",
       bullets: [
         "No standardised security or compliance information on app listings",
         "Enterprise buyers lacked tools to evaluate apps against internal security policies",
@@ -296,7 +296,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         number: "03",
         title: "Transparency Design System",
         description:
-          "Designed a modular trust framework — badge components, certification detail drawers, privacy summary cards, and a compliance checklist UI — that worked across listing pages and in-product install flows.",
+          "Designed a modular trust framework - badge components, certification detail drawers, privacy summary cards, and a compliance checklist UI - that worked across listing pages and in-product install flows.",
       },
       {
         number: "04",
@@ -308,12 +308,12 @@ export const CASE_STUDIES: CaseStudy[] = [
     solution: {
       title: "Trust signals that convert",
       description:
-        "A cohesive trust layer built into the Marketplace listing experience — from certification badges and security summaries to expandable compliance detail drawers — giving buyers everything they need to say yes.",
+        "A cohesive trust layer built into the Marketplace listing experience - from certification badges and security summaries to expandable compliance detail drawers - giving buyers everything they need to say yes.",
       features: [
         {
           title: "Security certification badges",
           description:
-            "Clear, scannable badges for SOC 2, ISO 27001, GDPR compliance, and Atlassian's own security review program — surfaced at the top of every listing page.",
+            "Clear, scannable badges for SOC 2, ISO 27001, GDPR compliance, and Atlassian's own security review program - surfaced at the top of every listing page.",
         },
         {
           title: "Privacy & data summary cards",
@@ -323,7 +323,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         {
           title: "Compliance checklist drawer",
           description:
-            "An expandable in-context panel linking certifications to their underlying evidence — reports, audit dates, and remediation history — for teams that need full due diligence.",
+            "An expandable in-context panel linking certifications to their underlying evidence - reports, audit dates, and remediation history - for teams that need full due diligence.",
         },
       ],
     },
@@ -367,7 +367,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     challenge: {
       text:
-        "Taylor, a typical service agent, spends most of their day on low-value coordination work — not problem solving. Each ticket triggers a chain of context-switching, manual searching, and fragmented execution that breaks focus and delays resolution.",
+        "Taylor, a typical service agent, spends most of their day on low-value coordination work - not problem solving. Each ticket triggers a chain of context-switching, manual searching, and fragmented execution that breaks focus and delays resolution.",
       bullets: [
         "Too much back and forth just to understand the request",
         "Significant time lost hunting for the right info across tools",
@@ -398,7 +398,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         },
         {
           title: "Manual collation and execution prolong resolution time",
-          description: "The lack of automated orchestration means every step of the resolution path must be manually triggered, checked, and validated—creating avoidable latency in the final delivery.",
+          description: "The lack of automated orchestration means every step of the resolution path must be manually triggered, checked, and validated-creating avoidable latency in the final delivery.",
           badge: "PROCESS LAG",
           stats: ["85% Manual Steps", "48h Resolution Target"],
           icon: "zap",
@@ -408,7 +408,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         { title: "A new request arrives", description: "An unstructured ticket lands with missing details and no clear owner." },
         { title: "Reaching out for more info", description: "Taylor messages the requester several times to fill in the gaps." },
         { title: "Hunting for info across tools", description: "Hours spent jumping between Confluence, Slack, and Jira." },
-        { title: "Opening multiple sources", description: "Several documents and past conversations — none structured for action." },
+        { title: "Opening multiple sources", description: "Several documents and past conversations - none structured for action." },
         { title: "Piecing together a plan", description: "Manually combining scattered instructions into one workable approach." },
         { title: "Finally resolving the ticket", description: "Hours later, after clarifying, searching, and collating, the ticket closes." },
       ],
@@ -420,7 +420,7 @@ export const CASE_STUDIES: CaseStudy[] = [
           timelineProgress: 22,
           timelineEndLabel: "HIGH FRICTION",
           timelineMarkers: ["Ticket received", "Clarification loop", "Assignment"] as [string, string, string],
-          metric: { value: "65%", label: "of incoming tickets lack complete information — increasing handling time and reducing SLA compliance" },
+          metric: { value: "65%", label: "of incoming tickets lack complete information - increasing handling time and reducing SLA compliance" },
           businessImpact: "Leads to repeated back-and-forth, increasing resolution time and operational cost per ticket",
           steps: [
             { title: "A new request arrives", description: "Unstructured, missing info" },
@@ -468,7 +468,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         number: "02",
         title: "Action Taxonomy Design",
         description:
-          "Classified all Rovo actions into a risk framework — read, suggest, act, and delegate — and designed distinct interaction patterns for each tier that matched user expectations and enterprise policy requirements.",
+          "Classified all Rovo actions into a risk framework - read, suggest, act, and delegate - and designed distinct interaction patterns for each tier that matched user expectations and enterprise policy requirements.",
       },
       {
         number: "03",
@@ -486,22 +486,22 @@ export const CASE_STUDIES: CaseStudy[] = [
     solution: {
       title: "Agentic AI with human oversight built in",
       description:
-        "Rovo Service gives teams a transparent, controllable layer of AI automation — from single-step actions to multi-agent workflows — with visibility and override capability at every step.",
+        "Rovo Service gives teams a transparent, controllable layer of AI automation - from single-step actions to multi-agent workflows - with visibility and override capability at every step.",
       features: [
         {
           title: "Action confirmation flows",
           description:
-            "Before high-impact actions, Rovo presents a plain-language summary of what it's about to do, what data it'll touch, and a one-click override — building confidence through transparency.",
+            "Before high-impact actions, Rovo presents a plain-language summary of what it's about to do, what data it'll touch, and a one-click override - building confidence through transparency.",
         },
         {
           title: "Live action status panel",
           description:
-            "A real-time status view shows what Rovo is doing across connected tools — with step-by-step progress, source references, and the ability to pause or cancel at any point.",
+            "A real-time status view shows what Rovo is doing across connected tools - with step-by-step progress, source references, and the ability to pause or cancel at any point.",
         },
         {
           title: "Audit trail & rollback",
           description:
-            "Every Rovo action is logged in a human-readable audit trail with timestamps, user context, and one-click rollback for reversible actions — built for enterprise compliance requirements.",
+            "Every Rovo action is logged in a human-readable audit trail with timestamps, user context, and one-click rollback for reversible actions - built for enterprise compliance requirements.",
         },
       ],
     },

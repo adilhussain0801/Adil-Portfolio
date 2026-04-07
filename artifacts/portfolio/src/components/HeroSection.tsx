@@ -203,7 +203,7 @@ export default function HeroSection() {
           </motion.h1>
         </motion.div>
 
-        {/* Right: Photo collage — 680px wide hover zone, arch centred inside */}
+        {/* Right: Photo collage - 680px wide hover zone, arch centred inside */}
         <motion.div
           className="relative shrink-0"
           style={{ width: "min(680px, 90vw)", height: "min(580px, 85vw)" }}
@@ -245,7 +245,7 @@ export default function HeroSection() {
             style={{ left: 56, top: "42%" }}
           />
 
-          {/* ── Arch inner container — z-index 5, sits between the two card layers ── */}
+          {/* ── Arch inner container - z-index 5, sits between the two card layers ── */}
           <div
             className="absolute top-0 bottom-0"
             style={{
@@ -280,7 +280,7 @@ export default function HeroSection() {
               />
             </motion.div>
 
-            {/* Coral quarter circle — hides on hover */}
+            {/* Coral quarter circle - hides on hover */}
             <FloatingShape speed={0.55} amplitude={7} offset={0} className="absolute" style={{ right: "6%", top: "2%" }}>
               <motion.div initial={{ opacity: 0, scale: 0.6, rotate: -20 }} animate={coralAnim}>
                 <svg width="110" height="110" viewBox="0 0 110 110" fill="none">
@@ -289,14 +289,14 @@ export default function HeroSection() {
               </motion.div>
             </FloatingShape>
 
-            {/* Sparkle glyph — always visible */}
+            {/* Sparkle glyph - always visible */}
             <FloatingShape speed={0.7} amplitude={5} offset={1.2} className="absolute" style={{ right: "-2%", top: "14%" }}>
               <motion.div initial={{ opacity: 0, rotate: -45 }} animate={{ opacity: 1, rotate: 0 }} transition={{ duration: 0.8, delay: 0.7, ease: EASE }}>
                 <SparkleGlyph />
               </motion.div>
             </FloatingShape>
 
-            {/* Teal rounded square — hides on hover */}
+            {/* Teal rounded square - hides on hover */}
             <FloatingShape speed={0.5} amplitude={9} offset={2.1} className="absolute" style={{ left: "0%", bottom: "20%" }}>
               <motion.div initial={{ opacity: 0, scale: 0.6, rotate: 15 }} animate={tealAnim}>
                 <svg width="110" height="110" viewBox="0 0 110 110" fill="none">
@@ -305,7 +305,7 @@ export default function HeroSection() {
               </motion.div>
             </FloatingShape>
 
-            {/* Gestural eyelash — always visible */}
+            {/* Gestural eyelash - always visible */}
             <FloatingShape speed={0.65} amplitude={6} offset={0.7} className="absolute" style={{ left: "-6%", bottom: "8%", transform: "rotate(-150deg)" }}>
               <motion.div initial={{ opacity: 0, x: -15 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.75, ease: EASE }}>
                 <GesturalLineEyelash />

@@ -7,7 +7,7 @@ const PROJECTS = [
     id: 4,
     title: "Rovo Service",
     category: "Atlassian AI Assistant",
-    description: "Designed the service layer experience for Rovo, Atlassian's AI assistant — enabling agents to take action across tools, reducing manual workflows for enterprise teams.",
+    description: "Designed the service layer experience for Rovo, Atlassian's AI assistant - enabling agents to take action across tools, reducing manual workflows for enterprise teams.",
     year: "2024",
     image: "/rovo-service-bg.png",
     placeholderColor: "#C5D9F9",
