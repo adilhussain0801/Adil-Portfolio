@@ -599,7 +599,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
         {/* Transition: 3 stages of friction */}
         <div className="h-screen snap-start snap-always flex flex-col items-center justify-center" style={{ background: "#FAF8F5" }}>
           <SnapReveal>
-            <div className="flex flex-col items-center gap-4 text-center px-6">
+            <div className="flex flex-col items-center gap-2 text-center px-6">
               <p
                 className="text-[10px] uppercase tracking-widest font-bold"
                 style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
