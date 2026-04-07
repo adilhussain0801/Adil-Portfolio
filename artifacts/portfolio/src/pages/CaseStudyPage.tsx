@@ -206,16 +206,16 @@ function HeroSection({ study }: { study: CaseStudy }) {
       {/* Title & Subtitle at bottom */}
       <div className="relative z-10 w-full pb-12">
         <motion.div
-          className="flex flex-col gap-5 px-8 md:px-20"
+          className="flex flex-col px-8 md:px-20"
           {...fadeUp(0.1)}
         >
           <h1
-            className="text-5xl md:text-[3.75rem] leading-[1.02] text-[#1a1a1a]"
+            className="text-5xl md:text-[3.75rem] leading-[1.02] text-[#1a1a1a] mb-4"
             style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
           >
             {study.title}
           </h1>
-          <div className="w-10 h-[3px] rounded-full" style={{ background: "#E8654B" }} />
+          <div className="w-10 h-[3px] rounded-full mb-5" style={{ background: "#E8654B" }} />
           {study.subtitle && (
             <p
               className="text-sm md:text-[15px] leading-relaxed text-[#1a1a1a]/70"
