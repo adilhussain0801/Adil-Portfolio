@@ -195,20 +195,6 @@ function CaseStudyHeroBg({ bgColor }: { bgColor: string }) {
             background: "radial-gradient(ellipse 60% 60% at 50% 50%, rgba(255,255,255,0.07) 0%, transparent 70%)",
           }} />
 
-          {/* Product image */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <img
-              src="/rovo-after.png"
-              alt="Rovo Service Management"
-              style={{
-                maxHeight: "82%",
-                maxWidth: "42%",
-                objectFit: "contain",
-                filter: "drop-shadow(0 24px 48px rgba(0,0,0,0.42))",
-              }}
-            />
-          </div>
-
           {/* Paper plane — top right */}
           <div style={{ position: "absolute", top: "16%", right: "11%", transform: "rotate(-15deg)" }}>
             <svg width="68" height="56" viewBox="0 0 68 56" fill="none">
