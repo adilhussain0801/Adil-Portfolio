@@ -166,7 +166,7 @@ function CaseStudyHeroBg({ bgColor }: { bgColor: string }) {
             height: "auto",
             display: "block",
             borderRadius: "12px",
-            transform: "rotate(-12deg)",
+            transform: "rotate(-12deg) scale(0.78)",
             transformOrigin: "center center",
             boxShadow: "0 24px 60px rgba(0,0,0,0.18), 0 8px 24px rgba(0,0,0,0.10)",
           }}
