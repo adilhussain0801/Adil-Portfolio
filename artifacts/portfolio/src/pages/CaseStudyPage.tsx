@@ -257,13 +257,6 @@ function OverviewSection({ study }: { study: CaseStudy }) {
     >
       <SnapReveal>
         <div className="max-w-3xl mx-auto w-full px-6">
-          <h2
-            className="text-2xl md:text-3xl leading-tight text-foreground mb-8"
-            style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
-          >
-            Overview
-          </h2>
-
           {/* Quote card - skewed parallelogram style */}
           <div className="relative pl-10">
             <img
