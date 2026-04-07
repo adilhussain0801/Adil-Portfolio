@@ -734,18 +734,20 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
           <div className="max-w-3xl mx-auto w-full px-6">
             <SnapReveal>
               <div className="flex flex-col gap-6">
-              <h2
-                className="text-2xl md:text-3xl leading-tight text-[#1a1a1a]"
-                style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
-              >
-                Patterns to the Problems
-              </h2>
-              <p
-                className="text-sm leading-relaxed text-[#1a1a1a]/55"
-                style={{ fontFamily: "'Wotfard', sans-serif" }}
-              >
-                While friction appears across different stages, the root cause is consistent — the system offloads complexity onto the agent.
-              </p>
+              <div className="flex flex-col gap-2">
+                <h2
+                  className="text-2xl md:text-3xl leading-tight text-[#1a1a1a]"
+                  style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+                >
+                  Patterns to the Problems
+                </h2>
+                <p
+                  className="text-sm leading-relaxed text-[#1a1a1a]/55"
+                  style={{ fontFamily: "'Wotfard', sans-serif" }}
+                >
+                  While friction appears across different stages, the root cause is consistent — the system offloads complexity onto the agent.
+                </p>
+              </div>
               {study.challenge.painPoints ? (
                 <div className="flex flex-col gap-4">
                   {study.challenge.painPoints.map((pt, i) => {
