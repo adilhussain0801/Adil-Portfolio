@@ -156,62 +156,36 @@ function CaseStudyHeroBg({ bgColor }: { bgColor: string }) {
             "radial-gradient(ellipse 55% 75% at 70% 46%, rgba(255,255,255,0.38) 0%, transparent 65%)",
         }}
       />
+      {/* Perspective-tilted product screenshot */}
       <div
-        className="absolute select-none flex items-center justify-center"
+        className="absolute select-none"
         style={{
-          inset: 0,
-          paddingTop: "80px",
-          paddingBottom: "20px",
-          paddingLeft: "32px",
-          paddingRight: "40px",
+          top: "60px",
+          bottom: "-40px",
+          left: "0",
+          right: "-60px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-start",
+          perspective: "1400px",
+          perspectiveOrigin: "30% 50%",
+          overflow: "hidden",
         }}
       >
-        {/* Bentofy-style stamp card */}
-        <div
+        <img
+          src="/rovo-banner.png"
+          alt="Rovo Service Management interface"
           style={{
             width: "100%",
             height: "100%",
-            position: "relative",
-            background: "#2B35C4",
-            WebkitMaskImage: [
-              "radial-gradient(circle at 0 50%, transparent 10px, black 10px) 0 0 / 10px 20px repeat-y",
-              "radial-gradient(circle at 100% 50%, transparent 10px, black 10px) right 0 / 10px 20px repeat-y",
-              "radial-gradient(circle at 50% 0, transparent 10px, black 10px) 0 0 / 20px 10px repeat-x",
-              "radial-gradient(circle at 50% 100%, transparent 10px, black 10px) 0 bottom / 20px 10px repeat-x",
-            ].join(", "),
-            maskImage: [
-              "radial-gradient(circle at 0 50%, transparent 10px, black 10px) 0 0 / 10px 20px repeat-y",
-              "radial-gradient(circle at 100% 50%, transparent 10px, black 10px) right 0 / 10px 20px repeat-y",
-              "radial-gradient(circle at 50% 0, transparent 10px, black 10px) 0 0 / 20px 10px repeat-x",
-              "radial-gradient(circle at 50% 100%, transparent 10px, black 10px) 0 bottom / 20px 10px repeat-x",
-            ].join(", "),
-            WebkitMaskComposite: "source-over, source-in, source-in, source-in",
-            maskComposite: "add, intersect, intersect, intersect" as React.CSSProperties["maskComposite"],
-          } as React.CSSProperties}
-        >
-          {/* Radial glow */}
-          <div style={{
-            position: "absolute", inset: 0, pointerEvents: "none",
-            background: "radial-gradient(ellipse 60% 60% at 50% 50%, rgba(255,255,255,0.07) 0%, transparent 70%)",
-          }} />
-
-          {/* Paper plane — top right */}
-          <div style={{ position: "absolute", top: "16%", right: "11%", transform: "rotate(-15deg)" }}>
-            <svg width="68" height="56" viewBox="0 0 68 56" fill="none">
-              <polygon points="0,52 34,2 64,30 34,40" fill="#F5A623"/>
-              <polygon points="34,40 34,2 64,30" fill="#C8851A"/>
-              <polygon points="24,40 34,40 30,52" fill="#C8851A"/>
-            </svg>
-          </div>
-
-          {/* Swoosh ribbon — left */}
-          <div style={{ position: "absolute", top: "20%", left: "5%", transform: "rotate(-10deg)" }}>
-            <svg width="88" height="140" viewBox="0 0 88 140" fill="none">
-              <path d="M 78 14 C 4 14 4 126 78 126" stroke="#E870B4" strokeWidth="3.5" fill="none" opacity="0.9"/>
-              <path d="M 10 14 C 84 14 84 126 10 126" stroke="#E870B4" strokeWidth="3.5" fill="none" opacity="0.45"/>
-            </svg>
-          </div>
-        </div>
+            objectFit: "cover",
+            objectPosition: "top left",
+            borderRadius: "12px",
+            transform: "rotateY(-14deg) rotateX(4deg) scale(1.04)",
+            transformOrigin: "left center",
+            boxShadow: "0 32px 80px rgba(0,0,0,0.18), 0 8px 24px rgba(0,0,0,0.10)",
+          }}
+        />
       </div>
     </div>
   );
