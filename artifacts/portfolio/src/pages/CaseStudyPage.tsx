@@ -426,54 +426,53 @@ function JourneyFocusDiagram() {
   });
 
   /*
-   * Large coordinate space (1160 × 490 units).
-   * Nodes are bigger for legibility. ViewBox "0 0 1160 490".
+   * Orthogonal layout — ViewBox "0 0 1200 500"
+   * Row 1 (y=155): Customer ─── Help portal ─── Work item ─── Service Agent
+   * Row 2 (y=375): Virtual service agent    Help articles
    *
-   * Row 1 (y=155): Customer ── Help portal pill ── Work item pill ── Service Agent
-   * Row 2 (y=370): Virtual service agent                Help articles
-   *
-   * Arrow styles:
-   *   - Horizontal: straight lines
-   *   - Deflection / self serve: straight diagonal lines (angled)
-   *   - Could not resolve: L-shaped with rounded corners (Q arcs)
+   * All connectors are strictly horizontal or vertical (no diagonals).
+   * HP→Row2 uses an elbow-tree: vertical trunk → horizontal branch → vertical drop.
+   * Row2→WI uses L-shaped paths sharing a horizontal lane at y=468.
    */
 
   // Row 1 node positions
-  const CX = 80,  CY = 155;
-  const HPX = 215, HPY = 122, HPW = 232, HPH = 66;   // Help portal pill
-  const WIX = 660, WIY = 122, WIW = 218, WIH = 66;   // Work item pill
-  const SAX = 1080, SAY = 155;
+  const CX = 85,  CY = 155;
+  const HPX = 220, HPY = 122, HPW = 252, HPH = 66;
+  const WIX = 680, WIY = 122, WIW = 220, WIH = 66;
+  const SAX = 1115, SAY = 155;
 
   // Row 2 node positions
-  const VX = 295, VY = 370;
-  const HAX = 740, HAY = 370;
+  const VX = 320, VY = 375;
+  const HAX = 490, HAY = 375;
 
-  const R_LG = 58;                // Customer / Service Agent radius
-  const R_SM = 58;                // Virtual / Help articles outer radius
-  const R_SM_INNER = 42;         // inner icon circle radius
+  const R_LG = 55;
+  const R_SM = 52;
+  const R_SM_INNER = 38;
 
   // Pill icon circles
-  const HPcx = HPX + 42, HPcy = HPY + HPH / 2;   // = 257, 155
-  const WIcx = WIX + 42, WIcy = WIY + WIH / 2;   // = 702, 155
+  const HPcx = 263, HPcy = HPY + HPH / 2;
+  const WIcx = 722, WIcy = WIY + WIH / 2;
   const R_ICON = 26;
 
-  // Derived arrow points
-  const arr1x1 = CX + R_LG + 2, arr1x2 = HPX - 2;
-  const arr2x1 = HPX + HPW + 2, arr2x2 = WIX - 2;
-  const arr3x1 = SAX - R_LG - 2, arr3x2 = WIX + WIW + 2;
+  // Row 1 arrow endpoints
+  const arr1x1 = CX + R_LG + 2, arr1x2 = HPX - 2;          // Customer → HP
+  const arr2x1 = HPX + HPW + 2, arr2x2 = WIX - 2;           // HP → WI
+  const arr3x1 = SAX - R_LG - 2, arr3x2 = WIX + WIW + 2;   // SA → WI (reversed)
 
-  // L-shape "could not resolve" geometry
-  const LANE_Y = 466;   // horizontal lane y
-  const LR = 14;        // corner arc radius
-  // WI pill bottom: two separate landing x's to avoid overlapping arrowheads
-  const WI_BX1 = WIX + WIW / 2 - 10;   // Virtual arrow lands here  = 759
-  const WI_BX2 = WIX + WIW / 2 + 10;   // HA arrow lands here        = 779
-  const WI_BY  = WIY + WIH;             // pill bottom y              = 188
+  // HP → Row 2 elbow tree: trunk exits HP bottom at x=345
+  const HP_BX = HPX + HPW / 2;          // 346 — bottom-center of HP pill
+  const HP_BY = HPY + HPH;              // 188
+  const SPLIT_Y = 242;                  // y where trunk splits into branches
+
+  // Row 2 → WI L-shape
+  const LANE_Y = 468;
+  const WI_BCX = WIX + WIW / 2;        // 790 — WI bottom center x
+  const WI_BY  = WIY + WIH;            // 188
 
   return (
     <div ref={ref} className="w-full">
       <svg
-        viewBox="0 0 1160 490"
+        viewBox="0 0 1200 500"
         style={{ width: "100%", height: "auto" }}
         aria-label="Journey focus: service management workflow diagram"
         role="img"
@@ -497,7 +496,7 @@ function JourneyFocusDiagram() {
           </marker>
         </defs>
 
-        {/* ── ARROWS (behind nodes) ── */}
+        {/* ── ARROWS (rendered first, so nodes sit on top) ── */}
 
         {/* 1. Customer → Help portal (horizontal) */}
         <motion.line x1={arr1x1} y1={CY} x2={arr1x2} y2={CY}
@@ -511,7 +510,7 @@ function JourneyFocusDiagram() {
         <motion.line x1={arr2x1} y1={CY} x2={arr2x2} y2={CY}
           stroke="#9CA3AF" strokeWidth="1.5" markerEnd="url(#jf-m-gray)" {...arrowAnim(0.68)} />
 
-        {/* 3. Service Agent → Work item (horizontal, reversed) */}
+        {/* 3. Service Agent → Work item (horizontal, arrow points left) */}
         <motion.line x1={arr3x1} y1={SAY} x2={arr3x2} y2={SAY}
           stroke="#e06c00" strokeWidth="1.5" markerEnd="url(#jf-m-orange)" {...arrowAnim(1.55)} />
         <motion.text x={(arr3x1 + arr3x2) / 2} y={SAY - 14}
@@ -519,52 +518,40 @@ function JourneyFocusDiagram() {
           assigned
         </motion.text>
 
-        {/* 4. Help portal → Virtual (straight diagonal) */}
-        <motion.line
-          x1={HPcx - 10} y1={HPY + HPH}
-          x2={VX} y2={VY - R_SM}
-          stroke="#357de8" strokeWidth="1.5" markerEnd="url(#jf-m-blue)" {...arrowAnim(0.74)} />
-        <motion.text
-          x={(HPcx - 10 + VX) / 2 - 28} y={(HPY + HPH + VY - R_SM) / 2 + 6}
-          textAnchor="middle" fontSize="15" fill="#1558bc" fontFamily={MONO} {...lblAnim(0.92)}>
+        {/* 4. HP → Virtual: vertical trunk → horizontal left → vertical drop (orthogonal elbow) */}
+        <motion.path
+          d={`M ${HP_BX} ${HP_BY} V ${SPLIT_Y} H ${VX + 8} Q ${VX} ${SPLIT_Y} ${VX} ${SPLIT_Y + 8} V ${VY - R_SM}`}
+          stroke="#357de8" strokeWidth="1.5" fill="none"
+          markerEnd="url(#jf-m-blue)" {...arrowAnim(0.74)} />
+        <motion.text x={VX - 8} y={SPLIT_Y + (VY - R_SM - SPLIT_Y) / 2}
+          textAnchor="end" fontSize="15" fill="#1558bc" fontFamily={MONO} {...lblAnim(0.92)}>
           deflection
         </motion.text>
 
-        {/* 5. Help portal → Help articles (straight diagonal) */}
-        <motion.line
-          x1={HPcx + 65} y1={HPY + HPH}
-          x2={HAX} y2={HAY - R_SM}
-          stroke="#357de8" strokeWidth="1.5" markerEnd="url(#jf-m-blue)" {...arrowAnim(0.80)} />
-        <motion.text
-          x={(HPcx + 65 + HAX) / 2 + 24} y={(HPY + HPH + HAY - R_SM) / 2 - 6}
-          textAnchor="middle" fontSize="15" fill="#1558bc" fontFamily={MONO} {...lblAnim(0.96)}>
+        {/* 5. HP → Help articles: vertical trunk → horizontal right → vertical drop (orthogonal elbow) */}
+        <motion.path
+          d={`M ${HP_BX} ${HP_BY} V ${SPLIT_Y} H ${HAX - 8} Q ${HAX} ${SPLIT_Y} ${HAX} ${SPLIT_Y + 8} V ${HAY - R_SM}`}
+          stroke="#357de8" strokeWidth="1.5" fill="none"
+          markerEnd="url(#jf-m-blue)" {...arrowAnim(0.80)} />
+        <motion.text x={HAX + 8} y={SPLIT_Y + (HAY - R_SM - SPLIT_Y) / 2}
+          textAnchor="start" fontSize="15" fill="#1558bc" fontFamily={MONO} {...lblAnim(0.96)}>
           self serve
         </motion.text>
 
-        {/* 6. Virtual → Work item (L-shape: down → right → up, rounded corners) */}
+        {/* 6. Virtual → WI: down → right → up (L-shape with rounded corners) */}
         <motion.path
-          d={`M ${VX} ${VY + R_SM}
-              V ${LANE_Y - LR}
-              Q ${VX} ${LANE_Y} ${VX + LR} ${LANE_Y}
-              H ${WI_BX1 - LR}
-              Q ${WI_BX1} ${LANE_Y} ${WI_BX1} ${LANE_Y - LR}
-              V ${WI_BY}`}
+          d={`M ${VX} ${VY + R_SM} V ${LANE_Y - 14} Q ${VX} ${LANE_Y} ${VX + 14} ${LANE_Y} H ${WI_BCX - 14} Q ${WI_BCX} ${LANE_Y} ${WI_BCX} ${LANE_Y - 14} V ${WI_BY}`}
           stroke="#6a9a23" strokeWidth="1.5" fill="none"
           markerEnd="url(#jf-m-lime)" {...arrowAnim(1.15)} />
 
-        {/* 7. Help articles → Work item (L-shape: down → right → up, rounded corners) */}
+        {/* 7. Help articles → WI: down → right → up (L-shape with rounded corners) */}
         <motion.path
-          d={`M ${HAX} ${HAY + R_SM}
-              V ${LANE_Y - LR}
-              Q ${HAX} ${LANE_Y} ${HAX + LR} ${LANE_Y}
-              H ${WI_BX2 - LR}
-              Q ${WI_BX2} ${LANE_Y} ${WI_BX2} ${LANE_Y - LR}
-              V ${WI_BY}`}
+          d={`M ${HAX} ${HAY + R_SM} V ${LANE_Y - 14} Q ${HAX} ${LANE_Y} ${HAX + 14} ${LANE_Y} H ${WI_BCX - 24} Q ${WI_BCX - 10} ${LANE_Y} ${WI_BCX - 10} ${LANE_Y - 14} V ${WI_BY}`}
           stroke="#6a9a23" strokeWidth="1.5" fill="none"
           markerEnd="url(#jf-m-lime)" {...arrowAnim(1.22)} />
 
-        {/* "could not resolve" label — below the lane */}
-        <motion.text x={(VX + HAX) / 2} y={LANE_Y + 18}
+        {/* "could not resolve" label */}
+        <motion.text x={(VX + WI_BCX) / 2} y={LANE_Y + 18}
           textAnchor="middle" fontSize="15" fill="#4c6b1f"
           fontFamily={MONO} {...lblAnim(1.4)}>could not resolve</motion.text>
 
