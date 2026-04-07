@@ -2,7 +2,7 @@ import { useParams, Link } from "wouter";
 import { useRef, useEffect, useState, useMemo, type RefObject } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare, ChevronLeft, ChevronRight, X, CheckCircle2, Settings } from "lucide-react";
-import { getCaseStudy, getNextCaseStudy, type CaseStudy } from "@/data/caseStudies";
+import { getCaseStudy, getNextCaseStudy, getAllCaseStudies, type CaseStudy } from "@/data/caseStudies";
 import NotFound from "@/pages/not-found";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
@@ -1992,6 +1992,7 @@ export default function CaseStudyPage() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [headerScrolled, setHeaderScrolled] = useState(false);
   const [headerHovered, setHeaderHovered] = useState(false);
+  const [switchWorkOpen, setSwitchWorkOpen] = useState(false);
 
   const id = parseInt(params.id ?? "", 10);
   const study = getCaseStudy(id);
@@ -2000,6 +2001,7 @@ export default function CaseStudyPage() {
     scrollRef.current?.scrollTo({ top: 0 });
     setHeaderScrolled(false);
     setHeaderHovered(false);
+    setSwitchWorkOpen(false);
   }, [id]);
 
   useEffect(() => {
@@ -2019,6 +2021,14 @@ export default function CaseStudyPage() {
       className="h-screen overflow-hidden relative selection:bg-foreground selection:text-background"
       style={{ background: "#FAF8F5" }}
     >
+      {/* Click-outside backdrop to close switch work panel */}
+      {switchWorkOpen && (
+        <div
+          className="fixed inset-0 z-40"
+          onClick={() => setSwitchWorkOpen(false)}
+        />
+      )}
+
       {/* Invisible hover zone — only active after scrolling past hero */}
       {headerScrolled && (
         <div
@@ -2063,16 +2073,68 @@ export default function CaseStudyPage() {
           </span>
         </div>
 
-        <Link
-          href={`/work/${study.nextProjectId}`}
-          className="flex items-center gap-2 text-sm font-medium text-[#2D2D2D]/70 hover:text-[#2D2D2D] transition-colors group"
-          style={{ fontFamily: "'Wotfard', sans-serif" }}
-        >
-          <span>Switch Work</span>
-          <div className="w-8 h-8 rounded-full border border-[#2D2D2D]/20 flex items-center justify-center group-hover:border-[#2D2D2D]/50 transition-colors">
-            <ArrowRight size={14} strokeWidth={1.5} />
-          </div>
-        </Link>
+        <div className="relative">
+          <button
+            onClick={() => setSwitchWorkOpen((o) => !o)}
+            className="flex items-center gap-2 text-sm font-medium text-[#2D2D2D]/70 hover:text-[#2D2D2D] transition-colors group"
+            style={{ fontFamily: "'Wotfard', sans-serif" }}
+          >
+            <span>Switch Work</span>
+            <div className={`w-8 h-8 rounded-full border flex items-center justify-center transition-all ${switchWorkOpen ? "border-[#2D2D2D]/60 bg-[#2D2D2D]/5 rotate-90" : "border-[#2D2D2D]/20 group-hover:border-[#2D2D2D]/50"}`}>
+              <ArrowRight size={14} strokeWidth={1.5} className="transition-transform" />
+            </div>
+          </button>
+
+          <AnimatePresence>
+            {switchWorkOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -8, scale: 0.97 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -8, scale: 0.97 }}
+                transition={{ duration: 0.2, ease: EASE }}
+                className="absolute top-full right-0 mt-3 w-72 rounded-2xl overflow-hidden shadow-xl border border-[#2D2D2D]/8"
+                style={{ background: "rgba(250,248,245,0.95)", backdropFilter: "blur(16px)" }}
+              >
+                <div className="px-4 pt-4 pb-2">
+                  <span
+                    className="text-[10px] font-bold tracking-widest uppercase text-[#2D2D2D]/40"
+                    style={{ fontFamily: "'Wotfard', sans-serif" }}
+                  >
+                    Case Studies
+                  </span>
+                </div>
+                <div className="flex flex-col pb-2">
+                  {getAllCaseStudies()
+                    .filter((cs) => cs.id !== study.id)
+                    .map((cs) => (
+                      <Link
+                        key={cs.id}
+                        href={`/work/${cs.id}`}
+                        onClick={() => setSwitchWorkOpen(false)}
+                        className="flex items-center justify-between px-4 py-3 hover:bg-[#2D2D2D]/5 transition-colors group/item"
+                      >
+                        <div className="flex flex-col gap-0.5">
+                          <span
+                            className="text-[10px] font-bold tracking-widest uppercase text-[#2D2D2D]/40"
+                            style={{ fontFamily: "'Wotfard', sans-serif" }}
+                          >
+                            {cs.company}
+                          </span>
+                          <span
+                            className="text-sm font-medium text-[#2D2D2D] leading-tight"
+                            style={{ fontFamily: "'Wotfard', sans-serif" }}
+                          >
+                            {cs.title}
+                          </span>
+                        </div>
+                        <ArrowRight size={13} strokeWidth={1.5} className="text-[#2D2D2D]/30 group-hover/item:text-[#2D2D2D]/70 transition-colors flex-shrink-0 ml-3" />
+                      </Link>
+                    ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </header>
 
       <SectionNav study={study} scrollRef={scrollRef} />

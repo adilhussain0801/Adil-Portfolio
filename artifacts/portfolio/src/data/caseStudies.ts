@@ -526,6 +526,10 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
 ];
 
+export function getAllCaseStudies(): CaseStudy[] {
+  return CASE_STUDIES;
+}
+
 export function getCaseStudy(id: number): CaseStudy | undefined {
   return CASE_STUDIES.find((cs) => cs.id === id);
 }
