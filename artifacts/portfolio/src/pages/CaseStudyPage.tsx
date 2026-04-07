@@ -1990,13 +1990,23 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
 export default function CaseStudyPage() {
   const params = useParams<{ id: string }>();
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [headerScrolled, setHeaderScrolled] = useState(false);
 
   const id = parseInt(params.id ?? "", 10);
   const study = getCaseStudy(id);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: 0 });
+    setHeaderScrolled(false);
   }, [id]);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const handleScroll = () => setHeaderScrolled(el.scrollTop > 60);
+    el.addEventListener("scroll", handleScroll);
+    return () => el.removeEventListener("scroll", handleScroll);
+  }, [study]);
 
   if (!study) {
     return <NotFound />;
@@ -2007,7 +2017,13 @@ export default function CaseStudyPage() {
       className="h-screen overflow-hidden relative selection:bg-foreground selection:text-background"
       style={{ background: "#FAF8F5" }}
     >
-      <header className="fixed top-0 left-0 right-0 z-50 py-5 px-6 md:px-24 flex items-center justify-between bg-transparent">
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          headerScrolled
+            ? "py-4 bg-[#FAF8F5]/80 backdrop-blur-md border-b border-[#2D2D2D]/10 shadow-sm"
+            : "py-5 bg-transparent border-b border-transparent"
+        } px-6 md:px-24 flex items-center justify-between`}
+      >
         <Link
           href="/"
           className="flex items-center gap-2 text-sm font-medium text-[#2D2D2D]/70 hover:text-[#2D2D2D] transition-colors group"
@@ -2018,6 +2034,26 @@ export default function CaseStudyPage() {
           </div>
           <span>Back</span>
         </Link>
+
+        <div
+          className={`absolute left-1/2 -translate-x-1/2 flex flex-col items-center transition-all duration-500 ${
+            headerScrolled ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"
+          }`}
+        >
+          <span
+            className="text-xs font-bold tracking-widest uppercase text-[#2D2D2D]/40"
+            style={{ fontFamily: "'Wotfard', sans-serif" }}
+          >
+            {study.company}
+          </span>
+          <span
+            className="text-sm font-semibold text-[#2D2D2D] leading-tight"
+            style={{ fontFamily: "'Wotfard', sans-serif" }}
+          >
+            {study.title}
+          </span>
+        </div>
+
         <Link
           href="/"
           className="text-lg font-serif font-medium tracking-wide hover:opacity-70 transition-opacity text-[#2D2D2D]"
