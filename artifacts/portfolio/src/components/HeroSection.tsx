@@ -6,7 +6,7 @@ const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 function SparkleGlyph() {
   return (
-    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg aria-hidden="true" width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M18 4 C18 4 17.5 11 18 18" stroke="#1a1a1a" strokeWidth="1.6" strokeLinecap="round"/>
       <path d="M18 18 C18 18 18.5 25 18 32" stroke="#1a1a1a" strokeWidth="1.6" strokeLinecap="round"/>
       <path d="M4 18 C4 18 11 17.5 18 18" stroke="#1a1a1a" strokeWidth="1.6" strokeLinecap="round"/>
@@ -21,7 +21,7 @@ function SparkleGlyph() {
 
 function GesturalLineEyelash() {
   return (
-    <svg width="70.8" height="38.66" viewBox="0 0 70.8 38.66" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg aria-hidden="true" width="70.8" height="38.66" viewBox="0 0 70.8 38.66" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M3 8 Q15 5 25 12 T45 8 T65 15" stroke="#000000" strokeWidth="2.2" strokeLinecap="round" fill="none"/>
       <path d="M0 20 Q12 18 22 25 T42 20 T62 28" stroke="#000000" strokeWidth="2.2" strokeLinecap="round" fill="none"/>
       <path d="M5 32 Q16 30 26 37 T46 33 T65 38" stroke="#000000" strokeWidth="2.2" strokeLinecap="round" fill="none"/>
@@ -92,6 +92,7 @@ function FloatingCard({
 }) {
   const y = useFloatY(speed, amplitude, offset);
   const exitRotateY = flipDir === "left" ? -90 : 90;
+  const [cardHovered, setCardHovered] = useState(false);
 
   return (
     <div
@@ -102,6 +103,8 @@ function FloatingCard({
         zIndex,
         perspective: "800px",
       }}
+      onMouseEnter={() => setCardHovered(true)}
+      onMouseLeave={() => setCardHovered(false)}
     >
       <motion.div
         initial={{ opacity: 0, x: exitX, y: exitY, rotateY: exitRotateY, rotate: rotateDeg }}
@@ -115,7 +118,7 @@ function FloatingCard({
           delay: isHovered ? delay : 0,
           ease: EASE,
         }}
-        style={{ transformStyle: "preserve-3d" }}
+        style={{ transformStyle: "preserve-3d", position: "relative" }}
       >
         <img
           src={src}
@@ -123,6 +126,37 @@ function FloatingCard({
           className="w-[185px] h-[185px] object-contain"
           style={{ filter: "drop-shadow(0 14px 32px rgba(0,0,0,0.38))" }}
         />
+        {/* Hover label chip */}
+        <motion.div
+          initial={false}
+          animate={{ opacity: cardHovered && isHovered ? 1 : 0, y: cardHovered && isHovered ? 0 : 6 }}
+          transition={{ duration: 0.18, ease: "easeOut" }}
+          style={{
+            position: "absolute",
+            bottom: "8px",
+            left: "50%",
+            transform: "translateX(-50%) rotate(0deg)",
+            pointerEvents: "none",
+            whiteSpace: "nowrap",
+          }}
+        >
+          <span
+            style={{
+              display: "inline-block",
+              background: "rgba(26,26,26,0.82)",
+              color: "#fff",
+              fontSize: 11,
+              fontWeight: 600,
+              letterSpacing: "0.06em",
+              padding: "4px 10px",
+              borderRadius: 20,
+              fontFamily: "'Wotfard', sans-serif",
+              backdropFilter: "blur(8px)",
+            }}
+          >
+            {alt}
+          </span>
+        </motion.div>
       </motion.div>
     </div>
   );

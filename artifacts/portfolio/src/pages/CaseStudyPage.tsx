@@ -94,8 +94,20 @@ function BeforeAfterSlider({ before, after, bgColor }: { before: string; after: 
 
       {/* Handle */}
       <div
+        role="slider"
+        aria-label="Drag to compare before and after designs"
+        aria-valuenow={Math.round(sliderPos)}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        tabIndex={0}
         onMouseDown={onMouseDown}
         onTouchStart={(e) => { e.preventDefault(); setDragging(true); }}
+        onKeyDown={(e) => {
+          if (e.key === "ArrowLeft") setSliderPos((p) => Math.max(0, p - 5));
+          if (e.key === "ArrowRight") setSliderPos((p) => Math.min(100, p + 5));
+          if (e.key === "Home") setSliderPos(0);
+          if (e.key === "End") setSliderPos(100);
+        }}
         style={{
           position: "absolute",
           top: "50%",
@@ -113,7 +125,7 @@ function BeforeAfterSlider({ before, after, bgColor }: { before: string; after: 
           zIndex: 10,
         }}
       >
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none">
           <path d="M7 5L3 10L7 15M13 5L17 10L13 15" stroke="#555" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       </div>
@@ -206,7 +218,7 @@ function HeroSection({ study }: { study: CaseStudy }) {
           <div className="w-10 h-[3px] rounded-full" style={{ background: "#E8654B" }} />
           {study.subtitle && (
             <p
-              className="text-sm md:text-[15px] leading-relaxed text-[#1a1a1a]/58"
+              className="text-sm md:text-[15px] leading-relaxed text-[#1a1a1a]/70"
               style={{ fontFamily: "'Wotfard', sans-serif" }}
             >
               {study.subtitle}
@@ -222,15 +234,15 @@ function HeroSection({ study }: { study: CaseStudy }) {
         <div className="rounded-t-2xl bg-[#1a1a1a] px-6 md:px-10 py-6 flex flex-wrap items-center justify-between gap-6">
           <div className="flex flex-wrap gap-8">
             <div>
-              <p className="text-[10px] uppercase tracking-widest text-white/40 mb-1">Role</p>
+              <p className="text-[10px] uppercase tracking-widest text-white/55 mb-1">Role</p>
               <p className="text-sm font-semibold text-white" style={{ fontFamily: "'Wotfard', sans-serif" }}>{study.role}</p>
             </div>
             <div>
-              <p className="text-[10px] uppercase tracking-widest text-white/40 mb-1">Platform</p>
+              <p className="text-[10px] uppercase tracking-widest text-white/55 mb-1">Platform</p>
               <p className="text-sm font-semibold text-white" style={{ fontFamily: "'Wotfard', sans-serif" }}>{study.platform}</p>
             </div>
             <div>
-              <p className="text-[10px] uppercase tracking-widest text-white/40 mb-1">Timeline</p>
+              <p className="text-[10px] uppercase tracking-widest text-white/55 mb-1">Timeline</p>
               <p className="text-sm font-semibold text-white" style={{ fontFamily: "'Wotfard', sans-serif" }}>{study.timeline}</p>
             </div>
           </div>
@@ -458,7 +470,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                     <p className="text-xl font-bold leading-tight" style={{ color: stat.color, fontFamily: "'Wotfard', sans-serif" }}>
                       {stat.value}
                     </p>
-                    <p className="text-xs leading-relaxed text-[#1a1a1a]/55" style={{ fontFamily: "'Wotfard', sans-serif" }}>
+                    <p className="text-xs leading-relaxed text-[#1a1a1a]/70" style={{ fontFamily: "'Wotfard', sans-serif" }}>
                       {stat.label}
                     </p>
                   </div>
@@ -735,7 +747,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                   Patterns to the Problems
                 </h2>
                 <p
-                  className="text-sm leading-relaxed text-[#1a1a1a]/55"
+                  className="text-sm leading-relaxed text-[#1a1a1a]/70"
                   style={{ fontFamily: "'Wotfard', sans-serif" }}
                 >
                   While friction appears across different stages, the root cause is consistent - the system offloads complexity onto the agent.
@@ -789,7 +801,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                               </span>
                             </div>
                             <p
-                              className="text-xs leading-relaxed text-[#1a1a1a]/55"
+                              className="text-xs leading-relaxed text-[#1a1a1a]/70"
                               style={{ fontFamily: "'Wotfard', sans-serif" }}
                             >
                               {pt.description}
@@ -946,7 +958,7 @@ function IndustryTrendsSection() {
             >
               Top competitors
             </h2>
-            <p className="text-sm text-[#1a1a1a]/55 w-full" style={{ fontFamily: "'Wotfard', sans-serif" }}>
+            <p className="text-sm text-[#1a1a1a]/70 w-full" style={{ fontFamily: "'Wotfard', sans-serif" }}>
               The competitive landscape is witnessing a seismic shift from traditional ticketing systems toward{" "}
               <strong className="text-[#1a1a1a] font-semibold">AI-powered autonomous agents</strong>
               {" "}capable of resolving complex enterprise workflows.
@@ -1049,7 +1061,7 @@ function EmergingThemesSection() {
               Patterns that shaped the direction
             </h2>
             <p
-              className="text-sm leading-relaxed text-[#1a1a1a]/58 w-full"
+              className="text-sm leading-relaxed text-[#1a1a1a]/70 w-full"
               style={{ fontFamily: "'Wotfard', sans-serif" }}
             >Through early research and competitive studies, we recognized three key patterns in how service tools were evolving.</p>
           </div>
@@ -1341,7 +1353,7 @@ function DesignPrinciplesSection() {
               Principles guiding the product direction
             </h2>
             <p
-              className="text-sm leading-relaxed text-[#1a1a1a]/58 mt-2"
+              className="text-sm leading-relaxed text-[#1a1a1a]/70 mt-2"
               style={{ fontFamily: "'Wotfard', sans-serif" }}
             >
               These principles emerged from identifying that AI was present in the workflow, but not meaningfully improving how users think or act.
@@ -1845,7 +1857,7 @@ function NextProjectSection({ study }: { study: CaseStudy }) {
       <SnapReveal>
         <div className="max-w-3xl mx-auto w-full px-6">
           <p
-            className="text-xs uppercase tracking-widest font-semibold text-[#2D2D2D]/40 mb-6"
+            className="text-xs uppercase tracking-widest font-semibold text-[#2D2D2D]/55 mb-6"
             style={{ fontFamily: "'Wotfard', sans-serif" }}
           >
             Next project
@@ -1949,10 +1961,12 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
           const isActive = id === active;
           const isHovered = hovered === id;
           return (
-            <div
+            <button
               key={id}
-              className="relative flex items-center pointer-events-auto"
+              className="relative flex items-center pointer-events-auto bg-transparent border-0 p-0"
               style={{ gap: 14, cursor: "pointer" }}
+              aria-label={`Navigate to ${label} section`}
+              aria-current={isActive ? "true" : undefined}
               onMouseEnter={() => setHovered(id)}
               onMouseLeave={() => setHovered(null)}
               onClick={() => scrollTo(id)}
@@ -1965,14 +1979,14 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
               />
               <motion.span
                 className="text-sm font-semibold whitespace-nowrap"
-                style={{ fontFamily: "'Wotfard', sans-serif", color: "rgba(45,45,45,0.6)" }}
+                style={{ fontFamily: "'Wotfard', sans-serif", color: "rgba(45,45,45,0.65)" }}
                 initial={false}
                 animate={{ opacity: isHovered ? 1 : 0, x: isHovered ? 0 : -6 }}
                 transition={{ duration: 0.15, ease: "easeOut" }}
               >
                 {label}
               </motion.span>
-            </div>
+            </button>
           );
         })}
       </div>
@@ -2004,6 +2018,15 @@ export default function CaseStudyPage() {
     el.addEventListener("scroll", handleScroll);
     return () => el.removeEventListener("scroll", handleScroll);
   }, [study]);
+
+  useEffect(() => {
+    if (!switchWorkOpen) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSwitchWorkOpen(false);
+    };
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
+  }, [switchWorkOpen]);
 
   if (!study) {
     return <NotFound />;
@@ -2053,7 +2076,7 @@ export default function CaseStudyPage() {
 
         <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center">
           <span
-            className="text-xs font-bold tracking-widest uppercase text-[#2D2D2D]/40"
+            className="text-xs font-bold tracking-widest uppercase text-[#2D2D2D]/55"
             style={{ fontFamily: "'Wotfard', sans-serif" }}
           >
             {study.company}
@@ -2069,6 +2092,9 @@ export default function CaseStudyPage() {
         <div className="relative">
           <button
             onClick={() => setSwitchWorkOpen((o) => !o)}
+            aria-haspopup="listbox"
+            aria-expanded={switchWorkOpen}
+            aria-label="Switch to another case study"
             className="flex items-center gap-2 text-sm font-medium text-[#2D2D2D]/70 hover:text-[#2D2D2D] transition-colors group"
             style={{ fontFamily: "'Wotfard', sans-serif" }}
           >
@@ -2090,7 +2116,7 @@ export default function CaseStudyPage() {
               >
                 <div className="px-4 pt-4 pb-2">
                   <span
-                    className="text-[10px] font-bold tracking-widest uppercase text-[#2D2D2D]/40"
+                    className="text-[10px] font-bold tracking-widest uppercase text-[#2D2D2D]/55"
                     style={{ fontFamily: "'Wotfard', sans-serif" }}
                   >
                     Case Studies
@@ -2108,7 +2134,7 @@ export default function CaseStudyPage() {
                       >
                         <div className="flex flex-col gap-0.5">
                           <span
-                            className="text-[10px] font-bold tracking-widest uppercase text-[#2D2D2D]/40"
+                            className="text-[10px] font-bold tracking-widest uppercase text-[#2D2D2D]/55"
                             style={{ fontFamily: "'Wotfard', sans-serif" }}
                           >
                             {cs.company}

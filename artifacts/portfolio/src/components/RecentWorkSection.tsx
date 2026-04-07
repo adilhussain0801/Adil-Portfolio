@@ -131,6 +131,7 @@ function ProjectCard({
       ) : (
         <a
           href={`/work/${project.id}`}
+          aria-label={`View case study: ${project.title} — ${project.category}`}
           className="group relative block rounded-2xl overflow-hidden cursor-pointer w-full h-[78vh] hover:shadow-2xl transition-shadow duration-300"
           onMouseEnter={() => setHoveredId(project.id)}
           onMouseLeave={() => setHoveredId(null)}
@@ -218,9 +219,12 @@ export default function RecentWorkSection() {
               <span
                 style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 600 }}
                 className="text-sm tabular-nums text-[#2D2D2D]"
+                aria-live="polite"
+                aria-atomic="true"
+                aria-label={`Project ${activeIndex + 1} of ${PROJECTS.length}`}
               >
                 {String(activeIndex + 1).padStart(2, "0")}
-                <span className="text-[#2D2D2D]/30 mx-1">/</span>
+                <span className="text-[#2D2D2D]/40 mx-1" aria-hidden="true">/</span>
                 {String(PROJECTS.length).padStart(2, "0")}
               </span>
             </div>
@@ -236,6 +240,8 @@ export default function RecentWorkSection() {
                       setActiveIndex(i);
                     }
                   }}
+                  aria-label={`Go to project: ${project.title}`}
+                  aria-current={i === activeIndex ? "true" : undefined}
                   className="flex items-center gap-3 group cursor-pointer text-left hover:opacity-70 transition-opacity"
                 >
                   <motion.div

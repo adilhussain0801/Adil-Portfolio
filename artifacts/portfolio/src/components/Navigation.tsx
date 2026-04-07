@@ -45,12 +45,12 @@ export default function Navigation() {
         </a>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-8" aria-label="Primary navigation">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors duration-300 relative group"
+              className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors duration-300 relative group rounded-sm"
             >
               {link.name}
               <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#1a1a1a] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-center" />
@@ -60,9 +60,11 @@ export default function Navigation() {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden z-50 relative p-2 -mr-2 text-foreground"
+          className="md:hidden z-50 relative p-2 -mr-2 text-foreground rounded-md"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Toggle menu"
+          aria-expanded={mobileMenuOpen}
+          aria-controls="mobile-navigation"
+          aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
         >
           {mobileMenuOpen ? <X size={24} strokeWidth={1.5} /> : <Menu size={24} strokeWidth={1.5} />}
         </button>
@@ -71,13 +73,14 @@ export default function Navigation() {
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
+              id="mobile-navigation"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
               className="fixed inset-0 bg-background/98 backdrop-blur-xl z-40 flex flex-col items-center justify-center min-h-screen"
             >
-              <nav className="flex flex-col items-center gap-8">
+              <nav className="flex flex-col items-center gap-8" aria-label="Mobile navigation">
                 {navLinks.map((link, i) => (
                   <motion.a
                     initial={{ opacity: 0, y: 20 }}
@@ -86,7 +89,7 @@ export default function Navigation() {
                     key={link.name}
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="text-4xl font-serif tracking-tight hover:italic transition-all"
+                    className="text-4xl font-serif tracking-tight hover:italic transition-all rounded-sm"
                   >
                     {link.name}
                   </motion.a>
