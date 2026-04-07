@@ -195,7 +195,7 @@ export default function HeroSection() {
             <br />
             <span className="font-normal text-[#999999]">leader based in</span>
             <span className="inline-block ml-1" style={{ verticalAlign: "text-bottom", marginTop: "-2px" }}>
-              <img src={new URL("@assets/Screenshot_2026-04-07_at_12.42.38_1775545959717.png", import.meta.url).href} alt="Mumbai" style={{ height: "1.4em", width: "auto", display: "block" }} />
+              <img src="/mumbai-illustration.png" alt="Mumbai" style={{ height: "1.4em", width: "auto", display: "block" }} />
             </span>
             <br />
             <span className="font-bold text-[#2D2D2D]">Mumbai,</span>
