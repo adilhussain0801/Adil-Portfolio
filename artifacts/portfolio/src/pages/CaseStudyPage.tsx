@@ -740,6 +740,12 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
               >
                 Patterns to the Problems
               </h2>
+              <p
+                className="text-sm leading-relaxed text-[#1a1a1a]/55"
+                style={{ fontFamily: "'Wotfard', sans-serif" }}
+              >
+                While friction appears across different stages, the root cause is consistent — the system offloads complexity onto the agent.
+              </p>
               {study.challenge.painPoints ? (
                 <div className="flex flex-col gap-4">
                   {study.challenge.painPoints.map((pt, i) => {
