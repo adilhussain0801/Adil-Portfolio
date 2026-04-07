@@ -148,17 +148,16 @@ function BeforeAfterSlider({ before, after, bgColor }: { before: string; after: 
 
 function CaseStudyHeroBg({ bgColor }: { bgColor: string }) {
   return (
-    <div className="absolute inset-0 overflow-visible">
-      {/* Perspective screenshot — rotateY dominant, left side forward */}
+    <div className="absolute inset-0 overflow-hidden">
+      {/* Flat-lay screenshot — rotateX dominant, natural aspect ratio */}
       <div
         className="absolute select-none"
         style={{
-          top: "-20px",
-          bottom: "-120px",
-          left: "60px",
-          right: "-180px",
-          perspective: "900px",
-          perspectiveOrigin: "0% 55%",
+          top: "10px",
+          left: "40px",
+          right: "-80px",
+          perspective: "1100px",
+          perspectiveOrigin: "50% -10%",
         }}
       >
         <img
@@ -166,13 +165,12 @@ function CaseStudyHeroBg({ bgColor }: { bgColor: string }) {
           alt="Rovo Service Management interface"
           style={{
             width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            objectPosition: "top left",
-            borderRadius: "14px 14px 0 0",
-            transform: "rotateY(-28deg) rotateX(8deg)",
-            transformOrigin: "left center",
-            boxShadow: "0 24px 80px rgba(0,0,0,0.18), 0 8px 24px rgba(0,0,0,0.10)",
+            height: "auto",
+            display: "block",
+            borderRadius: "12px 12px 0 0",
+            transform: "rotateX(28deg)",
+            transformOrigin: "center top",
+            boxShadow: "0 40px 80px rgba(0,0,0,0.20), 0 8px 24px rgba(0,0,0,0.10)",
           }}
         />
       </div>
