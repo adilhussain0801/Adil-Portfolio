@@ -395,6 +395,161 @@ function TaylorAvatar({ activeStep }: { activeStep: number }) {
   );
 }
 
+function JourneyFocusDiagram() {
+  const ref = useRef<HTMLDivElement>(null);
+  const isVisible = useInView(ref, { once: false, amount: 0.4 });
+  const FF = "'Wotfard', sans-serif";
+
+  const nodeAnim = (delay: number) => ({
+    initial: { opacity: 0, scale: 0.82 },
+    animate: isVisible ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.82 },
+    transition: { duration: 0.42, ease: EASE, delay },
+  });
+
+  const arrowAnim = (delay: number) => ({
+    initial: { pathLength: 0, opacity: 0 },
+    animate: isVisible ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 },
+    transition: {
+      pathLength: { duration: 0.42, delay, ease: "easeInOut" },
+      opacity: { duration: 0.01, delay },
+    },
+    fill: "none" as const,
+    strokeWidth: 1.5,
+    strokeLinecap: "round" as const,
+  });
+
+  const lblAnim = (delay: number) => ({
+    initial: { opacity: 0 },
+    animate: isVisible ? { opacity: 1 } : { opacity: 0 },
+    transition: { duration: 0.28, delay },
+  });
+
+  return (
+    <div ref={ref} className="w-full">
+      <svg
+        viewBox="0 0 920 370"
+        style={{ width: "100%", height: "auto", overflow: "visible" }}
+        aria-label="Service workflow: Customer submits to Help portal, which routes to Work item handled by Service Agent, with deflection to Virtual service agent and Help articles"
+        role="img"
+      >
+        <defs>
+          <marker id="arr-gray" markerWidth="6" markerHeight="5" refX="5.5" refY="2.5" orient="auto">
+            <polygon points="0 0, 6 2.5, 0 5" fill="#9CA3AF" />
+          </marker>
+          <marker id="arr-blue" markerWidth="6" markerHeight="5" refX="5.5" refY="2.5" orient="auto">
+            <polygon points="0 0, 6 2.5, 0 5" fill="#3B82F6" />
+          </marker>
+          <marker id="arr-green" markerWidth="6" markerHeight="5" refX="5.5" refY="2.5" orient="auto">
+            <polygon points="0 0, 6 2.5, 0 5" fill="#16a34a" />
+          </marker>
+          <marker id="arr-orange" markerWidth="6" markerHeight="5" refX="5.5" refY="2.5" orient="auto">
+            <polygon points="0 0, 6 2.5, 0 5" fill="#ea580c" />
+          </marker>
+        </defs>
+
+        {/* ── ARROWS ── */}
+        {/* 1. Customer → Help portal */}
+        <motion.line x1="94" y1="110" x2="154" y2="110"
+          stroke="#9CA3AF" markerEnd="url(#arr-gray)" {...arrowAnim(0.15)} />
+        <motion.text x="124" y="97" textAnchor="middle" fontSize="9.5" fill="#9CA3AF" fontFamily={FF} {...lblAnim(0.32)}>
+          needs IT help
+        </motion.text>
+
+        {/* 2. Help portal → Work item */}
+        <motion.line x1="330" y1="110" x2="484" y2="110"
+          stroke="#9CA3AF" markerEnd="url(#arr-gray)" {...arrowAnim(0.7)} />
+
+        {/* 3. Service Agent → Work item (reversed: arrowhead points left toward WI) */}
+        <motion.line x1="837" y1="110" x2="654" y2="110"
+          stroke="#ea580c" markerEnd="url(#arr-orange)" {...arrowAnim(1.55)} />
+        <motion.text x="748" y="97" textAnchor="middle" fontSize="9.5" fill="#ea580c" fontFamily={FF} {...lblAnim(1.72)}>
+          assigned
+        </motion.text>
+
+        {/* 4. Help portal ↘ Virtual service agent */}
+        <motion.path d="M 207 139 L 188 244"
+          stroke="#3B82F6" markerEnd="url(#arr-blue)" {...arrowAnim(0.76)} />
+        <motion.text x="174" y="192" textAnchor="end" fontSize="9.5" fill="#3B82F6" fontFamily={FF} {...lblAnim(0.92)}>
+          deflection
+        </motion.text>
+
+        {/* 5. Help portal ↘ Help articles */}
+        <motion.path d="M 278 139 L 413 244"
+          stroke="#3B82F6" markerEnd="url(#arr-blue)" {...arrowAnim(0.82)} />
+        <motion.text x="368" y="204" textAnchor="start" fontSize="9.5" fill="#3B82F6" fontFamily={FF} {...lblAnim(0.98)}>
+          self serve
+        </motion.text>
+
+        {/* 6. Virtual svc agent → Work item (curved upward) */}
+        <motion.path d="M 222 284 Q 415 334 550 142"
+          stroke="#16a34a" markerEnd="url(#arr-green)" {...arrowAnim(1.15)} />
+
+        {/* 7. Help articles → Work item (curved upward) */}
+        <motion.path d="M 451 284 Q 508 312 554 142"
+          stroke="#16a34a" markerEnd="url(#arr-green)" {...arrowAnim(1.2)} />
+
+        {/* "could not resolve" label */}
+        <motion.text x="385" y="338" textAnchor="middle" fontSize="9.5" fill="#16a34a" fontFamily={FF} {...lblAnim(1.38)}>
+          could not resolve
+        </motion.text>
+
+        {/* ── NODES ── */}
+
+        {/* Customer */}
+        <motion.g {...nodeAnim(0)}>
+          <circle cx="55" cy="110" r="38" fill="rgba(147,51,234,0.07)" stroke="#9333ea" strokeWidth="2.5" />
+          <circle cx="55" cy="100" r="10" fill="#9333ea" />
+          <path d="M36 130 Q36 118 55 118 Q74 118 74 130Z" fill="#9333ea" />
+          <text x="55" y="170" textAnchor="middle" fontSize="11" fill="#6b7280" fontFamily={FF} fontWeight="600">Customer</text>
+        </motion.g>
+
+        {/* Help portal (pill) */}
+        <motion.g {...nodeAnim(0.5)}>
+          <rect x="157" y="83" width="170" height="54" rx="27" fill="rgba(37,99,235,0.07)" stroke="#2563eb" strokeWidth="2" />
+          <circle cx="194" cy="110" r="15" fill="#2563eb" />
+          <circle cx="190" cy="106" r="2.2" fill="white" /><circle cx="198" cy="106" r="2.2" fill="white" />
+          <circle cx="190" cy="114" r="2.2" fill="white" /><circle cx="198" cy="114" r="2.2" fill="white" />
+          <text x="263" y="116" textAnchor="middle" fontSize="12.5" fill="#2563eb" fontFamily={FF} fontWeight="700">Help portal</text>
+        </motion.g>
+
+        {/* Work item (pill) */}
+        <motion.g {...nodeAnim(1.28)}>
+          <rect x="487" y="83" width="162" height="54" rx="27" fill="rgba(217,119,6,0.07)" stroke="#d97706" strokeWidth="2" />
+          <circle cx="522" cy="110" r="15" fill="#d97706" />
+          <path d="M520 100 L514 113 L521 113 L518 122 L529 108 L522 108 Z" fill="white" />
+          <text x="591" y="116" textAnchor="middle" fontSize="12.5" fill="#d97706" fontFamily={FF} fontWeight="700">Work item</text>
+        </motion.g>
+
+        {/* Service Agent */}
+        <motion.g {...nodeAnim(1.7)}>
+          <circle cx="875" cy="110" r="38" fill="rgba(234,88,12,0.07)" stroke="#ea580c" strokeWidth="2.5" />
+          <circle cx="875" cy="100" r="10" fill="#ea580c" />
+          <path d="M856 130 Q856 118 875 118 Q894 118 894 130Z" fill="#ea580c" />
+          <text x="875" y="170" textAnchor="middle" fontSize="11" fill="#6b7280" fontFamily={FF} fontWeight="600">Service Agent</text>
+        </motion.g>
+
+        {/* Virtual service agent */}
+        <motion.g {...nodeAnim(0.92)}>
+          <circle cx="188" cy="284" r="38" fill="rgba(22,163,74,0.07)" stroke="#16a34a" strokeWidth="2.5" />
+          <path d="M176 289 L188 275 L200 289 L198 289 L198 298 L192 298 L192 293 L184 293 L184 298 L178 298 L178 289 Z" fill="#16a34a" />
+          <text x="188" y="344" textAnchor="middle" fontSize="10.5" fill="#6b7280" fontFamily={FF} fontWeight="600">Virtual service</text>
+          <text x="188" y="358" textAnchor="middle" fontSize="10.5" fill="#6b7280" fontFamily={FF} fontWeight="600">agent</text>
+        </motion.g>
+
+        {/* Help articles */}
+        <motion.g {...nodeAnim(0.97)}>
+          <circle cx="415" cy="284" r="38" fill="rgba(219,39,119,0.07)" stroke="#db2777" strokeWidth="2.5" />
+          <rect x="404" y="272" width="22" height="26" rx="3" fill="#db2777" opacity="0.85" />
+          <line x1="408" y1="278" x2="422" y2="278" stroke="white" strokeWidth="1.5" />
+          <line x1="408" y1="284" x2="422" y2="284" stroke="white" strokeWidth="1.5" />
+          <line x1="408" y1="290" x2="418" y2="290" stroke="white" strokeWidth="1.5" />
+          <text x="415" y="344" textAnchor="middle" fontSize="10.5" fill="#6b7280" fontFamily={FF} fontWeight="600">Help articles</text>
+        </motion.g>
+      </svg>
+    </div>
+  );
+}
+
 const CHALLENGE_PALETTE = [
   { cardBg: "#F5F3F0", cardBorder: "#E8DFD7", numColor: "#D4C4B0", accentColor: "#E8654B" },
   { cardBg: "#F0F4F8", cardBorder: "#D6E4F0", numColor: "#B8CDD9", accentColor: "#3B82F6" },
@@ -497,6 +652,25 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
 
           </div>
         </div>
+        {/* Journey Focus: service workflow orientation slide */}
+        <div className="h-screen snap-start snap-always flex flex-col justify-center py-12" style={{ background: "#FAF8F5" }}>
+          <div className="max-w-5xl mx-auto w-full px-6 flex flex-col gap-8">
+            <SnapReveal>
+              <div className="flex flex-col gap-2">
+                <p className="text-[10px] font-bold tracking-widest uppercase"
+                  style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}>
+                  Service management
+                </p>
+                <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight"
+                  style={{ fontFamily: "'Wotfard', sans-serif" }}>
+                  Journey focus
+                </h2>
+              </div>
+            </SnapReveal>
+            <JourneyFocusDiagram />
+          </div>
+        </div>
+
         {/* Why Resolution Breaks Down slide */}
         <div className="h-screen snap-start snap-always flex flex-col justify-center py-16">
           <div className="w-full flex flex-col gap-14" style={{ paddingLeft: 144, paddingRight: 144 }}>
