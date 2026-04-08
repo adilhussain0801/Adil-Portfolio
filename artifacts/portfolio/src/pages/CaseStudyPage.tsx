@@ -168,7 +168,7 @@ function CaseStudyHeroBg({
         alt=""
         aria-hidden="true"
         className="absolute inset-0 w-full h-full select-none pointer-events-none"
-        style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+        style={{ objectFit: "cover", objectPosition: "center", zIndex: 0, opacity: 0.5 }}
       />
 
       {/* ── Product screenshot — anchored to bottom ── */}
