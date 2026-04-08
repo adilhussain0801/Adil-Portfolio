@@ -260,7 +260,7 @@ function CaseStudyHeroBg({ bgColor, imageSrc }: { bgColor: string; imageSrc: str
             height: "100%",
             display: "block",
             objectFit: "cover",
-            objectPosition: "top center",
+            objectPosition: "top left",
           }}
         />
       </div>
