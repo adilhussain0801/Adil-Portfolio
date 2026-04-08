@@ -2103,25 +2103,25 @@ function AIConsolidationSection() {
             </div>
 
             {/* ── Right: visual diagram ── */}
-            <div className="flex-1 flex flex-col gap-5 min-w-0">
+            <div className="flex-1 flex flex-col gap-4 min-w-0">
               {/* Label */}
               <p className="text-[10px] font-bold tracking-widest uppercase text-[#1a1a1a]/35" style={{ fontFamily: FF }}>
                 Previously — Isolated features
               </p>
 
               {/* Feature pills — contained */}
-              <div className="rounded-2xl border border-[#1a1a1a]/8 bg-white/60 px-5 py-4 flex flex-wrap gap-2.5">
+              <div className="rounded-2xl border border-[#1a1a1a]/10 bg-white/70 px-5 py-5 flex flex-wrap gap-2.5">
                 {[
-                  { label: "Similar requests",       color: "#7C3AED", bg: "rgba(124,58,237,0.08)",  border: "rgba(124,58,237,0.2)" },
-                  { label: "Virtual agent",          color: "#0F766E", bg: "rgba(15,118,110,0.08)",  border: "rgba(15,118,110,0.2)" },
-                  { label: "Comments summary",       color: "#16a34a", bg: "rgba(22,163,74,0.08)",   border: "rgba(22,163,74,0.2)" },
-                  { label: "Suggestions",            color: "#B45309", bg: "rgba(180,83,9,0.08)",    border: "rgba(180,83,9,0.2)" },
-                  { label: "AI summaries",           color: "#DC2626", bg: "rgba(220,38,38,0.08)",   border: "rgba(220,38,38,0.2)" },
-                  { label: "Service request helper", color: "#4338CA", bg: "rgba(67,56,202,0.08)",   border: "rgba(67,56,202,0.2)" },
+                  { label: "Similar requests",       color: "#7C3AED", bg: "rgba(124,58,237,0.07)",  border: "rgba(124,58,237,0.18)" },
+                  { label: "Virtual agent",          color: "#0F766E", bg: "rgba(15,118,110,0.07)",  border: "rgba(15,118,110,0.18)" },
+                  { label: "Comments summary",       color: "#16a34a", bg: "rgba(22,163,74,0.07)",   border: "rgba(22,163,74,0.18)" },
+                  { label: "Suggestions",            color: "#B45309", bg: "rgba(180,83,9,0.07)",    border: "rgba(180,83,9,0.18)" },
+                  { label: "AI summaries",           color: "#DC2626", bg: "rgba(220,38,38,0.07)",   border: "rgba(220,38,38,0.18)" },
+                  { label: "Service request helper", color: "#4338CA", bg: "rgba(67,56,202,0.07)",   border: "rgba(67,56,202,0.18)" },
                 ].map(({ label, color, bg, border }, i) => (
                   <span
                     key={i}
-                    className="text-xs font-medium px-3 py-1.5 rounded-full"
+                    className="text-xs font-medium px-3.5 py-1.5 rounded-full"
                     style={{ color, background: bg, border: `1px solid ${border}`, fontFamily: FF }}
                   >
                     {label}
@@ -2130,19 +2130,19 @@ function AIConsolidationSection() {
               </div>
 
               {/* Arrow + label — centred */}
-              <div className="flex flex-col items-center gap-1">
-                <div className="w-px h-4 bg-[#1a1a1a]/20" />
-                <p className="text-xs italic text-[#1a1a1a]/40" style={{ fontFamily: FF }}>consolidated into one</p>
-                <svg width="10" height="8" viewBox="0 0 10 8"><path d="M5 8L0 0h10z" fill="rgba(26,26,26,0.3)" /></svg>
+              <div className="flex flex-col items-center gap-1 py-1">
+                <div className="w-px h-5 bg-[#1a1a1a]/15" />
+                <p className="text-xs italic text-[#1a1a1a]/35" style={{ fontFamily: FF }}>consolidated into one</p>
+                <svg width="10" height="7" viewBox="0 0 10 7"><path d="M5 7L0 0h10z" fill="rgba(26,26,26,0.25)" /></svg>
               </div>
 
               {/* Rovo Service card */}
               <div
-                className="flex items-start gap-4 rounded-2xl px-5 py-4"
-                style={{ background: "rgba(232,101,75,0.07)", border: "1.5px solid rgba(232,101,75,0.2)" }}
+                className="flex items-center gap-4 rounded-2xl px-5 py-4"
+                style={{ background: "rgba(232,101,75,0.07)", border: "1.5px solid rgba(232,101,75,0.18)" }}
               >
-                <img src="/rovo-service-icon.png" alt="Rovo Service" className="w-10 h-10 flex-shrink-0 mt-0.5" />
-                <div className="flex flex-col gap-1">
+                <img src="/rovo-service-logo.png" alt="Rovo Service" className="w-10 h-10 flex-shrink-0 object-contain" />
+                <div className="flex flex-col gap-0.5">
                   <p className="text-base font-bold text-[#1a1a1a]" style={{ fontFamily: FF }}>Rovo Service</p>
                   <p className="text-sm leading-relaxed text-[#1a1a1a]/60" style={{ fontFamily: FF }}>
                     A unified AI layer — one system, one interaction model, built for scale
