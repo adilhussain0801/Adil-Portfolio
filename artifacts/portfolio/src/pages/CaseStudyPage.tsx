@@ -769,49 +769,45 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
               >Context</h2>
             </SnapReveal>
 
-            {/* Two-column: text left, metrics right */}
-            <div className="flex gap-10 items-start">
-
-              {/* Left: paragraphs */}
-              <SnapReveal className="flex-1">
-                <ul className="flex flex-col gap-5">
-                  {[
-                    <>Enterprise support operates at massive scale, where even small inefficiencies compound into significant <strong className="text-[#1a1a1a] font-semibold">operational cost.</strong></>,
-                    <>Agents spend up to <strong className="text-[#1a1a1a] font-semibold">40–60%</strong> of their time not resolving issues, but <strong className="text-[#1a1a1a] font-semibold">understanding</strong> them — navigating fragmented tools, clarifying incomplete requests, and manually assembling context.</>,
-                    <>This results in <strong className="text-[#1a1a1a] font-semibold">slower resolution times</strong>, higher <strong className="text-[#1a1a1a] font-semibold">cognitive load</strong>, and a model that <strong className="text-[#1a1a1a] font-semibold">scales linearly with headcount</strong> — making it increasingly <strong className="text-[#1a1a1a] font-semibold">unsustainable</strong> as demand grows.</>,
-                  ].map((content, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#E8654B]/50 flex-shrink-0" />
-                      <span className="text-sm md:text-base leading-relaxed text-[#1a1a1a]/70" style={{ fontFamily: "'Wotfard', sans-serif" }}>
-                        {content}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </SnapReveal>
-
-              {/* Right: metrics stacked */}
-              <SnapReveal delay={0.15} className="flex-shrink-0 w-52 flex flex-col gap-3">
+            {/* Bullets */}
+            <SnapReveal>
+              <ul className="flex flex-col gap-5">
                 {[
-                  { value: "$15–$50", label: "Average cost per ticket", color: "#E8654B", bg: "#FEF0EC", border: "rgba(232,101,75,0.18)" },
-                  { value: "3–6 tools", label: "Used per request", color: "#16a34a", bg: "#F0FDF4", border: "rgba(22,163,74,0.18)" },
-                  { value: "40–60%", label: "Time spent on understanding, not resolving", color: "#6366F1", bg: "#F0F0FE", border: "rgba(99,102,241,0.18)" },
-                ].map((stat, i) => (
-                  <div
-                    key={i}
-                    className="rounded-2xl px-5 py-4 flex flex-col gap-1"
-                    style={{ background: stat.bg, border: `1px solid ${stat.border}` }}
-                  >
-                    <p className="text-xl font-bold leading-tight" style={{ color: stat.color, fontFamily: "'Wotfard', sans-serif" }}>
-                      {stat.value}
-                    </p>
-                    <p className="text-xs leading-relaxed text-[#1a1a1a]/70" style={{ fontFamily: "'Wotfard', sans-serif" }}>
-                      {stat.label}
-                    </p>
-                  </div>
+                  <>Enterprise support operates at massive scale, where even small inefficiencies compound into significant <strong className="text-[#1a1a1a] font-semibold">operational cost.</strong></>,
+                  <>Agents spend up to <strong className="text-[#1a1a1a] font-semibold">40–60%</strong> of their time not resolving issues, but <strong className="text-[#1a1a1a] font-semibold">understanding</strong> them — navigating fragmented tools, clarifying incomplete requests, and manually assembling context.</>,
+                  <>This results in <strong className="text-[#1a1a1a] font-semibold">slower resolution times</strong>, higher <strong className="text-[#1a1a1a] font-semibold">cognitive load</strong>, and a model that <strong className="text-[#1a1a1a] font-semibold">scales linearly with headcount</strong> — making it increasingly <strong className="text-[#1a1a1a] font-semibold">unsustainable</strong> as demand grows.</>,
+                ].map((content, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#E8654B]/50 flex-shrink-0" />
+                    <span className="text-sm md:text-base leading-relaxed text-[#1a1a1a]/70" style={{ fontFamily: "'Wotfard', sans-serif" }}>
+                      {content}
+                    </span>
+                  </li>
                 ))}
-              </SnapReveal>
-            </div>
+              </ul>
+            </SnapReveal>
+
+            {/* Metrics row */}
+            <SnapReveal delay={0.15} className="flex gap-4">
+              {[
+                { value: "$15–$50", label: "Average cost per ticket", color: "#E8654B", bg: "#FEF0EC", border: "rgba(232,101,75,0.18)" },
+                { value: "3–6 tools", label: "Used per request", color: "#16a34a", bg: "#F0FDF4", border: "rgba(22,163,74,0.18)" },
+                { value: "40–60%", label: "Time spent on understanding, not resolving", color: "#6366F1", bg: "#F0F0FE", border: "rgba(99,102,241,0.18)" },
+              ].map((stat, i) => (
+                <div
+                  key={i}
+                  className="flex-1 rounded-2xl px-5 py-4 flex flex-col gap-1"
+                  style={{ background: stat.bg, border: `1px solid ${stat.border}` }}
+                >
+                  <p className="text-xl font-bold leading-tight" style={{ color: stat.color, fontFamily: "'Wotfard', sans-serif" }}>
+                    {stat.value}
+                  </p>
+                  <p className="text-xs leading-relaxed text-[#1a1a1a]/70" style={{ fontFamily: "'Wotfard', sans-serif" }}>
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
+            </SnapReveal>
 
 
           </div>
