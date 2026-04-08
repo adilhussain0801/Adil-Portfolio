@@ -972,7 +972,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                   className="text-2xl md:text-3xl leading-tight text-[#1a1a1a]"
                   style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
                 >
-                  Patterns to the Problems
+                  Where the System Breaks Down
                 </h2>
                 <p
                   className="text-sm leading-relaxed text-[#1a1a1a]/70"
