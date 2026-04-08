@@ -239,32 +239,20 @@ function CaseStudyHeroBg({ bgColor, imageSrc }: { bgColor: string; imageSrc: str
 
       </div>
 
-      {/* ── Product screenshot — aligned with title ── */}
-      <div
+      {/* ── Product screenshot — anchored to bottom ── */}
+      <img
+        src={imageSrc}
+        alt="Rovo Service Management interface"
         className="absolute select-none"
         style={{
           left: 80,
-          right: 0,
           bottom: 0,
-          top: 0,
+          width: "80%",
+          height: "auto",
+          display: "block",
           zIndex: 1,
-          display: "flex",
-          alignItems: "flex-end",
         }}
-      >
-        <img
-          src={imageSrc}
-          alt="Rovo Service Management interface"
-          style={{
-            width: "100%",
-            height: "calc(100% + 120px)",
-            display: "block",
-            objectFit: "cover",
-            objectPosition: "top left",
-            transform: "translateY(-120px)",
-          }}
-        />
-      </div>
+      />
     </div>
   );
 }
