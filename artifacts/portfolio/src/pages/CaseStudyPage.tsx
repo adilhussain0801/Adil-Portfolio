@@ -2060,9 +2060,9 @@ function AIConsolidationSection() {
               </p>
               <ul className="flex flex-col gap-3">
                 {[
-                  "AI operated in silos with limited visibility",
+                  "AI features operated in silos with limited visibility for agents",
                   "Experiences were inconsistent across touchpoints",
-                  "Users had to piece together capabilities manually",
+                  "Agents had to piece together capabilities manually",
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#E8654B]/60 flex-shrink-0" />
@@ -2081,7 +2081,7 @@ function AIConsolidationSection() {
               className="text-xl md:text-2xl font-semibold leading-snug text-[#1a1a1a]"
               style={{ fontFamily: FF }}
             >
-              Users weren't looking for features — they were trying to{" "}
+              Service agents weren't looking for features — they were trying to{" "}
               <mark style={{ background: "rgba(99,102,241,0.13)", color: "#4338CA", borderRadius: "5px", padding: "2px 6px", fontWeight: 700 }}>
                 resolve work faster
               </mark>
