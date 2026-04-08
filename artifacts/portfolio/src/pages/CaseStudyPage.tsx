@@ -2059,7 +2059,7 @@ function AIConsolidationSection() {
           src="/ai-features.png"
           alt="AI features scattered across Jira Service Management"
           className="select-none pointer-events-none"
-          style={{ width: "calc(100% - 160px)", marginLeft: 80, marginRight: 80, marginTop: 16, zIndex: 1, display: "block" }}
+          style={{ width: "calc(100% - 160px)", marginLeft: 80, marginRight: 80, marginTop: -16, zIndex: 1, display: "block" }}
           initial={{ opacity: 0, y: 24 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.65, ease: [0.25, 0.1, 0.25, 1], delay: 0.2 }}
