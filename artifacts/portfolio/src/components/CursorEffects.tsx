@@ -143,15 +143,15 @@ export default function CursorEffects() {
         aria-hidden="true"
       >
         <svg
-          width="11"
-          height="20"
-          viewBox="0 0 11 20"
+          width="14"
+          height="18"
+          viewBox="0 0 14 18"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           style={{ display: "block" }}
         >
           <path
-            d="M0 0 L0 18 L4 13 L9 13 Z"
+            d="M0 0 L0 16 L4 13 L12 11 Z"
             fill="#F5A623"
             stroke="#1a1a1a"
             strokeWidth="1"
