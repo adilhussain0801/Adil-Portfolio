@@ -1990,21 +1990,6 @@ function AIConsolidationSection() {
   const isVisible = useInView(ref, { once: true, amount: 0.3 });
   const FF = "'Wotfard', sans-serif";
 
-  const scattered = [
-    { label: "Smart triage", color: "#6366F1", bg: "rgba(99,102,241,0.10)", icon: <Sparkles size={16} /> },
-    { label: "Virtual agent", color: "#0891B2", bg: "rgba(8,145,178,0.10)", icon: <Network size={16} /> },
-    { label: "Auto-routing", color: "#16A34A", bg: "rgba(22,163,74,0.10)", icon: <Zap size={16} /> },
-    { label: "Intent detection", color: "#9333EA", bg: "rgba(147,51,234,0.10)", icon: <Brain size={16} /> },
-    { label: "AI summaries", color: "#EA580C", bg: "rgba(234,88,12,0.10)", icon: <SearchCode size={16} /> },
-    { label: "Answer suggestions", color: "#DB2777", bg: "rgba(219,39,119,0.10)", icon: <CheckCircle2 size={16} /> },
-  ];
-
-  const unlocked = [
-    { label: "Single surface for all AI interactions", color: "#6366F1" },
-    { label: "Consistent, predictable AI behaviour", color: "#0891B2" },
-    { label: "Capabilities that compound over time", color: "#16A34A" },
-  ];
-
   return (
     <section
       id="section-consolidation"
@@ -2036,95 +2021,37 @@ function AIConsolidationSection() {
             className="text-base leading-relaxed text-[#1a1a1a]/65"
             style={{ fontFamily: FF }}
           >
-            Jira Service Management had accumulated AI features across its surface — smart triage, virtual agents, answer suggestions, auto-routing. But each lived in isolation, with different interaction models, inconsistent quality, and no shared foundation.
+            While evaluating breakdowns across the service journey, a deeper pattern emerged.
           </p>
           <p
-            className="text-base leading-relaxed text-[#1a1a1a]/65"
+            className="text-xl md:text-2xl font-semibold leading-snug text-[#1a1a1a]"
             style={{ fontFamily: FF }}
           >
-            The strategic decision was to consolidate everything into a{" "}
-            <strong className="text-[#1a1a1a] font-semibold">single, standalone AI capability</strong>{" "}
-            — one coherent system that customers could rely on and build their support operations around. Rovo Service became that layer.
+            The challenge wasn't just{" "}
+            <mark style={{ background: "rgba(232,101,75,0.13)", color: "#C05437", borderRadius: "5px", padding: "2px 6px", fontWeight: 700 }}>
+              fragmented workflows
+            </mark>
+            {" "}—{" "}it was{" "}
+            <mark style={{ background: "rgba(99,102,241,0.13)", color: "#4338CA", borderRadius: "5px", padding: "2px 6px", fontWeight: 700 }}>
+              fragmented intelligence
+            </mark>
+            .
           </p>
-
-          <div className="flex flex-col gap-3">
-            {unlocked.map((item, i) => (
-              <motion.div
-                key={i}
-                className="flex items-center gap-3"
-                initial={{ opacity: 0, x: -12 }}
-                animate={isVisible ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1], delay: 0.3 + i * 0.1 }}
-              >
-                <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: item.color }} />
-                <span className="text-sm text-[#1a1a1a]/70" style={{ fontFamily: FF }}>{item.label}</span>
-              </motion.div>
-            ))}
-          </div>
         </motion.div>
 
-        {/* ── Right: convergence visual ── */}
+        {/* ── Right: AI features screenshot ── */}
         <motion.div
-          className="flex flex-col gap-4"
+          className="flex items-center justify-center"
           initial={{ opacity: 0, x: 24 }}
           animate={isVisible ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1], delay: 0.1 }}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1], delay: 0.15 }}
         >
-          {/* Scattered pills */}
-          <div className="flex flex-col gap-2">
-            <p className="text-xs font-semibold uppercase tracking-widest text-[#1a1a1a]/35 mb-1" style={{ fontFamily: FF }}>Previously — isolated features</p>
-            <div className="flex flex-wrap gap-2">
-              {scattered.map((item, i) => (
-                <motion.div
-                  key={i}
-                  className="flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-medium"
-                  style={{ background: item.bg, color: item.color, fontFamily: FF, border: `1px solid ${item.color}22` }}
-                  initial={{ opacity: 0, scale: 0.85 }}
-                  animate={isVisible ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1], delay: 0.15 + i * 0.07 }}
-                >
-                  {item.icon}
-                  {item.label}
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* Arrow */}
-          <motion.div
-            className="flex items-center gap-2 pl-1"
-            initial={{ opacity: 0 }}
-            animate={isVisible ? { opacity: 1 } : {}}
-            transition={{ duration: 0.4, delay: 0.7 }}
-          >
-            <div className="flex flex-col items-start gap-0.5">
-              <div className="w-px h-6 bg-[#1a1a1a]/15 ml-3" />
-              <svg width="24" height="12" viewBox="0 0 24 12" fill="none">
-                <path d="M0 6 L20 6 M14 1 L20 6 L14 11" stroke="#1a1a1a" strokeOpacity="0.25" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </div>
-            <p className="text-xs text-[#1a1a1a]/35 italic" style={{ fontFamily: FF }}>consolidated into one</p>
-          </motion.div>
-
-          {/* Unified capability card */}
-          <motion.div
-            className="rounded-2xl px-6 py-5 flex items-center gap-4"
-            style={{
-              background: "linear-gradient(135deg, #FFF8F0 0%, #FEF0EC 100%)",
-              border: "1.5px solid rgba(232,101,75,0.22)",
-            }}
-            initial={{ opacity: 0, y: 16 }}
-            animate={isVisible ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1], delay: 0.8 }}
-          >
-            <img src="/rovo-service-icon.png" alt="Rovo Service" className="w-12 h-12 flex-shrink-0 object-contain" />
-            <div>
-              <p className="text-base font-bold text-[#1a1a1a]" style={{ fontFamily: FF }}>Rovo Service</p>
-              <p className="text-xs text-[#1a1a1a]/55 leading-relaxed" style={{ fontFamily: FF }}>
-                A unified AI layer — one system, one interaction model, built for scale
-              </p>
-            </div>
-          </motion.div>
+          <img
+            src="/ai-features.png"
+            alt="AI features scattered across Jira Service Management"
+            className="w-full h-auto rounded-2xl"
+            style={{ maxHeight: "55vh", objectFit: "contain", objectPosition: "center" }}
+          />
         </motion.div>
 
       </div>
