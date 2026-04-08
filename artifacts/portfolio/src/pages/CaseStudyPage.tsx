@@ -813,22 +813,6 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
               </SnapReveal>
             </div>
 
-            {/* Callout */}
-            <SnapReveal delay={0.3}>
-              <div
-                className="rounded-2xl px-8 py-6"
-                style={{ background: "#F5F1EB", border: "1px solid #E8E4DE" }}
-              >
-                <p
-                  className="text-xl md:text-2xl font-bold leading-snug"
-                  style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
-                >
-                  The problem wasn't just{" "}
-                  <span style={{ color: "#5B8A72" }}>inefficiency</span>
-                  {" "}- it was a system that fundamentally didn't scale.
-                </p>
-              </div>
-            </SnapReveal>
 
           </div>
         </div>
