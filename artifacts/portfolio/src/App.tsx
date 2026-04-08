@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/Home";
 import CaseStudyPage from "@/pages/CaseStudyPage";
 import NotFound from "@/pages/not-found";
+import CursorEffects from "@/components/CursorEffects";
 
 // Create a client
 const queryClient = new QueryClient({
@@ -33,6 +34,7 @@ function App() {
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
           <Router />
         </WouterRouter>
+        <CursorEffects />
         <Toaster />
       </TooltipProvider>
     </QueryClientProvider>
