@@ -2303,10 +2303,10 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
   const sections = useMemo(() => [
     { id: "section-overview", label: "Overview" },
     { id: "section-challenge", label: "Challenge" },
+    ...(study.id === 4 ? [{ id: "section-consolidation", label: "AI Strategy" }] : []),
     { id: "section-process", label: study.id === 4 ? "Competitors" : "Process" },
     ...(study.id === 4 ? [{ id: "section-principles", label: "Principles" }] : []),
     ...(study.id === 4 ? [{ id: "section-concepts", label: "Concepts" }] : []),
-    ...(study.id === 4 ? [{ id: "section-consolidation", label: "AI Strategy" }] : []),
     { id: "section-solution", label: "Solution" },
     { id: "section-impact", label: "Impact" },
     { id: "section-next", label: "Next Project" },
@@ -2576,11 +2576,11 @@ export default function CaseStudyPage() {
         />
         <OverviewSection study={study} />
         <ChallengeSection study={study} />
+        {study.id === 4 && <AIConsolidationSection />}
         <ProcessSection study={study} />
         {study.id === 4 && <EmergingThemesSection />}
         {study.id === 4 && <DesignPrinciplesSection />}
         {study.id === 4 && <EarlyStageConceptsSection />}
-        {study.id === 4 && <AIConsolidationSection />}
         <SolutionSection study={study} />
         <ImpactSection study={study} />
         <NextProjectSection study={study} />
