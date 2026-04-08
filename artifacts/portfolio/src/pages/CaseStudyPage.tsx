@@ -222,14 +222,13 @@ function HeroSection({
           imageBottom={imageBottom}
         />
       </motion.div>
-
       {/* Title + description — top left, above image */}
       <motion.div
         className="relative z-10 px-8 md:px-20 pt-48 md:pt-56 pb-0 max-w-xl"
         {...fadeUp(0.1)}
       >
         <p
-          className="text-[10px] uppercase tracking-widest text-[#1a1a1a]/40 mb-3"
+          className="text-[10px] uppercase tracking-widest text-[#1a1a1a]/40 mb-3 font-medium"
           style={{ fontFamily: "'Wotfard', sans-serif" }}
         >
           {study.timeline}
@@ -263,7 +262,6 @@ function HeroSection({
           </div>
         )}
       </motion.div>
-
     </section>
   );
 }
