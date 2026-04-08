@@ -247,7 +247,7 @@ function CaseStudyHeroBg({ bgColor, imageSrc }: { bgColor: string; imageSrc: str
         style={{
           left: 80,
           bottom: 0,
-          width: "90%",
+          width: "95%",
           height: "auto",
           display: "block",
           zIndex: 1,
