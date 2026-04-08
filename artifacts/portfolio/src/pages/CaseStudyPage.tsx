@@ -1223,7 +1223,7 @@ function IndustryTrendsSection() {
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
       style={{ background: "#F7F7F5" }}
     >
-      <div className="max-w-5xl mx-auto w-full px-6 flex flex-col gap-6">
+      <div className="max-w-7xl mx-auto w-full px-4 flex flex-col gap-6">
         <SnapReveal>
           <div className="flex flex-col gap-2">
             <h2
@@ -1240,7 +1240,7 @@ function IndustryTrendsSection() {
           </div>
         </SnapReveal>
 
-        <div className="grid grid-cols-6 gap-3">
+        <div className="grid grid-cols-6 gap-2">
           {competitors.map((c, i) => (
             <motion.div
               key={i}
