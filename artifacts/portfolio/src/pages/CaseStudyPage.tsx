@@ -1602,20 +1602,12 @@ function DesignPrinciplesSection() {
                   border: `1.5px solid ${p.borderColor}`,
                 }}
               >
-                {/* Icon + number row */}
-                <div className="flex items-start justify-between">
-                  <div
-                    className="rounded-xl p-2.5"
-                    style={{ background: `${p.accentColor}18` }}
-                  >
-                    {p.icon(p.accentColor)}
-                  </div>
-                  <span
-                    className="text-4xl font-bold tabular-nums leading-none"
-                    style={{ color: p.numColor, fontFamily: "'Wotfard', sans-serif" }}
-                  >
-                    {p.num}
-                  </span>
+                {/* Icon row */}
+                <div
+                  className="rounded-xl p-2.5 self-start"
+                  style={{ background: `${p.accentColor}18` }}
+                >
+                  {p.icon(p.accentColor)}
                 </div>
 
                 {/* Title */}
