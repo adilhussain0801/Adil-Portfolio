@@ -347,6 +347,15 @@ function OverviewSection({ study }: { study: CaseStudy }) {
 
         </div>
       </SnapReveal>
+
+      {/* Rovo Service icon — bottom right */}
+      <img
+        src="/rovo-service-icon.png"
+        alt=""
+        aria-hidden="true"
+        className="absolute bottom-6 right-8 w-24 h-auto select-none pointer-events-none opacity-80"
+        style={{ zIndex: 1 }}
+      />
     </section>
   );
 }
