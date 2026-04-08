@@ -275,7 +275,17 @@ function HeroSection({ study }: { study: CaseStudy }) {
       className="relative h-screen snap-start snap-always flex flex-col pb-0 overflow-hidden"
       style={{ backgroundColor: study.heroColor }}
     >
-      {/* Title + description — top left */}
+      {/* Background + screenshot — fills entire section */}
+      <motion.div
+        className="absolute inset-0"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.9, ease: "easeOut", delay: 0.15 }}
+      >
+        <CaseStudyHeroBg bgColor={study.heroColor} imageSrc={study.id === 4 ? "/rovo-screens.png" : "/rovo-banner.png"} />
+      </motion.div>
+
+      {/* Title + description — top left, above image */}
       <motion.div
         className="relative z-10 px-8 md:px-20 pt-20 md:pt-24 pb-0 max-w-xl"
         {...fadeUp(0.1)}
@@ -296,15 +306,8 @@ function HeroSection({ study }: { study: CaseStudy }) {
         )}
       </motion.div>
 
-      {/* Screenshot — fills remaining height */}
-      <motion.div
-        className="flex-1 relative min-h-0 mt-6"
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9, ease: "easeOut", delay: 0.15 }}
-      >
-        <CaseStudyHeroBg bgColor={study.heroColor} imageSrc={study.id === 4 ? "/rovo-screens.png" : "/rovo-banner.png"} />
-      </motion.div>
+      {/* Spacer to push metadata bar to bottom */}
+      <div className="flex-1" />
 
       {/* Bottom metadata bar */}
       <motion.div
