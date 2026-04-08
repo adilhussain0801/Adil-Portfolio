@@ -2033,6 +2033,25 @@ function AIConsolidationSection() {
           >
             Jira Service Management already included multiple AI capabilities — similar requests, comments summary, suggestions, and a service request helper agent. However, these evolved independently across different workflows.
           </p>
+
+          {/* As a result bullets */}
+          <div className="flex flex-col gap-2">
+            <p className="text-xs font-semibold uppercase tracking-widest text-[#1a1a1a]/40" style={{ fontFamily: FF }}>
+              As a result
+            </p>
+            <ul className="flex flex-col gap-2">
+              {[
+                "AI capabilities operated in silos with limited visibility",
+                "Experiences were inconsistent across touchpoints",
+                "Agents had to manually piece together capabilities",
+              ].map((item, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#E8654B]/60 flex-shrink-0" />
+                  <span className="text-sm leading-relaxed text-[#1a1a1a]/65" style={{ fontFamily: FF }}>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </motion.div>
 
         {/* ── Image — bottom ── */}
@@ -2054,24 +2073,6 @@ function AIConsolidationSection() {
 
             {/* ── Left: narrative ── */}
             <div className="flex-1 flex flex-col gap-6 min-w-0">
-              <div className="flex flex-col gap-3">
-                <p className="text-xs font-semibold uppercase tracking-widest text-[#1a1a1a]/40" style={{ fontFamily: FF }}>
-                  As a result
-                </p>
-                <ul className="flex flex-col gap-2.5">
-                  {[
-                    "AI capabilities operated in silos with limited visibility",
-                    "Experiences were inconsistent across touchpoints",
-                    "Agents had to manually piece together capabilities",
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#E8654B]/60 flex-shrink-0" />
-                      <span className="text-sm leading-relaxed text-[#1a1a1a]/70" style={{ fontFamily: FF }}>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
               <p className="text-xl md:text-2xl font-semibold leading-snug text-[#1a1a1a]" style={{ fontFamily: FF }}>
                 Service agents weren't looking for features — they were trying to{" "}
                 <mark style={{ background: "rgba(99,102,241,0.13)", color: "#4338CA", borderRadius: "5px", padding: "2px 6px", fontWeight: 700 }}>
