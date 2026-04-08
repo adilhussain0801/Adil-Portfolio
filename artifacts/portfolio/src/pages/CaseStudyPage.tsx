@@ -2113,43 +2113,43 @@ function AIConsolidationSection() {
 
               {/* Pills — centered, in container */}
               <div
-                className="flex flex-col items-center gap-3 px-5 py-5 mb-5 rounded-2xl"
-                style={{ background: "rgba(255,255,255,0.5)", border: "1px solid rgba(26,26,26,0.08)", maxWidth: 420, width: "100%" }}
+                className="flex flex-col items-center gap-3 px-4 py-5 mb-5 rounded-2xl"
+                style={{ background: "rgba(255,255,255,0.5)", border: "1px solid rgba(26,26,26,0.08)", maxWidth: 460, width: "100%" }}
               >
                 {/* Row 1 */}
-                <div className="flex items-center justify-center gap-2 flex-wrap">
+                <div className="flex items-center justify-center gap-2 flex-nowrap">
                   {[
                     { label: "Similar requests",       accent: false },
                     { label: "Comments summary",       accent: false },
-                    { label: "Comment AI summary",     accent: true  },
+                    { label: "Comment AI summary",     accent: false },
                   ].map(({ label, accent }, i) => (
                     <span
                       key={i}
-                      className="text-xs font-medium px-4 py-2 rounded-full"
+                      className="text-[11px] font-medium px-3.5 py-2 rounded-full whitespace-nowrap"
                       style={{
                         fontFamily: FF,
-                        color:      accent ? "#E8654B"               : "rgba(26,26,26,0.55)",
-                        background: accent ? "rgba(232,101,75,0.07)" : "rgba(255,255,255,0.9)",
-                        border:     accent ? "1px solid rgba(232,101,75,0.28)" : "1px solid rgba(26,26,26,0.12)",
+                        color: "rgba(26,26,26,0.55)",
+                        background: "rgba(255,255,255,0.9)",
+                        border: "1px solid rgba(26,26,26,0.12)",
                       }}
                     >{label}</span>
                   ))}
                 </div>
                 {/* Row 2 */}
-                <div className="flex items-center justify-center gap-2 flex-wrap">
+                <div className="flex items-center justify-center gap-2 flex-nowrap">
                   {[
                     { label: "Virtual agent",          accent: false },
-                    { label: "Suggestions",            accent: true  },
+                    { label: "Suggestions",            accent: false },
                     { label: "Service request helper", accent: false },
                   ].map(({ label, accent }, i) => (
                     <span
                       key={i}
-                      className="text-xs font-medium px-4 py-2 rounded-full"
+                      className="text-[11px] font-medium px-3.5 py-2 rounded-full whitespace-nowrap"
                       style={{
                         fontFamily: FF,
-                        color:      accent ? "#E8654B"               : "rgba(26,26,26,0.55)",
-                        background: accent ? "rgba(232,101,75,0.07)" : "rgba(255,255,255,0.9)",
-                        border:     accent ? "1px solid rgba(232,101,75,0.28)" : "1px solid rgba(26,26,26,0.12)",
+                        color: "rgba(26,26,26,0.55)",
+                        background: "rgba(255,255,255,0.9)",
+                        border: "1px solid rgba(26,26,26,0.12)",
                       }}
                     >{label}</span>
                   ))}
