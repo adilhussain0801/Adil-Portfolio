@@ -2060,9 +2060,9 @@ function AIConsolidationSection() {
                 </p>
                 <ul className="flex flex-col gap-2.5">
                   {[
-                    "AI features operated in silos with limited visibility for agents",
+                    "AI capabilities operated in silos with limited visibility",
                     "Experiences were inconsistent across touchpoints",
-                    "Agents had to piece together capabilities manually",
+                    "Agents had to manually piece together capabilities",
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#E8654B]/60 flex-shrink-0" />
@@ -2081,16 +2081,17 @@ function AIConsolidationSection() {
               </p>
 
               <p className="text-sm leading-relaxed text-[#1a1a1a]/60 border-l-2 border-[#E8654B]/40 pl-4" style={{ fontFamily: FF }}>
-                Users don't think in features — they think in outcomes. We reframed AI as a connected system embedded across the service lifecycle.
+                Users don't think in features — they think in outcomes.<br />
+                We reframed AI as a connected system embedded across the service lifecycle.
               </p>
 
               <div className="flex flex-col gap-2">
-                <p className="text-sm text-[#1a1a1a]/60" style={{ fontFamily: FF }}>This laid the foundation for Rovo Service — enabling:</p>
+                <p className="text-sm text-[#1a1a1a]/60" style={{ fontFamily: FF }}>This laid the foundation for Rovo Service:</p>
                 <ul className="flex flex-col gap-2">
                   {[
                     "Seamless integration across workflows",
-                    "Clearer visibility into AI capabilities",
-                    "A consistent and scalable experience",
+                    "Clear visibility into AI capabilities",
+                    "A consistent, scalable experience",
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-2.5">
                       <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#E8654B]/50 flex-shrink-0" />
