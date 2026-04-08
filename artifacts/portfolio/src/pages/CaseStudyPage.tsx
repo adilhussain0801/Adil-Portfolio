@@ -241,10 +241,9 @@ function CaseStudyHeroBg({ bgColor }: { bgColor: string }) {
 
       {/* ── Product screenshot — true 3/4 perspective ── */}
       <div
-        className="absolute select-none"
+        className="absolute select-none left-1/2 -translate-x-1/2"
         style={{
           bottom: "-80px",
-          right: "-100px",
           width: "72%",
           perspective: "800px",
           perspectiveOrigin: "10% 80%",
@@ -264,7 +263,7 @@ function CaseStudyHeroBg({ bgColor }: { bgColor: string }) {
         }} />
 
         <img
-          src="/rovo-banner.png"
+          src={study.id === 4 ? "@assets/screens_(1)_1775635942840.png" : "/rovo-banner.png"}
           alt="Rovo Service Management interface"
           style={{
             width: "100%",
