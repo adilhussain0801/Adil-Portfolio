@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export default function CursorEffects() {
   const cursorRef = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  const [dotVisible, setDotVisible] = useState(false);
-  const pos = useRef({ x: -100, y: -100 });
+  const dotRef = useRef<HTMLDivElement>(null);
   const raf = useRef<number | null>(null);
+  const isVisible = useRef(false);
+  const isDotsVisible = useRef(false);
 
   useEffect(() => {
     const isTouchDevice =
@@ -13,30 +13,62 @@ export default function CursorEffects() {
       "ontouchstart" in window;
     if (isTouchDevice) return;
 
-    document.documentElement.style.cursor = "none";
-    document.documentElement.style.setProperty("--cursor-none", "none");
+    const styleId = "cursor-none-global";
+    let style: HTMLStyleElement | null = null;
+    if (!document.getElementById(styleId)) {
+      style = document.createElement("style");
+      style.id = styleId;
+      style.textContent = "*, *::before, *::after { cursor: none !important; }";
+      document.head.appendChild(style);
+    }
+
+    const showCursor = () => {
+      if (!isVisible.current && cursorRef.current) {
+        isVisible.current = true;
+        cursorRef.current.style.opacity = "1";
+      }
+    };
+
+    const hideCursor = () => {
+      if (isVisible.current && cursorRef.current) {
+        isVisible.current = false;
+        cursorRef.current.style.opacity = "0";
+      }
+    };
+
+    const showDots = () => {
+      if (!isDotsVisible.current && dotRef.current) {
+        isDotsVisible.current = true;
+        dotRef.current.style.opacity = "1";
+      }
+    };
+
+    const hideDots = () => {
+      if (isDotsVisible.current && dotRef.current) {
+        isDotsVisible.current = false;
+        dotRef.current.style.opacity = "0";
+      }
+    };
 
     const onMove = (e: MouseEvent) => {
-      pos.current = { x: e.clientX, y: e.clientY };
-      if (!visible) setVisible(true);
-      if (!dotVisible) setDotVisible(true);
+      showCursor();
+      showDots();
 
       if (raf.current) cancelAnimationFrame(raf.current);
       raf.current = requestAnimationFrame(() => {
         if (cursorRef.current) {
-          cursorRef.current.style.transform = `translate(${pos.current.x}px, ${pos.current.y}px)`;
+          cursorRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
         }
       });
     };
 
     const onLeave = () => {
-      setDotVisible(false);
-      setVisible(false);
+      hideCursor();
+      hideDots();
     };
 
     const onEnter = () => {
-      setDotVisible(true);
-      setVisible(true);
+      showDots();
     };
 
     document.addEventListener("mousemove", onMove, { passive: true });
@@ -47,38 +79,26 @@ export default function CursorEffects() {
       document.removeEventListener("mousemove", onMove);
       document.removeEventListener("mouseleave", onLeave);
       document.removeEventListener("mouseenter", onEnter);
-      document.documentElement.style.cursor = "";
-      document.documentElement.style.removeProperty("--cursor-none");
+      if (style && document.head.contains(style)) {
+        document.head.removeChild(style);
+      }
       if (raf.current) cancelAnimationFrame(raf.current);
     };
-  }, []);
-
-  useEffect(() => {
-    const styleId = "cursor-none-global";
-    if (!document.getElementById(styleId)) {
-      const style = document.createElement("style");
-      style.id = styleId;
-      style.textContent = `
-        *, *::before, *::after { cursor: none !important; }
-      `;
-      document.head.appendChild(style);
-      return () => {
-        document.head.removeChild(style);
-      };
-    }
   }, []);
 
   return (
     <>
       <div
+        ref={dotRef}
         style={{
           position: "fixed",
           inset: 0,
           pointerEvents: "none",
           zIndex: 9998,
-          backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.18) 1.5px, transparent 1.5px)",
+          backgroundImage:
+            "radial-gradient(circle, rgba(0,0,0,0.15) 1.5px, transparent 1.5px)",
           backgroundSize: "28px 28px",
-          opacity: dotVisible ? 1 : 0,
+          opacity: 0,
           transition: "opacity 0.5s ease",
           mixBlendMode: "multiply",
         }}
@@ -94,7 +114,7 @@ export default function CursorEffects() {
           pointerEvents: "none",
           zIndex: 99999,
           willChange: "transform",
-          opacity: visible ? 1 : 0,
+          opacity: 0,
           transition: "opacity 0.15s ease",
         }}
         aria-hidden="true"
