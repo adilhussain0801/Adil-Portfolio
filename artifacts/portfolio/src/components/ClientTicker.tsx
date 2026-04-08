@@ -19,7 +19,7 @@ const ITEMS = [
 export default function ClientTicker() {
 
   return (
-    <section id="clients" className="py-24 md:py-32 px-6 md:px-24" style={{ background: "#F7F7F5" }}>
+    <section id="clients" className="py-24 md:py-32 px-6 md:px-24">
       <div className="flex flex-col md:flex-row gap-12 md:gap-24">
         <div className="w-full md:w-1/3">
           <h2

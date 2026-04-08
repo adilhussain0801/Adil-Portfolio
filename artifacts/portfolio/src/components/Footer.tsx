@@ -21,7 +21,7 @@ export default function Footer() {
     <>
       <ResumeModal open={resumeOpen} onClose={() => setResumeOpen(false)} />
 
-      <footer id="contact" className="border-t border-border py-20 md:py-28 px-6 md:px-24 mt-8 border-t-[#d4d4d4] border-r-[#d4d4d4] border-b-[#d4d4d4] border-l-[#d4d4d4]" style={{ background: "#F7F7F5" }}>
+      <footer id="contact" className="border-t border-border py-20 md:py-28 px-6 md:px-24 mt-8 border-t-[#d4d4d4] border-r-[#d4d4d4] border-b-[#d4d4d4] border-l-[#d4d4d4]">
         <div>
           <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-12 mb-16">
 
