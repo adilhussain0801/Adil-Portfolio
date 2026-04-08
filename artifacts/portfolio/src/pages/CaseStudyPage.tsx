@@ -2035,19 +2035,19 @@ function AIConsolidationSection() {
           </p>
 
           {/* As a result bullets */}
-          <div className="flex flex-col gap-2">
-            <p className="text-xs font-semibold uppercase tracking-widest text-[#1a1a1a]/40" style={{ fontFamily: FF }}>
+          <div className="flex flex-col gap-2" style={{ marginTop: 8 }}>
+            <p className="text-[10px] font-semibold uppercase tracking-widest text-[#1a1a1a]/30" style={{ fontFamily: FF }}>
               As a result
             </p>
-            <ul className="flex flex-col gap-2">
+            <ul className="flex flex-col gap-1.5">
               {[
                 "AI capabilities operated in silos with limited visibility",
                 "Experiences were inconsistent across touchpoints",
                 "Agents had to manually piece together capabilities",
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-3">
-                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#E8654B]/60 flex-shrink-0" />
-                  <span className="text-sm leading-relaxed text-[#1a1a1a]/65" style={{ fontFamily: FF }}>{item}</span>
+                  <span className="mt-1.5 w-1 h-1 rounded-full bg-[#1a1a1a]/25 flex-shrink-0" />
+                  <span className="text-sm leading-relaxed text-[#1a1a1a]/45" style={{ fontFamily: FF }}>{item}</span>
                 </li>
               ))}
             </ul>
