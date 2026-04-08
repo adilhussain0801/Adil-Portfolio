@@ -688,7 +688,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
       >
         {/* Slide 1: Hero Statement */}
         <div className="h-screen snap-start snap-always flex flex-col justify-center py-16">
-          <div className="max-w-5xl mx-auto w-full px-6 flex flex-col gap-8">
+          <div className="max-w-3xl mx-auto w-full px-6 flex flex-col gap-8">
 
             {/* Title */}
             <SnapReveal>
