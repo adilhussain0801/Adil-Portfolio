@@ -146,7 +146,7 @@ function BeforeAfterSlider({ before, after, bgColor }: { before: string; after: 
   );
 }
 
-function CaseStudyHeroBg({ bgColor }: { bgColor: string }) {
+function CaseStudyHeroBg({ bgColor, imageSrc }: { bgColor: string; imageSrc: string }) {
   return (
     <div className="absolute inset-0" style={{ overflow: "visible" }}>
 
@@ -263,7 +263,7 @@ function CaseStudyHeroBg({ bgColor }: { bgColor: string }) {
         }} />
 
         <img
-          src={study.id === 4 ? "@assets/screens_(1)_1775635942840.png" : "/rovo-banner.png"}
+          src={imageSrc}
           alt="Rovo Service Management interface"
           style={{
             width: "100%",
