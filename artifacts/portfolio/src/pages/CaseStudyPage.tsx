@@ -2416,7 +2416,13 @@ export default function CaseStudyPage() {
         className="h-screen overflow-y-scroll"
         style={{ scrollSnapType: "y mandatory", scrollbarWidth: "none" }}
       >
-        <HeroSection study={study} />
+        <HeroSection
+          study={study}
+          imageSrc={study.id === 4 ? "/rovo-screens-2.png" : undefined}
+          imageLeft={study.id === 4 ? 80 : undefined}
+          imageWidth={study.id === 4 ? "90%" : undefined}
+          imageBottom={study.id === 4 ? "10%" : undefined}
+        />
         <OverviewSection study={study} />
         <ChallengeSection study={study} />
         <ProcessSection study={study} />
