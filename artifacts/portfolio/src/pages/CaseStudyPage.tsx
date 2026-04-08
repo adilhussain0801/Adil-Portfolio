@@ -146,7 +146,17 @@ function BeforeAfterSlider({ before, after, bgColor }: { before: string; after: 
   );
 }
 
-function CaseStudyHeroBg({ bgColor, imageSrc }: { bgColor: string; imageSrc: string }) {
+function CaseStudyHeroBg({
+  bgColor,
+  imageSrc,
+  imageLeft = 80,
+  imageWidth = "80%",
+}: {
+  bgColor: string;
+  imageSrc: string;
+  imageLeft?: number | string;
+  imageWidth?: string;
+}) {
   return (
     <div className="absolute inset-0" style={{ overflow: "visible" }}>
 
@@ -157,9 +167,9 @@ function CaseStudyHeroBg({ bgColor, imageSrc }: { bgColor: string; imageSrc: str
         className="absolute select-none"
         data-no-dots="true"
         style={{
-          left: 80,
+          left: imageLeft,
           bottom: 0,
-          width: "80%",
+          width: imageWidth,
           height: "auto",
           display: "block",
           zIndex: 1,
@@ -173,10 +183,23 @@ function CaseStudyHeroBg({ bgColor, imageSrc }: { bgColor: string; imageSrc: str
   );
 }
 
-function HeroSection({ study }: { study: CaseStudy }) {
+function HeroSection({
+  study,
+  sectionId = "section-hero",
+  imageSrc,
+  imageLeft,
+  imageWidth,
+}: {
+  study: CaseStudy;
+  sectionId?: string;
+  imageSrc?: string;
+  imageLeft?: number | string;
+  imageWidth?: string;
+}) {
+  const resolvedImage = imageSrc ?? (study.id === 4 ? "/rovo-screens.png" : "/rovo-banner.png");
   return (
     <section
-      id="section-hero"
+      id={sectionId}
       className="relative h-screen snap-start snap-always flex flex-col pb-0 overflow-hidden"
       style={{ backgroundColor: study.heroColor }}
     >
@@ -187,7 +210,12 @@ function HeroSection({ study }: { study: CaseStudy }) {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.9, ease: "easeOut", delay: 0.15 }}
       >
-        <CaseStudyHeroBg bgColor={study.heroColor} imageSrc={study.id === 4 ? "/rovo-screens.png" : "/rovo-banner.png"} />
+        <CaseStudyHeroBg
+          bgColor={study.heroColor}
+          imageSrc={resolvedImage}
+          imageLeft={imageLeft}
+          imageWidth={imageWidth}
+        />
       </motion.div>
 
       {/* Title + description — top left, above image */}
@@ -2130,7 +2158,9 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
 
   // Sections that should activate a different dot (alias → canonical dot id)
   const aliases: Record<string, string> = useMemo(() => (
-    study.id === 4 ? { "section-emerging": "section-process" } : {}
+    study.id === 4
+      ? { "section-emerging": "section-process", "section-hero-2": "section-hero" }
+      : {}
   ), [study.id]);
 
   const observeIds = useMemo(() => [
@@ -2384,6 +2414,15 @@ export default function CaseStudyPage() {
         style={{ scrollSnapType: "y mandatory", scrollbarWidth: "none" }}
       >
         <HeroSection study={study} />
+        {study.id === 4 && (
+          <HeroSection
+            study={study}
+            sectionId="section-hero-2"
+            imageSrc="/rovo-screens-2.png"
+            imageLeft="42%"
+            imageWidth="60%"
+          />
+        )}
         <OverviewSection study={study} />
         <ChallengeSection study={study} />
         <ProcessSection study={study} />
