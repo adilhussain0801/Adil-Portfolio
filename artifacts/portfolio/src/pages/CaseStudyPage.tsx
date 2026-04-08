@@ -1993,9 +1993,12 @@ function AIConsolidationSection() {
   return (
     <section
       id="section-consolidation"
-      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      className="relative snap-start snap-always"
       style={{ background: "#F7F7F5" }}
     >
+      {/* ── Slide 1 ── */}
+      <div className="relative h-screen flex flex-col justify-center overflow-hidden">
+
       {/* ── Text — left/center ── */}
       <motion.div
         ref={ref}
@@ -2048,6 +2051,48 @@ function AIConsolidationSection() {
         animate={isVisible ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.65, ease: [0.25, 0.1, 0.25, 1], delay: 0.2 }}
       />
+      </div>{/* end slide 1 */}
+
+      {/* ── Slide 2: Existing AI capabilities ── */}
+      <div className="h-screen snap-start snap-always flex flex-col justify-center overflow-hidden">
+        <SnapReveal>
+          <div className="max-w-3xl mx-auto w-full px-6 md:px-16 flex flex-col gap-8">
+            <p
+              className="text-base leading-relaxed text-[#1a1a1a]/65"
+              style={{ fontFamily: FF }}
+            >
+              Jira Service Management already includes a wide range of AI-powered capabilities:
+            </p>
+
+            <ul className="flex flex-col gap-4">
+              {[
+                "Virtual agents for self-service and deflection",
+                "AI-powered triage and classification",
+                "Automation rules with intelligent triggers",
+                "Knowledge base recommendations",
+                "Incident detection and alerting",
+              ].map((item, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#E8654B]/60 flex-shrink-0" />
+                  <span
+                    className="text-base leading-relaxed text-[#1a1a1a]/75"
+                    style={{ fontFamily: FF }}
+                  >
+                    {item}
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            <p
+              className="text-base leading-relaxed text-[#1a1a1a]/65 border-l-2 border-[#E8654B]/40 pl-4"
+              style={{ fontFamily: FF }}
+            >
+              However, these capabilities evolved independently across different parts of the product.
+            </p>
+          </div>
+        </SnapReveal>
+      </div>
     </section>
   );
 }
