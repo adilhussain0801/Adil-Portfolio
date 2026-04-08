@@ -2108,15 +2108,15 @@ function AIConsolidationSection() {
                 Previously — Isolated features
               </p>
 
-              {/* Feature pills */}
-              <div className="flex flex-wrap gap-2.5">
+              {/* Feature pills — contained */}
+              <div className="rounded-2xl border border-[#1a1a1a]/8 bg-white/60 px-5 py-4 flex flex-wrap gap-2.5">
                 {[
-                  { label: "Similar requests",           color: "#7C3AED", bg: "rgba(124,58,237,0.08)",  border: "rgba(124,58,237,0.2)" },
-                  { label: "Virtual agent",              color: "#0F766E", bg: "rgba(15,118,110,0.08)",  border: "rgba(15,118,110,0.2)" },
-                  { label: "Comments summary",           color: "#16a34a", bg: "rgba(22,163,74,0.08)",   border: "rgba(22,163,74,0.2)" },
-                  { label: "Suggestions",                color: "#B45309", bg: "rgba(180,83,9,0.08)",    border: "rgba(180,83,9,0.2)" },
-                  { label: "AI summaries",               color: "#DC2626", bg: "rgba(220,38,38,0.08)",   border: "rgba(220,38,38,0.2)" },
-                  { label: "Service request helper",     color: "#4338CA", bg: "rgba(67,56,202,0.08)",   border: "rgba(67,56,202,0.2)" },
+                  { label: "Similar requests",       color: "#7C3AED", bg: "rgba(124,58,237,0.08)",  border: "rgba(124,58,237,0.2)" },
+                  { label: "Virtual agent",          color: "#0F766E", bg: "rgba(15,118,110,0.08)",  border: "rgba(15,118,110,0.2)" },
+                  { label: "Comments summary",       color: "#16a34a", bg: "rgba(22,163,74,0.08)",   border: "rgba(22,163,74,0.2)" },
+                  { label: "Suggestions",            color: "#B45309", bg: "rgba(180,83,9,0.08)",    border: "rgba(180,83,9,0.2)" },
+                  { label: "AI summaries",           color: "#DC2626", bg: "rgba(220,38,38,0.08)",   border: "rgba(220,38,38,0.2)" },
+                  { label: "Service request helper", color: "#4338CA", bg: "rgba(67,56,202,0.08)",   border: "rgba(67,56,202,0.2)" },
                 ].map(({ label, color, bg, border }, i) => (
                   <span
                     key={i}
@@ -2128,13 +2128,11 @@ function AIConsolidationSection() {
                 ))}
               </div>
 
-              {/* Arrow + label */}
-              <div className="flex items-center gap-3">
-                <div className="flex flex-col items-center gap-0.5">
-                  <div className="w-px h-4 bg-[#1a1a1a]/20" />
-                  <svg width="10" height="8" viewBox="0 0 10 8"><path d="M5 8L0 0h10z" fill="rgba(26,26,26,0.3)" /></svg>
-                </div>
+              {/* Arrow + label — centred */}
+              <div className="flex flex-col items-center gap-1">
+                <div className="w-px h-4 bg-[#1a1a1a]/20" />
                 <p className="text-xs italic text-[#1a1a1a]/40" style={{ fontFamily: FF }}>consolidated into one</p>
+                <svg width="10" height="8" viewBox="0 0 10 8"><path d="M5 8L0 0h10z" fill="rgba(26,26,26,0.3)" /></svg>
               </div>
 
               {/* Rovo Service card */}
