@@ -2012,12 +2012,12 @@ function AIConsolidationSection() {
             <p
               className="text-xs font-semibold uppercase tracking-widest"
               style={{ color: "#E8654B", fontFamily: FF }}
-            >Strategic direction</p>
+            >AI strategy</p>
             <h2
               className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight"
               style={{ fontFamily: FF }}
             >
-              Beyond UX Friction:<br />A Deeper System Gap
+              Beyond UX Friction: A Deeper System Gap
             </h2>
           </div>
           <p
