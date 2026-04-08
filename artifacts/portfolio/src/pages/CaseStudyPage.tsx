@@ -2407,8 +2407,8 @@ export default function CaseStudyPage() {
           study={study}
           imageSrc={study.id === 4 ? "/rovo-screens-2.png" : undefined}
           imageLeft={study.id === 4 ? 80 : undefined}
-          imageWidth={study.id === 4 ? "90%" : undefined}
-          imageBottom={study.id === 4 ? "10%" : undefined}
+          imageWidth={study.id === 4 ? "96%" : undefined}
+          imageBottom={study.id === 4 ? 0 : undefined}
         />
         <OverviewSection study={study} />
         <ChallengeSection study={study} />
