@@ -159,12 +159,14 @@ function CaseStudyHeroBg({ bgColor, imageSrc }: { bgColor: string; imageSrc: str
         style={{
           left: 80,
           bottom: 0,
-          width: "70%",
+          width: "80%",
           height: "auto",
           display: "block",
           zIndex: 1,
-          WebkitMaskImage: "linear-gradient(to right, black 75%, rgba(0,0,0,0.6) 88%, transparent 98%)",
-          maskImage: "linear-gradient(to right, black 75%, rgba(0,0,0,0.6) 88%, transparent 98%)",
+          WebkitMaskImage: "radial-gradient(ellipse 50% 40% at 100% 0%, transparent 0%, black 65%), linear-gradient(to right, black 75%, rgba(0,0,0,0.6) 88%, transparent 98%)",
+          maskImage: "radial-gradient(ellipse 50% 40% at 100% 0%, transparent 0%, black 65%), linear-gradient(to right, black 75%, rgba(0,0,0,0.6) 88%, transparent 98%)",
+          WebkitMaskComposite: "destination-in",
+          maskComposite: "intersect",
         }}
       />
     </div>
