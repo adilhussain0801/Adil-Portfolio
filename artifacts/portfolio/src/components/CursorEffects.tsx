@@ -142,22 +142,13 @@ export default function CursorEffects() {
         }}
         aria-hidden="true"
       >
-        <svg
-          width="14"
-          height="18"
-          viewBox="0 0 14 18"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          style={{ display: "block", transform: "rotate(-20deg)", transformOrigin: "0 0" }}
-        >
-          <path
-            d="M0 0 L0 16 L4 13 L12 11 Z"
-            fill="#F5A623"
-            stroke="#1a1a1a"
-            strokeWidth="1"
-            strokeLinejoin="round"
-          />
-        </svg>
+        <img
+          src={`${import.meta.env.BASE_URL}cursor.png`}
+          alt=""
+          width={32}
+          height={32}
+          style={{ display: "block", pointerEvents: "none", userSelect: "none" }}
+        />
       </div>
     </>
   );
