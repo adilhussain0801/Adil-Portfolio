@@ -143,18 +143,18 @@ export default function CursorEffects() {
         aria-hidden="true"
       >
         <svg
-          width="22"
-          height="27"
-          viewBox="0 0 22 27"
+          width="15"
+          height="18"
+          viewBox="0 0 15 18"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          style={{ display: "block", marginLeft: -1, marginTop: -1 }}
+          style={{ display: "block" }}
         >
           <path
-            d="M1 1L1 22L6.5 16.5L10.5 26L13.5 24.5L9.5 14.5H17.5L1 1Z"
+            d="M0 0 L0 16 L4.5 12 L13 12 Z"
             fill="#F5A623"
             stroke="#1a1a1a"
-            strokeWidth="1.2"
+            strokeWidth="1"
             strokeLinejoin="round"
           />
         </svg>
