@@ -2034,23 +2034,27 @@ function AIConsolidationSection() {
             Jira Service Management already included multiple AI capabilities — similar requests, comments summary, suggestions, and a service request helper agent. However, these evolved independently across different workflows.
           </p>
 
-          {/* As a result bullets */}
+          {/* As a result — horizontal cards */}
           <div className="flex flex-col gap-2">
             <p className="text-xs font-semibold uppercase tracking-widest text-[#1a1a1a]/40" style={{ fontFamily: FF }}>
               As a result
             </p>
-            <ul className="flex flex-col gap-2">
+            <div className="grid grid-cols-3 gap-3">
               {[
                 "AI capabilities operated in silos with limited visibility",
                 "Experiences were inconsistent across touchpoints",
                 "Agents had to manually piece together capabilities",
               ].map((item, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#E8654B]/60 flex-shrink-0" />
+                <div
+                  key={i}
+                  className="flex items-start gap-2.5 rounded-xl px-4 py-3"
+                  style={{ background: "rgba(232,101,75,0.06)", border: "1px solid rgba(232,101,75,0.15)" }}
+                >
+                  <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#E8654B]/60 flex-shrink-0" />
                   <span className="text-sm leading-relaxed text-[#1a1a1a]/65" style={{ fontFamily: FF }}>{item}</span>
-                </li>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         </motion.div>
 
