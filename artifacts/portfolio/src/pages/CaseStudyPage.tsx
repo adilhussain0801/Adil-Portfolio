@@ -2002,7 +2002,7 @@ function AIConsolidationSection() {
         {/* ── Text — top ── */}
         <motion.div
           ref={ref}
-          className="max-w-3xl w-full flex flex-col gap-6 pt-20 md:pt-24"
+          className="w-full flex flex-col gap-6 pt-20 md:pt-24"
           style={{ paddingLeft: 80, paddingRight: 80 }}
           initial={{ opacity: 0, y: -16 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
