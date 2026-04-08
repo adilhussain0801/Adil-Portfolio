@@ -5,19 +5,19 @@ export default function AboutSection() {
       className="py-24 md:py-32 px-6 md:px-24"
       style={{ background: "#FAF8F5" }}
     >
-      <div className="flex flex-col gap-10">
-        {/* Heading */}
-        <div>
+      <div className="flex flex-col md:flex-row gap-12 md:gap-24">
+        {/* Left: Heading */}
+        <div className="w-full md:w-1/3">
           <h2
             style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
-            className="text-3xl md:text-4xl leading-tight text-foreground"
+            className="text-3xl md:text-4xl leading-tight text-foreground md:sticky md:top-32"
           >
             About me
           </h2>
         </div>
 
-        {/* Paragraphs */}
-        <div className="flex flex-col gap-6 md:w-2/3">
+        {/* Right: Paragraphs */}
+        <div className="flex flex-col gap-6 w-full md:w-2/3">
           <p
             style={{ fontFamily: "'Wotfard', sans-serif" }}
             className="text-base md:text-lg leading-relaxed text-foreground"
