@@ -250,33 +250,6 @@ function HeroSection({
         )}
       </motion.div>
 
-      {/* Spacer to push metadata bar to bottom */}
-      <div className="flex-1" />
-
-      {/* Bottom metadata strip */}
-      <motion.div
-        className="relative z-10 w-full px-8 md:px-20 pb-8"
-        {...fadeUp(0.3)}
-      >
-        <div className="flex flex-wrap items-center gap-x-8 gap-y-2">
-          {[
-            { label: "Role", value: study.role },
-            { label: "Platform", value: study.platform },
-          ].map((item, i) => (
-            <span key={i} className="flex items-baseline gap-2">
-              <span className="text-[10px] uppercase tracking-widest text-[#1a1a1a]/35" style={{ fontFamily: "'Wotfard', sans-serif" }}>{item.label}</span>
-              <span className="text-[13px] text-[#1a1a1a]/60" style={{ fontFamily: "'Wotfard', sans-serif" }}>{item.value}</span>
-            </span>
-          ))}
-          <span className="text-[#1a1a1a]/20 text-sm select-none">·</span>
-          {study.metrics.map((m, i) => (
-            <span key={i} className="flex items-baseline gap-2">
-              <span className="text-[13px] font-semibold text-[#E8654B]" style={{ fontFamily: "'Wotfard', sans-serif" }}>{m.value}</span>
-              <span className="text-[10px] uppercase tracking-widest text-[#1a1a1a]/35" style={{ fontFamily: "'Wotfard', sans-serif" }}>{m.label}</span>
-            </span>
-          ))}
-        </div>
-      </motion.div>
     </section>
   );
 }
