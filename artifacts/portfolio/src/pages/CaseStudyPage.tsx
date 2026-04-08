@@ -1996,65 +1996,58 @@ function AIConsolidationSection() {
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
       style={{ background: "#F7F7F5" }}
     >
-      <div ref={ref} className="max-w-5xl mx-auto w-full px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-
-        {/* ── Left: copy ── */}
-        <motion.div
-          className="flex flex-col gap-6"
-          initial={{ opacity: 0, x: -24 }}
-          animate={isVisible ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-        >
-          <div className="flex flex-col gap-2">
-            <p
-              className="text-xs font-semibold uppercase tracking-widest"
-              style={{ color: "#E8654B", fontFamily: FF }}
-            >Strategic direction</p>
-            <h2
-              className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight"
-              style={{ fontFamily: FF }}
-            >
-              Beyond UX Friction:<br />A Deeper System Gap
-            </h2>
-          </div>
+      {/* ── Text — left/center ── */}
+      <motion.div
+        ref={ref}
+        className="max-w-2xl w-full px-6 md:px-16 flex flex-col gap-6"
+        initial={{ opacity: 0, x: -24 }}
+        animate={isVisible ? { opacity: 1, x: 0 } : {}}
+        transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+      >
+        <div className="flex flex-col gap-2">
           <p
-            className="text-base leading-relaxed text-[#1a1a1a]/65"
+            className="text-xs font-semibold uppercase tracking-widest"
+            style={{ color: "#E8654B", fontFamily: FF }}
+          >Strategic direction</p>
+          <h2
+            className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight"
             style={{ fontFamily: FF }}
           >
-            While evaluating breakdowns across the service journey, a deeper pattern emerged.
-          </p>
-          <p
-            className="text-xl md:text-2xl font-semibold leading-snug text-[#1a1a1a]"
-            style={{ fontFamily: FF }}
-          >
-            The challenge wasn't just{" "}
-            <mark style={{ background: "rgba(232,101,75,0.13)", color: "#C05437", borderRadius: "5px", padding: "2px 6px", fontWeight: 700 }}>
-              fragmented workflows
-            </mark>
-            {" "}—{" "}it was{" "}
-            <mark style={{ background: "rgba(99,102,241,0.13)", color: "#4338CA", borderRadius: "5px", padding: "2px 6px", fontWeight: 700 }}>
-              fragmented intelligence
-            </mark>
-            .
-          </p>
-        </motion.div>
-
-        {/* ── Right: AI features screenshot ── */}
-        <motion.div
-          className="flex items-center justify-center"
-          initial={{ opacity: 0, x: 24 }}
-          animate={isVisible ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1], delay: 0.15 }}
+            Beyond UX Friction:<br />A Deeper System Gap
+          </h2>
+        </div>
+        <p
+          className="text-base leading-relaxed text-[#1a1a1a]/65"
+          style={{ fontFamily: FF }}
         >
-          <img
-            src="/ai-features.png"
-            alt="AI features scattered across Jira Service Management"
-            className="w-full h-auto rounded-2xl"
-            style={{ maxHeight: "55vh", objectFit: "contain", objectPosition: "center" }}
-          />
-        </motion.div>
+          While evaluating breakdowns across the service journey, a deeper pattern emerged.
+        </p>
+        <p
+          className="text-xl md:text-2xl font-semibold leading-snug text-[#1a1a1a]"
+          style={{ fontFamily: FF }}
+        >
+          The challenge wasn't just{" "}
+          <mark style={{ background: "rgba(232,101,75,0.13)", color: "#C05437", borderRadius: "5px", padding: "2px 6px", fontWeight: 700 }}>
+            fragmented workflows
+          </mark>
+          {" "}—{" "}it was{" "}
+          <mark style={{ background: "rgba(99,102,241,0.13)", color: "#4338CA", borderRadius: "5px", padding: "2px 6px", fontWeight: 700 }}>
+            fragmented intelligence
+          </mark>
+          .
+        </p>
+      </motion.div>
 
-      </div>
+      {/* ── Image — absolute bottom right ── */}
+      <motion.img
+        src="/ai-features.png"
+        alt="AI features scattered across Jira Service Management"
+        className="absolute bottom-0 right-0 rounded-tl-2xl select-none pointer-events-none"
+        style={{ width: "58%", objectFit: "contain", objectPosition: "bottom right", zIndex: 1 }}
+        initial={{ opacity: 0, y: 24 }}
+        animate={isVisible ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.65, ease: [0.25, 0.1, 0.25, 1], delay: 0.2 }}
+      />
     </section>
   );
 }
