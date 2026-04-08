@@ -2029,7 +2029,7 @@ function AIConsolidationSection() {
               className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight"
               style={{ fontFamily: FF }}
             >
-              From scattered AI<br />to a unified capability
+              Beyond UX Friction:<br />A Deeper System Gap
             </h2>
           </div>
           <p
