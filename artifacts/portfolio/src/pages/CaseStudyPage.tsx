@@ -243,7 +243,7 @@ function HeroSection({
           {study.timeline}
         </p>
         <h1
-          className="text-5xl md:text-[3.6rem] leading-[1.05] text-[#1a1a1a] mb-4"
+          className="text-5xl md:text-[3.6rem] leading-[1.05] text-[#1a1a1a] mb-4 font-black"
           style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
         >
           {study.title}
