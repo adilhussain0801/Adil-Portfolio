@@ -2037,7 +2037,7 @@ function AIConsolidationSection() {
         <motion.img
           src="/ai-features.png"
           alt="AI features scattered across Jira Service Management"
-          className="mt-auto select-none pointer-events-none px-6 md:px-16"
+          className="mt-auto select-none pointer-events-none px-4 md:px-8"
           style={{ objectFit: "contain", objectPosition: "top center", maxHeight: "48%", zIndex: 1, width: "auto", maxWidth: "100%" }}
           initial={{ opacity: 0, y: 24 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
