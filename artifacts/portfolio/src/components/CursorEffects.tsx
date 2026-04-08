@@ -61,7 +61,13 @@ export default function CursorEffects() {
           cursorRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
         }
         if (inHero.current) {
-          showDots(e.clientX, e.clientY);
+          const target = document.elementFromPoint(e.clientX, e.clientY);
+          const overNoDots = target?.closest("[data-no-dots]") !== null;
+          if (overNoDots) {
+            hideDots();
+          } else {
+            showDots(e.clientX, e.clientY);
+          }
         }
       });
     };

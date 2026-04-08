@@ -155,10 +155,11 @@ function CaseStudyHeroBg({ bgColor, imageSrc }: { bgColor: string; imageSrc: str
         src={imageSrc}
         alt="Rovo Service Management interface"
         className="absolute select-none"
+        data-no-dots="true"
         style={{
           left: 80,
           bottom: 0,
-          width: "95%",
+          width: "70%",
           height: "auto",
           display: "block",
           zIndex: 1,
@@ -189,7 +190,7 @@ function HeroSection({ study }: { study: CaseStudy }) {
 
       {/* Title + description — top left, above image */}
       <motion.div
-        className="relative z-10 px-8 md:px-20 pt-32 md:pt-36 pb-0 max-w-xl"
+        className="relative z-10 px-8 md:px-20 pt-48 md:pt-56 pb-0 max-w-xl"
         {...fadeUp(0.1)}
       >
         <h1
