@@ -1985,6 +1985,153 @@ function EarlyStageConceptsSection() {
   );
 }
 
+function AIConsolidationSection() {
+  const ref = useRef<HTMLDivElement>(null);
+  const isVisible = useInView(ref, { once: true, amount: 0.3 });
+  const FF = "'Wotfard', sans-serif";
+
+  const scattered = [
+    { label: "Smart triage", color: "#6366F1", bg: "rgba(99,102,241,0.10)", icon: <Sparkles size={16} /> },
+    { label: "Virtual agent", color: "#0891B2", bg: "rgba(8,145,178,0.10)", icon: <Network size={16} /> },
+    { label: "Auto-routing", color: "#16A34A", bg: "rgba(22,163,74,0.10)", icon: <Zap size={16} /> },
+    { label: "Intent detection", color: "#9333EA", bg: "rgba(147,51,234,0.10)", icon: <Brain size={16} /> },
+    { label: "AI summaries", color: "#EA580C", bg: "rgba(234,88,12,0.10)", icon: <SearchCode size={16} /> },
+    { label: "Answer suggestions", color: "#DB2777", bg: "rgba(219,39,119,0.10)", icon: <CheckCircle2 size={16} /> },
+  ];
+
+  const unlocked = [
+    { label: "Single surface for all AI interactions", color: "#6366F1" },
+    { label: "Consistent, predictable AI behaviour", color: "#0891B2" },
+    { label: "Capabilities that compound over time", color: "#16A34A" },
+  ];
+
+  return (
+    <section
+      id="section-consolidation"
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#F7F7F5" }}
+    >
+      <div ref={ref} className="max-w-5xl mx-auto w-full px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+
+        {/* ── Left: copy ── */}
+        <motion.div
+          className="flex flex-col gap-6"
+          initial={{ opacity: 0, x: -24 }}
+          animate={isVisible ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+        >
+          <div className="flex flex-col gap-2">
+            <p
+              className="text-xs font-semibold uppercase tracking-widest"
+              style={{ color: "#E8654B", fontFamily: FF }}
+            >Strategic direction</p>
+            <h2
+              className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight"
+              style={{ fontFamily: FF }}
+            >
+              From scattered AI<br />to a unified capability
+            </h2>
+          </div>
+          <p
+            className="text-base leading-relaxed text-[#1a1a1a]/65"
+            style={{ fontFamily: FF }}
+          >
+            Jira Service Management had accumulated AI features across its surface — smart triage, virtual agents, answer suggestions, auto-routing. But each lived in isolation, with different interaction models, inconsistent quality, and no shared foundation.
+          </p>
+          <p
+            className="text-base leading-relaxed text-[#1a1a1a]/65"
+            style={{ fontFamily: FF }}
+          >
+            The strategic decision was to consolidate everything into a{" "}
+            <strong className="text-[#1a1a1a] font-semibold">single, standalone AI capability</strong>{" "}
+            — one coherent system that customers could rely on and build their support operations around. Rovo Service became that layer.
+          </p>
+
+          <div className="flex flex-col gap-3">
+            {unlocked.map((item, i) => (
+              <motion.div
+                key={i}
+                className="flex items-center gap-3"
+                initial={{ opacity: 0, x: -12 }}
+                animate={isVisible ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1], delay: 0.3 + i * 0.1 }}
+              >
+                <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: item.color }} />
+                <span className="text-sm text-[#1a1a1a]/70" style={{ fontFamily: FF }}>{item.label}</span>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* ── Right: convergence visual ── */}
+        <motion.div
+          className="flex flex-col gap-4"
+          initial={{ opacity: 0, x: 24 }}
+          animate={isVisible ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1], delay: 0.1 }}
+        >
+          {/* Scattered pills */}
+          <div className="flex flex-col gap-2">
+            <p className="text-xs font-semibold uppercase tracking-widest text-[#1a1a1a]/35 mb-1" style={{ fontFamily: FF }}>Previously — isolated features</p>
+            <div className="flex flex-wrap gap-2">
+              {scattered.map((item, i) => (
+                <motion.div
+                  key={i}
+                  className="flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-medium"
+                  style={{ background: item.bg, color: item.color, fontFamily: FF, border: `1px solid ${item.color}22` }}
+                  initial={{ opacity: 0, scale: 0.85 }}
+                  animate={isVisible ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1], delay: 0.15 + i * 0.07 }}
+                >
+                  {item.icon}
+                  {item.label}
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Arrow */}
+          <motion.div
+            className="flex items-center gap-2 pl-1"
+            initial={{ opacity: 0 }}
+            animate={isVisible ? { opacity: 1 } : {}}
+            transition={{ duration: 0.4, delay: 0.7 }}
+          >
+            <div className="flex flex-col items-start gap-0.5">
+              <div className="w-px h-6 bg-[#1a1a1a]/15 ml-3" />
+              <svg width="24" height="12" viewBox="0 0 24 12" fill="none">
+                <path d="M0 6 L20 6 M14 1 L20 6 L14 11" stroke="#1a1a1a" strokeOpacity="0.25" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <p className="text-xs text-[#1a1a1a]/35 italic" style={{ fontFamily: FF }}>consolidated into one</p>
+          </motion.div>
+
+          {/* Unified capability card */}
+          <motion.div
+            className="rounded-2xl px-6 py-5 flex items-center gap-4"
+            style={{
+              background: "linear-gradient(135deg, #FFF8F0 0%, #FEF0EC 100%)",
+              border: "1.5px solid rgba(232,101,75,0.22)",
+            }}
+            initial={{ opacity: 0, y: 16 }}
+            animate={isVisible ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1], delay: 0.8 }}
+          >
+            <img src="/rovo-service-icon.png" alt="Rovo Service" className="w-12 h-12 flex-shrink-0 object-contain" />
+            <div>
+              <p className="text-base font-bold text-[#1a1a1a]" style={{ fontFamily: FF }}>Rovo Service</p>
+              <p className="text-xs text-[#1a1a1a]/55 leading-relaxed" style={{ fontFamily: FF }}>
+                A unified AI layer — one system, one interaction model, built for scale
+              </p>
+            </div>
+          </motion.div>
+        </motion.div>
+
+      </div>
+    </section>
+  );
+}
+
 function SolutionSection({ study }: { study: CaseStudy }) {
   return (
     <section
@@ -2159,6 +2306,7 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
     { id: "section-process", label: study.id === 4 ? "Competitors" : "Process" },
     ...(study.id === 4 ? [{ id: "section-principles", label: "Principles" }] : []),
     ...(study.id === 4 ? [{ id: "section-concepts", label: "Concepts" }] : []),
+    ...(study.id === 4 ? [{ id: "section-consolidation", label: "AI Strategy" }] : []),
     { id: "section-solution", label: "Solution" },
     { id: "section-impact", label: "Impact" },
     { id: "section-next", label: "Next Project" },
@@ -2432,6 +2580,7 @@ export default function CaseStudyPage() {
         {study.id === 4 && <EmergingThemesSection />}
         {study.id === 4 && <DesignPrinciplesSection />}
         {study.id === 4 && <EarlyStageConceptsSection />}
+        {study.id === 4 && <AIConsolidationSection />}
         <SolutionSection study={study} />
         <ImpactSection study={study} />
         <NextProjectSection study={study} />
