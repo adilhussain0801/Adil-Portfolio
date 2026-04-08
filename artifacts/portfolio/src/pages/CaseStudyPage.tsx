@@ -1,7 +1,7 @@
 import { useParams, Link } from "wouter";
 import { useRef, useEffect, useState, useMemo, type RefObject } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ArrowRight, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare, ChevronLeft, ChevronRight, X, CheckCircle2, Settings, DollarSign, Layers } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare, ChevronLeft, ChevronRight, X, CheckCircle2, Settings, Receipt, Layers } from "lucide-react";
 import { getCaseStudy, getNextCaseStudy, getAllCaseStudies, type CaseStudy } from "@/data/caseStudies";
 import NotFound from "@/pages/not-found";
 
@@ -719,7 +719,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
             {/* Metrics row */}
             <SnapReveal delay={0.15} className="flex gap-4">
               {[
-                { value: "$15–$50", label: "Average cost per ticket", color: "#E8654B", bg: "#FEF0EC", border: "rgba(232,101,75,0.18)", icon: <DollarSign size={16} /> },
+                { value: "$15–$50", label: "Average cost per ticket", color: "#E8654B", bg: "#FEF0EC", border: "rgba(232,101,75,0.18)", icon: <Receipt size={16} /> },
                 { value: "3–6 tools", label: "Used per request", color: "#16a34a", bg: "#F0FDF4", border: "rgba(22,163,74,0.18)", icon: <Layers size={16} /> },
                 { value: "40–60%", label: "Time spent on understanding, not resolving", color: "#6366F1", bg: "#F0F0FE", border: "rgba(99,102,241,0.18)", icon: <Clock size={16} /> },
               ].map((stat, i) => (
