@@ -228,6 +228,12 @@ function HeroSection({
         className="relative z-10 px-8 md:px-20 pt-48 md:pt-56 pb-0 max-w-xl"
         {...fadeUp(0.1)}
       >
+        <p
+          className="text-[10px] uppercase tracking-widest text-[#1a1a1a]/40 mb-3"
+          style={{ fontFamily: "'Wotfard', sans-serif" }}
+        >
+          {study.timeline}
+        </p>
         <h1
           className="text-5xl md:text-[3.6rem] leading-[1.05] text-[#1a1a1a] mb-4"
           style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
@@ -256,7 +262,6 @@ function HeroSection({
           {[
             { label: "Role", value: study.role },
             { label: "Platform", value: study.platform },
-            { label: "Timeline", value: study.timeline },
           ].map((item, i) => (
             <span key={i} className="flex items-baseline gap-2">
               <span className="text-[10px] uppercase tracking-widest text-[#1a1a1a]/35" style={{ fontFamily: "'Wotfard', sans-serif" }}>{item.label}</span>
