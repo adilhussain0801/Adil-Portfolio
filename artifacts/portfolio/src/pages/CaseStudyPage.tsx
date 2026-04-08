@@ -774,22 +774,20 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
 
               {/* Left: paragraphs */}
               <SnapReveal className="flex-1">
-                <div className="flex flex-col gap-5">
-                  <p className="text-sm md:text-base leading-relaxed text-[#1a1a1a]/70" style={{ fontFamily: "'Wotfard', sans-serif" }}>
-                    Enterprise support operates at massive scale, where even small inefficiencies compound into significant{" "}
-                    <strong className="text-[#1a1a1a] font-semibold">operational cost.</strong>
-                  </p>
-                  <p className="text-sm md:text-base leading-relaxed text-[#1a1a1a]/70" style={{ fontFamily: "'Wotfard', sans-serif" }}>
-                    Agents spend up to <strong className="text-[#1a1a1a] font-semibold">40–60%</strong> of their time not resolving issues, but{" "}
-                    <strong className="text-[#1a1a1a] font-semibold">understanding</strong> them - navigating fragmented tools, clarifying incomplete requests, and manually assembling context.
-                  </p>
-                  <p className="text-sm md:text-base leading-relaxed text-[#1a1a1a]/70" style={{ fontFamily: "'Wotfard', sans-serif" }}>
-                    This results in <strong className="text-[#1a1a1a] font-semibold">slower resolution times</strong>, higher{" "}
-                    <strong className="text-[#1a1a1a] font-semibold">cognitive load</strong>, and a model that{" "}
-                    <strong className="text-[#1a1a1a] font-semibold">scales linearly with headcount</strong> - making it increasingly{" "}
-                    <strong className="text-[#1a1a1a] font-semibold">unsustainable</strong> as demand grows.
-                  </p>
-                </div>
+                <ul className="flex flex-col gap-5">
+                  {[
+                    <>Enterprise support operates at massive scale, where even small inefficiencies compound into significant <strong className="text-[#1a1a1a] font-semibold">operational cost.</strong></>,
+                    <>Agents spend up to <strong className="text-[#1a1a1a] font-semibold">40–60%</strong> of their time not resolving issues, but <strong className="text-[#1a1a1a] font-semibold">understanding</strong> them — navigating fragmented tools, clarifying incomplete requests, and manually assembling context.</>,
+                    <>This results in <strong className="text-[#1a1a1a] font-semibold">slower resolution times</strong>, higher <strong className="text-[#1a1a1a] font-semibold">cognitive load</strong>, and a model that <strong className="text-[#1a1a1a] font-semibold">scales linearly with headcount</strong> — making it increasingly <strong className="text-[#1a1a1a] font-semibold">unsustainable</strong> as demand grows.</>,
+                  ].map((content, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#E8654B]/50 flex-shrink-0" />
+                      <span className="text-sm md:text-base leading-relaxed text-[#1a1a1a]/70" style={{ fontFamily: "'Wotfard', sans-serif" }}>
+                        {content}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
               </SnapReveal>
 
               {/* Right: metrics stacked */}
