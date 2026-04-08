@@ -2419,8 +2419,8 @@ export default function CaseStudyPage() {
             study={study}
             sectionId="section-hero-2"
             imageSrc="/rovo-screens-2.png"
-            imageLeft="42%"
-            imageWidth="60%"
+            imageLeft={80}
+            imageWidth="80%"
           />
         )}
         <OverviewSection study={study} />
