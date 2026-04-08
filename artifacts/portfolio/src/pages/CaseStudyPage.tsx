@@ -151,11 +151,13 @@ function CaseStudyHeroBg({
   imageSrc,
   imageLeft = 80,
   imageWidth = "80%",
+  imageBottom = 0,
 }: {
   bgColor: string;
   imageSrc: string;
   imageLeft?: number | string;
   imageWidth?: string;
+  imageBottom?: number | string;
 }) {
   return (
     <div className="absolute inset-0" style={{ overflow: "visible" }}>
@@ -168,7 +170,7 @@ function CaseStudyHeroBg({
         data-no-dots="true"
         style={{
           left: imageLeft,
-          bottom: 0,
+          bottom: imageBottom,
           width: imageWidth,
           height: "auto",
           display: "block",
@@ -189,12 +191,14 @@ function HeroSection({
   imageSrc,
   imageLeft,
   imageWidth,
+  imageBottom,
 }: {
   study: CaseStudy;
   sectionId?: string;
   imageSrc?: string;
   imageLeft?: number | string;
   imageWidth?: string;
+  imageBottom?: number | string;
 }) {
   const resolvedImage = imageSrc ?? (study.id === 4 ? "/rovo-screens.png" : "/rovo-banner.png");
   return (
@@ -215,6 +219,7 @@ function HeroSection({
           imageSrc={resolvedImage}
           imageLeft={imageLeft}
           imageWidth={imageWidth}
+          imageBottom={imageBottom}
         />
       </motion.div>
 
@@ -2420,7 +2425,8 @@ export default function CaseStudyPage() {
             sectionId="section-hero-2"
             imageSrc="/rovo-screens-2.png"
             imageLeft={80}
-            imageWidth="80%"
+            imageWidth="90%"
+            imageBottom="10%"
           />
         )}
         <OverviewSection study={study} />
