@@ -173,13 +173,12 @@ function CaseStudyHeroBg({
         <defs>
           {/* Hex grid pattern */}
           <pattern id="hex-grid" x="0" y="0" width="60" height="52" patternUnits="userSpaceOnUse">
-            <polygon
-              points="30,2 58,17 58,47 30,62 2,47 2,17"
-              fill="none"
-              stroke="#4a6fa5"
-              strokeWidth="0.5"
-              opacity="0.18"
-            />
+            <polygon points="30,2 58,17 58,47 30,62 2,47 2,17"
+              fill="none" stroke="#4a6fa5" strokeWidth="0.5" opacity="0.18" />
+          </pattern>
+          {/* Dot grid pattern */}
+          <pattern id="dot-grid" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+            <circle cx="14" cy="14" r="1" fill="#4a6fa5" opacity="0.22" />
           </pattern>
           {/* Soft glow radial gradients */}
           <radialGradient id="orb1" cx="50%" cy="50%" r="50%">
@@ -194,10 +193,17 @@ function CaseStudyHeroBg({
             <stop offset="0%" stopColor="#34d9c3" stopOpacity="0.12" />
             <stop offset="100%" stopColor="#34d9c3" stopOpacity="0" />
           </radialGradient>
+          <radialGradient id="orb4" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#818cf8" stopOpacity="0.14" />
+            <stop offset="100%" stopColor="#818cf8" stopOpacity="0" />
+          </radialGradient>
         </defs>
 
         {/* Hex grid — full canvas, very faint */}
         <rect width="1440" height="900" fill="url(#hex-grid)" opacity="0.6" />
+
+        {/* Dot grid — left half, fills empty text area */}
+        <rect x="0" y="0" width="720" height="900" fill="url(#dot-grid)" opacity="0.55" />
 
         {/* Glow orb — right-center */}
         <ellipse cx="1100" cy="380" rx="320" ry="280" fill="url(#orb1)" />
@@ -205,6 +211,8 @@ function CaseStudyHeroBg({
         <ellipse cx="1340" cy="120" rx="200" ry="180" fill="url(#orb2)" />
         {/* Glow orb — lower center-right */}
         <ellipse cx="900" cy="780" rx="260" ry="200" fill="url(#orb3)" />
+        {/* Glow orb — upper-left, fills top-left void */}
+        <ellipse cx="200" cy="180" rx="280" ry="220" fill="url(#orb4)" />
 
         {/* Orbital rings — centered right */}
         <ellipse cx="1100" cy="420" rx="240" ry="60" fill="none" stroke="#5b7fcf" strokeWidth="0.8" opacity="0.12" />
@@ -212,27 +220,62 @@ function CaseStudyHeroBg({
           style={{ transform: "rotate(-12deg)", transformOrigin: "1100px 420px" }} />
         <ellipse cx="1100" cy="420" rx="430" ry="110" fill="none" stroke="#7b9ef0" strokeWidth="0.5" opacity="0.07"
           style={{ transform: "rotate(-18deg)", transformOrigin: "1100px 420px" }} />
+        {/* Extra wide ring — sweeps into left zone */}
+        <ellipse cx="1100" cy="420" rx="580" ry="150" fill="none" stroke="#818cf8" strokeWidth="0.4" opacity="0.05"
+          style={{ transform: "rotate(-8deg)", transformOrigin: "1100px 420px" }} />
 
-        {/* Node dots on orbital rings */}
+        {/* Small arc cluster — top-left area */}
+        <path d="M 60 320 Q 160 220 280 280" fill="none" stroke="#5b7fcf" strokeWidth="0.7" opacity="0.12" strokeDasharray="5 8" />
+        <path d="M 40 400 Q 180 290 340 350" fill="none" stroke="#818cf8" strokeWidth="0.6" opacity="0.10" strokeDasharray="4 9" />
+        <path d="M 100 500 Q 240 390 380 440" fill="none" stroke="#5b7fcf" strokeWidth="0.5" opacity="0.08" strokeDasharray="3 10" />
+
+        {/* Circuit traces — horizontal rules with jog */}
+        <path d="M 480 160 H 560 V 200 H 660" fill="none" stroke="#4a6fa5" strokeWidth="0.6" opacity="0.13" />
+        <path d="M 420 700 H 520 V 660 H 640" fill="none" stroke="#4a6fa5" strokeWidth="0.6" opacity="0.11" />
+        <path d="M 300 820 H 420 V 780 H 560" fill="none" stroke="#34d9c3" strokeWidth="0.5" opacity="0.09" />
+
+        {/* Node dots — spread across canvas */}
         {[
           { cx: 1340, cy: 380, r: 3.5, fill: "#7b9ef0", opacity: 0.35 },
           { cx: 860,  cy: 460, r: 2.5, fill: "#7b9ef0", opacity: 0.25 },
           { cx: 1200, cy: 330, r: 2,   fill: "#a78bfa", opacity: 0.30 },
           { cx: 980,  cy: 510, r: 2,   fill: "#34d9c3", opacity: 0.25 },
           { cx: 1380, cy: 480, r: 1.5, fill: "#7b9ef0", opacity: 0.20 },
+          // left zone nodes
+          { cx: 480,  cy: 160, r: 2.5, fill: "#818cf8", opacity: 0.30 },
+          { cx: 660,  cy: 200, r: 2,   fill: "#818cf8", opacity: 0.22 },
+          { cx: 420,  cy: 700, r: 2,   fill: "#4a6fa5", opacity: 0.25 },
+          { cx: 640,  cy: 660, r: 1.5, fill: "#4a6fa5", opacity: 0.20 },
+          { cx: 300,  cy: 820, r: 2,   fill: "#34d9c3", opacity: 0.22 },
+          { cx: 560,  cy: 780, r: 1.5, fill: "#34d9c3", opacity: 0.18 },
+          { cx: 150,  cy: 550, r: 2,   fill: "#818cf8", opacity: 0.18 },
+          { cx: 220,  cy: 640, r: 1.5, fill: "#7b9ef0", opacity: 0.15 },
+          { cx: 80,   cy: 720, r: 1.5, fill: "#4a6fa5", opacity: 0.15 },
+          // scattered mid-canvas
+          { cx: 740,  cy: 80,  r: 2,   fill: "#a78bfa", opacity: 0.20 },
+          { cx: 820,  cy: 850, r: 2,   fill: "#34d9c3", opacity: 0.18 },
+          { cx: 600,  cy: 500, r: 1.5, fill: "#818cf8", opacity: 0.14 },
         ].map((d, i) => (
           <circle key={i} cx={d.cx} cy={d.cy} r={d.r} fill={d.fill} opacity={d.opacity} />
         ))}
 
-        {/* Subtle connector lines */}
+        {/* Connector lines */}
         <line x1="1340" y1="380" x2="1200" y2="330" stroke="#7b9ef0" strokeWidth="0.6" opacity="0.14" strokeDasharray="4 6" />
         <line x1="1200" y1="330" x2="1100" y2="420" stroke="#7b9ef0" strokeWidth="0.6" opacity="0.12" strokeDasharray="4 6" />
         <line x1="980"  y1="510" x2="860"  y2="460" stroke="#34d9c3" strokeWidth="0.5" opacity="0.10" strokeDasharray="3 7" />
+        <line x1="480"  y1="160" x2="600"  y2="500" stroke="#818cf8" strokeWidth="0.4" opacity="0.08" strokeDasharray="3 9" />
+        <line x1="420"  y1="700" x2="600"  y2="500" stroke="#4a6fa5" strokeWidth="0.4" opacity="0.07" strokeDasharray="4 8" />
+
+        {/* Scattered micro triangles */}
+        <polygon points="700,60 714,84 686,84" fill="none" stroke="#818cf8" strokeWidth="0.6" opacity="0.15" />
+        <polygon points="140,460 152,480 128,480" fill="none" stroke="#7b9ef0" strokeWidth="0.6" opacity="0.12" />
+        <polygon points="380,760 392,782 368,782" fill="none" stroke="#34d9c3" strokeWidth="0.5" opacity="0.12" />
+        <polygon points="1360,620 1374,644 1346,644" fill="none" stroke="#a78bfa" strokeWidth="0.5" opacity="0.14" />
 
         {/* Fine radial spokes from orb center */}
-        {Array.from({ length: 10 }).map((_, i) => {
-          const angle = (i * 36 * Math.PI) / 180;
-          const r = 420;
+        {Array.from({ length: 12 }).map((_, i) => {
+          const angle = (i * 30 * Math.PI) / 180;
+          const r = 500;
           return (
             <line
               key={i}
@@ -241,7 +284,7 @@ function CaseStudyHeroBg({
               y2={420 + Math.sin(angle) * r}
               stroke="#4a6fa5"
               strokeWidth="0.4"
-              opacity="0.06"
+              opacity="0.05"
             />
           );
         })}
