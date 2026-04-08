@@ -1162,6 +1162,15 @@ function IndustryTrendsSection() {
 
   const competitors = [
     {
+      name: "Salesforce",
+      nameColor: "#00A1E0",
+      descriptor: "Enterprise-grade CRM and service platform integrating Einstein AI for agent assist, predictive insights, and workflow automation at scale.",
+      tag: "ENTERPRISE ECOSYSTEM + AI LAYER",
+      cardBg: "#E6F6FF",
+      borderColor: "rgba(0,161,224,0.25)",
+      image: "/salesforce-screenshot.png",
+    },
+    {
       name: "servicenow.",
       nameColor: "#62D84E",
       descriptor: "Workflow-heavy platform with newly integrated AI layers for enterprise automation.",
@@ -1231,7 +1240,7 @@ function IndustryTrendsSection() {
           </div>
         </SnapReveal>
 
-        <div className="grid grid-cols-5 gap-3">
+        <div className="grid grid-cols-6 gap-3">
           {competitors.map((c, i) => (
             <motion.div
               key={i}
@@ -1245,9 +1254,9 @@ function IndustryTrendsSection() {
                 className="mx-3 mt-3 rounded-xl overflow-hidden flex-shrink-0"
                 style={{
                   height: "200px",
-                  backgroundImage: "url(/competitor-overview.png)",
-                  backgroundSize: BG_SIZE,
-                  backgroundPosition: `-${c.bgX}px ${BG_Y}px`,
+                  backgroundImage: c.image ? `url(${c.image})` : "url(/competitor-overview.png)",
+                  backgroundSize: c.image ? "cover" : BG_SIZE,
+                  backgroundPosition: c.image ? "center top" : `-${c.bgX}px ${BG_Y}px`,
                   backgroundRepeat: "no-repeat",
                 }}
               />
