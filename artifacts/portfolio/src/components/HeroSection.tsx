@@ -1,6 +1,5 @@
 import { motion, useAnimation, useAnimationFrame } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-import { ArrowDown } from "lucide-react";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -380,22 +379,6 @@ export default function HeroSection() {
           />
         </motion.div>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.4, duration: 1 }}
-        className="absolute bottom-10 left-6 md:left-12"
-      >
-        <a
-          href="#work"
-          className="w-11 h-11 rounded-full border border-[#2D2D2D]/25 flex items-center justify-center text-[#2D2D2D]/40 hover:text-[#2D2D2D] hover:border-[#2D2D2D] transition-all duration-300 group"
-          aria-label="Scroll to work"
-        >
-          <ArrowDown size={16} strokeWidth={1.5} className="group-hover:translate-y-1 transition-transform" />
-        </a>
-      </motion.div>
     </section>
   );
 }
