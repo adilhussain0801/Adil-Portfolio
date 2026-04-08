@@ -1300,17 +1300,17 @@ function EmergingThemesSection() {
           {themes.map((t, i) => (
             <SnapReveal key={i} delay={0.1 + i * 0.1}>
               <div
-                className="rounded-2xl flex flex-col p-6"
+                className="rounded-2xl flex flex-col p-7"
                 style={{ background: "#F0EDE8", border: "1px solid #E8E4DE" }}
               >
                 <div
-                  className="w-10 h-10 rounded-xl flex items-center justify-center mb-5"
+                  className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
                   style={{ background: "rgba(232,101,75,0.12)", color: "#E8654B" }}
                 >
                   {t.icon}
                 </div>
                 <h3
-                  className="text-lg md:text-xl font-bold leading-tight mb-3"
+                  className="text-base font-bold leading-tight mb-3 whitespace-nowrap"
                   style={{ color: "#1a1a1a", fontFamily: "'Wotfard', sans-serif" }}
                 >
                   {t.title}
