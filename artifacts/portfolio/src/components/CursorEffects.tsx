@@ -145,8 +145,8 @@ export default function CursorEffects() {
         <img
           src={`${import.meta.env.BASE_URL}cursor.png`}
           alt=""
-          width={32}
-          height={32}
+          width={16}
+          height={16}
           style={{ display: "block", pointerEvents: "none", userSelect: "none" }}
         />
       </div>
