@@ -87,7 +87,7 @@ function ExperienceRow({ company, role, period, duration, location, logo, icon, 
   return (
     <>
       <motion.div 
-        className={`flex items-center gap-3 md:gap-6 group cursor-pointer hover:bg-muted/30 hover:rounded-lg px-4 -mx-4 transition-colors duration-200 ${isFirst ? "pt-0 pb-6" : "py-6"}`}
+        className="flex items-center gap-3 md:gap-6 py-6 group cursor-pointer hover:bg-muted/30 hover:rounded-lg px-4 -mx-4 transition-colors duration-200"
         onClick={() => setIsExpanded(!isExpanded)}
         whileHover={{ backgroundColor: "rgba(0,0,0,0.02)" }}
       >
@@ -151,7 +151,7 @@ function ExperienceRow({ company, role, period, duration, location, logo, icon, 
 export default function WorkSection() {
   return (
     <section id="work" className="py-24 md:py-40 px-6 md:px-24" style={{ background: "#FAF8F5" }}>
-      <div className="flex flex-col md:flex-row gap-12 md:gap-24 items-start">
+      <div className="flex flex-col md:flex-row gap-12 md:gap-24">
         
         {/* Left: Heading */}
         <div className="md:w-1/3 flex-shrink-0">

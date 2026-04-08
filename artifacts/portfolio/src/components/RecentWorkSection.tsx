@@ -71,7 +71,6 @@ function ProjectCard({
   setHoveredId,
   onVisible,
   activeIndex,
-  isFirst,
 }: {
   project: typeof PROJECTS[0];
   index: number;
@@ -79,7 +78,6 @@ function ProjectCard({
   setHoveredId: (id: number | null) => void;
   onVisible: (index: number) => void;
   activeIndex: number;
-  isFirst?: boolean;
 }) {
   const animRef = useRef(null);
   const trackRef = useRef(null);
@@ -97,7 +95,7 @@ function ProjectCard({
     <motion.div
       ref={animRef}
       id={`project-${project.id}`}
-      className={`w-full relative ${isFirst ? "pb-6 pt-0" : "py-6"}`}
+      className="w-full py-6 relative"
       initial={{ opacity: 0, y: 80 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -207,7 +205,7 @@ export default function RecentWorkSection() {
 
   return (
     <section id="work-showcase" className="py-24 md:py-40 px-6 md:px-24" style={{ background: "#FAF8F5" }}>
-      <div className="flex flex-col md:flex-row gap-12 md:gap-24 items-start">
+      <div className="flex flex-col md:flex-row gap-12 md:gap-24">
         <div className="md:w-1/3 flex-shrink-0">
           <div className="md:sticky md:top-32 flex flex-col gap-8">
             <h2
@@ -282,7 +280,6 @@ export default function RecentWorkSection() {
                 setHoveredId={setHoveredId}
                 onVisible={setActiveIndex}
                 activeIndex={activeIndex}
-                isFirst={i === 0}
               />
             ))}
           </div>
