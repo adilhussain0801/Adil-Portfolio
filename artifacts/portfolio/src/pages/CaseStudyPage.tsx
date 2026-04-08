@@ -250,12 +250,14 @@ function HeroSection({
         )}
         {study.id === 4 && (
           <div className="mt-5 flex flex-wrap gap-2">
-            {["AI-powered triage", "Automated workflows", "Real-time insights"].map((item) => (
-              <span key={item} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#5b8def]/12 border border-[#4a7de8]/20">
-                <svg width="10" height="8" viewBox="0 0 12 10" fill="none">
-                  <path d="M1 5L4.5 8.5L11 1" stroke="#4a7de8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-                <span className="text-xs text-[#1a1a1a]/65" style={{ fontFamily: "'Wotfard', sans-serif" }}>{item}</span>
+            {[
+              { label: "AI-powered triage", icon: <Sparkles size={11} strokeWidth={1.8} /> },
+              { label: "Automated workflows", icon: <Zap size={11} strokeWidth={1.8} /> },
+              { label: "Real-time insights", icon: <Network size={11} strokeWidth={1.8} /> },
+            ].map(({ label, icon }) => (
+              <span key={label} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#5b8def]/12 border border-[#4a7de8]/20 text-[#4a7de8]">
+                {icon}
+                <span className="text-xs text-[#1a1a1a]/65" style={{ fontFamily: "'Wotfard', sans-serif" }}>{label}</span>
               </span>
             ))}
           </div>
