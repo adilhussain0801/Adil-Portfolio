@@ -2111,29 +2111,32 @@ function AIConsolidationSection() {
                 Previously — Isolated AI Features
               </p>
 
-              {/* Pills — floating, staggered rows */}
-              <div className="w-full flex flex-col gap-2 mb-5">
+              {/* Pills — centered, in container */}
+              <div
+                className="w-full flex flex-col items-center gap-3 px-5 py-5 mb-5 rounded-2xl"
+                style={{ background: "rgba(255,255,255,0.5)", border: "1px solid rgba(26,26,26,0.08)" }}
+              >
                 {/* Row 1 */}
-                <div className="flex items-center gap-2 flex-wrap">
+                <div className="flex items-center justify-center gap-2 flex-wrap">
                   {[
-                    { label: "Similar requests",   accent: false },
-                    { label: "Comments summary",   accent: false },
-                    { label: "AI summaries",       accent: true  },
+                    { label: "Similar requests",       accent: false },
+                    { label: "Comments summary",       accent: false },
+                    { label: "Comment AI summary",     accent: true  },
                   ].map(({ label, accent }, i) => (
                     <span
                       key={i}
                       className="text-xs font-medium px-4 py-2 rounded-full"
                       style={{
                         fontFamily: FF,
-                        color:      accent ? "#E8654B"                : "rgba(26,26,26,0.55)",
-                        background: accent ? "rgba(232,101,75,0.06)"  : "rgba(255,255,255,0.85)",
-                        border:     accent ? "1px solid rgba(232,101,75,0.25)" : "1px solid rgba(26,26,26,0.12)",
+                        color:      accent ? "#E8654B"               : "rgba(26,26,26,0.55)",
+                        background: accent ? "rgba(232,101,75,0.07)" : "rgba(255,255,255,0.9)",
+                        border:     accent ? "1px solid rgba(232,101,75,0.28)" : "1px solid rgba(26,26,26,0.12)",
                       }}
                     >{label}</span>
                   ))}
                 </div>
-                {/* Row 2 — staggered */}
-                <div className="flex items-center gap-2 flex-wrap pl-6">
+                {/* Row 2 */}
+                <div className="flex items-center justify-center gap-2 flex-wrap">
                   {[
                     { label: "Virtual agent",          accent: false },
                     { label: "Suggestions",            accent: true  },
@@ -2144,9 +2147,9 @@ function AIConsolidationSection() {
                       className="text-xs font-medium px-4 py-2 rounded-full"
                       style={{
                         fontFamily: FF,
-                        color:      accent ? "#E8654B"                : "rgba(26,26,26,0.55)",
-                        background: accent ? "rgba(232,101,75,0.06)"  : "rgba(255,255,255,0.85)",
-                        border:     accent ? "1px solid rgba(232,101,75,0.25)" : "1px solid rgba(26,26,26,0.12)",
+                        color:      accent ? "#E8654B"               : "rgba(26,26,26,0.55)",
+                        background: accent ? "rgba(232,101,75,0.07)" : "rgba(255,255,255,0.9)",
+                        border:     accent ? "1px solid rgba(232,101,75,0.28)" : "1px solid rgba(26,26,26,0.12)",
                       }}
                     >{label}</span>
                   ))}
