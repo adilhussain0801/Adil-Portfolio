@@ -1997,52 +1997,52 @@ function AIConsolidationSection() {
       style={{ background: "#F7F7F5" }}
     >
       {/* ── Slide 1 ── */}
-      <div className="relative h-screen flex flex-col justify-center overflow-hidden">
+      <div className="relative h-screen flex flex-col overflow-hidden">
 
-      {/* ── Text — left/center ── */}
-      <motion.div
-        ref={ref}
-        className="max-w-2xl w-full px-6 md:px-16 flex flex-col gap-6"
-        initial={{ opacity: 0, x: -24 }}
-        animate={isVisible ? { opacity: 1, x: 0 } : {}}
-        transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-      >
-        <div className="flex flex-col gap-2">
+        {/* ── Text — top ── */}
+        <motion.div
+          ref={ref}
+          className="max-w-3xl w-full px-6 md:px-16 flex flex-col gap-6 pt-20 md:pt-24"
+          initial={{ opacity: 0, y: -16 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+        >
+          <div className="flex flex-col gap-2">
+            <p
+              className="text-xs font-semibold uppercase tracking-widest"
+              style={{ color: "#E8654B", fontFamily: FF }}
+            >Strategic direction</p>
+            <h2
+              className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight"
+              style={{ fontFamily: FF }}
+            >
+              Beyond UX Friction:<br />A Deeper System Gap
+            </h2>
+          </div>
           <p
-            className="text-xs font-semibold uppercase tracking-widest"
-            style={{ color: "#E8654B", fontFamily: FF }}
-          >Strategic direction</p>
-          <h2
-            className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight"
+            className="text-base leading-relaxed text-[#1a1a1a]/65"
             style={{ fontFamily: FF }}
           >
-            Beyond UX Friction:<br />A Deeper System Gap
-          </h2>
-        </div>
-        <p
-          className="text-base leading-relaxed text-[#1a1a1a]/65"
-          style={{ fontFamily: FF }}
-        >
-          As we mapped breakdowns across the service journey, a deeper pattern emerged.
-        </p>
-        <p
-          className="text-base leading-relaxed text-[#1a1a1a]/65"
-          style={{ fontFamily: FF }}
-        >
-          Jira Service Management already included multiple AI capabilities — from triage and automation to virtual agents and knowledge recommendations. However, these evolved independently across different workflows.
-        </p>
-      </motion.div>
+            As we mapped breakdowns across the service journey, a deeper pattern emerged.
+          </p>
+          <p
+            className="text-base leading-relaxed text-[#1a1a1a]/65"
+            style={{ fontFamily: FF }}
+          >
+            Jira Service Management already included multiple AI capabilities — from triage and automation to virtual agents and knowledge recommendations. However, these evolved independently across different workflows.
+          </p>
+        </motion.div>
 
-      {/* ── Image — absolute bottom right ── */}
-      <motion.img
-        src="/ai-features.png"
-        alt="AI features scattered across Jira Service Management"
-        className="absolute bottom-0 right-0 rounded-tl-2xl select-none pointer-events-none"
-        style={{ width: "58%", objectFit: "contain", objectPosition: "bottom right", zIndex: 1 }}
-        initial={{ opacity: 0, y: 24 }}
-        animate={isVisible ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.65, ease: [0.25, 0.1, 0.25, 1], delay: 0.2 }}
-      />
+        {/* ── Image — bottom ── */}
+        <motion.img
+          src="/ai-features.png"
+          alt="AI features scattered across Jira Service Management"
+          className="w-full mt-auto select-none pointer-events-none"
+          style={{ objectFit: "cover", objectPosition: "top center", maxHeight: "48%", zIndex: 1 }}
+          initial={{ opacity: 0, y: 24 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.65, ease: [0.25, 0.1, 0.25, 1], delay: 0.2 }}
+        />
       </div>{/* end slide 1 */}
 
       {/* ── Slide 2: Results + closing ── */}
