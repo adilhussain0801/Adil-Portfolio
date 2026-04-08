@@ -239,14 +239,17 @@ function CaseStudyHeroBg({ bgColor, imageSrc }: { bgColor: string; imageSrc: str
 
       </div>
 
-      {/* ── Product screenshot — flat ── */}
+      {/* ── Product screenshot — full width ── */}
       <div
-        className="absolute select-none left-1/2 -translate-x-1/2"
+        className="absolute select-none"
         style={{
-          bottom: "-80px",
-          width: "72%",
-          overflow: "visible",
+          left: 0,
+          right: 0,
+          bottom: 0,
+          top: 0,
           zIndex: 1,
+          display: "flex",
+          alignItems: "flex-end",
         }}
       >
         <img
@@ -254,10 +257,10 @@ function CaseStudyHeroBg({ bgColor, imageSrc }: { bgColor: string; imageSrc: str
           alt="Rovo Service Management interface"
           style={{
             width: "100%",
-            height: "auto",
+            height: "100%",
             display: "block",
-            borderRadius: "10px",
-            boxShadow: "0 20px 60px rgba(0,0,0,0.18), 0 6px 20px rgba(0,0,0,0.10)",
+            objectFit: "cover",
+            objectPosition: "top center",
           }}
         />
       </div>
