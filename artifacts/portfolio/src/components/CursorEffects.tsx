@@ -148,7 +148,7 @@ export default function CursorEffects() {
           viewBox="0 0 14 18"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          style={{ display: "block" }}
+          style={{ display: "block", transform: "rotate(-20deg)", transformOrigin: "0 0" }}
         >
           <path
             d="M0 0 L0 16 L4 13 L12 11 Z"
