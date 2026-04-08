@@ -336,7 +336,7 @@ function HeroSection({
           <div className="mt-5 flex flex-wrap gap-2">
             {[
               { label: "AI-powered triage", icon: <Sparkles size={11} strokeWidth={1.8} /> },
-              { label: "Automated workflows", icon: <Zap size={11} strokeWidth={1.8} /> },
+              { label: "Autonomous workflows", icon: <Zap size={11} strokeWidth={1.8} /> },
               { label: "Real-time insights", icon: <Network size={11} strokeWidth={1.8} /> },
             ].map(({ label, icon }) => (
               <span key={label} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#5b8def]/12 border border-[#4a7de8]/20 text-[#4a7de8]">
