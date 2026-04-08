@@ -2023,21 +2023,13 @@ function AIConsolidationSection() {
           className="text-base leading-relaxed text-[#1a1a1a]/65"
           style={{ fontFamily: FF }}
         >
-          While evaluating breakdowns across the service journey, a deeper pattern emerged.
+          As we mapped breakdowns across the service journey, a deeper pattern emerged.
         </p>
         <p
-          className="text-xl md:text-2xl font-semibold leading-snug text-[#1a1a1a]"
+          className="text-base leading-relaxed text-[#1a1a1a]/65"
           style={{ fontFamily: FF }}
         >
-          The challenge wasn't just{" "}
-          <mark style={{ background: "rgba(232,101,75,0.13)", color: "#C05437", borderRadius: "5px", padding: "2px 6px", fontWeight: 700 }}>
-            fragmented workflows
-          </mark>
-          {" "}—{" "}it was{" "}
-          <mark style={{ background: "rgba(99,102,241,0.13)", color: "#4338CA", borderRadius: "5px", padding: "2px 6px", fontWeight: 700 }}>
-            fragmented intelligence
-          </mark>
-          .
+          Jira Service Management already included multiple AI capabilities — from triage and automation to virtual agents and knowledge recommendations. However, these evolved independently across different workflows.
         </p>
       </motion.div>
 
@@ -2053,43 +2045,55 @@ function AIConsolidationSection() {
       />
       </div>{/* end slide 1 */}
 
-      {/* ── Slide 2: Existing AI capabilities ── */}
+      {/* ── Slide 2: Results + closing ── */}
       <div className="h-screen snap-start snap-always flex flex-col justify-center overflow-hidden">
         <SnapReveal>
           <div className="max-w-3xl mx-auto w-full px-6 md:px-16 flex flex-col gap-8">
+
+            <div className="flex flex-col gap-4">
+              <p
+                className="text-sm font-semibold uppercase tracking-widest text-[#1a1a1a]/40"
+                style={{ fontFamily: FF }}
+              >
+                As a result
+              </p>
+              <ul className="flex flex-col gap-3">
+                {[
+                  "AI operated in silos with limited visibility",
+                  "Experiences were inconsistent across touchpoints",
+                  "Users had to piece together capabilities manually",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#E8654B]/60 flex-shrink-0" />
+                    <span
+                      className="text-base leading-relaxed text-[#1a1a1a]/70"
+                      style={{ fontFamily: FF }}
+                    >
+                      {item}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
             <p
-              className="text-base leading-relaxed text-[#1a1a1a]/65"
+              className="text-xl md:text-2xl font-semibold leading-snug text-[#1a1a1a]"
               style={{ fontFamily: FF }}
             >
-              Jira Service Management already includes a wide range of AI-powered capabilities:
+              Users weren't looking for features — they were trying to{" "}
+              <mark style={{ background: "rgba(99,102,241,0.13)", color: "#4338CA", borderRadius: "5px", padding: "2px 6px", fontWeight: 700 }}>
+                resolve work faster
+              </mark>
+              .
             </p>
-
-            <ul className="flex flex-col gap-4">
-              {[
-                "Virtual agents for self-service and deflection",
-                "AI-powered triage and classification",
-                "Automation rules with intelligent triggers",
-                "Knowledge base recommendations",
-                "Incident detection and alerting",
-              ].map((item, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#E8654B]/60 flex-shrink-0" />
-                  <span
-                    className="text-base leading-relaxed text-[#1a1a1a]/75"
-                    style={{ fontFamily: FF }}
-                  >
-                    {item}
-                  </span>
-                </li>
-              ))}
-            </ul>
 
             <p
-              className="text-base leading-relaxed text-[#1a1a1a]/65 border-l-2 border-[#E8654B]/40 pl-4"
+              className="text-base leading-relaxed text-[#1a1a1a]/60 border-l-2 border-[#E8654B]/40 pl-4"
               style={{ fontFamily: FF }}
             >
-              However, these capabilities evolved independently across different parts of the product.
+              This required a shift from fragmented capabilities to a unified intelligence layer embedded across the service lifecycle.
             </p>
+
           </div>
         </SnapReveal>
       </div>
