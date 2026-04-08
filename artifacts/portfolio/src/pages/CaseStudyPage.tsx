@@ -2081,11 +2081,6 @@ function AIConsolidationSection() {
                 .
               </p>
 
-              <p className="text-sm leading-relaxed text-[#1a1a1a]/60 border-l-2 border-[#E8654B]/40 pl-4" style={{ fontFamily: FF }}>
-                Users don't think in features — they think in outcomes.<br />
-                We reframed AI as a connected system embedded across the service lifecycle.
-              </p>
-
               <div className="flex flex-col gap-2">
                 <p className="text-sm text-[#1a1a1a]/60" style={{ fontFamily: FF }}>This laid the foundation for Rovo Service:</p>
                 <ul className="flex flex-col gap-2">
