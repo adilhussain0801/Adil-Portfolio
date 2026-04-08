@@ -2046,7 +2046,7 @@ function AIConsolidationSection() {
                 "Agents had to manually piece together capabilities",
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-3">
-                  <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#E8654B]/50 flex-shrink-0" />
+                  <span className="mt-2 w-1.5 h-1.5 rounded-sm bg-[#E8654B]/50 flex-shrink-0" />
                   <span className="text-sm leading-relaxed text-[#1a1a1a]/60" style={{ fontFamily: FF }}>{item}</span>
                 </li>
               ))}
