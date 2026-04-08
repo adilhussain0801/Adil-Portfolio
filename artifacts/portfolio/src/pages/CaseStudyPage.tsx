@@ -2030,7 +2030,7 @@ function AIConsolidationSection() {
             className="text-base leading-relaxed text-[#1a1a1a]/65"
             style={{ fontFamily: FF }}
           >
-            Jira Service Management already included multiple AI capabilities — from triage and automation to virtual agents and knowledge recommendations. However, these evolved independently across different workflows.
+            Jira Service Management already included multiple AI capabilities — similar requests, comments summary, suggestions, and a service request helper agent. However, these evolved independently across different workflows.
           </p>
         </motion.div>
 
