@@ -83,11 +83,20 @@ export default function CursorEffects() {
     document.addEventListener("mousemove", onMove, { passive: true });
     document.addEventListener("mouseleave", onLeaveViewport);
 
+    const HERO_IDS = ["hero", "section-hero"];
+
+    const attachHero = (id: string) => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener("mouseenter", onHeroEnter);
+        el.addEventListener("mouseleave", onHeroLeave);
+      }
+    };
+
     const waitForHero = () => {
-      const hero = document.getElementById("hero");
-      if (hero) {
-        hero.addEventListener("mouseenter", onHeroEnter);
-        hero.addEventListener("mouseleave", onHeroLeave);
+      const found = HERO_IDS.some(id => document.getElementById(id));
+      if (found) {
+        HERO_IDS.forEach(attachHero);
       } else {
         requestAnimationFrame(waitForHero);
       }
@@ -97,11 +106,13 @@ export default function CursorEffects() {
     return () => {
       document.removeEventListener("mousemove", onMove);
       document.removeEventListener("mouseleave", onLeaveViewport);
-      const hero = document.getElementById("hero");
-      if (hero) {
-        hero.removeEventListener("mouseenter", onHeroEnter);
-        hero.removeEventListener("mouseleave", onHeroLeave);
-      }
+      HERO_IDS.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.removeEventListener("mouseenter", onHeroEnter);
+          el.removeEventListener("mouseleave", onHeroLeave);
+        }
+      });
       if (style && document.head.contains(style)) {
         document.head.removeChild(style);
       }
