@@ -201,6 +201,7 @@ export default function HeroSection() {
 
   return (
     <section
+      id="hero"
       className="min-h-screen flex flex-col justify-center pt-24 pb-12 px-6 md:px-24 relative overflow-hidden"
       style={{ background: "#F7F7F5" }}
     >

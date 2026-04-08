@@ -1,11 +1,13 @@
 import { useEffect, useRef } from "react";
 
+const SPOTLIGHT_RADIUS = 160;
+
 export default function CursorEffects() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const dotRef = useRef<HTMLDivElement>(null);
   const raf = useRef<number | null>(null);
-  const isVisible = useRef(false);
-  const isDotsVisible = useRef(false);
+  const inHero = useRef(false);
+  const cursorVisible = useRef(false);
 
   useEffect(() => {
     const isTouchDevice =
@@ -23,62 +25,83 @@ export default function CursorEffects() {
     }
 
     const showCursor = () => {
-      if (!isVisible.current && cursorRef.current) {
-        isVisible.current = true;
+      if (!cursorVisible.current && cursorRef.current) {
+        cursorVisible.current = true;
         cursorRef.current.style.opacity = "1";
       }
     };
 
     const hideCursor = () => {
-      if (isVisible.current && cursorRef.current) {
-        isVisible.current = false;
+      if (cursorVisible.current && cursorRef.current) {
+        cursorVisible.current = false;
         cursorRef.current.style.opacity = "0";
       }
     };
 
-    const showDots = () => {
-      if (!isDotsVisible.current && dotRef.current) {
-        isDotsVisible.current = true;
+    const showDots = (x: number, y: number) => {
+      if (dotRef.current) {
         dotRef.current.style.opacity = "1";
+        dotRef.current.style.maskImage = `radial-gradient(circle ${SPOTLIGHT_RADIUS}px at ${x}px ${y}px, black 30%, transparent 100%)`;
+        dotRef.current.style.webkitMaskImage = `radial-gradient(circle ${SPOTLIGHT_RADIUS}px at ${x}px ${y}px, black 30%, transparent 100%)`;
       }
     };
 
     const hideDots = () => {
-      if (isDotsVisible.current && dotRef.current) {
-        isDotsVisible.current = false;
+      if (dotRef.current) {
         dotRef.current.style.opacity = "0";
       }
     };
 
     const onMove = (e: MouseEvent) => {
       showCursor();
-      showDots();
 
       if (raf.current) cancelAnimationFrame(raf.current);
       raf.current = requestAnimationFrame(() => {
         if (cursorRef.current) {
           cursorRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
         }
+        if (inHero.current) {
+          showDots(e.clientX, e.clientY);
+        }
       });
     };
 
-    const onLeave = () => {
+    const onLeaveViewport = () => {
       hideCursor();
       hideDots();
     };
 
-    const onEnter = () => {
-      showDots();
+    const onHeroEnter = () => {
+      inHero.current = true;
+    };
+
+    const onHeroLeave = () => {
+      inHero.current = false;
+      hideDots();
     };
 
     document.addEventListener("mousemove", onMove, { passive: true });
-    document.addEventListener("mouseleave", onLeave);
-    document.addEventListener("mouseenter", onEnter);
+    document.addEventListener("mouseleave", onLeaveViewport);
+
+    const waitForHero = () => {
+      const hero = document.getElementById("hero");
+      if (hero) {
+        hero.addEventListener("mouseenter", onHeroEnter);
+        hero.addEventListener("mouseleave", onHeroLeave);
+      } else {
+        requestAnimationFrame(waitForHero);
+      }
+    };
+    waitForHero();
 
     return () => {
       document.removeEventListener("mousemove", onMove);
-      document.removeEventListener("mouseleave", onLeave);
-      document.removeEventListener("mouseenter", onEnter);
+      document.removeEventListener("mouseleave", onLeaveViewport);
+      const hero = document.getElementById("hero");
+      if (hero) {
+        hero.removeEventListener("mouseenter", onHeroEnter);
+        hero.removeEventListener("mouseleave", onHeroLeave);
+      }
       if (style && document.head.contains(style)) {
         document.head.removeChild(style);
       }
@@ -96,10 +119,10 @@ export default function CursorEffects() {
           pointerEvents: "none",
           zIndex: 9998,
           backgroundImage:
-            "radial-gradient(circle, rgba(0,0,0,0.15) 1.5px, transparent 1.5px)",
+            "radial-gradient(circle, rgba(0,0,0,0.22) 1.5px, transparent 1.5px)",
           backgroundSize: "28px 28px",
           opacity: 0,
-          transition: "opacity 0.5s ease",
+          transition: "opacity 0.3s ease",
           mixBlendMode: "multiply",
         }}
         aria-hidden="true"
