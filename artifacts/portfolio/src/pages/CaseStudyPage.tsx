@@ -1540,7 +1540,7 @@ const DESIGN_PRINCIPLES = [
     cardBg: "#FEF0EC",
     borderColor: "rgba(232,101,75,0.2)",
     numColor: "#F9C5B8",
-    title: "Prioritize outcomes over process visibility",
+    title: "Outcomes over process visibility",
     description: "Design for outcomes, not for process visibility.",
     insight: "Early designs exposed logic - plans, trees, steps. But users care about resolution, not how the machine thinks.",
   },
@@ -1565,7 +1565,7 @@ function DesignPrinciplesSection() {
       style={{ background: "#F7F7F5" }}
     >
       <SnapReveal>
-        <div className="w-full px-8 md:px-20 flex flex-col gap-10">
+        <div className="max-w-5xl mx-auto w-full px-8 md:px-20 flex flex-col gap-10">
           {/* Header */}
           <div className="flex flex-col gap-2">
             <p
@@ -1596,7 +1596,7 @@ function DesignPrinciplesSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, ease: APPLE, delay: 0.1 + i * 0.1 }}
-                className="flex flex-col gap-4 rounded-2xl p-6"
+                className="flex flex-col gap-3 rounded-2xl p-5"
                 style={{
                   background: p.cardBg,
                   border: `1.5px solid ${p.borderColor}`,
@@ -1605,7 +1605,7 @@ function DesignPrinciplesSection() {
                 {/* Number + icon row */}
                 <div className="flex items-start justify-between">
                   <span
-                    className="text-5xl font-bold tabular-nums leading-none"
+                    className="text-4xl font-bold tabular-nums leading-none"
                     style={{ color: p.numColor, fontFamily: "'Wotfard', sans-serif" }}
                   >
                     {p.num}
@@ -1620,7 +1620,7 @@ function DesignPrinciplesSection() {
 
                 {/* Title */}
                 <h3
-                  className="text-base font-bold leading-snug text-[#1a1a1a]"
+                  className="text-base font-bold leading-snug text-[#1a1a1a] whitespace-nowrap"
                   style={{ fontFamily: "'Wotfard', sans-serif" }}
                 >
                   {p.title}
