@@ -257,10 +257,11 @@ function CaseStudyHeroBg({ bgColor, imageSrc }: { bgColor: string; imageSrc: str
           alt="Rovo Service Management interface"
           style={{
             width: "100%",
-            height: "100%",
+            height: "calc(100% + 120px)",
             display: "block",
             objectFit: "cover",
             objectPosition: "top left",
+            transform: "translateY(-120px)",
           }}
         />
       </div>
