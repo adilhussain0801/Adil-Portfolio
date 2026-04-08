@@ -239,29 +239,16 @@ function CaseStudyHeroBg({ bgColor, imageSrc }: { bgColor: string; imageSrc: str
 
       </div>
 
-      {/* ── Product screenshot — true 3/4 perspective ── */}
+      {/* ── Product screenshot — flat ── */}
       <div
         className="absolute select-none left-1/2 -translate-x-1/2"
         style={{
           bottom: "-80px",
           width: "72%",
-          perspective: "800px",
-          perspectiveOrigin: "10% 80%",
           overflow: "visible",
           zIndex: 1,
         }}
       >
-        {/* Haze / glow behind image */}
-        <div style={{
-          position: "absolute",
-          inset: "15% 10% -10% 5%",
-          background: "radial-gradient(ellipse 70% 60% at 35% 60%, rgba(120,150,255,0.30) 0%, transparent 70%)",
-          filter: "blur(36px)",
-          transform: "rotateX(16deg) rotateY(-24deg)",
-          transformOrigin: "left bottom",
-          borderRadius: "50%",
-        }} />
-
         <img
           src={imageSrc}
           alt="Rovo Service Management interface"
@@ -270,11 +257,7 @@ function CaseStudyHeroBg({ bgColor, imageSrc }: { bgColor: string; imageSrc: str
             height: "auto",
             display: "block",
             borderRadius: "10px",
-            transform: "rotateX(16deg) rotateY(-24deg)",
-            transformOrigin: "left bottom",
-            WebkitMaskImage: "linear-gradient(to right, black 35%, black 58%, rgba(0,0,0,0.4) 78%, transparent 96%)",
-            maskImage: "linear-gradient(to right, black 35%, black 58%, rgba(0,0,0,0.4) 78%, transparent 96%)",
-            boxShadow: "-20px 40px 70px rgba(0,0,0,0.22), -6px 12px 28px rgba(0,0,0,0.12)",
+            boxShadow: "0 20px 60px rgba(0,0,0,0.18), 0 6px 20px rgba(0,0,0,0.10)",
           }}
         />
       </div>
