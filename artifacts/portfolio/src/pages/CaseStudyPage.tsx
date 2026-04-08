@@ -2162,8 +2162,8 @@ function AIConsolidationSection() {
               {/* Bottom connector line + arrow */}
               <div className="flex flex-col items-center mb-4">
                 <div className="w-px h-6 bg-[#1a1a1a]/15" />
-                <svg width="10" height="7" viewBox="0 0 10 7" className="mt-0.5">
-                  <path d="M5 7L0 0h10z" fill="rgba(26,26,26,0.3)" />
+                <svg width="8" height="6" viewBox="0 0 8 6" className="mt-0.5">
+                  <path d="M4 6L0 0h8z" fill="rgba(26,26,26,0.3)" />
                 </svg>
               </div>
 
