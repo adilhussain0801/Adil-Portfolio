@@ -51,7 +51,7 @@ export default function ExperienceCard({ id, company, role, period, achievements
                 <ul className="space-y-4">
                   {achievements.map((item, index) => (
                     <li key={index} className="flex items-start gap-4">
-                      <span className="block w-1.5 h-1.5 rounded-full bg-foreground/20 mt-2 shrink-0" />
+                      <span className="block shrink-0 mt-2" style={{ width: 6, height: 6, background: "rgba(45,45,45,0.2)", borderRadius: 1 }} />
                       <p className="text-foreground/80 font-light leading-relaxed font-sans text-base">
                         {item}
                       </p>

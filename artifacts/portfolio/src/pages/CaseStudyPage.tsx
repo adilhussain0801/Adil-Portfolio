@@ -707,7 +707,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                   <>This results in <strong className="text-[#1a1a1a] font-semibold">slower resolution times</strong>, higher <strong className="text-[#1a1a1a] font-semibold">cognitive load</strong>, and a model that <strong className="text-[#1a1a1a] font-semibold">scales linearly with headcount</strong> — making it increasingly <strong className="text-[#1a1a1a] font-semibold">unsustainable</strong> as demand grows.</>,
                 ].map((content, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#E8654B]/50 flex-shrink-0" />
+                    <span className="mt-2 flex-shrink-0" style={{ width: 6, height: 6, background: "rgba(232,101,75,0.55)", borderRadius: 1 }} />
                     <span className="text-sm md:text-base leading-relaxed text-[#1a1a1a]/70" style={{ fontFamily: "'Wotfard', sans-serif" }}>
                       {content}
                     </span>
@@ -1098,7 +1098,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                       transition={{ duration: 0.4, ease: EASE, delay: 0.1 + i * 0.1 }}
                       className="flex items-start gap-3 p-4 rounded-xl transition-colors hover:bg-[#E8654B]/5"
                     >
-                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#E8654B]/40 flex-shrink-0" />
+                      <span className="mt-1.5 flex-shrink-0" style={{ width: 6, height: 6, background: "rgba(232,101,75,0.5)", borderRadius: 1 }} />
                       <span
                         className="text-sm leading-relaxed text-foreground/80"
                         style={{ fontFamily: "'Wotfard', sans-serif" }}
@@ -1140,7 +1140,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
           <ul className="flex flex-col gap-3">
             {study.challenge.bullets.map((bullet, i) => (
               <li key={i} className="flex items-start gap-3">
-                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#2D2D2D]/40 flex-shrink-0" />
+                <span className="mt-1.5 flex-shrink-0" style={{ width: 6, height: 6, background: "rgba(45,45,45,0.4)", borderRadius: 1 }} />
                 <span
                   className="text-sm leading-relaxed text-foreground/70"
                   style={{ fontFamily: "'Wotfard', sans-serif" }}
@@ -2095,7 +2095,7 @@ function AIConsolidationSection() {
                     "A consistent, scalable experience",
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-2.5">
-                      <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#E8654B]/50 flex-shrink-0" />
+                      <span className="mt-2 flex-shrink-0" style={{ width: 6, height: 6, background: "rgba(232,101,75,0.55)", borderRadius: 1 }} />
                       <span className="text-sm leading-relaxed text-[#1a1a1a]/60" style={{ fontFamily: FF }}>{item}</span>
                     </li>
                   ))}
