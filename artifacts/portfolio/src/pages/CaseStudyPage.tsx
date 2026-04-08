@@ -239,11 +239,11 @@ function CaseStudyHeroBg({ bgColor, imageSrc }: { bgColor: string; imageSrc: str
 
       </div>
 
-      {/* ── Product screenshot — full width ── */}
+      {/* ── Product screenshot — aligned with title ── */}
       <div
         className="absolute select-none"
         style={{
-          left: 0,
+          left: 80,
           right: 0,
           bottom: 0,
           top: 0,
