@@ -2069,7 +2069,7 @@ function AIConsolidationSection() {
       {/* ── Slide 2: Reframe ── */}
       <div className="h-screen snap-start snap-always flex flex-col justify-center overflow-hidden">
         <SnapReveal>
-          <div className="w-full flex items-center gap-16" style={{ paddingLeft: 80, paddingRight: 80 }}>
+          <div className="w-full flex items-center gap-8" style={{ paddingLeft: 80, paddingRight: 80 }}>
 
             {/* ── Left: narrative ── */}
             <div className="flex-1 flex flex-col gap-6 min-w-0">
