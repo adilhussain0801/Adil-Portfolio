@@ -171,120 +171,93 @@ function CaseStudyHeroBg({
         aria-hidden="true"
       >
         <defs>
-          {/* Hex grid pattern */}
-          <pattern id="hex-grid" x="0" y="0" width="60" height="52" patternUnits="userSpaceOnUse">
-            <polygon points="30,2 58,17 58,47 30,62 2,47 2,17"
-              fill="none" stroke="#4a6fa5" strokeWidth="0.5" opacity="0.18" />
-          </pattern>
-          {/* Dot grid pattern */}
-          <pattern id="dot-grid" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
-            <circle cx="14" cy="14" r="1" fill="#4a6fa5" opacity="0.22" />
-          </pattern>
-          {/* Soft glow radial gradients */}
           <radialGradient id="orb1" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#7b9ef0" stopOpacity="0.22" />
+            <stop offset="0%" stopColor="#7b9ef0" stopOpacity="0.20" />
             <stop offset="100%" stopColor="#7b9ef0" stopOpacity="0" />
           </radialGradient>
           <radialGradient id="orb2" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#a78bfa" stopOpacity="0.16" />
+            <stop offset="0%" stopColor="#a78bfa" stopOpacity="0.15" />
             <stop offset="100%" stopColor="#a78bfa" stopOpacity="0" />
           </radialGradient>
           <radialGradient id="orb3" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#34d9c3" stopOpacity="0.12" />
+            <stop offset="0%" stopColor="#34d9c3" stopOpacity="0.11" />
             <stop offset="100%" stopColor="#34d9c3" stopOpacity="0" />
           </radialGradient>
           <radialGradient id="orb4" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#818cf8" stopOpacity="0.14" />
+            <stop offset="0%" stopColor="#818cf8" stopOpacity="0.13" />
             <stop offset="100%" stopColor="#818cf8" stopOpacity="0" />
           </radialGradient>
         </defs>
 
-        {/* Hex grid — full canvas, very faint */}
-        <rect width="1440" height="900" fill="url(#hex-grid)" opacity="0.6" />
-
-        {/* Dot grid — left half, fills empty text area */}
-        <rect x="0" y="0" width="720" height="900" fill="url(#dot-grid)" opacity="0.55" />
-
-        {/* Glow orb — right-center */}
+        {/* ── Glow orbs ── */}
         <ellipse cx="1100" cy="380" rx="320" ry="280" fill="url(#orb1)" />
-        {/* Glow orb — upper-right corner */}
-        <ellipse cx="1340" cy="120" rx="200" ry="180" fill="url(#orb2)" />
-        {/* Glow orb — lower center-right */}
-        <ellipse cx="900" cy="780" rx="260" ry="200" fill="url(#orb3)" />
-        {/* Glow orb — upper-left, fills top-left void */}
-        <ellipse cx="200" cy="180" rx="280" ry="220" fill="url(#orb4)" />
+        <ellipse cx="1340" cy="100" rx="200" ry="180" fill="url(#orb2)" />
+        <ellipse cx="860"  cy="820" rx="240" ry="190" fill="url(#orb3)" />
+        <ellipse cx="180"  cy="200" rx="260" ry="200" fill="url(#orb4)" />
 
-        {/* Orbital rings — centered right */}
-        <ellipse cx="1100" cy="420" rx="240" ry="60" fill="none" stroke="#5b7fcf" strokeWidth="0.8" opacity="0.12" />
-        <ellipse cx="1100" cy="420" rx="340" ry="88" fill="none" stroke="#5b7fcf" strokeWidth="0.6" opacity="0.08"
-          style={{ transform: "rotate(-12deg)", transformOrigin: "1100px 420px" }} />
-        <ellipse cx="1100" cy="420" rx="430" ry="110" fill="none" stroke="#7b9ef0" strokeWidth="0.5" opacity="0.07"
-          style={{ transform: "rotate(-18deg)", transformOrigin: "1100px 420px" }} />
-        {/* Extra wide ring — sweeps into left zone */}
-        <ellipse cx="1100" cy="420" rx="580" ry="150" fill="none" stroke="#818cf8" strokeWidth="0.4" opacity="0.05"
-          style={{ transform: "rotate(-8deg)", transformOrigin: "1100px 420px" }} />
+        {/* ── Orbital rings ── */}
+        <ellipse cx="1100" cy="420" rx="238" ry="58"  fill="none" stroke="#5b7fcf" strokeWidth="0.8" opacity="0.11" />
+        <ellipse cx="1100" cy="420" rx="336" ry="86"  fill="none" stroke="#5b7fcf" strokeWidth="0.6" opacity="0.07" transform="rotate(-13 1100 420)" />
+        <ellipse cx="1100" cy="420" rx="430" ry="108" fill="none" stroke="#7b9ef0" strokeWidth="0.5" opacity="0.06" transform="rotate(-19 1100 420)" />
+        <ellipse cx="1100" cy="420" rx="570" ry="148" fill="none" stroke="#818cf8" strokeWidth="0.4" opacity="0.04" transform="rotate(-9 1100 420)" />
 
-        {/* Small arc cluster — top-left area */}
-        <path d="M 60 320 Q 160 220 280 280" fill="none" stroke="#5b7fcf" strokeWidth="0.7" opacity="0.12" strokeDasharray="5 8" />
-        <path d="M 40 400 Q 180 290 340 350" fill="none" stroke="#818cf8" strokeWidth="0.6" opacity="0.10" strokeDasharray="4 9" />
-        <path d="M 100 500 Q 240 390 380 440" fill="none" stroke="#5b7fcf" strokeWidth="0.5" opacity="0.08" strokeDasharray="3 10" />
+        {/* ── Individual scattered hexagons (no repeat) ── */}
+        <polygon points="72,148 93,136 93,112 72,100 51,112 51,136"   fill="none" stroke="#5b7fcf" strokeWidth="0.7" opacity="0.14" />
+        <polygon points="310,68 336,53 336,23 310,8 284,23 284,53"    fill="none" stroke="#818cf8" strokeWidth="0.6" opacity="0.12" />
+        <polygon points="560,810 582,798 582,774 560,762 538,774 538,798" fill="none" stroke="#34d9c3" strokeWidth="0.6" opacity="0.13" />
+        <polygon points="130,680 154,666 154,638 130,624 106,638 106,666" fill="none" stroke="#7b9ef0" strokeWidth="0.5" opacity="0.11" />
+        <polygon points="740,55 762,42 762,16 740,3 718,16 718,42"    fill="none" stroke="#a78bfa" strokeWidth="0.6" opacity="0.13" />
+        <polygon points="420,840 444,826 444,798 420,784 396,798 396,826" fill="none" stroke="#818cf8" strokeWidth="0.5" opacity="0.10" />
+        <polygon points="1380,640 1402,627 1402,601 1380,588 1358,601 1358,627" fill="none" stroke="#7b9ef0" strokeWidth="0.5" opacity="0.12" />
+        <polygon points="680,320 702,307 702,281 680,268 658,281 658,307" fill="none" stroke="#5b7fcf" strokeWidth="0.5" opacity="0.10" />
+        <polygon points="240,500 258,489 258,467 240,456 222,467 222,489" fill="none" stroke="#818cf8" strokeWidth="0.5" opacity="0.09" />
+        <polygon points="900,120 920,108 920,84 900,72 880,84 880,108"  fill="none" stroke="#34d9c3" strokeWidth="0.5" opacity="0.10" />
 
-        {/* Circuit traces — horizontal rules with jog */}
-        <path d="M 480 160 H 560 V 200 H 660" fill="none" stroke="#4a6fa5" strokeWidth="0.6" opacity="0.13" />
-        <path d="M 420 700 H 520 V 660 H 640" fill="none" stroke="#4a6fa5" strokeWidth="0.6" opacity="0.11" />
-        <path d="M 300 820 H 420 V 780 H 560" fill="none" stroke="#34d9c3" strokeWidth="0.5" opacity="0.09" />
-
-        {/* Node dots — spread across canvas */}
-        {[
-          { cx: 1340, cy: 380, r: 3.5, fill: "#7b9ef0", opacity: 0.35 },
-          { cx: 860,  cy: 460, r: 2.5, fill: "#7b9ef0", opacity: 0.25 },
-          { cx: 1200, cy: 330, r: 2,   fill: "#a78bfa", opacity: 0.30 },
-          { cx: 980,  cy: 510, r: 2,   fill: "#34d9c3", opacity: 0.25 },
-          { cx: 1380, cy: 480, r: 1.5, fill: "#7b9ef0", opacity: 0.20 },
-          // left zone nodes
-          { cx: 480,  cy: 160, r: 2.5, fill: "#818cf8", opacity: 0.30 },
-          { cx: 660,  cy: 200, r: 2,   fill: "#818cf8", opacity: 0.22 },
-          { cx: 420,  cy: 700, r: 2,   fill: "#4a6fa5", opacity: 0.25 },
-          { cx: 640,  cy: 660, r: 1.5, fill: "#4a6fa5", opacity: 0.20 },
-          { cx: 300,  cy: 820, r: 2,   fill: "#34d9c3", opacity: 0.22 },
-          { cx: 560,  cy: 780, r: 1.5, fill: "#34d9c3", opacity: 0.18 },
-          { cx: 150,  cy: 550, r: 2,   fill: "#818cf8", opacity: 0.18 },
-          { cx: 220,  cy: 640, r: 1.5, fill: "#7b9ef0", opacity: 0.15 },
-          { cx: 80,   cy: 720, r: 1.5, fill: "#4a6fa5", opacity: 0.15 },
-          // scattered mid-canvas
-          { cx: 740,  cy: 80,  r: 2,   fill: "#a78bfa", opacity: 0.20 },
-          { cx: 820,  cy: 850, r: 2,   fill: "#34d9c3", opacity: 0.18 },
-          { cx: 600,  cy: 500, r: 1.5, fill: "#818cf8", opacity: 0.14 },
-        ].map((d, i) => (
-          <circle key={i} cx={d.cx} cy={d.cy} r={d.r} fill={d.fill} opacity={d.opacity} />
+        {/* ── Sparse scattered dots ── */}
+        {([
+          [88,  340, 1.8, "#818cf8", 0.28], [195, 470, 1.4, "#7b9ef0", 0.22],
+          [310, 620, 1.6, "#34d9c3", 0.20], [60,  740, 1.2, "#5b7fcf", 0.18],
+          [450, 180, 1.8, "#818cf8", 0.25], [620, 420, 1.4, "#7b9ef0", 0.16],
+          [530, 700, 1.6, "#34d9c3", 0.20], [720, 840, 1.2, "#818cf8", 0.16],
+          [780, 160, 1.8, "#a78bfa", 0.22], [860, 600, 1.4, "#34d9c3", 0.18],
+          [1200,330, 2.2, "#a78bfa", 0.30], [1340,380, 3.0, "#7b9ef0", 0.32],
+          [980, 510, 2.0, "#34d9c3", 0.24], [860, 460, 2.0, "#7b9ef0", 0.22],
+          [1380,480, 1.6, "#7b9ef0", 0.18], [1260,680, 1.4, "#a78bfa", 0.16],
+          [160, 840, 1.4, "#5b7fcf", 0.15], [350, 120, 1.6, "#818cf8", 0.20],
+          [490, 530, 1.2, "#34d9c3", 0.15], [670, 720, 1.4, "#7b9ef0", 0.16],
+        ] as [number,number,number,string,number][]).map(([cx,cy,r,fill,opacity],i) => (
+          <circle key={i} cx={cx} cy={cy} r={r} fill={fill} opacity={opacity} />
         ))}
 
-        {/* Connector lines */}
-        <line x1="1340" y1="380" x2="1200" y2="330" stroke="#7b9ef0" strokeWidth="0.6" opacity="0.14" strokeDasharray="4 6" />
-        <line x1="1200" y1="330" x2="1100" y2="420" stroke="#7b9ef0" strokeWidth="0.6" opacity="0.12" strokeDasharray="4 6" />
-        <line x1="980"  y1="510" x2="860"  y2="460" stroke="#34d9c3" strokeWidth="0.5" opacity="0.10" strokeDasharray="3 7" />
-        <line x1="480"  y1="160" x2="600"  y2="500" stroke="#818cf8" strokeWidth="0.4" opacity="0.08" strokeDasharray="3 9" />
-        <line x1="420"  y1="700" x2="600"  y2="500" stroke="#4a6fa5" strokeWidth="0.4" opacity="0.07" strokeDasharray="4 8" />
+        {/* ── Organic curved arcs ── */}
+        <path d="M 50 380 C 140 260 300 310 400 230"   fill="none" stroke="#5b7fcf" strokeWidth="0.7" opacity="0.11" />
+        <path d="M 80 560 C 200 460 360 500 480 410"   fill="none" stroke="#818cf8" strokeWidth="0.6" opacity="0.09" />
+        <path d="M 160 720 C 300 650 460 680 580 600"  fill="none" stroke="#34d9c3" strokeWidth="0.5" opacity="0.09" />
+        <path d="M 620 80  C 740 160 820 100 940 180"  fill="none" stroke="#a78bfa" strokeWidth="0.6" opacity="0.10" />
+        <path d="M 700 820 C 820 760 940 800 1060 730" fill="none" stroke="#7b9ef0" strokeWidth="0.5" opacity="0.09" />
 
-        {/* Scattered micro triangles */}
-        <polygon points="700,60 714,84 686,84" fill="none" stroke="#818cf8" strokeWidth="0.6" opacity="0.15" />
-        <polygon points="140,460 152,480 128,480" fill="none" stroke="#7b9ef0" strokeWidth="0.6" opacity="0.12" />
-        <polygon points="380,760 392,782 368,782" fill="none" stroke="#34d9c3" strokeWidth="0.5" opacity="0.12" />
-        <polygon points="1360,620 1374,644 1346,644" fill="none" stroke="#a78bfa" strokeWidth="0.5" opacity="0.14" />
+        {/* ── Circuit-style traces ── */}
+        <path d="M 440 170 H 510 V 210 H 600" fill="none" stroke="#4a6fa5" strokeWidth="0.6" opacity="0.12" />
+        <path d="M 200 560 H 280 V 520 H 370" fill="none" stroke="#818cf8" strokeWidth="0.5" opacity="0.10" />
+        <path d="M 320 790 H 410 V 750 H 530" fill="none" stroke="#34d9c3" strokeWidth="0.5" opacity="0.09" />
+        <path d="M 1280 200 H 1360 V 240 H 1430" fill="none" stroke="#7b9ef0" strokeWidth="0.5" opacity="0.10" />
 
-        {/* Fine radial spokes from orb center */}
+        {/* ── Connector lines between nodes ── */}
+        <line x1="1340" y1="380" x2="1200" y2="330" stroke="#7b9ef0" strokeWidth="0.6" opacity="0.13" strokeDasharray="4 7" />
+        <line x1="1200" y1="330" x2="1100" y2="420" stroke="#7b9ef0" strokeWidth="0.6" opacity="0.11" strokeDasharray="4 7" />
+        <line x1="980"  y1="510" x2="860"  y2="460" stroke="#34d9c3" strokeWidth="0.5" opacity="0.09" strokeDasharray="3 8" />
+        <line x1="440"  y1="170" x2="620"  y2="420" stroke="#818cf8" strokeWidth="0.4" opacity="0.08" strokeDasharray="3 9" />
+        <line x1="310"  y1="620" x2="490"  y2="530" stroke="#34d9c3" strokeWidth="0.4" opacity="0.07" strokeDasharray="4 8" />
+
+        {/* ── Radial spokes from main orb ── */}
         {Array.from({ length: 12 }).map((_, i) => {
           const angle = (i * 30 * Math.PI) / 180;
-          const r = 500;
           return (
-            <line
-              key={i}
+            <line key={i}
               x1={1100} y1={420}
-              x2={1100 + Math.cos(angle) * r}
-              y2={420 + Math.sin(angle) * r}
-              stroke="#4a6fa5"
-              strokeWidth="0.4"
-              opacity="0.05"
+              x2={1100 + Math.cos(angle) * 500}
+              y2={420  + Math.sin(angle) * 500}
+              stroke="#4a6fa5" strokeWidth="0.35" opacity="0.045"
             />
           );
         })}
