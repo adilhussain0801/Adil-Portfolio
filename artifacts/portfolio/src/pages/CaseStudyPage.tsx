@@ -162,6 +162,91 @@ function CaseStudyHeroBg({
   return (
     <div className="absolute inset-0" style={{ overflow: "visible" }}>
 
+      {/* ── Cosmic background layer ── */}
+      <svg
+        className="absolute inset-0 w-full h-full"
+        viewBox="0 0 1440 900"
+        preserveAspectRatio="xMidYMid slice"
+        style={{ pointerEvents: "none", zIndex: 0 }}
+        aria-hidden="true"
+      >
+        <defs>
+          {/* Hex grid pattern */}
+          <pattern id="hex-grid" x="0" y="0" width="60" height="52" patternUnits="userSpaceOnUse">
+            <polygon
+              points="30,2 58,17 58,47 30,62 2,47 2,17"
+              fill="none"
+              stroke="#4a6fa5"
+              strokeWidth="0.5"
+              opacity="0.18"
+            />
+          </pattern>
+          {/* Soft glow radial gradients */}
+          <radialGradient id="orb1" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#7b9ef0" stopOpacity="0.22" />
+            <stop offset="100%" stopColor="#7b9ef0" stopOpacity="0" />
+          </radialGradient>
+          <radialGradient id="orb2" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#a78bfa" stopOpacity="0.16" />
+            <stop offset="100%" stopColor="#a78bfa" stopOpacity="0" />
+          </radialGradient>
+          <radialGradient id="orb3" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#34d9c3" stopOpacity="0.12" />
+            <stop offset="100%" stopColor="#34d9c3" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+
+        {/* Hex grid — full canvas, very faint */}
+        <rect width="1440" height="900" fill="url(#hex-grid)" opacity="0.6" />
+
+        {/* Glow orb — right-center */}
+        <ellipse cx="1100" cy="380" rx="320" ry="280" fill="url(#orb1)" />
+        {/* Glow orb — upper-right corner */}
+        <ellipse cx="1340" cy="120" rx="200" ry="180" fill="url(#orb2)" />
+        {/* Glow orb — lower center-right */}
+        <ellipse cx="900" cy="780" rx="260" ry="200" fill="url(#orb3)" />
+
+        {/* Orbital rings — centered right */}
+        <ellipse cx="1100" cy="420" rx="240" ry="60" fill="none" stroke="#5b7fcf" strokeWidth="0.8" opacity="0.12" />
+        <ellipse cx="1100" cy="420" rx="340" ry="88" fill="none" stroke="#5b7fcf" strokeWidth="0.6" opacity="0.08"
+          style={{ transform: "rotate(-12deg)", transformOrigin: "1100px 420px" }} />
+        <ellipse cx="1100" cy="420" rx="430" ry="110" fill="none" stroke="#7b9ef0" strokeWidth="0.5" opacity="0.07"
+          style={{ transform: "rotate(-18deg)", transformOrigin: "1100px 420px" }} />
+
+        {/* Node dots on orbital rings */}
+        {[
+          { cx: 1340, cy: 380, r: 3.5, fill: "#7b9ef0", opacity: 0.35 },
+          { cx: 860,  cy: 460, r: 2.5, fill: "#7b9ef0", opacity: 0.25 },
+          { cx: 1200, cy: 330, r: 2,   fill: "#a78bfa", opacity: 0.30 },
+          { cx: 980,  cy: 510, r: 2,   fill: "#34d9c3", opacity: 0.25 },
+          { cx: 1380, cy: 480, r: 1.5, fill: "#7b9ef0", opacity: 0.20 },
+        ].map((d, i) => (
+          <circle key={i} cx={d.cx} cy={d.cy} r={d.r} fill={d.fill} opacity={d.opacity} />
+        ))}
+
+        {/* Subtle connector lines */}
+        <line x1="1340" y1="380" x2="1200" y2="330" stroke="#7b9ef0" strokeWidth="0.6" opacity="0.14" strokeDasharray="4 6" />
+        <line x1="1200" y1="330" x2="1100" y2="420" stroke="#7b9ef0" strokeWidth="0.6" opacity="0.12" strokeDasharray="4 6" />
+        <line x1="980"  y1="510" x2="860"  y2="460" stroke="#34d9c3" strokeWidth="0.5" opacity="0.10" strokeDasharray="3 7" />
+
+        {/* Fine radial spokes from orb center */}
+        {Array.from({ length: 10 }).map((_, i) => {
+          const angle = (i * 36 * Math.PI) / 180;
+          const r = 420;
+          return (
+            <line
+              key={i}
+              x1={1100} y1={420}
+              x2={1100 + Math.cos(angle) * r}
+              y2={420 + Math.sin(angle) * r}
+              stroke="#4a6fa5"
+              strokeWidth="0.4"
+              opacity="0.06"
+            />
+          );
+        })}
+      </svg>
+
       {/* ── Product screenshot — anchored to bottom ── */}
       <img
         src={imageSrc}
