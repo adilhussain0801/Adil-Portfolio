@@ -10,7 +10,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen relative selection:bg-foreground selection:text-background" style={{ background: "#FAF8F5" }}>
+    <div className="min-h-screen relative selection:bg-foreground selection:text-background" style={{ background: "#F7F7F5" }}>
       <Navigation />
       
       <main>

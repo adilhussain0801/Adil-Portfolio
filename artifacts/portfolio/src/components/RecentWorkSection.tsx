@@ -204,7 +204,7 @@ export default function RecentWorkSection() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section id="work-showcase" className="py-24 md:py-40 px-6 md:px-24" style={{ background: "#FAF8F5" }}>
+    <section id="work-showcase" className="py-24 md:py-40 px-6 md:px-24" style={{ background: "#F7F7F5" }}>
       <div className="flex flex-col md:flex-row gap-12 md:gap-24">
         <div className="md:w-1/3 flex-shrink-0">
           <div className="md:sticky md:top-32 flex flex-col gap-8">

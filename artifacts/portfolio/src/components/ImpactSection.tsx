@@ -107,7 +107,7 @@ export default function ImpactSection() {
   return (
     <section
       className="py-24 md:py-40 px-6 md:px-24"
-      style={{ background: "#FAF8F5" }}
+      style={{ background: "#F7F7F5" }}
     >
       <div className="flex flex-col md:flex-row gap-12 md:gap-24">
         {/* Left: Title */}

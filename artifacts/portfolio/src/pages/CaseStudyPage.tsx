@@ -360,7 +360,7 @@ function OverviewSection({ study }: { study: CaseStudy }) {
     <section
       id="section-overview"
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
-      style={{ background: "#FAF8F5" }}
+      style={{ background: "#F7F7F5" }}
     >
       <SnapReveal>
         <div className="max-w-3xl mx-auto w-full px-6">
@@ -755,7 +755,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
       <section
         id="section-challenge"
         className="relative min-h-screen snap-start snap-always"
-        style={{ background: "#FAF8F5" }}
+        style={{ background: "#F7F7F5" }}
       >
         {/* Slide 1: Hero Statement */}
         <div className="h-screen snap-start snap-always flex flex-col justify-center py-16">
@@ -902,7 +902,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                         {steps.map((step, i) => (
                           <div key={i} className="flex justify-center relative z-10">
                             {/* Page-color buffer hides the dotted line behind the icon */}
-                            <div className="rounded-full p-2" style={{ background: "#FAF8F5" }}>
+                            <div className="rounded-full p-2" style={{ background: "#F7F7F5" }}>
                               <div
                                 className="w-12 h-12 rounded-full flex items-center justify-center"
                                 style={{ background: step.headerBg, color: step.color }}
@@ -954,7 +954,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
           </div>
         </div>
         {/* Transition: 3 stages of friction */}
-        <div className="h-screen snap-start snap-always flex flex-col items-center justify-center" style={{ background: "#FAF8F5" }}>
+        <div className="h-screen snap-start snap-always flex flex-col items-center justify-center" style={{ background: "#F7F7F5" }}>
           <SnapReveal>
             <div className="flex flex-col items-center gap-2 text-center px-6">
               <p
@@ -1213,7 +1213,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
     <section
       id="section-challenge"
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
-      style={{ background: "#FAF8F5" }}
+      style={{ background: "#F7F7F5" }}
     >
       <SnapReveal>
         <div className="max-w-3xl mx-auto w-full px-6 flex flex-col gap-6">
@@ -1304,7 +1304,7 @@ function IndustryTrendsSection() {
     <section
       id="section-process"
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
-      style={{ background: "#FAF8F5" }}
+      style={{ background: "#F7F7F5" }}
     >
       <div className="max-w-5xl mx-auto w-full px-6 flex flex-col gap-6">
         <SnapReveal>
@@ -1401,7 +1401,7 @@ function EmergingThemesSection() {
     <section
       id="section-emerging"
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
-      style={{ background: "#FAF8F5" }}
+      style={{ background: "#F7F7F5" }}
     >
       <div className="w-full px-8 md:px-20 flex flex-col gap-10">
         {/* Header */}
@@ -1466,7 +1466,7 @@ function ProcessSection({ study }: { study: CaseStudy }) {
   return (
     <section
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
-      style={{ background: "#FAF8F5" }}
+      style={{ background: "#F7F7F5" }}
     >
       <div className="max-w-3xl mx-auto w-full px-6">
         <SnapReveal>
@@ -1691,7 +1691,7 @@ function DesignPrinciplesSection() {
     <section
       id="section-principles"
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
-      style={{ background: "#FAF8F5" }}
+      style={{ background: "#F7F7F5" }}
     >
       <SnapReveal>
         <div className="w-full px-8 md:px-20 flex flex-col gap-10">
@@ -2091,7 +2091,7 @@ function SolutionSection({ study }: { study: CaseStudy }) {
     <section
       id="section-solution"
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
-      style={{ background: "#FAF8F5" }}
+      style={{ background: "#F7F7F5" }}
     >
       <SnapReveal>
         <div className="max-w-3xl mx-auto w-full px-6 flex flex-col gap-8">
@@ -2157,7 +2157,7 @@ function ImpactSection({ study }: { study: CaseStudy }) {
     <section
       id="section-impact"
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
-      style={{ background: "#FAF8F5" }}
+      style={{ background: "#F7F7F5" }}
     >
       <div className="max-w-3xl mx-auto w-full px-6">
         <SnapReveal>
@@ -2209,7 +2209,7 @@ function NextProjectSection({ study }: { study: CaseStudy }) {
     <section
       id="section-next"
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
-      style={{ background: "#FAF8F5" }}
+      style={{ background: "#F7F7F5" }}
     >
       <SnapReveal>
         <div className="max-w-3xl mx-auto w-full px-6">
@@ -2392,7 +2392,7 @@ export default function CaseStudyPage() {
   return (
     <div
       className="h-screen overflow-hidden relative selection:bg-foreground selection:text-background"
-      style={{ background: "#FAF8F5" }}
+      style={{ background: "#F7F7F5" }}
     >
       {/* Click-outside backdrop to close switch work panel */}
       {switchWorkOpen && (
@@ -2414,7 +2414,7 @@ export default function CaseStudyPage() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 px-6 md:px-24 flex items-center justify-between ${
           headerScrolled && headerHovered
-            ? "py-4 opacity-100 translate-y-0 bg-[#FAF8F5]/80 backdrop-blur-md border-b border-[#2D2D2D]/10 shadow-sm pointer-events-auto"
+            ? "py-4 opacity-100 translate-y-0 bg-[#F7F7F5]/80 backdrop-blur-md border-b border-[#2D2D2D]/10 shadow-sm pointer-events-auto"
             : "py-5 opacity-0 -translate-y-2 pointer-events-none bg-transparent border-b border-transparent"
         }`}
         onMouseEnter={() => setHeaderHovered(true)}

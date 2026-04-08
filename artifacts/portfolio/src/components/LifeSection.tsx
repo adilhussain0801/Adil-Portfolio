@@ -74,7 +74,7 @@ function TickerRow({ items, reverse }: { items: TickerItem[]; reverse?: boolean 
 
 export default function LifeSection() {
   return (
-    <section id="life" className="py-24 md:py-32 px-6 md:px-24 overflow-hidden" style={{ background: "#FAF8F5" }}>
+    <section id="life" className="py-24 md:py-32 px-6 md:px-24 overflow-hidden" style={{ background: "#F7F7F5" }}>
       <div className="flex flex-col md:flex-row gap-12 md:gap-24 items-start">
         {/* Left: Heading */}
         <div className="md:w-1/3 flex-shrink-0">
