@@ -2034,27 +2034,23 @@ function AIConsolidationSection() {
             Jira Service Management already included multiple AI capabilities — similar requests, comments summary, suggestions, and a service request helper agent. However, these evolved independently across different workflows.
           </p>
 
-          {/* As a result — horizontal cards */}
+          {/* As a result bullets */}
           <div className="flex flex-col gap-2">
             <p className="text-xs font-semibold uppercase tracking-widest text-[#1a1a1a]/40" style={{ fontFamily: FF }}>
               As a result
             </p>
-            <div className="grid grid-cols-3 gap-3">
+            <ul className="flex flex-col gap-2">
               {[
                 "AI capabilities operated in silos with limited visibility",
                 "Experiences were inconsistent across touchpoints",
                 "Agents had to manually piece together capabilities",
               ].map((item, i) => (
-                <div
-                  key={i}
-                  className="flex items-start gap-2.5 rounded-xl px-4 py-3"
-                  style={{ background: "rgba(232,101,75,0.06)", border: "1px solid rgba(232,101,75,0.15)" }}
-                >
-                  <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#E8654B]/60 flex-shrink-0" />
+                <li key={i} className="flex items-start gap-3">
+                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#E8654B]/60 flex-shrink-0" />
                   <span className="text-sm leading-relaxed text-[#1a1a1a]/65" style={{ fontFamily: FF }}>{item}</span>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </motion.div>
 
@@ -2062,8 +2058,8 @@ function AIConsolidationSection() {
         <motion.img
           src="/ai-features.png"
           alt="AI features scattered across Jira Service Management"
-          className="mt-auto select-none pointer-events-none"
-          style={{ width: "calc(100% - 160px)", marginLeft: 80, marginRight: 80, zIndex: 1, display: "block" }}
+          className="select-none pointer-events-none"
+          style={{ width: "calc(100% - 160px)", marginLeft: 80, marginRight: 80, marginTop: 16, zIndex: 1, display: "block" }}
           initial={{ opacity: 0, y: 24 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.65, ease: [0.25, 0.1, 0.25, 1], delay: 0.2 }}
