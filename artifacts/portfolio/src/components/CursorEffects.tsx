@@ -89,7 +89,7 @@ export default function CursorEffects() {
     document.addEventListener("mousemove", onMove, { passive: true });
     document.addEventListener("mouseleave", onLeaveViewport);
 
-    const HERO_IDS = ["hero", "section-hero", "section-hero-2"];
+    const HERO_IDS = ["hero", "section-hero"];
 
     const attachHero = (id: string) => {
       const el = document.getElementById(id);
