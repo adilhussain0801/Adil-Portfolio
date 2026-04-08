@@ -2089,12 +2089,40 @@ function AIConsolidationSection() {
               .
             </p>
 
-            <p
-              className="text-base leading-relaxed text-[#1a1a1a]/60 border-l-2 border-[#E8654B]/40 pl-4"
-              style={{ fontFamily: FF }}
-            >
-              This required a shift from fragmented capabilities to a unified intelligence layer embedded across the service lifecycle.
-            </p>
+            <div className="flex flex-col gap-4">
+              <p
+                className="text-base leading-relaxed text-[#1a1a1a]/60 border-l-2 border-[#E8654B]/40 pl-4"
+                style={{ fontFamily: FF }}
+              >
+                Users don't think in features — they think in outcomes.
+              </p>
+              <p
+                className="text-base leading-relaxed text-[#1a1a1a]/60"
+                style={{ fontFamily: FF }}
+              >
+                To resolve this, we reframed AI as a connected system embedded across the service lifecycle.
+              </p>
+              <p
+                className="text-base leading-relaxed text-[#1a1a1a]/60"
+                style={{ fontFamily: FF }}
+              >
+                This laid the foundation for Rovo Service — enabling:
+              </p>
+              <ul className="flex flex-col gap-2">
+                {[
+                  "Seamless integration across workflows",
+                  "Clearer visibility into AI capabilities",
+                  "A consistent and scalable experience",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-2.5">
+                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#E8654B]/50 flex-shrink-0" />
+                    <span className="text-base leading-relaxed text-[#1a1a1a]/60" style={{ fontFamily: FF }}>
+                      {item}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
           </div>
         </SnapReveal>
