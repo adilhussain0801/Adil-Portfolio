@@ -1274,7 +1274,7 @@ function EmergingThemesSection() {
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
       style={{ background: "#F7F7F5" }}
     >
-      <div className="w-full px-8 md:px-20 flex flex-col gap-10">
+      <div className="max-w-5xl mx-auto w-full px-8 md:px-20 flex flex-col gap-10">
         {/* Header */}
         <SnapReveal>
           <div className="flex flex-col gap-3">
