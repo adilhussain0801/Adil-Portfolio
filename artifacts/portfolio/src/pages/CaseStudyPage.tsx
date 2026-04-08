@@ -247,34 +247,29 @@ function HeroSection({
       {/* Spacer to push metadata bar to bottom */}
       <div className="flex-1" />
 
-      {/* Bottom metadata bar */}
+      {/* Bottom metadata strip */}
       <motion.div
-        className="relative z-10 w-full px-6 md:px-20"
+        className="relative z-10 w-full px-8 md:px-20 pb-8"
         {...fadeUp(0.3)}
       >
-        <div className="rounded-t-2xl px-6 md:px-10 py-4 flex flex-wrap items-center justify-between gap-4" style={{ background: "rgba(26,26,26,0.72)", backdropFilter: "blur(12px)" }}>
-          <div className="flex flex-wrap gap-6">
-            <div>
-              <p className="text-[9px] uppercase tracking-widest text-white/40 mb-0.5">Role</p>
-              <p className="text-xs font-semibold text-white/80" style={{ fontFamily: "'Wotfard', sans-serif" }}>{study.role}</p>
-            </div>
-            <div>
-              <p className="text-[9px] uppercase tracking-widest text-white/40 mb-0.5">Platform</p>
-              <p className="text-xs font-semibold text-white/80" style={{ fontFamily: "'Wotfard', sans-serif" }}>{study.platform}</p>
-            </div>
-            <div>
-              <p className="text-[9px] uppercase tracking-widest text-white/40 mb-0.5">Timeline</p>
-              <p className="text-xs font-semibold text-white/80" style={{ fontFamily: "'Wotfard', sans-serif" }}>{study.timeline}</p>
-            </div>
-          </div>
-          <div className="flex gap-6">
-            {study.metrics.map((m, i) => (
-              <div key={i} className="text-right">
-                <p className="text-sm font-bold text-[#E8654B]" style={{ fontFamily: "'Wotfard', sans-serif" }}>{m.value}</p>
-                <p className="text-[9px] uppercase tracking-widest text-white/35">{m.label}</p>
-              </div>
-            ))}
-          </div>
+        <div className="flex flex-wrap items-center gap-x-8 gap-y-2">
+          {[
+            { label: "Role", value: study.role },
+            { label: "Platform", value: study.platform },
+            { label: "Timeline", value: study.timeline },
+          ].map((item, i) => (
+            <span key={i} className="flex items-baseline gap-2">
+              <span className="text-[10px] uppercase tracking-widest text-[#1a1a1a]/35" style={{ fontFamily: "'Wotfard', sans-serif" }}>{item.label}</span>
+              <span className="text-[13px] text-[#1a1a1a]/60" style={{ fontFamily: "'Wotfard', sans-serif" }}>{item.value}</span>
+            </span>
+          ))}
+          <span className="text-[#1a1a1a]/20 text-sm select-none">·</span>
+          {study.metrics.map((m, i) => (
+            <span key={i} className="flex items-baseline gap-2">
+              <span className="text-[13px] font-semibold text-[#E8654B]" style={{ fontFamily: "'Wotfard', sans-serif" }}>{m.value}</span>
+              <span className="text-[10px] uppercase tracking-widest text-[#1a1a1a]/35" style={{ fontFamily: "'Wotfard', sans-serif" }}>{m.label}</span>
+            </span>
+          ))}
         </div>
       </motion.div>
     </section>
