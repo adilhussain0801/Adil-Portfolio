@@ -251,6 +251,8 @@ function CaseStudyHeroBg({ bgColor, imageSrc }: { bgColor: string; imageSrc: str
           height: "auto",
           display: "block",
           zIndex: 1,
+          WebkitMaskImage: "linear-gradient(to right, black 55%, rgba(0,0,0,0.4) 80%, transparent 96%)",
+          maskImage: "linear-gradient(to right, black 55%, rgba(0,0,0,0.4) 80%, transparent 96%)",
         }}
       />
     </div>
