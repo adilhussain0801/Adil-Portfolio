@@ -317,7 +317,7 @@ function HeroSection({ study }: { study: CaseStudy }) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, ease: "easeOut", delay: 0.15 }}
       >
-        <CaseStudyHeroBg bgColor={study.heroColor} />
+        <CaseStudyHeroBg bgColor={study.heroColor} imageSrc={study.id === 4 ? "/rovo-screens.png" : "/rovo-banner.png"} />
       </motion.div>
 
       {/* Bottom metadata bar */}
