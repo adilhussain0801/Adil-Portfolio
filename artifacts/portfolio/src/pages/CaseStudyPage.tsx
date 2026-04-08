@@ -249,18 +249,16 @@ function HeroSection({
           </p>
         )}
         {study.id === 4 && (
-          <ul className="mt-5 flex flex-col gap-2.5">
+          <div className="mt-5 flex flex-wrap gap-2">
             {["AI-powered triage", "Automated workflows", "Real-time insights"].map((item) => (
-              <li key={item} className="flex items-center gap-3">
-                <span className="flex items-center justify-center w-6 h-6 rounded-full bg-[#5b8def]/15 flex-shrink-0">
-                  <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
-                    <path d="M1 5L4.5 8.5L11 1" stroke="#4a7de8" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </span>
-                <span className="text-sm text-[#1a1a1a]/70" style={{ fontFamily: "'Wotfard', sans-serif" }}>{item}</span>
-              </li>
+              <span key={item} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#5b8def]/12 border border-[#4a7de8]/20">
+                <svg width="10" height="8" viewBox="0 0 12 10" fill="none">
+                  <path d="M1 5L4.5 8.5L11 1" stroke="#4a7de8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                <span className="text-xs text-[#1a1a1a]/65" style={{ fontFamily: "'Wotfard', sans-serif" }}>{item}</span>
+              </span>
             ))}
-          </ul>
+          </div>
         )}
       </motion.div>
 
