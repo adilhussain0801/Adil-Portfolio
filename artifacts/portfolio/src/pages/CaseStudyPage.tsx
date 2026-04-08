@@ -2047,81 +2047,93 @@ function AIConsolidationSection() {
         />
       </div>{/* end slide 1 */}
 
-      {/* ── Slide 2: Results + closing ── */}
+      {/* ── Slide 2: Reframe ── */}
       <div className="h-screen snap-start snap-always flex flex-col justify-center overflow-hidden">
         <SnapReveal>
-          <div className="max-w-3xl mx-auto w-full px-6 md:px-16 flex flex-col gap-8">
+          <div className="w-full flex items-center gap-16" style={{ paddingLeft: 80, paddingRight: 80 }}>
 
-            <div className="flex flex-col gap-4">
-              <p
-                className="text-sm font-semibold uppercase tracking-widest text-[#1a1a1a]/40"
-                style={{ fontFamily: FF }}
-              >
-                As a result
+            {/* ── Left: narrative ── */}
+            <div className="flex-1 flex flex-col gap-6 min-w-0">
+              <div className="flex flex-col gap-3">
+                <p className="text-xs font-semibold uppercase tracking-widest text-[#1a1a1a]/40" style={{ fontFamily: FF }}>
+                  As a result
+                </p>
+                <ul className="flex flex-col gap-2.5">
+                  {[
+                    "AI features operated in silos with limited visibility for agents",
+                    "Experiences were inconsistent across touchpoints",
+                    "Agents had to piece together capabilities manually",
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#E8654B]/60 flex-shrink-0" />
+                      <span className="text-sm leading-relaxed text-[#1a1a1a]/70" style={{ fontFamily: FF }}>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <p className="text-xl md:text-2xl font-semibold leading-snug text-[#1a1a1a]" style={{ fontFamily: FF }}>
+                Service agents weren't looking for features — they were trying to{" "}
+                <mark style={{ background: "rgba(99,102,241,0.13)", color: "#4338CA", borderRadius: "5px", padding: "2px 6px", fontWeight: 700 }}>
+                  resolve work faster
+                </mark>
+                .
               </p>
-              <ul className="flex flex-col gap-3">
-                {[
-                  "AI features operated in silos with limited visibility for agents",
-                  "Experiences were inconsistent across touchpoints",
-                  "Agents had to piece together capabilities manually",
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#E8654B]/60 flex-shrink-0" />
-                    <span
-                      className="text-base leading-relaxed text-[#1a1a1a]/70"
-                      style={{ fontFamily: FF }}
-                    >
-                      {item}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+
+              <p className="text-sm leading-relaxed text-[#1a1a1a]/60 border-l-2 border-[#E8654B]/40 pl-4" style={{ fontFamily: FF }}>
+                Users don't think in features — they think in outcomes. We reframed AI as a connected system embedded across the service lifecycle.
+              </p>
             </div>
 
-            <p
-              className="text-xl md:text-2xl font-semibold leading-snug text-[#1a1a1a]"
-              style={{ fontFamily: FF }}
-            >
-              Service agents weren't looking for features — they were trying to{" "}
-              <mark style={{ background: "rgba(99,102,241,0.13)", color: "#4338CA", borderRadius: "5px", padding: "2px 6px", fontWeight: 700 }}>
-                resolve work faster
-              </mark>
-              .
-            </p>
+            {/* ── Right: visual diagram ── */}
+            <div className="flex-1 flex flex-col gap-5 min-w-0">
+              {/* Label */}
+              <p className="text-[10px] font-bold tracking-widest uppercase text-[#1a1a1a]/35" style={{ fontFamily: FF }}>
+                Previously — Isolated features
+              </p>
 
-            <div className="flex flex-col gap-4">
-              <p
-                className="text-base leading-relaxed text-[#1a1a1a]/60 border-l-2 border-[#E8654B]/40 pl-4"
-                style={{ fontFamily: FF }}
-              >
-                Users don't think in features — they think in outcomes.
-              </p>
-              <p
-                className="text-base leading-relaxed text-[#1a1a1a]/60"
-                style={{ fontFamily: FF }}
-              >
-                To resolve this, we reframed AI as a connected system embedded across the service lifecycle.
-              </p>
-              <p
-                className="text-base leading-relaxed text-[#1a1a1a]/60"
-                style={{ fontFamily: FF }}
-              >
-                This laid the foundation for Rovo Service — enabling:
-              </p>
-              <ul className="flex flex-col gap-2">
+              {/* Feature pills */}
+              <div className="flex flex-wrap gap-2.5">
                 {[
-                  "Seamless integration across workflows",
-                  "Clearer visibility into AI capabilities",
-                  "A consistent and scalable experience",
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-2.5">
-                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#E8654B]/50 flex-shrink-0" />
-                    <span className="text-base leading-relaxed text-[#1a1a1a]/60" style={{ fontFamily: FF }}>
-                      {item}
-                    </span>
-                  </li>
+                  { label: "Similar requests",           color: "#7C3AED", bg: "rgba(124,58,237,0.08)",  border: "rgba(124,58,237,0.2)" },
+                  { label: "Virtual agent",              color: "#0F766E", bg: "rgba(15,118,110,0.08)",  border: "rgba(15,118,110,0.2)" },
+                  { label: "Comments summary",           color: "#16a34a", bg: "rgba(22,163,74,0.08)",   border: "rgba(22,163,74,0.2)" },
+                  { label: "Suggestions",                color: "#B45309", bg: "rgba(180,83,9,0.08)",    border: "rgba(180,83,9,0.2)" },
+                  { label: "AI summaries",               color: "#DC2626", bg: "rgba(220,38,38,0.08)",   border: "rgba(220,38,38,0.2)" },
+                  { label: "Service request helper",     color: "#4338CA", bg: "rgba(67,56,202,0.08)",   border: "rgba(67,56,202,0.2)" },
+                ].map(({ label, color, bg, border }, i) => (
+                  <span
+                    key={i}
+                    className="text-xs font-medium px-3 py-1.5 rounded-full"
+                    style={{ color, background: bg, border: `1px solid ${border}`, fontFamily: FF }}
+                  >
+                    {label}
+                  </span>
                 ))}
-              </ul>
+              </div>
+
+              {/* Arrow + label */}
+              <div className="flex items-center gap-3">
+                <div className="flex flex-col items-center gap-0.5">
+                  <div className="w-px h-4 bg-[#1a1a1a]/20" />
+                  <svg width="10" height="8" viewBox="0 0 10 8"><path d="M5 8L0 0h10z" fill="rgba(26,26,26,0.3)" /></svg>
+                </div>
+                <p className="text-xs italic text-[#1a1a1a]/40" style={{ fontFamily: FF }}>consolidated into one</p>
+              </div>
+
+              {/* Rovo Service card */}
+              <div
+                className="flex items-start gap-4 rounded-2xl px-5 py-4"
+                style={{ background: "rgba(232,101,75,0.07)", border: "1.5px solid rgba(232,101,75,0.2)" }}
+              >
+                <img src="/rovo-service-icon.png" alt="Rovo Service" className="w-10 h-10 flex-shrink-0 mt-0.5" />
+                <div className="flex flex-col gap-1">
+                  <p className="text-base font-bold text-[#1a1a1a]" style={{ fontFamily: FF }}>Rovo Service</p>
+                  <p className="text-sm leading-relaxed text-[#1a1a1a]/60" style={{ fontFamily: FF }}>
+                    A unified AI layer — one system, one interaction model, built for scale
+                  </p>
+                </div>
+              </div>
             </div>
 
           </div>
