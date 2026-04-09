@@ -753,7 +753,6 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
             </SnapReveal>
           </div>
         </div>
-
         {/* Why Resolution Breaks Down slide */}
         <div className="h-screen snap-start snap-always flex flex-col justify-center py-16">
           <div className="w-full flex flex-col gap-14" style={{ paddingLeft: 144, paddingRight: 144 }}>
@@ -762,7 +761,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
               <h2
                 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight text-center"
                 style={{ fontFamily: "'Wotfard', sans-serif" }}
-              >Breakdown of the current journey</h2>
+              >Breakdown of the service agent journey</h2>
             </SnapReveal>
 
             {/* Flow diagram */}
@@ -872,7 +871,6 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
             </div>
           </SnapReveal>
         </div>
-
         {/* Slides 2–4: One slide per challenge group */}
         {groups.map((group, gi) => {
           const p = CHALLENGE_PALETTE[gi % CHALLENGE_PALETTE.length];
