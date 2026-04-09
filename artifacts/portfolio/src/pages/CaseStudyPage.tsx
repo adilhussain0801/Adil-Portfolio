@@ -2811,7 +2811,7 @@ function ExperienceWalkthroughSection() {
           left: "50%",
           top: "50%",
           transform: "translate(-50%, -50%)",
-          width: "min(1080px, calc(100% - 128px))",
+          width: "min(1188px, calc(100% - 112px))",
           maxHeight: "calc(100vh - 128px)",
           overflow: "hidden",
           borderRadius: 18,
