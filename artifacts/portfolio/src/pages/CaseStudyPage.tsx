@@ -1,6 +1,6 @@
 import { useParams, Link } from "wouter";
 import { useRef, useEffect, useState, useMemo, type RefObject } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, useInView, AnimatePresence, useMotionValue, useTransform, animate } from "framer-motion";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare, ChevronLeft, ChevronRight, X, CheckCircle2, Settings, Banknote, Layers } from "lucide-react";
 import { getCaseStudy, getNextCaseStudy, getAllCaseStudies, type CaseStudy } from "@/data/caseStudies";
 import NotFound from "@/pages/not-found";
@@ -679,6 +679,18 @@ function FrictionSlide({
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, amount: 0.5 });
 
+  const totalProgress = useMotionValue(prevProgress);
+  const normalWidth = useTransform(totalProgress, v => `${Math.min(v, 65)}%`);
+  const breachWidth = useTransform(totalProgress, v => `${Math.max(v - 65, 0)}%`);
+
+  useEffect(() => {
+    if (isInView) {
+      animate(totalProgress, group.timelineProgress, { duration: 1.2, ease: EASE, delay: 0.3 });
+    } else {
+      animate(totalProgress, prevProgress, { duration: 0 });
+    }
+  }, [isInView]);
+
   return (
     <div
       ref={ref}
@@ -743,32 +755,22 @@ function FrictionSlide({
               </div>
 
               <div className="relative h-2 rounded-full overflow-hidden bg-[#E8E4DE]">
-                {/* Normal zone: 0 → min(progress, 65%) */}
+                {/* Normal zone: driven by shared motion value */}
                 <motion.div
                   className="absolute left-0 top-0 h-full"
-                  animate={{
-                    width: isInView
-                      ? `${Math.min(group.timelineProgress, 65)}%`
-                      : `${Math.min(prevProgress, 65)}%`,
-                  }}
-                  transition={isInView ? { duration: 1.2, ease: EASE, delay: 0.3 } : { duration: 0 }}
                   style={{
+                    width: normalWidth,
                     background: "linear-gradient(to right, #22c55e 0%, #eab308 65%, #f97316 100%)",
                   }}
                 />
-                {/* Breach zone: 65% → progress% — striped red pattern */}
+                {/* Breach zone: same motion value, starts at 65% */}
                 <motion.div
                   className="absolute top-0 h-full"
                   style={{
                     left: "65%",
+                    width: breachWidth,
                     background: "repeating-linear-gradient(-45deg, rgba(239,68,68,0.7) 0px, rgba(239,68,68,0.7) 2px, rgba(239,68,68,0.2) 2px, rgba(239,68,68,0.2) 6px)",
                   }}
-                  animate={{
-                    width: isInView
-                      ? `${Math.max(group.timelineProgress - 65, 0)}%`
-                      : `${Math.max(prevProgress - 65, 0)}%`,
-                  }}
-                  transition={isInView ? { duration: 1.2, ease: EASE, delay: 0.3 } : { duration: 0 }}
                 />
               </div>
             </div>
