@@ -665,6 +665,137 @@ const CHALLENGE_ICONS = [
   (color: string) => <Clock size={20} color={color} strokeWidth={1.5} />,
 ];
 
+function FrictionSlide({
+  group,
+  gi,
+  prevProgress,
+  p,
+}: {
+  group: NonNullable<ReturnType<typeof Array.prototype.at>>;
+  gi: number;
+  prevProgress: number;
+  p: { cardBg: string; cardBorder: string; numColor: string; accentColor: string };
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: false, amount: 0.5 });
+
+  return (
+    <div
+      ref={ref}
+      className="h-screen snap-start snap-always flex flex-col justify-center py-20"
+    >
+      <SnapReveal>
+        <div className="max-w-2xl mx-auto w-full px-6 flex flex-col gap-6">
+          <p
+            className="text-7xl font-bold tabular-nums leading-none"
+            style={{ color: p.numColor, fontFamily: "'Wotfard', sans-serif" }}
+          >
+            {String(gi + 1).padStart(2, "0")}
+          </p>
+          <p
+            className="text-xs font-bold tracking-widest uppercase"
+            style={{ color: p.accentColor, fontFamily: "'Wotfard', sans-serif" }}
+          >
+            Stage {gi + 1} friction
+          </p>
+          <h3
+            className="text-2xl md:text-3xl font-bold leading-tight text-[#1a1a1a] -mt-3"
+            style={{ fontFamily: "'Wotfard', sans-serif" }}
+          >
+            {group.phase}
+          </h3>
+          <p
+            className="text-sm leading-relaxed text-[#1a1a1a]/60"
+            style={{ fontFamily: "'Wotfard', sans-serif" }}
+          >
+            {group.description}
+          </p>
+
+          {/* Progress bar */}
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center justify-between">
+              <span
+                className="text-[10px] font-bold tracking-widest uppercase text-[#1a1a1a]/40"
+                style={{ fontFamily: "'Wotfard', sans-serif" }}
+              >
+                Intake
+              </span>
+              <span
+                className="text-[10px] font-bold tracking-widest uppercase"
+                style={{ color: p.accentColor, fontFamily: "'Wotfard', sans-serif" }}
+              >
+                Resolved
+              </span>
+            </div>
+            <div className="relative h-2 rounded-full overflow-hidden bg-[#E8E4DE]">
+              <motion.div
+                className="absolute left-0 top-0 h-full rounded-full"
+                animate={{ width: isInView ? `${group.timelineProgress}%` : `${prevProgress}%` }}
+                transition={isInView ? { duration: 1.2, ease: EASE, delay: 0.3 } : { duration: 0 }}
+                style={{
+                  background: "linear-gradient(to right, #22c55e 0%, #eab308 50%, #ef4444 100%)",
+                }}
+              />
+            </div>
+            <div className="relative h-4">
+              {[
+                { label: "Ticket received",     pct: 0 },
+                { label: "Clarification loop",  pct: 25 },
+                { label: "Context gathering",   pct: 50 },
+                { label: "Resolution planning", pct: 75 },
+              ].map(({ label, pct }) => (
+                <span
+                  key={label}
+                  className="absolute text-[10px] text-[#1a1a1a]/40 whitespace-nowrap"
+                  style={{
+                    fontFamily: "'Wotfard', sans-serif",
+                    left: `${pct}%`,
+                    transform: pct === 0 ? "none" : "translateX(-50%)",
+                  }}
+                >
+                  {label}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Metric callout */}
+          <div
+            className="rounded-2xl px-6 py-5 text-center"
+            style={{ backgroundColor: p.cardBg, border: `1.5px solid ${p.cardBorder}` }}
+          >
+            <p
+              className="text-4xl font-bold mb-1"
+              style={{ color: p.accentColor, fontFamily: "'Wotfard', sans-serif" }}
+            >
+              {group.metric.value}
+            </p>
+            <p
+              className="text-[10px] font-bold tracking-widest uppercase text-[#1a1a1a]/50"
+              style={{ fontFamily: "'Wotfard', sans-serif" }}
+            >
+              {group.metric.label}
+            </p>
+          </div>
+
+          {/* Business impact */}
+          {group.businessImpact && (
+            <div className="flex items-start gap-2.5 rounded-xl px-4 py-3" style={{ background: "rgba(232,101,75,0.07)" }}>
+              <TrendingDown size={14} className="flex-shrink-0 mt-0.5" style={{ color: "#C05437" }} />
+              <p
+                className="text-xs leading-relaxed"
+                style={{ color: "#C05437", fontFamily: "'Wotfard', sans-serif" }}
+              >
+                {group.businessImpact}
+              </p>
+            </div>
+          )}
+        </div>
+      </SnapReveal>
+    </div>
+  );
+}
+
 function ChallengeSection({ study }: { study: CaseStudy }) {
   const groups = study.challenge.timelineGroups;
 
@@ -872,132 +1003,15 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
           </SnapReveal>
         </div>
         {/* Slides 2–4: One slide per challenge group */}
-        {groups.map((group, gi) => {
-          const p = CHALLENGE_PALETTE[gi % CHALLENGE_PALETTE.length];
-          return (
-            <div
-              key={gi}
-              className="h-screen snap-start snap-always flex flex-col justify-center py-20"
-            >
-              <SnapReveal>
-                <div className="max-w-2xl mx-auto w-full px-6 flex flex-col gap-6">
-                      {/* Number */}
-                      <p
-                        className="text-7xl font-bold tabular-nums leading-none"
-                        style={{ color: p.numColor, fontFamily: "'Wotfard', sans-serif" }}
-                      >
-                        {String(gi + 1).padStart(2, "0")}
-                      </p>
-
-                      {/* Stage label */}
-                      <p
-                        className="text-xs font-bold tracking-widest uppercase"
-                        style={{ color: p.accentColor, fontFamily: "'Wotfard', sans-serif" }}
-                      >
-                        Stage {gi + 1} friction
-                      </p>
-
-                      {/* Phase title */}
-                      <h3
-                        className="text-2xl md:text-3xl font-bold leading-tight text-[#1a1a1a] -mt-3"
-                        style={{ fontFamily: "'Wotfard', sans-serif" }}
-                      >
-                        {group.phase}
-                      </h3>
-
-                      {/* Description */}
-                      <p
-                        className="text-sm leading-relaxed text-[#1a1a1a]/60"
-                        style={{ fontFamily: "'Wotfard', sans-serif" }}
-                      >
-                        {group.description}
-                      </p>
-
-                      {/* Progress bar */}
-                      <div className="flex flex-col gap-2">
-                        <div className="flex items-center justify-between">
-                          <span
-                            className="text-[10px] font-bold tracking-widest uppercase text-[#1a1a1a]/40"
-                            style={{ fontFamily: "'Wotfard', sans-serif" }}
-                          >
-                            Intake
-                          </span>
-                          <span
-                            className="text-[10px] font-bold tracking-widest uppercase"
-                            style={{ color: p.accentColor, fontFamily: "'Wotfard', sans-serif" }}
-                          >
-                            Resolved
-                          </span>
-                        </div>
-                        <div className="relative h-2 rounded-full overflow-hidden bg-[#E8E4DE]">
-                          <motion.div
-                            className="absolute left-0 top-0 h-full rounded-full"
-                            initial={{ width: `${gi > 0 ? groups[gi - 1].timelineProgress : 0}%` }}
-                            animate={{ width: `${group.timelineProgress}%` }}
-                            transition={{ duration: 1.2, ease: EASE, delay: 0.3 }}
-                            style={{
-                              background: "linear-gradient(to right, #22c55e 0%, #eab308 50%, #ef4444 100%)",
-                            }}
-                          />
-                        </div>
-                        <div className="relative h-4">
-                          {[
-                            { label: "Ticket received",     pct: 0 },
-                            { label: "Clarification loop",  pct: 25 },
-                            { label: "Context gathering",   pct: 50 },
-                            { label: "Resolution planning", pct: 75 },
-                          ].map(({ label, pct }) => (
-                            <span
-                              key={label}
-                              className="absolute text-[10px] text-[#1a1a1a]/40 whitespace-nowrap"
-                              style={{
-                                fontFamily: "'Wotfard', sans-serif",
-                                left: `${pct}%`,
-                                transform: pct === 0 ? "none" : pct === 75 ? "translateX(-50%)" : "translateX(-50%)",
-                              }}
-                            >
-                              {label}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Metric callout */}
-                      <div
-                        className="rounded-2xl px-6 py-5 text-center"
-                        style={{ backgroundColor: p.cardBg, border: `1.5px solid ${p.cardBorder}` }}
-                      >
-                        <p
-                          className="text-4xl font-bold mb-1"
-                          style={{ color: p.accentColor, fontFamily: "'Wotfard', sans-serif" }}
-                        >
-                          {group.metric.value}
-                        </p>
-                        <p
-                          className="text-[10px] font-bold tracking-widest uppercase text-[#1a1a1a]/50"
-                          style={{ fontFamily: "'Wotfard', sans-serif" }}
-                        >
-                          {group.metric.label}
-                        </p>
-                      </div>
-
-                      {/* Business impact */}
-                      {group.businessImpact && (
-                        <div className="flex items-start gap-2.5 rounded-xl px-4 py-3" style={{ background: "rgba(232,101,75,0.07)" }}>
-                          <TrendingDown size={14} className="flex-shrink-0 mt-0.5" style={{ color: "#C05437" }} />
-                          <p
-                            className="text-xs leading-relaxed"
-                            style={{ color: "#C05437", fontFamily: "'Wotfard', sans-serif" }}
-                          >
-                            {group.businessImpact}
-                          </p>
-                        </div>
-                      )}
-                </div>
-              </SnapReveal>
-            </div>
-          );
-        })}
+        {groups.map((group, gi) => (
+          <FrictionSlide
+            key={gi}
+            group={group}
+            gi={gi}
+            prevProgress={gi > 0 ? groups[gi - 1].timelineProgress : 0}
+            p={CHALLENGE_PALETTE[gi % CHALLENGE_PALETTE.length]}
+          />
+        ))}
         {/* Final slide: Pain Points */}
         <div className="h-screen snap-start snap-always flex flex-col justify-center py-20">
           <div className="max-w-3xl mx-auto w-full px-6">
