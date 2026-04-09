@@ -1776,18 +1776,16 @@ function RovoServiceOverviewSection() {
       className="relative h-screen snap-start snap-always overflow-hidden flex flex-col"
       style={{ background: "#F7F7F5" }}
     >
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6, ease: EASE }}
-        className="flex-1 flex items-center justify-center overflow-hidden px-8 pb-6"
-      >
-        <img
+      <div className="flex-1 flex items-end justify-center overflow-hidden px-8">
+        <motion.img
           src="/rovo-service-diagram.png"
           alt="Rovo Service capability orbit diagram"
-          style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain", display: "block" }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease: EASE }}
+          style={{ width: "33%", display: "block", objectFit: "contain" }}
         />
-      </motion.div>
+      </div>
     </section>
   );
 }
