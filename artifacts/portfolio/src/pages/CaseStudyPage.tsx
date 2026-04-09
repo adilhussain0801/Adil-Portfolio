@@ -1316,7 +1316,7 @@ function IndustryTrendsSection() {
                       backgroundRepeat: "no-repeat",
                     }}
                   />
-                  <div className="flex items-center justify-center py-2 px-3 flex-shrink-0" style={{ background: "#ffffff" }}>
+                  <div className="flex items-center justify-center py-2 px-3 flex-shrink-0 bg-[#fbf7f8]" style={{ background: "#ffffff" }}>
                     <img src={c.logo} alt={c.name} style={{ height: 28, width: "auto", objectFit: "contain" }} />
                   </div>
                 </div>
