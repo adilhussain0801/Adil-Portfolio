@@ -926,7 +926,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                             className="text-[10px] font-bold tracking-widest uppercase"
                             style={{ color: p.accentColor, fontFamily: "'Wotfard', sans-serif" }}
                           >
-                            {group.timelineEndLabel}
+                            Resolved
                           </span>
                         </div>
                         <div className="relative h-2 rounded-full overflow-hidden bg-[#E8E4DE]">
@@ -940,14 +940,23 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                             }}
                           />
                         </div>
-                        <div className="flex items-center justify-between">
-                          {group.timelineMarkers.map((m, mi) => (
+                        <div className="relative h-4">
+                          {[
+                            { label: "Ticket received",     pct: 0 },
+                            { label: "Clarification loop",  pct: 25 },
+                            { label: "Context gathering",   pct: 50 },
+                            { label: "Resolution planning", pct: 75 },
+                          ].map(({ label, pct }) => (
                             <span
-                              key={mi}
-                              className="text-[10px] text-[#1a1a1a]/40"
-                              style={{ fontFamily: "'Wotfard', sans-serif" }}
+                              key={label}
+                              className="absolute text-[10px] text-[#1a1a1a]/40 whitespace-nowrap"
+                              style={{
+                                fontFamily: "'Wotfard', sans-serif",
+                                left: `${pct}%`,
+                                transform: pct === 0 ? "none" : pct === 75 ? "translateX(-50%)" : "translateX(-50%)",
+                              }}
                             >
-                              {m}
+                              {label}
                             </span>
                           ))}
                         </div>
