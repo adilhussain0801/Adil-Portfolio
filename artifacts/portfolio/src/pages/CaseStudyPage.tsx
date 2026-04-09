@@ -2348,6 +2348,90 @@ function AIConsolidationSection() {
   );
 }
 
+function StampHeroBanner({ study }: { study: CaseStudy }) {
+  const bannerRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(bannerRef, { once: true, amount: 0.4 });
+
+  const bg = study.heroColor ?? "#3A4CE8";
+  const N = 9;   // notch radius px
+  const S = 20;  // notch spacing px
+
+  // CSS mask that cuts semicircular perforations on all 4 edges
+  const maskVal = [
+    `radial-gradient(circle at 50% 0, transparent ${N}px, black ${N + 1}px)`,
+    `radial-gradient(circle at 50% 100%, transparent ${N}px, black ${N + 1}px)`,
+    `radial-gradient(circle at 0 50%, transparent ${N}px, black ${N + 1}px)`,
+    `radial-gradient(circle at 100% 50%, transparent ${N}px, black ${N + 1}px)`,
+  ].join(", ");
+  const maskSize = `${S}px 100%, ${S}px 100%, 100% ${S}px, 100% ${S}px`;
+  const maskPos  = "top left, bottom left, top left, top right";
+  const maskRep  = "repeat-x, repeat-x, repeat-y, repeat-y";
+
+  const RINGS = [160, 120, 84, 50];
+
+  return (
+    <div
+      ref={bannerRef}
+      style={{
+        position: "relative",
+        width: "100%",
+        height: 200,
+        background: bg,
+        overflow: "hidden",
+        flexShrink: 0,
+        // Standard
+        maskImage: maskVal,
+        maskSize,
+        maskPosition: maskPos,
+        maskRepeat: maskRep,
+        maskComposite: "intersect",
+        // WebKit
+        WebkitMaskImage: maskVal,
+        WebkitMaskSize: maskSize,
+        WebkitMaskPosition: maskPos,
+        WebkitMaskRepeat: maskRep,
+        WebkitMaskComposite: "source-in, source-in, source-in",
+      } as React.CSSProperties}
+    >
+      {/* Concentric rings growing from center */}
+      {RINGS.map((r, i) => (
+        <motion.div
+          key={r}
+          initial={{ scale: 0, opacity: 0 }}
+          animate={inView ? { scale: 1, opacity: 1 } : {}}
+          transition={{ duration: 0.8, ease: EASE, delay: 0.05 + i * 0.14 }}
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            width: r * 2,
+            height: r * 2,
+            marginLeft: -r,
+            marginTop: -r,
+            borderRadius: "50%",
+            border: `1.5px solid rgba(255,255,255,${0.22 - i * 0.04})`,
+            pointerEvents: "none",
+          }}
+        />
+      ))}
+
+      {/* App screenshot */}
+      <img
+        src={study.image}
+        alt={study.imageAlt}
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          objectPosition: "top center",
+        }}
+      />
+    </div>
+  );
+}
+
 function SolutionSection({ study }: { study: CaseStudy }) {
   return (
     <section
@@ -2378,16 +2462,7 @@ function SolutionSection({ study }: { study: CaseStudy }) {
             </p>
           </div>
 
-          <div
-            className="w-full rounded-2xl overflow-hidden flex-shrink-0"
-            style={{ backgroundColor: study.heroColor, height: "160px" }}
-          >
-            <img
-              src={study.image}
-              alt={study.imageAlt}
-              className="w-full h-full object-cover"
-            />
-          </div>
+          <StampHeroBanner study={study} />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {study.solution.features.map((feature, i) => (
