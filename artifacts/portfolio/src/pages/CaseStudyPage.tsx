@@ -932,9 +932,9 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                         <div className="relative h-2 rounded-full overflow-hidden bg-[#E8E4DE]">
                           <motion.div
                             className="absolute left-0 top-0 h-full rounded-full"
-                            initial={{ width: 0 }}
+                            initial={{ width: `${gi > 0 ? groups[gi - 1].timelineProgress : 0}%` }}
                             animate={{ width: `${group.timelineProgress}%` }}
-                            transition={{ duration: 1, ease: EASE, delay: 0.3 }}
+                            transition={{ duration: 1.2, ease: EASE, delay: 0.3 }}
                             style={{
                               background: "linear-gradient(to right, #22c55e 0%, #eab308 50%, #ef4444 100%)",
                             }}
