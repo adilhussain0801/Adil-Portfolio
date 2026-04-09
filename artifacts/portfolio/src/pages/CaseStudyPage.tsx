@@ -2432,6 +2432,187 @@ function StampHeroBanner({ study }: { study: CaseStudy }) {
   );
 }
 
+function BentofyShowcaseSection() {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: false, amount: 0.35 });
+  const FF = "'Wotfard', sans-serif";
+
+  const BG = "#3A50E8";
+  const PAGE_BG = "#F7F7F5";
+
+  // Zigzag border parameters
+  const TOOTH = 20;
+  const TOOTH_H = 16;
+  const COUNT = 72;
+  const W = COUNT * TOOTH; // 1440 units, stretched with preserveAspectRatio="none"
+
+  const topPts =
+    Array.from({ length: COUNT + 1 }, (_, i) => `${i * TOOTH},${i % 2 === 0 ? TOOTH_H : 0}`).join(" ") +
+    ` ${W},-2 0,-2`;
+
+  const botPts =
+    Array.from({ length: COUNT + 1 }, (_, i) => `${i * TOOTH},${i % 2 === 0 ? 0 : TOOTH_H}`).join(" ") +
+    ` ${W},${TOOTH_H + 2} 0,${TOOTH_H + 2}`;
+
+  const RINGS = [300, 240, 182, 130, 85, 46];
+
+  // Spiral path drawn from inside out (animates with pathLength 0→1)
+  const SPIRAL =
+    "M 616 420 C 616 375 651 348 686 348 C 735 348 768 388 768 438 " +
+    "C 768 510 708 560 638 560 C 545 560 478 488 478 400 " +
+    "C 478 290 568 210 680 210 C 820 210 910 318 910 458 " +
+    "C 910 620 790 742 620 742";
+
+  // Paper airplane motion path (lower-left → upper-right arc)
+  const PLANE_PATH = "M 140 700 C 320 320 720 120 1130 300";
+
+  return (
+    <section
+      ref={ref}
+      id="section-bentofy"
+      className="relative h-screen snap-start snap-always overflow-hidden"
+      style={{ background: BG }}
+    >
+      <style>{`
+        @keyframes bentofy-fly {
+          0%   { offset-distance: 0%;   opacity: 0; }
+          6%   { opacity: 1; }
+          94%  { opacity: 1; }
+          100% { offset-distance: 100%; opacity: 0; }
+        }
+        @keyframes ring-breathe {
+          0%, 100% { opacity: 0.18; }
+          50%       { opacity: 0.36; }
+        }
+        .bentofy-plane {
+          position: absolute;
+          top: 0; left: 0;
+          offset-path: path('${PLANE_PATH}');
+          offset-rotate: auto;
+          animation: bentofy-fly 4.8s ease-in-out infinite;
+          pointer-events: none;
+          will-change: offset-distance, opacity;
+        }
+      `}</style>
+
+      {/* Top zigzag (page-bg triangles cutting into top of section) */}
+      <svg
+        viewBox={`0 0 ${W} ${TOOTH_H}`}
+        preserveAspectRatio="none"
+        aria-hidden
+        style={{ position: "absolute", top: 0, left: 0, width: "100%", height: TOOTH_H, display: "block", zIndex: 10, pointerEvents: "none" }}
+      >
+        <polygon points={topPts} fill={PAGE_BG} />
+      </svg>
+
+      {/* Bottom zigzag */}
+      <svg
+        viewBox={`0 0 ${W} ${TOOTH_H}`}
+        preserveAspectRatio="none"
+        aria-hidden
+        style={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: TOOTH_H, display: "block", zIndex: 10, pointerEvents: "none" }}
+      >
+        <polygon points={botPts} fill={PAGE_BG} />
+      </svg>
+
+      {/* Concentric rings */}
+      {RINGS.map((r, i) => (
+        <motion.div
+          key={r}
+          initial={{ scale: 0, opacity: 0 }}
+          animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+          transition={{ duration: 1.0, ease: EASE, delay: 0.04 + i * 0.11 }}
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            width: r * 2,
+            height: r * 2,
+            marginLeft: -r,
+            marginTop: -r,
+            borderRadius: "50%",
+            border: `1.5px solid rgba(255,255,255,${Math.max(0.08, 0.24 - i * 0.03)})`,
+            animation: isInView ? `ring-breathe ${3.4 + i * 0.35}s ease-in-out ${i * 0.28}s infinite` : "none",
+            pointerEvents: "none",
+          }}
+        />
+      ))}
+
+      {/* Spiral */}
+      <svg
+        aria-hidden
+        viewBox="0 0 1232 916"
+        preserveAspectRatio="xMidYMid meet"
+        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none" }}
+      >
+        <motion.path
+          d={SPIRAL}
+          fill="none"
+          stroke="#FF7EB3"
+          strokeWidth={3.5}
+          strokeLinecap="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={isInView ? { pathLength: 1, opacity: 0.85 } : { pathLength: 0, opacity: 0 }}
+          transition={{ duration: 2.4, ease: "easeInOut", delay: 0.55 }}
+        />
+      </svg>
+
+      {/* Paper airplane (CSS offset-path motion) */}
+      {isInView && (
+        <div className="bentofy-plane">
+          <svg width="40" height="40" viewBox="-6 -12 36 24" fill="none" style={{ overflow: "visible" }}>
+            <path d="M -6 0 L 24 0 L -6 -12 Z" fill="#F5A623" />
+            <path d="M -6 0 L 24 0 L -6 12 Z" fill="#D98E10" />
+            <path d="M -6 -12 L -1 0 L -6 12 L 3 0 Z" fill="#F5C842" />
+          </svg>
+        </div>
+      )}
+
+      {/* Text — top left */}
+      <motion.div
+        initial={{ opacity: 0, y: 14 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
+        transition={{ duration: 0.55, ease: EASE }}
+        style={{ position: "absolute", top: 48, left: 56, zIndex: 5, maxWidth: 320 }}
+      >
+        <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.48)", marginBottom: 8 }}>
+          Side project · Bentofy
+        </p>
+        <h2 style={{ fontFamily: FF, fontSize: 34, fontWeight: 800, color: "#fff", lineHeight: 1.13, margin: 0 }}>
+          Import recipes,<br />without the ads
+        </h2>
+        <p style={{ fontFamily: FF, fontSize: 13.5, color: "rgba(255,255,255,0.58)", marginTop: 14, lineHeight: 1.65 }}>
+          Paste any recipe URL. Bentofy strips the blog, the life story, and the ads — and gives you just the recipe.
+        </p>
+        <a
+          href="https://www.bentofy.app"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 6,
+            marginTop: 22,
+            padding: "8px 18px",
+            borderRadius: 50,
+            background: "rgba(255,255,255,0.14)",
+            border: "1px solid rgba(255,255,255,0.24)",
+            color: "#fff",
+            fontFamily: FF,
+            fontSize: 13,
+            fontWeight: 600,
+            textDecoration: "none",
+            backdropFilter: "blur(6px)",
+            WebkitBackdropFilter: "blur(6px)",
+          }}
+        >
+          bentofy.app ↗
+        </a>
+      </motion.div>
+    </section>
+  );
+}
+
 function SolutionSection({ study }: { study: CaseStudy }) {
   return (
     <section
@@ -2599,6 +2780,7 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
     ...(study.id === 4 ? [{ id: "section-principles", label: "Principles" }] : []),
     ...(study.id === 4 ? [{ id: "section-concepts", label: "Concepts" }] : []),
     { id: "section-solution", label: "Solution" },
+    { id: "section-bentofy", label: "Magic Import" },
     { id: "section-impact", label: "Impact" },
     { id: "section-next", label: "Next Project" },
   ], [study.id]);
@@ -2874,6 +3056,7 @@ export default function CaseStudyPage() {
         {study.id === 4 && <RovoServiceOverviewSection />}
         {study.id === 4 && <EarlyStageConceptsSection />}
         <SolutionSection study={study} />
+        <BentofyShowcaseSection />
         <ImpactSection study={study} />
         <NextProjectSection study={study} />
       </div>
