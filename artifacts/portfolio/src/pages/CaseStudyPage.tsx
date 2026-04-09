@@ -2633,63 +2633,6 @@ function BentofyShowcaseSection() {
           </div>
         )}
 
-        {/* Experience walkthrough card */}
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
-          transition={{ duration: 0.65, ease: EASE, delay: 0.3 }}
-          style={{
-            position: "absolute",
-            right: 52,
-            top: "50%",
-            transform: "translateY(-50%)",
-            width: 308,
-            borderRadius: 14,
-            overflow: "hidden",
-            background: "#fff",
-            boxShadow: "0 24px 60px rgba(0,0,0,0.32), 0 4px 16px rgba(0,0,0,0.14)",
-          }}
-        >
-          {/* Browser chrome bar */}
-          <div style={{ height: 36, background: "#F9FAFB", borderBottom: "1px solid #F3F4F6", display: "flex", alignItems: "center", padding: "0 12px", gap: 6 }}>
-            {["#FF5F57", "#FFBD2E", "#27C840"].map(c => (
-              <div key={c} style={{ width: 10, height: 10, borderRadius: "50%", background: c }} />
-            ))}
-            <div style={{ flex: 1, margin: "0 10px", height: 18, background: "#F3F4F6", borderRadius: 99, display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <span style={{ fontFamily: FF, fontSize: 9, color: "#9CA3AF" }}>bentofy.app</span>
-            </div>
-          </div>
-
-          {/* Animated step content */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={step}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.28, ease: EASE }}
-            >
-              {steps[step]}
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Step dots */}
-          <div style={{ display: "flex", justifyContent: "center", gap: 6, paddingBottom: 14 }}>
-            {[0, 1, 2].map(i => (
-              <div
-                key={i}
-                style={{
-                  width: i === step ? 18 : 6,
-                  height: 6,
-                  borderRadius: 99,
-                  background: i === step ? BG : "#E5E7EB",
-                  transition: "all 0.3s ease",
-                }}
-              />
-            ))}
-          </div>
-        </motion.div>
-
       </div>
     </section>
   );
