@@ -1,0 +1,102 @@
+Build a modern, responsive web UI using React (Vite) and Framer Motion that visualizes an AI system called "Rovo Service" as an animated orbital system.
+
+REQUIREMENTS:
+
+1. LAYOUT
+
+* Light theme (soft white / subtle gradient background)
+* Centered layout with a glowing core element labeled "Rovo Service"
+* Three concentric circular orbits around the center
+
+2. ORBIT SYSTEM
+   Each orbit represents a capability stage:
+
+* Inner orbit: "Available today"
+* Middle orbit: "Expanding (6–12 months)"
+* Outer orbit: "Future vision (1–2 years)"
+
+3. CAPABILITY PILLS
+   Render pill-shaped components (rounded, soft shadow, subtle border, icon + text)
+
+Use these labels:
+
+INNER ORBIT (Today):
+
+* Service triage
+* Work item resolution
+* Service request helper
+* Internal knowledge
+
+MIDDLE ORBIT (Next):
+
+* Employee onboarding
+* Preboarding of new hires
+* Partner onboarding
+* Performance management
+
+OUTER ORBIT (Future):
+
+* Internal mobility
+* Alumni relations
+
+4. ANIMATION
+
+* All pills rotate anticlockwise around the center
+* Each orbit rotates at a different speed:
+
+  * Inner: fastest
+  * Middle: medium
+  * Outer: slowest
+* Smooth infinite animation using requestAnimationFrame or Framer Motion
+
+5. SCROLL INTERACTION
+
+* On scroll:
+
+  * Slight zoom-in toward center
+  * Increase rotation speed subtly
+  * Fade in outer orbit progressively
+
+6. VISUAL STYLE
+
+* Clean, Apple-like UI
+* Soft shadows and glassmorphism cards
+* Subtle glow behind the center
+* Slight blur for outer orbit elements (depth effect)
+* Use pastel blue / purple / orange accents for rings
+
+7. LEGEND
+   Top-right legend:
+
+* Blue dot → Available today
+* Purple dot → Expanding next
+* Orange dot → Future vision
+
+8. OPTIONAL INTERACTION
+
+* On hover:
+
+  * Pause rotation for that orbit
+  * Highlight the pill
+  * Show tooltip with short description
+
+9. RESPONSIVENESS
+
+* Desktop first
+* On mobile: reduce to 1–2 orbits or stack vertically
+
+10. TECH
+
+* React + Vite
+* Framer Motion for animation
+* Tailwind CSS for styling
+
+OUTPUT:
+
+* Clean component structure
+* One main component: OrbitalSystem.jsx
+* Reusable Pill component
+* Smooth performant animation (no jank)
+
+STYLE INSPIRATION:
+Minimal, futuristic, light-mode version of a solar system UI with floating UI pills instead of planets.

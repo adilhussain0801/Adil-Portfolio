@@ -1765,6 +1765,226 @@ function DesignPrinciplesSection() {
   );
 }
 
+function OrbitalRovoSystem({ isInView }: { isInView: boolean }) {
+  const FF = "'Wotfard', sans-serif";
+
+  type Pill = { label: string; Icon: React.ComponentType<{ size?: number; strokeWidth?: number }>; angle: number };
+
+  const innerPills: Pill[] = [
+    { label: "Service triage",         Icon: Layers,        angle: 75  },
+    { label: "Work item resolution",   Icon: Inbox,         angle: 175 },
+    { label: "Service request helper", Icon: MessageSquare, angle: 260 },
+    { label: "Internal knowledge",     Icon: BookOpen,      angle: 350 },
+  ];
+
+  const middlePills: Pill[] = [
+    { label: "Employee onboarding",     Icon: Building2,    angle: 30  },
+    { label: "Preboarding of new hires",Icon: Briefcase,    angle: 125 },
+    { label: "Partner onboarding",      Icon: Users,        angle: 215 },
+    { label: "Performance management",  Icon: BarChart2,    angle: 310 },
+  ];
+
+  const outerPills: Pill[] = [
+    { label: "Internal mobility", Icon: ArrowLeftRight, angle: 55  },
+    { label: "Alumni relations",  Icon: Link2,          angle: 235 },
+  ];
+
+  const SIZE = 560;
+  const CX = SIZE / 2;
+  const INNER_R  = 118;
+  const MIDDLE_R = 188;
+  const OUTER_R  = 256;
+
+  const orbits = [
+    { pills: innerPills,  r: INNER_R,  speed: 22, color: "#3B82F6", label: "Available today",       dot: "#3B82F6" },
+    { pills: middlePills, r: MIDDLE_R, speed: 34, color: "#8B5CF6", label: "Expanding (6–12 mo)",   dot: "#8B5CF6" },
+    { pills: outerPills,  r: OUTER_R,  speed: 52, color: "#F5A623", label: "Future vision (1–2 yr)", dot: "#F5A623" },
+  ];
+
+  return (
+    <div style={{ position: "relative", width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+
+      {/* Keyframes injected once */}
+      <style>{`
+        @keyframes rovo-orbit   { to { transform: rotate(-360deg); } }
+        @keyframes rovo-counter { to { transform: translateX(-50%) translateY(-50%) rotate(360deg); } }
+        @keyframes rovo-glow    { 0%,100% { box-shadow: 0 0 32px 8px rgba(245,166,35,0.22), 0 0 64px 20px rgba(59,130,246,0.12); }
+                                  50%      { box-shadow: 0 0 48px 16px rgba(245,166,35,0.32), 0 0 80px 28px rgba(59,130,246,0.18); } }
+      `}</style>
+
+      {/* Legend — top right */}
+      <motion.div
+        initial={{ opacity: 0, x: 12 }}
+        animate={isInView ? { opacity: 1, x: 0 } : {}}
+        transition={{ duration: 0.5, ease: EASE, delay: 0.6 }}
+        style={{
+          position: "absolute",
+          top: 28,
+          right: 32,
+          display: "flex",
+          flexDirection: "column",
+          gap: 10,
+          zIndex: 10,
+        }}
+      >
+        {orbits.map(({ label, dot }) => (
+          <div key={label} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <div style={{ width: 10, height: 10, borderRadius: "50%", background: dot, flexShrink: 0 }} />
+            <span style={{ fontSize: 12, fontFamily: FF, color: "rgba(26,26,26,0.55)", whiteSpace: "nowrap" }}>{label}</span>
+          </div>
+        ))}
+      </motion.div>
+
+      {/* Orbital canvas */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.88 }}
+        animate={isInView ? { opacity: 1, scale: 1 } : {}}
+        transition={{ duration: 0.75, ease: EASE, delay: 0.15 }}
+        style={{ position: "relative", width: SIZE, height: SIZE, flexShrink: 0 }}
+      >
+
+        {/* Orbit rings + pills */}
+        {orbits.map(({ pills, r, speed, color }) => (
+          <div
+            key={r}
+            style={{
+              position: "absolute",
+              top: CX - r,
+              left: CX - r,
+              width: r * 2,
+              height: r * 2,
+              borderRadius: "50%",
+              border: `1.5px dashed ${color}44`,
+              animation: `rovo-orbit ${speed}s linear infinite`,
+            }}
+          >
+            {pills.map(({ label, Icon, angle }) => (
+              <div
+                key={label}
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: `rotate(${angle}deg) translateX(${r}px)`,
+                  width: 0,
+                  height: 0,
+                }}
+              >
+                <div
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    transform: "translateX(-50%) translateY(-50%)",
+                    animation: `rovo-counter ${speed}s linear infinite`,
+                    transformOrigin: "50% 50%",
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 5,
+                      padding: "5px 11px",
+                      borderRadius: 50,
+                      background: "rgba(255,255,255,0.92)",
+                      border: "1px solid rgba(26,26,26,0.10)",
+                      boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+                      fontFamily: FF,
+                      fontSize: 11,
+                      fontWeight: 500,
+                      color: "#1a1a1a",
+                      whiteSpace: "nowrap",
+                      backdropFilter: "blur(4px)",
+                    }}
+                  >
+                    <Icon size={11} strokeWidth={1.8} color={color} />
+                    {label}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ))}
+
+        {/* Glow behind center */}
+        <div
+          style={{
+            position: "absolute",
+            top: CX - 72,
+            left: CX - 72,
+            width: 144,
+            height: 144,
+            borderRadius: "50%",
+            background: "radial-gradient(circle, rgba(245,166,35,0.18) 0%, rgba(59,130,246,0.10) 55%, transparent 80%)",
+            filter: "blur(18px)",
+            animation: "rovo-glow 3.6s ease-in-out infinite",
+          }}
+        />
+
+        {/* Center hexagon */}
+        <motion.div
+          initial={{ scale: 0, opacity: 0 }}
+          animate={isInView ? { scale: 1, opacity: 1 } : {}}
+          transition={{ duration: 0.55, ease: [0.34, 1.56, 0.64, 1], delay: 0.3 }}
+          style={{
+            position: "absolute",
+            top: CX - 52,
+            left: CX - 52,
+            width: 104,
+            height: 104,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 4,
+          }}
+        >
+          {/* Hex shape via clip-path */}
+          <div
+            style={{
+              width: 104,
+              height: 104,
+              background: "linear-gradient(135deg, #F5A623 0%, #F09010 100%)",
+              clipPath: "polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%)",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 2,
+              boxShadow: "0 8px 28px rgba(245,166,35,0.38), 0 2px 8px rgba(0,0,0,0.12)",
+            }}
+          >
+            {/* Rovo "R" lettermark */}
+            <span style={{ fontFamily: FF, fontWeight: 800, fontSize: 26, color: "#fff", lineHeight: 1, letterSpacing: "-0.5px" }}>R</span>
+            <span style={{ fontFamily: FF, fontWeight: 600, fontSize: 8, color: "rgba(255,255,255,0.8)", letterSpacing: "0.12em", lineHeight: 1 }}>SERVICE</span>
+          </div>
+        </motion.div>
+      </motion.div>
+
+      {/* Bottom label */}
+      <motion.p
+        initial={{ opacity: 0, y: 8 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.45, ease: EASE, delay: 0.7 }}
+        style={{
+          position: "absolute",
+          bottom: 24,
+          left: 0,
+          right: 0,
+          textAlign: "center",
+          fontFamily: FF,
+          fontSize: 11,
+          color: "rgba(26,26,26,0.32)",
+          letterSpacing: "0.06em",
+        }}
+      >
+        A unified AI system evolving from core capabilities today to fully autonomous workflows across the enterprise
+      </motion.p>
+    </div>
+  );
+}
+
 function RovoServiceOverviewSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
@@ -1776,23 +1996,31 @@ function RovoServiceOverviewSection() {
       className="relative h-screen snap-start snap-always overflow-hidden flex flex-col"
       style={{ background: "#F7F7F5" }}
     >
+      {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6, ease: EASE }}
-        className="flex-1 flex items-center justify-center overflow-hidden px-8 pb-6"
+        className="flex-shrink-0 px-10 md:px-20 pt-14 pb-2"
       >
-        <img
-          src="/rovo-service-diagram.png"
-          alt="Rovo Service Capability Evolution diagram"
-          style={{
-            maxWidth: "100%",
-            maxHeight: "100%",
-            objectFit: "contain",
-            display: "block",
-          }}
-        />
+        <p
+          className="text-[10px] uppercase tracking-widest font-bold mb-1"
+          style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
+        >
+          Solution architecture
+        </p>
+        <h2
+          className="text-2xl md:text-3xl leading-tight text-[#1a1a1a]"
+          style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+        >
+          Rovo Service Capability Evolution
+        </h2>
       </motion.div>
+
+      {/* Orbital diagram */}
+      <div className="flex-1 relative overflow-hidden">
+        <OrbitalRovoSystem isInView={isInView} />
+      </div>
     </section>
   );
 }
