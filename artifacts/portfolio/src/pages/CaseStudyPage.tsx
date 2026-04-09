@@ -2707,7 +2707,7 @@ function ExperienceWalkthroughSection() {
             borderRadius: 18,
             overflow: "hidden",
             background: "#fff",
-            boxShadow: "0 8px 48px rgba(0,0,0,0.12)",
+            boxShadow: "0 24px 80px rgba(0,0,0,0.22), 0 4px 16px rgba(0,0,0,0.10)",
           }}
         >
           <div
