@@ -2604,65 +2604,70 @@ function BentofyShowcaseSection() {
           />
         ))}
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-          transition={{ duration: 0.7, ease: EASE, delay: 0.2 }}
+        <div
           style={{
             position: "absolute",
             left: "50%",
             top: "50%",
             transform: "translate(-50%, -50%)",
             width: "min(1080px, calc(100% - 160px))",
-            borderRadius: 18,
-            overflow: "hidden",
-            background: "#fff",
-            boxShadow: "0 24px 80px rgba(0,0,0,0.24)",
             zIndex: 15,
           }}
         >
-          <div
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+            transition={{ duration: 0.7, ease: EASE, delay: 0.2 }}
             style={{
-              height: 38,
-              background: "#F8FAFC",
-              borderBottom: "1px solid rgba(15,23,42,0.08)",
-              display: "flex",
-              alignItems: "center",
-              padding: "0 14px",
-              gap: 8,
+              borderRadius: 18,
+              overflow: "hidden",
+              background: "#fff",
+              boxShadow: "0 24px 80px rgba(0,0,0,0.24)",
             }}
           >
-            <div style={{ display: "flex", gap: 7 }}>
-              <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#FF5F57" }} />
-              <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#FEBC2E" }} />
-              <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#28C840" }} />
-            </div>
             <div
               style={{
-                flex: 1,
-                height: 24,
-                marginLeft: 8,
-                borderRadius: 8,
-                background: "#FFFFFF",
-              border: "none",
+                height: 38,
+                background: "#F8FAFC",
+                borderBottom: "1px solid rgba(15,23,42,0.08)",
                 display: "flex",
                 alignItems: "center",
-                padding: "0 10px",
-                color: "#94A3B8",
-                fontFamily: "'Wotfard', sans-serif",
-                fontSize: 11,
+                padding: "0 14px",
+                gap: 8,
               }}
             >
-              jira.atlassian.net
+              <div style={{ display: "flex", gap: 7 }}>
+                <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#FF5F57" }} />
+                <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#FEBC2E" }} />
+                <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#28C840" }} />
+              </div>
+              <div
+                style={{
+                  flex: 1,
+                  height: 24,
+                  marginLeft: 8,
+                  borderRadius: 8,
+                  background: "#EFEFEF",
+                  border: "none",
+                  display: "flex",
+                  alignItems: "center",
+                  padding: "0 10px",
+                  color: "#94A3B8",
+                  fontFamily: "'Wotfard', sans-serif",
+                  fontSize: 11,
+                }}
+              >
+                jira.atlassian.net
+              </div>
             </div>
-          </div>
 
-          <img
-            src={browserFrameScreenshot}
-            alt="Jira Service Management browser window"
-            style={{ display: "block", width: "100%", height: "auto" }}
-          />
-        </motion.div>
+            <img
+              src={browserFrameScreenshot}
+              alt="Jira Service Management browser window"
+              style={{ display: "block", width: "100%", height: "auto" }}
+            />
+          </motion.div>
+        </div>
 
       </div>
     </section>
