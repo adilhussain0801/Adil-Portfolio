@@ -718,13 +718,13 @@ function FrictionSlide({
                 className="text-[10px] font-bold tracking-widest uppercase text-[#1a1a1a]/40"
                 style={{ fontFamily: "'Wotfard', sans-serif" }}
               >
-                Intake
+                Ticket received
               </span>
               <span
                 className="text-[10px] font-bold tracking-widest uppercase"
                 style={{ color: p.accentColor, fontFamily: "'Wotfard', sans-serif" }}
               >
-                Resolved
+                Ticket resolved
               </span>
             </div>
             <div className="relative h-2 rounded-full overflow-hidden bg-[#E8E4DE]">
