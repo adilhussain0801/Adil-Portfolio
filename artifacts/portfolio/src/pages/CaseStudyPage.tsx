@@ -2515,12 +2515,12 @@ function BentofyShowcaseSection() {
         <polygon points={botPts} fill={PAGE_BG} />
       </svg>
 
-      {/* Concentric rings */}
+      {/* Concentric rings — matches bentofy.app ring style */}
       {RINGS.map((r, i) => (
         <motion.div
           key={r}
           initial={{ scale: 0, opacity: 0 }}
-          animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+          animate={isInView ? { scale: 1, opacity: 0.18 } : { scale: 0, opacity: 0 }}
           transition={{ duration: 1.0, ease: EASE, delay: 0.04 + i * 0.11 }}
           style={{
             position: "absolute",
@@ -2530,8 +2530,9 @@ function BentofyShowcaseSection() {
             height: r * 2,
             marginLeft: -r,
             marginTop: -r,
-            borderRadius: "50%",
-            border: `1.5px solid rgba(255,255,255,${Math.max(0.08, 0.24 - i * 0.03)})`,
+            borderRadius: "9999px",
+            border: "2px solid rgba(180, 210, 255, 0.8)",
+            boxShadow: "0 0 40px rgba(180, 210, 255, 0.7), 0 0 80px rgba(180, 210, 255, 0.5)",
             animation: isInView ? `ring-breathe ${3.4 + i * 0.35}s ease-in-out ${i * 0.28}s infinite` : "none",
             pointerEvents: "none",
           }}
