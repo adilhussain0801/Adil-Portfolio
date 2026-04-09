@@ -1,7 +1,7 @@
 import { useParams, Link } from "wouter";
 import { useRef, useEffect, useState, useMemo, type RefObject } from "react";
 import { motion, useInView, AnimatePresence, useMotionValue, useTransform, animate } from "framer-motion";
-import { ArrowLeft, ArrowRight, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare, ChevronLeft, ChevronRight, X, CheckCircle2, Settings, Banknote, Layers } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare, ChevronLeft, ChevronRight, X, CheckCircle2, Settings, Banknote, Layers, Users, BookOpen, Bot, GraduationCap, Briefcase, Link2, ArrowLeftRight, BarChart2, Building2 } from "lucide-react";
 import { getCaseStudy, getNextCaseStudy, getAllCaseStudies, type CaseStudy } from "@/data/caseStudies";
 import NotFound from "@/pages/not-found";
 
@@ -1766,131 +1766,168 @@ function DesignPrinciplesSection() {
 }
 
 function RovoServiceOverviewSection() {
-  const modes = [
-    {
-      label: "Assistive",
-      icon: (c: string) => <Search size={20} color={c} strokeWidth={1.6} />,
-      accentColor: "#6366F1",
-      cardBg: "#F0F0FE",
-      borderColor: "rgba(99,102,241,0.2)",
-      title: "Agent-led, AI-enhanced",
-      description: "Rovo surfaces relevant context, similar past resolutions, and recommended actions — while the agent stays in full control of every decision.",
-      callout: "Best when building initial AI confidence",
-    },
-    {
-      label: "Supervised",
-      icon: (c: string) => <CheckCircle2 size={20} color={c} strokeWidth={1.6} />,
-      accentColor: "#E8654B",
-      cardBg: "#FEF0EC",
-      borderColor: "rgba(232,101,75,0.2)",
-      title: "AI-proposed, human-approved",
-      description: "Rovo generates a full resolution plan and waits for agent sign-off before executing — balancing speed with meaningful human oversight at every step.",
-      callout: "The default mode for most service teams",
-    },
-    {
-      label: "Autonomous",
-      icon: (c: string) => <Zap size={20} color={c} strokeWidth={1.6} />,
-      accentColor: "#10B981",
-      cardBg: "#ECFDF5",
-      borderColor: "rgba(16,185,129,0.2)",
-      title: "Detect, plan, resolve",
-      description: "Rovo handles the full service lifecycle end-to-end — from triaging the incoming request to executing a resolution plan and closing the ticket.",
-      callout: "For high-volume, well-understood request types",
-    },
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+
+  const SVG_W = 1000;
+  const SVG_H = 590;
+  const cx = 500;
+  const cy = 590;
+
+  const OUTER_R = 370;
+  const MID_R = 268;
+  const INNER_R = 172;
+
+  function pos(r: number, angleDeg: number) {
+    const rad = (angleDeg * Math.PI) / 180;
+    return { x: cx + r * Math.cos(rad), y: cy - r * Math.sin(rad) };
+  }
+
+  const arcPath = (r: number) =>
+    `M ${cx - r} ${cy} A ${r} ${r} 0 0 0 ${cx + r} ${cy}`;
+
+  type LabelItem = {
+    label: string;
+    Icon: React.ComponentType<{ size?: number; strokeWidth?: number }>;
+    x: number;
+    y: number;
+    delay: number;
+  };
+
+  const items: LabelItem[] = [
+    { label: "Internal mobility",                 Icon: ArrowLeftRight, delay: 0.05, ...pos(OUTER_R, 127) },
+    { label: "Alumni relations",                  Icon: Link2,          delay: 0.08, ...pos(OUTER_R, 52)  },
+    { label: "Partner onboarding and management", Icon: Users,          delay: 0.11, ...pos(MID_R,   158) },
+    { label: "Preboarding of new hires",          Icon: Briefcase,      delay: 0.14, ...pos(MID_R,   116) },
+    { label: "Employee onboarding",               Icon: Building2,      delay: 0.17, ...pos(MID_R,   62)  },
+    { label: "Performance management",            Icon: BarChart2,      delay: 0.20, ...pos(MID_R,   23)  },
+    { label: "Learning and development",          Icon: GraduationCap,  delay: 0.23, ...pos(INNER_R, 174) },
+    { label: "Work item resolution",              Icon: Inbox,          delay: 0.26, ...pos(INNER_R, 150) },
+    { label: "Service triage",                    Icon: Layers,         delay: 0.29, ...pos(INNER_R, 128) },
+    { label: "Service request helper",            Icon: MessageSquare,  delay: 0.32, ...pos(INNER_R, 74)  },
+    { label: "Internal knowledge",                Icon: BookOpen,       delay: 0.35, ...pos(INNER_R, 43)  },
+    { label: "Rovo custom agent",                 Icon: Bot,            delay: 0.38, x: 355, y: 578       },
+    { label: "Virtual service agent",             Icon: Bot,            delay: 0.41, x: 648, y: 578       },
   ];
 
   return (
     <section
+      ref={sectionRef}
       id="section-rovo-overview"
-      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      className="relative h-screen snap-start snap-always overflow-hidden flex flex-col"
       style={{ background: "#F7F7F5" }}
     >
-      <div className="max-w-5xl mx-auto w-full px-8 md:px-20 flex flex-col gap-8">
-        <SnapReveal>
-          <div className="flex flex-col gap-3">
-            <p
-              className="text-[10px] uppercase tracking-widest font-bold text-[#E8654B]"
-              style={{ fontFamily: "'Wotfard', sans-serif" }}
-            >
-              Solution architecture
-            </p>
-            <h2
-              className="text-2xl md:text-3xl leading-tight text-[#1a1a1a]"
-              style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
-            >
-              What Rovo Service encapsulates
-            </h2>
-            <p
-              className="text-sm leading-relaxed text-[#1a1a1a]/70 max-w-xl"
-              style={{ fontFamily: "'Wotfard', sans-serif" }}
-            >
-              Rovo Service isn't a single operating mode — it's a configurable spectrum. Teams choose how much autonomy to delegate based on request type, risk tolerance, and confidence in AI.
-            </p>
-          </div>
-        </SnapReveal>
+      <div className="max-w-6xl mx-auto w-full px-10 md:px-20 pt-16 flex flex-col flex-1 min-h-0">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease: EASE }}
+          className="flex-shrink-0 mb-4"
+        >
+          <p
+            className="text-[10px] uppercase tracking-widest font-bold text-[#E8654B] mb-1"
+            style={{ fontFamily: "'Wotfard', sans-serif" }}
+          >
+            Solution architecture
+          </p>
+          <h2
+            className="text-2xl md:text-3xl leading-tight text-[#1a1a1a]"
+            style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+          >
+            Rovo Service
+          </h2>
+        </motion.div>
 
-        <SnapReveal delay={0.08}>
-          <div className="flex items-center gap-3 w-full">
-            <span
-              className="text-[9px] font-bold tracking-widest uppercase text-[#1a1a1a]/30 flex-shrink-0"
-              style={{ fontFamily: "'Wotfard', sans-serif" }}
+        <div className="relative flex-1 min-h-0">
+          <div className="absolute inset-0">
+            <svg
+              viewBox={`0 0 ${SVG_W} ${SVG_H}`}
+              className="w-full h-full"
+              style={{ overflow: "visible" }}
+              preserveAspectRatio="xMidYMax meet"
             >
-              Manual
-            </span>
-            <div
-              className="flex-1 h-[3px] rounded-full"
-              style={{ background: "linear-gradient(to right, #6366F1, #E8654B, #10B981)" }}
-            />
-            <span
-              className="text-[9px] font-bold tracking-widest uppercase text-[#1a1a1a]/30 flex-shrink-0"
-              style={{ fontFamily: "'Wotfard', sans-serif" }}
-            >
-              Autonomous
-            </span>
-          </div>
-        </SnapReveal>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {modes.map((m, i) => (
-            <SnapReveal key={i} delay={0.15 + i * 0.1}>
-              <div
-                className="rounded-2xl flex flex-col p-6 h-full"
-                style={{ background: m.cardBg, border: `1.5px solid ${m.borderColor}` }}
+              <motion.path
+                d={arcPath(OUTER_R)}
+                fill="none"
+                stroke="#F5A623"
+                strokeWidth={1.5}
+                strokeDasharray="4 7"
+                strokeLinecap="round"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
+                transition={{ duration: 1.2, ease: EASE, delay: 0.1 }}
+              />
+              <motion.path
+                d={arcPath(MID_R)}
+                fill="none"
+                stroke="#8B5CF6"
+                strokeWidth={1.5}
+                strokeDasharray="4 7"
+                strokeLinecap="round"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
+                transition={{ duration: 1.0, ease: EASE, delay: 0.2 }}
+              />
+              <motion.path
+                d={arcPath(INNER_R)}
+                fill="none"
+                stroke="#3B82F6"
+                strokeWidth={1.5}
+                strokeDasharray="4 7"
+                strokeLinecap="round"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
+                transition={{ duration: 0.8, ease: EASE, delay: 0.3 }}
+              />
+              <motion.g
+                initial={{ scale: 0.6, opacity: 0 }}
+                animate={isInView ? { scale: 1, opacity: 1 } : {}}
+                transition={{ duration: 0.5, ease: EASE, delay: 0.4 }}
+                style={{ transformOrigin: `${cx}px ${cy}px` }}
               >
-                <div className="flex items-center justify-between mb-5">
-                  <div className="rounded-xl p-2.5" style={{ background: `${m.accentColor}18` }}>
-                    {m.icon(m.accentColor)}
-                  </div>
-                  <span
-                    className="text-[9px] font-bold tracking-[0.14em] uppercase px-2.5 py-1 rounded-full"
-                    style={{ background: `${m.accentColor}16`, color: m.accentColor, fontFamily: "'Wotfard', sans-serif" }}
-                  >
-                    {m.label}
-                  </span>
-                </div>
-                <h3
-                  className="text-base font-bold leading-snug text-[#1a1a1a] mb-2"
-                  style={{ fontFamily: "'Wotfard', sans-serif" }}
+                <polygon
+                  points={`${cx},${cy - 44} ${cx + 38},${cy - 22} ${cx + 38},${cy + 22} ${cx},${cy + 44} ${cx - 38},${cy + 22} ${cx - 38},${cy - 22}`}
+                  fill="#F5A623"
+                />
+                <path
+                  d={`M ${cx - 12},${cy - 20} L ${cx - 12},${cy + 4} Q ${cx - 12},${cy + 14} ${cx},${cy + 14} Q ${cx + 12},${cy + 14} ${cx + 12},${cy + 4} L ${cx + 12},${cy - 20} M ${cx - 12},${cy - 8} L ${cx + 12},${cy - 8}`}
+                  fill="none"
+                  stroke="#1a1a1a"
+                  strokeWidth="4.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </motion.g>
+            </svg>
+
+            {items.map((item, i) => {
+              const xPct = (item.x / SVG_W) * 100;
+              const yPct = (item.y / SVG_H) * 100;
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.85 }}
+                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ duration: 0.4, ease: EASE, delay: item.delay }}
+                  className="absolute flex items-center gap-1.5 px-2.5 py-[5px] rounded-full text-[11px] font-medium whitespace-nowrap"
+                  style={{
+                    left: `${xPct}%`,
+                    top: `${yPct}%`,
+                    transform: "translate(-50%, -50%)",
+                    background: "#ffffff",
+                    border: "1px solid rgba(26,26,26,0.11)",
+                    color: "#1a1a1a",
+                    fontFamily: "'Wotfard', sans-serif",
+                    boxShadow: "0 1px 6px rgba(0,0,0,0.07)",
+                    pointerEvents: "none",
+                  }}
                 >
-                  {m.title}
-                </h3>
-                <p
-                  className="text-sm leading-relaxed text-[#1a1a1a]/60 flex-1"
-                  style={{ fontFamily: "'Wotfard', sans-serif" }}
-                >
-                  {m.description}
-                </p>
-                <div className="mt-4 rounded-xl px-3 py-2.5" style={{ background: "rgba(0,0,0,0.04)" }}>
-                  <p
-                    className="text-[11px] leading-relaxed font-semibold"
-                    style={{ color: m.accentColor, fontFamily: "'Wotfard', sans-serif" }}
-                  >
-                    {m.callout}
-                  </p>
-                </div>
-              </div>
-            </SnapReveal>
-          ))}
+                  <item.Icon size={11} strokeWidth={1.8} />
+                  {item.label}
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
