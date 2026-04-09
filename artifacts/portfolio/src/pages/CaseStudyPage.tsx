@@ -740,18 +740,18 @@ function FrictionSlide({
               </span>
             </div>
             <div className="relative">
-              {/* SLA breach marker — label + line ending exactly at bar top */}
+              {/* SLA breach marker — label above bar, line drops to bar top */}
               <div
                 className="absolute z-10 flex flex-col items-center"
-                style={{ left: "65%", top: -16, transform: "translateX(-50%)" }}
+                style={{ left: "65%", bottom: "100%", paddingBottom: 2, transform: "translateX(-50%)" }}
               >
                 <span
                   className="text-[9px] font-bold tracking-widest uppercase whitespace-nowrap"
-                  style={{ color: "#ef4444", fontFamily: "'Wotfard', sans-serif", opacity: 0.75, lineHeight: 1 }}
+                  style={{ color: "#ef4444", fontFamily: "'Wotfard', sans-serif", opacity: 0.75, lineHeight: 1, marginBottom: 3 }}
                 >
                   SLA breach
                 </span>
-                <div style={{ width: 1, height: 8, marginTop: 4, background: "#ef4444", opacity: 0.4 }} />
+                <div style={{ width: 1, height: 10, background: "#ef4444", opacity: 0.45 }} />
               </div>
 
               <div className="relative h-2 rounded-full overflow-hidden bg-[#E8E4DE]">
