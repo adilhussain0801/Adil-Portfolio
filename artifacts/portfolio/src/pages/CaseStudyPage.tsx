@@ -1765,6 +1765,138 @@ function DesignPrinciplesSection() {
   );
 }
 
+function RovoServiceOverviewSection() {
+  const modes = [
+    {
+      label: "Assistive",
+      icon: (c: string) => <Search size={20} color={c} strokeWidth={1.6} />,
+      accentColor: "#6366F1",
+      cardBg: "#F0F0FE",
+      borderColor: "rgba(99,102,241,0.2)",
+      title: "Agent-led, AI-enhanced",
+      description: "Rovo surfaces relevant context, similar past resolutions, and recommended actions — while the agent stays in full control of every decision.",
+      callout: "Best when building initial AI confidence",
+    },
+    {
+      label: "Supervised",
+      icon: (c: string) => <CheckCircle2 size={20} color={c} strokeWidth={1.6} />,
+      accentColor: "#E8654B",
+      cardBg: "#FEF0EC",
+      borderColor: "rgba(232,101,75,0.2)",
+      title: "AI-proposed, human-approved",
+      description: "Rovo generates a full resolution plan and waits for agent sign-off before executing — balancing speed with meaningful human oversight at every step.",
+      callout: "The default mode for most service teams",
+    },
+    {
+      label: "Autonomous",
+      icon: (c: string) => <Zap size={20} color={c} strokeWidth={1.6} />,
+      accentColor: "#10B981",
+      cardBg: "#ECFDF5",
+      borderColor: "rgba(16,185,129,0.2)",
+      title: "Detect, plan, resolve",
+      description: "Rovo handles the full service lifecycle end-to-end — from triaging the incoming request to executing a resolution plan and closing the ticket.",
+      callout: "For high-volume, well-understood request types",
+    },
+  ];
+
+  return (
+    <section
+      id="section-rovo-overview"
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#F7F7F5" }}
+    >
+      <div className="max-w-5xl mx-auto w-full px-8 md:px-20 flex flex-col gap-8">
+        <SnapReveal>
+          <div className="flex flex-col gap-3">
+            <p
+              className="text-[10px] uppercase tracking-widest font-bold text-[#E8654B]"
+              style={{ fontFamily: "'Wotfard', sans-serif" }}
+            >
+              Solution architecture
+            </p>
+            <h2
+              className="text-2xl md:text-3xl leading-tight text-[#1a1a1a]"
+              style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+            >
+              What Rovo Service encapsulates
+            </h2>
+            <p
+              className="text-sm leading-relaxed text-[#1a1a1a]/70 max-w-xl"
+              style={{ fontFamily: "'Wotfard', sans-serif" }}
+            >
+              Rovo Service isn't a single operating mode — it's a configurable spectrum. Teams choose how much autonomy to delegate based on request type, risk tolerance, and confidence in AI.
+            </p>
+          </div>
+        </SnapReveal>
+
+        <SnapReveal delay={0.08}>
+          <div className="flex items-center gap-3 w-full">
+            <span
+              className="text-[9px] font-bold tracking-widest uppercase text-[#1a1a1a]/30 flex-shrink-0"
+              style={{ fontFamily: "'Wotfard', sans-serif" }}
+            >
+              Manual
+            </span>
+            <div
+              className="flex-1 h-[3px] rounded-full"
+              style={{ background: "linear-gradient(to right, #6366F1, #E8654B, #10B981)" }}
+            />
+            <span
+              className="text-[9px] font-bold tracking-widest uppercase text-[#1a1a1a]/30 flex-shrink-0"
+              style={{ fontFamily: "'Wotfard', sans-serif" }}
+            >
+              Autonomous
+            </span>
+          </div>
+        </SnapReveal>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {modes.map((m, i) => (
+            <SnapReveal key={i} delay={0.15 + i * 0.1}>
+              <div
+                className="rounded-2xl flex flex-col p-6 h-full"
+                style={{ background: m.cardBg, border: `1.5px solid ${m.borderColor}` }}
+              >
+                <div className="flex items-center justify-between mb-5">
+                  <div className="rounded-xl p-2.5" style={{ background: `${m.accentColor}18` }}>
+                    {m.icon(m.accentColor)}
+                  </div>
+                  <span
+                    className="text-[9px] font-bold tracking-[0.14em] uppercase px-2.5 py-1 rounded-full"
+                    style={{ background: `${m.accentColor}16`, color: m.accentColor, fontFamily: "'Wotfard', sans-serif" }}
+                  >
+                    {m.label}
+                  </span>
+                </div>
+                <h3
+                  className="text-base font-bold leading-snug text-[#1a1a1a] mb-2"
+                  style={{ fontFamily: "'Wotfard', sans-serif" }}
+                >
+                  {m.title}
+                </h3>
+                <p
+                  className="text-sm leading-relaxed text-[#1a1a1a]/60 flex-1"
+                  style={{ fontFamily: "'Wotfard', sans-serif" }}
+                >
+                  {m.description}
+                </p>
+                <div className="mt-4 rounded-xl px-3 py-2.5" style={{ background: "rgba(0,0,0,0.04)" }}>
+                  <p
+                    className="text-[11px] leading-relaxed font-semibold"
+                    style={{ color: m.accentColor, fontFamily: "'Wotfard', sans-serif" }}
+                  >
+                    {m.callout}
+                  </p>
+                </div>
+              </div>
+            </SnapReveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function EarlyStageConceptsSection() {
   const wallRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(wallRef, { once: true, amount: 0.1 });
@@ -2725,6 +2857,7 @@ export default function CaseStudyPage() {
         <ProcessSection study={study} />
         {study.id === 4 && <EmergingThemesSection />}
         {study.id === 4 && <DesignPrinciplesSection />}
+        {study.id === 4 && <RovoServiceOverviewSection />}
         {study.id === 4 && <EarlyStageConceptsSection />}
         <SolutionSection study={study} />
         <ImpactSection study={study} />
