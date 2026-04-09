@@ -1770,21 +1770,22 @@ function RovoServiceOverviewSection() {
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
   const SVG_W = 1000;
-  const SVG_H = 590;
+  const SVG_H = 560;
   const cx = 500;
-  const cy = 590;
+  const cy = 558;
 
-  const OUTER_R = 370;
-  const MID_R = 268;
-  const INNER_R = 172;
+  const OUTER_R = 360;
+  const MID_R = 260;
+  const INNER_R = 168;
 
   function pos(r: number, angleDeg: number) {
     const rad = (angleDeg * Math.PI) / 180;
     return { x: cx + r * Math.cos(rad), y: cy - r * Math.sin(rad) };
   }
 
+  // sweep=1 (clockwise in SVG) draws the arc going UPWARD — the upper semicircle
   const arcPath = (r: number) =>
-    `M ${cx - r} ${cy} A ${r} ${r} 0 0 0 ${cx + r} ${cy}`;
+    `M ${cx - r} ${cy} A ${r} ${r} 0 0 1 ${cx + r} ${cy}`;
 
   type LabelItem = {
     label: string;
@@ -1797,17 +1798,17 @@ function RovoServiceOverviewSection() {
   const items: LabelItem[] = [
     { label: "Internal mobility",                 Icon: ArrowLeftRight, delay: 0.05, ...pos(OUTER_R, 127) },
     { label: "Alumni relations",                  Icon: Link2,          delay: 0.08, ...pos(OUTER_R, 52)  },
-    { label: "Partner onboarding and management", Icon: Users,          delay: 0.11, ...pos(MID_R,   158) },
+    { label: "Partner onboarding and management", Icon: Users,          delay: 0.11, ...pos(MID_R,   160) },
     { label: "Preboarding of new hires",          Icon: Briefcase,      delay: 0.14, ...pos(MID_R,   116) },
     { label: "Employee onboarding",               Icon: Building2,      delay: 0.17, ...pos(MID_R,   62)  },
-    { label: "Performance management",            Icon: BarChart2,      delay: 0.20, ...pos(MID_R,   23)  },
+    { label: "Performance management",            Icon: BarChart2,      delay: 0.20, ...pos(MID_R,   22)  },
     { label: "Learning and development",          Icon: GraduationCap,  delay: 0.23, ...pos(INNER_R, 174) },
-    { label: "Work item resolution",              Icon: Inbox,          delay: 0.26, ...pos(INNER_R, 150) },
-    { label: "Service triage",                    Icon: Layers,         delay: 0.29, ...pos(INNER_R, 128) },
-    { label: "Service request helper",            Icon: MessageSquare,  delay: 0.32, ...pos(INNER_R, 74)  },
-    { label: "Internal knowledge",                Icon: BookOpen,       delay: 0.35, ...pos(INNER_R, 43)  },
-    { label: "Rovo custom agent",                 Icon: Bot,            delay: 0.38, x: 355, y: 578       },
-    { label: "Virtual service agent",             Icon: Bot,            delay: 0.41, x: 648, y: 578       },
+    { label: "Work item resolution",              Icon: Inbox,          delay: 0.26, ...pos(INNER_R, 148) },
+    { label: "Service triage",                    Icon: Layers,         delay: 0.29, ...pos(INNER_R, 126) },
+    { label: "Service request helper",            Icon: MessageSquare,  delay: 0.32, ...pos(INNER_R, 76)  },
+    { label: "Internal knowledge",                Icon: BookOpen,       delay: 0.35, ...pos(INNER_R, 42)  },
+    { label: "Rovo custom agent",                 Icon: Bot,            delay: 0.38, x: 356, y: 546       },
+    { label: "Virtual service agent",             Icon: Bot,            delay: 0.41, x: 644, y: 546       },
   ];
 
   return (
@@ -1817,118 +1818,107 @@ function RovoServiceOverviewSection() {
       className="relative h-screen snap-start snap-always overflow-hidden flex flex-col"
       style={{ background: "#F7F7F5" }}
     >
-      <div className="max-w-6xl mx-auto w-full px-10 md:px-20 pt-16 flex flex-col flex-1 min-h-0">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: EASE }}
-          className="flex-shrink-0 mb-4"
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6, ease: EASE }}
+        className="flex-shrink-0 px-10 md:px-20 pt-16 pb-2"
+      >
+        <p
+          className="text-[10px] uppercase tracking-widest font-bold text-[#E8654B] mb-1"
+          style={{ fontFamily: "'Wotfard', sans-serif" }}
         >
-          <p
-            className="text-[10px] uppercase tracking-widest font-bold text-[#E8654B] mb-1"
-            style={{ fontFamily: "'Wotfard', sans-serif" }}
-          >
-            Solution architecture
-          </p>
-          <h2
-            className="text-2xl md:text-3xl leading-tight text-[#1a1a1a]"
-            style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
-          >
-            Rovo Service
-          </h2>
-        </motion.div>
+          Solution architecture
+        </p>
+        <h2
+          className="text-2xl md:text-3xl leading-tight text-[#1a1a1a]"
+          style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+        >
+          Rovo Service
+        </h2>
+      </motion.div>
 
-        <div className="relative flex-1 min-h-0">
-          <div className="absolute inset-0">
-            <svg
-              viewBox={`0 0 ${SVG_W} ${SVG_H}`}
-              className="w-full h-full"
-              style={{ overflow: "visible" }}
-              preserveAspectRatio="xMidYMax meet"
+      <div className="flex-1 relative overflow-hidden">
+        <svg
+          viewBox={`0 0 ${SVG_W} ${SVG_H}`}
+          style={{ width: "100%", height: "100%" }}
+          preserveAspectRatio="xMidYMax meet"
+        >
+          <motion.path
+            d={arcPath(OUTER_R)}
+            fill="none" stroke="#F5A623" strokeWidth={1.5} strokeDasharray="4 8" strokeLinecap="round"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
+            transition={{ duration: 1.4, ease: EASE, delay: 0.05 }}
+          />
+          <motion.path
+            d={arcPath(MID_R)}
+            fill="none" stroke="#8B5CF6" strokeWidth={1.5} strokeDasharray="4 8" strokeLinecap="round"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
+            transition={{ duration: 1.1, ease: EASE, delay: 0.15 }}
+          />
+          <motion.path
+            d={arcPath(INNER_R)}
+            fill="none" stroke="#3B82F6" strokeWidth={1.5} strokeDasharray="4 8" strokeLinecap="round"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
+            transition={{ duration: 0.85, ease: EASE, delay: 0.25 }}
+          />
+
+          <motion.g
+            initial={{ scale: 0.5, opacity: 0 }}
+            animate={isInView ? { scale: 1, opacity: 1 } : {}}
+            transition={{ duration: 0.45, ease: EASE, delay: 0.35 }}
+            style={{ transformOrigin: `${cx}px ${cy}px` }}
+          >
+            <polygon
+              points={`${cx},${cy - 46} ${cx + 40},${cy - 23} ${cx + 40},${cy + 23} ${cx},${cy + 46} ${cx - 40},${cy + 23} ${cx - 40},${cy - 23}`}
+              fill="#F5A623"
+            />
+            <path
+              d={`M ${cx - 13},${cy - 22} L ${cx - 13},${cy + 5} Q ${cx - 13},${cy + 15} ${cx},${cy + 15} Q ${cx + 13},${cy + 15} ${cx + 13},${cy + 5} L ${cx + 13},${cy - 22} M ${cx - 13},${cy - 7} L ${cx + 13},${cy - 7}`}
+              fill="none" stroke="#1a1a1a" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"
+            />
+          </motion.g>
+
+          {items.map((item, i) => (
+            <foreignObject
+              key={i}
+              x={item.x}
+              y={item.y}
+              width="1"
+              height="1"
+              overflow="visible"
             >
-              <motion.path
-                d={arcPath(OUTER_R)}
-                fill="none"
-                stroke="#F5A623"
-                strokeWidth={1.5}
-                strokeDasharray="4 7"
-                strokeLinecap="round"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-                transition={{ duration: 1.2, ease: EASE, delay: 0.1 }}
-              />
-              <motion.path
-                d={arcPath(MID_R)}
-                fill="none"
-                stroke="#8B5CF6"
-                strokeWidth={1.5}
-                strokeDasharray="4 7"
-                strokeLinecap="round"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-                transition={{ duration: 1.0, ease: EASE, delay: 0.2 }}
-              />
-              <motion.path
-                d={arcPath(INNER_R)}
-                fill="none"
-                stroke="#3B82F6"
-                strokeWidth={1.5}
-                strokeDasharray="4 7"
-                strokeLinecap="round"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-                transition={{ duration: 0.8, ease: EASE, delay: 0.3 }}
-              />
-              <motion.g
-                initial={{ scale: 0.6, opacity: 0 }}
-                animate={isInView ? { scale: 1, opacity: 1 } : {}}
-                transition={{ duration: 0.5, ease: EASE, delay: 0.4 }}
-                style={{ transformOrigin: `${cx}px ${cy}px` }}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.35, ease: EASE, delay: item.delay }}
+                style={{
+                  position: "absolute",
+                  transform: "translate(-50%, -50%)",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 5,
+                  padding: "4px 10px",
+                  borderRadius: 50,
+                  background: "white",
+                  fontSize: 11,
+                  fontFamily: "'Wotfard', sans-serif",
+                  fontWeight: 500,
+                  border: "1px solid rgba(26,26,26,0.11)",
+                  whiteSpace: "nowrap",
+                  boxShadow: "0 1px 6px rgba(0,0,0,0.07)",
+                  color: "#1a1a1a",
+                }}
               >
-                <polygon
-                  points={`${cx},${cy - 44} ${cx + 38},${cy - 22} ${cx + 38},${cy + 22} ${cx},${cy + 44} ${cx - 38},${cy + 22} ${cx - 38},${cy - 22}`}
-                  fill="#F5A623"
-                />
-                <path
-                  d={`M ${cx - 12},${cy - 20} L ${cx - 12},${cy + 4} Q ${cx - 12},${cy + 14} ${cx},${cy + 14} Q ${cx + 12},${cy + 14} ${cx + 12},${cy + 4} L ${cx + 12},${cy - 20} M ${cx - 12},${cy - 8} L ${cx + 12},${cy - 8}`}
-                  fill="none"
-                  stroke="#1a1a1a"
-                  strokeWidth="4.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </motion.g>
-            </svg>
-
-            {items.map((item, i) => {
-              const xPct = (item.x / SVG_W) * 100;
-              const yPct = (item.y / SVG_H) * 100;
-              return (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, scale: 0.85 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.4, ease: EASE, delay: item.delay }}
-                  className="absolute flex items-center gap-1.5 px-2.5 py-[5px] rounded-full text-[11px] font-medium whitespace-nowrap"
-                  style={{
-                    left: `${xPct}%`,
-                    top: `${yPct}%`,
-                    transform: "translate(-50%, -50%)",
-                    background: "#ffffff",
-                    border: "1px solid rgba(26,26,26,0.11)",
-                    color: "#1a1a1a",
-                    fontFamily: "'Wotfard', sans-serif",
-                    boxShadow: "0 1px 6px rgba(0,0,0,0.07)",
-                    pointerEvents: "none",
-                  }}
-                >
-                  <item.Icon size={11} strokeWidth={1.8} />
-                  {item.label}
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
+                <item.Icon size={11} strokeWidth={1.8} />
+                {item.label}
+              </motion.div>
+            </foreignObject>
+          ))}
+        </svg>
       </div>
     </section>
   );
