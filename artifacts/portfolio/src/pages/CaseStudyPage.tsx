@@ -2697,7 +2697,7 @@ function CosmicWaveBackground() {
           width: "55vw",
           height: "55vw",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(59,130,246,0.22) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(59,130,246,0.38) 0%, transparent 70%)",
           filter: "blur(70px)",
         }}
       />
@@ -2711,7 +2711,7 @@ function CosmicWaveBackground() {
           width: "50vw",
           height: "50vw",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(139,92,246,0.18) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(139,92,246,0.32) 0%, transparent 70%)",
           filter: "blur(80px)",
         }}
       />
@@ -2725,7 +2725,7 @@ function CosmicWaveBackground() {
           width: "45vw",
           height: "45vw",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(245,158,11,0.14) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(245,158,11,0.28) 0%, transparent 70%)",
           filter: "blur(70px)",
         }}
       />
