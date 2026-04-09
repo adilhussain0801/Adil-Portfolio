@@ -2675,60 +2675,111 @@ function BentofyShowcaseSection() {
   );
 }
 
+const COSMIC_WAVE_PATHS = (() => {
+  const W = 1440, H = 900, periods = 3.5, steps = 120, amp = 52;
+  const len = Math.sqrt(W * W + H * H);
+  const px = H / len, py = W / len;
+  return [-160, -80, 0, 80, 160].map(off => {
+    const pts: string[] = [];
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const wave = Math.sin(t * periods * Math.PI * 2) * amp + off;
+      const x = (t * W + px * wave).toFixed(1);
+      const y = (H * (1 - t) + py * wave).toFixed(1);
+      pts.push(i === 0 ? `M ${x} ${y}` : `L ${x} ${y}`);
+    }
+    return pts.join(" ");
+  });
+})();
+
 function CosmicWaveBackground() {
   return (
     <div
       aria-hidden
-      style={{
-        position: "absolute",
-        inset: 0,
-        overflow: "hidden",
-        pointerEvents: "none",
-        zIndex: 0,
-      }}
+      style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none", zIndex: 0 }}
     >
+      {/* ── Indigo blob – top-left ── */}
       <motion.div
-        animate={{ x: [0, 140, -80, 60, 0], y: [0, -100, 80, -40, 0] }}
+        animate={{ x: [0, 130, -70, 50, 0], y: [0, -90, 70, -30, 0] }}
         transition={{ duration: 26, repeat: Infinity, ease: "linear" }}
         style={{
-          position: "absolute",
-          left: "5%",
-          top: "5%",
-          width: "55vw",
-          height: "55vw",
-          borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(59,130,246,0.38) 0%, transparent 70%)",
-          filter: "blur(70px)",
+          position: "absolute", left: "0%", top: "0%",
+          width: "62vw", height: "62vw", borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(99,102,241,0.50) 0%, rgba(59,130,246,0.28) 45%, transparent 70%)",
+          filter: "blur(55px)",
         }}
       />
+      {/* ── Violet/magenta blob – right ── */}
       <motion.div
-        animate={{ x: [0, -100, 60, -30, 0], y: [0, 80, -60, 100, 0] }}
+        animate={{ x: [0, -90, 55, -25, 0], y: [0, 75, -55, 95, 0] }}
         transition={{ duration: 34, repeat: Infinity, ease: "linear" }}
         style={{
-          position: "absolute",
-          right: "5%",
-          top: "30%",
-          width: "50vw",
-          height: "50vw",
-          borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(139,92,246,0.32) 0%, transparent 70%)",
-          filter: "blur(80px)",
+          position: "absolute", right: "-5%", top: "15%",
+          width: "58vw", height: "58vw", borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(139,92,246,0.48) 0%, rgba(217,70,239,0.24) 45%, transparent 70%)",
+          filter: "blur(65px)",
         }}
       />
+      {/* ── Cyan blob – bottom ── */}
       <motion.div
-        animate={{ x: [0, 80, -120, 40, 0], y: [0, 60, 120, -80, 0] }}
+        animate={{ x: [0, 70, -110, 35, 0], y: [0, 55, 110, -65, 0] }}
         transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
         style={{
-          position: "absolute",
-          left: "30%",
-          bottom: "5%",
-          width: "45vw",
-          height: "45vw",
-          borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(245,158,11,0.28) 0%, transparent 70%)",
-          filter: "blur(70px)",
+          position: "absolute", left: "15%", bottom: "-10%",
+          width: "54vw", height: "54vw", borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(6,182,212,0.38) 0%, rgba(59,130,246,0.22) 45%, transparent 70%)",
+          filter: "blur(60px)",
         }}
       />
+      {/* ── Pink accent blob – centre ── */}
+      <motion.div
+        animate={{ x: [0, -55, 80, -35, 0], y: [0, -65, 35, 75, 0] }}
+        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+        style={{
+          position: "absolute", left: "40%", top: "35%",
+          width: "42vw", height: "42vw", borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(236,72,153,0.28) 0%, transparent 70%)",
+          filter: "blur(75px)",
+        }}
+      />
+
+      {/* ── Diagonal wave lines ── */}
+      <svg
+        viewBox="0 0 1440 900"
+        preserveAspectRatio="xMidYMid slice"
+        style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
+      >
+        <defs>
+          <linearGradient id="cwg1" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%"   stopColor="#3B82F6" stopOpacity="0" />
+            <stop offset="35%"  stopColor="#8B5CF6" stopOpacity="0.55" />
+            <stop offset="65%"  stopColor="#06B6D4" stopOpacity="0.45" />
+            <stop offset="100%" stopColor="#3B82F6" stopOpacity="0" />
+          </linearGradient>
+          <linearGradient id="cwg2" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%"   stopColor="#EC4899" stopOpacity="0" />
+            <stop offset="50%"  stopColor="#8B5CF6" stopOpacity="0.40" />
+            <stop offset="100%" stopColor="#06B6D4" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+        {COSMIC_WAVE_PATHS.map((d, i) => {
+          const isMid = i === 2;
+          const opacity = 0.65 - Math.abs(i - 2) * 0.12;
+          return (
+            <motion.path
+              key={i}
+              d={d}
+              stroke={i % 2 === 0 ? "url(#cwg1)" : "url(#cwg2)"}
+              strokeWidth={isMid ? 1.6 : 1}
+              strokeOpacity={opacity}
+              fill="none"
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: 1, opacity: 1 }}
+              transition={{ duration: 1.8 + i * 0.25, delay: i * 0.18, ease: "easeInOut" }}
+            />
+          );
+        })}
+      </svg>
     </div>
   );
 }
