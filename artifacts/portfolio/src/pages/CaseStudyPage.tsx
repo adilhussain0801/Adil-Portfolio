@@ -727,15 +727,31 @@ function FrictionSlide({
                 Ticket resolved
               </span>
             </div>
-            <div className="relative h-2 rounded-full overflow-hidden bg-[#E8E4DE]">
-              <motion.div
-                className="absolute left-0 top-0 h-full rounded-full"
-                animate={{ width: isInView ? `${group.timelineProgress}%` : `${prevProgress}%` }}
-                transition={isInView ? { duration: 1.2, ease: EASE, delay: 0.3 } : { duration: 0 }}
-                style={{
-                  background: "linear-gradient(to right, #22c55e 0%, #eab308 50%, #ef4444 100%)",
-                }}
-              />
+            <div className="relative">
+              {/* SLA breach line — sits above the bar */}
+              <div
+                className="absolute z-10 flex flex-col items-center"
+                style={{ left: "65%", top: -18, transform: "translateX(-50%)" }}
+              >
+                <span
+                  className="text-[9px] font-bold tracking-widest uppercase whitespace-nowrap mb-1"
+                  style={{ color: "#ef4444", fontFamily: "'Wotfard', sans-serif", opacity: 0.75 }}
+                >
+                  SLA breach
+                </span>
+                <div style={{ width: 1, height: 26, background: "#ef4444", opacity: 0.4 }} />
+              </div>
+
+              <div className="relative h-2 rounded-full overflow-hidden bg-[#E8E4DE]">
+                <motion.div
+                  className="absolute left-0 top-0 h-full rounded-full"
+                  animate={{ width: isInView ? `${group.timelineProgress}%` : `${prevProgress}%` }}
+                  transition={isInView ? { duration: 1.2, ease: EASE, delay: 0.3 } : { duration: 0 }}
+                  style={{
+                    background: "linear-gradient(to right, #22c55e 0%, #eab308 50%, #ef4444 100%)",
+                  }}
+                />
+              </div>
             </div>
             <div className="relative h-4">
               {[
@@ -743,14 +759,16 @@ function FrictionSlide({
                 { label: "Clarification loop",  pct: 25  },
                 { label: "Context gathering",   pct: 50  },
                 { label: "Resolution planning", pct: 75  },
-                { label: "48H",                 pct: 85  },
+                { label: "48H",                 pct: 65  },
                 { label: "72H–96H",             pct: 100 },
               ].map(({ label, pct }) => (
                 <span
                   key={label}
-                  className="absolute text-[10px] text-[#1a1a1a]/40 whitespace-nowrap"
+                  className="absolute text-[10px] whitespace-nowrap"
                   style={{
                     fontFamily: "'Wotfard', sans-serif",
+                    color: pct === 65 ? "rgba(239,68,68,0.65)" : "rgba(26,26,26,0.4)",
+                    fontWeight: pct === 65 ? 700 : 400,
                     left: `${pct}%`,
                     transform: pct === 0 ? "none" : pct === 100 ? "translateX(-100%)" : "translateX(-50%)",
                   }}
