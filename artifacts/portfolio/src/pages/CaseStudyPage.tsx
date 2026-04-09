@@ -1776,14 +1776,36 @@ function RovoServiceOverviewSection() {
       className="relative h-screen snap-start snap-always overflow-hidden flex flex-col"
       style={{ background: "#F7F7F5" }}
     >
+      {/* Title */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6, ease: EASE }}
+        className="flex-shrink-0 px-10 md:px-20 pt-14 pb-2"
+      >
+        <p
+          className="text-[10px] uppercase tracking-widest font-bold mb-1"
+          style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
+        >
+          Solution architecture
+        </p>
+        <h2
+          className="text-2xl md:text-3xl leading-tight text-[#1a1a1a]"
+          style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
+        >
+          Rovo Service Capability Evolution
+        </h2>
+      </motion.div>
+
+      {/* Diagram */}
       <div className="flex-1 flex items-end justify-center overflow-hidden px-8">
         <motion.img
           src="/rovo-service-diagram.png"
           alt="Rovo Service capability orbit diagram"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: EASE }}
-          style={{ width: "33%", display: "block", objectFit: "contain" }}
+          transition={{ duration: 0.6, ease: EASE, delay: 0.1 }}
+          style={{ width: "90%", display: "block", objectFit: "contain" }}
         />
       </div>
     </section>
