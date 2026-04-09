@@ -739,9 +739,12 @@ function FrictionSlide({
             </div>
             <div className="relative h-4">
               {[
-                { label: "Clarification loop",  pct: 25 },
-                { label: "Context gathering",   pct: 50 },
-                { label: "Resolution planning", pct: 75 },
+                { label: "0h",                  pct: 0   },
+                { label: "Clarification loop",  pct: 25  },
+                { label: "Context gathering",   pct: 50  },
+                { label: "Resolution planning", pct: 75  },
+                { label: "48H",                 pct: 85  },
+                { label: "72H–96H",             pct: 100 },
               ].map(({ label, pct }) => (
                 <span
                   key={label}
@@ -749,7 +752,7 @@ function FrictionSlide({
                   style={{
                     fontFamily: "'Wotfard', sans-serif",
                     left: `${pct}%`,
-                    transform: pct === 0 ? "none" : "translateX(-50%)",
+                    transform: pct === 0 ? "none" : pct === 100 ? "translateX(-100%)" : "translateX(-50%)",
                   }}
                 >
                   {label}
