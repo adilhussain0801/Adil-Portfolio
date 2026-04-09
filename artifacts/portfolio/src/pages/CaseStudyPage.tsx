@@ -2644,7 +2644,7 @@ function BentofyShowcaseSection() {
                 marginLeft: 8,
                 borderRadius: 8,
                 background: "#FFFFFF",
-                border: "1px solid rgba(15,23,42,0.12)",
+              border: "none",
                 display: "flex",
                 alignItems: "center",
                 padding: "0 10px",
