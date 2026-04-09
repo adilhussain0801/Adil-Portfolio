@@ -2675,24 +2675,39 @@ function BentofyShowcaseSection() {
   );
 }
 
-const COSMIC_WAVE_PATHS = (() => {
-  const W = 1440, H = 900, periods = 3.5, steps = 120, amp = 52;
-  const len = Math.sqrt(W * W + H * H);
-  const px = H / len, py = W / len;
-  return [-160, -80, 0, 80, 160].map(off => {
-    const pts: string[] = [];
-    for (let i = 0; i <= steps; i++) {
-      const t = i / steps;
-      const wave = Math.sin(t * periods * Math.PI * 2) * amp + off;
-      const x = (t * W + px * wave).toFixed(1);
-      const y = (H * (1 - t) + py * wave).toFixed(1);
-      pts.push(i === 0 ? `M ${x} ${y}` : `L ${x} ${y}`);
-    }
-    return pts.join(" ");
-  });
-})();
+const WAVE_OFFSETS = [-160, -80, 0, 80, 160];
+const WAVE_W = 1440, WAVE_H = 900, WAVE_PERIODS = 3.5, WAVE_STEPS = 120, WAVE_AMP = 52;
+const WAVE_LEN = Math.sqrt(WAVE_W * WAVE_W + WAVE_H * WAVE_H);
+const WAVE_PX = WAVE_H / WAVE_LEN, WAVE_PY = WAVE_W / WAVE_LEN;
+
+function buildWavePath(off: number, phase: number): string {
+  const pts: string[] = [];
+  for (let i = 0; i <= WAVE_STEPS; i++) {
+    const t = i / WAVE_STEPS;
+    const wave = Math.sin(t * WAVE_PERIODS * Math.PI * 2 + phase) * WAVE_AMP + off;
+    const x = (t * WAVE_W + WAVE_PX * wave).toFixed(1);
+    const y = (WAVE_H * (1 - t) + WAVE_PY * wave).toFixed(1);
+    pts.push(i === 0 ? `M ${x} ${y}` : `L ${x} ${y}`);
+  }
+  return pts.join(" ");
+}
 
 function CosmicWaveBackground() {
+  const pathRefs = useRef<(SVGPathElement | null)[]>([]);
+
+  useEffect(() => {
+    let raf: number;
+    const tick = (t: number) => {
+      const phase = (t / 7000) * Math.PI * 2;
+      pathRefs.current.forEach((el, i) => {
+        if (el) el.setAttribute("d", buildWavePath(WAVE_OFFSETS[i], phase + i * 0.4));
+      });
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
   return (
     <div
       aria-hidden
@@ -2743,7 +2758,7 @@ function CosmicWaveBackground() {
         }}
       />
 
-      {/* ── Diagonal wave lines ── */}
+      {/* ── Animated diagonal wave lines ── */}
       <svg
         viewBox="0 0 1440 900"
         preserveAspectRatio="xMidYMid slice"
@@ -2762,23 +2777,17 @@ function CosmicWaveBackground() {
             <stop offset="100%" stopColor="#06B6D4" stopOpacity="0" />
           </linearGradient>
         </defs>
-        {COSMIC_WAVE_PATHS.map((d, i) => {
-          const isMid = i === 2;
-          const opacity = 0.65 - Math.abs(i - 2) * 0.12;
-          return (
-            <motion.path
-              key={i}
-              d={d}
-              stroke={i % 2 === 0 ? "url(#cwg1)" : "url(#cwg2)"}
-              strokeWidth={isMid ? 1.6 : 1}
-              strokeOpacity={opacity}
-              fill="none"
-              initial={{ pathLength: 0, opacity: 0 }}
-              animate={{ pathLength: 1, opacity: 1 }}
-              transition={{ duration: 1.8 + i * 0.25, delay: i * 0.18, ease: "easeInOut" }}
-            />
-          );
-        })}
+        {WAVE_OFFSETS.map((off, i) => (
+          <path
+            key={i}
+            ref={el => { pathRefs.current[i] = el; }}
+            d={buildWavePath(off, i * 0.4)}
+            stroke={i % 2 === 0 ? "url(#cwg1)" : "url(#cwg2)"}
+            strokeWidth={i === 2 ? 1.6 : 1}
+            strokeOpacity={0.65 - Math.abs(i - 2) * 0.12}
+            fill="none"
+          />
+        ))}
       </svg>
     </div>
   );
