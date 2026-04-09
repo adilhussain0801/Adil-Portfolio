@@ -739,7 +739,6 @@ function FrictionSlide({
             </div>
             <div className="relative h-4">
               {[
-                { label: "Ticket received",     pct: 0 },
                 { label: "Clarification loop",  pct: 25 },
                 { label: "Context gathering",   pct: 50 },
                 { label: "Resolution planning", pct: 75 },
