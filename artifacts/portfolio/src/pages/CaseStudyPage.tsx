@@ -1223,6 +1223,7 @@ function IndustryTrendsSection() {
       cardBg: "#E6F6FF",
       borderColor: "rgba(0,161,224,0.25)",
       image: "/salesforce-screenshot.png",
+      logo: "/salesforce-logo.png",
     },
     {
       name: "servicenow.",
@@ -1304,16 +1305,33 @@ function IndustryTrendsSection() {
               className="rounded-2xl overflow-hidden flex flex-col"
               style={{ background: c.cardBg, border: `1px solid ${c.borderColor}` }}
             >
-              <div
-                className="mx-3 mt-3 rounded-xl overflow-hidden flex-shrink-0"
-                style={{
-                  height: "200px",
-                  backgroundImage: c.image ? `url(${c.image})` : "url(/competitor-overview.png)",
-                  backgroundSize: c.image ? "cover" : BG_SIZE,
-                  backgroundPosition: c.image ? "center top" : `-${c.bgX}px ${BG_Y}px`,
-                  backgroundRepeat: "no-repeat",
-                }}
-              />
+              {c.logo ? (
+                <div className="mx-3 mt-3 rounded-xl overflow-hidden flex-shrink-0 flex flex-col" style={{ height: "200px" }}>
+                  <div
+                    className="flex-1 overflow-hidden"
+                    style={{
+                      backgroundImage: `url(${c.image})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center top",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  />
+                  <div className="flex items-center justify-center py-2 px-3 flex-shrink-0" style={{ background: c.cardBg }}>
+                    <img src={c.logo} alt={c.name} style={{ height: 28, width: "auto", objectFit: "contain" }} />
+                  </div>
+                </div>
+              ) : (
+                <div
+                  className="mx-3 mt-3 rounded-xl overflow-hidden flex-shrink-0"
+                  style={{
+                    height: "200px",
+                    backgroundImage: "url(/competitor-overview.png)",
+                    backgroundSize: BG_SIZE,
+                    backgroundPosition: `-${c.bgX}px ${BG_Y}px`,
+                    backgroundRepeat: "no-repeat",
+                  }}
+                />
+              )}
               <div className="px-4 pt-3 pb-4 flex flex-col gap-3">
                 <p className="text-xs leading-relaxed text-[#1a1a1a]/65" style={{ fontFamily: "'Wotfard', sans-serif" }}>{c.descriptor}</p>
                 <p className="text-[9px] font-bold tracking-[0.12em] uppercase mt-auto" style={{ color: c.nameColor, fontFamily: "'Wotfard', sans-serif" }}>{c.tag}</p>
