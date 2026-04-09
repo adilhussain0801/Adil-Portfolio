@@ -1332,7 +1332,7 @@ function IndustryTrendsSection() {
                   }}
                 />
               )}
-              <div className="px-4 pt-3 pb-4 flex flex-col gap-3">
+              <div className="px-4 pt-3 pb-4 flex flex-col gap-3 flex-1">
                 <p className="text-xs leading-relaxed text-[#1a1a1a]/65" style={{ fontFamily: "'Wotfard', sans-serif" }}>{c.descriptor}</p>
                 <p className="text-[9px] font-bold tracking-[0.12em] uppercase mt-auto" style={{ color: c.nameColor, fontFamily: "'Wotfard', sans-serif" }}>{c.tag}</p>
               </div>
