@@ -2675,6 +2675,72 @@ function BentofyShowcaseSection() {
   );
 }
 
+function CosmicWaveBackground() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let raf: number;
+
+    const resize = () => {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    };
+    resize();
+    const ro = new ResizeObserver(resize);
+    ro.observe(canvas);
+
+    const blobs = [
+      { color: "59,130,246",  r: 0.52, speed: 1 / 28000, ox: 0.20, oy: 0.25, rx: 0.38, ry: 0.28, phase: 0.0 },
+      { color: "139,92,246",  r: 0.44, speed: 1 / 36000, ox: 0.72, oy: 0.60, rx: 0.30, ry: 0.35, phase: 2.1 },
+      { color: "245,158,11",  r: 0.40, speed: 1 / 22000, ox: 0.45, oy: 0.75, rx: 0.25, ry: 0.22, phase: 4.3 },
+    ];
+
+    const draw = (t: number) => {
+      const w = canvas.width;
+      const h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      for (const b of blobs) {
+        const angle = t * b.speed * Math.PI * 2 + b.phase;
+        const cx = (b.ox + Math.sin(angle) * b.rx) * w;
+        const cy = (b.oy + Math.cos(angle * 0.7) * b.ry) * h;
+        const rad = b.r * Math.min(w, h);
+
+        const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, rad);
+        g.addColorStop(0, `rgba(${b.color}, 0.07)`);
+        g.addColorStop(1, `rgba(${b.color}, 0)`);
+        ctx.fillStyle = g;
+        ctx.fillRect(0, 0, w, h);
+      }
+
+      raf = requestAnimationFrame(draw);
+    };
+
+    raf = requestAnimationFrame(draw);
+    return () => { cancelAnimationFrame(raf); ro.disconnect(); };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      style={{
+        position: "absolute",
+        inset: 0,
+        width: "100%",
+        height: "100%",
+        filter: "blur(90px)",
+        pointerEvents: "none",
+        zIndex: 0,
+      }}
+    />
+  );
+}
+
 function ExperienceWalkthroughSection() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, amount: 0.35 });
@@ -2686,6 +2752,7 @@ function ExperienceWalkthroughSection() {
       className="relative h-screen snap-start snap-always flex items-center justify-center overflow-hidden"
       style={{ background: "#F7F7F5" }}
     >
+      <CosmicWaveBackground />
       <div
         style={{
           position: "absolute",
