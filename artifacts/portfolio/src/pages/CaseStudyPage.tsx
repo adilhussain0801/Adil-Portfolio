@@ -3,6 +3,7 @@ import { useRef, useEffect, useState, useMemo, type RefObject } from "react";
 import { motion, useInView, AnimatePresence, useMotionValue, useTransform, animate } from "framer-motion";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare, ChevronLeft, ChevronRight, X, CheckCircle2, Settings, Banknote, Layers, Users, BookOpen, Bot, GraduationCap, Briefcase, Link2, ArrowLeftRight, BarChart2, Building2 } from "lucide-react";
 import browserFrameScreenshot from "@assets/After_1775733592097.png";
+import walkthroughScreenshot from "@assets/ExpWalkthrough_1775735219205.png";
 import { getCaseStudy, getNextCaseStudy, getAllCaseStudies, type CaseStudy } from "@/data/caseStudies";
 import NotFound from "@/pages/not-found";
 
@@ -2678,124 +2679,58 @@ function ExperienceWalkthroughSection() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, amount: 0.35 });
 
-  const BG = "#3A50E8";
-  const PAGE_BG = "#F7F7F5";
-  const RINGS = [280, 222, 168, 120, 78, 42];
-
-  const wavePeriods = Array.from({ length: 9 }, (_, i) => {
-    const x = i * 160;
-    return (
-      `C ${x+17} 40 ${x+23} 48 ${x+40} 48 ` +
-      `C ${x+57} 48 ${x+63} 40 ${x+80} 24 ` +
-      `C ${x+97} 8 ${x+103} 0 ${x+120} 0 ` +
-      `C ${x+137} 0 ${x+143} 8 ${x+160} 24`
-    );
-  }).join(" ");
-
-  const TOP_WAVE = `M 0 24 ${wavePeriods} L 1440 0 L 0 0 Z`;
-  const BOT_WAVE = `M 0 24 ${wavePeriods} L 1440 48 L 0 48 Z`;
-
   return (
     <section
       id="section-walkthrough"
       ref={ref}
-      className="relative h-screen snap-start snap-always overflow-hidden"
-      style={{ background: PAGE_BG }}
+      className="relative h-screen snap-start snap-always flex items-center justify-center overflow-hidden"
+      style={{ background: "#F7F7F5" }}
     >
       <div
         style={{
           position: "absolute",
-          inset: 64,
-          background: BG,
-          borderRadius: 32,
-          overflow: "hidden",
+          left: "50%",
+          top: "50%",
+          transform: "translate(-50%, -50%)",
+          width: "min(1080px, calc(100% - 128px))",
+          zIndex: 5,
         }}
       >
-        <svg
-          viewBox="0 0 1440 48"
-          preserveAspectRatio="none"
-          style={{ position: "absolute", top: 0, left: 0, width: "100%", height: 48, zIndex: 10 }}
-        >
-          <path d={TOP_WAVE} fill={PAGE_BG} />
-        </svg>
-
-        <svg
-          viewBox="0 0 1440 48"
-          preserveAspectRatio="none"
-          style={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: 48, zIndex: 10 }}
-        >
-          <path d={BOT_WAVE} fill={PAGE_BG} />
-        </svg>
-
-        {RINGS.map((r, i) => (
-          <motion.div
-            key={r}
-            initial={{ scale: 0, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
-            transition={{ duration: 0.7, ease: EASE, delay: 0.05 * i }}
-            style={{
-              position: "absolute",
-              left: "50%",
-              top: "50%",
-              width: r,
-              height: r,
-              marginLeft: -r / 2,
-              marginTop: -r / 2,
-              borderRadius: "50%",
-              border: "none",
-              boxShadow: `0 0 0 1.5px rgba(255,255,255,0.18)`,
-              zIndex: 2,
-            }}
-          />
-        ))}
-
-        <div
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+          transition={{ duration: 0.7, ease: EASE, delay: 0.1 }}
           style={{
-            position: "absolute",
-            left: "50%",
-            top: "50%",
-            transform: "translate(-50%, -50%)",
-            width: "min(1080px, calc(100% - 160px))",
-            zIndex: 15,
+            borderRadius: 18,
+            overflow: "hidden",
+            background: "#fff",
+            boxShadow: "0 8px 48px rgba(0,0,0,0.12)",
           }}
         >
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-            transition={{ duration: 0.7, ease: EASE, delay: 0.2 }}
+          <div
             style={{
-              borderRadius: 18,
-              overflow: "hidden",
-              background: "#fff",
-              boxShadow: "0 24px 80px rgba(0,0,0,0.24)",
+              height: 38,
+              background: "#F8FAFC",
+              borderBottom: "1px solid rgba(15,23,42,0.08)",
+              display: "flex",
+              alignItems: "center",
+              padding: "0 14px",
+              gap: 8,
             }}
           >
-            <div
-              style={{
-                height: 38,
-                background: "#F8FAFC",
-                borderBottom: "1px solid rgba(15,23,42,0.08)",
-                display: "flex",
-                alignItems: "center",
-                padding: "0 14px",
-                gap: 8,
-              }}
-            >
-              <div style={{ display: "flex", gap: 7 }}>
-                <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#FF5F57" }} />
-                <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#FEBC2E" }} />
-                <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#28C840" }} />
-              </div>
+            <div style={{ display: "flex", gap: 7 }}>
+              <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#FF5F57" }} />
+              <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#FEBC2E" }} />
+              <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#28C840" }} />
             </div>
+          </div>
 
-            <img
-              src={browserFrameScreenshot}
-              alt="Experience walkthrough"
-              style={{ display: "block", width: "100%", height: "auto", border: "none" }}
-            />
-          </motion.div>
-        </div>
-
+          <img
+            src={walkthroughScreenshot}
+            alt="Experience walkthrough"
+            style={{ display: "block", width: "100%", height: "auto" }}
+          />
+        </motion.div>
       </div>
     </section>
   );
