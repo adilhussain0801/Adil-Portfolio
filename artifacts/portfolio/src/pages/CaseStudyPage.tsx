@@ -2,6 +2,7 @@ import { useParams, Link } from "wouter";
 import { useRef, useEffect, useState, useMemo, type RefObject } from "react";
 import { motion, useInView, AnimatePresence, useMotionValue, useTransform, animate } from "framer-motion";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare, ChevronLeft, ChevronRight, X, CheckCircle2, Settings, Banknote, Layers, Users, BookOpen, Bot, GraduationCap, Briefcase, Link2, ArrowLeftRight, BarChart2, Building2 } from "lucide-react";
+import browserFrameScreenshot from "@assets/After_1775733592097.png";
 import { getCaseStudy, getNextCaseStudy, getAllCaseStudies, type CaseStudy } from "@/data/caseStudies";
 import NotFound from "@/pages/not-found";
 
@@ -2602,6 +2603,66 @@ function BentofyShowcaseSection() {
             }}
           />
         ))}
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+          transition={{ duration: 0.7, ease: EASE, delay: 0.2 }}
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "min(1080px, calc(100% - 160px))",
+            borderRadius: 18,
+            overflow: "hidden",
+            background: "#fff",
+            boxShadow: "0 24px 80px rgba(0,0,0,0.24)",
+            zIndex: 15,
+          }}
+        >
+          <div
+            style={{
+              height: 38,
+              background: "#F8FAFC",
+              borderBottom: "1px solid rgba(15,23,42,0.08)",
+              display: "flex",
+              alignItems: "center",
+              padding: "0 14px",
+              gap: 8,
+            }}
+          >
+            <div style={{ display: "flex", gap: 7 }}>
+              <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#FF5F57" }} />
+              <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#FEBC2E" }} />
+              <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#28C840" }} />
+            </div>
+            <div
+              style={{
+                flex: 1,
+                height: 24,
+                marginLeft: 8,
+                borderRadius: 8,
+                background: "#FFFFFF",
+                border: "1px solid rgba(15,23,42,0.12)",
+                display: "flex",
+                alignItems: "center",
+                padding: "0 10px",
+                color: "#94A3B8",
+                fontFamily: "'Wotfard', sans-serif",
+                fontSize: 11,
+              }}
+            >
+              jira.atlassian.net
+            </div>
+          </div>
+
+          <img
+            src={browserFrameScreenshot}
+            alt="Jira Service Management browser window"
+            style={{ display: "block", width: "100%", height: "auto" }}
+          />
+        </motion.div>
 
       </div>
     </section>
