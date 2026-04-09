@@ -1353,7 +1353,7 @@ function IndustryTrendsSection() {
                 </span>
               </div>
               <p className="text-base font-medium leading-snug text-[#1a1a1a]" style={{ fontFamily: "'Wotfard', sans-serif" }}>
-                'The market is converging toward AI agents - yet no player combines deep workflow context with autonomous execution.'
+                'The market is converging toward AI agents - yet only a few players combines deep workflow context with autonomous execution.'
               </p>
             </div>
             <div className="flex flex-col gap-0.5 flex-shrink-0 pl-8 border-l border-[#E8E4DE]">
