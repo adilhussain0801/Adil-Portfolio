@@ -2676,68 +2676,60 @@ function BentofyShowcaseSection() {
 }
 
 function CosmicWaveBackground() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    let raf: number;
-
-    const resize = () => {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-    };
-    resize();
-    const ro = new ResizeObserver(resize);
-    ro.observe(canvas);
-
-    const blobs = [
-      { color: "59,130,246",  r: 0.52, speed: 1 / 28000, ox: 0.20, oy: 0.25, rx: 0.38, ry: 0.28, phase: 0.0 },
-      { color: "139,92,246",  r: 0.44, speed: 1 / 36000, ox: 0.72, oy: 0.60, rx: 0.30, ry: 0.35, phase: 2.1 },
-      { color: "245,158,11",  r: 0.40, speed: 1 / 22000, ox: 0.45, oy: 0.75, rx: 0.25, ry: 0.22, phase: 4.3 },
-    ];
-
-    const draw = (t: number) => {
-      const w = canvas.width;
-      const h = canvas.height;
-      ctx.clearRect(0, 0, w, h);
-
-      for (const b of blobs) {
-        const angle = t * b.speed * Math.PI * 2 + b.phase;
-        const cx = (b.ox + Math.sin(angle) * b.rx) * w;
-        const cy = (b.oy + Math.cos(angle * 0.7) * b.ry) * h;
-        const rad = b.r * Math.min(w, h);
-
-        const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, rad);
-        g.addColorStop(0, `rgba(${b.color}, 0.07)`);
-        g.addColorStop(1, `rgba(${b.color}, 0)`);
-        ctx.fillStyle = g;
-        ctx.fillRect(0, 0, w, h);
-      }
-
-      raf = requestAnimationFrame(draw);
-    };
-
-    raf = requestAnimationFrame(draw);
-    return () => { cancelAnimationFrame(raf); ro.disconnect(); };
-  }, []);
-
   return (
-    <canvas
-      ref={canvasRef}
+    <div
+      aria-hidden
       style={{
         position: "absolute",
         inset: 0,
-        width: "100%",
-        height: "100%",
-        filter: "blur(90px)",
+        overflow: "hidden",
         pointerEvents: "none",
         zIndex: 0,
       }}
-    />
+    >
+      <motion.div
+        animate={{ x: [0, 140, -80, 60, 0], y: [0, -100, 80, -40, 0] }}
+        transition={{ duration: 26, repeat: Infinity, ease: "linear" }}
+        style={{
+          position: "absolute",
+          left: "5%",
+          top: "5%",
+          width: "55vw",
+          height: "55vw",
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(59,130,246,0.22) 0%, transparent 70%)",
+          filter: "blur(70px)",
+        }}
+      />
+      <motion.div
+        animate={{ x: [0, -100, 60, -30, 0], y: [0, 80, -60, 100, 0] }}
+        transition={{ duration: 34, repeat: Infinity, ease: "linear" }}
+        style={{
+          position: "absolute",
+          right: "5%",
+          top: "30%",
+          width: "50vw",
+          height: "50vw",
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(139,92,246,0.18) 0%, transparent 70%)",
+          filter: "blur(80px)",
+        }}
+      />
+      <motion.div
+        animate={{ x: [0, 80, -120, 40, 0], y: [0, 60, 120, -80, 0] }}
+        transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+        style={{
+          position: "absolute",
+          left: "30%",
+          bottom: "5%",
+          width: "45vw",
+          height: "45vw",
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(245,158,11,0.14) 0%, transparent 70%)",
+          filter: "blur(70px)",
+        }}
+      />
+    </div>
   );
 }
 
