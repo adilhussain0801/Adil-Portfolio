@@ -728,28 +728,47 @@ function FrictionSlide({
               </span>
             </div>
             <div className="relative">
-              {/* SLA breach line — sits above the bar */}
+              {/* SLA breach marker — label + line ending exactly at bar top */}
               <div
                 className="absolute z-10 flex flex-col items-center"
-                style={{ left: "65%", top: -18, transform: "translateX(-50%)" }}
+                style={{ left: "65%", top: -16, transform: "translateX(-50%)" }}
               >
                 <span
-                  className="text-[9px] font-bold tracking-widest uppercase whitespace-nowrap mb-1"
-                  style={{ color: "#ef4444", fontFamily: "'Wotfard', sans-serif", opacity: 0.75 }}
+                  className="text-[9px] font-bold tracking-widest uppercase whitespace-nowrap"
+                  style={{ color: "#ef4444", fontFamily: "'Wotfard', sans-serif", opacity: 0.75, lineHeight: 1 }}
                 >
                   SLA breach
                 </span>
-                <div style={{ width: 1, height: 26, background: "#ef4444", opacity: 0.4 }} />
+                <div style={{ width: 1, height: 8, marginTop: 4, background: "#ef4444", opacity: 0.4 }} />
               </div>
 
               <div className="relative h-2 rounded-full overflow-hidden bg-[#E8E4DE]">
+                {/* Normal zone: 0 → min(progress, 65%) */}
                 <motion.div
-                  className="absolute left-0 top-0 h-full rounded-full"
-                  animate={{ width: isInView ? `${group.timelineProgress}%` : `${prevProgress}%` }}
+                  className="absolute left-0 top-0 h-full"
+                  animate={{
+                    width: isInView
+                      ? `${Math.min(group.timelineProgress, 65)}%`
+                      : `${Math.min(prevProgress, 65)}%`,
+                  }}
                   transition={isInView ? { duration: 1.2, ease: EASE, delay: 0.3 } : { duration: 0 }}
                   style={{
-                    background: "linear-gradient(to right, #22c55e 0%, #eab308 50%, #ef4444 100%)",
+                    background: "linear-gradient(to right, #22c55e 0%, #eab308 65%, #f97316 100%)",
                   }}
+                />
+                {/* Breach zone: 65% → progress% — striped red pattern */}
+                <motion.div
+                  className="absolute top-0 h-full"
+                  style={{
+                    left: "65%",
+                    background: "repeating-linear-gradient(-45deg, rgba(239,68,68,0.7) 0px, rgba(239,68,68,0.7) 2px, rgba(239,68,68,0.2) 2px, rgba(239,68,68,0.2) 6px)",
+                  }}
+                  animate={{
+                    width: isInView
+                      ? `${Math.max(group.timelineProgress - 65, 0)}%`
+                      : `${Math.max(prevProgress - 65, 0)}%`,
+                  }}
+                  transition={isInView ? { duration: 1.2, ease: EASE, delay: 0.3 } : { duration: 0 }}
                 />
               </div>
             </div>
@@ -758,8 +777,8 @@ function FrictionSlide({
                 { label: "0h",                  pct: 0   },
                 { label: "Clarification loop",  pct: 25  },
                 { label: "Context gathering",   pct: 50  },
-                { label: "Resolution planning", pct: 75  },
                 { label: "48H",                 pct: 65  },
+                { label: "Resolution planning", pct: 75  },
                 { label: "72H–96H",             pct: 100 },
               ].map(({ label, pct }) => (
                 <span
