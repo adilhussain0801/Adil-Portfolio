@@ -2436,42 +2436,85 @@ function BentofyShowcaseSection() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, amount: 0.35 });
   const FF = "'Wotfard', sans-serif";
+  const [step, setStep] = useState(0);
+
+  useEffect(() => {
+    if (!isInView) { setStep(0); return; }
+    const id = setInterval(() => setStep(s => (s + 1) % 3), 2800);
+    return () => clearInterval(id);
+  }, [isInView]);
 
   const BG = "#3A50E8";
   const PAGE_BG = "#F7F7F5";
 
-  // Zigzag border parameters
-  const TOOTH = 20;
-  const TOOTH_H = 16;
-  const COUNT = 72;
-  const W = COUNT * TOOTH; // 1440 units, stretched with preserveAspectRatio="none"
+  const RINGS = [280, 222, 168, 120, 78, 42];
 
-  const topPts =
-    Array.from({ length: COUNT + 1 }, (_, i) => `${i * TOOTH},${i % 2 === 0 ? TOOTH_H : 0}`).join(" ") +
-    ` ${W},-2 0,-2`;
-
-  const botPts =
-    Array.from({ length: COUNT + 1 }, (_, i) => `${i * TOOTH},${i % 2 === 0 ? 0 : TOOTH_H}`).join(" ") +
-    ` ${W},${TOOTH_H + 2} 0,${TOOTH_H + 2}`;
-
-  const RINGS = [300, 240, 182, 130, 85, 46];
-
-  // Spiral path drawn from inside out (animates with pathLength 0→1)
+  // Spiral path — coordinates for 1104×788 card (viewport minus 128px each axis)
   const SPIRAL =
-    "M 616 420 C 616 375 651 348 686 348 C 735 348 768 388 768 438 " +
-    "C 768 510 708 560 638 560 C 545 560 478 488 478 400 " +
-    "C 478 290 568 210 680 210 C 820 210 910 318 910 458 " +
-    "C 910 620 790 742 620 742";
+    "M 552 394 C 552 349 587 322 622 322 C 671 322 704 362 704 412 " +
+    "C 704 484 644 534 574 534 C 481 534 414 462 414 374 " +
+    "C 414 264 504 184 616 184 C 756 184 846 292 846 432 " +
+    "C 846 594 726 716 556 716";
 
-  // Paper airplane motion path (lower-left → upper-right arc)
-  const PLANE_PATH = "M 140 700 C 320 320 720 120 1130 300";
+  // Plane path — fits within card (lower-left → upper-right arc)
+  const PLANE_PATH = "M 60 620 C 240 240 600 80 980 220";
+
+  // Walkthrough step content
+  const steps = [
+    <div style={{ padding: "20px 22px 22px" }}>
+      <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, color: "#9CA3AF", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 14 }}>Paste a recipe URL</p>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "9px 12px", background: "#F3F4F6", borderRadius: 10, marginBottom: 10 }}>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" strokeWidth={2.5}>
+          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+          <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+        </svg>
+        <span style={{ fontFamily: FF, fontSize: 11.5, color: "#6B7280", flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+          seriouseats.com/recipes/best-choc…
+        </span>
+      </div>
+      <button style={{ width: "100%", padding: "10px", background: BG, color: "#fff", borderRadius: 10, border: "none", fontFamily: FF, fontSize: 12.5, fontWeight: 700, cursor: "default" }}>
+        Import Recipe →
+      </button>
+    </div>,
+
+    <div style={{ padding: "20px 22px 22px" }}>
+      <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, color: "#9CA3AF", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 14 }}>Finding the good stuff…</p>
+      <div style={{ height: 5, background: "#F3F4F6", borderRadius: 99, marginBottom: 16, overflow: "hidden" }}>
+        <motion.div
+          initial={{ width: 0 }} animate={{ width: "72%" }}
+          transition={{ duration: 0.9, ease: "easeOut" }}
+          style={{ height: "100%", background: BG, borderRadius: 99 }}
+        />
+      </div>
+      {[88, 65, 76].map((w, i) => (
+        <div key={i} style={{ height: 9, background: "#F3F4F6", borderRadius: 6, marginBottom: 8, width: `${w}%` }} />
+      ))}
+    </div>,
+
+    <div style={{ padding: "20px 22px 22px" }}>
+      <div style={{ display: "flex", gap: 5, marginBottom: 11 }}>
+        {["15 min prep", "12 min bake"].map(t => (
+          <span key={t} style={{ fontFamily: FF, fontSize: 9.5, fontWeight: 700, color: BG, background: "rgba(58,80,232,0.1)", padding: "3px 8px", borderRadius: 99 }}>{t}</span>
+        ))}
+      </div>
+      <p style={{ fontFamily: FF, fontSize: 14, fontWeight: 700, color: "#111827", marginBottom: 10, lineHeight: 1.25 }}>Chocolate Chip Cookies</p>
+      <div style={{ height: 1, background: "#F3F4F6", marginBottom: 9 }} />
+      <p style={{ fontFamily: FF, fontSize: 9.5, fontWeight: 700, color: "#9CA3AF", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 7 }}>Ingredients</p>
+      {["2 cups all-purpose flour", "1 cup brown sugar", "½ cup butter, softened", "2 large eggs", "1 tsp vanilla extract"].map(item => (
+        <div key={item} style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 5 }}>
+          <div style={{ width: 3, height: 3, borderRadius: "50%", background: "#D1D5DB", flexShrink: 0 }} />
+          <span style={{ fontFamily: FF, fontSize: 11.5, color: "#374151" }}>{item}</span>
+        </div>
+      ))}
+    </div>,
+  ];
 
   return (
     <section
       ref={ref}
       id="section-bentofy"
-      className="relative h-screen snap-start snap-always overflow-hidden"
-      style={{ background: BG }}
+      className="relative h-screen snap-start snap-always"
+      style={{ background: PAGE_BG }}
     >
       <style>{`
         @keyframes bentofy-fly {
@@ -2495,121 +2538,121 @@ function BentofyShowcaseSection() {
         }
       `}</style>
 
-      {/* Top zigzag (page-bg triangles cutting into top of section) */}
-      <svg
-        viewBox={`0 0 ${W} ${TOOTH_H}`}
-        preserveAspectRatio="none"
-        aria-hidden
-        style={{ position: "absolute", top: 0, left: 0, width: "100%", height: TOOTH_H, display: "block", zIndex: 10, pointerEvents: "none" }}
-      >
-        <polygon points={topPts} fill={PAGE_BG} />
-      </svg>
+      {/* Blue floating card — 64px inset, smooth rounded corners */}
+      <div style={{ position: "absolute", inset: 64, background: BG, borderRadius: 24, overflow: "hidden" }}>
 
-      {/* Bottom zigzag */}
-      <svg
-        viewBox={`0 0 ${W} ${TOOTH_H}`}
-        preserveAspectRatio="none"
-        aria-hidden
-        style={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: TOOTH_H, display: "block", zIndex: 10, pointerEvents: "none" }}
-      >
-        <polygon points={botPts} fill={PAGE_BG} />
-      </svg>
+        {/* Concentric rings */}
+        {RINGS.map((r, i) => (
+          <motion.div
+            key={r}
+            initial={{ scale: 0, opacity: 0 }}
+            animate={isInView ? { scale: 1, opacity: 0.18 } : { scale: 0, opacity: 0 }}
+            transition={{ duration: 1.0, ease: EASE, delay: 0.04 + i * 0.11 }}
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              width: r * 2,
+              height: r * 2,
+              marginLeft: -r,
+              marginTop: -r,
+              borderRadius: "9999px",
+              border: "2px solid rgba(180, 210, 255, 0.8)",
+              boxShadow: "0 0 40px rgba(180, 210, 255, 0.7), 0 0 80px rgba(180, 210, 255, 0.5)",
+              animation: isInView ? `ring-breathe ${3.4 + i * 0.35}s ease-in-out ${i * 0.28}s infinite` : "none",
+              pointerEvents: "none",
+            }}
+          />
+        ))}
 
-      {/* Concentric rings — matches bentofy.app ring style */}
-      {RINGS.map((r, i) => (
+        {/* Spiral */}
+        <svg
+          aria-hidden
+          viewBox="0 0 1104 788"
+          preserveAspectRatio="xMidYMid meet"
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none" }}
+        >
+          <motion.path
+            d={SPIRAL}
+            fill="none"
+            stroke="#FF7EB3"
+            strokeWidth={3.5}
+            strokeLinecap="round"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={isInView ? { pathLength: 1, opacity: 0.85 } : { pathLength: 0, opacity: 0 }}
+            transition={{ duration: 2.4, ease: "easeInOut", delay: 0.55 }}
+          />
+        </svg>
+
+        {/* Paper airplane */}
+        {isInView && (
+          <div className="bentofy-plane">
+            <svg width="40" height="40" viewBox="-6 -12 36 24" fill="none" style={{ overflow: "visible" }}>
+              <path d="M -6 0 L 24 0 L -6 -12 Z" fill="#F5A623" />
+              <path d="M -6 0 L 24 0 L -6 12 Z" fill="#D98E10" />
+              <path d="M -6 -12 L -1 0 L -6 12 L 3 0 Z" fill="#F5C842" />
+            </svg>
+          </div>
+        )}
+
+        {/* Experience walkthrough card */}
         <motion.div
-          key={r}
-          initial={{ scale: 0, opacity: 0 }}
-          animate={isInView ? { scale: 1, opacity: 0.18 } : { scale: 0, opacity: 0 }}
-          transition={{ duration: 1.0, ease: EASE, delay: 0.04 + i * 0.11 }}
+          initial={{ opacity: 0, x: 20 }}
+          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+          transition={{ duration: 0.65, ease: EASE, delay: 0.3 }}
           style={{
             position: "absolute",
+            right: 52,
             top: "50%",
-            left: "50%",
-            width: r * 2,
-            height: r * 2,
-            marginLeft: -r,
-            marginTop: -r,
-            borderRadius: "9999px",
-            border: "2px solid rgba(180, 210, 255, 0.8)",
-            boxShadow: "0 0 40px rgba(180, 210, 255, 0.7), 0 0 80px rgba(180, 210, 255, 0.5)",
-            animation: isInView ? `ring-breathe ${3.4 + i * 0.35}s ease-in-out ${i * 0.28}s infinite` : "none",
-            pointerEvents: "none",
-          }}
-        />
-      ))}
-
-      {/* Spiral */}
-      <svg
-        aria-hidden
-        viewBox="0 0 1232 916"
-        preserveAspectRatio="xMidYMid meet"
-        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none" }}
-      >
-        <motion.path
-          d={SPIRAL}
-          fill="none"
-          stroke="#FF7EB3"
-          strokeWidth={3.5}
-          strokeLinecap="round"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={isInView ? { pathLength: 1, opacity: 0.85 } : { pathLength: 0, opacity: 0 }}
-          transition={{ duration: 2.4, ease: "easeInOut", delay: 0.55 }}
-        />
-      </svg>
-
-      {/* Paper airplane (CSS offset-path motion) */}
-      {isInView && (
-        <div className="bentofy-plane">
-          <svg width="40" height="40" viewBox="-6 -12 36 24" fill="none" style={{ overflow: "visible" }}>
-            <path d="M -6 0 L 24 0 L -6 -12 Z" fill="#F5A623" />
-            <path d="M -6 0 L 24 0 L -6 12 Z" fill="#D98E10" />
-            <path d="M -6 -12 L -1 0 L -6 12 L 3 0 Z" fill="#F5C842" />
-          </svg>
-        </div>
-      )}
-
-      {/* Text — top left */}
-      <motion.div
-        initial={{ opacity: 0, y: 14 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
-        transition={{ duration: 0.55, ease: EASE }}
-        style={{ position: "absolute", top: 48, left: 56, zIndex: 5, maxWidth: 320 }}
-      >
-        <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.48)", marginBottom: 8 }}>
-          Side project · Bentofy
-        </p>
-        <h2 style={{ fontFamily: FF, fontSize: 34, fontWeight: 800, color: "#fff", lineHeight: 1.13, margin: 0 }}>
-          Import recipes,<br />without the ads
-        </h2>
-        <p style={{ fontFamily: FF, fontSize: 13.5, color: "rgba(255,255,255,0.58)", marginTop: 14, lineHeight: 1.65 }}>
-          Paste any recipe URL. Bentofy strips the blog, the life story, and the ads — and gives you just the recipe.
-        </p>
-        <a
-          href="https://www.bentofy.app"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 6,
-            marginTop: 22,
-            padding: "8px 18px",
-            borderRadius: 50,
-            background: "rgba(255,255,255,0.14)",
-            border: "1px solid rgba(255,255,255,0.24)",
-            color: "#fff",
-            fontFamily: FF,
-            fontSize: 13,
-            fontWeight: 600,
-            textDecoration: "none",
-            backdropFilter: "blur(6px)",
-            WebkitBackdropFilter: "blur(6px)",
+            transform: "translateY(-50%)",
+            width: 308,
+            borderRadius: 14,
+            overflow: "hidden",
+            background: "#fff",
+            boxShadow: "0 24px 60px rgba(0,0,0,0.32), 0 4px 16px rgba(0,0,0,0.14)",
           }}
         >
-          bentofy.app ↗
-        </a>
-      </motion.div>
+          {/* Browser chrome bar */}
+          <div style={{ height: 36, background: "#F9FAFB", borderBottom: "1px solid #F3F4F6", display: "flex", alignItems: "center", padding: "0 12px", gap: 6 }}>
+            {["#FF5F57", "#FFBD2E", "#27C840"].map(c => (
+              <div key={c} style={{ width: 10, height: 10, borderRadius: "50%", background: c }} />
+            ))}
+            <div style={{ flex: 1, margin: "0 10px", height: 18, background: "#F3F4F6", borderRadius: 99, display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <span style={{ fontFamily: FF, fontSize: 9, color: "#9CA3AF" }}>bentofy.app</span>
+            </div>
+          </div>
+
+          {/* Animated step content */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={step}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.28, ease: EASE }}
+            >
+              {steps[step]}
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Step dots */}
+          <div style={{ display: "flex", justifyContent: "center", gap: 6, paddingBottom: 14 }}>
+            {[0, 1, 2].map(i => (
+              <div
+                key={i}
+                style={{
+                  width: i === step ? 18 : 6,
+                  height: 6,
+                  borderRadius: 99,
+                  background: i === step ? BG : "#E5E7EB",
+                  transition: "all 0.3s ease",
+                }}
+              />
+            ))}
+          </div>
+        </motion.div>
+
+      </div>
     </section>
   );
 }
