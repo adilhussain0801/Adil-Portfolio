@@ -1768,6 +1768,9 @@ function DesignPrinciplesSection() {
 function RovoServiceOverviewSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+  const [toggled, setToggled] = useState(false);
+
+  const IMGS = ["/rovo-service-diagram.png", "/rovo-service-diagram-2.png"];
 
   return (
     <section
@@ -1797,16 +1800,28 @@ function RovoServiceOverviewSection() {
         </h2>
       </motion.div>
 
-      {/* Diagram */}
+      {/* Diagram — click to toggle */}
       <div className="flex-1 flex items-end justify-center overflow-hidden px-8">
-        <motion.img
-          src="/rovo-service-diagram.png"
-          alt="Rovo Service capability orbit diagram"
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, ease: EASE, delay: 0.1 }}
-          style={{ width: "90%", display: "block", objectFit: "contain" }}
-        />
+          style={{ position: "relative", width: "90%", cursor: "pointer" }}
+          onClick={() => setToggled(t => !t)}
+        >
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={toggled ? 1 : 0}
+              src={IMGS[toggled ? 1 : 0]}
+              alt="Rovo Service capability orbit diagram"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.22 }}
+              style={{ width: "100%", display: "block", objectFit: "contain" }}
+            />
+          </AnimatePresence>
+        </motion.div>
       </div>
     </section>
   );
