@@ -2459,6 +2459,32 @@ function BentofyShowcaseSection() {
   // Plane path — fits within card (lower-left → upper-right arc)
   const PLANE_PATH = "M 60 620 C 240 240 600 80 980 220";
 
+  // Smooth sine wave borders — viewBox 1440×48, 9 full periods, amplitude 24px
+  // TOP wave: fills PAGE_BG from top down to wave (blue peaks pointing up)
+  const TOP_WAVE =
+    "M 0 24 C 13 24 27 48 40 48 C 53 48 67 24 80 24 C 93 24 107 0 120 0 C 133 0 147 24 160 24 " +
+    "C 173 24 187 48 200 48 C 213 48 227 24 240 24 C 253 24 267 0 280 0 C 293 0 307 24 320 24 " +
+    "C 333 24 347 48 360 48 C 373 48 387 24 400 24 C 413 24 427 0 440 0 C 453 0 467 24 480 24 " +
+    "C 493 24 507 48 520 48 C 533 48 547 24 560 24 C 573 24 587 0 600 0 C 613 0 627 24 640 24 " +
+    "C 653 24 667 48 680 48 C 693 48 707 24 720 24 C 733 24 747 0 760 0 C 773 0 787 24 800 24 " +
+    "C 813 24 827 48 840 48 C 853 48 867 24 880 24 C 893 24 907 0 920 0 C 933 0 947 24 960 24 " +
+    "C 973 24 987 48 1000 48 C 1013 48 1027 24 1040 24 C 1053 24 1067 0 1080 0 C 1093 0 1107 24 1120 24 " +
+    "C 1133 24 1147 48 1160 48 C 1173 48 1187 24 1200 24 C 1213 24 1227 0 1240 0 C 1253 0 1267 24 1280 24 " +
+    "C 1293 24 1307 48 1320 48 C 1333 48 1347 24 1360 24 C 1373 24 1387 0 1400 0 C 1413 0 1427 24 1440 24 " +
+    "L 1440 0 L 0 0 Z";
+  // BOTTOM wave: fills PAGE_BG from wave down to bottom
+  const BOT_WAVE =
+    "M 0 24 C 13 24 27 48 40 48 C 53 48 67 24 80 24 C 93 24 107 0 120 0 C 133 0 147 24 160 24 " +
+    "C 173 24 187 48 200 48 C 213 48 227 24 240 24 C 253 24 267 0 280 0 C 293 0 307 24 320 24 " +
+    "C 333 24 347 48 360 48 C 373 48 387 24 400 24 C 413 24 427 0 440 0 C 453 0 467 24 480 24 " +
+    "C 493 24 507 48 520 48 C 533 48 547 24 560 24 C 573 24 587 0 600 0 C 613 0 627 24 640 24 " +
+    "C 653 24 667 48 680 48 C 693 48 707 24 720 24 C 733 24 747 0 760 0 C 773 0 787 24 800 24 " +
+    "C 813 24 827 48 840 48 C 853 48 867 24 880 24 C 893 24 907 0 920 0 C 933 0 947 24 960 24 " +
+    "C 973 24 987 48 1000 48 C 1013 48 1027 24 1040 24 C 1053 24 1067 0 1080 0 C 1093 0 1107 24 1120 24 " +
+    "C 1133 24 1147 48 1160 48 C 1173 48 1187 24 1200 24 C 1213 24 1227 0 1240 0 C 1253 0 1267 24 1280 24 " +
+    "C 1293 24 1307 48 1320 48 C 1333 48 1347 24 1360 24 C 1373 24 1387 0 1400 0 C 1413 0 1427 24 1440 24 " +
+    "L 1440 48 L 0 48 Z";
+
   // Walkthrough step content
   const steps = [
     <div style={{ padding: "20px 22px 22px" }}>
@@ -2538,8 +2564,28 @@ function BentofyShowcaseSection() {
         }
       `}</style>
 
-      {/* Blue floating card — 64px inset, smooth rounded corners */}
-      <div style={{ position: "absolute", inset: 64, background: BG, borderRadius: 24, overflow: "hidden" }}>
+      {/* Blue floating card — 64px inset, sine-wave top & bottom edges */}
+      <div style={{ position: "absolute", inset: 64, background: BG, overflow: "hidden" }}>
+
+        {/* Top sine-wave border (PAGE_BG fill creates wavy top edge illusion) */}
+        <svg
+          aria-hidden
+          viewBox="0 0 1440 48"
+          preserveAspectRatio="none"
+          style={{ position: "absolute", top: 0, left: 0, width: "100%", height: 48, display: "block", zIndex: 20, pointerEvents: "none" }}
+        >
+          <path d={TOP_WAVE} fill={PAGE_BG} />
+        </svg>
+
+        {/* Bottom sine-wave border */}
+        <svg
+          aria-hidden
+          viewBox="0 0 1440 48"
+          preserveAspectRatio="none"
+          style={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: 48, display: "block", zIndex: 20, pointerEvents: "none" }}
+        >
+          <path d={BOT_WAVE} fill={PAGE_BG} />
+        </svg>
 
         {/* Concentric rings */}
         {RINGS.map((r, i) => (
