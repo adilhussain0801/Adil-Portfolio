@@ -2720,7 +2720,7 @@ function CosmicWaveBackground() {
         style={{
           position: "absolute", left: "0%", top: "0%",
           width: "62vw", height: "62vw", borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(99,102,241,0.50) 0%, rgba(59,130,246,0.28) 45%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(99,102,241,0.28) 0%, rgba(59,130,246,0.14) 45%, transparent 70%)",
           filter: "blur(55px)",
         }}
       />
@@ -2731,7 +2731,7 @@ function CosmicWaveBackground() {
         style={{
           position: "absolute", right: "-5%", top: "15%",
           width: "58vw", height: "58vw", borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(139,92,246,0.48) 0%, rgba(217,70,239,0.24) 45%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(139,92,246,0.26) 0%, rgba(217,70,239,0.12) 45%, transparent 70%)",
           filter: "blur(65px)",
         }}
       />
@@ -2742,7 +2742,7 @@ function CosmicWaveBackground() {
         style={{
           position: "absolute", left: "15%", bottom: "-10%",
           width: "54vw", height: "54vw", borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(6,182,212,0.38) 0%, rgba(59,130,246,0.22) 45%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(6,182,212,0.20) 0%, rgba(59,130,246,0.10) 45%, transparent 70%)",
           filter: "blur(60px)",
         }}
       />
@@ -2753,7 +2753,7 @@ function CosmicWaveBackground() {
         style={{
           position: "absolute", left: "40%", top: "35%",
           width: "42vw", height: "42vw", borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(236,72,153,0.28) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(236,72,153,0.14) 0%, transparent 70%)",
           filter: "blur(75px)",
         }}
       />
