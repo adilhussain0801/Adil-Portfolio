@@ -1809,18 +1809,27 @@ function RovoServiceOverviewSection() {
           style={{ position: "relative", width: "90%", cursor: "pointer" }}
           onClick={() => setToggled(t => !t)}
         >
-          <AnimatePresence mode="wait">
-            <motion.img
-              key={toggled ? 1 : 0}
-              src={IMGS[toggled ? 1 : 0]}
-              alt="Rovo Service capability orbit diagram"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.22 }}
-              style={{ width: "100%", display: "block", objectFit: "contain" }}
-            />
-          </AnimatePresence>
+          {/* Base image — always visible */}
+          <img
+            src={IMGS[0]}
+            alt="Rovo Service capability orbit diagram"
+            style={{ width: "100%", display: "block", objectFit: "contain" }}
+          />
+          {/* Overlay image — fades in on top */}
+          <img
+            src={IMGS[1]}
+            alt="Rovo Service capability orbit diagram — highlighted"
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              display: "block",
+              objectFit: "contain",
+              opacity: toggled ? 1 : 0,
+              transition: "opacity 0.35s ease",
+              pointerEvents: "none",
+            }}
+          />
         </motion.div>
       </div>
     </section>
