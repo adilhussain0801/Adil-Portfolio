@@ -2096,7 +2096,7 @@ function AIConsolidationSection() {
             {/* ── Left: narrative ── */}
             <div className="flex-1 flex flex-col gap-6 min-w-0">
               <p className="text-xl md:text-2xl font-semibold leading-snug text-[#1a1a1a]" style={{ fontFamily: FF }}>
-                Service agents weren't looking for features — they were trying to{" "}
+                Service agents aren't looking for features — they're trying to{" "}
                 <mark style={{ background: "rgba(99,102,241,0.13)", color: "#4338CA", borderRadius: "5px", padding: "2px 6px", fontWeight: 700 }}>
                   resolve work faster
                 </mark>
@@ -2104,7 +2104,7 @@ function AIConsolidationSection() {
               </p>
 
               <div className="flex flex-col gap-2">
-                <p className="text-sm text-[#1a1a1a]/60" style={{ fontFamily: FF }}>This laid the foundation for Rovo Service:</p>
+                <p className="text-sm text-[#1a1a1a]/60" style={{ fontFamily: FF }}>This lays the foundation for Rovo Service:</p>
                 <ul className="flex flex-col gap-2">
                   {[
                     "Seamless integration across workflows",
