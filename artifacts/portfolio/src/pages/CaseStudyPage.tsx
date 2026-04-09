@@ -2603,36 +2603,6 @@ function BentofyShowcaseSection() {
           />
         ))}
 
-        {/* Spiral */}
-        <svg
-          aria-hidden
-          viewBox="0 0 1104 788"
-          preserveAspectRatio="xMidYMid meet"
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none" }}
-        >
-          <motion.path
-            d={SPIRAL}
-            fill="none"
-            stroke="#FF7EB3"
-            strokeWidth={3.5}
-            strokeLinecap="round"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 0.85 } : { pathLength: 0, opacity: 0 }}
-            transition={{ duration: 2.4, ease: "easeInOut", delay: 0.55 }}
-          />
-        </svg>
-
-        {/* Paper airplane */}
-        {isInView && (
-          <div className="bentofy-plane">
-            <svg width="40" height="40" viewBox="-6 -12 36 24" fill="none" style={{ overflow: "visible" }}>
-              <path d="M -6 0 L 24 0 L -6 -12 Z" fill="#F5A623" />
-              <path d="M -6 0 L 24 0 L -6 12 Z" fill="#D98E10" />
-              <path d="M -6 -12 L -1 0 L -6 12 L 3 0 Z" fill="#F5C842" />
-            </svg>
-          </div>
-        )}
-
       </div>
     </section>
   );
