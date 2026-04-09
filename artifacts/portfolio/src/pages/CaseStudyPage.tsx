@@ -1219,7 +1219,7 @@ function IndustryTrendsSection() {
       name: "Salesforce",
       nameColor: "#00A1E0",
       descriptor: "Enterprise-grade service platform integrating Einstein AI to deliver predictive insights, automated case handling, and real-time agent assistance across a unified CRM ecosystem.",
-      tag: "ENTERPRISE ECOSYSTEM + AI LAYER",
+      tag: "ENTERPRISE ECOSYSTEM",
       cardBg: "#E6F6FF",
       borderColor: "rgba(0,161,224,0.25)",
       image: "/salesforce-screenshot.png",
