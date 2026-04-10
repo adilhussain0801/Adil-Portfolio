@@ -2318,22 +2318,33 @@ function AIConsolidationSection() {
                 </svg>
               </div>
 
-              {/* Rovo Service card with warm glow */}
+              {/* Rovo Service card with AI gradient border */}
               <div className="relative" style={{ maxWidth: 420, width: "100%" }}>
+                {/* Outer glow */}
                 <div
                   className="absolute inset-0 rounded-2xl pointer-events-none"
-                  style={{ background: "radial-gradient(ellipse at 50% 80%, rgba(232,101,75,0.18) 0%, transparent 70%)", transform: "scale(1.4)", transformOrigin: "bottom center" }}
+                  style={{ background: "radial-gradient(ellipse at 50% 80%, rgba(129,140,248,0.22) 0%, transparent 70%)", transform: "scale(1.4)", transformOrigin: "bottom center" }}
                 />
+                {/* Gradient border wrapper */}
                 <div
-                  className="relative flex flex-col items-center gap-2 rounded-2xl px-5 py-4 w-full text-center"
-                  style={{ background: "rgba(255,252,249,0.95)", border: "1px solid rgba(232,101,75,0.18)", boxShadow: "0 2px 16px rgba(232,101,75,0.08)" }}
+                  style={{
+                    background: "linear-gradient(135deg, #818CF8 0%, #8B5CF6 45%, #06B6D4 100%)",
+                    borderRadius: 18,
+                    padding: 1,
+                    position: "relative",
+                  }}
                 >
-                  <img src="/rovo-service-icon-new.png" alt="Rovo Service" className="w-10 h-10 flex-shrink-0 object-contain" />
-                  <div className="flex flex-col gap-1 items-center">
-                    <p className="text-base font-bold text-[#1a1a1a]" style={{ fontFamily: FF }}>Rovo Service</p>
-                    <p className="text-sm leading-relaxed text-[#1a1a1a]/60 text-center" style={{ fontFamily: FF }}>
-                      One AI system — connected, contextual, and embedded across the service lifecycle
-                    </p>
+                  <div
+                    className="relative flex flex-col items-center gap-2 rounded-2xl px-5 py-4 w-full text-center"
+                    style={{ background: "rgba(255,252,249,0.97)", borderRadius: 17 }}
+                  >
+                    <img src="/rovo-service-icon-new.png" alt="Rovo Service" className="w-10 h-10 flex-shrink-0 object-contain" />
+                    <div className="flex flex-col gap-1 items-center">
+                      <p className="text-base font-bold text-[#1a1a1a]" style={{ fontFamily: FF }}>Rovo Service</p>
+                      <p className="text-sm leading-relaxed text-[#1a1a1a]/60 text-center" style={{ fontFamily: FF }}>
+                        One AI system — connected, contextual, and embedded across the service lifecycle
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
