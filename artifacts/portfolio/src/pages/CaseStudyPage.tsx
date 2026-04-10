@@ -869,8 +869,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                 {[
                   <>Enterprise support operates at massive scale, where even small inefficiencies compound into significant <strong className="text-[#1a1a1a] font-semibold">operational cost.</strong></>,
                   <span style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                    <span>Agents don't spend most of their time <strong className="text-[#1a1a1a] font-semibold">resolving issues</strong> — they spend it trying to <strong className="text-[#1a1a1a] font-semibold">understand them</strong>.</span>
-                    <span>Across tools, context is fragmented, incomplete, and constantly shifting.</span>
+                    <span>Agents don't spend most of their time <strong className="text-[#1a1a1a] font-semibold">resolving issues</strong> — they spend it trying to <strong className="text-[#1a1a1a] font-semibold">understand them</strong>. Across tools, context is fragmented, incomplete, and constantly shifting.</span>
                     <span style={{ display: "flex", flexDirection: "column", gap: 4 }}>
                       <span>As a result, <strong className="text-[#1a1a1a] font-semibold">40–60% of effort</strong> goes into:</span>
                       <span style={{ display: "flex", flexDirection: "column", gap: 2, paddingLeft: 12 }}>
