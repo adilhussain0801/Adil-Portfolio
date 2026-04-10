@@ -2984,25 +2984,6 @@ function SolutionSection({ study }: { study: CaseStudy }) {
             <StampHeroBanner study={study} />
           )}
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {study.solution.features.map((feature, i) => (
-              <div key={i} className="flex flex-col gap-2">
-                <div className="w-5 h-[2px] bg-[#E8654B] rounded-full mb-1" />
-                <h4
-                  className="text-sm font-bold text-foreground"
-                  style={{ fontFamily: "'Wotfard', sans-serif" }}
-                >
-                  {feature.title}
-                </h4>
-                <p
-                  className="text-sm leading-relaxed text-foreground/60"
-                  style={{ fontFamily: "'Wotfard', sans-serif" }}
-                >
-                  {feature.description}
-                </p>
-              </div>
-            ))}
-          </div>
         </div>
       </SnapReveal>
     </section>
