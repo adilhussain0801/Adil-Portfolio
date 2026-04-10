@@ -3033,10 +3033,10 @@ function SolutionSection({ study }: { study: CaseStudy }) {
                   <div className="flex-1 h-px" style={{ background: "rgba(26,26,26,0.08)" }} />
                   <div
                     className="flex items-center gap-2 px-3 py-1.5 rounded-full"
-                    style={{ background: "rgba(232,101,75,0.08)", border: "1px solid rgba(232,101,75,0.2)" }}
+                    style={{ background: "rgba(255,187,0,0.08)", border: "1px solid rgba(255,187,0,0.35)" }}
                   >
-                    <Sparkles size={11} style={{ color: "#E8654B" }} />
-                    <span className="text-[10px] font-bold tracking-wide" style={{ color: "#E8654B", fontFamily: FF }}>With Rovo Service</span>
+                    <img src="/rovo-service-logo.png" alt="Rovo Service" style={{ width: 14, height: 14, objectFit: "contain" }} />
+                    <span className="text-[10px] font-bold tracking-wide" style={{ color: "#C99000", fontFamily: FF }}>With Rovo Service</span>
                   </div>
                   <div className="flex-1 h-px" style={{ background: "rgba(26,26,26,0.08)" }} />
                 </div>
