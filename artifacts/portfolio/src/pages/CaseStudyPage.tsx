@@ -2983,7 +2983,7 @@ function ImpactCard({
       <p
         style={{
           fontFamily: FF,
-          fontSize: "clamp(36px,4vw,54px)",
+          fontSize: "clamp(24px,2.6vw,36px)",
           fontWeight: 800,
           color: "#1a1a1a",
           margin: "0 0 12px 0",
