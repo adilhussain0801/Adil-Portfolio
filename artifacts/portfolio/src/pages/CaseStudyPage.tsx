@@ -3042,22 +3042,43 @@ function SolutionSection({ study }: { study: CaseStudy }) {
                 </div>
 
                 {/* After */}
-                <div className="flex flex-col gap-1.5">
+                <div className="flex flex-col gap-1">
                   <p className="text-[9px] font-bold tracking-widest uppercase text-[#1a1a1a]/30" style={{ fontFamily: FF }}>After</p>
-                  <JourneyRow steps={afterSteps} muted={false} />
-                </div>
 
-                {/* Actor legend */}
-                <div className="flex justify-center gap-4 pt-1">
-                  {[
-                    { label: "AI handles", color: "#7C3AED" },
-                    { label: "Agent validates", color: "#E8654B" },
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-1.5">
-                      <span style={{ width: 6, height: 6, borderRadius: "50%", background: item.color, display: "inline-block", opacity: 0.7 }} />
-                      <span className="text-[10px] text-[#1a1a1a]/45" style={{ fontFamily: FF }}>{item.label}</span>
+                  {/* Annotation strip — above the icons */}
+                  <div className="grid grid-cols-5" style={{ marginBottom: 2 }}>
+                    <div />
+                    {/* Col 2: AI annotation */}
+                    <div className="flex flex-col items-center" style={{ gap: 0 }}>
+                      <span style={{ fontFamily: "'Wotfard', sans-serif", fontSize: 10, fontWeight: 700, color: "#7C3AED", letterSpacing: "0.02em" }}>AI</span>
+                      <svg width="36" height="14" viewBox="0 0 36 14" fill="none">
+                        <path d="M 4 2 C 8 1 28 1 32 2" stroke="#7C3AED" strokeWidth="1.3" strokeLinecap="round" opacity="0.7" />
+                        <path d="M 18 2 C 17 6 19 10 18 13" stroke="#7C3AED" strokeWidth="1.2" strokeLinecap="round" opacity="0.6" />
+                        <path d="M 15 10 C 17 12 19 12 21 11" stroke="#7C3AED" strokeWidth="1.1" strokeLinecap="round" opacity="0.5" />
+                      </svg>
                     </div>
-                  ))}
+                    {/* Col 3: Agent annotation */}
+                    <div className="flex flex-col items-center" style={{ gap: 0 }}>
+                      <span style={{ fontFamily: "'Wotfard', sans-serif", fontSize: 10, fontWeight: 700, color: "#E8654B", letterSpacing: "0.02em" }}>Agent</span>
+                      <svg width="36" height="14" viewBox="0 0 36 14" fill="none">
+                        <path d="M 4 2 C 8 1 28 1 32 2" stroke="#E8654B" strokeWidth="1.3" strokeLinecap="round" opacity="0.7" />
+                        <path d="M 18 2 C 17 6 19 10 18 13" stroke="#E8654B" strokeWidth="1.2" strokeLinecap="round" opacity="0.6" />
+                        <path d="M 15 10 C 17 12 19 12 21 11" stroke="#E8654B" strokeWidth="1.1" strokeLinecap="round" opacity="0.5" />
+                      </svg>
+                    </div>
+                    {/* Col 4: AI annotation */}
+                    <div className="flex flex-col items-center" style={{ gap: 0 }}>
+                      <span style={{ fontFamily: "'Wotfard', sans-serif", fontSize: 10, fontWeight: 700, color: "#7C3AED", letterSpacing: "0.02em" }}>AI</span>
+                      <svg width="36" height="14" viewBox="0 0 36 14" fill="none">
+                        <path d="M 4 2 C 8 1 28 1 32 2" stroke="#7C3AED" strokeWidth="1.3" strokeLinecap="round" opacity="0.7" />
+                        <path d="M 18 2 C 17 6 19 10 18 13" stroke="#7C3AED" strokeWidth="1.2" strokeLinecap="round" opacity="0.6" />
+                        <path d="M 15 10 C 17 12 19 12 21 11" stroke="#7C3AED" strokeWidth="1.1" strokeLinecap="round" opacity="0.5" />
+                      </svg>
+                    </div>
+                    <div />
+                  </div>
+
+                  <JourneyRow steps={afterSteps} muted={false} />
                 </div>
               </div>
             );
