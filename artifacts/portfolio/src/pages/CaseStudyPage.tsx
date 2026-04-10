@@ -868,8 +868,22 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
               <ul className="flex flex-col gap-5">
                 {[
                   <>Enterprise support operates at massive scale, where even small inefficiencies compound into significant <strong className="text-[#1a1a1a] font-semibold">operational cost.</strong></>,
-                  <>Agents spend up to <strong className="text-[#1a1a1a] font-semibold">40–60%</strong> of their time not resolving issues, but <strong className="text-[#1a1a1a] font-semibold">understanding</strong> them — navigating fragmented tools, clarifying incomplete requests, and manually assembling context.</>,
-                  <>This results in <strong className="text-[#1a1a1a] font-semibold">slower resolution times</strong>, higher <strong className="text-[#1a1a1a] font-semibold">cognitive load</strong>, and a model that <strong className="text-[#1a1a1a] font-semibold">scales linearly with headcount</strong> — making it increasingly <strong className="text-[#1a1a1a] font-semibold">unsustainable</strong> as demand grows.</>,
+                  <span style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                    <span>Agents don't spend most of their time <strong className="text-[#1a1a1a] font-semibold">resolving issues</strong> — they spend it trying to <strong className="text-[#1a1a1a] font-semibold">understand them</strong>.</span>
+                    <span>Across tools, context is fragmented, incomplete, and constantly shifting.</span>
+                    <span style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                      <span>As a result, <strong className="text-[#1a1a1a] font-semibold">40–60% of effort</strong> goes into:</span>
+                      <span style={{ display: "flex", flexDirection: "column", gap: 2, paddingLeft: 12 }}>
+                        {["gathering context", "interpreting requests", "validating next steps"].map((b, i) => (
+                          <span key={i} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                            <span style={{ width: 4, height: 4, borderRadius: "50%", background: "rgba(232,101,75,0.55)", flexShrink: 0 }} />
+                            {b}
+                          </span>
+                        ))}
+                      </span>
+                      <span className="text-[#1a1a1a]/50" style={{ fontStyle: "italic" }}>Before a resolution plan is even created.</span>
+                    </span>
+                  </span>,
                 ].map((content, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <span className="mt-2 flex-shrink-0" style={{ width: 6, height: 6, background: "rgba(232,101,75,0.55)", borderRadius: 1 }} />
