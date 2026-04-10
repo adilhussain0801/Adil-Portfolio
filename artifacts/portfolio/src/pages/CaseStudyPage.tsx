@@ -2572,8 +2572,11 @@ const CUSTOMER_ANECDOTES = [
     role: "Enterprise SaaS",
     rotate: -6,
     bgColor: "#D6E8F5",
+    bgRotate: -11,
+    bgScale: 1.04,
     icon: "/icon-heart-new.png",
     iconRotate: -10,
+    iconSize: 60,
     iconCorner: { top: -22, right: -22 },
   },
   {
@@ -2583,8 +2586,11 @@ const CUSTOMER_ANECDOTES = [
     role: "Fintech",
     rotate: 2,
     bgColor: "#F5DEC8",
+    bgRotate: 7,
+    bgScale: 1.06,
     icon: "/icon-okhand-new.png",
     iconRotate: 0,
+    iconSize: 60,
     iconCorner: { bottom: -22, right: -22 },
   },
   {
@@ -2594,9 +2600,12 @@ const CUSTOMER_ANECDOTES = [
     role: "Mid-size Enterprise",
     rotate: 5,
     bgColor: "#D4EDDA",
+    bgRotate: 3,
+    bgScale: 1.03,
     icon: "/icon-star-new.png",
     iconRotate: -8,
-    iconCorner: { top: -22, right: -22 },
+    iconSize: 74,
+    iconCorner: { top: -26, right: -26 },
   },
 ];
 
@@ -2616,7 +2625,7 @@ function AnecdoteCard({ a }: { a: (typeof CUSTOMER_ANECDOTES)[0] }) {
           inset: 0,
           borderRadius: 22,
           background: a.bgColor,
-          transform: `rotate(${hovered ? a.rotate * 0.6 : a.rotate + 4}deg) translateY(${hovered ? 4 : 8}px)`,
+          transform: `rotate(${hovered ? a.bgRotate * 0.5 : a.bgRotate}deg) scale(${hovered ? 1 + (a.bgScale - 1) * 0.5 : a.bgScale}) translateY(${hovered ? 3 : 7}px)`,
           transition: "transform 0.38s cubic-bezier(0.34,1.2,0.64,1)",
           zIndex: 0,
         }}
@@ -2652,8 +2661,8 @@ function AnecdoteCard({ a }: { a: (typeof CUSTOMER_ANECDOTES)[0] }) {
           style={{
             position: "absolute",
             ...a.iconCorner,
-            width: 60,
-            height: 60,
+            width: a.iconSize,
+            height: a.iconSize,
             objectFit: "contain",
             transform: `rotate(${a.iconRotate}deg)`,
             pointerEvents: "none",
