@@ -3145,7 +3145,7 @@ function ImpactCard({
           letterSpacing: "-0.03em",
         }}
       >
-        {prefix}<ImpactCounter numericValue={numericValue} isInView={sectionInView} format={format} startDelay={delay + 0.55} />{suffix}
+        {prefix}<ImpactCounter numericValue={numericValue} isInView={sectionInView} format={format} startDelay={0.3} />{suffix}
       </p>
       {/* Label */}
       <p style={{ fontFamily: FF, fontSize: 13, color: "rgba(26,26,26,0.5)", margin: 0, lineHeight: 1.45 }}>
