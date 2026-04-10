@@ -3064,20 +3064,23 @@ function ImpactSection({ study: _study }: { study: CaseStudy }) {
   );
 }
 
-const RETROSPECTIVE_ITEMS = [
+const RETROSPECTIVE_ITEMS: { icon: React.ElementType; boldTitle: string; regularTitle: string; body: string; takeaway: string }[] = [
   {
+    icon: Zap,
     boldTitle: "Execution drives value",
     regularTitle: " — not assistance",
     body: "AI assisting workflows saw limited engagement. The real adoption came from AI driving end-to-end execution.",
     takeaway: "Users don't want help doing the work — they want the work done.",
   },
   {
+    icon: CheckCircle2,
     boldTitle: "Trust is the gating factor",
     regularTitle: " for autonomy",
     body: "Even when accurate, plans were gated by trust — agents needed to fully understand and be able to intervene.",
     takeaway: "Autonomy scales only when trust is built into the interaction.",
   },
   {
+    icon: Sparkles,
     boldTitle: "Quality matters more than",
     regularTitle: " coverage (early on)",
     body: "High-confidence, repeatable workflows drove more impact than broad capabilities.",
@@ -3129,23 +3132,27 @@ function RetrospectiveSection() {
               transition={{ duration: 0.55, ease: EASE, delay: 0.1 + i * 0.1 }}
               style={{
                 display: "grid",
-                gridTemplateColumns: "44px 1fr",
+                gridTemplateColumns: "40px 1fr",
                 gap: "0 20px",
-                padding: "24px 0",
+                padding: "22px 0",
                 borderTop: i === 0 ? "none" : "1px solid rgba(26,26,26,0.08)",
+                alignItems: "start",
               }}
             >
-              {/* Number */}
-              <p style={{
-                fontFamily: FF, fontSize: 40, fontWeight: 800, color: "rgba(107,140,218,0.28)",
-                margin: 0, lineHeight: 1, letterSpacing: "-0.03em", paddingTop: 2,
+              {/* Icon */}
+              <div style={{
+                width: 36, height: 36, borderRadius: 10,
+                background: "rgba(107,140,218,0.08)",
+                border: "1px solid rgba(107,140,218,0.15)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                flexShrink: 0, marginTop: 1,
               }}>
-                {i + 1}
-              </p>
+                <item.icon size={16} color="#6B8CDA" strokeWidth={1.8} />
+              </div>
 
               {/* Content */}
-              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                <p style={{ fontFamily: FF, fontSize: 17, margin: 0, lineHeight: 1.3, color: "#1a1a1a" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
+                <p style={{ fontFamily: FF, fontSize: 16, margin: 0, lineHeight: 1.3, color: "#1a1a1a" }}>
                   <strong style={{ fontWeight: 700 }}>{item.boldTitle}</strong>
                   <span style={{ fontWeight: 400 }}>{item.regularTitle}</span>
                 </p>
