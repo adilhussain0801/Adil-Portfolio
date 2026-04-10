@@ -2262,6 +2262,10 @@ function AIConsolidationSection() {
                   ))}
                 </ul>
               </div>
+
+              <p className="text-sm leading-relaxed text-[#1a1a1a]/55" style={{ fontFamily: FF, borderTop: "1px solid rgba(26,26,26,0.08)", paddingTop: 16 }}>
+                A system designed to <strong className="text-[#1a1a1a]/80 font-semibold">understand context</strong>, reason over it, and <strong className="text-[#1a1a1a]/80 font-semibold">execute work</strong> — working alongside agents as a teammate.
+              </p>
             </div>
 
             {/* ── Right: visual diagram ── */}
