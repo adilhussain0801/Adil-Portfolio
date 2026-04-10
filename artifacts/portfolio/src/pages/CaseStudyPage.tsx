@@ -3473,24 +3473,26 @@ function NextProjectSection({ study }: { study: CaseStudy }) {
           <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.4)", margin: "0 0 28px 0" }}>
             More projects
           </p>
-          <div style={{ display: "flex", flexDirection: "column", gap: 0, background: "#1a1a1a", borderRadius: 20, overflow: "hidden" }}>
-            {others.map((cs, i) => (
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12 }}>
+            {others.map((cs) => (
               <Link
                 key={cs.id}
                 href={`/work/${cs.id}`}
-                className="group flex items-center justify-between px-8 py-6 hover:bg-white/5 transition-colors"
-                style={{ borderTop: i === 0 ? "none" : "1px solid rgba(255,255,255,0.07)" }}
+                className="group flex flex-col justify-between rounded-2xl hover:bg-[#252525] transition-colors"
+                style={{ background: "#1a1a1a", padding: "28px 28px 24px" }}
               >
-                <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: 6, flex: 1 }}>
                   <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", margin: 0 }}>
                     {cs.company}
                   </p>
-                  <h3 style={{ fontFamily: FF, fontSize: 18, fontWeight: 700, color: "#fff", margin: 0, lineHeight: 1.2 }}>
+                  <h3 style={{ fontFamily: FF, fontSize: 17, fontWeight: 700, color: "#fff", margin: 0, lineHeight: 1.3 }}>
                     {cs.title}
                   </h3>
                 </div>
-                <div className="w-9 h-9 rounded-full bg-white/8 flex items-center justify-center group-hover:bg-white/15 transition-colors flex-shrink-0 ml-6">
-                  <ArrowUpRight size={16} className="text-white/70" />
+                <div style={{ marginTop: 32, display: "flex", justifyContent: "flex-end" }}>
+                  <div className="w-8 h-8 rounded-full bg-white/8 flex items-center justify-center group-hover:bg-white/18 transition-colors">
+                    <ArrowUpRight size={15} className="text-white/60" />
+                  </div>
                 </div>
               </Link>
             ))}
