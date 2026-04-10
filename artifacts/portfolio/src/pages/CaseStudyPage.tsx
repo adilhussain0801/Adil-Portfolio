@@ -2727,9 +2727,7 @@ function CustomerAnecdotesSection() {
             Customer anecdotes
           </p>
           <h2 style={{ fontFamily: FF, fontWeight: 700, fontSize: "clamp(22px,3vw,32px)", color: "#1a1a1a", margin: 0, lineHeight: 1.2 }}>Heard from agents and admins</h2>
-          <p style={{ fontFamily: FF, fontSize: 14, color: "rgba(26,26,26,0.55)", margin: 0 }}>
-            What people said when Rovo quietly took work off their plate.
-          </p>
+          <p style={{ fontFamily: FF, fontSize: 14, color: "rgba(26,26,26,0.55)", margin: 0 }}>What our customers said when Rovo Service quietly took work off their plate.</p>
         </motion.div>
 
         {/* Cards */}
