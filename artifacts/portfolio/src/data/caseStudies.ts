@@ -486,7 +486,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     solution: {
       title: "Agentic AI with human oversight built in",
       description:
-        "Rovo Service gives teams a transparent, controllable layer of AI automation - from single-step actions to multi-agent workflows - with visibility and override capability at every step.",
+        "The agent shifts from manually assembling context and executing work → to validating and guiding AI-driven resolution.",
       features: [
         {
           title: "Action confirmation flows",
