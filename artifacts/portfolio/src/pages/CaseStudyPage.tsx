@@ -1649,9 +1649,9 @@ const DESIGN_PRINCIPLES = [
     cardBg: "#F0F0FE",
     borderColor: "rgba(99,102,241,0.2)",
     numColor: "#C7C8F8",
-    title: "Make AI intent visible",
-    description: "AI should clearly communicate what it is doing, why it is doing it, and what happens next.",
-    insight: "Showing AI as \u2018thinking\u2026\u2019 exposes the biggest gap \u2014 invisible reasoning erodes trust before action is even taken.",
+    title: "Make AI trustworthy, not just visible",
+    description: "AI should communicate intent, confidence, and outcomes in a way that builds trust before action is taken — without exposing unnecessary complexity.",
+    insight: "Showing AI as 'thinking' exposed the real gap — invisible reasoning erodes trust before action is even taken.",
   },
   {
     num: "02",
@@ -1660,9 +1660,9 @@ const DESIGN_PRINCIPLES = [
     cardBg: "#FEF0EC",
     borderColor: "rgba(232,101,75,0.2)",
     numColor: "#F9C5B8",
-    title: "Outcomes over process visibility",
-    description: "Design for outcomes, not for process visibility.",
-    insight: "Early designs exposed logic - plans, trees, steps. But users care about resolution, not how the machine thinks.",
+    title: "Design for outcomes, not interactions",
+    description: "AI systems should collapse multi-step workflows into outcome-driven actions, removing the need for users to orchestrate the process.",
+    insight: "Early designs exposed logic — plans, trees, steps. But users care about resolution, not how the system gets there.",
   },
   {
     num: "03",
@@ -1671,9 +1671,9 @@ const DESIGN_PRINCIPLES = [
     cardBg: "#EFF6FF",
     borderColor: "rgba(59,130,246,0.2)",
     numColor: "#BFDBFE",
-    title: "Reduce cognitive load, don't shift it",
-    description: "AI should eliminate decisions, not create new ones.",
-    insight: "Users had to interpret plans, validate steps, and fix flows. AI added work instead of removing it - the opposite of the promise.",
+    title: "Reduce decisions, not just effort",
+    description: "AI should eliminate unnecessary decisions by acting with context, not defer them back to the user for validation.",
+    insight: "Users were asked to interpret, validate, and fix flows — AI added work instead of removing it.",
   },
 ];
 
@@ -1746,9 +1746,15 @@ function DesignPrinciplesSection() {
 
                 {/* Insight callout */}
                 <div
-                  className="mt-auto rounded-xl px-4 py-3"
+                  className="mt-auto rounded-xl px-4 py-3 flex flex-col gap-1"
                   style={{ background: "rgba(0,0,0,0.04)" }}
                 >
+                  <p
+                    className="text-[10px] uppercase tracking-widest font-bold"
+                    style={{ color: `${p.accentColor}`, fontFamily: "'Wotfard', sans-serif", opacity: 0.6 }}
+                  >
+                    What we learned
+                  </p>
                   <p
                     className="text-[12px] leading-relaxed"
                     style={{ color: `${p.accentColor}`, fontFamily: "'Wotfard', sans-serif", fontWeight: 600 }}
