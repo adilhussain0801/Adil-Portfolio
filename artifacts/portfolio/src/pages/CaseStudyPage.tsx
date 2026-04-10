@@ -1664,6 +1664,65 @@ const DESIGN_PRINCIPLES = [
   },
 ];
 
+function PrincipleCard({ p, i }: { p: (typeof DESIGN_PRINCIPLES)[0]; i: number }) {
+  const [hovered, setHovered] = useState(false);
+  const rawX = useMotionValue(0);
+  const rawY = useMotionValue(0);
+  const springCfg = { stiffness: 180, damping: 22, mass: 0.5 };
+  const springX = useSpring(rawX, springCfg);
+  const springY = useSpring(rawY, springCfg);
+  const rotateY = useTransform(springX, [-0.5, 0.5], [-7, 7]);
+  const rotateX = useTransform(springY, [-0.5, 0.5], [5, -5]);
+
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    rawX.set((e.clientX - r.left) / r.width - 0.5);
+    rawY.set((e.clientY - r.top) / r.height - 0.5);
+  };
+  const onLeave = () => { rawX.set(0); rawY.set(0); setHovered(false); };
+
+  return (
+    <div style={{ perspective: 900 }}>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.55, ease: APPLE, delay: 0.1 + i * 0.1 }}
+        className="flex flex-col gap-3 rounded-2xl p-5"
+        style={{
+          background: "#F0EDE8",
+          border: "1px solid #E8E4DE",
+          rotateX,
+          rotateY,
+          transformStyle: "preserve-3d",
+          willChange: "transform",
+          boxShadow: hovered
+            ? "0 0 0 1.5px rgba(129,140,248,0.45), 0 0 28px rgba(129,140,248,0.16), 0 0 56px rgba(6,182,212,0.09), 0 8px 32px rgba(0,0,0,0.07)"
+            : "0 1px 3px rgba(0,0,0,0.03)",
+          transition: "box-shadow 0.28s ease",
+        }}
+        onMouseMove={onMove}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={onLeave}
+      >
+        <div className="rounded-lg p-2 self-start" style={{ background: "rgba(0,0,0,0.05)" }}>
+          {p.icon()}
+        </div>
+        <h3 className="text-base font-bold leading-snug text-[#1a1a1a]" style={{ fontFamily: "'Wotfard', sans-serif" }}>
+          {p.title}
+        </h3>
+        <p className="text-sm leading-relaxed text-[#1a1a1a]/55" style={{ fontFamily: "'Wotfard', sans-serif" }}>
+          {p.description}
+        </p>
+        <div className="mt-auto rounded-xl px-4 py-3" style={{ background: "rgba(0,0,0,0.05)" }}>
+          <p className="text-[12px] leading-relaxed italic" style={{ color: "rgba(26,26,26,0.45)", fontFamily: "'Wotfard', sans-serif" }}>
+            {p.insight}
+          </p>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
 function DesignPrinciplesSection() {
   return (
     <section
@@ -1696,54 +1755,7 @@ function DesignPrinciplesSection() {
           {/* Principles grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {DESIGN_PRINCIPLES.map((p, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55, ease: APPLE, delay: 0.1 + i * 0.1 }}
-                className="flex flex-col gap-3 rounded-2xl p-5"
-                style={{
-                  background: "#F0EDE8",
-                  border: "1px solid #E8E4DE",
-                }}
-              >
-                {/* Icon row */}
-                <div
-                  className="rounded-lg p-2 self-start"
-                  style={{ background: "rgba(0,0,0,0.05)" }}
-                >
-                  {p.icon()}
-                </div>
-
-                {/* Title */}
-                <h3
-                  className="text-base font-bold leading-snug text-[#1a1a1a]"
-                  style={{ fontFamily: "'Wotfard', sans-serif" }}
-                >
-                  {p.title}
-                </h3>
-
-                {/* Description */}
-                <p
-                  className="text-sm leading-relaxed text-[#1a1a1a]/55"
-                  style={{ fontFamily: "'Wotfard', sans-serif" }}
-                >
-                  {p.description}
-                </p>
-
-                {/* Insight — quiet, no label */}
-                <div
-                  className="mt-auto rounded-xl px-4 py-3"
-                  style={{ background: "rgba(0,0,0,0.05)" }}
-                >
-                  <p
-                    className="text-[12px] leading-relaxed italic"
-                    style={{ color: "rgba(26,26,26,0.45)", fontFamily: "'Wotfard', sans-serif" }}
-                  >
-                    {p.insight}
-                  </p>
-                </div>
-              </motion.div>
+              <PrincipleCard key={i} p={p} i={i} />
             ))}
           </div>
         </div>
