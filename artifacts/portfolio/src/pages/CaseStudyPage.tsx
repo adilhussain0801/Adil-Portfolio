@@ -2622,24 +2622,6 @@ function AnecdoteCard({ a }: { a: (typeof CUSTOMER_ANECDOTES)[0] }) {
         }}
       />
 
-      {/* Sticker icon — floats outside the card, fully opaque */}
-      <img
-        src={a.icon}
-        alt=""
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          ...a.iconPos,
-          width: 64,
-          height: 64,
-          objectFit: "contain",
-          transform: `rotate(${a.iconRotate}deg)`,
-          pointerEvents: "none",
-          zIndex: 20,
-          filter: "drop-shadow(0 4px 10px rgba(0,0,0,0.25))",
-        }}
-      />
-
       <div
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
@@ -2647,10 +2629,10 @@ function AnecdoteCard({ a }: { a: (typeof CUSTOMER_ANECDOTES)[0] }) {
           background: "#FFFFFF",
           border: "1px solid #E8E4DE",
           borderRadius: 20,
-          padding: "28px 26px",
+          padding: "24px 24px",
           display: "flex",
           flexDirection: "column",
-          gap: 14,
+          gap: 12,
           position: "relative",
           boxShadow: hovered
             ? "0 16px 48px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.06)"
@@ -2662,10 +2644,25 @@ function AnecdoteCard({ a }: { a: (typeof CUSTOMER_ANECDOTES)[0] }) {
           zIndex: hovered ? 10 : 1,
         }}
       >
-        {/* Title */}
-        <p style={{ fontFamily: FF, fontWeight: 700, fontSize: 15, color: "#1a1a1a", margin: 0, lineHeight: 1.35, fontStyle: "italic" }}>
-          "{a.title}"
-        </p>
+        {/* Icon + Title row */}
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <img
+            src={a.icon}
+            alt=""
+            aria-hidden="true"
+            style={{
+              width: 44,
+              height: 44,
+              objectFit: "contain",
+              transform: `rotate(${a.iconRotate}deg)`,
+              flexShrink: 0,
+              filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.18))",
+            }}
+          />
+          <p style={{ fontFamily: FF, fontWeight: 700, fontSize: 14, color: "#1a1a1a", margin: 0, lineHeight: 1.3, fontStyle: "italic" }}>
+            "{a.title}"
+          </p>
+        </div>
 
         {/* Quote */}
         <p style={{ fontFamily: FF, fontSize: 13, lineHeight: 1.7, color: "rgba(26,26,26,0.6)", margin: 0, flex: 1, whiteSpace: "pre-line" }}>
@@ -2673,7 +2670,7 @@ function AnecdoteCard({ a }: { a: (typeof CUSTOMER_ANECDOTES)[0] }) {
         </p>
 
         {/* Attribution */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 2, marginTop: 4, borderTop: "1px solid #F0ECE6", paddingTop: 14 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 2, marginTop: 4, borderTop: "1px solid #F0ECE6", paddingTop: 12 }}>
           <p style={{ fontFamily: FF, fontWeight: 700, fontSize: 12.5, color: "#1a1a1a", margin: 0 }}>{a.name}</p>
           <p style={{ fontFamily: FF, fontSize: 12, color: "rgba(26,26,26,0.45)", margin: 0, fontStyle: "italic" }}>{a.role}</p>
         </div>
