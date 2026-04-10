@@ -1740,9 +1740,7 @@ function DesignPrinciplesSection() {
             <p
               className="text-[10px] uppercase tracking-widest font-bold text-[#E8654B]"
               style={{ fontFamily: "'Wotfard', sans-serif" }}
-            >
-              Design philosophy
-            </p>
+            >Design principles</p>
             <h2
               className="text-2xl md:text-3xl leading-tight text-[#1a1a1a]"
               style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
