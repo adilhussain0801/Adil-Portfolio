@@ -3043,7 +3043,7 @@ function ImpactSection({ study: _study }: { study: CaseStudy }) {
           </motion.div>
 
           <ImpactMetric value="67%" label="Plans executed with minimal edits" delay={0.34} />
-          <ImpactMetric value="1.4×" label="Avg edits per plan before execution" delay={0.40} />
+          <ImpactMetric value="↓ 22%" label="Reduction in plan revisions" delay={0.40} />
           <div />
         </div>
 
