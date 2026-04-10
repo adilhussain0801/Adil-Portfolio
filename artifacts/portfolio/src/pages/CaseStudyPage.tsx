@@ -3221,42 +3221,6 @@ function WhatNextSection() {
     },
   ];
 
-  const InitiativeCard = ({ item, delay }: { item: typeof initiatives[0]; delay: number }) => (
-    <motion.div {...col(delay)} style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-      <div style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
-        <div style={{
-          width: 34, height: 34, borderRadius: 9, background: item.bg,
-          border: `1px solid ${item.color}30`,
-          display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 1,
-        }}>
-          <item.icon size={15} color={item.color} strokeWidth={1.8} />
-        </div>
-        <p style={{ fontFamily: FF, fontSize: 15, margin: 0, lineHeight: 1.35, color: "#1a1a1a" }}>
-          <strong style={{ fontWeight: 700 }}>{item.boldTitle}</strong>
-          <span style={{ fontWeight: 400 }}>{item.regularTitle}</span>
-        </p>
-      </div>
-      <div style={{ paddingLeft: 46, display: "flex", flexDirection: "column", gap: 6 }}>
-        <p style={{ fontFamily: FF, fontSize: 12, color: "rgba(26,26,26,0.45)", margin: 0, fontWeight: 600 }}>
-          {item.label}:
-        </p>
-        <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 2 }}>
-          {item.bullets.map((b, bi) => (
-            <li key={bi} style={{ fontFamily: FF, fontSize: 13, color: "rgba(26,26,26,0.6)", display: "flex", alignItems: "center", gap: 6 }}>
-              <span style={{ width: 4, height: 4, borderRadius: "50%", background: item.color, flexShrink: 0, opacity: 0.7 }} />
-              {b}
-            </li>
-          ))}
-        </ul>
-        {item.goal && (
-          <p style={{ fontFamily: FF, fontSize: 12, color: "rgba(26,26,26,0.55)", margin: "4px 0 0 0", lineHeight: 1.5 }}>
-            <strong style={{ fontWeight: 600 }}>Goal:</strong> {item.goal}
-          </p>
-        )}
-      </div>
-    </motion.div>
-  );
-
   return (
     <section
       id="section-whatnext"
@@ -3264,38 +3228,72 @@ function WhatNextSection() {
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
       style={{ background: "#F5F5F7" }}
     >
-      <div style={{ maxWidth: 800, margin: "0 auto", width: "100%", padding: "0 40px" }}>
+      <div style={{ maxWidth: 860, margin: "0 auto", width: "100%", padding: "0 40px" }}>
 
-        {/* Title */}
-        <motion.h2
-          {...col(0)}
-          style={{ fontFamily: FF, fontSize: "clamp(22px,2.8vw,34px)", fontWeight: 800, color: "#1a1a1a", margin: "0 0 36px 0", letterSpacing: "-0.02em", lineHeight: 1 }}
-        >
-          What We're Doing Next
-        </motion.h2>
+        {/* Title + subheading */}
+        <motion.div {...col(0)} style={{ marginBottom: 32 }}>
+          <h2 style={{ fontFamily: FF, fontSize: "clamp(22px,2.8vw,34px)", fontWeight: 800, color: "#1a1a1a", margin: "0 0 10px 0", letterSpacing: "-0.02em", lineHeight: 1 }}>
+            What We're Doing Next
+          </h2>
+          <p style={{ fontFamily: FF, fontSize: 14, color: "rgba(26,26,26,0.5)", margin: 0, lineHeight: 1.6 }}>
+            Rovo Service is evolving from a set of AI capabilities → to a system that learns to reliably execute work.
+          </p>
+        </motion.div>
 
-        {/* 2-col grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 48px" }}>
-
-          {/* Left col — item 1 + closing statement */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-            <InitiativeCard item={initiatives[0]} delay={0.1} />
+        {/* 3-column cards */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16 }}>
+          {initiatives.map((item, i) => (
             <motion.div
-              {...col(0.22)}
-              style={{ marginTop: 28, paddingTop: 24, borderTop: "1px solid rgba(26,26,26,0.08)" }}
+              key={i}
+              {...col(0.1 + i * 0.08)}
+              style={{
+                background: "#FFFFFF",
+                border: "1px solid rgba(26,26,26,0.08)",
+                borderRadius: 16,
+                padding: "22px 22px 20px",
+                display: "flex",
+                flexDirection: "column",
+                gap: 14,
+              }}
             >
-              <p style={{ fontFamily: FF, fontSize: 13, color: "rgba(26,26,26,0.5)", margin: 0, lineHeight: 1.7 }}>
-                Rovo Service is evolving from a set of AI capabilities → to a system that learns to reliably execute work.
-              </p>
-            </motion.div>
-          </div>
+              {/* Icon */}
+              <div style={{
+                width: 34, height: 34, borderRadius: 9, background: item.bg,
+                border: `1px solid ${item.color}30`,
+                display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
+              }}>
+                <item.icon size={15} color={item.color} strokeWidth={1.8} />
+              </div>
 
-          {/* Right col — items 2 + 3 */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
-            <InitiativeCard item={initiatives[1]} delay={0.16} />
-            <div style={{ height: 1, background: "rgba(26,26,26,0.08)" }} />
-            <InitiativeCard item={initiatives[2]} delay={0.22} />
-          </div>
+              {/* Title */}
+              <p style={{ fontFamily: FF, fontSize: 14, margin: 0, lineHeight: 1.35, color: "#1a1a1a" }}>
+                <strong style={{ fontWeight: 700 }}>{item.boldTitle}</strong>
+                <span style={{ fontWeight: 400 }}>{item.regularTitle}</span>
+              </p>
+
+              {/* Bullets */}
+              <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                <p style={{ fontFamily: FF, fontSize: 11, color: "rgba(26,26,26,0.4)", margin: 0, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" }}>
+                  {item.label}
+                </p>
+                <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 4 }}>
+                  {item.bullets.map((b, bi) => (
+                    <li key={bi} style={{ fontFamily: FF, fontSize: 12, color: "rgba(26,26,26,0.6)", display: "flex", alignItems: "center", gap: 7 }}>
+                      <span style={{ width: 4, height: 4, borderRadius: "50%", background: item.color, flexShrink: 0, opacity: 0.7 }} />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Goal */}
+              {item.goal && (
+                <p style={{ fontFamily: FF, fontSize: 12, color: "rgba(26,26,26,0.5)", margin: 0, lineHeight: 1.5, borderTop: "1px solid rgba(26,26,26,0.07)", paddingTop: 12 }}>
+                  <strong style={{ fontWeight: 600, color: "rgba(26,26,26,0.7)" }}>Goal:</strong> {item.goal}
+                </p>
+              )}
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
