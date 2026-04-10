@@ -2564,6 +2564,182 @@ function CosmicWaveBackground() {
   );
 }
 
+const CUSTOMER_ANECDOTES = [
+  {
+    stars: 5,
+    title: "Closed the ticket before I triaged it",
+    quote: "Rovo caught a recurring device fault, pulled the incident history, diagnosed the root cause, and resolved it — all while I was in standup. I opened the queue to find it already done.",
+    name: "Sarah M.",
+    role: "Support Team Lead, APAC",
+    rotate: -5,
+  },
+  {
+    stars: 5,
+    title: "Like having a senior agent on every shift",
+    quote: "The moment a VPN fault hit our Singapore office, Rovo was already cross-referencing firewall logs with past incidents and flagging the root cause. No escalation, no back-and-forth.",
+    name: "James K.",
+    role: "IT Operations Manager",
+    rotate: 1,
+  },
+  {
+    stars: 5,
+    title: "Onboarding that actually runs itself",
+    quote: "A new hire had their dev environment configured, dependencies resolved, and a version conflict flagged before their first team check-in. That used to take half a day.",
+    name: "Priya T.",
+    role: "Enterprise Customer",
+    rotate: 5,
+  },
+];
+
+function AnecdoteCard({ a, i, hoveredIdx, onHover, onLeave }: {
+  a: (typeof CUSTOMER_ANECDOTES)[0];
+  i: number;
+  hoveredIdx: number | null;
+  onHover: (i: number) => void;
+  onLeave: () => void;
+}) {
+  const FF = "'Wotfard', sans-serif";
+  const isHovered = hoveredIdx === i;
+  const anyHovered = hoveredIdx !== null;
+
+  let rotate = a.rotate;
+  let translateY = 0;
+  let translateX = 0;
+
+  if (anyHovered) {
+    if (isHovered) {
+      rotate = 0;
+      translateY = -10;
+    } else {
+      const dir = i < hoveredIdx! ? -1 : 1;
+      rotate = a.rotate + dir * 4;
+      translateY = 6;
+      translateX = dir * 6;
+    }
+  }
+
+  return (
+    <div
+      onMouseEnter={() => onHover(i)}
+      onMouseLeave={onLeave}
+      style={{
+        background: "#FFFFFF",
+        border: "1px solid #E8E4DE",
+        borderRadius: 20,
+        padding: "28px 26px",
+        display: "flex",
+        flexDirection: "column",
+        gap: 16,
+        boxShadow: isHovered
+          ? "0 16px 48px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.06)"
+          : "0 4px 20px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04)",
+        transform: `rotate(${rotate}deg) translateY(${translateY}px) translateX(${translateX}px)`,
+        transition: "transform 0.35s cubic-bezier(0.34,1.2,0.64,1), box-shadow 0.28s ease",
+        cursor: "default",
+        willChange: "transform",
+        zIndex: isHovered ? 10 : 1,
+        position: "relative",
+      }}
+    >
+      {/* Stars */}
+      <div style={{ display: "flex", gap: 3 }}>
+        {Array.from({ length: a.stars }).map((_, s) => (
+          <span key={s} style={{ color: "#F59E0B", fontSize: 14, lineHeight: 1 }}>★</span>
+        ))}
+      </div>
+
+      {/* Title */}
+      <p style={{ fontFamily: FF, fontWeight: 700, fontSize: 15, color: "#1a1a1a", margin: 0, lineHeight: 1.35 }}>
+        "{a.title}"
+      </p>
+
+      {/* Quote */}
+      <p style={{ fontFamily: FF, fontSize: 13.5, lineHeight: 1.65, color: "rgba(26,26,26,0.6)", margin: 0, flex: 1 }}>
+        {a.quote}
+      </p>
+
+      {/* Attribution */}
+      <div style={{ display: "flex", flexDirection: "column", gap: 1, borderTop: "1px solid #F0ECE6", paddingTop: 14 }}>
+        <p style={{ fontFamily: FF, fontWeight: 700, fontSize: 12.5, color: "#1a1a1a", margin: 0 }}>{a.name}</p>
+        <p style={{ fontFamily: FF, fontSize: 12, color: "rgba(26,26,26,0.45)", margin: 0, fontStyle: "italic" }}>{a.role}</p>
+      </div>
+    </div>
+  );
+}
+
+function CustomerAnecdotesSection() {
+  const FF = "'Wotfard', sans-serif";
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.25 });
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+
+  return (
+    <section
+      id="section-anecdotes"
+      ref={ref}
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#F7F7F5" }}
+    >
+      <div
+        style={{
+          position: "absolute",
+          left: "50%",
+          top: "50%",
+          transform: "translate(-50%, -50%)",
+          width: "min(900px, calc(100% - 80px))",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: 56,
+        }}
+      >
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease: EASE }}
+          style={{ textAlign: "center", display: "flex", flexDirection: "column", gap: 8 }}
+        >
+          <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#E8654B", margin: 0 }}>
+            Field notes
+          </p>
+          <h2 style={{ fontFamily: FF, fontWeight: 700, fontSize: "clamp(22px,3vw,32px)", color: "#1a1a1a", margin: 0, lineHeight: 1.2 }}>
+            Heard from agents and customers
+          </h2>
+          <p style={{ fontFamily: FF, fontSize: 14, color: "rgba(26,26,26,0.55)", margin: 0 }}>
+            What people said when Rovo quietly took work off their plate.
+          </p>
+        </motion.div>
+
+        {/* Cards */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.65, ease: EASE, delay: 0.15 }}
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: 24,
+            width: "100%",
+            alignItems: "center",
+          }}
+        >
+          {CUSTOMER_ANECDOTES.map((a, i) => (
+            <AnecdoteCard
+              key={i}
+              a={a}
+              i={i}
+              hoveredIdx={hoveredIdx}
+              onHover={setHoveredIdx}
+              onLeave={() => setHoveredIdx(null)}
+            />
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
 function ExperienceWalkthroughSection() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, amount: 0.35 });
@@ -2859,6 +3035,7 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
     ...(study.id === 4 ? [{ id: "section-concepts", label: "Concepts" }] : []),
     { id: "section-solution", label: "Solution" },
     { id: "section-walkthrough", label: "Walkthrough" },
+    ...(study.id === 4 ? [{ id: "section-anecdotes", label: "Field Notes" }] : []),
     { id: "section-impact", label: "Impact" },
     { id: "section-next", label: "Next Project" },
   ], [study.id]);
@@ -3135,6 +3312,7 @@ export default function CaseStudyPage() {
         {study.id === 4 && <EarlyStageConceptsSection />}
         <SolutionSection study={study} />
         <ExperienceWalkthroughSection />
+        {study.id === 4 && <CustomerAnecdotesSection />}
         <ImpactSection study={study} />
         <NextProjectSection study={study} />
       </div>
