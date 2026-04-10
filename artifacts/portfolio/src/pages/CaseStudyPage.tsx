@@ -2571,12 +2571,8 @@ const CUSTOMER_ANECDOTES = [
     name: "Maya S.",
     role: "Senior Service Agent",
     rotate: -6,
-    shape: (
-      <svg width="72" height="72" viewBox="0 0 72 72" fill="none" style={{ transform: "rotate(-14deg)" }}>
-        <rect width="72" height="72" rx="18" fill="#EDE9FE" />
-        <path d="M20 36.5L30.5 47L52 25" stroke="#7C3AED" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
+    icon: "/icon-heart.png",
+    iconRotate: -14,
   },
   {
     title: "Handle time down. CSAT up. Same team.",
@@ -2584,12 +2580,8 @@ const CUSTOMER_ANECDOTES = [
     name: "Daniel K.",
     role: "Support Operations Lead",
     rotate: 2,
-    shape: (
-      <svg width="72" height="72" viewBox="0 0 72 72" fill="none" style={{ transform: "rotate(10deg)" }}>
-        <rect width="72" height="72" rx="18" fill="#FEF3C7" />
-        <path d="M36 14L40.9 27.6H55.4L43.7 35.8L48.6 49.4L36 41.2L23.4 49.4L28.3 35.8L16.6 27.6H31.1L36 14Z" fill="#F59E0B" />
-      </svg>
-    ),
+    icon: "/icon-star.png",
+    iconRotate: 10,
   },
   {
     title: "I didn't have to repeat myself once",
@@ -2597,12 +2589,8 @@ const CUSTOMER_ANECDOTES = [
     name: "Emma R.",
     role: "Enterprise Customer",
     rotate: 5,
-    shape: (
-      <svg width="72" height="72" viewBox="0 0 72 72" fill="none" style={{ transform: "rotate(16deg)" }}>
-        <rect width="72" height="72" rx="18" fill="#CFFAFE" />
-        <path d="M36 18C27.2 18 20 24.7 20 33C20 37.5 22.1 41.5 25.4 44.2V54L36 50L46.6 54V44.2C49.9 41.5 52 37.5 52 33C52 24.7 44.8 18 36 18Z" fill="#06B6D4" />
-      </svg>
-    ),
+    icon: "/icon-okhand.png",
+    iconRotate: 16,
   },
 ];
 
@@ -2614,48 +2602,62 @@ function AnecdoteCard({ a }: { a: (typeof CUSTOMER_ANECDOTES)[0] }) {
   const translateY = hovered ? -10 : 0;
 
   return (
-    <div
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        background: "#FFFFFF",
-        border: "1px solid #E8E4DE",
-        borderRadius: 20,
-        padding: "28px 26px",
-        display: "flex",
-        flexDirection: "column",
-        gap: 16,
-        position: "relative",
-        overflow: "hidden",
-        boxShadow: hovered
-          ? "0 16px 48px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.06)"
-          : "0 4px 20px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04)",
-        transform: `rotate(${rotate}deg) translateY(${translateY}px)`,
-        transition: "transform 0.38s cubic-bezier(0.34,1.2,0.64,1), box-shadow 0.28s ease",
-        cursor: "default",
-        willChange: "transform",
-        zIndex: hovered ? 10 : 1,
-      }}
-    >
-      {/* Decorative shape — top-right */}
-      <div style={{ position: "absolute", top: -10, right: -10, pointerEvents: "none", opacity: 0.92 }}>
-        {a.shape}
-      </div>
+    <div style={{ position: "relative" }}>
+      {/* Decorative sticker icon — floats above the card, top-right corner */}
+      <img
+        src={a.icon}
+        alt=""
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: -30,
+          right: -18,
+          width: 76,
+          height: 76,
+          objectFit: "contain",
+          transform: `rotate(${a.iconRotate}deg)`,
+          pointerEvents: "none",
+          zIndex: 20,
+          filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.15))",
+        }}
+      />
+      <div
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        style={{
+          background: "#FFFFFF",
+          border: "1px solid #E8E4DE",
+          borderRadius: 20,
+          padding: "28px 26px",
+          display: "flex",
+          flexDirection: "column",
+          gap: 16,
+          position: "relative",
+          boxShadow: hovered
+            ? "0 16px 48px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.06)"
+            : "0 4px 20px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04)",
+          transform: `rotate(${rotate}deg) translateY(${translateY}px)`,
+          transition: "transform 0.38s cubic-bezier(0.34,1.2,0.64,1), box-shadow 0.28s ease",
+          cursor: "default",
+          willChange: "transform",
+          zIndex: hovered ? 10 : 1,
+        }}
+      >
+        {/* Title */}
+        <p style={{ fontFamily: FF, fontWeight: 700, fontSize: 15, color: "#1a1a1a", margin: 0, lineHeight: 1.35, paddingRight: 48 }}>
+          "{a.title}"
+        </p>
 
-      {/* Title */}
-      <p style={{ fontFamily: FF, fontWeight: 700, fontSize: 15, color: "#1a1a1a", margin: 0, lineHeight: 1.35, paddingRight: 52 }}>
-        "{a.title}"
-      </p>
+        {/* Quote */}
+        <p style={{ fontFamily: FF, fontSize: 13.5, lineHeight: 1.65, color: "rgba(26,26,26,0.6)", margin: 0, flex: 1 }}>
+          {a.quote}
+        </p>
 
-      {/* Quote */}
-      <p style={{ fontFamily: FF, fontSize: 13.5, lineHeight: 1.65, color: "rgba(26,26,26,0.6)", margin: 0, flex: 1 }}>
-        {a.quote}
-      </p>
-
-      {/* Attribution */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 1, borderTop: "1px solid #F0ECE6", paddingTop: 14 }}>
-        <p style={{ fontFamily: FF, fontWeight: 700, fontSize: 12.5, color: "#1a1a1a", margin: 0 }}>{a.name}</p>
-        <p style={{ fontFamily: FF, fontSize: 12, color: "rgba(26,26,26,0.45)", margin: 0, fontStyle: "italic" }}>{a.role}</p>
+        {/* Attribution */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 1, borderTop: "1px solid #F0ECE6", paddingTop: 14 }}>
+          <p style={{ fontFamily: FF, fontWeight: 700, fontSize: 12.5, color: "#1a1a1a", margin: 0 }}>{a.name}</p>
+          <p style={{ fontFamily: FF, fontSize: 12, color: "rgba(26,26,26,0.45)", margin: 0, fontStyle: "italic" }}>{a.role}</p>
+        </div>
       </div>
     </div>
   );
@@ -2714,7 +2716,8 @@ function CustomerAnecdotesSection() {
             gridTemplateColumns: "repeat(3, 1fr)",
             gap: 24,
             width: "100%",
-            alignItems: "center",
+            alignItems: "start",
+            paddingTop: 44,
           }}
         >
           {CUSTOMER_ANECDOTES.map((a, i) => (
