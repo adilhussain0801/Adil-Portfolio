@@ -3157,7 +3157,19 @@ function ImpactCard({
 function ImpactSection({ study: _study, scrollRef }: { study: CaseStudy; scrollRef: RefObject<HTMLDivElement> }) {
   const FF = "'Wotfard', sans-serif";
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { root: scrollRef, once: true, amount: 0.15 });
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    const container = scrollRef.current;
+    const el = ref.current;
+    if (!container || !el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setIsInView(true); observer.disconnect(); } },
+      { root: container, threshold: 0.15 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [scrollRef]);
 
   return (
     <section
