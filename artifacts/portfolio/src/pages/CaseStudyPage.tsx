@@ -3013,7 +3013,7 @@ function ImpactSection({ study: _study }: { study: CaseStudy }) {
             </p>
           </div>
           <p style={{ fontFamily: FF, fontSize: 13, color: "rgba(26,26,26,0.45)", margin: 0, maxWidth: 220, textAlign: "right", lineHeight: 1.55 }}>
-            Executing work end-to-end with increasing accuracy and reduced intervention.
+            Early signals show Rovo Service is beginning to execute work end-to-end with increasing accuracy and reduced need for intervention.
           </p>
         </motion.div>
 
