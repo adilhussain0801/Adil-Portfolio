@@ -1,7 +1,7 @@
 import { useParams, Link } from "wouter";
 import { useRef, useEffect, useState, useMemo, type RefObject } from "react";
 import { motion, useInView, AnimatePresence, useMotionValue, useTransform, useSpring, animate } from "framer-motion";
-import { ArrowLeft, ArrowRight, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare, ChevronLeft, ChevronRight, X, CheckCircle2, Settings, Banknote, Layers, Users, BookOpen, Bot, GraduationCap, Briefcase, Link2, ArrowLeftRight, BarChart2, Building2, Target, ShieldCheck } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare, ChevronLeft, ChevronRight, X, CheckCircle2, Settings, Banknote, Layers, Users, BookOpen, Bot, GraduationCap, Briefcase, Link2, ArrowLeftRight, BarChart2, Building2, Target, ShieldCheck, Menu } from "lucide-react";
 import walkthroughScreenshot from "@assets/ExpWalkthrough_1775735219205.png";
 import { getCaseStudy, getNextCaseStudy, getAllCaseStudies, type CaseStudy } from "@/data/caseStudies";
 import NotFound from "@/pages/not-found";
@@ -3690,21 +3690,6 @@ export default function CaseStudyPage() {
           <span>Back</span>
         </Link>
 
-        <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center">
-          <span
-            className="text-xs font-bold tracking-widest uppercase text-[#2D2D2D]/55"
-            style={{ fontFamily: "'Wotfard', sans-serif" }}
-          >
-            {study.company}
-          </span>
-          <span
-            className="text-sm font-semibold text-[#2D2D2D] leading-tight"
-            style={{ fontFamily: "'Wotfard', sans-serif" }}
-          >
-            {study.title}
-          </span>
-        </div>
-
         <div className="relative">
           <button
             onClick={() => setSwitchWorkOpen((o) => !o)}
@@ -3714,9 +3699,8 @@ export default function CaseStudyPage() {
             className="flex items-center gap-2 text-sm font-medium text-[#2D2D2D]/70 hover:text-[#2D2D2D] transition-colors group"
             style={{ fontFamily: "'Wotfard', sans-serif" }}
           >
-            <span>Switch Work</span>
-            <div className={`w-8 h-8 rounded-full border flex items-center justify-center transition-all ${switchWorkOpen ? "border-[#2D2D2D]/60 bg-[#2D2D2D]/5 rotate-90" : "border-[#2D2D2D]/20 group-hover:border-[#2D2D2D]/50"}`}>
-              <ArrowRight size={14} strokeWidth={1.5} className="transition-transform" />
+            <div className={`w-8 h-8 rounded-full border flex items-center justify-center transition-all ${switchWorkOpen ? "border-[#2D2D2D]/60 bg-[#2D2D2D]/5" : "border-[#2D2D2D]/20 group-hover:border-[#2D2D2D]/50"}`}>
+              <Menu size={14} strokeWidth={1.8} />
             </div>
           </button>
 
