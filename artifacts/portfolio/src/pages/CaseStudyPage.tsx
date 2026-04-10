@@ -1,6 +1,6 @@
 import { useParams, Link } from "wouter";
 import { useRef, useEffect, useState, useMemo, type RefObject } from "react";
-import { motion, useInView, AnimatePresence, useMotionValue, useTransform, animate } from "framer-motion";
+import { motion, useInView, AnimatePresence, useMotionValue, useTransform, useSpring, animate } from "framer-motion";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare, ChevronLeft, ChevronRight, X, CheckCircle2, Settings, Banknote, Layers, Users, BookOpen, Bot, GraduationCap, Briefcase, Link2, ArrowLeftRight, BarChart2, Building2 } from "lucide-react";
 import walkthroughScreenshot from "@assets/ExpWalkthrough_1775735219205.png";
 import { getCaseStudy, getNextCaseStudy, getAllCaseStudies, type CaseStudy } from "@/data/caseStudies";
@@ -2560,12 +2560,33 @@ function ExperienceWalkthroughSection() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, amount: 0.35 });
 
+  const rawX = useMotionValue(0);
+  const rawY = useMotionValue(0);
+  const springConfig = { stiffness: 120, damping: 22, mass: 0.6 };
+  const springX = useSpring(rawX, springConfig);
+  const springY = useSpring(rawY, springConfig);
+  const rotateY = useTransform(springX, [-0.5, 0.5], [-5, 5]);
+  const rotateX = useTransform(springY, [-0.5, 0.5], [4, -4]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    rawX.set((e.clientX - rect.left) / rect.width - 0.5);
+    rawY.set((e.clientY - rect.top) / rect.height - 0.5);
+  };
+
+  const handleMouseLeave = () => {
+    rawX.set(0);
+    rawY.set(0);
+  };
+
   return (
     <section
       id="section-walkthrough"
       ref={ref}
       className="relative h-screen snap-start snap-always flex items-center justify-center overflow-hidden"
       style={{ background: "#F7F7F5" }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
     >
       <CosmicWaveBackground />
       <div
@@ -2575,10 +2596,8 @@ function ExperienceWalkthroughSection() {
           top: "50%",
           transform: "translate(-50%, -50%)",
           width: "min(1188px, calc(100% - 112px))",
-          maxHeight: "calc(100vh - 128px)",
-          overflow: "hidden",
-          borderRadius: 18,
           zIndex: 5,
+          perspective: 1400,
         }}
       >
         <motion.div
@@ -2590,8 +2609,13 @@ function ExperienceWalkthroughSection() {
             overflow: "hidden",
             background: "#fff",
             boxShadow: "0 24px 80px rgba(0,0,0,0.22), 0 4px 16px rgba(0,0,0,0.10)",
+            rotateX,
+            rotateY,
+            transformStyle: "preserve-3d",
+            willChange: "transform",
           }}
         >
+          {/* Browser chrome */}
           <div
             style={{
               height: 38,
@@ -2615,6 +2639,44 @@ function ExperienceWalkthroughSection() {
             alt="Experience walkthrough"
             style={{ display: "block", width: "100%", height: "auto" }}
           />
+
+          {/* Prototype CTA */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "14px 20px",
+              background: "#F8FAFC",
+              borderTop: "1px solid rgba(15,23,42,0.07)",
+            }}
+          >
+            <a
+              href="https://ainwi-services-v-2.replit.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 7,
+                background: "#1a1a1a",
+                color: "#fff",
+                borderRadius: 10,
+                padding: "9px 18px",
+                fontFamily: "'Wotfard', sans-serif",
+                fontSize: 13,
+                fontWeight: 600,
+                textDecoration: "none",
+                letterSpacing: "0.01em",
+                transition: "background 0.18s ease, transform 0.18s ease",
+              }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#333"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#1a1a1a"; }}
+            >
+              View interactive prototype
+              <ArrowUpRight size={14} strokeWidth={2} />
+            </a>
+          </div>
         </motion.div>
       </div>
     </section>
