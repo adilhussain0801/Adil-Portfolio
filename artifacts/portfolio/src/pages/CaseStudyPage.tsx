@@ -2999,8 +2999,6 @@ function ImpactSection({ study: _study }: { study: CaseStudy }) {
             display: "flex",
             flexDirection: "column",
             gap: 10,
-            paddingBottom: 20,
-            borderBottom: "1.5px solid #1a1a1a",
             marginBottom: 36,
           }}
         >
@@ -3010,7 +3008,7 @@ function ImpactSection({ study: _study }: { study: CaseStudy }) {
           <p style={{ fontFamily: FF, fontSize: "clamp(22px,2.5vw,30px)", fontWeight: 700, color: "#1a1a1a", margin: 0, lineHeight: 1.1 }}>
             First 30 days post GA
           </p>
-          <p style={{ fontFamily: FF, fontSize: 13, color: "rgba(26,26,26,0.45)", margin: 0, lineHeight: 1.55, maxWidth: 520 }}>
+          <p style={{ fontFamily: FF, fontSize: 13, color: "rgba(26,26,26,0.45)", margin: 0, lineHeight: 1.55 }}>
             Early signals show Rovo Service is beginning to execute work end-to-end with increasing accuracy and reduced need for intervention.
           </p>
         </motion.div>
