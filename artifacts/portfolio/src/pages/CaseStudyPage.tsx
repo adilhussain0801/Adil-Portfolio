@@ -2,7 +2,6 @@ import { useParams, Link } from "wouter";
 import { useRef, useEffect, useState, useMemo, type RefObject } from "react";
 import { motion, useInView, AnimatePresence, useMotionValue, useTransform, animate } from "framer-motion";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare, ChevronLeft, ChevronRight, X, CheckCircle2, Settings, Banknote, Layers, Users, BookOpen, Bot, GraduationCap, Briefcase, Link2, ArrowLeftRight, BarChart2, Building2 } from "lucide-react";
-import browserFrameScreenshot from "@assets/After_1775733592097.png";
 import walkthroughScreenshot from "@assets/ExpWalkthrough_1775735219205.png";
 import { getCaseStudy, getNextCaseStudy, getAllCaseStudies, type CaseStudy } from "@/data/caseStudies";
 import NotFound from "@/pages/not-found";
@@ -2438,246 +2437,6 @@ function StampHeroBanner({ study }: { study: CaseStudy }) {
   );
 }
 
-function BentofyShowcaseSection() {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: false, amount: 0.35 });
-  const FF = "'Wotfard', sans-serif";
-  const [step, setStep] = useState(0);
-
-  useEffect(() => {
-    if (!isInView) { setStep(0); return; }
-    const id = setInterval(() => setStep(s => (s + 1) % 3), 2800);
-    return () => clearInterval(id);
-  }, [isInView]);
-
-  const BG = "#3A50E8";
-  const PAGE_BG = "#F7F7F5";
-
-  const RINGS = [280, 222, 168, 120, 78, 42];
-
-  // Spiral path — coordinates for 1104×788 card (viewport minus 128px each axis)
-  const SPIRAL =
-    "M 552 394 C 552 349 587 322 622 322 C 671 322 704 362 704 412 " +
-    "C 704 484 644 534 574 534 C 481 534 414 462 414 374 " +
-    "C 414 264 504 184 616 184 C 756 184 846 292 846 432 " +
-    "C 846 594 726 716 556 716";
-
-  // Plane path — fits within card (lower-left → upper-right arc)
-  const PLANE_PATH = "M 60 620 C 240 240 600 80 980 220";
-
-  // Smooth sine wave borders — viewBox 1440×48, 9 full periods, amplitude 24px
-  // Control points computed from sine tangent slopes so every join is C1-continuous.
-  // One period template (x offset applied per period):
-  //   midline(0,24) → trough(40,48) → midline(80,24) → crest(120,0) → midline(160,24)
-  //   Handles: h=17 (= quarter_period * 4/(3π) ≈ 16.97), slope_at_mid = 24*(2π/160) ≈ 0.942
-  const wavePeriods = Array.from({ length: 9 }, (_, i) => {
-    const x = i * 160;
-    return (
-      `C ${x+17} 40 ${x+23} 48 ${x+40} 48 ` +
-      `C ${x+57} 48 ${x+63} 40 ${x+80} 24 ` +
-      `C ${x+97} 8 ${x+103} 0 ${x+120} 0 ` +
-      `C ${x+137} 0 ${x+143} 8 ${x+160} 24`
-    );
-  }).join(" ");
-
-  const TOP_WAVE = `M 0 24 ${wavePeriods} L 1440 0 L 0 0 Z`;
-  const BOT_WAVE = `M 0 24 ${wavePeriods} L 1440 48 L 0 48 Z`;
-
-  // Walkthrough step content
-  const steps = [
-    <div style={{ padding: "20px 22px 22px" }}>
-      <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, color: "#9CA3AF", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 14 }}>Paste a recipe URL</p>
-      <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "9px 12px", background: "#F3F4F6", borderRadius: 10, marginBottom: 10 }}>
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" strokeWidth={2.5}>
-          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-          <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-        </svg>
-        <span style={{ fontFamily: FF, fontSize: 11.5, color: "#6B7280", flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-          seriouseats.com/recipes/best-choc…
-        </span>
-      </div>
-      <button style={{ width: "100%", padding: "10px", background: BG, color: "#fff", borderRadius: 10, border: "none", fontFamily: FF, fontSize: 12.5, fontWeight: 700, cursor: "default" }}>
-        Import Recipe →
-      </button>
-    </div>,
-
-    <div style={{ padding: "20px 22px 22px" }}>
-      <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, color: "#9CA3AF", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 14 }}>Finding the good stuff…</p>
-      <div style={{ height: 5, background: "#F3F4F6", borderRadius: 99, marginBottom: 16, overflow: "hidden" }}>
-        <motion.div
-          initial={{ width: 0 }} animate={{ width: "72%" }}
-          transition={{ duration: 0.9, ease: "easeOut" }}
-          style={{ height: "100%", background: BG, borderRadius: 99 }}
-        />
-      </div>
-      {[88, 65, 76].map((w, i) => (
-        <div key={i} style={{ height: 9, background: "#F3F4F6", borderRadius: 6, marginBottom: 8, width: `${w}%` }} />
-      ))}
-    </div>,
-
-    <div style={{ padding: "20px 22px 22px" }}>
-      <div style={{ display: "flex", gap: 5, marginBottom: 11 }}>
-        {["15 min prep", "12 min bake"].map(t => (
-          <span key={t} style={{ fontFamily: FF, fontSize: 9.5, fontWeight: 700, color: BG, background: "rgba(58,80,232,0.1)", padding: "3px 8px", borderRadius: 99 }}>{t}</span>
-        ))}
-      </div>
-      <p style={{ fontFamily: FF, fontSize: 14, fontWeight: 700, color: "#111827", marginBottom: 10, lineHeight: 1.25 }}>Chocolate Chip Cookies</p>
-      <div style={{ height: 1, background: "#F3F4F6", marginBottom: 9 }} />
-      <p style={{ fontFamily: FF, fontSize: 9.5, fontWeight: 700, color: "#9CA3AF", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 7 }}>Ingredients</p>
-      {["2 cups all-purpose flour", "1 cup brown sugar", "½ cup butter, softened", "2 large eggs", "1 tsp vanilla extract"].map(item => (
-        <div key={item} style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 5 }}>
-          <div style={{ width: 3, height: 3, borderRadius: "50%", background: "#D1D5DB", flexShrink: 0 }} />
-          <span style={{ fontFamily: FF, fontSize: 11.5, color: "#374151" }}>{item}</span>
-        </div>
-      ))}
-    </div>,
-  ];
-
-  return (
-    <section
-      ref={ref}
-      id="section-bentofy"
-      className="relative h-screen snap-start snap-always"
-      style={{ background: PAGE_BG }}
-    >
-      <style>{`
-        @keyframes bentofy-fly {
-          0%   { offset-distance: 0%;   opacity: 0; }
-          6%   { opacity: 1; }
-          94%  { opacity: 1; }
-          100% { offset-distance: 100%; opacity: 0; }
-        }
-        @keyframes ring-breathe {
-          0%, 100% { opacity: 0.18; }
-          50%       { opacity: 0.36; }
-        }
-        .bentofy-plane {
-          position: absolute;
-          top: 0; left: 0;
-          offset-path: path('${PLANE_PATH}');
-          offset-rotate: auto;
-          animation: bentofy-fly 4.8s ease-in-out infinite;
-          pointer-events: none;
-          will-change: offset-distance, opacity;
-        }
-      `}</style>
-
-      {/* Blue floating card — 64px inset, sine-wave top & bottom edges */}
-      <div style={{ position: "absolute", inset: 64, background: BG, overflow: "hidden" }}>
-
-        {/* Top sine-wave border (PAGE_BG fill creates wavy top edge illusion) */}
-        <svg
-          aria-hidden
-          viewBox="0 0 1440 48"
-          preserveAspectRatio="none"
-          style={{ position: "absolute", top: 0, left: 0, width: "100%", height: 48, display: "block", zIndex: 20, pointerEvents: "none" }}
-        >
-          <path d={TOP_WAVE} fill={PAGE_BG} />
-        </svg>
-
-        {/* Bottom sine-wave border */}
-        <svg
-          aria-hidden
-          viewBox="0 0 1440 48"
-          preserveAspectRatio="none"
-          style={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: 48, display: "block", zIndex: 20, pointerEvents: "none" }}
-        >
-          <path d={BOT_WAVE} fill={PAGE_BG} />
-        </svg>
-
-        {/* Concentric rings */}
-        {RINGS.map((r, i) => (
-          <motion.div
-            key={r}
-            initial={{ scale: 0, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 0.18 } : { scale: 0, opacity: 0 }}
-            transition={{ duration: 1.0, ease: EASE, delay: 0.04 + i * 0.11 }}
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              width: r * 2,
-              height: r * 2,
-              marginLeft: -r,
-              marginTop: -r,
-              borderRadius: "9999px",
-              border: "2px solid rgba(180, 210, 255, 0.8)",
-              boxShadow: "0 0 40px rgba(180, 210, 255, 0.7), 0 0 80px rgba(180, 210, 255, 0.5)",
-              animation: isInView ? `ring-breathe ${3.4 + i * 0.35}s ease-in-out ${i * 0.28}s infinite` : "none",
-              pointerEvents: "none",
-            }}
-          />
-        ))}
-
-        <div
-          style={{
-            position: "absolute",
-            left: "50%",
-            top: "50%",
-            transform: "translate(-50%, -50%)",
-            width: "min(1080px, calc(100% - 160px))",
-            zIndex: 15,
-          }}
-        >
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-            transition={{ duration: 0.7, ease: EASE, delay: 0.2 }}
-            style={{
-              borderRadius: 18,
-              overflow: "hidden",
-              background: "#fff",
-              boxShadow: "0 24px 80px rgba(0,0,0,0.24)",
-            }}
-          >
-            <div
-              style={{
-                height: 38,
-                background: "#F8FAFC",
-                borderBottom: "1px solid rgba(15,23,42,0.08)",
-                display: "flex",
-                alignItems: "center",
-                padding: "0 14px",
-                gap: 8,
-              }}
-            >
-              <div style={{ display: "flex", gap: 7 }}>
-                <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#FF5F57" }} />
-                <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#FEBC2E" }} />
-                <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#28C840" }} />
-              </div>
-              <div
-                style={{
-                  flex: 1,
-                  height: 24,
-                  marginLeft: 8,
-                  borderRadius: 8,
-                  background: "#EFEFEF",
-                  border: "none",
-                  display: "flex",
-                  alignItems: "center",
-                  padding: "0 10px",
-                  color: "#94A3B8",
-                  fontFamily: "'Wotfard', sans-serif",
-                  fontSize: 11,
-                }}
-              >
-                jira.atlassian.net
-              </div>
-            </div>
-
-            <img
-              src={browserFrameScreenshot}
-              alt="Jira Service Management browser window"
-              style={{ display: "block", width: "100%", height: "auto" }}
-            />
-          </motion.div>
-        </div>
-
-      </div>
-    </section>
-  );
-}
 
 const WAVE_OFFSETS = [-160, -80, 0, 80, 160];
 const WAVE_W = 1440, WAVE_H = 900, WAVE_PERIODS = 3.5, WAVE_STEPS = 120, WAVE_AMP = 52;
@@ -3029,7 +2788,6 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
     ...(study.id === 4 ? [{ id: "section-principles", label: "Principles" }] : []),
     ...(study.id === 4 ? [{ id: "section-concepts", label: "Concepts" }] : []),
     { id: "section-solution", label: "Solution" },
-    { id: "section-bentofy", label: "Magic Import" },
     { id: "section-walkthrough", label: "Walkthrough" },
     { id: "section-impact", label: "Impact" },
     { id: "section-next", label: "Next Project" },
@@ -3306,7 +3064,6 @@ export default function CaseStudyPage() {
         {study.id === 4 && <RovoServiceOverviewSection />}
         {study.id === 4 && <EarlyStageConceptsSection />}
         <SolutionSection study={study} />
-        <BentofyShowcaseSection />
         <ExperienceWalkthroughSection />
         <ImpactSection study={study} />
         <NextProjectSection study={study} />
