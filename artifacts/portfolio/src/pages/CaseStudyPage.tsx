@@ -3094,6 +3094,7 @@ function ImpactCard({
   category,
   categoryColor,
   delay = 0,
+  sectionInView,
 }: {
   numericValue: number;
   prefix?: string;
@@ -3103,15 +3104,16 @@ function ImpactCard({
   category: string;
   categoryColor: string;
   delay?: number;
+  sectionInView: boolean;
 }) {
   const FF = "'Wotfard', sans-serif";
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const cardInView = useInView(ref, { once: true, amount: 0.1 });
   return (
     <motion.div
       ref={ref}
       initial={{ opacity: 0, y: 16 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      animate={cardInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.55, ease: EASE, delay }}
       style={{
         background: "#FFFFFF",
@@ -3142,7 +3144,7 @@ function ImpactCard({
           letterSpacing: "-0.03em",
         }}
       >
-        {prefix}<ImpactCounter numericValue={numericValue} isInView={isInView} format={format} startDelay={delay + 0.55} />{suffix}
+        {prefix}<ImpactCounter numericValue={numericValue} isInView={sectionInView} format={format} startDelay={delay + 0.55} />{suffix}
       </p>
       {/* Label */}
       <p style={{ fontFamily: FF, fontSize: 13, color: "rgba(26,26,26,0.5)", margin: 0, lineHeight: 1.45 }}>
@@ -3191,9 +3193,9 @@ function ImpactSection({ study: _study }: { study: CaseStudy }) {
 
         {/* Cards — 3 columns */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, marginBottom: 28 }}>
-          <ImpactCard numericValue={21} suffix="%" label="Tickets fully resolved by AI (early adopter cohort)" category="Execution" categoryColor="#E8654B" delay={0.1} />
-          <ImpactCard numericValue={1200} prefix="~" suffix=" hrs" format={(n) => n.toLocaleString()} label="1 in 5 tickets handled end-to-end by AI" category="Execution" categoryColor="#E8654B" delay={0.18} />
-          <ImpactCard numericValue={82} suffix="%" label="Plans executed without major changes" category="Quality" categoryColor="#6B8CDA" delay={0.26} />
+          <ImpactCard numericValue={21} suffix="%" label="Tickets fully resolved by AI (early adopter cohort)" category="Execution" categoryColor="#E8654B" delay={0.1} sectionInView={isInView} />
+          <ImpactCard numericValue={1200} prefix="~" suffix=" hrs" format={(n) => n.toLocaleString()} label="1 in 5 tickets handled end-to-end by AI" category="Execution" categoryColor="#E8654B" delay={0.18} sectionInView={isInView} />
+          <ImpactCard numericValue={82} suffix="%" label="Plans executed without major changes" category="Quality" categoryColor="#6B8CDA" delay={0.26} sectionInView={isInView} />
         </div>
 
         {/* Footer statement */}
