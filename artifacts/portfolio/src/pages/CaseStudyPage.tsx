@@ -2997,22 +2997,20 @@ function ImpactSection({ study: _study }: { study: CaseStudy }) {
           transition={{ duration: 0.55, ease: EASE }}
           style={{
             display: "flex",
-            alignItems: "flex-end",
-            justifyContent: "space-between",
+            flexDirection: "column",
+            gap: 10,
             paddingBottom: 20,
             borderBottom: "1.5px solid #1a1a1a",
             marginBottom: 36,
           }}
         >
-          <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-            <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.45)", margin: 0 }}>
-              Impact — Early Signals
-            </p>
-            <p style={{ fontFamily: FF, fontSize: "clamp(22px,2.5vw,30px)", fontWeight: 700, color: "#1a1a1a", margin: 0, lineHeight: 1.1 }}>
-              First 30 days post GA
-            </p>
-          </div>
-          <p style={{ fontFamily: FF, fontSize: 13, color: "rgba(26,26,26,0.45)", margin: 0, maxWidth: 220, textAlign: "right", lineHeight: 1.55 }}>
+          <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.45)", margin: 0 }}>
+            Impact — Early Signals
+          </p>
+          <p style={{ fontFamily: FF, fontSize: "clamp(22px,2.5vw,30px)", fontWeight: 700, color: "#1a1a1a", margin: 0, lineHeight: 1.1 }}>
+            First 30 days post GA
+          </p>
+          <p style={{ fontFamily: FF, fontSize: 13, color: "rgba(26,26,26,0.45)", margin: 0, lineHeight: 1.55, maxWidth: 520 }}>
             Early signals show Rovo Service is beginning to execute work end-to-end with increasing accuracy and reduced need for intervention.
           </p>
         </motion.div>
