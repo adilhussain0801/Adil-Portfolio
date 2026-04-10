@@ -3217,17 +3217,6 @@ function ImpactSection({ study: _study, scrollRef }: { study: CaseStudy; scrollR
           <ImpactCard numericValue={82} suffix="%" label="Plans executed without major changes" category="Quality" categoryColor="#6B8CDA" delay={0.26} sectionInView={isInView} />
         </div>
 
-        {/* Footer statement */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.5, ease: EASE, delay: 0.5 }}
-          style={{ borderTop: "1px solid rgba(26,26,26,0.12)", paddingTop: 16 }}
-        >
-          <p style={{ fontFamily: FF, fontSize: 12, color: "rgba(26,26,26,0.4)", margin: 0, fontStyle: "italic", lineHeight: 1.5 }}>
-            AI is shifting from assisting work → executing with increasing reliability.
-          </p>
-        </motion.div>
       </div>
     </section>
   );
