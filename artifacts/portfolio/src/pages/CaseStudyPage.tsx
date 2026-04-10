@@ -3154,10 +3154,10 @@ function ImpactCard({
   );
 }
 
-function ImpactSection({ study: _study }: { study: CaseStudy }) {
+function ImpactSection({ study: _study, scrollRef }: { study: CaseStudy; scrollRef: RefObject<HTMLDivElement> }) {
   const FF = "'Wotfard', sans-serif";
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.15 });
+  const isInView = useInView(ref, { root: scrollRef, once: true, amount: 0.15 });
 
   return (
     <section
@@ -3792,7 +3792,7 @@ export default function CaseStudyPage() {
         <SolutionSection study={study} />
         <ExperienceWalkthroughSection />
         {study.id === 4 && <CustomerAnecdotesSection />}
-        <ImpactSection study={study} />
+        <ImpactSection study={study} scrollRef={scrollRef} />
         {study.id === 4 && <RetrospectiveSection />}
         {study.id === 4 && <WhatNextSection />}
         <NextProjectSection study={study} />
