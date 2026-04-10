@@ -3042,8 +3042,8 @@ function ImpactSection({ study: _study }: { study: CaseStudy }) {
             <div style={{ flex: 1, height: 1, background: "#6B8CDA", opacity: 0.3 }} />
           </motion.div>
 
-          <ImpactMetric value="67%" label="Plans executed with minimal edits" delay={0.34} />
-          <ImpactMetric value="↓ 22%" label="Reduction in plan revisions" delay={0.40} />
+          <ImpactMetric value="82%" label="Plans executed without major changes" delay={0.34} />
+          <div />
           <div />
         </div>
 
