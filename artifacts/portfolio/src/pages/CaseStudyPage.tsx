@@ -2910,7 +2910,10 @@ function SolutionSection({ study }: { study: CaseStudy }) {
       style={{ background: "#F5F5F7" }}
     >
       <SnapReveal>
-        <div className="max-w-3xl mx-auto w-full px-6 flex flex-col gap-8">
+        <div
+          className="mx-auto w-full flex flex-col"
+          style={{ maxWidth: study.id === 4 ? 860 : 768, padding: "0 24px", gap: study.id === 4 ? 20 : 32 }}
+        >
           <div>
             <h2
               className="text-2xl md:text-3xl leading-tight text-foreground mb-3"
@@ -2934,34 +2937,37 @@ function SolutionSection({ study }: { study: CaseStudy }) {
 
           {study.id === 4 ? (() => {
             const FF = "'Wotfard', sans-serif";
-            const steps = [
-              { label: "Request",                          quote: "What is the user asking for?",         desc: "A request comes in via email, portal, or chat — often incomplete or unclear.",              color: "#2563EB", iconBg: "rgba(37,99,235,0.12)",   icon: <Inbox size={20} /> },
-              { label: "AI understands + gathers context", quote: "What information do I need?",          desc: "AI interprets the request and pulls relevant data from Jira, Confluence, and past tickets.", color: "#7C3AED", iconBg: "rgba(124,58,237,0.12)",  icon: <Brain size={20} /> },
-              { label: "Agent validates",                  quote: "Is this plan right?",                  desc: "The agent reviews the proposed plan, approves, edits, or redirects before action.",          color: "#E8654B", iconBg: "rgba(232,101,75,0.12)",  icon: <CheckCircle2 size={20} /> },
-              { label: "AI executes",                      quote: "How do I resolve this?",               desc: "AI performs actions across connected systems — approvals, access changes, configurations.",    color: "#0F766E", iconBg: "rgba(15,118,110,0.12)",  icon: <Settings size={20} /> },
-              { label: "Resolve",                          quote: "Is the issue fully addressed?",        desc: "The request is completed, validated, and confirmed back to the user.",                       color: "#16a34a", iconBg: "rgba(22,163,74,0.12)",   icon: <CheckCircle2 size={20} /> },
-            ];
-            return (
-              <div className="flex flex-col gap-4">
-                {/* Row 1: Icons with dashed connector */}
+
+            const JourneyRow = ({
+              steps,
+              muted,
+            }: {
+              steps: { label: string; quote: string; color: string; iconBg: string; icon: React.ReactNode }[];
+              muted: boolean;
+            }) => (
+              <div className="flex flex-col gap-2">
+                {/* Icons + connector */}
                 <div className="relative grid grid-cols-5">
                   <div
-                    className="absolute border-t border-dashed border-[#C8C2BB]"
-                    style={{ top: 28, left: "10%", right: "10%" }}
+                    className="absolute border-t border-dashed"
+                    style={{ borderColor: muted ? "rgba(26,26,26,0.12)" : "#C8C2BB", top: 22, left: "10%", right: "10%" }}
                   />
                   {[20, 40, 60, 80].map((pct, ci) => (
-                    <div key={ci} className="absolute z-20" style={{ left: `calc(${pct}% - 4px)`, top: 22 }}>
-                      <svg width="8" height="12" viewBox="0 0 8 12">
-                        <polygon points="0,0 8,6 0,12" fill="#C8C2BB" />
+                    <div key={ci} className="absolute z-20" style={{ left: `calc(${pct}% - 4px)`, top: 17 }}>
+                      <svg width="7" height="10" viewBox="0 0 8 12">
+                        <polygon points="0,0 8,6 0,12" fill={muted ? "rgba(26,26,26,0.15)" : "#C8C2BB"} />
                       </svg>
                     </div>
                   ))}
                   {steps.map((step, i) => (
                     <div key={i} className="flex justify-center relative z-10">
-                      <div className="rounded-full p-1.5" style={{ background: "#F5F5F7" }}>
+                      <div className="rounded-full p-1" style={{ background: "#F5F5F7" }}>
                         <div
-                          className="w-11 h-11 rounded-full flex items-center justify-center"
-                          style={{ background: step.iconBg, color: step.color }}
+                          className="w-9 h-9 rounded-full flex items-center justify-center"
+                          style={{
+                            background: muted ? "rgba(26,26,26,0.06)" : step.iconBg,
+                            color: muted ? "rgba(26,26,26,0.3)" : step.color,
+                          }}
                         >
                           {step.icon}
                         </div>
@@ -2969,25 +2975,90 @@ function SolutionSection({ study }: { study: CaseStudy }) {
                     </div>
                   ))}
                 </div>
-
-                {/* Row 2: Labels */}
-                <div className="grid grid-cols-5 gap-2 mt-1">
+                {/* Labels */}
+                <div className="grid grid-cols-5 gap-1">
                   {steps.map((step, i) => (
-                    <p key={i} className="text-sm font-bold text-center leading-tight" style={{ color: step.color, fontFamily: FF }}>
+                    <p
+                      key={i}
+                      className="text-[11px] font-bold text-center leading-tight"
+                      style={{ color: muted ? "rgba(26,26,26,0.35)" : step.color, fontFamily: FF }}
+                    >
                       {step.label}
                     </p>
                   ))}
                 </div>
-
-                {/* Row 3: Italic quotes */}
-                <div className="grid grid-cols-5 gap-3">
+                {/* Quotes */}
+                <div className="grid grid-cols-5 gap-2">
                   {steps.map((step, i) => (
-                    <p key={i} className="text-[11px] font-semibold italic text-center leading-snug px-1" style={{ color: step.color, fontFamily: FF }}>
+                    <p
+                      key={i}
+                      className="text-[10px] font-semibold italic text-center leading-snug px-0.5"
+                      style={{ color: muted ? "rgba(26,26,26,0.25)" : step.color, fontFamily: FF }}
+                    >
                       "{step.quote}"
                     </p>
                   ))}
                 </div>
+              </div>
+            );
 
+            const beforeSteps = [
+              { label: "Request",        quote: "What is the user asking for?",    color: "#2563EB", iconBg: "rgba(37,99,235,0.12)",   icon: <Inbox size={16} /> },
+              { label: "Understand",     quote: "What exactly needs to be done?",  color: "#7C3AED", iconBg: "rgba(124,58,237,0.12)",  icon: <Network size={16} /> },
+              { label: "Gather context", quote: "What information do I need?",      color: "#B45309", iconBg: "rgba(180,83,9,0.12)",    icon: <Brain size={16} /> },
+              { label: "Execute",        quote: "How do I resolve this?",           color: "#0F766E", iconBg: "rgba(15,118,110,0.12)",  icon: <Settings size={16} /> },
+              { label: "Resolve",        quote: "Is the issue fully addressed?",    color: "#4338CA", iconBg: "rgba(67,56,202,0.12)",   icon: <CheckCircle2 size={16} /> },
+            ];
+
+            const afterSteps = [
+              { label: "Request",                          quote: "What is the user asking for?",  color: "#2563EB", iconBg: "rgba(37,99,235,0.12)",   icon: <Inbox size={16} /> },
+              { label: "AI understands + gathers context", quote: "What information do I need?",   color: "#7C3AED", iconBg: "rgba(124,58,237,0.12)",  icon: <Brain size={16} /> },
+              { label: "Agent validates",                  quote: "Is this plan right?",           color: "#E8654B", iconBg: "rgba(232,101,75,0.12)",  icon: <CheckCircle2 size={16} /> },
+              { label: "AI executes",                      quote: "How do I resolve this?",        color: "#0F766E", iconBg: "rgba(15,118,110,0.12)",  icon: <Settings size={16} /> },
+              { label: "Resolve",                          quote: "Is the issue fully addressed?", color: "#16a34a", iconBg: "rgba(22,163,74,0.12)",   icon: <CheckCircle2 size={16} /> },
+            ];
+
+            return (
+              <div className="flex flex-col gap-3">
+                {/* Before */}
+                <div className="flex flex-col gap-1.5">
+                  <p className="text-[9px] font-bold tracking-widest uppercase text-[#1a1a1a]/30" style={{ fontFamily: FF }}>Before</p>
+                  <div style={{ opacity: 0.7 }}>
+                    <JourneyRow steps={beforeSteps} muted={true} />
+                  </div>
+                </div>
+
+                {/* Transition bridge */}
+                <div className="flex items-center gap-3 py-1">
+                  <div className="flex-1 h-px" style={{ background: "rgba(26,26,26,0.08)" }} />
+                  <div
+                    className="flex items-center gap-2 px-3 py-1.5 rounded-full"
+                    style={{ background: "rgba(232,101,75,0.08)", border: "1px solid rgba(232,101,75,0.2)" }}
+                  >
+                    <Sparkles size={11} style={{ color: "#E8654B" }} />
+                    <span className="text-[10px] font-bold tracking-wide" style={{ color: "#E8654B", fontFamily: FF }}>With Rovo Service</span>
+                  </div>
+                  <div className="flex-1 h-px" style={{ background: "rgba(26,26,26,0.08)" }} />
+                </div>
+
+                {/* After */}
+                <div className="flex flex-col gap-1.5">
+                  <p className="text-[9px] font-bold tracking-widest uppercase text-[#1a1a1a]/30" style={{ fontFamily: FF }}>After</p>
+                  <JourneyRow steps={afterSteps} muted={false} />
+                </div>
+
+                {/* Actor legend */}
+                <div className="flex justify-center gap-4 pt-1">
+                  {[
+                    { label: "AI handles", color: "#7C3AED" },
+                    { label: "Agent validates", color: "#E8654B" },
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-1.5">
+                      <span style={{ width: 6, height: 6, borderRadius: "50%", background: item.color, display: "inline-block", opacity: 0.7 }} />
+                      <span className="text-[10px] text-[#1a1a1a]/45" style={{ fontFamily: FF }}>{item.label}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             );
           })() : (
