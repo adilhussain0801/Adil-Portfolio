@@ -2572,7 +2572,8 @@ const CUSTOMER_ANECDOTES = [
     role: "Senior Service Agent",
     rotate: -6,
     icon: "/icon-heart.png",
-    iconRotate: -14,
+    iconRotate: -10,
+    iconStyle: { left: -32, top: 16 },
   },
   {
     title: "Handle time down. CSAT up. Same team.",
@@ -2581,7 +2582,8 @@ const CUSTOMER_ANECDOTES = [
     role: "Support Operations Lead",
     rotate: 2,
     icon: "/icon-star.png",
-    iconRotate: 10,
+    iconRotate: -8,
+    iconStyle: { bottom: -30, left: -14 },
   },
   {
     title: "I didn't have to repeat myself once",
@@ -2591,6 +2593,7 @@ const CUSTOMER_ANECDOTES = [
     rotate: 5,
     icon: "/icon-okhand.png",
     iconRotate: 16,
+    iconStyle: { top: -30, right: -18 },
   },
 ];
 
@@ -2603,22 +2606,22 @@ function AnecdoteCard({ a }: { a: (typeof CUSTOMER_ANECDOTES)[0] }) {
 
   return (
     <div style={{ position: "relative" }}>
-      {/* Decorative sticker icon — floats above the card, top-right corner */}
+      {/* Decorative sticker icon */}
       <img
         src={a.icon}
         alt=""
         aria-hidden="true"
         style={{
           position: "absolute",
-          top: -30,
-          right: -18,
-          width: 76,
-          height: 76,
+          ...a.iconStyle,
+          width: 80,
+          height: 80,
           objectFit: "contain",
           transform: `rotate(${a.iconRotate}deg)`,
           pointerEvents: "none",
           zIndex: 20,
-          filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.15))",
+          mixBlendMode: "multiply",
+          filter: "drop-shadow(0 3px 8px rgba(0,0,0,0.12))",
         }}
       />
       <div
@@ -2718,6 +2721,8 @@ function CustomerAnecdotesSection() {
             width: "100%",
             alignItems: "start",
             paddingTop: 44,
+            paddingBottom: 44,
+            paddingLeft: 36,
           }}
         >
           {CUSTOMER_ANECDOTES.map((a, i) => (
