@@ -3027,7 +3027,7 @@ function ImpactSection({ study: _study }: { study: CaseStudy }) {
 
           <ImpactMetric value="21%" label="Tickets fully resolved by AI (early adopter cohort)" delay={0.13} />
           <ImpactMetric value="~1,200 hrs saved" label="1 in 5 tickets handled end-to-end by AI" delay={0.19} />
-          <ImpactMetric value="↓ 32%" label="Reduction in back-and-forth interactions" delay={0.25} />
+          <div />
 
           {/* QUALITY label — spans full width */}
           <motion.div
