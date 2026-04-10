@@ -3064,6 +3064,106 @@ function ImpactSection({ study: _study }: { study: CaseStudy }) {
   );
 }
 
+const RETROSPECTIVE_ITEMS = [
+  {
+    boldTitle: "Execution drives value",
+    regularTitle: " — not assistance",
+    body: "AI assisting workflows saw limited engagement. The real adoption came from AI driving end-to-end execution.",
+    takeaway: "Users don't want help doing the work — they want the work done.",
+  },
+  {
+    boldTitle: "Trust is the gating factor",
+    regularTitle: " for autonomy",
+    body: "Even when accurate, plans were gated by trust — agents needed to fully understand and be able to intervene.",
+    takeaway: "Autonomy scales only when trust is built into the interaction.",
+  },
+  {
+    boldTitle: "Quality matters more than",
+    regularTitle: " coverage (early on)",
+    body: "High-confidence, repeatable workflows drove more impact than broad capabilities.",
+    takeaway: "Depth of reliability beats breadth of features at go-to-market stage.",
+  },
+];
+
+function RetrospectiveSection() {
+  const FF = "'Wotfard', sans-serif";
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.15 });
+
+  return (
+    <section
+      id="section-retrospective"
+      ref={ref}
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#F5F5F7" }}
+    >
+      <div style={{ maxWidth: 760, margin: "0 auto", width: "100%", padding: "0 40px" }}>
+
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.55, ease: EASE }}
+          style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 40 }}
+        >
+          <h2 style={{ fontFamily: FF, fontSize: "clamp(24px,3vw,36px)", fontWeight: 800, color: "#1a1a1a", margin: 0, letterSpacing: "-0.02em", lineHeight: 1 }}>
+            3 Biggest Learnings
+          </h2>
+          <span style={{
+            fontFamily: FF, fontSize: 9, fontWeight: 700, letterSpacing: "0.14em",
+            textTransform: "uppercase", color: "#6B8CDA",
+            background: "rgba(107,140,218,0.1)", border: "1px solid rgba(107,140,218,0.25)",
+            borderRadius: 6, padding: "4px 8px",
+          }}>
+            Post-GA
+          </span>
+        </motion.div>
+
+        {/* Items */}
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          {RETROSPECTIVE_ITEMS.map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 16 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.55, ease: EASE, delay: 0.1 + i * 0.1 }}
+              style={{
+                display: "grid",
+                gridTemplateColumns: "44px 1fr",
+                gap: "0 20px",
+                padding: "24px 0",
+                borderTop: i === 0 ? "none" : "1px solid rgba(26,26,26,0.08)",
+              }}
+            >
+              {/* Number */}
+              <p style={{
+                fontFamily: FF, fontSize: 40, fontWeight: 800, color: "rgba(107,140,218,0.28)",
+                margin: 0, lineHeight: 1, letterSpacing: "-0.03em", paddingTop: 2,
+              }}>
+                {i + 1}
+              </p>
+
+              {/* Content */}
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                <p style={{ fontFamily: FF, fontSize: 17, margin: 0, lineHeight: 1.3, color: "#1a1a1a" }}>
+                  <strong style={{ fontWeight: 700 }}>{item.boldTitle}</strong>
+                  <span style={{ fontWeight: 400 }}>{item.regularTitle}</span>
+                </p>
+                <p style={{ fontFamily: FF, fontSize: 13, color: "rgba(26,26,26,0.55)", margin: 0, lineHeight: 1.6 }}>
+                  {item.body}
+                </p>
+                <p style={{ fontFamily: FF, fontSize: 13, color: "#6B8CDA", margin: 0, lineHeight: 1.5, fontStyle: "italic" }}>
+                  {item.takeaway}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function NextProjectSection({ study }: { study: CaseStudy }) {
   const next = getNextCaseStudy(study.id);
   if (!next) return null;
@@ -3128,6 +3228,7 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
     { id: "section-walkthrough", label: "Walkthrough" },
     ...(study.id === 4 ? [{ id: "section-anecdotes", label: "Anecdotes" }] : []),
     { id: "section-impact", label: "Impact" },
+    ...(study.id === 4 ? [{ id: "section-retrospective", label: "Learnings" }] : []),
     { id: "section-next", label: "Next Project" },
   ], [study.id]);
 
@@ -3405,6 +3506,7 @@ export default function CaseStudyPage() {
         <ExperienceWalkthroughSection />
         {study.id === 4 && <CustomerAnecdotesSection />}
         <ImpactSection study={study} />
+        {study.id === 4 && <RetrospectiveSection />}
         <NextProjectSection study={study} />
       </div>
     </div>
