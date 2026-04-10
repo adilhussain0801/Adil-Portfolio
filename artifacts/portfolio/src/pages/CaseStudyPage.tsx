@@ -3128,8 +3128,7 @@ function ImpactCard({
       }}
     >
       {/* Category tag */}
-      <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 20 }}>
-        <div style={{ width: 6, height: 6, borderRadius: "50%", background: categoryColor, flexShrink: 0 }} />
+      <div style={{ display: "flex", alignItems: "center", marginBottom: 20 }}>
         <p style={{ fontFamily: FF, fontSize: 9, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: categoryColor, margin: 0 }}>
           {category}
         </p>
@@ -3140,7 +3139,7 @@ function ImpactCard({
           fontFamily: FF,
           fontSize: "clamp(24px,2.6vw,36px)",
           fontWeight: 800,
-          color: "#1a1a1a",
+          color: categoryColor,
           margin: "0 0 12px 0",
           lineHeight: 1,
           letterSpacing: "-0.03em",
