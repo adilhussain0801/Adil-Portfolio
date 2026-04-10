@@ -1703,9 +1703,7 @@ function DesignPrinciplesSection() {
             <p
               className="text-sm leading-relaxed text-[#1a1a1a]/70 mt-2"
               style={{ fontFamily: "'Wotfard', sans-serif" }}
-            >
-              These principles emerged from identifying that AI was present in the workflow, but not meaningfully improving how users think or act.
-            </p>
+            >AI in workflows wasn’t failing because of capability - it was failing because it didn’t reduce work in a way agents could trust.</p>
           </div>
 
           {/* Principles grid */}
