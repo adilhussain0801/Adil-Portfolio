@@ -3062,20 +3062,22 @@ function SolutionSection({ study }: { study: CaseStudy }) {
 function ImpactCounter({ numericValue, isInView, format, startDelay = 0 }: { numericValue: number; isInView: boolean; format?: (n: number) => string; startDelay?: number }) {
   const [display, setDisplay] = useState(0);
   useEffect(() => {
-    if (!isInView) return;
+    if (!isInView) {
+      setDisplay(0);
+      return;
+    }
     let raf: number;
     let timeout: ReturnType<typeof setTimeout>;
-    const start = Math.floor(numericValue / 2);
     const run = () => {
-      let cur = start;
-      const duration = 1000;
+      const duration = 1400;
       const t0 = Date.now();
       const tick = () => {
         const elapsed = Date.now() - t0;
-        const progress = Math.min(elapsed / duration, 1);
-        cur = Math.floor(start + progress * (numericValue - start));
-        setDisplay(cur);
-        if (progress < 1) raf = requestAnimationFrame(tick);
+        const t = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - t, 3);
+        setDisplay(Math.floor(ease * numericValue));
+        if (t < 1) raf = requestAnimationFrame(tick);
+        else setDisplay(numericValue);
       };
       raf = requestAnimationFrame(tick);
     };
@@ -3164,7 +3166,7 @@ function ImpactSection({ study: _study, scrollRef }: { study: CaseStudy; scrollR
     const el = ref.current;
     if (!container || !el) return;
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setIsInView(true); observer.disconnect(); } },
+      ([entry]) => { setIsInView(entry.isIntersecting); },
       { root: container, threshold: 0.15 }
     );
     observer.observe(el);
