@@ -655,9 +655,9 @@ function JourneyFocusDiagram() {
 }
 
 const CHALLENGE_PALETTE = [
-  { cardBg: "#F5F3F0", cardBorder: "#E8DFD7", numColor: "#D4C4B0", accentColor: "#E8654B" },
-  { cardBg: "#F0F4F8", cardBorder: "#D6E4F0", numColor: "#B8CDD9", accentColor: "#3B82F6" },
-  { cardBg: "#F5F0F3", cardBorder: "#EFDBEB", numColor: "#D4B8C8", accentColor: "#EC4899" },
+  { cardBg: "#FFFFFF", cardBorder: "#E8E4DE", numColor: "rgba(0,0,0,0.15)", accentColor: "#E8654B" },
+  { cardBg: "#FFFFFF", cardBorder: "#E8E4DE", numColor: "rgba(0,0,0,0.15)", accentColor: "#3B82F6" },
+  { cardBg: "#FFFFFF", cardBorder: "#E8E4DE", numColor: "rgba(0,0,0,0.15)", accentColor: "#EC4899" },
 ];
 
 const CHALLENGE_ICONS = [
@@ -1420,7 +1420,7 @@ function EmergingThemesSection() {
             <SnapReveal key={i} delay={0.1 + i * 0.1}>
               <div
                 className="rounded-2xl flex flex-col p-7"
-                style={{ background: "#F0EDE8", border: "1px solid #E8E4DE" }}
+                style={{ background: "#FFFFFF", border: "1px solid #E8E4DE" }}
               >
                 <div
                   className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
@@ -1470,7 +1470,7 @@ function ProcessSection({ study }: { study: CaseStudy }) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {study.process.map((step, i) => (
           <SnapReveal key={i} delay={0.06 + i * 0.07}>
-            <div className="rounded-2xl bg-[#F0EDE8] px-6 py-6 flex flex-col gap-2">
+            <div className="rounded-2xl bg-white border border-[#E8E4DE] px-6 py-6 flex flex-col gap-2">
               <p
                 className="text-xs font-bold text-[#2D2D2D]/30 tabular-nums"
                 style={{ fontFamily: "'Wotfard', sans-serif" }}
@@ -1689,7 +1689,7 @@ function PrincipleCard({ p, i }: { p: (typeof DESIGN_PRINCIPLES)[0]; i: number }
         transition={{ duration: 0.55, ease: APPLE, delay: 0.1 + i * 0.1 }}
         className="flex flex-col gap-3 rounded-2xl p-5"
         style={{
-          background: "#F0EDE8",
+          background: "#FFFFFF",
           border: "1px solid #E8E4DE",
           rotateX,
           rotateY,
