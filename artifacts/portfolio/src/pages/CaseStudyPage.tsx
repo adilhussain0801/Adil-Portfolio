@@ -2573,7 +2573,7 @@ const CUSTOMER_ANECDOTES = [
     rotate: -6,
     icon: "/icon-heart.png",
     iconRotate: -10,
-    iconStyle: { left: -32, top: 16 },
+    iconPos: { top: -32, left: -24 },
   },
   {
     title: "Handle time down. CSAT up. Same team.",
@@ -2581,9 +2581,9 @@ const CUSTOMER_ANECDOTES = [
     name: "Daniel K.",
     role: "Support Operations Lead",
     rotate: 2,
-    icon: "/icon-star.png",
-    iconRotate: -8,
-    iconStyle: { bottom: -30, left: -14 },
+    icon: "/icon-okhand.png",
+    iconRotate: 0,
+    iconPos: { bottom: -36, right: -20 },
   },
   {
     title: "I didn't have to repeat myself once",
@@ -2591,9 +2591,9 @@ const CUSTOMER_ANECDOTES = [
     name: "Emma R.",
     role: "Enterprise Customer",
     rotate: 5,
-    icon: "/icon-okhand.png",
-    iconRotate: 16,
-    iconStyle: { top: -30, right: -18 },
+    icon: "/icon-star.png",
+    iconRotate: -8,
+    iconPos: { top: -28, right: -20 },
   },
 ];
 
@@ -2602,43 +2602,42 @@ function AnecdoteCard({ a }: { a: (typeof CUSTOMER_ANECDOTES)[0] }) {
   const [hovered, setHovered] = useState(false);
 
   const rotate = hovered ? 0 : a.rotate;
-  const translateY = hovered ? -10 : 0;
+  const translateY = hovered ? -8 : 0;
 
   return (
     <div style={{ position: "relative" }}>
-      {/* Decorative sticker icon */}
+      {/* Sticker icon — floats outside the card, fully opaque */}
       <img
         src={a.icon}
         alt=""
         aria-hidden="true"
         style={{
           position: "absolute",
-          ...a.iconStyle,
-          width: 80,
-          height: 80,
+          ...a.iconPos,
+          width: 84,
+          height: 84,
           objectFit: "contain",
           transform: `rotate(${a.iconRotate}deg)`,
           pointerEvents: "none",
           zIndex: 20,
-          mixBlendMode: "multiply",
-          filter: "drop-shadow(0 3px 8px rgba(0,0,0,0.12))",
+          filter: "drop-shadow(0 4px 10px rgba(0,0,0,0.25))",
         }}
       />
+
       <div
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         style={{
-          background: "#FFFFFF",
-          border: "1px solid #E8E4DE",
+          background: "#1c1c24",
           borderRadius: 20,
           padding: "28px 26px",
           display: "flex",
           flexDirection: "column",
-          gap: 16,
+          gap: 14,
           position: "relative",
           boxShadow: hovered
-            ? "0 16px 48px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.06)"
-            : "0 4px 20px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04)",
+            ? "0 20px 56px rgba(0,0,0,0.45), 0 4px 16px rgba(0,0,0,0.3)"
+            : "0 8px 32px rgba(0,0,0,0.3), 0 2px 8px rgba(0,0,0,0.2)",
           transform: `rotate(${rotate}deg) translateY(${translateY}px)`,
           transition: "transform 0.38s cubic-bezier(0.34,1.2,0.64,1), box-shadow 0.28s ease",
           cursor: "default",
@@ -2646,20 +2645,23 @@ function AnecdoteCard({ a }: { a: (typeof CUSTOMER_ANECDOTES)[0] }) {
           zIndex: hovered ? 10 : 1,
         }}
       >
+        {/* Stars */}
+        <div style={{ fontSize: 13, color: "#ffffff", letterSpacing: 2 }}>★★★★★</div>
+
         {/* Title */}
-        <p style={{ fontFamily: FF, fontWeight: 700, fontSize: 15, color: "#1a1a1a", margin: 0, lineHeight: 1.35, paddingRight: 48 }}>
+        <p style={{ fontFamily: FF, fontWeight: 600, fontSize: 15, color: "#ffffff", margin: 0, lineHeight: 1.35, fontStyle: "italic" }}>
           "{a.title}"
         </p>
 
         {/* Quote */}
-        <p style={{ fontFamily: FF, fontSize: 13.5, lineHeight: 1.65, color: "rgba(26,26,26,0.6)", margin: 0, flex: 1 }}>
+        <p style={{ fontFamily: FF, fontSize: 13, lineHeight: 1.7, color: "rgba(255,255,255,0.65)", margin: 0, flex: 1 }}>
           {a.quote}
         </p>
 
         {/* Attribution */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 1, borderTop: "1px solid #F0ECE6", paddingTop: 14 }}>
-          <p style={{ fontFamily: FF, fontWeight: 700, fontSize: 12.5, color: "#1a1a1a", margin: 0 }}>{a.name}</p>
-          <p style={{ fontFamily: FF, fontSize: 12, color: "rgba(26,26,26,0.45)", margin: 0, fontStyle: "italic" }}>{a.role}</p>
+        <div style={{ display: "flex", flexDirection: "column", gap: 2, marginTop: 4 }}>
+          <p style={{ fontFamily: FF, fontWeight: 600, fontSize: 12.5, color: "#ffffff", margin: 0 }}>{a.name}</p>
+          <p style={{ fontFamily: FF, fontSize: 12, color: "rgba(255,255,255,0.4)", margin: 0, fontStyle: "italic" }}>{a.role}</p>
         </div>
       </div>
     </div>
@@ -2676,7 +2678,7 @@ function CustomerAnecdotesSection() {
       id="section-anecdotes"
       ref={ref}
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
-      style={{ background: "#F7F7F5" }}
+      style={{ background: "#0e0e12" }}
     >
       <div
         style={{
@@ -2688,7 +2690,7 @@ function CustomerAnecdotesSection() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: 56,
+          gap: 40,
         }}
       >
         {/* Header */}
@@ -2701,10 +2703,10 @@ function CustomerAnecdotesSection() {
           <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#E8654B", margin: 0 }}>
             Field notes
           </p>
-          <h2 style={{ fontFamily: FF, fontWeight: 700, fontSize: "clamp(22px,3vw,32px)", color: "#1a1a1a", margin: 0, lineHeight: 1.2 }}>
+          <h2 style={{ fontFamily: FF, fontWeight: 700, fontSize: "clamp(22px,3vw,32px)", color: "#ffffff", margin: 0, lineHeight: 1.2 }}>
             Heard from agents and customers
           </h2>
-          <p style={{ fontFamily: FF, fontSize: 14, color: "rgba(26,26,26,0.55)", margin: 0 }}>
+          <p style={{ fontFamily: FF, fontSize: 14, color: "rgba(255,255,255,0.45)", margin: 0 }}>
             What people said when Rovo quietly took work off their plate.
           </p>
         </motion.div>
@@ -2717,12 +2719,13 @@ function CustomerAnecdotesSection() {
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 24,
+            gap: 28,
             width: "100%",
             alignItems: "start",
-            paddingTop: 44,
-            paddingBottom: 44,
-            paddingLeft: 36,
+            paddingTop: 52,
+            paddingBottom: 52,
+            paddingLeft: 32,
+            paddingRight: 32,
           }}
         >
           {CUSTOMER_ANECDOTES.map((a, i) => (
