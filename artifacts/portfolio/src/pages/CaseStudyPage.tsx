@@ -2724,7 +2724,7 @@ function CustomerAnecdotesSection() {
           style={{ textAlign: "center", display: "flex", flexDirection: "column", gap: 8 }}
         >
           <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#E8654B", margin: 0 }}>
-            Field notes
+            Customer anecdotes
           </p>
           <h2 style={{ fontFamily: FF, fontWeight: 700, fontSize: "clamp(22px,3vw,32px)", color: "#1a1a1a", margin: 0, lineHeight: 1.2 }}>
             Heard from agents and customers
@@ -3129,7 +3129,7 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
     ...(study.id === 4 ? [{ id: "section-concepts", label: "Concepts" }] : []),
     { id: "section-solution", label: "Solution" },
     { id: "section-walkthrough", label: "Walkthrough" },
-    ...(study.id === 4 ? [{ id: "section-anecdotes", label: "Field Notes" }] : []),
+    ...(study.id === 4 ? [{ id: "section-anecdotes", label: "Anecdotes" }] : []),
     { id: "section-impact", label: "Impact" },
     { id: "section-next", label: "Next Project" },
   ], [study.id]);
