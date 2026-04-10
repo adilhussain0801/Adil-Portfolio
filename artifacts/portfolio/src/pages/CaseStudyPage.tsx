@@ -2662,9 +2662,6 @@ function AnecdoteCard({ a }: { a: (typeof CUSTOMER_ANECDOTES)[0] }) {
           zIndex: hovered ? 10 : 1,
         }}
       >
-        {/* Stars */}
-        <div style={{ fontSize: 13, color: "#1a1a1a", letterSpacing: 2 }}>★★★★★</div>
-
         {/* Title */}
         <p style={{ fontFamily: FF, fontWeight: 700, fontSize: 15, color: "#1a1a1a", margin: 0, lineHeight: 1.35, fontStyle: "italic" }}>
           "{a.title}"
