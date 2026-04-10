@@ -2566,62 +2566,57 @@ function CosmicWaveBackground() {
 
 const CUSTOMER_ANECDOTES = [
   {
-    stars: 5,
-    title: "Closed the ticket before I triaged it",
-    quote: "Rovo caught a recurring device fault, pulled the incident history, diagnosed the root cause, and resolved it — all while I was in standup. I opened the queue to find it already done.",
-    name: "Sarah M.",
-    role: "Support Team Lead, APAC",
-    rotate: -5,
+    title: "The draft was ready before I read the thread",
+    quote: "By the time I opened the conversation, Rovo had already scanned the customer's history and staged a full response. I reviewed, tweaked two words, and sent. What used to take eight minutes now takes one.",
+    name: "Maya S.",
+    role: "Senior Service Agent",
+    rotate: -6,
+    shape: (
+      <svg width="72" height="72" viewBox="0 0 72 72" fill="none" style={{ transform: "rotate(-14deg)" }}>
+        <rect width="72" height="72" rx="18" fill="#EDE9FE" />
+        <path d="M20 36.5L30.5 47L52 25" stroke="#7C3AED" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
   },
   {
-    stars: 5,
-    title: "Like having a senior agent on every shift",
-    quote: "The moment a VPN fault hit our Singapore office, Rovo was already cross-referencing firewall logs with past incidents and flagging the root cause. No escalation, no back-and-forth.",
-    name: "James K.",
-    role: "IT Operations Manager",
-    rotate: 1,
+    title: "Handle time down. CSAT up. Same team.",
+    quote: "Agents stopped flipping between five tabs to find context. Rovo surfaces the customer's plan, history, and the right action right inside the conversation. The numbers moved inside the first week.",
+    name: "Daniel K.",
+    role: "Support Operations Lead",
+    rotate: 2,
+    shape: (
+      <svg width="72" height="72" viewBox="0 0 72 72" fill="none" style={{ transform: "rotate(10deg)" }}>
+        <rect width="72" height="72" rx="18" fill="#FEF3C7" />
+        <path d="M36 14L40.9 27.6H55.4L43.7 35.8L48.6 49.4L36 41.2L23.4 49.4L28.3 35.8L16.6 27.6H31.1L36 14Z" fill="#F59E0B" />
+      </svg>
+    ),
   },
   {
-    stars: 5,
-    title: "Onboarding that actually runs itself",
-    quote: "A new hire had their dev environment configured, dependencies resolved, and a version conflict flagged before their first team check-in. That used to take half a day.",
-    name: "Priya T.",
+    title: "I didn't have to repeat myself once",
+    quote: "Every agent I reached already knew my plan, my history, and what I'd tried. I didn't have to re-explain anything. It felt like they'd actually been paying attention for years.",
+    name: "Emma R.",
     role: "Enterprise Customer",
     rotate: 5,
+    shape: (
+      <svg width="72" height="72" viewBox="0 0 72 72" fill="none" style={{ transform: "rotate(16deg)" }}>
+        <rect width="72" height="72" rx="18" fill="#CFFAFE" />
+        <path d="M36 18C27.2 18 20 24.7 20 33C20 37.5 22.1 41.5 25.4 44.2V54L36 50L46.6 54V44.2C49.9 41.5 52 37.5 52 33C52 24.7 44.8 18 36 18Z" fill="#06B6D4" />
+      </svg>
+    ),
   },
 ];
 
-function AnecdoteCard({ a, i, hoveredIdx, onHover, onLeave }: {
-  a: (typeof CUSTOMER_ANECDOTES)[0];
-  i: number;
-  hoveredIdx: number | null;
-  onHover: (i: number) => void;
-  onLeave: () => void;
-}) {
+function AnecdoteCard({ a }: { a: (typeof CUSTOMER_ANECDOTES)[0] }) {
   const FF = "'Wotfard', sans-serif";
-  const isHovered = hoveredIdx === i;
-  const anyHovered = hoveredIdx !== null;
+  const [hovered, setHovered] = useState(false);
 
-  let rotate = a.rotate;
-  let translateY = 0;
-  let translateX = 0;
-
-  if (anyHovered) {
-    if (isHovered) {
-      rotate = 0;
-      translateY = -10;
-    } else {
-      const dir = i < hoveredIdx! ? -1 : 1;
-      rotate = a.rotate + dir * 4;
-      translateY = 6;
-      translateX = dir * 6;
-    }
-  }
+  const rotate = hovered ? 0 : a.rotate;
+  const translateY = hovered ? -10 : 0;
 
   return (
     <div
-      onMouseEnter={() => onHover(i)}
-      onMouseLeave={onLeave}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
       style={{
         background: "#FFFFFF",
         border: "1px solid #E8E4DE",
@@ -2630,26 +2625,25 @@ function AnecdoteCard({ a, i, hoveredIdx, onHover, onLeave }: {
         display: "flex",
         flexDirection: "column",
         gap: 16,
-        boxShadow: isHovered
+        position: "relative",
+        overflow: "hidden",
+        boxShadow: hovered
           ? "0 16px 48px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.06)"
           : "0 4px 20px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04)",
-        transform: `rotate(${rotate}deg) translateY(${translateY}px) translateX(${translateX}px)`,
-        transition: "transform 0.35s cubic-bezier(0.34,1.2,0.64,1), box-shadow 0.28s ease",
+        transform: `rotate(${rotate}deg) translateY(${translateY}px)`,
+        transition: "transform 0.38s cubic-bezier(0.34,1.2,0.64,1), box-shadow 0.28s ease",
         cursor: "default",
         willChange: "transform",
-        zIndex: isHovered ? 10 : 1,
-        position: "relative",
+        zIndex: hovered ? 10 : 1,
       }}
     >
-      {/* Stars */}
-      <div style={{ display: "flex", gap: 3 }}>
-        {Array.from({ length: a.stars }).map((_, s) => (
-          <span key={s} style={{ color: "#F59E0B", fontSize: 14, lineHeight: 1 }}>★</span>
-        ))}
+      {/* Decorative shape — top-right */}
+      <div style={{ position: "absolute", top: -10, right: -10, pointerEvents: "none", opacity: 0.92 }}>
+        {a.shape}
       </div>
 
       {/* Title */}
-      <p style={{ fontFamily: FF, fontWeight: 700, fontSize: 15, color: "#1a1a1a", margin: 0, lineHeight: 1.35 }}>
+      <p style={{ fontFamily: FF, fontWeight: 700, fontSize: 15, color: "#1a1a1a", margin: 0, lineHeight: 1.35, paddingRight: 52 }}>
         "{a.title}"
       </p>
 
@@ -2671,7 +2665,6 @@ function CustomerAnecdotesSection() {
   const FF = "'Wotfard', sans-serif";
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.25 });
-  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
 
   return (
     <section
@@ -2725,14 +2718,7 @@ function CustomerAnecdotesSection() {
           }}
         >
           {CUSTOMER_ANECDOTES.map((a, i) => (
-            <AnecdoteCard
-              key={i}
-              a={a}
-              i={i}
-              hoveredIdx={hoveredIdx}
-              onHover={setHoveredIdx}
-              onLeave={() => setHoveredIdx(null)}
-            />
+            <AnecdoteCard key={i} a={a} />
           ))}
         </motion.div>
       </div>
