@@ -3064,23 +3064,29 @@ function ImpactSection({ study: _study }: { study: CaseStudy }) {
   );
 }
 
-const RETROSPECTIVE_ITEMS: { icon: React.ElementType; boldTitle: string; regularTitle: string; body: string; takeaway: string }[] = [
+const RETROSPECTIVE_ITEMS: { icon: React.ElementType; color: string; bg: string; boldTitle: string; regularTitle: string; body: string; takeaway: string }[] = [
   {
-    icon: Zap,
+    icon: Bot,
+    color: "#E8654B",
+    bg: "rgba(232,101,75,0.1)",
     boldTitle: "Execution drives value",
     regularTitle: " — not assistance",
     body: "AI assisting workflows saw limited engagement. The real adoption came from AI driving end-to-end execution.",
     takeaway: "Users don't want help doing the work — they want the work done.",
   },
   {
-    icon: CheckCircle2,
+    icon: Brain,
+    color: "#7C3AED",
+    bg: "rgba(124,58,237,0.1)",
     boldTitle: "Trust is the gating factor",
     regularTitle: " for autonomy",
     body: "Even when accurate, plans were gated by trust — agents needed to fully understand and be able to intervene.",
     takeaway: "Autonomy scales only when trust is built into the interaction.",
   },
   {
-    icon: Sparkles,
+    icon: GraduationCap,
+    color: "#0D9488",
+    bg: "rgba(13,148,136,0.1)",
     boldTitle: "Quality matters more than",
     regularTitle: " coverage (early on)",
     body: "High-confidence, repeatable workflows drove more impact than broad capabilities.",
@@ -3142,12 +3148,12 @@ function RetrospectiveSection() {
               {/* Icon */}
               <div style={{
                 width: 36, height: 36, borderRadius: 10,
-                background: "rgba(107,140,218,0.08)",
-                border: "1px solid rgba(107,140,218,0.15)",
+                background: item.bg,
+                border: `1px solid ${item.color}30`,
                 display: "flex", alignItems: "center", justifyContent: "center",
                 flexShrink: 0, marginTop: 1,
               }}>
-                <item.icon size={16} color="#6B8CDA" strokeWidth={1.8} />
+                <item.icon size={16} color={item.color} strokeWidth={1.8} />
               </div>
 
               {/* Content */}
@@ -3159,7 +3165,7 @@ function RetrospectiveSection() {
                 <p style={{ fontFamily: FF, fontSize: 13, color: "rgba(26,26,26,0.55)", margin: 0, lineHeight: 1.6 }}>
                   {item.body}
                 </p>
-                <p style={{ fontFamily: FF, fontSize: 13, color: "#6B8CDA", margin: 0, lineHeight: 1.5, fontStyle: "italic" }}>
+                <p style={{ fontFamily: FF, fontSize: 13, color: item.color, margin: 0, lineHeight: 1.5, fontStyle: "italic", opacity: 0.85 }}>
                   {item.takeaway}
                 </p>
               </div>
