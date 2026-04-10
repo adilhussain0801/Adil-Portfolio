@@ -1643,21 +1643,24 @@ const CONCEPT_SCREENS = [
 const DESIGN_PRINCIPLES = [
   {
     num: "01",
-    icon: () => <Lightbulb size={20} color="#1a1a1a" strokeWidth={1.5} />,
+    icon: () => <Lightbulb size={20} color="#6366F1" strokeWidth={1.5} />,
+    iconBg: "rgba(99,102,241,0.10)",
     title: "Make AI trustworthy, not just visible",
     description: "AI should communicate intent, confidence, and outcomes in a way that builds trust before action is taken — without exposing unnecessary complexity.",
     insight: "Showing AI as 'thinking' exposed the real gap — invisible reasoning erodes trust before action is even taken.",
   },
   {
     num: "02",
-    icon: () => <TrendingDown size={20} color="#1a1a1a" strokeWidth={1.5} />,
+    icon: () => <TrendingDown size={20} color="#E8654B" strokeWidth={1.5} />,
+    iconBg: "rgba(232,101,75,0.10)",
     title: "Design for outcomes, not interactions",
     description: "AI systems should collapse multi-step workflows into outcome-driven actions, removing the need for users to orchestrate the process.",
     insight: "Early designs exposed logic — plans, trees, steps. But users care about resolution, not how the system gets there.",
   },
   {
     num: "03",
-    icon: () => <Brain size={20} color="#1a1a1a" strokeWidth={1.5} />,
+    icon: () => <Brain size={20} color="#06B6D4" strokeWidth={1.5} />,
+    iconBg: "rgba(6,182,212,0.10)",
     title: "Reduce decisions, not just effort",
     description: "AI should eliminate unnecessary decisions by acting with context, not defer them back to the user for validation.",
     insight: "Users were asked to interpret, validate, and fix flows — AI added work instead of removing it.",
@@ -1704,7 +1707,7 @@ function PrincipleCard({ p, i }: { p: (typeof DESIGN_PRINCIPLES)[0]; i: number }
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={onLeave}
       >
-        <div className="rounded-lg p-2 self-start" style={{ background: "rgba(0,0,0,0.05)" }}>
+        <div className="rounded-lg p-2 self-start" style={{ background: p.iconBg }}>
           {p.icon()}
         </div>
         <h3 className="text-base font-bold leading-snug text-[#1a1a1a]" style={{ fontFamily: "'Wotfard', sans-serif" }}>
