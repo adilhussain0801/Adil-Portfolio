@@ -2988,14 +2988,6 @@ function SolutionSection({ study }: { study: CaseStudy }) {
                   ))}
                 </div>
 
-                {/* Row 4: Descriptions */}
-                <div className="grid grid-cols-5 gap-3">
-                  {steps.map((step, i) => (
-                    <p key={i} className="text-[11px] leading-relaxed text-center text-[#1a1a1a]/50 px-1" style={{ fontFamily: FF }}>
-                      {step.desc}
-                    </p>
-                  ))}
-                </div>
               </div>
             );
           })() : (
