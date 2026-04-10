@@ -2947,34 +2947,29 @@ function SolutionSection({ study }: { study: CaseStudy }) {
 function ImpactMetric({ value, label, delay = 0 }: { value: string; label: string; delay?: number }) {
   const FF = "'Wotfard', sans-serif";
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.4 });
-  const [hovered, setHovered] = useState(false);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 16 }}
+      initial={{ opacity: 0, y: 14 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.55, ease: EASE, delay }}
-      style={{ display: "flex", flexDirection: "column", gap: 6 }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      style={{ display: "flex", flexDirection: "column", gap: 4 }}
     >
-      <motion.p
-        animate={{ scale: hovered ? 1.02 : 1 }}
-        transition={{ duration: 0.2, ease: "easeOut" }}
+      <p
         style={{
           fontFamily: FF,
-          fontSize: "clamp(42px,5vw,60px)",
-          fontWeight: 600,
+          fontSize: "clamp(48px,5.5vw,80px)",
+          fontWeight: 800,
           color: "#1a1a1a",
           margin: 0,
-          lineHeight: 1,
-          letterSpacing: "-0.02em",
+          lineHeight: 0.92,
+          letterSpacing: "-0.04em",
         }}
       >
         {value}
-      </motion.p>
-      <p style={{ fontFamily: FF, fontSize: 13, color: "rgba(26,26,26,0.5)", margin: 0, maxWidth: 200, lineHeight: 1.4 }}>
+      </p>
+      <p style={{ fontFamily: FF, fontSize: 13, color: "rgba(26,26,26,0.55)", margin: "8px 0 0 0", lineHeight: 1.4, maxWidth: 200 }}>
         {label}
       </p>
     </motion.div>
@@ -2984,7 +2979,7 @@ function ImpactMetric({ value, label, delay = 0 }: { value: string; label: strin
 function ImpactSection({ study: _study }: { study: CaseStudy }) {
   const FF = "'Wotfard', sans-serif";
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const isInView = useInView(ref, { once: true, amount: 0.15 });
 
   return (
     <section
@@ -2993,70 +2988,84 @@ function ImpactSection({ study: _study }: { study: CaseStudy }) {
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
       style={{ background: "#F7F7F5" }}
     >
-      <div style={{ maxWidth: 680, margin: "0 auto", width: "100%", padding: "0 32px", display: "flex", flexDirection: "column", gap: 56 }}>
+      <div style={{ maxWidth: 880, margin: "0 auto", width: "100%", padding: "0 40px", display: "flex", flexDirection: "column", gap: 0 }}>
 
-        {/* Header */}
+        {/* Header row — title left, tagline right, thick border bottom */}
         <motion.div
-          initial={{ opacity: 0, y: 14 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.55, ease: EASE }}
-          style={{ display: "flex", flexDirection: "column", gap: 8 }}
+          style={{
+            display: "flex",
+            alignItems: "flex-end",
+            justifyContent: "space-between",
+            paddingBottom: 20,
+            borderBottom: "1.5px solid #1a1a1a",
+            marginBottom: 36,
+          }}
         >
-          <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-            <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.4)", margin: 0 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+            <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.45)", margin: 0 }}>
               Impact — Early Signals
             </p>
-            <p style={{ fontFamily: FF, fontSize: 11, color: "rgba(26,26,26,0.35)", margin: 0, letterSpacing: "0.06em" }}>
+            <p style={{ fontFamily: FF, fontSize: "clamp(22px,2.5vw,30px)", fontWeight: 700, color: "#1a1a1a", margin: 0, lineHeight: 1.1 }}>
               First 30 days post GA
             </p>
           </div>
-          <p style={{ fontFamily: FF, fontSize: 14, color: "rgba(26,26,26,0.6)", margin: 0, lineHeight: 1.6, maxWidth: 560 }}>
-            Early signals show Rovo Service is not only executing work end-to-end, but doing so with increasing accuracy and reduced need for intervention.
+          <p style={{ fontFamily: FF, fontSize: 13, color: "rgba(26,26,26,0.45)", margin: 0, maxWidth: 220, textAlign: "right", lineHeight: 1.55 }}>
+            Executing work end-to-end with increasing accuracy and reduced intervention.
           </p>
         </motion.div>
 
-        {/* Two columns */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0 }}>
+        {/* Metrics grid — 3 columns */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "32px 40px", marginBottom: 32 }}>
 
-          {/* EXECUTION */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 32, paddingRight: 48 }}>
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : {}}
-              transition={{ duration: 0.4, ease: EASE, delay: 0.1 }}
-              style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.35)", margin: 0 }}
-            >
+          {/* EXECUTION label — spans full width */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.4, ease: EASE, delay: 0.08 }}
+            style={{ gridColumn: "span 3", display: "flex", alignItems: "center", gap: 12, marginBottom: -4 }}
+          >
+            <p style={{ fontFamily: FF, fontSize: 9, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "#E8654B", margin: 0, whiteSpace: "nowrap" }}>
               Execution
-            </motion.p>
-            <ImpactMetric value="21%" label="Tickets fully resolved by AI" delay={0.15} />
-            <ImpactMetric value="↓ 17%" label="Reduction in overall resolution time" delay={0.22} />
-            <ImpactMetric value="48%" label="Requests completed without additional back-and-forth" delay={0.29} />
-          </div>
+            </p>
+            <div style={{ flex: 1, height: 1, background: "#E8654B", opacity: 0.3 }} />
+          </motion.div>
 
-          {/* QUALITY */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 32, paddingLeft: 48, borderLeft: "1px solid rgba(26,26,26,0.08)" }}>
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : {}}
-              transition={{ duration: 0.4, ease: EASE, delay: 0.1 }}
-              style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.35)", margin: 0 }}
-            >
+          <ImpactMetric value="21%" label="Tickets fully resolved by AI" delay={0.13} />
+          <ImpactMetric value="↓17%" label="Reduction in overall resolution time" delay={0.19} />
+          <ImpactMetric value="48%" label="Requests with zero back-and-forth" delay={0.25} />
+
+          {/* QUALITY label — spans full width */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.4, ease: EASE, delay: 0.3 }}
+            style={{ gridColumn: "span 3", display: "flex", alignItems: "center", gap: 12, marginBottom: -4, marginTop: 8 }}
+          >
+            <p style={{ fontFamily: FF, fontSize: 9, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "#6B8CDA", margin: 0, whiteSpace: "nowrap" }}>
               Quality
-            </motion.p>
-            <ImpactMetric value="67%" label="Plans executed with minimal or no edits" delay={0.18} />
-            <ImpactMetric value="1.4×" label="Average edits per plan before execution" delay={0.25} />
-          </div>
+            </p>
+            <div style={{ flex: 1, height: 1, background: "#6B8CDA", opacity: 0.3 }} />
+          </motion.div>
+
+          <ImpactMetric value="67%" label="Plans executed with minimal edits" delay={0.34} />
+          <ImpactMetric value="1.4×" label="Avg edits per plan before execution" delay={0.40} />
+          <div />
         </div>
 
         {/* Footer statement */}
-        <motion.p
+        <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.5, ease: EASE, delay: 0.4 }}
-          style={{ fontFamily: FF, fontSize: 14, color: "rgba(26,26,26,0.55)", margin: 0, borderTop: "1px solid rgba(26,26,26,0.08)", paddingTop: 20, lineHeight: 1.6 }}
+          transition={{ duration: 0.5, ease: EASE, delay: 0.5 }}
+          style={{ borderTop: "1px solid rgba(26,26,26,0.12)", paddingTop: 16 }}
         >
-          AI is shifting from assisting work → executing with increasing reliability.
-        </motion.p>
+          <p style={{ fontFamily: FF, fontSize: 12, color: "rgba(26,26,26,0.4)", margin: 0, fontStyle: "italic", lineHeight: 1.5 }}>
+            AI is shifting from assisting work → executing with increasing reliability.
+          </p>
+        </motion.div>
       </div>
     </section>
   );
