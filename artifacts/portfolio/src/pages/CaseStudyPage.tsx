@@ -2932,7 +2932,57 @@ function SolutionSection({ study }: { study: CaseStudy }) {
             </p>
           </div>
 
-          <StampHeroBanner study={study} />
+          {study.id === 4 ? (
+            <div className="flex flex-col gap-3">
+              {/* Journey row */}
+              <div className="relative flex items-stretch gap-0">
+                {[
+                  { label: "Request",                          sub: "Ticket comes in",                      color: "#2563EB", bg: "rgba(37,99,235,0.07)",   border: "rgba(37,99,235,0.18)"   },
+                  { label: "AI understands + gathers context", sub: "Context assembled automatically",      color: "#7C3AED", bg: "rgba(124,58,237,0.07)",  border: "rgba(124,58,237,0.18)"  },
+                  { label: "Agent validates",                  sub: "Reviews, approves, or redirects",      color: "#E8654B", bg: "rgba(232,101,75,0.07)",  border: "rgba(232,101,75,0.18)"  },
+                  { label: "AI executes",                      sub: "Actions taken across systems",         color: "#0F766E", bg: "rgba(15,118,110,0.07)",  border: "rgba(15,118,110,0.18)"  },
+                  { label: "Resolve",                          sub: "Issue closed, outcome confirmed",      color: "#16a34a", bg: "rgba(22,163,74,0.07)",   border: "rgba(22,163,74,0.18)"   },
+                ].map((step, i, arr) => (
+                  <div key={i} className="flex items-center flex-1 min-w-0">
+                    <div
+                      className="flex-1 flex flex-col gap-1 px-4 py-3 rounded-xl"
+                      style={{ background: step.bg, border: `1px solid ${step.border}` }}
+                    >
+                      <p className="text-[11px] font-bold leading-snug" style={{ color: step.color, fontFamily: "'Wotfard', sans-serif" }}>{step.label}</p>
+                      <p className="text-[10px] leading-snug text-[#1a1a1a]/45" style={{ fontFamily: "'Wotfard', sans-serif" }}>{step.sub}</p>
+                    </div>
+                    {i < arr.length - 1 && (
+                      <div className="flex items-center px-1.5 flex-shrink-0">
+                        <svg width="14" height="10" viewBox="0 0 14 10">
+                          <path d="M0 5h11M8 1l4 4-4 4" stroke="rgba(26,26,26,0.22)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                        </svg>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+              {/* AI vs Agent label row */}
+              <div className="flex gap-0">
+                {[
+                  { span: 1, label: null },
+                  { span: 1, label: "AI", color: "#7C3AED" },
+                  { span: 1, label: "Agent", color: "#E8654B" },
+                  { span: 1, label: "AI", color: "#0F766E" },
+                  { span: 1, label: null },
+                ].map((item, i) => (
+                  <div key={i} className="flex-1 flex justify-center">
+                    {item.label && (
+                      <span className="text-[9px] font-bold tracking-widest uppercase px-2.5 py-0.5 rounded-full" style={{ color: item.color, background: `${item.color}14`, fontFamily: "'Wotfard', sans-serif" }}>
+                        {item.label}
+                      </span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <StampHeroBanner study={study} />
+          )}
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {study.solution.features.map((feature, i) => (
