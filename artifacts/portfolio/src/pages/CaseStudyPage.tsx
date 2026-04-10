@@ -3459,8 +3459,8 @@ function WhatNextSection() {
 }
 
 function NextProjectSection({ study }: { study: CaseStudy }) {
-  const next = getNextCaseStudy(study.id);
-  if (!next) return null;
+  const FF = "'Wotfard', sans-serif";
+  const others = getAllCaseStudies().filter((cs) => cs.id !== study.id);
 
   return (
     <section
@@ -3469,35 +3469,32 @@ function NextProjectSection({ study }: { study: CaseStudy }) {
       style={{ background: "#F5F5F7" }}
     >
       <SnapReveal>
-        <div className="max-w-3xl mx-auto w-full px-6">
-          <p
-            className="text-xs uppercase tracking-widest font-semibold text-[#2D2D2D]/55 mb-6"
-            style={{ fontFamily: "'Wotfard', sans-serif" }}
-          >
-            Next project
+        <div style={{ maxWidth: 680, margin: "0 auto", width: "100%", padding: "0 40px" }}>
+          <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.4)", margin: "0 0 28px 0" }}>
+            More projects
           </p>
-          <Link
-            href={`/work/${next.id}`}
-            className="group flex items-center justify-between rounded-2xl bg-[#1a1a1a] px-8 py-7 hover:bg-[#252525] transition-colors"
-          >
-            <div className="flex flex-col gap-1">
-              <p
-                className="text-xs text-white/40 uppercase tracking-widest"
-                style={{ fontFamily: "'Wotfard', sans-serif" }}
+          <div style={{ display: "flex", flexDirection: "column", gap: 0, background: "#1a1a1a", borderRadius: 20, overflow: "hidden" }}>
+            {others.map((cs, i) => (
+              <Link
+                key={cs.id}
+                href={`/work/${cs.id}`}
+                className="group flex items-center justify-between px-8 py-6 hover:bg-white/5 transition-colors"
+                style={{ borderTop: i === 0 ? "none" : "1px solid rgba(255,255,255,0.07)" }}
               >
-                {next.category}
-              </p>
-              <h3
-                className="text-xl md:text-2xl font-bold text-white"
-                style={{ fontFamily: "'Wotfard', sans-serif" }}
-              >
-                {next.title}
-              </h3>
-            </div>
-            <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors flex-shrink-0 ml-6">
-              <ArrowUpRight size={18} className="text-white" />
-            </div>
-          </Link>
+                <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
+                  <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", margin: 0 }}>
+                    {cs.company}
+                  </p>
+                  <h3 style={{ fontFamily: FF, fontSize: 18, fontWeight: 700, color: "#fff", margin: 0, lineHeight: 1.2 }}>
+                    {cs.title}
+                  </h3>
+                </div>
+                <div className="w-9 h-9 rounded-full bg-white/8 flex items-center justify-center group-hover:bg-white/15 transition-colors flex-shrink-0 ml-6">
+                  <ArrowUpRight size={16} className="text-white/70" />
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </SnapReveal>
     </section>
