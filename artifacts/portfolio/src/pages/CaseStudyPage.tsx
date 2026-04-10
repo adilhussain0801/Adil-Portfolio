@@ -1643,33 +1643,21 @@ const CONCEPT_SCREENS = [
 const DESIGN_PRINCIPLES = [
   {
     num: "01",
-    icon: (color: string) => <Lightbulb size={22} color={color} strokeWidth={1.6} />,
-    accentColor: "#6366F1",
-    cardBg: "#F0F0FE",
-    borderColor: "rgba(99,102,241,0.2)",
-    numColor: "#C7C8F8",
+    icon: () => <Lightbulb size={20} color="#1a1a1a" strokeWidth={1.5} />,
     title: "Make AI trustworthy, not just visible",
     description: "AI should communicate intent, confidence, and outcomes in a way that builds trust before action is taken — without exposing unnecessary complexity.",
     insight: "Showing AI as 'thinking' exposed the real gap — invisible reasoning erodes trust before action is even taken.",
   },
   {
     num: "02",
-    icon: (color: string) => <TrendingDown size={22} color={color} strokeWidth={1.6} />,
-    accentColor: "#E8654B",
-    cardBg: "#FEF0EC",
-    borderColor: "rgba(232,101,75,0.2)",
-    numColor: "#F9C5B8",
+    icon: () => <TrendingDown size={20} color="#1a1a1a" strokeWidth={1.5} />,
     title: "Design for outcomes, not interactions",
     description: "AI systems should collapse multi-step workflows into outcome-driven actions, removing the need for users to orchestrate the process.",
     insight: "Early designs exposed logic — plans, trees, steps. But users care about resolution, not how the system gets there.",
   },
   {
     num: "03",
-    icon: (color: string) => <Brain size={22} color={color} strokeWidth={1.6} />,
-    accentColor: "#3B82F6",
-    cardBg: "#EFF6FF",
-    borderColor: "rgba(59,130,246,0.2)",
-    numColor: "#BFDBFE",
+    icon: () => <Brain size={20} color="#1a1a1a" strokeWidth={1.5} />,
     title: "Reduce decisions, not just effort",
     description: "AI should eliminate unnecessary decisions by acting with context, not defer them back to the user for validation.",
     insight: "Users were asked to interpret, validate, and fix flows — AI added work instead of removing it.",
@@ -1713,53 +1701,63 @@ function DesignPrinciplesSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, ease: APPLE, delay: 0.1 + i * 0.1 }}
-                className="flex flex-col gap-3 rounded-2xl p-5"
+                className="flex flex-col gap-3 rounded-2xl overflow-hidden"
                 style={{
-                  background: p.cardBg,
-                  border: `1.5px solid ${p.borderColor}`,
+                  background: "#FFFFFF",
+                  border: "1px solid rgba(0,0,0,0.07)",
+                  boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
                 }}
               >
-                {/* Icon row */}
-                <div
-                  className="rounded-xl p-2.5 self-start"
-                  style={{ background: `${p.accentColor}18` }}
-                >
-                  {p.icon(p.accentColor)}
-                </div>
+                {/* AI gradient top accent */}
+                <div style={{
+                  height: 2,
+                  background: "linear-gradient(90deg, #818CF8 0%, #8B5CF6 40%, #06B6D4 100%)",
+                  flexShrink: 0,
+                }} />
 
-                {/* Title */}
-                <h3
-                  className="text-base font-bold leading-snug text-[#1a1a1a] whitespace-nowrap"
-                  style={{ fontFamily: "'Wotfard', sans-serif" }}
-                >
-                  {p.title}
-                </h3>
-
-                {/* Description */}
-                <p
-                  className="text-sm leading-relaxed text-[#1a1a1a]/60"
-                  style={{ fontFamily: "'Wotfard', sans-serif" }}
-                >
-                  {p.description}
-                </p>
-
-                {/* Insight callout */}
-                <div
-                  className="mt-auto rounded-xl px-4 py-3 flex flex-col gap-1"
-                  style={{ background: "rgba(0,0,0,0.04)" }}
-                >
-                  <p
-                    className="text-[10px] uppercase tracking-widest font-bold"
-                    style={{ color: `${p.accentColor}`, fontFamily: "'Wotfard', sans-serif", opacity: 0.6 }}
+                <div className="flex flex-col gap-3 px-5 pb-5">
+                  {/* Icon row */}
+                  <div
+                    className="rounded-lg p-2 self-start"
+                    style={{ background: "rgba(0,0,0,0.04)" }}
                   >
-                    What we learned
-                  </p>
-                  <p
-                    className="text-[12px] leading-relaxed"
-                    style={{ color: `${p.accentColor}`, fontFamily: "'Wotfard', sans-serif", fontWeight: 600 }}
+                    {p.icon()}
+                  </div>
+
+                  {/* Title */}
+                  <h3
+                    className="text-base font-bold leading-snug text-[#1a1a1a]"
+                    style={{ fontFamily: "'Wotfard', sans-serif" }}
                   >
-                    {p.insight}
+                    {p.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p
+                    className="text-sm leading-relaxed text-[#1a1a1a]/55"
+                    style={{ fontFamily: "'Wotfard', sans-serif" }}
+                  >
+                    {p.description}
                   </p>
+
+                  {/* Insight callout */}
+                  <div
+                    className="mt-auto rounded-xl px-4 py-3 flex flex-col gap-1"
+                    style={{ background: "rgba(15,15,20,0.88)" }}
+                  >
+                    <p
+                      className="text-[10px] uppercase tracking-widest font-bold"
+                      style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'Wotfard', sans-serif" }}
+                    >
+                      What we learned
+                    </p>
+                    <p
+                      className="text-[12px] leading-relaxed"
+                      style={{ color: "rgba(255,255,255,0.78)", fontFamily: "'Wotfard', sans-serif", fontWeight: 500 }}
+                    >
+                      {p.insight}
+                    </p>
+                  </div>
                 </div>
               </motion.div>
             ))}
