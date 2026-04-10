@@ -3059,25 +3059,29 @@ function SolutionSection({ study }: { study: CaseStudy }) {
   );
 }
 
-function ImpactCounter({ numericValue, isInView, format }: { numericValue: number; isInView: boolean; format?: (n: number) => string }) {
+function ImpactCounter({ numericValue, isInView, format, startDelay = 0 }: { numericValue: number; isInView: boolean; format?: (n: number) => string; startDelay?: number }) {
   const [display, setDisplay] = useState(0);
   useEffect(() => {
     if (!isInView) return;
     let raf: number;
+    let timeout: ReturnType<typeof setTimeout>;
     const start = Math.floor(numericValue / 2);
-    let cur = start;
-    const duration = 1000;
-    const t0 = Date.now();
-    const tick = () => {
-      const elapsed = Date.now() - t0;
-      const progress = Math.min(elapsed / duration, 1);
-      cur = Math.floor(start + progress * (numericValue - start));
-      setDisplay(cur);
-      if (progress < 1) raf = requestAnimationFrame(tick);
+    const run = () => {
+      let cur = start;
+      const duration = 1000;
+      const t0 = Date.now();
+      const tick = () => {
+        const elapsed = Date.now() - t0;
+        const progress = Math.min(elapsed / duration, 1);
+        cur = Math.floor(start + progress * (numericValue - start));
+        setDisplay(cur);
+        if (progress < 1) raf = requestAnimationFrame(tick);
+      };
+      raf = requestAnimationFrame(tick);
     };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [isInView, numericValue]);
+    timeout = setTimeout(run, startDelay * 1000);
+    return () => { clearTimeout(timeout); cancelAnimationFrame(raf); };
+  }, [isInView, numericValue, startDelay]);
   return <span>{format ? format(display) : String(display)}</span>;
 }
 
@@ -3138,7 +3142,7 @@ function ImpactCard({
           letterSpacing: "-0.03em",
         }}
       >
-        {prefix}<ImpactCounter numericValue={numericValue} isInView={isInView} format={format} />{suffix}
+        {prefix}<ImpactCounter numericValue={numericValue} isInView={isInView} format={format} startDelay={delay + 0.55} />{suffix}
       </p>
       {/* Label */}
       <p style={{ fontFamily: FF, fontSize: 13, color: "rgba(26,26,26,0.5)", margin: 0, lineHeight: 1.45 }}>
