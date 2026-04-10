@@ -2944,50 +2944,119 @@ function SolutionSection({ study }: { study: CaseStudy }) {
   );
 }
 
-function ImpactSection({ study }: { study: CaseStudy }) {
+function ImpactMetric({ value, label, delay = 0 }: { value: string; label: string; delay?: number }) {
+  const FF = "'Wotfard', sans-serif";
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.4 });
+  const [hovered, setHovered] = useState(false);
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 16 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.55, ease: EASE, delay }}
+      style={{ display: "flex", flexDirection: "column", gap: 6 }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <motion.p
+        animate={{ scale: hovered ? 1.02 : 1 }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
+        style={{
+          fontFamily: FF,
+          fontSize: "clamp(42px,5vw,60px)",
+          fontWeight: 600,
+          color: "#1a1a1a",
+          margin: 0,
+          lineHeight: 1,
+          letterSpacing: "-0.02em",
+        }}
+      >
+        {value}
+      </motion.p>
+      <p style={{ fontFamily: FF, fontSize: 13, color: "rgba(26,26,26,0.5)", margin: 0, maxWidth: 200, lineHeight: 1.4 }}>
+        {label}
+      </p>
+    </motion.div>
+  );
+}
+
+function ImpactSection({ study: _study }: { study: CaseStudy }) {
+  const FF = "'Wotfard', sans-serif";
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
   return (
     <section
       id="section-impact"
+      ref={ref}
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
       style={{ background: "#F7F7F5" }}
     >
-      <div className="max-w-3xl mx-auto w-full px-6">
-        <SnapReveal>
-          <h2
-            className="text-2xl md:text-3xl leading-tight text-foreground mb-14"
-            style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
-          >
-            Impact
-          </h2>
-        </SnapReveal>
-        <div className="flex flex-col md:flex-row gap-0 divide-y md:divide-y-0 md:divide-x divide-[#e8e4de]">
-          {study.impact.map((item, i) => (
-            <SnapReveal
-              key={i}
-              delay={0.08 + i * 0.1}
-              className="flex-1 px-0 md:px-8 py-8 md:py-0 first:pl-0 last:pr-0 flex flex-col gap-2"
-            >
-            <p
-              className="text-4xl md:text-5xl font-bold text-[#E8654B]"
-              style={{ fontFamily: "'Wotfard', sans-serif" }}
-            >
-              {item.value}
+      <div style={{ maxWidth: 680, margin: "0 auto", width: "100%", padding: "0 32px", display: "flex", flexDirection: "column", gap: 56 }}>
+
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.55, ease: EASE }}
+          style={{ display: "flex", flexDirection: "column", gap: 8 }}
+        >
+          <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.4)", margin: 0 }}>
+              Impact — Early Signals
             </p>
-            <p
-              className="text-xs uppercase tracking-widest font-semibold text-[#2D2D2D]/50"
-              style={{ fontFamily: "'Wotfard', sans-serif" }}
-            >
-              {item.label}
+            <p style={{ fontFamily: FF, fontSize: 11, color: "rgba(26,26,26,0.35)", margin: 0, letterSpacing: "0.06em" }}>
+              First 30 days post GA
             </p>
-            <p
-              className="text-sm leading-relaxed text-foreground/60 mt-1"
-              style={{ fontFamily: "'Wotfard', sans-serif" }}
+          </div>
+          <p style={{ fontFamily: FF, fontSize: 14, color: "rgba(26,26,26,0.6)", margin: 0, lineHeight: 1.6, maxWidth: 560 }}>
+            Early signals show Rovo Service is not only executing work end-to-end, but doing so with increasing accuracy and reduced need for intervention.
+          </p>
+        </motion.div>
+
+        {/* Two columns */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0 }}>
+
+          {/* EXECUTION */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 32, paddingRight: 48 }}>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.4, ease: EASE, delay: 0.1 }}
+              style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.35)", margin: 0 }}
             >
-              {item.description}
-            </p>
-            </SnapReveal>
-          ))}
+              Execution
+            </motion.p>
+            <ImpactMetric value="21%" label="Tickets fully resolved by AI" delay={0.15} />
+            <ImpactMetric value="↓ 17%" label="Reduction in overall resolution time" delay={0.22} />
+            <ImpactMetric value="48%" label="Requests completed without additional back-and-forth" delay={0.29} />
+          </div>
+
+          {/* QUALITY */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 32, paddingLeft: 48, borderLeft: "1px solid rgba(26,26,26,0.08)" }}>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.4, ease: EASE, delay: 0.1 }}
+              style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.35)", margin: 0 }}
+            >
+              Quality
+            </motion.p>
+            <ImpactMetric value="67%" label="Plans executed with minimal or no edits" delay={0.18} />
+            <ImpactMetric value="1.4×" label="Average edits per plan before execution" delay={0.25} />
+          </div>
         </div>
+
+        {/* Footer statement */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.5, ease: EASE, delay: 0.4 }}
+          style={{ fontFamily: FF, fontSize: 14, color: "rgba(26,26,26,0.55)", margin: 0, borderTop: "1px solid rgba(26,26,26,0.08)", paddingTop: 20, lineHeight: 1.6 }}
+        >
+          AI is shifting from assisting work → executing with increasing reliability.
+        </motion.p>
       </div>
     </section>
   );

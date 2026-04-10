@@ -1,0 +1,114 @@
+Build a clean, minimal, responsive "Impact — Early Signals" section using React (Vite) and Tailwind CSS.
+
+GOAL:
+Create an editorial-style metrics section that communicates early AI impact across two dimensions:
+
+Execution (AI doing the work)
+Quality (AI doing the work correctly)
+
+STYLE:
+
+Light theme (white background)
+Minimal, no cards, no heavy borders
+Clean typography (Apple / Linear / Stripe inspired)
+Focus on spacing and hierarchy, not decoration
+
+CONTENT STRUCTURE:
+
+Header:
+
+Title: "IMPACT — EARLY SIGNALS"
+Subtitle: "First 30 days post GA"
+Description:
+"Early signals show Rovo Service is not only executing work end-to-end, but doing so with increasing accuracy and reduced need for intervention."
+
+Sections:
+
+EXECUTION
+Metric 1:
+Value: "21%"
+Label: "Tickets fully resolved by AI"
+Metric 2:
+Value: "↓ 17%"
+Label: "Reduction in overall resolution time"
+Metric 3:
+Value: "48%"
+Label: "Requests completed without additional back-and-forth"
+QUALITY
+Metric 4:
+Value: "67%"
+Label: "Plans executed with minimal or no edits"
+Metric 5:
+Value: "1.4×"
+Label: "Average edits per plan before execution"
+
+Footer:
+
+Statement:
+"AI is shifting from assisting work → executing with increasing reliability."
+
+LAYOUT:
+
+Single column layout
+Two stacked sections: EXECUTION and QUALITY
+Each section has a small uppercase label
+Metrics stacked vertically with large spacing
+Numbers are visually dominant
+
+TYPOGRAPHY:
+
+Title:
+text-sm, tracking-wide, uppercase, text-gray-500
+Subtitle:
+text-xs, text-gray-400
+Description:
+text-base, text-gray-700, max-width ~600px
+Section headers (EXECUTION / QUALITY):
+text-xs, uppercase, tracking-wider, text-gray-400
+Metric values:
+text-5xl or text-6xl, font-semibold, text-black
+Metric labels:
+text-sm, text-gray-500, max-width ~200px
+Footer statement:
+text-base, text-gray-800, margin-top large
+
+SPACING:
+
+Large vertical spacing between sections (80px+)
+Medium spacing between metrics (40–48px)
+Tight spacing between value and label (8–12px)
+
+STYLING RULES:
+
+No cards
+No icons
+No shadows
+No gradients
+Optional: very subtle divider line between sections (border-t border-gray-100)
+
+RESPONSIVENESS:
+
+On mobile:
+Reduce font sizes slightly
+Maintain vertical stacking
+Ensure readability and spacing
+
+COMPONENT STRUCTURE:
+
+Create a main component: ImpactSection.jsx
+Create a reusable Metric component:
+Props:
+value
+label
+Keep code clean and modular
+
+OPTIONAL ENHANCEMENTS:
+
+Slight fade-in animation on scroll (Framer Motion optional)
+Subtle hover effect (scale 1.02 on metric value)
+
+OUTPUT:
+
+Clean, production-quality React component
+Minimal, readable code
+Easy to tweak values and labels
