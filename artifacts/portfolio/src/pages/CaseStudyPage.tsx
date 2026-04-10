@@ -2571,6 +2571,7 @@ const CUSTOMER_ANECDOTES = [
     name: "IT Support Specialist",
     role: "Enterprise SaaS",
     rotate: -6,
+    bgColor: "#B8D8F8",
     icon: "/icon-heart.png",
     iconRotate: -10,
     iconPos: { top: -32, left: -24 },
@@ -2581,6 +2582,7 @@ const CUSTOMER_ANECDOTES = [
     name: "Senior Service Desk Agent",
     role: "Fintech",
     rotate: 2,
+    bgColor: "#F9CBA7",
     icon: "/icon-okhand.png",
     iconRotate: 0,
     iconPos: { bottom: -36, right: -20 },
@@ -2591,6 +2593,7 @@ const CUSTOMER_ANECDOTES = [
     name: "ITSM Administrator",
     role: "Mid-size Enterprise",
     rotate: 5,
+    bgColor: "#C8F0D0",
     icon: "/icon-star.png",
     iconRotate: -8,
     iconPos: { top: -28, right: -20 },
@@ -2606,6 +2609,19 @@ function AnecdoteCard({ a }: { a: (typeof CUSTOMER_ANECDOTES)[0] }) {
 
   return (
     <div style={{ position: "relative" }}>
+      {/* Tilted colour backing — peeks behind the white card */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          borderRadius: 22,
+          background: a.bgColor,
+          transform: `rotate(${hovered ? a.rotate * 0.6 : a.rotate + 4}deg) translateY(${hovered ? 4 : 8}px)`,
+          transition: "transform 0.38s cubic-bezier(0.34,1.2,0.64,1)",
+          zIndex: 0,
+        }}
+      />
+
       {/* Sticker icon — floats outside the card, fully opaque */}
       <img
         src={a.icon}
