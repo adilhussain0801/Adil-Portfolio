@@ -2574,7 +2574,7 @@ const CUSTOMER_ANECDOTES = [
     bgColor: "#D6E8F5",
     icon: "/icon-heart.png",
     iconRotate: -10,
-    iconPos: { top: -52, left: -28 },
+    iconCorner: { top: -22, right: -22 },
   },
   {
     title: "Guided resolution & confidence",
@@ -2585,7 +2585,7 @@ const CUSTOMER_ANECDOTES = [
     bgColor: "#F5DEC8",
     icon: "/icon-okhand.png",
     iconRotate: 0,
-    iconPos: { bottom: -52, right: -28 },
+    iconCorner: { bottom: -22, right: -22 },
   },
   {
     title: "Efficiency & team bandwidth",
@@ -2596,7 +2596,7 @@ const CUSTOMER_ANECDOTES = [
     bgColor: "#D4EDDA",
     icon: "/icon-star.png",
     iconRotate: -8,
-    iconPos: { top: -52, right: -28 },
+    iconCorner: { top: -22, right: -22 },
   },
 ];
 
@@ -2644,25 +2644,28 @@ function AnecdoteCard({ a }: { a: (typeof CUSTOMER_ANECDOTES)[0] }) {
           zIndex: hovered ? 10 : 1,
         }}
       >
-        {/* Icon + Title row */}
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <img
-            src={a.icon}
-            alt=""
-            aria-hidden="true"
-            style={{
-              width: 44,
-              height: 44,
-              objectFit: "contain",
-              transform: `rotate(${a.iconRotate}deg)`,
-              flexShrink: 0,
-              filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.18))",
-            }}
-          />
-          <p style={{ fontFamily: FF, fontWeight: 700, fontSize: 14, color: "#1a1a1a", margin: 0, lineHeight: 1.3, fontStyle: "italic" }}>
-            "{a.title}"
-          </p>
-        </div>
+        {/* Icon — absolute at corner of the white card */}
+        <img
+          src={a.icon}
+          alt=""
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            ...a.iconCorner,
+            width: 60,
+            height: 60,
+            objectFit: "contain",
+            transform: `rotate(${a.iconRotate}deg)`,
+            pointerEvents: "none",
+            zIndex: 20,
+            filter: "drop-shadow(0 3px 8px rgba(0,0,0,0.2))",
+          }}
+        />
+
+        {/* Title */}
+        <p style={{ fontFamily: FF, fontWeight: 700, fontSize: 14, color: "#1a1a1a", margin: 0, lineHeight: 1.3, fontStyle: "italic", paddingRight: 44 }}>
+          "{a.title}"
+        </p>
 
         {/* Quote */}
         <p style={{ fontFamily: FF, fontSize: 13, lineHeight: 1.7, color: "rgba(26,26,26,0.6)", margin: 0, flex: 1, whiteSpace: "pre-line" }}>
