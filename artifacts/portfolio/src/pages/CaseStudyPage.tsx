@@ -2801,11 +2801,14 @@ function ExperienceWalkthroughSection() {
         }}
       >
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-          transition={{ duration: 0.7, ease: EASE, delay: 0.1 }}
+          initial={{ scale: 0.04, borderRadius: "50%", opacity: 1 }}
+          animate={
+            isInView
+              ? { scale: 1, borderRadius: "18px", opacity: 1 }
+              : { scale: 0.04, borderRadius: "50%", opacity: 1 }
+          }
+          transition={{ duration: 1.05, ease: [0.16, 1, 0.3, 1] }}
           style={{
-            borderRadius: 18,
             overflow: "hidden",
             background: "#fff",
             boxShadow: "0 24px 80px rgba(0,0,0,0.22), 0 4px 16px rgba(0,0,0,0.10)",
