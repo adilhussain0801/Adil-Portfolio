@@ -2932,55 +2932,73 @@ function SolutionSection({ study }: { study: CaseStudy }) {
             </p>
           </div>
 
-          {study.id === 4 ? (
-            <div className="flex flex-col gap-3">
-              {/* Journey row */}
-              <div className="relative flex items-stretch gap-0">
-                {[
-                  { label: "Request",                          sub: "Ticket comes in",                      color: "#2563EB", bg: "rgba(37,99,235,0.07)",   border: "rgba(37,99,235,0.18)"   },
-                  { label: "AI understands + gathers context", sub: "Context assembled automatically",      color: "#7C3AED", bg: "rgba(124,58,237,0.07)",  border: "rgba(124,58,237,0.18)"  },
-                  { label: "Agent validates",                  sub: "Reviews, approves, or redirects",      color: "#E8654B", bg: "rgba(232,101,75,0.07)",  border: "rgba(232,101,75,0.18)"  },
-                  { label: "AI executes",                      sub: "Actions taken across systems",         color: "#0F766E", bg: "rgba(15,118,110,0.07)",  border: "rgba(15,118,110,0.18)"  },
-                  { label: "Resolve",                          sub: "Issue closed, outcome confirmed",      color: "#16a34a", bg: "rgba(22,163,74,0.07)",   border: "rgba(22,163,74,0.18)"   },
-                ].map((step, i, arr) => (
-                  <div key={i} className="flex items-center flex-1 min-w-0">
-                    <div
-                      className="flex-1 flex flex-col gap-1 px-4 py-3 rounded-xl"
-                      style={{ background: step.bg, border: `1px solid ${step.border}` }}
-                    >
-                      <p className="text-[11px] font-bold leading-snug" style={{ color: step.color, fontFamily: "'Wotfard', sans-serif" }}>{step.label}</p>
-                      <p className="text-[10px] leading-snug text-[#1a1a1a]/45" style={{ fontFamily: "'Wotfard', sans-serif" }}>{step.sub}</p>
+          {study.id === 4 ? (() => {
+            const FF = "'Wotfard', sans-serif";
+            const steps = [
+              { label: "Request",                          quote: "What is the user asking for?",         desc: "A request comes in via email, portal, or chat — often incomplete or unclear.",              color: "#2563EB", iconBg: "rgba(37,99,235,0.12)",   icon: <Inbox size={20} /> },
+              { label: "AI understands + gathers context", quote: "What information do I need?",          desc: "AI interprets the request and pulls relevant data from Jira, Confluence, and past tickets.", color: "#7C3AED", iconBg: "rgba(124,58,237,0.12)",  icon: <Brain size={20} /> },
+              { label: "Agent validates",                  quote: "Is this plan right?",                  desc: "The agent reviews the proposed plan, approves, edits, or redirects before action.",          color: "#E8654B", iconBg: "rgba(232,101,75,0.12)",  icon: <CheckCircle2 size={20} /> },
+              { label: "AI executes",                      quote: "How do I resolve this?",               desc: "AI performs actions across connected systems — approvals, access changes, configurations.",    color: "#0F766E", iconBg: "rgba(15,118,110,0.12)",  icon: <Settings size={20} /> },
+              { label: "Resolve",                          quote: "Is the issue fully addressed?",        desc: "The request is completed, validated, and confirmed back to the user.",                       color: "#16a34a", iconBg: "rgba(22,163,74,0.12)",   icon: <CheckCircle2 size={20} /> },
+            ];
+            return (
+              <div className="flex flex-col gap-4">
+                {/* Row 1: Icons with dashed connector */}
+                <div className="relative grid grid-cols-5">
+                  <div
+                    className="absolute border-t border-dashed border-[#C8C2BB]"
+                    style={{ top: 28, left: "10%", right: "10%" }}
+                  />
+                  {[20, 40, 60, 80].map((pct, ci) => (
+                    <div key={ci} className="absolute z-20" style={{ left: `calc(${pct}% - 4px)`, top: 22 }}>
+                      <svg width="8" height="12" viewBox="0 0 8 12">
+                        <polygon points="0,0 8,6 0,12" fill="#C8C2BB" />
+                      </svg>
                     </div>
-                    {i < arr.length - 1 && (
-                      <div className="flex items-center px-1.5 flex-shrink-0">
-                        <svg width="14" height="10" viewBox="0 0 14 10">
-                          <path d="M0 5h11M8 1l4 4-4 4" stroke="rgba(26,26,26,0.22)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-                        </svg>
+                  ))}
+                  {steps.map((step, i) => (
+                    <div key={i} className="flex justify-center relative z-10">
+                      <div className="rounded-full p-1.5" style={{ background: "#F5F5F7" }}>
+                        <div
+                          className="w-11 h-11 rounded-full flex items-center justify-center"
+                          style={{ background: step.iconBg, color: step.color }}
+                        >
+                          {step.icon}
+                        </div>
                       </div>
-                    )}
-                  </div>
-                ))}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Row 2: Labels */}
+                <div className="grid grid-cols-5 gap-2 mt-1">
+                  {steps.map((step, i) => (
+                    <p key={i} className="text-sm font-bold text-center leading-tight" style={{ color: step.color, fontFamily: FF }}>
+                      {step.label}
+                    </p>
+                  ))}
+                </div>
+
+                {/* Row 3: Italic quotes */}
+                <div className="grid grid-cols-5 gap-3">
+                  {steps.map((step, i) => (
+                    <p key={i} className="text-[11px] font-semibold italic text-center leading-snug px-1" style={{ color: step.color, fontFamily: FF }}>
+                      "{step.quote}"
+                    </p>
+                  ))}
+                </div>
+
+                {/* Row 4: Descriptions */}
+                <div className="grid grid-cols-5 gap-3">
+                  {steps.map((step, i) => (
+                    <p key={i} className="text-[11px] leading-relaxed text-center text-[#1a1a1a]/50 px-1" style={{ fontFamily: FF }}>
+                      {step.desc}
+                    </p>
+                  ))}
+                </div>
               </div>
-              {/* AI vs Agent label row */}
-              <div className="flex gap-0">
-                {[
-                  { span: 1, label: null },
-                  { span: 1, label: "AI", color: "#7C3AED" },
-                  { span: 1, label: "Agent", color: "#E8654B" },
-                  { span: 1, label: "AI", color: "#0F766E" },
-                  { span: 1, label: null },
-                ].map((item, i) => (
-                  <div key={i} className="flex-1 flex justify-center">
-                    {item.label && (
-                      <span className="text-[9px] font-bold tracking-widest uppercase px-2.5 py-0.5 rounded-full" style={{ color: item.color, background: `${item.color}14`, fontFamily: "'Wotfard', sans-serif" }}>
-                        {item.label}
-                      </span>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          ) : (
+            );
+          })() : (
             <StampHeroBanner study={study} />
           )}
 
