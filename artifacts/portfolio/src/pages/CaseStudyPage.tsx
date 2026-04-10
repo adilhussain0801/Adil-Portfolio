@@ -2574,7 +2574,7 @@ const CUSTOMER_ANECDOTES = [
     bgColor: "#D6E8F5",
     icon: "/icon-heart.png",
     iconRotate: -10,
-    iconPos: { top: -32, left: -24 },
+    iconPos: { top: -52, left: -28 },
   },
   {
     title: "Guided resolution & confidence",
@@ -2585,7 +2585,7 @@ const CUSTOMER_ANECDOTES = [
     bgColor: "#F5DEC8",
     icon: "/icon-okhand.png",
     iconRotate: 0,
-    iconPos: { bottom: -36, right: -20 },
+    iconPos: { bottom: -52, right: -28 },
   },
   {
     title: "Efficiency & team bandwidth",
@@ -2596,7 +2596,7 @@ const CUSTOMER_ANECDOTES = [
     bgColor: "#D4EDDA",
     icon: "/icon-star.png",
     iconRotate: -8,
-    iconPos: { top: -28, right: -20 },
+    iconPos: { top: -52, right: -28 },
   },
 ];
 
@@ -2630,8 +2630,8 @@ function AnecdoteCard({ a }: { a: (typeof CUSTOMER_ANECDOTES)[0] }) {
         style={{
           position: "absolute",
           ...a.iconPos,
-          width: 84,
-          height: 84,
+          width: 64,
+          height: 64,
           objectFit: "contain",
           transform: `rotate(${a.iconRotate}deg)`,
           pointerEvents: "none",
