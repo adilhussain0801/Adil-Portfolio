@@ -1,7 +1,7 @@
 import { useParams, Link } from "wouter";
 import { useRef, useEffect, useState, useMemo, type RefObject } from "react";
 import { motion, useInView, AnimatePresence, useMotionValue, useTransform, useSpring, animate } from "framer-motion";
-import { ArrowLeft, ArrowRight, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare, ChevronLeft, ChevronRight, X, CheckCircle2, Settings, Banknote, Layers, Users, BookOpen, Bot, GraduationCap, Briefcase, Link2, ArrowLeftRight, BarChart2, Building2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare, ChevronLeft, ChevronRight, X, CheckCircle2, Settings, Banknote, Layers, Users, BookOpen, Bot, GraduationCap, Briefcase, Link2, ArrowLeftRight, BarChart2, Building2, Target, ShieldCheck } from "lucide-react";
 import walkthroughScreenshot from "@assets/ExpWalkthrough_1775735219205.png";
 import { getCaseStudy, getNextCaseStudy, getAllCaseStudies, type CaseStudy } from "@/data/caseStudies";
 import NotFound from "@/pages/not-found";
@@ -3177,6 +3177,131 @@ function RetrospectiveSection() {
   );
 }
 
+function WhatNextSection() {
+  const FF = "'Wotfard', sans-serif";
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.15 });
+
+  const col = (delay: number) => ({
+    initial: { opacity: 0, y: 16 },
+    animate: isInView ? { opacity: 1, y: 0 } : {},
+    transition: { duration: 0.55, ease: EASE, delay },
+  });
+
+  const initiatives = [
+    {
+      icon: Target,
+      color: "#E8654B",
+      bg: "rgba(232,101,75,0.1)",
+      boldTitle: "Expand autonomous",
+      regularTitle: " resolution across high-volume workflows",
+      label: "Focus",
+      bullets: ["Repetitive IT requests", "Well-defined resolution paths"],
+      goal: "Increase % of tickets resolved end-to-end by AI",
+    },
+    {
+      icon: ShieldCheck,
+      color: "#7C3AED",
+      bg: "rgba(124,58,237,0.1)",
+      boldTitle: "Invest in trust primitives",
+      regularTitle: "",
+      label: "Building",
+      bullets: ["Clearer plan explanations", "Confidence indicators", "Safer intervention points"],
+      goal: "Reduce hesitation and increase plan acceptance",
+    },
+    {
+      icon: Layers,
+      color: "#0D9488",
+      bg: "rgba(13,148,136,0.1)",
+      boldTitle: "Continuously improve plan",
+      regularTitle: " quality through feedback loops",
+      label: "Using",
+      bullets: ["Plan edits", "Execution outcomes", "Agent overrides"],
+      goal: null,
+    },
+  ];
+
+  const InitiativeCard = ({ item, delay }: { item: typeof initiatives[0]; delay: number }) => (
+    <motion.div {...col(delay)} style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+      <div style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
+        <div style={{
+          width: 34, height: 34, borderRadius: 9, background: item.bg,
+          border: `1px solid ${item.color}30`,
+          display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 1,
+        }}>
+          <item.icon size={15} color={item.color} strokeWidth={1.8} />
+        </div>
+        <p style={{ fontFamily: FF, fontSize: 15, margin: 0, lineHeight: 1.35, color: "#1a1a1a" }}>
+          <strong style={{ fontWeight: 700 }}>{item.boldTitle}</strong>
+          <span style={{ fontWeight: 400 }}>{item.regularTitle}</span>
+        </p>
+      </div>
+      <div style={{ paddingLeft: 46, display: "flex", flexDirection: "column", gap: 6 }}>
+        <p style={{ fontFamily: FF, fontSize: 12, color: "rgba(26,26,26,0.45)", margin: 0, fontWeight: 600 }}>
+          {item.label}:
+        </p>
+        <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 2 }}>
+          {item.bullets.map((b, bi) => (
+            <li key={bi} style={{ fontFamily: FF, fontSize: 13, color: "rgba(26,26,26,0.6)", display: "flex", alignItems: "center", gap: 6 }}>
+              <span style={{ width: 4, height: 4, borderRadius: "50%", background: item.color, flexShrink: 0, opacity: 0.7 }} />
+              {b}
+            </li>
+          ))}
+        </ul>
+        {item.goal && (
+          <p style={{ fontFamily: FF, fontSize: 12, color: "rgba(26,26,26,0.55)", margin: "4px 0 0 0", lineHeight: 1.5 }}>
+            <strong style={{ fontWeight: 600 }}>Goal:</strong> {item.goal}
+          </p>
+        )}
+      </div>
+    </motion.div>
+  );
+
+  return (
+    <section
+      id="section-whatnext"
+      ref={ref}
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#F5F5F7" }}
+    >
+      <div style={{ maxWidth: 800, margin: "0 auto", width: "100%", padding: "0 40px" }}>
+
+        {/* Title */}
+        <motion.h2
+          {...col(0)}
+          style={{ fontFamily: FF, fontSize: "clamp(22px,2.8vw,34px)", fontWeight: 800, color: "#1a1a1a", margin: "0 0 36px 0", letterSpacing: "-0.02em", lineHeight: 1 }}
+        >
+          What We're Doing Next
+        </motion.h2>
+
+        {/* 2-col grid */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 48px" }}>
+
+          {/* Left col — item 1 + closing statement */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+            <InitiativeCard item={initiatives[0]} delay={0.1} />
+            <motion.div
+              {...col(0.22)}
+              style={{ marginTop: 28, paddingTop: 24, borderTop: "1px solid rgba(26,26,26,0.08)" }}
+            >
+              <p style={{ fontFamily: FF, fontSize: 13, color: "rgba(26,26,26,0.5)", margin: 0, lineHeight: 1.7 }}>
+                Rovo Service is evolving from a set of AI capabilities → to a system that learns to reliably execute work.
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Right col — items 2 + 3 */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
+            <InitiativeCard item={initiatives[1]} delay={0.16} />
+            <div style={{ height: 1, background: "rgba(26,26,26,0.08)" }} />
+            <InitiativeCard item={initiatives[2]} delay={0.22} />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function NextProjectSection({ study }: { study: CaseStudy }) {
   const next = getNextCaseStudy(study.id);
   if (!next) return null;
@@ -3242,6 +3367,7 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
     ...(study.id === 4 ? [{ id: "section-anecdotes", label: "Anecdotes" }] : []),
     { id: "section-impact", label: "Impact" },
     ...(study.id === 4 ? [{ id: "section-retrospective", label: "Learnings" }] : []),
+    ...(study.id === 4 ? [{ id: "section-whatnext", label: "What's Next" }] : []),
     { id: "section-next", label: "Next Project" },
   ], [study.id]);
 
@@ -3520,6 +3646,7 @@ export default function CaseStudyPage() {
         {study.id === 4 && <CustomerAnecdotesSection />}
         <ImpactSection study={study} />
         {study.id === 4 && <RetrospectiveSection />}
+        {study.id === 4 && <WhatNextSection />}
         <NextProjectSection study={study} />
       </div>
     </div>
