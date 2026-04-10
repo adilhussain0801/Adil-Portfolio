@@ -884,6 +884,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                       <span className="text-[#1a1a1a]/50" style={{ fontStyle: "italic" }}>Before a resolution plan is even created.</span>
                     </span>
                   </span>,
+                  <>This results in <strong className="text-[#1a1a1a] font-semibold">slower resolution times</strong>, higher <strong className="text-[#1a1a1a] font-semibold">cognitive load</strong>, and a model that <strong className="text-[#1a1a1a] font-semibold">scales linearly with headcount</strong> — making it increasingly <strong className="text-[#1a1a1a] font-semibold">unsustainable</strong> as demand grows.</>,
                 ].map((content, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <span className="mt-2 flex-shrink-0" style={{ width: 6, height: 6, background: "rgba(232,101,75,0.55)", borderRadius: 1 }} />
