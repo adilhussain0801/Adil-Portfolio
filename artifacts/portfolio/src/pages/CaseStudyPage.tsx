@@ -2566,30 +2566,30 @@ function CosmicWaveBackground() {
 
 const CUSTOMER_ANECDOTES = [
   {
-    title: "The draft was ready before I read the thread",
-    quote: "By the time I opened the conversation, Rovo had already scanned the customer's history and staged a full response. I reviewed, tweaked two words, and sent. What used to take eight minutes now takes one.",
-    name: "Maya S.",
-    role: "Senior Service Agent",
+    title: "Handling trivial tickets",
+    quote: "A big chunk of my day used to go into repetitive tickets — password resets, VPN access, basic troubleshooting. With Rovo in place, most of that just gets handled or pre-resolved before it even reaches me.\n\nWhat's changed is I can now focus on the tickets that actually need investigation, instead of constantly clearing the queue.",
+    name: "IT Support Specialist",
+    role: "Enterprise SaaS",
     rotate: -6,
     icon: "/icon-heart.png",
     iconRotate: -10,
     iconPos: { top: -32, left: -24 },
   },
   {
-    title: "Handle time down. CSAT up. Same team.",
-    quote: "Agents stopped flipping between five tabs to find context. Rovo surfaces the customer's plan, history, and the right action right inside the conversation. The numbers moved inside the first week.",
-    name: "Daniel K.",
-    role: "Support Operations Lead",
+    title: "Guided resolution & confidence",
+    quote: "Earlier, resolving complex tickets meant jumping between Jira, Confluence, and internal docs just to piece together context. Now, I get relevant information and next steps surfaced directly in the workflow.\n\nIt feels like there's always guidance available — I don't have to second-guess if I'm missing something.",
+    name: "Senior Service Desk Agent",
+    role: "Fintech",
     rotate: 2,
     icon: "/icon-okhand.png",
     iconRotate: 0,
     iconPos: { bottom: -36, right: -20 },
   },
   {
-    title: "I didn't have to repeat myself once",
-    quote: "Every agent I reached already knew my plan, my history, and what I'd tried. I didn't have to re-explain anything. It felt like they'd actually been paying attention for years.",
-    name: "Emma R.",
-    role: "Enterprise Customer",
+    title: "Efficiency & team bandwidth",
+    quote: "Before Rovo, our team was spending a lot of time managing workflows, routing tickets, and ensuring agents had the right context. It was a constant operational overhead.\n\nNow, a lot of that is automated or handled proactively. We've seen a noticeable drop in manual intervention, and the team has more bandwidth to focus on improving service quality instead of just maintaining it.",
+    name: "ITSM Administrator",
+    role: "Mid-size Enterprise",
     rotate: 5,
     icon: "/icon-star.png",
     iconRotate: -8,
@@ -2628,7 +2628,8 @@ function AnecdoteCard({ a }: { a: (typeof CUSTOMER_ANECDOTES)[0] }) {
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         style={{
-          background: "#1c1c24",
+          background: "#FFFFFF",
+          border: "1px solid #E8E4DE",
           borderRadius: 20,
           padding: "28px 26px",
           display: "flex",
@@ -2636,8 +2637,8 @@ function AnecdoteCard({ a }: { a: (typeof CUSTOMER_ANECDOTES)[0] }) {
           gap: 14,
           position: "relative",
           boxShadow: hovered
-            ? "0 20px 56px rgba(0,0,0,0.45), 0 4px 16px rgba(0,0,0,0.3)"
-            : "0 8px 32px rgba(0,0,0,0.3), 0 2px 8px rgba(0,0,0,0.2)",
+            ? "0 16px 48px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.06)"
+            : "0 4px 20px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04)",
           transform: `rotate(${rotate}deg) translateY(${translateY}px)`,
           transition: "transform 0.38s cubic-bezier(0.34,1.2,0.64,1), box-shadow 0.28s ease",
           cursor: "default",
@@ -2646,22 +2647,22 @@ function AnecdoteCard({ a }: { a: (typeof CUSTOMER_ANECDOTES)[0] }) {
         }}
       >
         {/* Stars */}
-        <div style={{ fontSize: 13, color: "#ffffff", letterSpacing: 2 }}>★★★★★</div>
+        <div style={{ fontSize: 13, color: "#1a1a1a", letterSpacing: 2 }}>★★★★★</div>
 
         {/* Title */}
-        <p style={{ fontFamily: FF, fontWeight: 600, fontSize: 15, color: "#ffffff", margin: 0, lineHeight: 1.35, fontStyle: "italic" }}>
+        <p style={{ fontFamily: FF, fontWeight: 700, fontSize: 15, color: "#1a1a1a", margin: 0, lineHeight: 1.35, fontStyle: "italic" }}>
           "{a.title}"
         </p>
 
         {/* Quote */}
-        <p style={{ fontFamily: FF, fontSize: 13, lineHeight: 1.7, color: "rgba(255,255,255,0.65)", margin: 0, flex: 1 }}>
+        <p style={{ fontFamily: FF, fontSize: 13, lineHeight: 1.7, color: "rgba(26,26,26,0.6)", margin: 0, flex: 1, whiteSpace: "pre-line" }}>
           {a.quote}
         </p>
 
         {/* Attribution */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 2, marginTop: 4 }}>
-          <p style={{ fontFamily: FF, fontWeight: 600, fontSize: 12.5, color: "#ffffff", margin: 0 }}>{a.name}</p>
-          <p style={{ fontFamily: FF, fontSize: 12, color: "rgba(255,255,255,0.4)", margin: 0, fontStyle: "italic" }}>{a.role}</p>
+        <div style={{ display: "flex", flexDirection: "column", gap: 2, marginTop: 4, borderTop: "1px solid #F0ECE6", paddingTop: 14 }}>
+          <p style={{ fontFamily: FF, fontWeight: 700, fontSize: 12.5, color: "#1a1a1a", margin: 0 }}>{a.name}</p>
+          <p style={{ fontFamily: FF, fontSize: 12, color: "rgba(26,26,26,0.45)", margin: 0, fontStyle: "italic" }}>{a.role}</p>
         </div>
       </div>
     </div>
@@ -2678,7 +2679,7 @@ function CustomerAnecdotesSection() {
       id="section-anecdotes"
       ref={ref}
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
-      style={{ background: "#0e0e12" }}
+      style={{ background: "#F7F7F5" }}
     >
       <div
         style={{
@@ -2703,10 +2704,10 @@ function CustomerAnecdotesSection() {
           <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#E8654B", margin: 0 }}>
             Field notes
           </p>
-          <h2 style={{ fontFamily: FF, fontWeight: 700, fontSize: "clamp(22px,3vw,32px)", color: "#ffffff", margin: 0, lineHeight: 1.2 }}>
+          <h2 style={{ fontFamily: FF, fontWeight: 700, fontSize: "clamp(22px,3vw,32px)", color: "#1a1a1a", margin: 0, lineHeight: 1.2 }}>
             Heard from agents and customers
           </h2>
-          <p style={{ fontFamily: FF, fontSize: 14, color: "rgba(255,255,255,0.45)", margin: 0 }}>
+          <p style={{ fontFamily: FF, fontSize: 14, color: "rgba(26,26,26,0.55)", margin: 0 }}>
             What people said when Rovo quietly took work off their plate.
           </p>
         </motion.div>
