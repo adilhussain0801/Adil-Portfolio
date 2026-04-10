@@ -1781,7 +1781,7 @@ function DesignPrinciplesSection() {
 
 function RovoServiceOverviewSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+  const isInView = useInView(sectionRef, { once: false, amount: 0.2 });
   const [toggled, setToggled] = useState(false);
 
   const IMGS = ["/rovo-service-diagram.png", "/rovo-service-diagram-2.png"];
@@ -1796,7 +1796,7 @@ function RovoServiceOverviewSection() {
       {/* Title */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
         transition={{ duration: 0.6, ease: EASE }}
         className="flex-shrink-0 px-10 md:px-20 pt-14 pb-2"
       >
@@ -1818,7 +1818,7 @@ function RovoServiceOverviewSection() {
       <div className="flex-1 flex items-end justify-center overflow-hidden px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, ease: EASE, delay: 0.1 }}
           style={{ position: "relative", width: "90%", cursor: "pointer" }}
           onClick={() => setToggled(t => !t)}
@@ -1852,7 +1852,7 @@ function RovoServiceOverviewSection() {
 
 function EarlyStageConceptsSection() {
   const wallRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(wallRef, { once: true, amount: 0.1 });
+  const isInView = useInView(wallRef, { once: false, amount: 0.1 });
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [lastIndex, setLastIndex] = useState(0);
 
@@ -2154,7 +2154,7 @@ function EarlyStageConceptsSection() {
 
 function AIConsolidationSection() {
   const ref = useRef<HTMLDivElement>(null);
-  const isVisible = useInView(ref, { once: true, amount: 0.3 });
+  const isVisible = useInView(ref, { once: false, amount: 0.3 });
   const FF = "'Wotfard', sans-serif";
 
   return (
@@ -2172,7 +2172,7 @@ function AIConsolidationSection() {
           className="w-full flex flex-col gap-4 pt-12 md:pt-16"
           style={{ paddingLeft: 80, paddingRight: 80 }}
           initial={{ opacity: 0, y: -16 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: -16 }}
           transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
         >
           <div className="flex flex-col gap-2">
@@ -2227,7 +2227,7 @@ function AIConsolidationSection() {
           className="select-none pointer-events-none"
           style={{ width: "calc(100% - 160px)", marginLeft: 80, marginRight: 80, marginTop: -16, zIndex: 1, display: "block" }}
           initial={{ opacity: 0, y: 24 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
           transition={{ duration: 0.65, ease: [0.25, 0.1, 0.25, 1], delay: 0.2 }}
         />
       </div>{/* end slide 1 */}
@@ -2710,7 +2710,7 @@ function AnecdoteCard({ a }: { a: (typeof CUSTOMER_ANECDOTES)[0] }) {
 function CustomerAnecdotesSection() {
   const FF = "'Wotfard', sans-serif";
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.25 });
+  const isInView = useInView(ref, { once: false, amount: 0.25 });
 
   return (
     <section
@@ -2735,7 +2735,7 @@ function CustomerAnecdotesSection() {
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 18 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
           transition={{ duration: 0.6, ease: EASE }}
           style={{ textAlign: "center", display: "flex", flexDirection: "column", gap: 8 }}
         >
@@ -2749,7 +2749,7 @@ function CustomerAnecdotesSection() {
         {/* Cards */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
           transition={{ duration: 0.65, ease: EASE, delay: 0.15 }}
           style={{
             display: "grid",
@@ -3110,12 +3110,12 @@ function ImpactCard({
 }) {
   const FF = "'Wotfard', sans-serif";
   const ref = useRef<HTMLDivElement>(null);
-  const cardInView = useInView(ref, { once: true, amount: 0.1 });
+  const cardInView = useInView(ref, { once: false, amount: 0.1 });
   return (
     <motion.div
       ref={ref}
       initial={{ opacity: 0, y: 16 }}
-      animate={cardInView ? { opacity: 1, y: 0 } : {}}
+      animate={cardInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
       transition={{ duration: 0.55, ease: EASE, delay }}
       style={{
         background: "#FFFFFF",
@@ -3190,7 +3190,7 @@ function ImpactSection({ study: _study, scrollRef }: { study: CaseStudy; scrollR
         {/* Header row — title left, tagline right, thick border bottom */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
           transition={{ duration: 0.55, ease: EASE }}
           style={{
             display: "flex",
@@ -3255,7 +3255,7 @@ const RETROSPECTIVE_ITEMS: { icon: React.ElementType; color: string; bg: string;
 function RetrospectiveSection() {
   const FF = "'Wotfard', sans-serif";
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.15 });
+  const isInView = useInView(ref, { once: false, amount: 0.15 });
 
   return (
     <section
@@ -3269,7 +3269,7 @@ function RetrospectiveSection() {
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 14 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
           transition={{ duration: 0.55, ease: EASE }}
           style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 40 }}
         >
@@ -3292,7 +3292,7 @@ function RetrospectiveSection() {
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 16 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
               transition={{ duration: 0.55, ease: EASE, delay: 0.1 + i * 0.1 }}
               style={{
                 display: "grid",
@@ -3338,11 +3338,11 @@ function RetrospectiveSection() {
 function WhatNextSection() {
   const FF = "'Wotfard', sans-serif";
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.15 });
+  const isInView = useInView(ref, { once: false, amount: 0.15 });
 
   const col = (delay: number) => ({
     initial: { opacity: 0, y: 16 },
-    animate: isInView ? { opacity: 1, y: 0 } : {},
+    animate: isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 },
     transition: { duration: 0.55, ease: EASE, delay },
   });
 
