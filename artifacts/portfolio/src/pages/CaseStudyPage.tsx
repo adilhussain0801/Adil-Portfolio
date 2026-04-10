@@ -3266,7 +3266,7 @@ function WhatNextSection() {
               </div>
 
               {/* Title */}
-              <p style={{ fontFamily: FF, fontSize: 14, margin: 0, lineHeight: 1.35, color: "#1a1a1a" }}>
+              <p style={{ fontFamily: FF, fontSize: 14, margin: 0, lineHeight: 1.35, color: "#1a1a1a", flex: 1 }}>
                 <strong style={{ fontWeight: 700 }}>{item.boldTitle}</strong>
                 <span style={{ fontWeight: 400 }}>{item.regularTitle}</span>
               </p>
