@@ -1701,63 +1701,47 @@ function DesignPrinciplesSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, ease: APPLE, delay: 0.1 + i * 0.1 }}
-                className="flex flex-col gap-3 rounded-2xl overflow-hidden"
+                className="flex flex-col gap-3 rounded-2xl p-5"
                 style={{
-                  background: "#FFFFFF",
-                  border: "1px solid rgba(0,0,0,0.07)",
-                  boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
+                  background: "#F0EDE8",
+                  border: "1px solid #E8E4DE",
                 }}
               >
-                {/* AI gradient top accent */}
-                <div style={{
-                  height: 2,
-                  background: "linear-gradient(90deg, #818CF8 0%, #8B5CF6 40%, #06B6D4 100%)",
-                  flexShrink: 0,
-                }} />
+                {/* Icon row */}
+                <div
+                  className="rounded-lg p-2 self-start"
+                  style={{ background: "rgba(0,0,0,0.05)" }}
+                >
+                  {p.icon()}
+                </div>
 
-                <div className="flex flex-col gap-3 px-5 pb-5">
-                  {/* Icon row */}
-                  <div
-                    className="rounded-lg p-2 self-start"
-                    style={{ background: "rgba(0,0,0,0.04)" }}
-                  >
-                    {p.icon()}
-                  </div>
+                {/* Title */}
+                <h3
+                  className="text-base font-bold leading-snug text-[#1a1a1a]"
+                  style={{ fontFamily: "'Wotfard', sans-serif" }}
+                >
+                  {p.title}
+                </h3>
 
-                  {/* Title */}
-                  <h3
-                    className="text-base font-bold leading-snug text-[#1a1a1a]"
-                    style={{ fontFamily: "'Wotfard', sans-serif" }}
-                  >
-                    {p.title}
-                  </h3>
+                {/* Description */}
+                <p
+                  className="text-sm leading-relaxed text-[#1a1a1a]/55"
+                  style={{ fontFamily: "'Wotfard', sans-serif" }}
+                >
+                  {p.description}
+                </p>
 
-                  {/* Description */}
+                {/* Insight — quiet, no label */}
+                <div
+                  className="mt-auto rounded-xl px-4 py-3"
+                  style={{ background: "rgba(0,0,0,0.05)" }}
+                >
                   <p
-                    className="text-sm leading-relaxed text-[#1a1a1a]/55"
-                    style={{ fontFamily: "'Wotfard', sans-serif" }}
+                    className="text-[12px] leading-relaxed italic"
+                    style={{ color: "rgba(26,26,26,0.45)", fontFamily: "'Wotfard', sans-serif" }}
                   >
-                    {p.description}
+                    {p.insight}
                   </p>
-
-                  {/* Insight callout */}
-                  <div
-                    className="mt-auto rounded-xl px-4 py-3 flex flex-col gap-1"
-                    style={{ background: "rgba(15,15,20,0.88)" }}
-                  >
-                    <p
-                      className="text-[10px] uppercase tracking-widest font-bold"
-                      style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'Wotfard', sans-serif" }}
-                    >
-                      What we learned
-                    </p>
-                    <p
-                      className="text-[12px] leading-relaxed"
-                      style={{ color: "rgba(255,255,255,0.78)", fontFamily: "'Wotfard', sans-serif", fontWeight: 500 }}
-                    >
-                      {p.insight}
-                    </p>
-                  </div>
                 </div>
               </motion.div>
             ))}
