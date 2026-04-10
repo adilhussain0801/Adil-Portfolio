@@ -2940,32 +2940,61 @@ function SolutionSection({ study }: { study: CaseStudy }) {
   );
 }
 
-function ImpactMetric({ value, label, delay = 0 }: { value: string; label: string; delay?: number }) {
+function ImpactCard({
+  value,
+  label,
+  category,
+  categoryColor,
+  delay = 0,
+}: {
+  value: string;
+  label: string;
+  category: string;
+  categoryColor: string;
+  delay?: number;
+}) {
   const FF = "'Wotfard', sans-serif";
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 14 }}
+      initial={{ opacity: 0, y: 16 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.55, ease: EASE, delay }}
-      style={{ display: "flex", flexDirection: "column", gap: 4 }}
+      style={{
+        background: "#FFFFFF",
+        border: "1px solid rgba(26,26,26,0.08)",
+        borderRadius: 16,
+        padding: "28px 28px 26px",
+        display: "flex",
+        flexDirection: "column",
+        gap: 0,
+      }}
     >
+      {/* Category tag */}
+      <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 20 }}>
+        <div style={{ width: 6, height: 6, borderRadius: "50%", background: categoryColor, flexShrink: 0 }} />
+        <p style={{ fontFamily: FF, fontSize: 9, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: categoryColor, margin: 0 }}>
+          {category}
+        </p>
+      </div>
+      {/* Value */}
       <p
         style={{
           fontFamily: FF,
-          fontSize: "clamp(48px,5.5vw,80px)",
+          fontSize: "clamp(36px,4vw,54px)",
           fontWeight: 800,
           color: "#1a1a1a",
-          margin: 0,
-          lineHeight: 0.92,
-          letterSpacing: "-0.04em",
+          margin: "0 0 12px 0",
+          lineHeight: 1,
+          letterSpacing: "-0.03em",
         }}
       >
         {value}
       </p>
-      <p style={{ fontFamily: FF, fontSize: 13, color: "rgba(26,26,26,0.55)", margin: "8px 0 0 0", lineHeight: 1.4, maxWidth: 200 }}>
+      {/* Label */}
+      <p style={{ fontFamily: FF, fontSize: 13, color: "rgba(26,26,26,0.5)", margin: 0, lineHeight: 1.45 }}>
         {label}
       </p>
     </motion.div>
@@ -3009,42 +3038,11 @@ function ImpactSection({ study: _study }: { study: CaseStudy }) {
           </p>
         </motion.div>
 
-        {/* Metrics grid — 3 columns */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "32px 40px", marginBottom: 32 }}>
-
-          {/* EXECUTION label — spans full width */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.4, ease: EASE, delay: 0.08 }}
-            style={{ gridColumn: "span 3", display: "flex", alignItems: "center", gap: 12, marginBottom: -4 }}
-          >
-            <p style={{ fontFamily: FF, fontSize: 9, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "#E8654B", margin: 0, whiteSpace: "nowrap" }}>
-              Execution
-            </p>
-            <div style={{ flex: 1, height: 1, background: "#E8654B", opacity: 0.3 }} />
-          </motion.div>
-
-          <ImpactMetric value="21%" label="Tickets fully resolved by AI (early adopter cohort)" delay={0.13} />
-          <ImpactMetric value="~1,200 hrs saved" label="1 in 5 tickets handled end-to-end by AI" delay={0.19} />
-          <div />
-
-          {/* QUALITY label — spans full width */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.4, ease: EASE, delay: 0.3 }}
-            style={{ gridColumn: "span 3", display: "flex", alignItems: "center", gap: 12, marginBottom: -4, marginTop: 8 }}
-          >
-            <p style={{ fontFamily: FF, fontSize: 9, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "#6B8CDA", margin: 0, whiteSpace: "nowrap" }}>
-              Quality
-            </p>
-            <div style={{ flex: 1, height: 1, background: "#6B8CDA", opacity: 0.3 }} />
-          </motion.div>
-
-          <ImpactMetric value="82%" label="Plans executed without major changes" delay={0.34} />
-          <div />
-          <div />
+        {/* Cards — 3 columns */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, marginBottom: 28 }}>
+          <ImpactCard value="21%" label="Tickets fully resolved by AI (early adopter cohort)" category="Execution" categoryColor="#E8654B" delay={0.1} />
+          <ImpactCard value="~1,200 hrs" label="1 in 5 tickets handled end-to-end by AI" category="Execution" categoryColor="#E8654B" delay={0.18} />
+          <ImpactCard value="82%" label="Plans executed without major changes" category="Quality" categoryColor="#6B8CDA" delay={0.26} />
         </div>
 
         {/* Footer statement */}
