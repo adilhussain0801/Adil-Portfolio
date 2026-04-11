@@ -4786,7 +4786,7 @@ const EDITION_ANECDOTES: {
   {
     title: "Budget approval, simplified",
     quote: "The tiered structure made it much easier to justify pricing in enterprise deals — procurement could see exactly what they were getting at each level.\n\nWe closed two deals faster because of it.",
-    type: "customer", tier: "Enterprise Customer",
+    type: "customer", tier: "SMB Customer",
     rotate: 3, bgColor: "#F5DEC8", bgRotate: 7, bgScale: 1.05,
     icon: "/icon-okhand-new.png", iconRotate: 0, iconSize: 60, iconCorner: { bottom: -22, right: -22 },
   },
