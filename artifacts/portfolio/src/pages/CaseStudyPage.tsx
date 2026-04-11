@@ -4771,16 +4771,43 @@ function ImpactCard({
   );
 }
 
-const PARTNER_ANECDOTES = [
-  "We can finally charge for our most advanced features instead of bundling everything.",
-  "Customers now start with a lower tier and upgrade as they grow — this wasn't happening before.",
-  "It's much easier to justify pricing in enterprise deals with clear tier differentiation.",
+const EDITION_ANECDOTES: { quote: string; type: "partner" | "customer"; tier: string }[] = [
+  {
+    quote: "We can finally charge for our most advanced features instead of bundling everything into one price.",
+    type: "partner",
+    tier: "Platinum Marketplace Partner",
+  },
+  {
+    quote: "The tiered structure made it much easier to justify pricing in enterprise deals — prospects could see exactly what they were getting at each level.",
+    type: "customer",
+    tier: "Enterprise Customer",
+  },
+  {
+    quote: "Customers now start with a lower tier and upgrade naturally as their teams grow. That expansion motion wasn't happening before Editions.",
+    type: "partner",
+    tier: "Platinum Marketplace Partner",
+  },
+  {
+    quote: "We used to pay full price for features half our team never used. Editions let us start where we were and grow into the advanced capabilities over time.",
+    type: "customer",
+    tier: "Enterprise Customer",
+  },
+  {
+    quote: "Clear tier differentiation gave our sales team a real story to tell. It's not just pricing — it's a roadmap for how customers grow with the product.",
+    type: "partner",
+    tier: "Platinum Marketplace Partner",
+  },
+  {
+    quote: "Upgrading felt natural as we scaled. We didn't have to renegotiate the whole contract — just move to the next tier when we were ready.",
+    type: "customer",
+    tier: "Enterprise Customer",
+  },
 ];
 
 function PartnerAnecdotesSection() {
   const FF = "'Wotfard', sans-serif";
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: false, amount: 0.25 });
+  const isInView = useInView(ref, { once: false, amount: 0.15 });
 
   return (
     <section
@@ -4789,64 +4816,82 @@ function PartnerAnecdotesSection() {
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
       style={{ background: "#F5F5F7" }}
     >
-      <div
-        style={{
-          position: "absolute",
-          left: "50%",
-          top: "50%",
-          transform: "translate(-50%, -50%)",
-          width: "min(920px, calc(100% - 80px))",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: 48,
-        }}
-      >
+      <div style={{ maxWidth: 980, margin: "0 auto", width: "100%", padding: "0 40px", display: "flex", flexDirection: "column", gap: 36 }}>
+
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
-          transition={{ duration: 0.6, ease: EASE }}
-          style={{ textAlign: "center", display: "flex", flexDirection: "column", gap: 8 }}
+          transition={{ duration: 0.55, ease: EASE }}
+          style={{ display: "flex", flexDirection: "column", gap: 8 }}
         >
-          <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#E8654B", margin: 0 }}>
-            Partner anecdotes
+          <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.4)", margin: 0 }}>
+            Anecdotes
           </p>
-          <h2 style={{ fontFamily: FF, fontWeight: 700, fontSize: "clamp(22px,3vw,32px)", color: "#1a1a1a", margin: 0, lineHeight: 1.2 }}>
-            What we heard from partners
-          </h2>
+          <div style={{ display: "flex", alignItems: "baseline", gap: 16, flexWrap: "wrap" }}>
+            <h2 style={{ fontFamily: FF, fontWeight: 700, fontSize: "clamp(22px,2.8vw,32px)", color: "#1a1a1a", margin: 0, lineHeight: 1.1 }}>
+              What we heard from partners and customers
+            </h2>
+            <div style={{ display: "flex", gap: 8 }}>
+              <span style={{ fontFamily: FF, fontSize: 11, fontWeight: 700, letterSpacing: "0.06em", background: "rgba(232,101,75,0.1)", color: "#E8654B", border: "1px solid rgba(232,101,75,0.25)", borderRadius: 6, padding: "3px 9px" }}>Partners</span>
+              <span style={{ fontFamily: FF, fontSize: 11, fontWeight: 700, letterSpacing: "0.06em", background: "rgba(107,140,218,0.1)", color: "#6B8CDA", border: "1px solid rgba(107,140,218,0.25)", borderRadius: 6, padding: "3px 9px" }}>Customers</span>
+            </div>
+          </div>
         </motion.div>
 
-        {/* Quote cards */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20, width: "100%" }}>
-          {PARTNER_ANECDOTES.map((quote, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, ease: EASE, delay: 0.12 + i * 0.1 }}
-              style={{
-                background: "#FFFFFF",
-                border: "1px solid rgba(26,26,26,0.08)",
-                borderRadius: 18,
-                padding: "32px 28px 28px",
-                display: "flex",
-                flexDirection: "column",
-                gap: 20,
-              }}
-            >
-              <span style={{ fontFamily: FF, fontSize: 32, lineHeight: 1, color: "#E8654B", opacity: 0.55, fontWeight: 700, display: "block", marginBottom: -8 }}>"</span>
-              <p style={{ fontFamily: FF, fontSize: 15, color: "#1a1a1a", margin: 0, lineHeight: 1.65, fontStyle: "italic", fontWeight: 400 }}>
-                {quote}
-              </p>
-              <div style={{ marginTop: "auto", paddingTop: 16, borderTop: "1px solid rgba(26,26,26,0.07)" }}>
-                <p style={{ fontFamily: FF, fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(26,26,26,0.35)", margin: 0 }}>
-                  Marketplace Partner
+        {/* Quote grid — 3×2 */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 14 }}>
+          {EDITION_ANECDOTES.map((item, i) => {
+            const isPartner = item.type === "partner";
+            const accentColor = isPartner ? "#E8654B" : "#6B8CDA";
+            const accentBg = isPartner ? "rgba(232,101,75,0.08)" : "rgba(107,140,218,0.08)";
+            const accentBorder = isPartner ? "rgba(232,101,75,0.2)" : "rgba(107,140,218,0.2)";
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 18 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
+                transition={{ duration: 0.55, ease: EASE, delay: 0.08 + i * 0.07 }}
+                style={{
+                  background: "#FFFFFF",
+                  border: "1px solid rgba(26,26,26,0.07)",
+                  borderRadius: 16,
+                  padding: "22px 22px 18px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 14,
+                  position: "relative",
+                  overflow: "hidden",
+                }}
+              >
+                {/* Top accent bar */}
+                <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: accentColor, opacity: 0.7, borderRadius: "16px 16px 0 0" }} />
+
+                {/* Type badge */}
+                <span style={{
+                  fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
+                  background: accentBg, color: accentColor, border: `1px solid ${accentBorder}`,
+                  borderRadius: 5, padding: "3px 8px", alignSelf: "flex-start",
+                }}>
+                  {isPartner ? "Partner" : "Customer"}
+                </span>
+
+                {/* Quote */}
+                <p style={{ fontFamily: FF, fontSize: 13.5, color: "#1a1a1a", margin: 0, lineHeight: 1.65, fontStyle: "italic", fontWeight: 400, flex: 1 }}>
+                  "{item.quote}"
                 </p>
-              </div>
-            </motion.div>
-          ))}
+
+                {/* Tier */}
+                <div style={{ paddingTop: 12, borderTop: "1px solid rgba(26,26,26,0.06)" }}>
+                  <p style={{ fontFamily: FF, fontSize: 11, fontWeight: 600, color: "rgba(26,26,26,0.38)", margin: 0, letterSpacing: "0.03em" }}>
+                    {item.tier}
+                  </p>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
+
       </div>
     </section>
   );
