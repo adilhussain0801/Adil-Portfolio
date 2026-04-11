@@ -3433,6 +3433,75 @@ function SolutionSection({ study }: { study: CaseStudy }) {
   );
 }
 
+function EvaluationJourneySection() {
+  const FF = "'Wotfard', sans-serif";
+  const bullets = [
+    "Customers navigate multiple sources — Marketplace, partner sites, docs",
+    "Value is scattered across features, pricing, and documentation",
+    "No clear mapping between features → price → value",
+  ];
+  return (
+    <section
+      id="section-evaluation-journey"
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#FAFAF9" }}
+    >
+      <SnapReveal>
+        <div className="max-w-4xl mx-auto w-full px-8 flex flex-col gap-6">
+          {/* Label */}
+          <p className="text-[10px] uppercase tracking-widest font-semibold" style={{ color: "#E8654B", fontFamily: FF }}>
+            Current Journey
+          </p>
+
+          {/* Headline */}
+          <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight" style={{ fontFamily: FF }}>
+            Evaluation is fragmented<br />and cognitively heavy
+          </h2>
+
+          {/* Bullets */}
+          <ul className="flex flex-col gap-2.5 list-none m-0 p-0">
+            {bullets.map((b, i) => (
+              <li key={i} className="flex items-start gap-3">
+                <span
+                  className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full"
+                  style={{ background: "rgba(232,101,75,0.7)" }}
+                />
+                <span className="text-sm text-[#1a1a1a]/65 leading-relaxed" style={{ fontFamily: FF }}>
+                  {b}
+                </span>
+              </li>
+            ))}
+          </ul>
+
+          {/* Callout */}
+          <div
+            className="inline-flex items-start gap-3 rounded-2xl px-5 py-4 self-start"
+            style={{ background: "rgba(232,101,75,0.08)", border: "1px solid rgba(232,101,75,0.22)" }}
+          >
+            <span className="text-base flex-shrink-0" style={{ marginTop: 1 }}>👉</span>
+            <p className="text-sm font-semibold text-[#C05437] leading-snug" style={{ fontFamily: FF }}>
+              Customers are forced to assemble value themselves
+            </p>
+          </div>
+
+          {/* Journey image */}
+          <div
+            className="rounded-2xl overflow-hidden border"
+            style={{ borderColor: "rgba(26,26,26,0.08)", background: "#fff" }}
+          >
+            <img
+              src="/editions-journey.png"
+              alt="Current customer evaluation and installation journey diagram"
+              className="w-full h-auto block"
+              style={{ maxHeight: 180, objectFit: "contain", objectPosition: "left center", padding: "12px 20px" }}
+            />
+          </div>
+        </div>
+      </SnapReveal>
+    </section>
+  );
+}
+
 function CoreProblemSection() {
   const FF = "'Wotfard', sans-serif";
   const constraints = [
@@ -5148,6 +5217,7 @@ export default function CaseStudyPage() {
         {study.id === 4 && <IndexSlide />}
         <OverviewSection study={study} />
         <ChallengeSection study={study} />
+        {study.id === 3 && <EvaluationJourneySection />}
         {study.id === 4 && <AIConsolidationSection />}
         <ProcessSection study={study} />
         {study.id === 4 && <EmergingThemesSection />}
