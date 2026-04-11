@@ -3775,6 +3775,86 @@ function KeyInsightSection() {
   );
 }
 
+function ReframingProblemSection() {
+  const FF = "'Wotfard', sans-serif";
+  const afterItems = [
+    { icon: <Layers size={15} strokeWidth={1.6} />, text: "Enable structured packaging of value", color: "#4338CA", bg: "rgba(67,56,202,0.07)", border: "rgba(67,56,202,0.18)" },
+    { icon: <Users size={15} strokeWidth={1.6} />, text: "Allow differentiation across customer segments", color: "#0891B2", bg: "rgba(8,145,178,0.07)", border: "rgba(8,145,178,0.18)" },
+    { icon: <BarChart2 size={15} strokeWidth={1.6} />, text: "Support scalable monetization", color: "#16A34A", bg: "rgba(22,163,74,0.07)", border: "rgba(22,163,74,0.18)" },
+  ];
+  return (
+    <section
+      id="section-reframing"
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#F5F5F7" }}
+    >
+      <SnapReveal>
+        <div className="max-w-2xl mx-auto w-full px-8">
+
+          <p className="text-[10px] uppercase tracking-widest font-semibold mb-3" style={{ color: "#E8654B", fontFamily: FF }}>
+            Reframing the Problem
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight mb-2" style={{ fontFamily: FF }}>
+            From pricing limitations
+          </h2>
+          <p className="text-base font-bold mb-8" style={{ color: "#E8654B", fontFamily: FF }}>
+            → value packaging system
+          </p>
+
+          {/* Before → After */}
+          <div className="flex items-stretch gap-3 mb-8">
+            {/* Before */}
+            <div
+              className="flex-1 rounded-2xl px-5 py-5 flex flex-col gap-2"
+              style={{ background: "rgba(232,101,75,0.06)", border: "1px solid rgba(232,101,75,0.18)" }}
+            >
+              <p className="text-[10px] uppercase tracking-widest font-bold mb-1" style={{ color: "rgba(192,84,55,0.6)", fontFamily: FF }}>Before</p>
+              <p className="text-sm font-semibold text-[#1a1a1a]/60 line-through decoration-[#C05437]/50" style={{ fontFamily: FF }}>
+                Improve pricing controls
+              </p>
+            </div>
+
+            {/* Arrow */}
+            <div className="flex items-center flex-shrink-0">
+              <ArrowRight size={18} style={{ color: "rgba(26,26,26,0.20)" }} />
+            </div>
+
+            {/* After */}
+            <div
+              className="flex-[2] rounded-2xl px-5 py-5 flex flex-col gap-3"
+              style={{ background: "#FFFFFF", border: "1px solid rgba(26,26,26,0.09)" }}
+            >
+              <p className="text-[10px] uppercase tracking-widest font-bold mb-1" style={{ color: "rgba(26,26,26,0.35)", fontFamily: FF }}>After</p>
+              <div className="flex flex-col gap-2">
+                {afterItems.map((item) => (
+                  <div key={item.text} className="flex items-center gap-3">
+                    <div className="w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: item.bg, color: item.color }}>
+                      {item.icon}
+                    </div>
+                    <p className="text-sm text-[#1a1a1a]/75 leading-snug" style={{ fontFamily: FF }}>{item.text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Platform-level callout */}
+          <div
+            className="flex items-center gap-3 rounded-2xl px-5 py-4"
+            style={{ background: "rgba(67,56,202,0.06)", border: "1px solid rgba(67,56,202,0.18)" }}
+          >
+            <Building2 size={16} className="flex-shrink-0" style={{ color: "#4338CA" }} />
+            <p className="text-sm font-semibold" style={{ color: "#4338CA", fontFamily: FF }}>
+              A platform-level design problem, not just UI
+            </p>
+          </div>
+
+        </div>
+      </SnapReveal>
+    </section>
+  );
+}
+
 function ImpactCounter({ numericValue, isInView, format, startDelay = 0 }: { numericValue: number; isInView: boolean; format?: (n: number) => string; startDelay?: number }) {
   const [display, setDisplay] = useState(0);
   useEffect(() => {
@@ -4502,6 +4582,7 @@ export default function CaseStudyPage() {
         {study.id === 3 && <PartnerChallengesSection />}
         {study.id === 3 && <CustomerChallengesSection />}
         {study.id === 3 && <KeyInsightSection />}
+        {study.id === 3 && <ReframingProblemSection />}
         <ExperienceWalkthroughSection />
         {study.id === 4 && <CustomerAnecdotesSection />}
         <ImpactSection study={study} scrollRef={scrollRef} />
