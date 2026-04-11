@@ -4771,43 +4771,150 @@ function ImpactCard({
   );
 }
 
-const EDITION_ANECDOTES: { quote: string; type: "partner" | "customer"; tier: string }[] = [
+const EDITION_ANECDOTES: {
+  title: string; quote: string; type: "partner" | "customer"; tier: string;
+  rotate: number; bgColor: string; bgRotate: number; bgScale: number;
+  icon: string; iconRotate: number; iconSize: number; iconCorner: Record<string, number>;
+}[] = [
   {
-    quote: "We can finally charge for our most advanced features instead of bundling everything into one price.",
-    type: "partner",
-    tier: "Platinum Marketplace Partner",
+    title: "Monetising advanced features",
+    quote: "We can finally charge for our most advanced features instead of bundling everything into one price.\n\nEditions gave us the structure to have a real conversation about value — and customers are responding to it.",
+    type: "partner", tier: "Platinum Marketplace Partner",
+    rotate: -4, bgColor: "#D6E8F5", bgRotate: -9, bgScale: 1.04,
+    icon: "/icon-star-new.png", iconRotate: -8, iconSize: 62, iconCorner: { top: -22, right: -22 },
   },
   {
-    quote: "The tiered structure made it much easier to justify pricing in enterprise deals — prospects could see exactly what they were getting at each level.",
-    type: "customer",
-    tier: "Enterprise Customer",
+    title: "Budget approval, simplified",
+    quote: "The tiered structure made it much easier to justify pricing in enterprise deals — procurement could see exactly what they were getting at each level.\n\nWe closed two deals faster because of it.",
+    type: "customer", tier: "Enterprise Customer",
+    rotate: 3, bgColor: "#F5DEC8", bgRotate: 7, bgScale: 1.05,
+    icon: "/icon-okhand-new.png", iconRotate: 0, iconSize: 60, iconCorner: { bottom: -22, right: -22 },
   },
   {
-    quote: "Customers now start with a lower tier and upgrade naturally as their teams grow. That expansion motion wasn't happening before Editions.",
-    type: "partner",
-    tier: "Platinum Marketplace Partner",
+    title: "Natural expansion motion",
+    quote: "Customers now start with a lower tier and upgrade naturally as their teams grow. That expansion motion wasn't happening before Editions.\n\nIt's completely changed how we think about land-and-expand.",
+    type: "partner", tier: "Platinum Marketplace Partner",
+    rotate: 5, bgColor: "#D4EDDA", bgRotate: 4, bgScale: 1.03,
+    icon: "/icon-heart-new.png", iconRotate: -10, iconSize: 60, iconCorner: { top: -22, right: -22 },
   },
   {
-    quote: "We used to pay full price for features half our team never used. Editions let us start where we were and grow into the advanced capabilities over time.",
-    type: "customer",
-    tier: "Enterprise Customer",
+    title: "Paying for what we actually use",
+    quote: "We used to pay full price for features half our team never used. Editions let us start where we were and grow into the advanced capabilities over time.\n\nIt felt fair — and that matters when you're renewing.",
+    type: "customer", tier: "Enterprise Customer",
+    rotate: -3, bgColor: "#EDE0F5", bgRotate: -8, bgScale: 1.04,
+    icon: "/icon-star-new.png", iconRotate: 6, iconSize: 58, iconCorner: { bottom: -20, right: -20 },
   },
   {
-    quote: "Clear tier differentiation gave our sales team a real story to tell. It's not just pricing — it's a roadmap for how customers grow with the product.",
-    type: "partner",
-    tier: "Platinum Marketplace Partner",
+    title: "A roadmap, not just a price list",
+    quote: "Clear tier differentiation gave our sales team a real story to tell. It's not just pricing — it's a roadmap for how customers grow with the product.\n\nThat narrative is worth a lot in a competitive deal.",
+    type: "partner", tier: "Platinum Marketplace Partner",
+    rotate: 2, bgColor: "#F5E8C8", bgRotate: 6, bgScale: 1.05,
+    icon: "/icon-okhand-new.png", iconRotate: -4, iconSize: 60, iconCorner: { top: -22, right: -22 },
   },
   {
-    quote: "Upgrading felt natural as we scaled. We didn't have to renegotiate the whole contract — just move to the next tier when we were ready.",
-    type: "customer",
-    tier: "Enterprise Customer",
+    title: "Scaling without renegotiating",
+    quote: "Upgrading felt natural as we scaled. We didn't have to renegotiate the whole contract — just move to the next tier when we were ready.\n\nIt removed the friction that usually delays these decisions.",
+    type: "customer", tier: "Enterprise Customer",
+    rotate: -5, bgColor: "#C8EDF5", bgRotate: -10, bgScale: 1.04,
+    icon: "/icon-heart-new.png", iconRotate: 8, iconSize: 62, iconCorner: { bottom: -22, right: -22 },
   },
 ];
+
+function EditionAnecdoteCard({ a, visible }: { a: (typeof EDITION_ANECDOTES)[0]; visible: boolean }) {
+  const FF = "'Wotfard', sans-serif";
+  const [hovered, setHovered] = useState(false);
+  const isPartner = a.type === "partner";
+  const accentColor = isPartner ? "#E8654B" : "#6B8CDA";
+  const accentBg = isPartner ? "rgba(232,101,75,0.1)" : "rgba(107,140,218,0.1)";
+  const accentBorder = isPartner ? "rgba(232,101,75,0.25)" : "rgba(107,140,218,0.25)";
+
+  const rotate = hovered ? 0 : a.rotate;
+  const translateY = hovered ? -8 : 0;
+
+  return (
+    <div style={{ position: "relative" }}>
+      <div style={{
+        position: "absolute", inset: 0, borderRadius: 22, background: a.bgColor,
+        transform: `rotate(${hovered ? a.bgRotate * 0.5 : a.bgRotate}deg) scale(${hovered ? 1 + (a.bgScale - 1) * 0.5 : a.bgScale}) translateY(${hovered ? 3 : 7}px)`,
+        transition: "transform 0.38s cubic-bezier(0.34,1.2,0.64,1)", zIndex: 0,
+      }} />
+      <div
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        style={{
+          background: "#FFFFFF", border: "1px solid #E8E4DE", borderRadius: 20,
+          padding: "24px 24px 20px", display: "flex", flexDirection: "column", gap: 10,
+          position: "relative",
+          boxShadow: hovered
+            ? "0 16px 48px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.06)"
+            : "0 4px 20px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04)",
+          transform: `rotate(${rotate}deg) translateY(${translateY}px)`,
+          transition: "transform 0.38s cubic-bezier(0.34,1.2,0.64,1), box-shadow 0.28s ease",
+          cursor: "default", willChange: "transform", zIndex: hovered ? 10 : 1, opacity: visible ? 1 : 0.4,
+        }}
+      >
+        <img src={a.icon} alt="" aria-hidden="true" style={{
+          position: "absolute", ...a.iconCorner, width: a.iconSize, height: a.iconSize,
+          objectFit: "contain", transform: `rotate(${a.iconRotate}deg)`, pointerEvents: "none",
+          zIndex: 20, filter: "drop-shadow(0 3px 8px rgba(0,0,0,0.2))",
+        }} />
+
+        {/* Type badge */}
+        <span style={{
+          fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
+          background: accentBg, color: accentColor, border: `1px solid ${accentBorder}`,
+          borderRadius: 5, padding: "3px 8px", alignSelf: "flex-start",
+        }}>{isPartner ? "Partner" : "Customer"}</span>
+
+        {/* Title */}
+        <p style={{ fontFamily: FF, fontWeight: 700, fontSize: 14, color: "#1a1a1a", margin: 0, lineHeight: 1.3, fontStyle: "italic", paddingRight: 44 }}>
+          "{a.title}"
+        </p>
+
+        {/* Quote */}
+        <p style={{ fontFamily: FF, fontSize: 12.5, lineHeight: 1.7, color: "rgba(26,26,26,0.6)", margin: 0, flex: 1, whiteSpace: "pre-line" }}>
+          {a.quote}
+        </p>
+
+        {/* Attribution */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 2, marginTop: 4, borderTop: "1px solid #F0ECE6", paddingTop: 10 }}>
+          <p style={{ fontFamily: FF, fontWeight: 700, fontSize: 12, color: "#1a1a1a", margin: 0 }}>{a.tier}</p>
+          <p style={{ fontFamily: FF, fontSize: 11.5, color: "rgba(26,26,26,0.45)", margin: 0, fontStyle: "italic" }}>
+            {isPartner ? "Atlassian Marketplace" : "Post-launch feedback"}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function PartnerAnecdotesSection() {
   const FF = "'Wotfard', sans-serif";
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, amount: 0.15 });
+
+  const GROUPS = 2;
+  const PER_GROUP = 3;
+  const [groupIndex, setGroupIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (!isInView || paused) return;
+    const id = setInterval(() => {
+      setDirection(1);
+      setGroupIndex((g) => (g + 1) % GROUPS);
+    }, 4200);
+    return () => clearInterval(id);
+  }, [isInView, paused]);
+
+  const visibleCards = EDITION_ANECDOTES.slice(groupIndex * PER_GROUP, groupIndex * PER_GROUP + PER_GROUP);
+
+  const slideVariants = {
+    enter: (d: number) => ({ opacity: 0, x: d > 0 ? 60 : -60 }),
+    center: { opacity: 1, x: 0 },
+    exit: (d: number) => ({ opacity: 0, x: d > 0 ? -60 : 60 }),
+  };
 
   return (
     <section
@@ -4815,81 +4922,63 @@ function PartnerAnecdotesSection() {
       ref={ref}
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
       style={{ background: "#F5F5F7" }}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
     >
-      <div style={{ maxWidth: 980, margin: "0 auto", width: "100%", padding: "0 40px", display: "flex", flexDirection: "column", gap: 36 }}>
+      <div style={{ maxWidth: 980, margin: "0 auto", width: "100%", padding: "0 40px", display: "flex", flexDirection: "column", gap: 40 }}>
 
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
           transition={{ duration: 0.55, ease: EASE }}
-          style={{ display: "flex", flexDirection: "column", gap: 8 }}
+          style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}
         >
-          <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.4)", margin: 0 }}>
-            Anecdotes
-          </p>
-          <div style={{ display: "flex", alignItems: "baseline", gap: 16, flexWrap: "wrap" }}>
-            <h2 style={{ fontFamily: FF, fontWeight: 700, fontSize: "clamp(22px,2.8vw,32px)", color: "#1a1a1a", margin: 0, lineHeight: 1.1 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+            <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.4)", margin: 0 }}>
+              Anecdotes
+            </p>
+            <h2 style={{ fontFamily: FF, fontWeight: 700, fontSize: "clamp(22px,2.8vw,30px)", color: "#1a1a1a", margin: 0, lineHeight: 1.1 }}>
               What we heard from partners and customers
             </h2>
-            <div style={{ display: "flex", gap: 8 }}>
-              <span style={{ fontFamily: FF, fontSize: 11, fontWeight: 700, letterSpacing: "0.06em", background: "rgba(232,101,75,0.1)", color: "#E8654B", border: "1px solid rgba(232,101,75,0.25)", borderRadius: 6, padding: "3px 9px" }}>Partners</span>
-              <span style={{ fontFamily: FF, fontSize: 11, fontWeight: 700, letterSpacing: "0.06em", background: "rgba(107,140,218,0.1)", color: "#6B8CDA", border: "1px solid rgba(107,140,218,0.25)", borderRadius: 6, padding: "3px 9px" }}>Customers</span>
-            </div>
+          </div>
+
+          {/* Dot indicators */}
+          <div style={{ display: "flex", gap: 8, flexShrink: 0, marginLeft: 24 }}>
+            {Array.from({ length: GROUPS }).map((_, i) => (
+              <button
+                key={i}
+                onClick={() => { setDirection(i > groupIndex ? 1 : -1); setGroupIndex(i); }}
+                style={{
+                  width: i === groupIndex ? 22 : 8, height: 8, borderRadius: 4,
+                  background: i === groupIndex ? "#1a1a1a" : "rgba(26,26,26,0.2)",
+                  border: "none", padding: 0, cursor: "pointer",
+                  transition: "width 0.35s ease, background 0.25s ease",
+                }}
+                aria-label={`Show group ${i + 1}`}
+              />
+            ))}
           </div>
         </motion.div>
 
-        {/* Quote grid — 3×2 */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 14 }}>
-          {EDITION_ANECDOTES.map((item, i) => {
-            const isPartner = item.type === "partner";
-            const accentColor = isPartner ? "#E8654B" : "#6B8CDA";
-            const accentBg = isPartner ? "rgba(232,101,75,0.08)" : "rgba(107,140,218,0.08)";
-            const accentBorder = isPartner ? "rgba(232,101,75,0.2)" : "rgba(107,140,218,0.2)";
-            return (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 18 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
-                transition={{ duration: 0.55, ease: EASE, delay: 0.08 + i * 0.07 }}
-                style={{
-                  background: "#FFFFFF",
-                  border: "1px solid rgba(26,26,26,0.07)",
-                  borderRadius: 16,
-                  padding: "22px 22px 18px",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 14,
-                  position: "relative",
-                  overflow: "hidden",
-                }}
-              >
-                {/* Top accent bar */}
-                <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: accentColor, opacity: 0.7, borderRadius: "16px 16px 0 0" }} />
-
-                {/* Type badge */}
-                <span style={{
-                  fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
-                  background: accentBg, color: accentColor, border: `1px solid ${accentBorder}`,
-                  borderRadius: 5, padding: "3px 8px", alignSelf: "flex-start",
-                }}>
-                  {isPartner ? "Partner" : "Customer"}
-                </span>
-
-                {/* Quote */}
-                <p style={{ fontFamily: FF, fontSize: 13.5, color: "#1a1a1a", margin: 0, lineHeight: 1.65, fontStyle: "italic", fontWeight: 400, flex: 1 }}>
-                  "{item.quote}"
-                </p>
-
-                {/* Tier */}
-                <div style={{ paddingTop: 12, borderTop: "1px solid rgba(26,26,26,0.06)" }}>
-                  <p style={{ fontFamily: FF, fontSize: 11, fontWeight: 600, color: "rgba(26,26,26,0.38)", margin: 0, letterSpacing: "0.03em" }}>
-                    {item.tier}
-                  </p>
-                </div>
-              </motion.div>
-            );
-          })}
+        {/* Cards carousel */}
+        <div style={{ position: "relative", overflow: "hidden", paddingBottom: 16 }}>
+          <AnimatePresence custom={direction} mode="wait">
+            <motion.div
+              key={groupIndex}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.45, ease: EASE }}
+              style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 48, paddingTop: 52, paddingBottom: 52, paddingLeft: 32, paddingRight: 32 }}
+            >
+              {visibleCards.map((a, i) => (
+                <EditionAnecdoteCard key={i} a={a} visible={true} />
+              ))}
+            </motion.div>
+          </AnimatePresence>
         </div>
 
       </div>
