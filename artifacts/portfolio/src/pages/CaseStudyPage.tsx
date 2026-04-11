@@ -296,50 +296,61 @@ function IndexSlide() {
     <section
       id="section-index"
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
-      style={{ background: "#FFFFFF" }}
+      style={{ background: "#FAFAF9" }}
     >
-      <div ref={ref} className="max-w-4xl mx-auto w-full px-6">
+      <div ref={ref} className="max-w-2xl mx-auto w-full px-6">
         <motion.div
+          className="mb-10"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, ease: APPLE }}
         >
           <p
-            className="text-xs uppercase tracking-widest font-semibold mb-3"
+            className="text-[10px] uppercase tracking-widest font-semibold mb-2"
             style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
           >
-            Case study structure
+            Rovo Service · Case study
           </p>
           <h2
-            className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mb-10"
+            className="text-2xl md:text-3xl font-bold text-[#1a1a1a]"
             style={{ fontFamily: "'Wotfard', sans-serif" }}
           >
             What we'll cover
           </h2>
         </motion.div>
+
+        <motion.div
+          className="border-t border-[#E8E4DE]"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.3, ease: APPLE, delay: 0.1 }}
+        />
+
         <div className="flex flex-col">
           {INDEX_CHAPTERS.map((ch, i) => (
             <motion.div
               key={ch.num}
-              className="flex items-baseline gap-6 py-3 border-b border-[#E8E4DE]"
-              initial={{ opacity: 0, x: -10 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
-              transition={{ duration: 0.4, ease: APPLE, delay: 0.15 + i * 0.06 }}
+              className="flex items-center justify-between border-b border-[#E8E4DE] py-4"
+              initial={{ opacity: 0, y: 8 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+              transition={{ duration: 0.45, ease: APPLE, delay: 0.18 + i * 0.055 }}
             >
+              <div className="flex items-center gap-5">
+                <span
+                  className="text-xs tabular-nums w-5 text-right flex-shrink-0"
+                  style={{ color: "rgba(0,0,0,0.18)", fontFamily: "'Courier New', monospace" }}
+                >
+                  {ch.num}
+                </span>
+                <span
+                  className="text-base font-semibold text-[#1a1a1a]"
+                  style={{ fontFamily: "'Wotfard', sans-serif" }}
+                >
+                  {ch.title}
+                </span>
+              </div>
               <span
-                className="text-xs tabular-nums w-6 flex-shrink-0 text-right"
-                style={{ color: "rgba(0,0,0,0.2)", fontFamily: "'Wotfard', sans-serif" }}
-              >
-                {ch.num}
-              </span>
-              <span
-                className="text-sm font-semibold text-[#1a1a1a] w-32 flex-shrink-0"
-                style={{ fontFamily: "'Wotfard', sans-serif" }}
-              >
-                {ch.title}
-              </span>
-              <span
-                className="text-sm text-[#1a1a1a]/40"
+                className="text-xs text-[#1a1a1a]/35 text-right ml-6"
                 style={{ fontFamily: "'Wotfard', sans-serif" }}
               >
                 {ch.desc}
