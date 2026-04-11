@@ -5213,7 +5213,6 @@ export default function CaseStudyPage() {
         {study.id === 4 && <IndexSlide />}
         <OverviewSection study={study} />
         <ChallengeSection study={study} />
-        {study.id === 3 && <EvaluationJourneySection />}
         {study.id === 4 && <AIConsolidationSection />}
         <ProcessSection study={study} />
         {study.id === 4 && <EmergingThemesSection />}
@@ -5222,6 +5221,7 @@ export default function CaseStudyPage() {
         {study.id === 4 && <EarlyStageConceptsSection />}
         <SolutionSection study={study} />
         {study.id === 3 && <CoreProblemSection />}
+        {study.id === 3 && <EvaluationJourneySection />}
         {study.id === 3 && <PartnerChallengesSection />}
         {study.id === 3 && <CustomerChallengesSection />}
         {study.id === 3 && <KeyInsightSection />}
