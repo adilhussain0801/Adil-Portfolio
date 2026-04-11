@@ -4853,12 +4853,6 @@ function EditionAnecdoteCard({ a, visible }: { a: (typeof EDITION_ANECDOTES)[0];
           cursor: "default", willChange: "transform", zIndex: hovered ? 10 : 1, opacity: visible ? 1 : 0.4,
         }}
       >
-        <img src={a.icon} alt="" aria-hidden="true" style={{
-          position: "absolute", ...a.iconCorner, width: a.iconSize, height: a.iconSize,
-          objectFit: "contain", transform: `rotate(${a.iconRotate}deg)`, pointerEvents: "none",
-          zIndex: 20, filter: "drop-shadow(0 3px 8px rgba(0,0,0,0.2))",
-        }} />
-
         {/* Type badge */}
         <span style={{
           fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
@@ -4867,7 +4861,7 @@ function EditionAnecdoteCard({ a, visible }: { a: (typeof EDITION_ANECDOTES)[0];
         }}>{isPartner ? "Partner" : "Customer"}</span>
 
         {/* Title */}
-        <p style={{ fontFamily: FF, fontWeight: 700, fontSize: 14, color: "#1a1a1a", margin: 0, lineHeight: 1.3, fontStyle: "italic", paddingRight: 44 }}>
+        <p style={{ fontFamily: FF, fontWeight: 700, fontSize: 14, color: "#1a1a1a", margin: 0, lineHeight: 1.3, fontStyle: "italic" }}>
           "{a.title}"
         </p>
 
