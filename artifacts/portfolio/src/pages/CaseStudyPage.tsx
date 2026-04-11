@@ -1,7 +1,7 @@
 import { useParams, Link } from "wouter";
 import { useRef, useEffect, useState, useMemo, type RefObject } from "react";
 import { motion, useInView, AnimatePresence, useMotionValue, useTransform, useSpring, animate } from "framer-motion";
-import { ArrowLeft, ArrowRight, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare, ChevronLeft, ChevronRight, X, CheckCircle2, Settings, Banknote, Layers, Users, BookOpen, Bot, GraduationCap, Briefcase, Link2, ArrowLeftRight, BarChart2, Building2, Target, ShieldCheck, Menu } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, AlertCircle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare, ChevronLeft, ChevronRight, X, CheckCircle2, Settings, Banknote, Layers, Users, BookOpen, Bot, GraduationCap, Briefcase, Link2, ArrowLeftRight, BarChart2, Building2, Target, ShieldCheck, Menu } from "lucide-react";
 import walkthroughScreenshot from "@assets/ExpWalkthrough_1775735219205.png";
 import { getCaseStudy, getNextCaseStudy, getAllCaseStudies, type CaseStudy } from "@/data/caseStudies";
 import NotFound from "@/pages/not-found";
@@ -3433,6 +3433,98 @@ function SolutionSection({ study }: { study: CaseStudy }) {
   );
 }
 
+function CoreProblemSection() {
+  const FF = "'Wotfard', sans-serif";
+  const constraints = [
+    {
+      who: "Partners",
+      icon: <Briefcase size={18} strokeWidth={1.6} />,
+      color: "#7C3AED",
+      bg: "rgba(124,58,237,0.07)",
+      border: "rgba(124,58,237,0.18)",
+      tagBg: "rgba(124,58,237,0.10)",
+      problem: "Couldn't effectively monetize value",
+      detail: "A single pricing model forced every app into the same commercial structure — regardless of how much value it delivered or how enterprise customers actually wanted to pay.",
+    },
+    {
+      who: "Customers",
+      icon: <Users size={18} strokeWidth={1.6} />,
+      color: "#0891B2",
+      bg: "rgba(8,145,178,0.07)",
+      border: "rgba(8,145,178,0.18)",
+      tagBg: "rgba(8,145,178,0.10)",
+      problem: "Couldn't flexibly choose what they needed",
+      detail: "Buyers had to commit to full feature sets with no way to trial, tier, or adopt incrementally — making purchase decisions slower and more risky.",
+    },
+  ];
+  return (
+    <section
+      id="section-core-problem"
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#F5F5F7" }}
+    >
+      <SnapReveal>
+        <div className="max-w-3xl mx-auto w-full px-8">
+
+          <p className="text-[10px] uppercase tracking-widest font-semibold mb-3" style={{ color: "#E8654B", fontFamily: FF }}>
+            The Core Problem
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight mb-2" style={{ fontFamily: FF }}>
+            Monetization and adoption were both constrained
+          </h2>
+          <p className="text-sm text-[#1a1a1a]/50 mb-8" style={{ fontFamily: FF }}>
+            Two sides of the platform, two separate blockers — working against growth at the same time.
+          </p>
+
+          {/* Two constraint cards */}
+          <div className="grid grid-cols-2 gap-4 mb-6">
+            {constraints.map((c) => (
+              <div
+                key={c.who}
+                className="rounded-2xl px-5 py-5 flex flex-col gap-3"
+                style={{ background: c.bg, border: `1px solid ${c.border}` }}
+              >
+                {/* Who tag */}
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-xl flex items-center justify-center" style={{ background: "white", color: c.color }}>
+                    {c.icon}
+                  </div>
+                  <span className="text-xs font-bold" style={{ color: c.color, fontFamily: FF }}>{c.who}</span>
+                </div>
+                {/* Problem statement */}
+                <p className="text-base font-bold text-[#1a1a1a] leading-snug" style={{ fontFamily: FF }}>
+                  {c.problem}
+                </p>
+                {/* Detail */}
+                <p className="text-xs text-[#1a1a1a]/55 leading-relaxed" style={{ fontFamily: FF }}>
+                  {c.detail}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Systemic callout */}
+          <div
+            className="flex items-start gap-3 rounded-2xl px-5 py-4"
+            style={{ background: "rgba(232,101,75,0.07)", border: "1px solid rgba(232,101,75,0.20)" }}
+          >
+            <AlertCircle size={17} className="flex-shrink-0 mt-0.5" style={{ color: "#C05437" }} />
+            <div>
+              <p className="text-sm font-semibold text-[#C05437] mb-0.5" style={{ fontFamily: FF }}>
+                A systemic inefficiency across the ecosystem
+              </p>
+              <p className="text-xs text-[#1a1a1a]/55 leading-relaxed" style={{ fontFamily: FF }}>
+                These weren't isolated UX issues — they were structural gaps that suppressed revenue, slowed adoption, and limited how much value the platform could unlock at scale.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </SnapReveal>
+    </section>
+  );
+}
+
 function ImpactCounter({ numericValue, isInView, format, startDelay = 0 }: { numericValue: number; isInView: boolean; format?: (n: number) => string; startDelay?: number }) {
   const [display, setDisplay] = useState(0);
   useEffect(() => {
@@ -4156,6 +4248,7 @@ export default function CaseStudyPage() {
         {study.id === 4 && <RovoServiceOverviewSection />}
         {study.id === 4 && <EarlyStageConceptsSection />}
         <SolutionSection study={study} />
+        {study.id === 3 && <CoreProblemSection />}
         <ExperienceWalkthroughSection />
         {study.id === 4 && <CustomerAnecdotesSection />}
         <ImpactSection study={study} scrollRef={scrollRef} />
