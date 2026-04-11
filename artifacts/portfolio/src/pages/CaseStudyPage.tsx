@@ -3482,14 +3482,14 @@ function EvaluationJourneySection() {
 
           {/* Journey image — respects 144px margins */}
           <div
-            className="overflow-hidden rounded-2xl border"
+            className="overflow-x-auto overflow-y-hidden rounded-2xl border"
             style={{ marginLeft: 144, marginRight: 144, borderColor: "rgba(26,26,26,0.08)", background: "#fff" }}
           >
             <img
               src="/editions-journey.png"
               alt="Current customer evaluation and installation journey diagram"
-              className="block w-full h-auto"
-              style={{ height: 420, objectFit: "cover", objectPosition: "left center" }}
+              className="block"
+              style={{ height: 420, width: "auto", maxWidth: "none" }}
             />
           </div>
         </div>
