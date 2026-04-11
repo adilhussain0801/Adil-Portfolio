@@ -8,13 +8,9 @@ const PROJECTS = [
     title: "Rovo Service",
     category: "Atlassian AI Assistant",
     description: "Designed the service layer experience for Rovo, Atlassian's AI assistant - enabling agents to take action across tools, reducing manual workflows for enterprise teams.",
-    year: "2024",
+    timeline: "2023 – 2024",
     image: "/rovo-service-bg.png",
     placeholderColor: "#C5D9F9",
-    metrics: [
-      { label: "EFFICIENCY GAIN", value: "38%" },
-      { label: "ACTIVE TEAMS", value: "2.1K" },
-    ],
     colSpan: "md:col-span-1",
     type: "image",
   },
@@ -23,13 +19,9 @@ const PROJECTS = [
     title: "Monetization pathways for apps",
     category: "Growth & Optimization",
     description: "Designed transparency features that surfaced security certifications and compliance details, building user confidence in third-party apps.",
-    year: "2023",
+    timeline: "2022 – 2023",
     image: null,
     placeholderColor: "#F9C5C5",
-    metrics: [
-      { label: "LESSER TICKETS", value: "67%" },
-      { label: "FEWER DETRACTORS", value: "16%" },
-    ],
     colSpan: "md:col-span-2",
     type: "image",
   },
@@ -38,13 +30,9 @@ const PROJECTS = [
     title: "Foresight",
     category: "Native iOS/Android",
     description: "Designed AI-powered support automation that reduced support tickets by 32% and improved customer satisfaction across all demographics.",
-    year: "2021",
+    timeline: "2020 – 2021",
     image: null,
     placeholderColor: "#B8D8C8",
-    metrics: [
-      { label: "ADOPTION", value: "89%" },
-      { label: "MONTHLY ACTIONS", value: "1.5M" },
-    ],
     colSpan: "md:col-span-2",
     type: "image",
   },
@@ -53,12 +41,9 @@ const PROJECTS = [
     title: "Project Carrara",
     category: "Amazon Post-Purchase",
     description: "Led cross-functional team to redesign support workflows. Reduced resolution time by 42% through smart routing and self-serve options.",
-    year: "2024",
+    timeline: "2023 – 2024",
     image: null,
     placeholderColor: "#D4C5F9",
-    metrics: [
-      { label: "SUCCESS", value: "65.2%" },
-    ],
     colSpan: "md:col-span-1",
     type: "image",
   },
@@ -165,13 +150,8 @@ function ProjectCard({
                 </h3>
                 <p className="text-xs text-white/50 mt-1">{project.category}</p>
               </div>
-              <div className="flex gap-5 ml-4 flex-shrink-0">
-                {project.metrics.map((metric, idx) => (
-                  <div key={idx} className="text-right">
-                    <p className="text-lg md:text-xl font-bold text-[#E8654B]">{metric.value}</p>
-                    <p className="text-[10px] uppercase tracking-widest text-white/50">{metric.label}</p>
-                  </div>
-                ))}
+              <div className="ml-4 flex-shrink-0 flex items-center">
+                <p className="text-sm text-white/40" style={{ fontFamily: "'Wotfard', sans-serif" }}>{project.timeline}</p>
               </div>
             </div>
 
