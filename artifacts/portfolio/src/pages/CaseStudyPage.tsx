@@ -4132,6 +4132,141 @@ function AppEditionsSolutionSection() {
   );
 }
 
+function ScopeOfInitiativeSection() {
+  const FF = "'Wotfard', sans-serif";
+  const systems = [
+    { label: "Partner Portal", desc: "configuration & setup", color: "#7C3AED", bg: "rgba(124,58,237,0.07)", border: "rgba(124,58,237,0.18)" },
+    { label: "Marketplace", desc: "discovery & purchase", color: "#0891B2", bg: "rgba(8,145,178,0.07)", border: "rgba(8,145,178,0.18)" },
+    { label: "Admin Hub", desc: "post-purchase management", color: "#16A34A", bg: "rgba(22,163,74,0.07)", border: "rgba(22,163,74,0.18)" },
+    { label: "Commerce systems", desc: "pricing, billing, licensing", color: "#D97706", bg: "rgba(217,119,6,0.07)", border: "rgba(217,119,6,0.18)" },
+    { label: "Advocate Central & Partner Purchase flows", desc: "", color: "#4338CA", bg: "rgba(67,56,202,0.07)", border: "rgba(67,56,202,0.18)" },
+  ];
+  const roles = ["defining value", "communicating value", "and transacting value"];
+  return (
+    <section
+      id="section-scope-initiative"
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#F5F5F7" }}
+    >
+      <SnapReveal>
+        <div className="max-w-2xl mx-auto w-full px-8 flex flex-col gap-7">
+          <div>
+            <p className="text-[10px] uppercase tracking-widest font-semibold mb-3" style={{ color: "#E8654B", fontFamily: FF }}>
+              Scope of the Initiative
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight mb-2" style={{ fontFamily: FF }}>
+              A platform-wide effort spanning multiple systems
+            </h2>
+            <p className="text-sm text-[#1a1a1a]/50 leading-relaxed" style={{ fontFamily: FF }}>
+              App Editions was not a single-surface feature. It required coordination across:
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-2">
+            {systems.map((s) => (
+              <div
+                key={s.label}
+                className="flex items-center gap-3 rounded-2xl px-4 py-3"
+                style={{ background: s.bg, border: `1px solid ${s.border}` }}
+              >
+                <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: s.color }} />
+                <p className="text-sm font-semibold" style={{ color: s.color, fontFamily: FF }}>
+                  {s.label}
+                  {s.desc && <span className="font-normal text-[#1a1a1a]/45 ml-1">— {s.desc}</span>}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div
+            className="flex items-start gap-3 rounded-2xl px-5 py-4"
+            style={{ background: "rgba(232,101,75,0.08)", border: "1px solid rgba(232,101,75,0.22)" }}
+          >
+            <span className="text-base flex-shrink-0" style={{ marginTop: 1 }}>👉</span>
+            <div>
+              <p className="text-sm font-semibold text-[#C05437] mb-1" style={{ fontFamily: FF }}>
+                Each system plays a role in:
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {roles.map((r) => (
+                  <span
+                    key={r}
+                    className="text-xs px-3 py-1.5 rounded-full"
+                    style={{ background: "rgba(232,101,75,0.10)", color: "#C05437", fontFamily: FF }}
+                  >
+                    {r}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </SnapReveal>
+    </section>
+  );
+}
+
+function FocusOfCaseStudySection() {
+  const FF = "'Wotfard', sans-serif";
+  const focuses = [
+    "How customers evaluate apps",
+    "How they understand pricing and value",
+    "How they make purchase decisions",
+  ];
+  return (
+    <section
+      id="section-focus-case-study"
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#FFFFFF" }}
+    >
+      <SnapReveal>
+        <div className="max-w-2xl mx-auto w-full px-8 flex flex-col gap-8">
+          <div>
+            <p className="text-[10px] uppercase tracking-widest font-semibold mb-3" style={{ color: "#E8654B", fontFamily: FF }}>
+              Focus of This Case Study
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight mb-2" style={{ fontFamily: FF }}>
+              Zooming into the customer evaluation and purchase journey
+            </h2>
+            <p className="text-sm text-[#1a1a1a]/50 leading-relaxed" style={{ fontFamily: FF }}>
+              Given the breadth of the initiative, this case study focuses on:
+            </p>
+          </div>
+
+          <div
+            className="rounded-2xl px-6 py-5 flex flex-col gap-4"
+            style={{ background: "#F5F5F7", border: "1px solid rgba(26,26,26,0.08)" }}
+          >
+            <div className="flex items-center gap-3">
+              <span className="text-base">👉</span>
+              <p className="text-base font-bold text-[#1a1a1a]" style={{ fontFamily: FF }}>Marketplace experience</p>
+            </div>
+            <p className="text-[10px] uppercase tracking-widest font-bold" style={{ color: "rgba(26,26,26,0.35)", fontFamily: FF }}>Specifically</p>
+            <div className="flex flex-col gap-2.5">
+              {focuses.map((f, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full" style={{ background: "#E8654B" }} />
+                  <span className="text-sm text-[#1a1a1a]/70 leading-relaxed" style={{ fontFamily: FF }}>{f}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div
+            className="flex items-start gap-3 rounded-2xl px-5 py-4"
+            style={{ background: "rgba(67,56,202,0.07)", border: "1px solid rgba(67,56,202,0.18)" }}
+          >
+            <Building2 size={16} className="flex-shrink-0 mt-0.5" style={{ color: "#4338CA" }} />
+            <p className="text-sm leading-relaxed" style={{ fontFamily: FF, color: "#4338CA" }}>
+              This is where adoption decisions are made — and where App Editions creates the most immediate impact
+            </p>
+          </div>
+        </div>
+      </SnapReveal>
+    </section>
+  );
+}
+
 function WhatThisUnlocksSection() {
   const FF = "'Wotfard', sans-serif";
   const partnerItems = [
@@ -5267,6 +5402,8 @@ export default function CaseStudyPage() {
         {study.id === 3 && <KeyInsightSection />}
         {study.id === 3 && <ReframingProblemSection />}
         {study.id === 3 && <AppEditionsSolutionSection />}
+        {study.id === 3 && <ScopeOfInitiativeSection />}
+        {study.id === 3 && <FocusOfCaseStudySection />}
         {study.id === 3 && <WhatThisUnlocksSection />}
         {study.id === 3 && <ExperienceTransformationSection />}
         {study.id === 3 && <KeyExperienceMomentsSection />}
