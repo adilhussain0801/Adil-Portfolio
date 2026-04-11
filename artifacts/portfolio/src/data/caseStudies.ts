@@ -253,7 +253,8 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
   {
     id: 3,
-    title: "Designing How Value Is Packaged, Monetized, and Adopted",
+    title: "App Plans",
+    subtitle: "Designing How Value Is Packaged, Monetized, and Adopted",
     category: "Growth & Optimization",
     company: "Atlassian",
     year: "2023",
