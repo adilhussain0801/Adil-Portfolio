@@ -3525,6 +3525,170 @@ function CoreProblemSection() {
   );
 }
 
+function PartnerChallengesSection() {
+  const FF = "'Wotfard', sans-serif";
+  const issues = [
+    {
+      icon: <Layers size={15} strokeWidth={1.6} />,
+      text: "Premium capabilities bundled into one offering",
+    },
+    {
+      icon: <Banknote size={15} strokeWidth={1.6} />,
+      text: "No way to price differentiate features",
+    },
+    {
+      icon: <Users size={15} strokeWidth={1.6} />,
+      text: "Limited ability to target different segments",
+    },
+  ];
+  const results = [
+    { label: "Lost revenue opportunities", color: "#7C3AED" },
+    { label: "Reduced incentive to build advanced features", color: "#7C3AED" },
+  ];
+  return (
+    <section
+      id="section-partner-challenges"
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#FFFFFF" }}
+    >
+      <SnapReveal>
+        <div className="max-w-3xl mx-auto w-full px-8">
+
+          <p className="text-[10px] uppercase tracking-widest font-semibold mb-3" style={{ color: "#7C3AED", fontFamily: FF }}>
+            Partner Challenges
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight mb-2" style={{ fontFamily: FF }}>
+            Value was under-monetized
+          </h2>
+          <p className="text-sm text-[#1a1a1a]/50 mb-8" style={{ fontFamily: FF }}>
+            A one-size-fits-all commercial model left significant revenue on the table.
+          </p>
+
+          {/* Issue list */}
+          <div className="flex flex-col gap-3 mb-8">
+            {issues.map((item, i) => (
+              <div
+                key={i}
+                className="flex items-center gap-4 rounded-2xl px-5 py-4"
+                style={{ background: "rgba(124,58,237,0.06)", border: "1px solid rgba(124,58,237,0.15)" }}
+              >
+                <div className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: "rgba(124,58,237,0.12)", color: "#7C3AED" }}>
+                  {item.icon}
+                </div>
+                <p className="text-sm text-[#1a1a1a]/75 leading-snug" style={{ fontFamily: FF }}>{item.text}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Result */}
+          <div className="rounded-2xl px-5 py-5" style={{ background: "rgba(124,58,237,0.06)", border: "1px solid rgba(124,58,237,0.18)" }}>
+            <p className="text-[10px] uppercase tracking-widest font-bold mb-3" style={{ color: "rgba(124,58,237,0.55)", fontFamily: FF }}>Result</p>
+            <div className="flex flex-col gap-2">
+              {results.map((r, i) => (
+                <div key={i} className="flex items-center gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: r.color }} />
+                  <p className="text-sm font-semibold" style={{ color: r.color, fontFamily: FF }}>{r.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </SnapReveal>
+    </section>
+  );
+}
+
+function CustomerChallengesSection() {
+  const FF = "'Wotfard', sans-serif";
+  const blockers = [
+    { label: "All-or-nothing pricing" },
+    { label: "Paying for features they didn't need" },
+    { label: "Difficulty justifying cost internally" },
+  ];
+  const objections = [
+    { quote: "We don't need everything included" },
+    { quote: "This is too expensive for our current stage" },
+  ];
+  const results = [
+    "Drop-offs during evaluation",
+    "Failed internal approvals",
+    "Delayed or lost purchases",
+  ];
+  return (
+    <section
+      id="section-customer-challenges"
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#F5F5F7" }}
+    >
+      <SnapReveal>
+        <div className="max-w-3xl mx-auto w-full px-8">
+
+          <p className="text-[10px] uppercase tracking-widest font-semibold mb-3" style={{ color: "#0891B2", fontFamily: FF }}>
+            Customer Challenges
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight mb-2" style={{ fontFamily: FF }}>
+            Pricing rigidity became an adoption blocker
+          </h2>
+          <p className="text-sm text-[#1a1a1a]/50 mb-7" style={{ fontFamily: FF }}>
+            Customers couldn't buy what they actually needed — forcing an all-or-nothing decision.
+          </p>
+
+          <div className="grid grid-cols-2 gap-4 mb-5">
+            {/* Friction points */}
+            <div className="rounded-2xl px-5 py-5 flex flex-col gap-3" style={{ background: "rgba(8,145,178,0.06)", border: "1px solid rgba(8,145,178,0.18)" }}>
+              <p className="text-[10px] uppercase tracking-widest font-bold" style={{ color: "rgba(8,145,178,0.55)", fontFamily: FF }}>Customers faced</p>
+              <div className="flex flex-col gap-2.5">
+                {blockers.map((b, i) => (
+                  <div key={i} className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0" style={{ background: "#0891B2" }} />
+                    <p className="text-sm text-[#1a1a1a]/70 leading-snug" style={{ fontFamily: FF }}>{b.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Objections */}
+            <div className="rounded-2xl px-5 py-5 flex flex-col gap-3" style={{ background: "rgba(8,145,178,0.04)", border: "1px solid rgba(8,145,178,0.14)" }}>
+              <p className="text-[10px] uppercase tracking-widest font-bold" style={{ color: "rgba(8,145,178,0.55)", fontFamily: FF }}>Common objections</p>
+              <div className="flex flex-col gap-3">
+                {objections.map((o, i) => (
+                  <div key={i} className="rounded-xl px-3 py-3" style={{ background: "rgba(8,145,178,0.08)" }}>
+                    <p className="text-sm italic text-[#1a1a1a]/65 leading-snug" style={{ fontFamily: FF }}>"{o.quote}"</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Result callout */}
+          <div
+            className="flex items-start gap-3 rounded-2xl px-5 py-4"
+            style={{ background: "rgba(232,101,75,0.07)", border: "1px solid rgba(232,101,75,0.20)" }}
+          >
+            <TrendingDown size={16} className="flex-shrink-0 mt-0.5" style={{ color: "#C05437" }} />
+            <div>
+              <p className="text-[10px] uppercase tracking-widest font-bold mb-2" style={{ color: "#C05437", fontFamily: FF }}>Result</p>
+              <div className="flex flex-wrap gap-2">
+                {results.map((r, i) => (
+                  <span
+                    key={i}
+                    className="text-xs font-semibold px-3 py-1.5 rounded-full"
+                    style={{ background: "rgba(232,101,75,0.10)", color: "#C05437", fontFamily: FF }}
+                  >
+                    {r}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </SnapReveal>
+    </section>
+  );
+}
+
 function ImpactCounter({ numericValue, isInView, format, startDelay = 0 }: { numericValue: number; isInView: boolean; format?: (n: number) => string; startDelay?: number }) {
   const [display, setDisplay] = useState(0);
   useEffect(() => {
@@ -4249,6 +4413,8 @@ export default function CaseStudyPage() {
         {study.id === 4 && <EarlyStageConceptsSection />}
         <SolutionSection study={study} />
         {study.id === 3 && <CoreProblemSection />}
+        {study.id === 3 && <PartnerChallengesSection />}
+        {study.id === 3 && <CustomerChallengesSection />}
         <ExperienceWalkthroughSection />
         {study.id === 4 && <CustomerAnecdotesSection />}
         <ImpactSection study={study} scrollRef={scrollRef} />
