@@ -3447,53 +3447,49 @@ function EvaluationJourneySection() {
       style={{ background: "#FAFAF9" }}
     >
       <SnapReveal>
-        <div className="max-w-4xl mx-auto w-full px-8 flex flex-col gap-6">
-          {/* Label */}
-          <p className="text-[10px] uppercase tracking-widest font-semibold" style={{ color: "#E8654B", fontFamily: FF }}>
-            Current Journey
-          </p>
-
-          {/* Headline */}
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight" style={{ fontFamily: FF }}>
-            Evaluation is fragmented<br />and cognitively heavy
-          </h2>
-
-          {/* Bullets */}
-          <ul className="flex flex-col gap-2.5 list-none m-0 p-0">
-            {bullets.map((b, i) => (
-              <li key={i} className="flex items-start gap-3">
-                <span
-                  className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full"
-                  style={{ background: "rgba(232,101,75,0.7)" }}
-                />
-                <span className="text-sm text-[#1a1a1a]/65 leading-relaxed" style={{ fontFamily: FF }}>
-                  {b}
-                </span>
-              </li>
-            ))}
-          </ul>
-
-          {/* Callout */}
-          <div
-            className="inline-flex items-start gap-3 rounded-2xl px-5 py-4 self-start"
-            style={{ background: "rgba(232,101,75,0.08)", border: "1px solid rgba(232,101,75,0.22)" }}
-          >
-            <span className="text-base flex-shrink-0" style={{ marginTop: 1 }}>👉</span>
-            <p className="text-sm font-semibold text-[#C05437] leading-snug" style={{ fontFamily: FF }}>
-              Customers are forced to assemble value themselves
+        <div className="flex flex-col gap-6">
+          {/* Text content — 72px margins */}
+          <div className="flex flex-col gap-4" style={{ paddingLeft: 72, paddingRight: 72 }}>
+            <p className="text-[10px] uppercase tracking-widest font-semibold" style={{ color: "#E8654B", fontFamily: FF }}>
+              Current Journey
             </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight" style={{ fontFamily: FF }}>
+              Evaluation is fragmented<br />and cognitively heavy
+            </h2>
+            <ul className="flex flex-col gap-2.5 list-none m-0 p-0">
+              {bullets.map((b, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <span
+                    className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full"
+                    style={{ background: "rgba(232,101,75,0.7)" }}
+                  />
+                  <span className="text-sm text-[#1a1a1a]/65 leading-relaxed" style={{ fontFamily: FF }}>
+                    {b}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <div
+              className="inline-flex items-start gap-3 rounded-2xl px-5 py-4 self-start"
+              style={{ background: "rgba(232,101,75,0.08)", border: "1px solid rgba(232,101,75,0.22)" }}
+            >
+              <span className="text-base flex-shrink-0" style={{ marginTop: 1 }}>👉</span>
+              <p className="text-sm font-semibold text-[#C05437] leading-snug" style={{ fontFamily: FF }}>
+                Customers are forced to assemble value themselves
+              </p>
+            </div>
           </div>
 
-          {/* Journey image */}
+          {/* Journey image — stretches edge to edge */}
           <div
-            className="rounded-2xl overflow-x-auto overflow-y-hidden border"
+            className="w-full overflow-hidden border-t border-b"
             style={{ borderColor: "rgba(26,26,26,0.08)", background: "#fff" }}
           >
             <img
               src="/editions-journey.png"
               alt="Current customer evaluation and installation journey diagram"
-              className="block"
-              style={{ height: 420, width: "auto", maxWidth: "none", padding: "16px 24px" }}
+              className="block w-full h-auto"
+              style={{ height: 420, objectFit: "cover", objectPosition: "left center" }}
             />
           </div>
         </div>
