@@ -4233,14 +4233,14 @@ function WhatThisUnlocksSection() {
 function ExperienceTransformationSection() {
   const FF = "'Wotfard', sans-serif";
   const beforeItems = [
-    "One product, one price",
-    "Overpay or don't buy",
-    "Limited upgrade clarity",
+    "Evaluate features",
+    "Infer value",
+    "High cognitive load",
   ];
   const afterItems = [
-    "Multiple editions",
-    "Pay for what you need",
-    "Clear upgrade path",
+    "Evaluate plans",
+    "Understand value",
+    "Reduced decision effort",
   ];
   return (
     <section
@@ -4254,12 +4254,9 @@ function ExperienceTransformationSection() {
           <p className="text-[10px] uppercase tracking-widest font-semibold mb-3" style={{ color: "#E8654B", fontFamily: FF }}>
             Experience Transformation
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight mb-2" style={{ fontFamily: FF }}>
-            From rigid pricing
+          <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight mb-8" style={{ fontFamily: FF }}>
+            We redesigned the evaluation layer
           </h2>
-          <p className="text-base font-bold mb-8" style={{ color: "#E8654B", fontFamily: FF }}>
-            → flexible value selection
-          </p>
 
           {/* Before / After */}
           <div className="flex items-stretch gap-3 mb-6">
@@ -4303,7 +4300,7 @@ function ExperienceTransformationSection() {
             <Sparkles size={15} className="flex-shrink-0" style={{ color: "#16A34A" }} />
             <p className="text-sm" style={{ fontFamily: FF }}>
               <span className="font-bold" style={{ color: "#16A34A" }}>Shift: </span>
-              <span className="text-[#1a1a1a]/65">From forced compromise → confident adoption</span>
+              <span className="text-[#1a1a1a]/65">From inferring value → understanding value</span>
             </p>
           </div>
 
