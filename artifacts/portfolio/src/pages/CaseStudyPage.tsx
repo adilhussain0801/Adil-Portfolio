@@ -3548,6 +3548,104 @@ function WhereItBreaksSection() {
   );
 }
 
+function CustomerRealitySection() {
+  const FF = "'Wotfard', sans-serif";
+  const quotes = [
+    "We don't need everything included",
+    "This is too expensive for us right now",
+    "I can't justify this to my manager",
+  ];
+  return (
+    <section
+      id="section-customer-reality"
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#FFFFFF" }}
+    >
+      <SnapReveal>
+        <div className="max-w-2xl mx-auto w-full px-8 flex flex-col gap-8">
+          <div>
+            <p className="text-[10px] uppercase tracking-widest font-semibold mb-3" style={{ color: "#E8654B", fontFamily: FF }}>
+              Customer Reality
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight" style={{ fontFamily: FF }}>
+              Adoption stalls during<br />internal validation
+            </h2>
+          </div>
+
+          <div className="flex flex-col gap-3">
+            {quotes.map((q, i) => (
+              <div
+                key={i}
+                className="flex items-start gap-4 rounded-2xl px-5 py-4"
+                style={{ background: "#F5F5F7", border: "1px solid rgba(26,26,26,0.07)" }}
+              >
+                <span className="text-lg flex-shrink-0 mt-0.5" style={{ opacity: 0.35 }}>"</span>
+                <p className="text-base italic text-[#1a1a1a]/70 leading-snug" style={{ fontFamily: FF }}>
+                  {q}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div
+            className="flex items-start gap-3 rounded-2xl px-5 py-4"
+            style={{ background: "rgba(232,101,75,0.08)", border: "1px solid rgba(232,101,75,0.22)" }}
+          >
+            <span className="text-base flex-shrink-0" style={{ marginTop: 1 }}>👉</span>
+            <p className="text-sm font-semibold text-[#C05437] leading-snug" style={{ fontFamily: FF }}>
+              Evaluation is not just individual — it's organizational
+            </p>
+          </div>
+        </div>
+      </SnapReveal>
+    </section>
+  );
+}
+
+function EvaluationKeyInsightSection() {
+  const FF = "'Wotfard', sans-serif";
+  return (
+    <section
+      id="section-evaluation-key-insight"
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#F5F5F7" }}
+    >
+      <SnapReveal>
+        <div className="max-w-2xl mx-auto w-full px-8 flex flex-col gap-10">
+          <p className="text-[10px] uppercase tracking-widest font-semibold" style={{ color: "#E8654B", fontFamily: FF }}>
+            Key Insight
+          </p>
+
+          <h2
+            className="text-4xl md:text-5xl font-black leading-tight"
+            style={{ fontFamily: FF, color: "#1a1a1a", letterSpacing: "-0.02em" }}
+          >
+            Evaluation fails when<br />value isn't structured
+          </h2>
+
+          <div className="flex flex-col gap-0">
+            <div
+              className="flex items-center gap-5 py-5 border-b"
+              style={{ borderColor: "rgba(26,26,26,0.10)" }}
+            >
+              <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: "rgba(26,26,26,0.20)" }} />
+              <p className="text-lg text-[#1a1a1a]/45 line-through" style={{ fontFamily: FF }}>
+                Customers don't evaluate features
+              </p>
+            </div>
+            <div className="flex items-center gap-5 py-5">
+              <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: "#E8654B" }} />
+              <p className="text-lg font-bold text-[#1a1a1a]" style={{ fontFamily: FF }}>
+                They evaluate value for money
+              </p>
+            </div>
+          </div>
+        </div>
+      </SnapReveal>
+    </section>
+  );
+}
+
 function CoreProblemSection() {
   const FF = "'Wotfard', sans-serif";
   const constraints = [
@@ -5273,6 +5371,8 @@ export default function CaseStudyPage() {
         {study.id === 3 && <CoreProblemSection />}
         {study.id === 3 && <EvaluationJourneySection />}
         {study.id === 3 && <WhereItBreaksSection />}
+        {study.id === 3 && <CustomerRealitySection />}
+        {study.id === 3 && <EvaluationKeyInsightSection />}
         {study.id === 3 && <PartnerChallengesSection />}
         {study.id === 3 && <CustomerChallengesSection />}
         {study.id === 3 && <KeyInsightSection />}
