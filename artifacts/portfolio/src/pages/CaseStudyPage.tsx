@@ -1273,6 +1273,100 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
     );
   }
 
+  if (study.id === 3) {
+    return (
+      <section
+        id="section-challenge"
+        className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+        style={{ background: "#FFFFFF" }}
+      >
+        <SnapReveal>
+          <div className="max-w-3xl mx-auto w-full px-8">
+
+            {/* Header */}
+            <p
+              className="text-[10px] uppercase tracking-widest font-semibold mb-3"
+              style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
+            >
+              Marketplace Context
+            </p>
+            <h2
+              className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight mb-8"
+              style={{ fontFamily: "'Wotfard', sans-serif" }}
+            >
+              A $5.7B ecosystem powering<br />Atlassian's growth
+            </h2>
+
+            {/* Stat cards */}
+            <div className="flex gap-3 mb-8">
+              {[
+                { value: "$5.7B", label: "Ecosystem size", color: "#4338CA", bg: "rgba(99,102,241,0.07)", border: "rgba(99,102,241,0.18)" },
+                { value: "3rd", label: "Largest revenue-generating vertical for Atlassian", color: "#C05437", bg: "rgba(232,101,75,0.07)", border: "rgba(232,101,75,0.18)" },
+              ].map((stat) => (
+                <div
+                  key={stat.value}
+                  className="flex-1 rounded-2xl px-5 py-4"
+                  style={{ background: stat.bg, border: `1px solid ${stat.border}` }}
+                >
+                  <p className="text-3xl font-bold mb-1" style={{ color: stat.color, fontFamily: "'Wotfard', sans-serif" }}>
+                    {stat.value}
+                  </p>
+                  <p className="text-xs text-[#1a1a1a]/60 leading-snug" style={{ fontFamily: "'Wotfard', sans-serif" }}>
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* Connects */}
+            <p className="text-xs uppercase tracking-widest font-semibold text-[#1a1a1a]/35 mb-3" style={{ fontFamily: "'Wotfard', sans-serif" }}>
+              It connects
+            </p>
+            <div className="flex gap-3 mb-8">
+              {[
+                { title: "Partners", desc: "Building apps on Atlassian's platform", icon: <Briefcase size={16} strokeWidth={1.6} /> },
+                { title: "Customers", desc: "Extending products like Jira, Confluence & Bitbucket", icon: <Users size={16} strokeWidth={1.6} /> },
+              ].map((item) => (
+                <div
+                  key={item.title}
+                  className="flex-1 flex items-start gap-3 rounded-xl px-4 py-3 border border-[#E8E4DE]"
+                  style={{ background: "#FAFAF9" }}
+                >
+                  <div className="mt-0.5 text-[#1a1a1a]/40 flex-shrink-0">{item.icon}</div>
+                  <div>
+                    <p className="text-sm font-semibold text-[#1a1a1a] mb-0.5" style={{ fontFamily: "'Wotfard', sans-serif" }}>{item.title}</p>
+                    <p className="text-xs text-[#1a1a1a]/50 leading-snug" style={{ fontFamily: "'Wotfard', sans-serif" }}>{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Dual role */}
+            <p className="text-xs uppercase tracking-widest font-semibold text-[#1a1a1a]/35 mb-3" style={{ fontFamily: "'Wotfard', sans-serif" }}>
+              Marketplace acts as both
+            </p>
+            <div className="flex gap-2">
+              {[
+                { label: "A distribution channel", icon: <Network size={13} strokeWidth={1.6} /> },
+                { label: "A monetization engine", icon: <Banknote size={13} strokeWidth={1.6} /> },
+              ].map((role) => (
+                <div
+                  key={role.label}
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-full border border-[#E8E4DE]"
+                  style={{ background: "#F5F5F7" }}
+                >
+                  <span className="text-[#1a1a1a]/40">{role.icon}</span>
+                  <span className="text-sm font-medium text-[#1a1a1a]/70" style={{ fontFamily: "'Wotfard', sans-serif" }}>{role.label}</span>
+                </div>
+              ))}
+            </div>
+
+          </div>
+        </SnapReveal>
+      </section>
+    );
+  }
+
   return (
     <section
       id="section-challenge"
