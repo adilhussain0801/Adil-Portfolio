@@ -4201,6 +4201,79 @@ function KeyExperienceMomentsSection() {
   );
 }
 
+function SystemDesignComplexitySection() {
+  const FF = "'Wotfard', sans-serif";
+  const challenges = [
+    { icon: <Layers size={13} strokeWidth={1.6} />, text: "Standardization vs flexibility", color: "#4338CA", bg: "rgba(67,56,202,0.07)", border: "rgba(67,56,202,0.18)" },
+    { icon: <ShieldCheck size={13} strokeWidth={1.6} />, text: "Feature gating across editions", color: "#0891B2", bg: "rgba(8,145,178,0.07)", border: "rgba(8,145,178,0.18)" },
+    { icon: <Banknote size={13} strokeWidth={1.6} />, text: "Pricing + licensing constraints", color: "#7C3AED", bg: "rgba(124,58,237,0.07)", border: "rgba(124,58,237,0.18)" },
+    { icon: <AlertCircle size={13} strokeWidth={1.6} />, text: "Avoiding misconfiguration", color: "#E8654B", bg: "rgba(232,101,75,0.07)", border: "rgba(232,101,75,0.18)" },
+  ];
+  const alignments = ["Marketplace", "Pricing systems", "Partner workflows"];
+  return (
+    <section
+      id="section-system-design-complexity"
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#FFFFFF" }}
+    >
+      <SnapReveal>
+        <div className="max-w-2xl mx-auto w-full px-8">
+
+          <p className="text-[10px] uppercase tracking-widest font-semibold mb-3" style={{ color: "#E8654B", fontFamily: FF }}>
+            System Design Complexity
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight mb-2" style={{ fontFamily: FF }}>
+            Designing for an ecosystem
+          </h2>
+          <p className="text-base font-bold mb-8" style={{ color: "rgba(26,26,26,0.4)", fontFamily: FF }}>
+            not a single product
+          </p>
+
+          {/* Challenges */}
+          <div
+            className="rounded-2xl px-5 py-5 flex flex-col gap-4 mb-4"
+            style={{ background: "#F5F5F7", border: "1px solid rgba(26,26,26,0.08)" }}
+          >
+            <p className="text-[10px] uppercase tracking-widest font-bold" style={{ color: "rgba(26,26,26,0.35)", fontFamily: FF }}>
+              Key challenges
+            </p>
+            <div className="grid grid-cols-2 gap-2.5">
+              {challenges.map((c) => (
+                <div key={c.text} className="flex items-center gap-2.5">
+                  <div
+                    className="w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0"
+                    style={{ background: c.bg, border: `1px solid ${c.border}`, color: c.color }}
+                  >
+                    {c.icon}
+                  </div>
+                  <p className="text-xs text-[#1a1a1a]/65 leading-snug" style={{ fontFamily: FF }}>{c.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Alignment callout */}
+          <div
+            className="flex items-start gap-3 rounded-2xl px-5 py-4"
+            style={{ background: "rgba(67,56,202,0.06)", border: "1px solid rgba(67,56,202,0.18)" }}
+          >
+            <Building2 size={15} className="flex-shrink-0 mt-0.5" style={{ color: "#4338CA" }} />
+            <p className="text-sm" style={{ fontFamily: FF }}>
+              <span className="font-bold" style={{ color: "#4338CA" }}>Required alignment across: </span>
+              {alignments.map((a, i) => (
+                <span key={a} className="text-[#1a1a1a]/65">
+                  {a}{i < alignments.length - 1 ? " · " : ""}
+                </span>
+              ))}
+            </p>
+          </div>
+
+        </div>
+      </SnapReveal>
+    </section>
+  );
+}
+
 function ImpactCounter({ numericValue, isInView, format, startDelay = 0 }: { numericValue: number; isInView: boolean; format?: (n: number) => string; startDelay?: number }) {
   const [display, setDisplay] = useState(0);
   useEffect(() => {
@@ -4933,6 +5006,7 @@ export default function CaseStudyPage() {
         {study.id === 3 && <WhatThisUnlocksSection />}
         {study.id === 3 && <ExperienceTransformationSection />}
         {study.id === 3 && <KeyExperienceMomentsSection />}
+        {study.id === 3 && <SystemDesignComplexitySection />}
         <ExperienceWalkthroughSection />
         {study.id === 4 && <CustomerAnecdotesSection />}
         <ImpactSection study={study} scrollRef={scrollRef} />
