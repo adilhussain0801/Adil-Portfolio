@@ -3449,7 +3449,7 @@ function EvaluationJourneySection() {
       <SnapReveal>
         <div className="flex flex-col gap-6">
           {/* Text content — 72px margins */}
-          <div className="flex flex-col gap-4" style={{ paddingLeft: 72, paddingRight: 72 }}>
+          <div className="flex flex-col gap-4" style={{ paddingLeft: 144, paddingRight: 144 }}>
             <p className="text-[10px] uppercase tracking-widest font-semibold" style={{ color: "#E8654B", fontFamily: FF }}>
               Current Journey
             </p>
@@ -3480,10 +3480,10 @@ function EvaluationJourneySection() {
             </div>
           </div>
 
-          {/* Journey image — stretches edge to edge */}
+          {/* Journey image — respects 144px margins */}
           <div
-            className="w-full overflow-hidden border-t border-b"
-            style={{ borderColor: "rgba(26,26,26,0.08)", background: "#fff" }}
+            className="overflow-hidden rounded-2xl border"
+            style={{ marginLeft: 144, marginRight: 144, borderColor: "rgba(26,26,26,0.08)", background: "#fff" }}
           >
             <img
               src="/editions-journey.png"
