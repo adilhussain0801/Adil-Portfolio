@@ -3689,6 +3689,92 @@ function CustomerChallengesSection() {
   );
 }
 
+function KeyInsightSection() {
+  const FF = "'Wotfard', sans-serif";
+  return (
+    <section
+      id="section-key-insight"
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#1a1a1a" }}
+    >
+      <SnapReveal>
+        <div className="max-w-2xl mx-auto w-full px-8">
+
+          <p className="text-[10px] uppercase tracking-widest font-semibold mb-6" style={{ color: "rgba(232,101,75,0.8)", fontFamily: FF }}>
+            Key Insight
+          </p>
+
+          {/* Main statement */}
+          <h2
+            className="text-3xl md:text-4xl font-bold leading-tight mb-10"
+            style={{ fontFamily: FF, color: "#FFFFFF" }}
+          >
+            Adoption breaks when price doesn't map to perceived value
+          </h2>
+
+          {/* The mental model */}
+          <div
+            className="flex items-stretch gap-px rounded-2xl overflow-hidden mb-8"
+            style={{ border: "1px solid rgba(255,255,255,0.10)" }}
+          >
+            <div className="flex-1 px-6 py-5" style={{ background: "rgba(255,255,255,0.05)" }}>
+              <p className="text-[10px] uppercase tracking-widest font-semibold mb-3" style={{ color: "rgba(255,255,255,0.35)", fontFamily: FF }}>
+                Customers evaluate
+              </p>
+              <p className="text-base font-bold" style={{ color: "rgba(255,255,255,0.9)", fontFamily: FF }}>
+                "What am I getting?"
+              </p>
+            </div>
+            <div className="flex items-center justify-center px-4 flex-shrink-0" style={{ background: "rgba(255,255,255,0.04)" }}>
+              <p className="text-sm font-bold" style={{ color: "rgba(255,255,255,0.2)", fontFamily: FF }}>vs</p>
+            </div>
+            <div className="flex-1 px-6 py-5" style={{ background: "rgba(255,255,255,0.05)" }}>
+              <p className="text-[10px] uppercase tracking-widest font-semibold mb-3" style={{ color: "rgba(255,255,255,0.35)", fontFamily: FF }}>
+                &nbsp;
+              </p>
+              <p className="text-base font-bold" style={{ color: "rgba(255,255,255,0.9)", fontFamily: FF }}>
+                "What am I paying?"
+              </p>
+            </div>
+          </div>
+
+          {/* When the mapping is unclear */}
+          <div className="flex gap-3 mb-10">
+            {[
+              { label: "Trust drops", icon: <TrendingDown size={14} strokeWidth={1.8} />, color: "#E8654B", bg: "rgba(232,101,75,0.12)", border: "rgba(232,101,75,0.22)" },
+              { label: "Decisions stall", icon: <AlertCircle size={14} strokeWidth={1.8} />, color: "#F59E0B", bg: "rgba(245,158,11,0.12)", border: "rgba(245,158,11,0.22)" },
+            ].map((item) => (
+              <div
+                key={item.label}
+                className="flex items-center gap-2.5 px-4 py-3 rounded-xl"
+                style={{ background: item.bg, border: `1px solid ${item.border}`, color: item.color }}
+              >
+                {item.icon}
+                <span className="text-sm font-semibold" style={{ fontFamily: FF, color: item.color }}>{item.label}</span>
+              </div>
+            ))}
+            <p className="text-sm self-center ml-1" style={{ color: "rgba(255,255,255,0.30)", fontFamily: FF }}>
+              when this mapping is unclear
+            </p>
+          </div>
+
+          {/* Reframe */}
+          <div
+            className="rounded-2xl px-6 py-5"
+            style={{ background: "rgba(232,101,75,0.10)", border: "1px solid rgba(232,101,75,0.22)" }}
+          >
+            <p className="text-base leading-relaxed" style={{ fontFamily: FF, color: "rgba(255,255,255,0.85)" }}>
+              The issue wasn't pricing —<br />
+              <span className="font-bold" style={{ color: "#E8654B" }}>it was how value was packaged.</span>
+            </p>
+          </div>
+
+        </div>
+      </SnapReveal>
+    </section>
+  );
+}
+
 function ImpactCounter({ numericValue, isInView, format, startDelay = 0 }: { numericValue: number; isInView: boolean; format?: (n: number) => string; startDelay?: number }) {
   const [display, setDisplay] = useState(0);
   useEffect(() => {
@@ -4415,6 +4501,7 @@ export default function CaseStudyPage() {
         {study.id === 3 && <CoreProblemSection />}
         {study.id === 3 && <PartnerChallengesSection />}
         {study.id === 3 && <CustomerChallengesSection />}
+        {study.id === 3 && <KeyInsightSection />}
         <ExperienceWalkthroughSection />
         {study.id === 4 && <CustomerAnecdotesSection />}
         <ImpactSection study={study} scrollRef={scrollRef} />
