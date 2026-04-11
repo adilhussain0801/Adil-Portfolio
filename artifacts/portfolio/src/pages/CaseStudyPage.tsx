@@ -3483,7 +3483,7 @@ function EvaluationJourneySection() {
           {/* Journey image — respects 144px margins */}
           <div
             className="overflow-x-auto overflow-y-hidden rounded-2xl border"
-            style={{ marginLeft: 144, marginRight: 144, borderColor: "rgba(26,26,26,0.08)", background: "#fff" }}
+            style={{ marginLeft: 144, marginRight: 144, borderColor: "rgba(26,26,26,0.08)", background: "#fff", padding: "24px 32px" }}
           >
             <img
               src="/editions-journey.png"
