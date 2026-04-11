@@ -3855,6 +3855,115 @@ function ReframingProblemSection() {
   );
 }
 
+function AppEditionsSolutionSection() {
+  const FF = "'Wotfard', sans-serif";
+  const editions = [
+    {
+      name: "Standard",
+      color: "#4338CA",
+      bg: "rgba(67,56,202,0.07)",
+      border: "rgba(67,56,202,0.18)",
+      features: ["Core functionality", "Basic integrations", "Standard support"],
+      tag: "Entry tier",
+    },
+    {
+      name: "Advanced",
+      color: "#0891B2",
+      bg: "rgba(8,145,178,0.07)",
+      border: "rgba(8,145,178,0.18)",
+      features: ["Everything in Standard", "Premium features", "Priority support", "Advanced analytics"],
+      tag: "Power tier",
+    },
+  ];
+  const capabilities = [
+    { icon: <Layers size={14} strokeWidth={1.6} />, label: "Create multiple editions", color: "#4338CA" },
+    { icon: <Banknote size={14} strokeWidth={1.6} />, label: "Bundle features into differentiated tiers", color: "#0891B2" },
+    { icon: <Target size={14} strokeWidth={1.6} />, label: "Align pricing with value", color: "#16A34A" },
+  ];
+  return (
+    <section
+      id="section-app-editions"
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#FFFFFF" }}
+    >
+      <SnapReveal>
+        <div className="max-w-3xl mx-auto w-full px-8">
+
+          <p className="text-[10px] uppercase tracking-widest font-semibold mb-3" style={{ color: "#E8654B", fontFamily: FF }}>
+            The Solution
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight mb-2" style={{ fontFamily: FF }}>
+            App Editions
+          </h2>
+          <p className="text-sm text-[#1a1a1a]/50 mb-8" style={{ fontFamily: FF }}>
+            Flexible pricing and packaging within a single listing.
+          </p>
+
+          {/* Edition cards + partner capabilities side by side */}
+          <div className="grid grid-cols-2 gap-4 mb-6">
+            {/* Edition tier cards */}
+            <div className="flex flex-col gap-3">
+              {editions.map((ed) => (
+                <div
+                  key={ed.name}
+                  className="rounded-2xl px-5 py-4 flex flex-col gap-2"
+                  style={{ background: ed.bg, border: `1px solid ${ed.border}` }}
+                >
+                  <div className="flex items-center justify-between">
+                    <p className="text-sm font-bold" style={{ color: ed.color, fontFamily: FF }}>{ed.name}</p>
+                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full" style={{ background: "white", color: ed.color, fontFamily: FF }}>{ed.tag}</span>
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    {ed.features.map((f) => (
+                      <div key={f} className="flex items-center gap-2">
+                        <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: ed.color }} />
+                        <p className="text-xs text-[#1a1a1a]/60 leading-snug" style={{ fontFamily: FF }}>{f}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* What partners can do */}
+            <div
+              className="rounded-2xl px-5 py-5 flex flex-col gap-4"
+              style={{ background: "#F5F5F7", border: "1px solid rgba(26,26,26,0.08)" }}
+            >
+              <p className="text-[10px] uppercase tracking-widest font-bold" style={{ color: "rgba(26,26,26,0.35)", fontFamily: FF }}>
+                App Editions allows partners to
+              </p>
+              <div className="flex flex-col gap-3">
+                {capabilities.map((cap) => (
+                  <div key={cap.label} className="flex items-start gap-3">
+                    <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: "white", color: cap.color, border: "1px solid rgba(26,26,26,0.07)" }}>
+                      {cap.icon}
+                    </div>
+                    <p className="text-sm text-[#1a1a1a]/70 leading-snug" style={{ fontFamily: FF }}>{cap.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* One app callout */}
+          <div
+            className="flex items-center gap-3 rounded-2xl px-5 py-4"
+            style={{ background: "rgba(232,101,75,0.07)", border: "1px solid rgba(232,101,75,0.20)" }}
+          >
+            <Sparkles size={16} className="flex-shrink-0" style={{ color: "#C05437" }} />
+            <p className="text-sm" style={{ fontFamily: FF }}>
+              <span className="font-bold text-[#C05437]">One app</span>
+              <span className="text-[#1a1a1a]/65"> → multiple value propositions, each priced to match what customers actually need.</span>
+            </p>
+          </div>
+
+        </div>
+      </SnapReveal>
+    </section>
+  );
+}
+
 function ImpactCounter({ numericValue, isInView, format, startDelay = 0 }: { numericValue: number; isInView: boolean; format?: (n: number) => string; startDelay?: number }) {
   const [display, setDisplay] = useState(0);
   useEffect(() => {
@@ -4583,6 +4692,7 @@ export default function CaseStudyPage() {
         {study.id === 3 && <CustomerChallengesSection />}
         {study.id === 3 && <KeyInsightSection />}
         {study.id === 3 && <ReframingProblemSection />}
+        {study.id === 3 && <AppEditionsSolutionSection />}
         <ExperienceWalkthroughSection />
         {study.id === 4 && <CustomerAnecdotesSection />}
         <ImpactSection study={study} scrollRef={scrollRef} />
