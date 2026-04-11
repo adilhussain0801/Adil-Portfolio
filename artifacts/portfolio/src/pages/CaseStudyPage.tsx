@@ -317,30 +317,29 @@ function IndexSlide() {
             What we'll cover
           </h2>
         </motion.div>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="flex flex-col">
           {INDEX_CHAPTERS.map((ch, i) => (
             <motion.div
               key={ch.num}
-              className="flex flex-col gap-1 p-4 rounded-xl border border-[#E8E4DE]"
-              style={{ background: "#FAFAF9" }}
-              initial={{ opacity: 0, y: 14 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
-              transition={{ duration: 0.5, ease: APPLE, delay: 0.15 + i * 0.06 }}
+              className="flex items-baseline gap-6 py-3 border-b border-[#E8E4DE]"
+              initial={{ opacity: 0, x: -10 }}
+              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
+              transition={{ duration: 0.4, ease: APPLE, delay: 0.15 + i * 0.06 }}
             >
               <span
-                className="text-2xl font-bold tabular-nums leading-none mb-1"
-                style={{ color: "rgba(0,0,0,0.1)", fontFamily: "'Wotfard', sans-serif" }}
+                className="text-xs tabular-nums w-6 flex-shrink-0 text-right"
+                style={{ color: "rgba(0,0,0,0.2)", fontFamily: "'Wotfard', sans-serif" }}
               >
                 {ch.num}
               </span>
               <span
-                className="text-sm font-bold text-[#1a1a1a]"
+                className="text-sm font-semibold text-[#1a1a1a] w-32 flex-shrink-0"
                 style={{ fontFamily: "'Wotfard', sans-serif" }}
               >
                 {ch.title}
               </span>
               <span
-                className="text-xs text-[#1a1a1a]/50 leading-snug"
+                className="text-sm text-[#1a1a1a]/40"
                 style={{ fontFamily: "'Wotfard', sans-serif" }}
               >
                 {ch.desc}
