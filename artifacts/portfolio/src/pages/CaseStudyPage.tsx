@@ -4771,7 +4771,7 @@ function ImpactCard({
   );
 }
 
-function ImpactSection({ study: _study, scrollRef }: { study: CaseStudy; scrollRef: RefObject<HTMLDivElement> }) {
+function ImpactSection({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObject<HTMLDivElement> }) {
   const FF = "'Wotfard', sans-serif";
   const ref = useRef<HTMLDivElement>(null);
   const [isInView, setIsInView] = useState(false);
@@ -4788,6 +4788,8 @@ function ImpactSection({ study: _study, scrollRef }: { study: CaseStudy; scrollR
     return () => observer.disconnect();
   }, [scrollRef]);
 
+  const isStudy3 = study.id === 3;
+
   return (
     <section
       id="section-impact"
@@ -4797,34 +4799,40 @@ function ImpactSection({ study: _study, scrollRef }: { study: CaseStudy; scrollR
     >
       <div style={{ maxWidth: 880, margin: "0 auto", width: "100%", padding: "0 40px", display: "flex", flexDirection: "column", gap: 0 }}>
 
-        {/* Header row — title left, tagline right, thick border bottom */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
           transition={{ duration: 0.55, ease: EASE }}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 10,
-            marginBottom: 36,
-          }}
+          style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 36 }}
         >
           <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.45)", margin: 0 }}>
-            Impact — Early Signals
+            {isStudy3 ? "Revenue Impact Since Launch" : "Impact — Early Signals"}
           </p>
           <p style={{ fontFamily: FF, fontSize: "clamp(22px,2.5vw,30px)", fontWeight: 700, color: "#1a1a1a", margin: 0, lineHeight: 1.1 }}>
-            First 30 days post GA
+            {isStudy3 ? "App Editions drove platform-wide revenue growth" : "First 30 days post GA"}
           </p>
           <p style={{ fontFamily: FF, fontSize: 13, color: "rgba(26,26,26,0.45)", margin: 0, lineHeight: 1.55 }}>
-            Early signals show Rovo Service is beginning to execute work end-to-end with increasing accuracy and reduced need for intervention.
+            {isStudy3
+              ? "Measured across the Atlassian Marketplace following the launch of App Editions."
+              : "Early signals show Rovo Service is beginning to execute work end-to-end with increasing accuracy and reduced need for intervention."}
           </p>
         </motion.div>
 
         {/* Cards — 3 columns */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, marginBottom: 28 }}>
-          <ImpactCard numericValue={21} suffix="%" label="Tickets fully resolved by AI (early adopter cohort)" category="Execution" categoryColor="#E8654B" delay={0.1} sectionInView={isInView} />
-          <ImpactCard numericValue={1200} prefix="~" suffix=" hrs" format={(n) => n.toLocaleString()} label="1 in 5 tickets handled end-to-end by AI" category="Execution" categoryColor="#E8654B" delay={0.18} sectionInView={isInView} />
-          <ImpactCard numericValue={82} suffix="%" label="Plans executed without major changes" category="Quality" categoryColor="#6B8CDA" delay={0.26} sectionInView={isInView} />
+          {isStudy3 ? (
+            <>
+              <ImpactCard numericValue={200} suffix="+" label="Apps supporting Editions on the Marketplace" category="Adoption" categoryColor="#E8654B" delay={0.1} sectionInView={isInView} />
+              <ImpactCard numericValue={15} prefix="12–" suffix="%" label="Higher revenue per customer on Advanced edition" category="Revenue" categoryColor="#16A34A" delay={0.18} sectionInView={isInView} />
+              <ImpactCard numericValue={150} prefix="$" suffix="M+" label="Incremental annual revenue uplift from Editions" category="Revenue" categoryColor="#0891B2" delay={0.26} sectionInView={isInView} />
+            </>
+          ) : (
+            <>
+              <ImpactCard numericValue={21} suffix="%" label="Tickets fully resolved by AI (early adopter cohort)" category="Execution" categoryColor="#E8654B" delay={0.1} sectionInView={isInView} />
+              <ImpactCard numericValue={1200} prefix="~" suffix=" hrs" format={(n) => n.toLocaleString()} label="1 in 5 tickets handled end-to-end by AI" category="Execution" categoryColor="#E8654B" delay={0.18} sectionInView={isInView} />
+              <ImpactCard numericValue={82} suffix="%" label="Plans executed without major changes" category="Quality" categoryColor="#6B8CDA" delay={0.26} sectionInView={isInView} />
+            </>
+          )}
         </div>
 
       </div>
