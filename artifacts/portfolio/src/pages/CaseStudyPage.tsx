@@ -4467,97 +4467,6 @@ function SystemDesignComplexitySection() {
   );
 }
 
-function RoleAndLeadershipSection() {
-  const FF = "'Wotfard', sans-serif";
-  const contributions = [
-    { icon: <Sparkles size={13} strokeWidth={1.6} />, text: "Led design for App Editions experience", color: "#E8654B", bg: "rgba(232,101,75,0.07)", border: "rgba(232,101,75,0.18)" },
-    { icon: <Layers size={13} strokeWidth={1.6} />, text: "Defined terminology system", color: "#4338CA", bg: "rgba(67,56,202,0.07)", border: "rgba(67,56,202,0.18)" },
-  ];
-  const terminology = [
-    { label: "Capabilities", note: "internal", color: "#4338CA", bg: "rgba(67,56,202,0.07)", border: "rgba(67,56,202,0.15)" },
-    { label: "Features", note: "customer-facing", color: "#0891B2", bg: "rgba(8,145,178,0.07)", border: "rgba(8,145,178,0.15)" },
-  ];
-  const collaborators = [
-    { icon: <Target size={13} strokeWidth={1.6} />, label: "Product", note: "pricing strategy", color: "#7C3AED" },
-    { icon: <Layers size={13} strokeWidth={1.6} />, label: "Engineering", note: "licensing, multi-instance", color: "#0D9488" },
-  ];
-  const balanced = ["Partner monetization", "Customer clarity", "Platform constraints"];
-  return (
-    <section
-      id="section-role-leadership"
-      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
-      style={{ background: "#F5F5F7" }}
-    >
-      <SnapReveal>
-        <div className="max-w-2xl mx-auto w-full px-8">
-
-          <p className="text-[10px] uppercase tracking-widest font-semibold mb-3" style={{ color: "#E8654B", fontFamily: FF }}>
-            Role & Leadership
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight mb-8" style={{ fontFamily: FF }}>
-            Driving a platform-level initiative
-          </h2>
-
-          <div className="grid grid-cols-2 gap-3 mb-3">
-
-            {/* Left: contributions + terminology */}
-            <div className="flex flex-col gap-3">
-              {/* What I did */}
-              <div className="rounded-2xl px-5 py-4 flex flex-col gap-3" style={{ background: "#FFFFFF", border: "1px solid rgba(26,26,26,0.08)" }}>
-                <p className="text-[10px] uppercase tracking-widest font-bold" style={{ color: "rgba(26,26,26,0.35)", fontFamily: FF }}>Contributions</p>
-                {contributions.map((c) => (
-                  <div key={c.text} className="flex items-start gap-2.5">
-                    <div className="w-5 h-5 rounded-md flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: c.bg, border: `1px solid ${c.border}`, color: c.color }}>{c.icon}</div>
-                    <p className="text-xs text-[#1a1a1a]/65 leading-snug" style={{ fontFamily: FF }}>{c.text}</p>
-                  </div>
-                ))}
-                {/* Terminology sub-panel */}
-                <div className="flex gap-2 mt-1">
-                  {terminology.map((t) => (
-                    <div key={t.label} className="flex-1 rounded-xl px-3 py-2.5 flex flex-col gap-0.5" style={{ background: t.bg, border: `1px solid ${t.border}` }}>
-                      <p className="text-xs font-bold leading-none" style={{ color: t.color, fontFamily: FF }}>{t.label}</p>
-                      <p className="text-[10px] leading-snug" style={{ color: "rgba(26,26,26,0.45)", fontFamily: FF }}>{t.note}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Right: collaborated with + balanced */}
-            <div className="flex flex-col gap-3">
-              <div className="rounded-2xl px-5 py-4 flex flex-col gap-3" style={{ background: "#FFFFFF", border: "1px solid rgba(26,26,26,0.08)" }}>
-                <p className="text-[10px] uppercase tracking-widest font-bold" style={{ color: "rgba(26,26,26,0.35)", fontFamily: FF }}>Collaborated with</p>
-                {collaborators.map((c) => (
-                  <div key={c.label} className="flex items-start gap-2.5">
-                    <div className="w-5 h-5 rounded-md flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: `${c.color}12`, border: `1px solid ${c.color}25`, color: c.color }}>{c.icon}</div>
-                    <div>
-                      <p className="text-xs font-semibold text-[#1a1a1a]" style={{ fontFamily: FF }}>{c.label}</p>
-                      <p className="text-[10px] text-[#1a1a1a]/45 leading-snug" style={{ fontFamily: FF }}>{c.note}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="rounded-2xl px-5 py-4 flex flex-col gap-2" style={{ background: "#FFFFFF", border: "1px solid rgba(26,26,26,0.08)" }}>
-                <p className="text-[10px] uppercase tracking-widest font-bold" style={{ color: "rgba(26,26,26,0.35)", fontFamily: FF }}>Balanced</p>
-                <div className="flex flex-col gap-1.5">
-                  {balanced.map((b) => (
-                    <div key={b} className="flex items-center gap-2">
-                      <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: "#E8654B" }} />
-                      <p className="text-xs text-[#1a1a1a]/65 leading-snug" style={{ fontFamily: FF }}>{b}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-      </SnapReveal>
-    </section>
-  );
-}
-
 function BusinessImpactSection() {
   const FF = "'Wotfard', sans-serif";
   const drivers = [
@@ -5362,7 +5271,6 @@ export default function CaseStudyPage() {
         {study.id === 3 && <ExperienceTransformationSection />}
         {study.id === 3 && <KeyExperienceMomentsSection />}
         {study.id === 3 && <SystemDesignComplexitySection />}
-        {study.id === 3 && <RoleAndLeadershipSection />}
         {study.id === 3 && <BusinessImpactSection />}
         <ExperienceWalkthroughSection />
         {study.id === 4 && <CustomerAnecdotesSection />}
