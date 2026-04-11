@@ -276,6 +276,83 @@ function HeroSection({
   );
 }
 
+const INDEX_CHAPTERS = [
+  { num: "01", title: "Overview", desc: "The brief and product context" },
+  { num: "02", title: "Challenge", desc: "Understanding the problem space" },
+  { num: "03", title: "AI Strategy", desc: "Market trends & consolidation" },
+  { num: "04", title: "Research", desc: "Discovery & synthesis" },
+  { num: "05", title: "Concepts", desc: "Early design explorations" },
+  { num: "06", title: "Solution", desc: "Final design direction" },
+  { num: "07", title: "Walkthrough", desc: "The experience in action" },
+  { num: "08", title: "Impact", desc: "Outcomes & measurable results" },
+  { num: "09", title: "Learnings", desc: "Reflections & what's next" },
+];
+
+function IndexSlide() {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: false, amount: 0.2 });
+
+  return (
+    <section
+      id="section-index"
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#FFFFFF" }}
+    >
+      <div ref={ref} className="max-w-4xl mx-auto w-full px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, ease: APPLE }}
+        >
+          <p
+            className="text-xs uppercase tracking-widest font-semibold mb-3"
+            style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
+          >
+            Case study structure
+          </p>
+          <h2
+            className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mb-10"
+            style={{ fontFamily: "'Wotfard', sans-serif" }}
+          >
+            What we'll cover
+          </h2>
+        </motion.div>
+        <div className="grid grid-cols-3 gap-3">
+          {INDEX_CHAPTERS.map((ch, i) => (
+            <motion.div
+              key={ch.num}
+              className="flex flex-col gap-1 p-4 rounded-xl border border-[#E8E4DE]"
+              style={{ background: "#FAFAF9" }}
+              initial={{ opacity: 0, y: 14 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
+              transition={{ duration: 0.5, ease: APPLE, delay: 0.15 + i * 0.06 }}
+            >
+              <span
+                className="text-2xl font-bold tabular-nums leading-none mb-1"
+                style={{ color: "rgba(0,0,0,0.1)", fontFamily: "'Wotfard', sans-serif" }}
+              >
+                {ch.num}
+              </span>
+              <span
+                className="text-sm font-bold text-[#1a1a1a]"
+                style={{ fontFamily: "'Wotfard', sans-serif" }}
+              >
+                {ch.title}
+              </span>
+              <span
+                className="text-xs text-[#1a1a1a]/50 leading-snug"
+                style={{ fontFamily: "'Wotfard', sans-serif" }}
+              >
+                {ch.desc}
+              </span>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function OverviewSection({ study }: { study: CaseStudy }) {
   return (
     <section
@@ -3772,6 +3849,7 @@ export default function CaseStudyPage() {
           imageWidth={study.id === 4 ? "96%" : undefined}
           imageBottom={study.id === 4 ? 0 : undefined}
         />
+        {study.id === 4 && <IndexSlide />}
         <OverviewSection study={study} />
         <ChallengeSection study={study} />
         {study.id === 4 && <AIConsolidationSection />}
