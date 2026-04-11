@@ -4365,6 +4365,73 @@ function RoleAndLeadershipSection() {
   );
 }
 
+function BusinessImpactSection() {
+  const FF = "'Wotfard', sans-serif";
+  const drivers = [
+    { icon: <ArrowUpRight size={13} strokeWidth={1.6} />, text: "Increased conversion via better entry points", color: "#16A34A", bg: "rgba(22,163,74,0.07)", border: "rgba(22,163,74,0.18)" },
+    { icon: <BarChart2 size={13} strokeWidth={1.6} />, text: "Higher expansion revenue through premium tiers", color: "#0891B2", bg: "rgba(8,145,178,0.07)", border: "rgba(8,145,178,0.18)" },
+    { icon: <Target size={13} strokeWidth={1.6} />, text: "Improved alignment between value and pricing", color: "#4338CA", bg: "rgba(67,56,202,0.07)", border: "rgba(67,56,202,0.18)" },
+  ];
+  const outcomes = [
+    { label: "Marketplace revenue uplift", qualifier: "Significant", color: "#16A34A", bg: "rgba(22,163,74,0.08)", border: "rgba(22,163,74,0.20)" },
+    { label: "Partner monetization", qualifier: "Increased", color: "#0891B2", bg: "rgba(8,145,178,0.08)", border: "rgba(8,145,178,0.20)" },
+    { label: "Customer lifetime value", qualifier: "Higher", color: "#4338CA", bg: "rgba(67,56,202,0.08)", border: "rgba(67,56,202,0.20)" },
+  ];
+  return (
+    <section
+      id="section-business-impact"
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#FFFFFF" }}
+    >
+      <SnapReveal>
+        <div className="max-w-2xl mx-auto w-full px-8">
+
+          <p className="text-[10px] uppercase tracking-widest font-semibold mb-3" style={{ color: "#E8654B", fontFamily: FF }}>
+            Business Impact
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight mb-8" style={{ fontFamily: FF }}>
+            Unlocking revenue across the ecosystem
+          </h2>
+
+          {/* Drivers */}
+          <div
+            className="rounded-2xl px-5 py-5 flex flex-col gap-3 mb-4"
+            style={{ background: "#F5F5F7", border: "1px solid rgba(26,26,26,0.08)" }}
+          >
+            {drivers.map((d) => (
+              <div key={d.text} className="flex items-start gap-3">
+                <div className="w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: d.bg, border: `1px solid ${d.border}`, color: d.color }}>
+                  {d.icon}
+                </div>
+                <p className="text-sm text-[#1a1a1a]/70 leading-snug" style={{ fontFamily: FF }}>{d.text}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Projected outcomes */}
+          <div className="rounded-2xl px-5 py-4 flex flex-col gap-3" style={{ background: "#F5F5F7", border: "1px solid rgba(26,26,26,0.08)" }}>
+            <p className="text-[10px] uppercase tracking-widest font-bold" style={{ color: "rgba(26,26,26,0.35)", fontFamily: FF }}>Projected outcomes</p>
+            <div className="flex flex-col gap-2">
+              {outcomes.map((o) => (
+                <div key={o.label} className="flex items-center gap-2.5">
+                  <span
+                    className="text-[10px] font-bold px-2 py-0.5 rounded-full flex-shrink-0"
+                    style={{ background: o.bg, color: o.color, border: `1px solid ${o.border}`, fontFamily: FF }}
+                  >
+                    {o.qualifier}
+                  </span>
+                  <p className="text-sm text-[#1a1a1a]/65" style={{ fontFamily: FF }}>{o.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </SnapReveal>
+    </section>
+  );
+}
+
 function ImpactCounter({ numericValue, isInView, format, startDelay = 0 }: { numericValue: number; isInView: boolean; format?: (n: number) => string; startDelay?: number }) {
   const [display, setDisplay] = useState(0);
   useEffect(() => {
@@ -5099,6 +5166,7 @@ export default function CaseStudyPage() {
         {study.id === 3 && <KeyExperienceMomentsSection />}
         {study.id === 3 && <SystemDesignComplexitySection />}
         {study.id === 3 && <RoleAndLeadershipSection />}
+        {study.id === 3 && <BusinessImpactSection />}
         <ExperienceWalkthroughSection />
         {study.id === 4 && <CustomerAnecdotesSection />}
         <ImpactSection study={study} scrollRef={scrollRef} />
