@@ -16,7 +16,7 @@ const PROJECTS = [
   },
   {
     id: 3,
-    title: "Monetization pathways for apps",
+    title: "Designing How Value Is Packaged, Monetized, and Adopted",
     category: "Growth & Optimization",
     description: "Designed transparency features that surfaced security certifications and compliance details, building user confidence in third-party apps.",
     timeline: "2022 – 2023",

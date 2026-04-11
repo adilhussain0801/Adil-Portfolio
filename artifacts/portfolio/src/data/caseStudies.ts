@@ -253,7 +253,7 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
   {
     id: 3,
-    title: "Improve Trust in Marketplace Apps",
+    title: "Designing How Value Is Packaged, Monetized, and Adopted",
     category: "Growth & Optimization",
     company: "Atlassian",
     year: "2023",
