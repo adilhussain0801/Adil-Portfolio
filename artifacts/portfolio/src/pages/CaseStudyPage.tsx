@@ -1648,6 +1648,94 @@ function ProcessSection({ study }: { study: CaseStudy }) {
   if (study.id === 4) {
     return <IndustryTrendsSection />;
   }
+
+  if (study.id === 3) {
+    return (
+      <section
+        id="section-process"
+        className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+        style={{ background: "#FFFFFF" }}
+      >
+        <SnapReveal>
+          <div className="max-w-3xl mx-auto w-full px-8">
+
+            {/* Header */}
+            <p
+              className="text-[10px] uppercase tracking-widest font-semibold mb-3"
+              style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
+            >
+              Ecosystem at Scale
+            </p>
+            <h2
+              className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight mb-2"
+              style={{ fontFamily: "'Wotfard', sans-serif" }}
+            >
+              A fast-growing, high-volume ecosystem
+            </h2>
+            <p className="text-sm text-[#1a1a1a]/50 mb-8" style={{ fontFamily: "'Wotfard', sans-serif" }}>
+              The Atlassian Marketplace operates at enterprise scale across every major deployment tier.
+            </p>
+
+            {/* Stat cards */}
+            <div className="grid grid-cols-3 gap-3 mb-6">
+              {[
+                { value: "6,000+", label: "Apps & integrations", color: "#4338CA", bg: "rgba(99,102,241,0.07)", border: "rgba(99,102,241,0.18)" },
+                { value: "2,000+", label: "Vendors building on the platform", color: "#0891B2", bg: "rgba(8,145,178,0.07)", border: "rgba(8,145,178,0.18)" },
+                { value: "~20K", label: "Installs every week", color: "#16A34A", bg: "rgba(22,163,74,0.07)", border: "rgba(22,163,74,0.18)" },
+              ].map((stat) => (
+                <div
+                  key={stat.value}
+                  className="rounded-2xl px-5 py-5"
+                  style={{ background: stat.bg, border: `1px solid ${stat.border}` }}
+                >
+                  <p className="text-3xl font-bold mb-1 leading-none" style={{ color: stat.color, fontFamily: "'Wotfard', sans-serif" }}>
+                    {stat.value}
+                  </p>
+                  <p className="text-xs text-[#1a1a1a]/55 leading-snug mt-2" style={{ fontFamily: "'Wotfard', sans-serif" }}>
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* Deployment tiers */}
+            <div className="flex items-center gap-3 mb-8">
+              <p className="text-xs uppercase tracking-widest font-semibold text-[#1a1a1a]/35 flex-shrink-0" style={{ fontFamily: "'Wotfard', sans-serif" }}>
+                Supporting
+              </p>
+              <div className="flex gap-2">
+                {["Cloud", "Data Center", "Server"].map((tier) => (
+                  <span
+                    key={tier}
+                    className="text-xs font-medium px-3 py-1.5 rounded-full border border-[#E8E4DE] text-[#1a1a1a]/60"
+                    style={{ background: "#F5F5F7", fontFamily: "'Wotfard', sans-serif" }}
+                  >
+                    {tier}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Callout */}
+            <div
+              className="flex items-start gap-4 rounded-2xl px-5 py-4"
+              style={{ background: "rgba(232,101,75,0.06)", border: "1px solid rgba(232,101,75,0.18)" }}
+            >
+              <TrendingDown size={18} className="flex-shrink-0 mt-0.5" style={{ color: "#C05437" }} />
+              <p className="text-sm leading-relaxed" style={{ color: "#1a1a1a", fontFamily: "'Wotfard', sans-serif" }}>
+                <span className="font-semibold text-[#C05437]">Small inefficiencies at this scale</span>
+                {" "}translate into{" "}
+                <span className="font-semibold text-[#C05437]">massive revenue impact</span>
+                {" "}— for Atlassian, its partners, and the customers who depend on these apps.
+              </p>
+            </div>
+
+          </div>
+        </SnapReveal>
+      </section>
+    );
+  }
+
   return (
     <section
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
