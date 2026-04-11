@@ -3493,7 +3493,7 @@ function EvaluationJourneySection() {
               src="/editions-journey.png"
               alt="Current customer evaluation and installation journey diagram"
               className="block"
-              style={{ height: 220, width: "auto", maxWidth: "none", padding: "16px 24px" }}
+              style={{ height: 420, width: "auto", maxWidth: "none", padding: "16px 24px" }}
             />
           </div>
         </div>
