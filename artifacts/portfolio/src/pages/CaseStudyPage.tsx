@@ -4017,6 +4017,89 @@ function WhatThisUnlocksSection() {
   );
 }
 
+function ExperienceTransformationSection() {
+  const FF = "'Wotfard', sans-serif";
+  const beforeItems = [
+    "One product, one price",
+    "Overpay or don't buy",
+    "Limited upgrade clarity",
+  ];
+  const afterItems = [
+    "Multiple editions",
+    "Pay for what you need",
+    "Clear upgrade path",
+  ];
+  return (
+    <section
+      id="section-experience-transformation"
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#FFFFFF" }}
+    >
+      <SnapReveal>
+        <div className="max-w-2xl mx-auto w-full px-8">
+
+          <p className="text-[10px] uppercase tracking-widest font-semibold mb-3" style={{ color: "#E8654B", fontFamily: FF }}>
+            Experience Transformation
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight mb-2" style={{ fontFamily: FF }}>
+            From rigid pricing
+          </h2>
+          <p className="text-base font-bold mb-8" style={{ color: "#E8654B", fontFamily: FF }}>
+            → flexible value selection
+          </p>
+
+          {/* Before / After */}
+          <div className="flex items-stretch gap-3 mb-6">
+            {/* Before */}
+            <div className="flex-1 rounded-2xl px-5 py-5 flex flex-col gap-3" style={{ background: "rgba(232,101,75,0.06)", border: "1px solid rgba(232,101,75,0.18)" }}>
+              <p className="text-[10px] uppercase tracking-widest font-bold" style={{ color: "rgba(192,84,55,0.6)", fontFamily: FF }}>Before</p>
+              <div className="flex flex-col gap-2">
+                {beforeItems.map((item) => (
+                  <div key={item} className="flex items-center gap-2">
+                    <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: "rgba(192,84,55,0.4)" }} />
+                    <p className="text-sm text-[#1a1a1a]/50 line-through decoration-[#C05437]/40 leading-snug" style={{ fontFamily: FF }}>{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Arrow */}
+            <div className="flex items-center flex-shrink-0">
+              <ArrowRight size={18} style={{ color: "rgba(26,26,26,0.20)" }} />
+            </div>
+
+            {/* After */}
+            <div className="flex-1 rounded-2xl px-5 py-5 flex flex-col gap-3" style={{ background: "#F5F5F7", border: "1px solid rgba(26,26,26,0.09)" }}>
+              <p className="text-[10px] uppercase tracking-widest font-bold" style={{ color: "rgba(26,26,26,0.35)", fontFamily: FF }}>After</p>
+              <div className="flex flex-col gap-2">
+                {afterItems.map((item) => (
+                  <div key={item} className="flex items-center gap-2">
+                    <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: "#16A34A" }} />
+                    <p className="text-sm font-medium text-[#1a1a1a]/75 leading-snug" style={{ fontFamily: FF }}>{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Shift callout */}
+          <div
+            className="flex items-center gap-3 rounded-2xl px-5 py-4"
+            style={{ background: "rgba(22,163,74,0.07)", border: "1px solid rgba(22,163,74,0.20)" }}
+          >
+            <Sparkles size={15} className="flex-shrink-0" style={{ color: "#16A34A" }} />
+            <p className="text-sm" style={{ fontFamily: FF }}>
+              <span className="font-bold" style={{ color: "#16A34A" }}>Shift: </span>
+              <span className="text-[#1a1a1a]/65">From forced compromise → confident adoption</span>
+            </p>
+          </div>
+
+        </div>
+      </SnapReveal>
+    </section>
+  );
+}
+
 function ImpactCounter({ numericValue, isInView, format, startDelay = 0 }: { numericValue: number; isInView: boolean; format?: (n: number) => string; startDelay?: number }) {
   const [display, setDisplay] = useState(0);
   useEffect(() => {
@@ -4747,6 +4830,7 @@ export default function CaseStudyPage() {
         {study.id === 3 && <ReframingProblemSection />}
         {study.id === 3 && <AppEditionsSolutionSection />}
         {study.id === 3 && <WhatThisUnlocksSection />}
+        {study.id === 3 && <ExperienceTransformationSection />}
         <ExperienceWalkthroughSection />
         {study.id === 4 && <CustomerAnecdotesSection />}
         <ImpactSection study={study} scrollRef={scrollRef} />
