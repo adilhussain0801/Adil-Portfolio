@@ -4771,6 +4771,87 @@ function ImpactCard({
   );
 }
 
+const PARTNER_ANECDOTES = [
+  "We can finally charge for our most advanced features instead of bundling everything.",
+  "Customers now start with a lower tier and upgrade as they grow — this wasn't happening before.",
+  "It's much easier to justify pricing in enterprise deals with clear tier differentiation.",
+];
+
+function PartnerAnecdotesSection() {
+  const FF = "'Wotfard', sans-serif";
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: false, amount: 0.25 });
+
+  return (
+    <section
+      id="section-partner-anecdotes"
+      ref={ref}
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#F5F5F7" }}
+    >
+      <div
+        style={{
+          position: "absolute",
+          left: "50%",
+          top: "50%",
+          transform: "translate(-50%, -50%)",
+          width: "min(920px, calc(100% - 80px))",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: 48,
+        }}
+      >
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
+          transition={{ duration: 0.6, ease: EASE }}
+          style={{ textAlign: "center", display: "flex", flexDirection: "column", gap: 8 }}
+        >
+          <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#E8654B", margin: 0 }}>
+            Partner anecdotes
+          </p>
+          <h2 style={{ fontFamily: FF, fontWeight: 700, fontSize: "clamp(22px,3vw,32px)", color: "#1a1a1a", margin: 0, lineHeight: 1.2 }}>
+            What we heard from partners
+          </h2>
+        </motion.div>
+
+        {/* Quote cards */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20, width: "100%" }}>
+          {PARTNER_ANECDOTES.map((quote, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.6, ease: EASE, delay: 0.12 + i * 0.1 }}
+              style={{
+                background: "#FFFFFF",
+                border: "1px solid rgba(26,26,26,0.08)",
+                borderRadius: 18,
+                padding: "32px 28px 28px",
+                display: "flex",
+                flexDirection: "column",
+                gap: 20,
+              }}
+            >
+              <span style={{ fontFamily: FF, fontSize: 32, lineHeight: 1, color: "#E8654B", opacity: 0.55, fontWeight: 700, display: "block", marginBottom: -8 }}>"</span>
+              <p style={{ fontFamily: FF, fontSize: 15, color: "#1a1a1a", margin: 0, lineHeight: 1.65, fontStyle: "italic", fontWeight: 400 }}>
+                {quote}
+              </p>
+              <div style={{ marginTop: "auto", paddingTop: 16, borderTop: "1px solid rgba(26,26,26,0.07)" }}>
+                <p style={{ fontFamily: FF, fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(26,26,26,0.35)", margin: 0 }}>
+                  Marketplace Partner
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function ImpactSection({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObject<HTMLDivElement> }) {
   const FF = "'Wotfard', sans-serif";
   const ref = useRef<HTMLDivElement>(null);
@@ -5139,6 +5220,7 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
     { id: "section-walkthrough", label: "Walkthrough" },
     ...(study.id === 4 ? [{ id: "section-anecdotes", label: "Anecdotes" }] : []),
     { id: "section-impact", label: "Impact" },
+    ...(study.id === 3 ? [{ id: "section-partner-anecdotes", label: "Anecdotes" }] : []),
     ...(study.id === 4 ? [{ id: "section-retrospective", label: "Learnings" }] : []),
     ...(study.id === 4 ? [{ id: "section-whatnext", label: "What's Next" }] : []),
     { id: "section-next", label: "Next Project" },
@@ -5420,6 +5502,7 @@ export default function CaseStudyPage() {
         <ExperienceWalkthroughSection />
         {study.id === 4 && <CustomerAnecdotesSection />}
         <ImpactSection study={study} scrollRef={scrollRef} />
+        {study.id === 3 && <PartnerAnecdotesSection />}
         {study.id === 4 && <RetrospectiveSection />}
         {study.id === 4 && <WhatNextSection />}
         <NextProjectSection study={study} />
