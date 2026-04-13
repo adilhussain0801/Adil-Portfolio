@@ -1819,8 +1819,8 @@ function ProcessSection({ study }: { study: CaseStudy }) {
     return (
       <section
         id="section-process"
-        className="relative h-screen snap-start snap-always flex flex-col items-center justify-center overflow-hidden bg-[#f4e9e4]"
-        style={{ background: "#F5EFEA" }}
+        className="relative h-screen snap-start snap-always flex flex-col items-center justify-center overflow-hidden"
+        style={{ background: "#F5EFEA", isolation: "isolate" }}
       >
         <SnapReveal className="w-full max-w-3xl px-8">
           <p
