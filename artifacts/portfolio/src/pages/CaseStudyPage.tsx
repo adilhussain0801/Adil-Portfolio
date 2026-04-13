@@ -1819,10 +1819,10 @@ function ProcessSection({ study }: { study: CaseStudy }) {
     return (
       <section
         id="section-process"
-        className="relative h-screen snap-start snap-always flex flex-col overflow-hidden"
+        className="relative h-screen snap-start snap-always flex flex-col items-center justify-center overflow-hidden"
         style={{ background: "#F5EFEA" }}
       >
-        <SnapReveal className="max-w-3xl mx-auto w-full px-8 pt-16 pb-2 flex-shrink-0">
+        <SnapReveal className="w-full max-w-3xl px-8">
           <p
             className="text-[10px] uppercase tracking-widest font-bold mb-3"
             style={{ color: "rgba(26,26,26,0.35)", fontFamily: "'Wotfard', sans-serif" }}
@@ -1830,13 +1830,11 @@ function ProcessSection({ study }: { study: CaseStudy }) {
             The Marketplace Ecosystem
           </p>
           <h2
-            className="text-2xl md:text-3xl leading-tight text-[#1a1a1a]"
+            className="text-2xl md:text-3xl leading-tight text-[#1a1a1a] mb-8"
             style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700 }}
           >
             How Marketplace drives a continuous growth loop
           </h2>
-        </SnapReveal>
-        <SnapReveal className="flex-1 flex items-center justify-center px-8 pb-10" delay={0.1}>
           <img
             src="/growth-loop-diagram.png"
             alt="Marketplace growth loop: Customer → Marketplace → Growth Loop ← Partner, with Growth Loop feeding back to Customer"
