@@ -1845,103 +1845,12 @@ function ProcessSection({ study }: { study: CaseStudy }) {
             >
               A fast-growing, high-volume ecosystem
             </h2>
-            {/* Marketplace growth loop — hand-drawn sketch */}
-            <div style={{ background: "#FFFDF5", borderRadius: 10, padding: "18px 12px 14px" }}>
-              <svg
-                width="100%"
-                viewBox="0 0 580 370"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <defs>
-                  {/* Subtle wobble — applied only to node rects */}
-                  <filter id="mkp-box" x="-5%" y="-8%" width="110%" height="116%">
-                    <feTurbulence type="fractalNoise" baseFrequency="0.028" numOctaves="3" seed="7" result="noise"/>
-                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.8" xChannelSelector="R" yChannelSelector="G"/>
-                  </filter>
-                  {/* Arrow marker — no filter so it renders at exact coordinates */}
-                  <marker id="mkp-arr" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
-                    <polygon points="0 0, 9 3.5, 0 7" fill="#5a5a5a" opacity="0.75"/>
-                  </marker>
-                </defs>
-
-                {/* Node boxes only — filter for hand-drawn wobble */}
-                <g filter="url(#mkp-box)">
-                  {/* Customer — small pill, left */}
-                  <rect x="10" y="112" width="150" height="56" rx="28"
-                    stroke="#3d3d3d" strokeWidth="1.9" fill="rgba(255,255,255,0.90)"/>
-                  {/* Marketplace — large pill, top center */}
-                  <rect x="178" y="44" width="278" height="70" rx="35"
-                    stroke="#3d3d3d" strokeWidth="1.9" fill="rgba(255,255,255,0.90)"/>
-                  {/* Partner — medium pill, bottom center */}
-                  <rect x="112" y="238" width="264" height="62" rx="31"
-                    stroke="#3d3d3d" strokeWidth="1.9" fill="rgba(255,255,255,0.90)"/>
-                  {/* Growth Loop — orange accent box, right */}
-                  <rect x="384" y="168" width="190" height="162" rx="5"
-                    stroke="#C05437" strokeWidth="2.2" fill="rgba(232,101,75,0.07)"/>
-                </g>
-
-                {/* Arrows — NO filter so arrowheads land at exact coordinates */}
-                {/* 1. Customer → Marketplace (up-right diagonal) */}
-                <path d="M 160,128 C 164,106 170,86 178,70"
-                  stroke="#5a5a5a" strokeWidth="1.55" strokeLinecap="round" fill="none"
-                  markerEnd="url(#mkp-arr)"/>
-
-                {/* 2. Marketplace → Growth Loop (right side, curves down) */}
-                <path d="M 456,79 C 472,112 477,140 477,168"
-                  stroke="#5a5a5a" strokeWidth="1.55" strokeLinecap="round" fill="none"
-                  markerEnd="url(#mkp-arr)"/>
-
-                {/* 3. Partner → Growth Loop (right, slightly up) */}
-                <path d="M 376,261 C 379,252 381,246 384,240"
-                  stroke="#5a5a5a" strokeWidth="1.55" strokeLinecap="round" fill="none"
-                  markerEnd="url(#mkp-arr)"/>
-
-                {/* 4. Growth Loop → Customer (big arc below, loops back left) */}
-                <path d="M 384,304 C 306,348 154,346 85,168"
-                  stroke="#5a5a5a" strokeWidth="1.55" strokeLinecap="round" fill="none"
-                  markerEnd="url(#mkp-arr)"/>
-
-                {/* Node labels */}
-                <text x="85" y="147" textAnchor="middle" fontSize="18" fontWeight="700" fontStyle="italic"
-                  fill="#2a2a2a" fontFamily="'Caveat', cursive">Customer</text>
-                <text x="317" y="87" textAnchor="middle" fontSize="24" fontWeight="700" fontStyle="italic"
-                  fill="#2a2a2a" fontFamily="'Caveat', cursive">Marketplace</text>
-                <text x="244" y="276" textAnchor="middle" fontSize="22" fontWeight="700" fontStyle="italic"
-                  fill="#2a2a2a" fontFamily="'Caveat', cursive">Partner</text>
-
-                {/* Sub-labels — placed outside node areas */}
-                <text x="85" y="182" textAnchor="middle" fontSize="12.5" fontStyle="italic"
-                  fill="rgba(26,26,26,0.48)" fontFamily="'Caveat', cursive">Has a need the core</text>
-                <text x="85" y="197" textAnchor="middle" fontSize="12.5" fontStyle="italic"
-                  fill="rgba(26,26,26,0.48)" fontFamily="'Caveat', cursive">product can't solve</text>
-
-                <text x="317" y="126" textAnchor="middle" fontSize="12.5" fontStyle="italic"
-                  fill="rgba(26,26,26,0.48)" fontFamily="'Caveat', cursive">Discovers, evaluates,</text>
-                <text x="317" y="141" textAnchor="middle" fontSize="12.5" fontStyle="italic"
-                  fill="rgba(26,26,26,0.48)" fontFamily="'Caveat', cursive">and installs apps</text>
-
-                <text x="244" y="312" textAnchor="middle" fontSize="12.5" fontStyle="italic"
-                  fill="rgba(26,26,26,0.48)" fontFamily="'Caveat', cursive">Builds and lists apps</text>
-                <text x="244" y="327" textAnchor="middle" fontSize="12.5" fontStyle="italic"
-                  fill="rgba(26,26,26,0.48)" fontFamily="'Caveat', cursive">on Marketplace</text>
-
-                {/* Growth Loop content */}
-                <text x="479" y="198" textAnchor="middle" fontSize="19" fontWeight="700" fontStyle="italic"
-                  fill="#C05437" fontFamily="'Caveat', cursive">Growth Loop</text>
-                <line x1="394" y1="205" x2="566" y2="205" stroke="rgba(192,84,55,0.20)" strokeWidth="1"/>
-                <text x="396" y="223" fontSize="11.5" fill="rgba(192,84,55,0.82)" fontFamily="'Caveat', cursive">– Better solutions for customers</text>
-                <text x="396" y="240" fontSize="11.5" fill="rgba(192,84,55,0.82)" fontFamily="'Caveat', cursive">– More revenue for partners</text>
-                <text x="396" y="257" fontSize="11.5" fill="rgba(192,84,55,0.82)" fontFamily="'Caveat', cursive">– More innovation in the</text>
-                <text x="396" y="272" fontSize="11.5" fill="rgba(192,84,55,0.82)" fontFamily="'Caveat', cursive">   ecosystem</text>
-
-                {/* Bottom annotation */}
-                <text x="290" y="352" textAnchor="middle" fontSize="11.5" fontStyle="italic"
-                  fill="rgba(26,26,26,0.28)" fontFamily="'Caveat', cursive">A continuous loop where customer needs drive partner innovation,</text>
-                <text x="290" y="366" textAnchor="middle" fontSize="11.5" fontStyle="italic"
-                  fill="rgba(26,26,26,0.28)" fontFamily="'Caveat', cursive">and monetization fuels ecosystem growth</text>
-              </svg>
-            </div>
+            {/* Marketplace growth loop diagram */}
+            <img
+              src="/growth-loop-diagram.png"
+              alt="Marketplace growth loop: Customer → Marketplace → Growth Loop ← Partner, with Growth Loop feeding back to Customer"
+              style={{ width: "100%", display: "block", borderRadius: 8 }}
+            />
 
           </div>
         </SnapReveal>
