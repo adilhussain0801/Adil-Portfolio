@@ -4926,8 +4926,8 @@ function EngineeringHandoffSection() {
 
           {/* Card 1 — Structured handoff */}
           <motion.div {...col(0.1)} style={{ background: "#fff", border: "1px solid rgba(26,26,26,0.08)", borderRadius: 18, overflow: "hidden", display: "flex", flexDirection: "column" }}>
-            <div style={{ overflow: "hidden", flexShrink: 0 }}>
-              <img src="/handoff-screens.png" alt="Key screens and panel states" style={{ width: "100%", display: "block", objectFit: "cover", objectPosition: "top" }} />
+            <div style={{ height: 200, overflow: "hidden", flexShrink: 0 }}>
+              <img src="/handoff-screens.png" alt="Key screens and panel states" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover", objectPosition: "top" }} />
             </div>
             <div style={{ padding: "20px 22px 22px", display: "flex", flexDirection: "column", gap: 12 }}>
               <h3 style={{ fontFamily: FF, fontSize: 15, fontWeight: 700, color: "#1a1a1a", margin: 0 }}>Structured handoff</h3>
@@ -4951,8 +4951,8 @@ function EngineeringHandoffSection() {
 
           {/* Card 2 — Accessibility by design (annotations) */}
           <motion.div {...col(0.18)} style={{ background: "#fff", border: "1px solid rgba(26,26,26,0.08)", borderRadius: 18, overflow: "hidden", display: "flex", flexDirection: "column" }}>
-            <div style={{ overflow: "hidden", flexShrink: 0 }}>
-              <img src="/handoff-annotations.png" alt="Accessibility annotations" style={{ width: "100%", display: "block", objectFit: "cover", objectPosition: "top" }} />
+            <div style={{ height: 200, overflow: "hidden", flexShrink: 0 }}>
+              <img src="/handoff-annotations.png" alt="Accessibility annotations" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover", objectPosition: "top" }} />
             </div>
             <div style={{ padding: "20px 22px 22px", display: "flex", flexDirection: "column", gap: 12 }}>
               <h3 style={{ fontFamily: FF, fontSize: 15, fontWeight: 700, color: "#1a1a1a", margin: 0 }}>Accessibility by design</h3>
