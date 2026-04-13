@@ -30,7 +30,7 @@ const PROJECTS = [
     id: 2,
     title: "Foresight",
     category: "Native iOS/Android",
-    description: "Designed AI-powered support automation that reduced support tickets by 32% and improved customer satisfaction across all demographics.",
+    description: "Reimagining the self serve and automation experience for Amazon post purchase experience team",
     timeline: "2020 – 2021",
     image: "/foresight-cover.png",
     backgroundSize: "75%",
