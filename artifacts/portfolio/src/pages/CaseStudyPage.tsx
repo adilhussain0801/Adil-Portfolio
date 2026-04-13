@@ -3587,7 +3587,7 @@ function EvaluationKeyInsightSection() {
             <div className="flex items-center gap-5 py-5">
               <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: "#E8654B" }} />
               <p className="text-lg font-bold text-[#1a1a1a]" style={{ fontFamily: FF }}>
-                They evaluate value for money
+                They evaluate value for money and whether it solves my team's problem
               </p>
             </div>
           </div>
