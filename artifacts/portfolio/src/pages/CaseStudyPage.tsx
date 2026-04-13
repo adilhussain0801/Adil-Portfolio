@@ -3569,7 +3569,7 @@ function CustomerRealitySection() {
             <p className="text-[10px] uppercase tracking-widest font-semibold mb-3" style={{ color: "#E8654B", fontFamily: FF }}>
               Customer Reality
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight" style={{ fontFamily: FF }}>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight whitespace-nowrap" style={{ fontFamily: FF }}>
               Adoption stalls when value is not justified
             </h2>
           </div>
