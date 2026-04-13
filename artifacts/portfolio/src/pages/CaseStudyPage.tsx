@@ -3994,9 +3994,7 @@ function FocusOfCaseStudySection() {
             <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight mb-2" style={{ fontFamily: FF }}>
               Zooming into the customer evaluation and purchase journey
             </h2>
-            <p className="text-sm text-[#1a1a1a]/50 leading-relaxed" style={{ fontFamily: FF }}>
-              Given the breadth of the initiative, this case study focuses on:
-            </p>
+            <p className="text-sm text-[#1a1a1a]/50 leading-relaxed" style={{ fontFamily: FF }}>Given the breadth of the initiative, the experience walkthrough will focuses on:</p>
           </div>
 
           <div
