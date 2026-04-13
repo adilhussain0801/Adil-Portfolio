@@ -3686,9 +3686,7 @@ function CoreProblemSection() {
           <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight mb-2" style={{ fontFamily: FF }}>
             Value wasn't structured for decision-making
           </h2>
-          <p className="text-sm text-[#1a1a1a]/50 mb-8" style={{ fontFamily: FF }}>
-            The problem wasn't pricing — it was how value was presented for decision-making.
-          </p>
+          <p className="text-sm text-[#1a1a1a]/50 mb-8" style={{ fontFamily: FF }}>The problem wasn’t pricing — it was how value was packaged and understood</p>
 
           {/* Two constraint cards */}
           <div className="grid grid-cols-2 gap-4 mb-6">
