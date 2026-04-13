@@ -405,26 +405,26 @@ function OverviewSection({ study }: { study: CaseStudy }) {
                         color: "#1a1a1a",
                       }}
                     >
-                      One app, sold smarter. App Editions lets Marketplace partners offer{" "}
+                      App Editions lets partners package the same app into{" "}
                       <mark style={{ background: "rgba(232,101,75,0.14)", color: "#C05437", borderRadius: "5px", padding: "2px 6px" }}>
-                        multiple pricing tiers
+                        multiple editions
                       </mark>
-                      {" "}— Free, Standard, Premium — within a single listing.
+                      {" "}— each with its own features and price — all under a single Marketplace listing.
                     </p>
                     <div className="flex flex-col gap-3">
                       <p className="text-base leading-relaxed text-[#1a1a1a]" style={{ fontFamily: "'Wotfard', sans-serif" }}>
-                        Customers get{" "}
+                        Budget-conscious customers get what they need at the right price. Customers who want{" "}
                         <mark style={{ background: "rgba(99,102,241,0.12)", color: "#4338CA", borderRadius: "5px", padding: "2px 6px", fontWeight: 600 }}>
-                          options that match their needs and budget
+                          richer features pay for more
                         </mark>
-                        {" "}— without needing to find a different app.
+                        {" "}— without being pushed to a different app.
                       </p>
                       <p className="text-base leading-relaxed text-[#1a1a1a]" style={{ fontFamily: "'Wotfard', sans-serif" }}>
-                        For partners and Atlassian, every upgrade is a{" "}
+                        For Atlassian, every edition upgrade is a{" "}
                         <mark style={{ background: "rgba(22,163,74,0.12)", color: "#15803D", borderRadius: "5px", padding: "2px 6px", fontWeight: 600 }}>
                           direct revenue event
                         </mark>
-                        {" "}— turning app discovery into a scalable growth lever for the Marketplace.
+                        {" "}— and the Marketplace surfaces all editions together, making upsell visible and frictionless.
                       </p>
                     </div>
                   </div>
