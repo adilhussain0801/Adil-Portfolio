@@ -3728,46 +3728,6 @@ function CoreProblemSection() {
   );
 }
 
-function KeyInsightSection() {
-  const FF = "'Wotfard', sans-serif";
-  return (
-    <section
-      id="section-key-insight"
-      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
-      style={{ background: "#F5F5F7" }}
-    >
-      <SnapReveal>
-        <div className="max-w-2xl mx-auto w-full px-8">
-
-          <p className="text-[10px] uppercase tracking-widest font-semibold mb-6" style={{ color: "#E8654B", fontFamily: FF }}>
-            Key Insight
-          </p>
-
-          {/* Main statement */}
-          <h2
-            className="text-3xl md:text-4xl font-bold leading-tight mb-10"
-            style={{ fontFamily: FF, color: "#1a1a1a" }}
-          >
-            Adoption breaks when price doesn't map to perceived value
-          </h2>
-
-          {/* Reframe */}
-          <div
-            className="rounded-2xl px-6 py-5"
-            style={{ background: "rgba(232,101,75,0.07)", border: "1px solid rgba(232,101,75,0.20)" }}
-          >
-            <p className="text-base leading-relaxed" style={{ fontFamily: FF, color: "#1a1a1a" }}>
-              The issue wasn't pricing —<br />
-              <span className="font-bold" style={{ color: "#C05437" }}>it was how value was packaged.</span>
-            </p>
-          </div>
-
-        </div>
-      </SnapReveal>
-    </section>
-  );
-}
-
 function ReframingProblemSection() {
   const FF = "'Wotfard', sans-serif";
   const afterItems = [
@@ -5393,7 +5353,6 @@ export default function CaseStudyPage() {
         {study.id === 3 && <CoreProblemSection />}
         {study.id === 3 && <EvaluationJourneySection />}
         {study.id === 3 && <CustomerRealitySection />}
-        {study.id === 3 && <KeyInsightSection />}
         {study.id === 3 && <ReframingProblemSection />}
         {study.id === 3 && <AppEditionsSolutionSection />}
         {study.id === 3 && <ScopeOfInitiativeSection />}
