@@ -1487,8 +1487,8 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
             >
               <div className="flex items-stretch gap-0" style={{ borderTop: "1px solid rgba(26,26,26,0.10)", display: "inline-flex" }}>
                 {[
-                  { end: 6000,  format: (n: number) => `${n.toLocaleString()}\u2009+`, label: "Apps & integrations" },
-                  { end: 2000,  format: (n: number) => `${n.toLocaleString()}\u2009+`, label: "Partners on the platform" },
+                  { end: 6250,  format: (n: number) => `${n.toLocaleString()}\u2009+`, label: "Apps & integrations" },
+                  { end: 2100,  format: (n: number) => `${n.toLocaleString()}\u2009+`, label: "Partners on the platform" },
                   { end: 20000, format: (n: number) => `~${n.toLocaleString()}`, label: "Installs every week" },
                 ].map((stat, i, arr) => (
                   <div key={i} className={`flex flex-col justify-center pt-6 pb-2${i < arr.length - 1 ? " pr-14" : ""}`}>
