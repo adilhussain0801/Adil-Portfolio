@@ -1823,7 +1823,7 @@ function ProcessSection({ study }: { study: CaseStudy }) {
         className="relative h-screen snap-start snap-always flex flex-col overflow-hidden"
         style={{ background: "#F5EFEA" }}
       >
-        <SnapReveal className="max-w-3xl mx-auto w-full px-8 pt-16 pb-6 flex-shrink-0">
+        <SnapReveal className="max-w-3xl mx-auto w-full px-8 pt-16 pb-2 flex-shrink-0">
           <p
             className="text-[10px] uppercase tracking-widest font-bold mb-3"
             style={{ color: "rgba(26,26,26,0.35)", fontFamily: "'Wotfard', sans-serif" }}
@@ -1841,7 +1841,7 @@ function ProcessSection({ study }: { study: CaseStudy }) {
           <img
             src="/growth-loop-diagram.png"
             alt="Marketplace growth loop: Customer → Marketplace → Growth Loop ← Partner, with Growth Loop feeding back to Customer"
-            style={{ width: "100%", maxWidth: 720, display: "block" }}
+            style={{ width: "100%", maxWidth: 720, display: "block", mixBlendMode: "multiply" }}
           />
         </SnapReveal>
       </section>
