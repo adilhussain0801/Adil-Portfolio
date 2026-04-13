@@ -1724,24 +1724,6 @@ function ProcessSection({ study }: { study: CaseStudy }) {
               ))}
             </div>
 
-            {/* Deployment tiers */}
-            <div className="flex items-center gap-3 mb-8">
-              <p className="text-xs uppercase tracking-widest font-semibold text-[#1a1a1a]/35 flex-shrink-0" style={{ fontFamily: "'Wotfard', sans-serif" }}>
-                Supporting
-              </p>
-              <div className="flex gap-2">
-                {["Cloud", "Data Center", "Server"].map((tier) => (
-                  <span
-                    key={tier}
-                    className="text-xs font-medium px-3 py-1.5 rounded-full border border-[#E8E4DE] text-[#1a1a1a]/60"
-                    style={{ background: "#F5F5F7", fontFamily: "'Wotfard', sans-serif" }}
-                  >
-                    {tier}
-                  </span>
-                ))}
-              </div>
-            </div>
-
             {/* Callout */}
             <div
               className="flex items-start gap-4 rounded-2xl px-5 py-4"
