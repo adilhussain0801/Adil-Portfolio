@@ -238,7 +238,7 @@ function HeroSection({
 
         {/* Text — below the Service Collection logo, left side */}
         <motion.div
-          className="relative z-10 px-8"
+          className="relative z-10"
           style={{ marginLeft: "8%", maxWidth: 440, marginTop: "28%" }}
           {...fadeUp(0.1)}
         >
