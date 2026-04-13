@@ -419,13 +419,6 @@ function OverviewSection({ study }: { study: CaseStudy }) {
                         </mark>
                         {" "}— without being pushed to a different app.
                       </p>
-                      <p className="text-base leading-relaxed text-[#1a1a1a]" style={{ fontFamily: "'Wotfard', sans-serif" }}>
-                        For Atlassian, every edition upgrade is a{" "}
-                        <mark style={{ background: "rgba(22,163,74,0.12)", color: "#15803D", borderRadius: "5px", padding: "2px 6px", fontWeight: 600 }}>
-                          direct revenue event
-                        </mark>
-                        {" "}— and the Marketplace surfaces all editions together, making upsell visible and frictionless.
-                      </p>
                     </div>
                   </div>
                 ) : study.id === 4 ? (
