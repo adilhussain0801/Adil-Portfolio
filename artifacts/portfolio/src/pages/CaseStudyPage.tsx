@@ -1358,12 +1358,13 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
               className="font-black text-[#1a1a1a] leading-tight mb-5"
               style={{ fontFamily: "'Wotfard', sans-serif", fontSize: "clamp(40px,5vw,64px)", letterSpacing: "-0.03em" }}
             >
-              <span style={{ display: "flex", alignItems: "center", lineHeight: 1 }}>
-                <span>A&nbsp;$</span>
+              <span style={{ display: "flex", alignItems: "center" }}>
+                <span>A&nbsp;</span>
+                <span style={{ color: "#E8654B" }}>$</span>
                 <DrumRollValue color="#E8654B" />
                 <span style={{ color: "#E8654B" }}>B</span>
-                <span>&nbsp;ecosystem powering</span>
               </span>
+              <span style={{ display: "block" }}>ecosystem powering</span>
               <span style={{ display: "block" }}>Atlassian's growth</span>
             </h2>
             <p
