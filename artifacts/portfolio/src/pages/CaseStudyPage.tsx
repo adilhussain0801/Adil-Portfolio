@@ -4121,48 +4121,46 @@ function SystemDesignComplexitySection() {
   return (
     <section
       id="section-system-design-complexity"
-      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      className="relative h-screen snap-start snap-always flex flex-col justify-center gap-6 overflow-hidden"
       style={{ background: "#FAFAF9" }}
     >
       <SnapReveal>
-        <div className="flex flex-col gap-6">
-          {/* Text content */}
-          <div className="flex flex-col gap-4" style={{ paddingLeft: 144, paddingRight: 144 }}>
-            <p className="text-[10px] uppercase tracking-widest font-semibold" style={{ color: "#E8654B", fontFamily: FF }}>
-              Decision Confidence with Editions
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight" style={{ fontFamily: FF }}>
-              Confidence carries through trial and installation
-            </h2>
-            <ul className="flex flex-col gap-2.5 list-none m-0 p-0">
-              {bullets.map((b, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span
-                    className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full"
-                    style={{ background: "rgba(232,101,75,0.7)" }}
-                  />
-                  <span className="text-sm text-[#1a1a1a]/65 leading-relaxed" style={{ fontFamily: FF }}>
-                    {b}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Journey image */}
-          <div
-            className="overflow-x-auto overflow-y-hidden rounded-2xl border"
-            style={{ marginLeft: 144, marginRight: 144, borderColor: "rgba(26,26,26,0.08)", background: "#fff", padding: "24px 32px" }}
-          >
-            <img
-              src="/group-6272430.png"
-              alt="Customer journey with App Editions showing evaluation and installation tasks"
-              className="block"
-              style={{ height: 420, width: "auto", maxWidth: "none" }}
-            />
-          </div>
+        {/* Text content */}
+        <div className="flex flex-col gap-4" style={{ paddingLeft: 144, paddingRight: 144 }}>
+          <p className="text-[10px] uppercase tracking-widest font-semibold" style={{ color: "#E8654B", fontFamily: FF }}>
+            Decision Confidence with Editions
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight" style={{ fontFamily: FF }}>
+            Confidence carries through trial and installation
+          </h2>
+          <ul className="flex flex-col gap-2.5 list-none m-0 p-0">
+            {bullets.map((b, i) => (
+              <li key={i} className="flex items-start gap-3">
+                <span
+                  className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full"
+                  style={{ background: "rgba(232,101,75,0.7)" }}
+                />
+                <span className="text-sm text-[#1a1a1a]/65 leading-relaxed" style={{ fontFamily: FF }}>
+                  {b}
+                </span>
+              </li>
+            ))}
+          </ul>
         </div>
       </SnapReveal>
+
+      {/* Journey image — outside SnapReveal so overflow-x-auto is properly constrained */}
+      <div
+        className="overflow-x-auto overflow-y-hidden rounded-2xl border"
+        style={{ marginLeft: 144, marginRight: 144, borderColor: "rgba(26,26,26,0.08)", background: "#fff", padding: "24px 32px" }}
+      >
+        <img
+          src="/group-6272430.png"
+          alt="Customer journey with App Editions showing evaluation and installation tasks"
+          className="block"
+          style={{ height: 420, width: "auto", maxWidth: "none" }}
+        />
+      </div>
     </section>
   );
 }
