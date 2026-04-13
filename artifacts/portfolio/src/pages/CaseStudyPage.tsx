@@ -4424,55 +4424,59 @@ function PartnerAnecdotesSection() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, amount: 0.15 });
 
+  // Scattered absolute positions — two loose rows of 3, some bleeding off edges
+  const positions: { top: string; left: string; zIndex: number }[] = [
+    { top: "14%",  left: "-3%",  zIndex: 2 },   // row 1 — bleeds left
+    { top: "19%",  left: "24%",  zIndex: 3 },   // row 1 — centre-left
+    { top: "13%",  left: "51%",  zIndex: 2 },   // row 1 — centre-right
+    { top: "51%",  left: "5%",   zIndex: 2 },   // row 2 — left
+    { top: "49%",  left: "31%",  zIndex: 4 },   // row 2 — centre (on top)
+    { top: "53%",  left: "63%",  zIndex: 2 },   // row 2 — bleeds right
+  ];
+
   return (
     <section
       id="section-partner-anecdotes"
       ref={ref}
-      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      className="relative h-screen snap-start snap-always overflow-hidden"
       style={{ background: "#F5F5F7" }}
     >
-      <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
+      {/* Header — pinned top-left */}
+      <motion.div
+        initial={{ opacity: 0, y: 14 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
+        transition={{ duration: 0.5, ease: EASE }}
+        style={{
+          position: "absolute", top: 48, left: 56, zIndex: 20,
+          display: "flex", flexDirection: "column", gap: 5,
+        }}
+      >
+        <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.38)", margin: 0 }}>
+          Anecdotes
+        </p>
+        <h2 style={{ fontFamily: FF, fontWeight: 700, fontSize: "clamp(20px,2.4vw,28px)", color: "#1a1a1a", margin: 0, lineHeight: 1.1 }}>
+          What we heard from partners and customers
+        </h2>
+      </motion.div>
 
-        {/* Header */}
+      {/* Scattered cards */}
+      {EDITION_ANECDOTES.map((a, i) => (
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
-          transition={{ duration: 0.55, ease: EASE }}
-          style={{ padding: "0 56px", display: "flex", flexDirection: "column", gap: 6 }}
-        >
-          <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.4)", margin: 0 }}>
-            Anecdotes
-          </p>
-          <h2 style={{ fontFamily: FF, fontWeight: 700, fontSize: "clamp(22px,2.8vw,30px)", color: "#1a1a1a", margin: 0, lineHeight: 1.1 }}>
-            What we heard from partners and customers
-          </h2>
-        </motion.div>
-
-        {/* Horizontal scroll — all 6 cards, edge cards bleed off screen */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.55, ease: EASE, delay: 0.15 }}
-          className="hide-scrollbar"
+          key={i}
+          initial={{ opacity: 0, scale: 0.88, y: 16 }}
+          animate={isInView ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.88, y: 16 }}
+          transition={{ duration: 0.55, ease: EASE, delay: 0.1 + i * 0.07 }}
           style={{
-            display: "flex",
-            gap: 20,
-            overflowX: "auto",
-            overflowY: "visible",
-            paddingLeft: 56,
-            paddingRight: 56,
-            paddingTop: 44,
-            paddingBottom: 56,
+            position: "absolute",
+            top: positions[i].top,
+            left: positions[i].left,
+            width: 248,
+            zIndex: positions[i].zIndex,
           }}
         >
-          {EDITION_ANECDOTES.map((a, i) => (
-            <div key={i} style={{ flexShrink: 0, width: 272 }}>
-              <EditionAnecdoteCard a={a} visible={true} />
-            </div>
-          ))}
+          <EditionAnecdoteCard a={a} visible={true} />
         </motion.div>
-
-      </div>
+      ))}
     </section>
   );
 }
