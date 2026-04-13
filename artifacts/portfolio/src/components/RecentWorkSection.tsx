@@ -33,6 +33,9 @@ const PROJECTS = [
     description: "Designed AI-powered support automation that reduced support tickets by 32% and improved customer satisfaction across all demographics.",
     timeline: "2020 – 2021",
     image: "/foresight-cover.png",
+    backgroundSize: "50%",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
     placeholderColor: "#B8D8C8",
     colSpan: "md:col-span-2",
     type: "image",
@@ -44,7 +47,9 @@ const PROJECTS = [
     description: "Led cross-functional team to redesign support workflows. Reduced resolution time by 42% through smart routing and self-serve options.",
     timeline: "2023 – 2024",
     image: "/carrara-cover.png",
-    backgroundPosition: "right center",
+    backgroundSize: "50%",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
     placeholderColor: "#D4C5F9",
     colSpan: "md:col-span-1",
     type: "image",
@@ -119,7 +124,7 @@ function ProjectCard({
         <a
           href={`/work/${project.id}`}
           aria-label={`View case study: ${project.title} — ${project.category}`}
-          className="group relative block rounded-2xl overflow-hidden cursor-pointer w-full h-[39vh] hover:shadow-2xl transition-shadow duration-300"
+          className="group relative block rounded-2xl overflow-hidden cursor-pointer w-full h-[78vh] hover:shadow-2xl transition-shadow duration-300"
           onMouseEnter={() => setHoveredId(project.id)}
           onMouseLeave={() => setHoveredId(null)}
         >
@@ -132,6 +137,7 @@ function ProjectCard({
                     backgroundImage: `url(${project.image})`,
                     backgroundSize: (project as any).backgroundSize ?? "cover",
                     backgroundPosition: (project as any).backgroundPosition ?? "center",
+                    backgroundRepeat: (project as any).backgroundRepeat ?? "no-repeat",
                   }
                 : {}),
             }}
