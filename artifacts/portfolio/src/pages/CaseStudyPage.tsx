@@ -1642,10 +1642,6 @@ function ProcessSection({ study }: { study: CaseStudy }) {
             >
               A fast-growing, high-volume ecosystem
             </h2>
-            <p className="text-sm text-[#1a1a1a]/50 mb-8" style={{ fontFamily: "'Wotfard', sans-serif" }}>
-              The Atlassian Marketplace operates at enterprise scale across every major deployment tier.
-            </p>
-
             {/* Stat tickers */}
             <div className="flex items-stretch mb-8" style={{ borderTop: "1px solid rgba(26,26,26,0.10)", borderBottom: "1px solid rgba(26,26,26,0.10)" }}>
               {[
