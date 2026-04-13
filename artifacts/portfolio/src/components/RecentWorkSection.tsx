@@ -21,7 +21,8 @@ const PROJECTS = [
     description: "Designed transparency features that surfaced security certifications and compliance details, building user confidence in third-party apps.",
     timeline: "APR 2024 — JUN 2025",
     image: "/marketplace-cover.png",
-    backgroundPosition: "50% -150%",
+    backgroundPosition: "65% 45%",
+    backgroundSize: "250%",
     placeholderColor: "#0D0D0D",
     colSpan: "md:col-span-2",
     type: "image",
@@ -129,7 +130,7 @@ function ProjectCard({
               ...(project.image
                 ? {
                     backgroundImage: `url(${project.image})`,
-                    backgroundSize: "cover",
+                    backgroundSize: (project as any).backgroundSize ?? "cover",
                     backgroundPosition: (project as any).backgroundPosition ?? "center",
                   }
                 : {}),
