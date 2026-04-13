@@ -3808,7 +3808,7 @@ function AppEditionsSolutionSection() {
   const FF = "'Wotfard', sans-serif";
   const partnerItems = [
     { icon: <Banknote size={14} strokeWidth={1.6} />, text: "Monetize high-value features separately", color: "#4338CA" },
-    { icon: <Sparkles size={14} strokeWidth={1.6} />, text: "Introduce free and premium tiers", color: "#4338CA" },
+    { icon: <Sparkles size={14} strokeWidth={1.6} />, text: "Continued investment", color: "#4338CA" },
     { icon: <Users size={14} strokeWidth={1.6} />, text: "Expand addressable market", color: "#4338CA" },
   ];
   const partnerEnables = ["Revenue growth", "Continued product investment"];
