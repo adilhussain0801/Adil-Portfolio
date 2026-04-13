@@ -32,6 +32,7 @@ const PROJECTS = [
     category: "Amazon Post-Purchase",
     description: "Reimagining the self serve and automation experience for Amazon post purchase experience team",
     timeline: "2020 – 2021",
+    externalUrl: "https://www.figma.com/deck/zSxmLm58MTe6eJhTKxXC4D/Project-Foresight?node-id=2002-55&node-type=slide&t=somX4fp2syAZZTQe-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1",
     image: "/foresight-cover.png",
     backgroundSize: "50%",
     backgroundPosition: "center",
@@ -122,7 +123,9 @@ function ProjectCard({
         </a>
       ) : (
         <a
-          href={`/work/${project.id}`}
+          href={(project as any).externalUrl ?? `/work/${project.id}`}
+          target={(project as any).externalUrl ? "_blank" : undefined}
+          rel={(project as any).externalUrl ? "noopener noreferrer" : undefined}
           aria-label={`View case study: ${project.title} — ${project.category}`}
           className="group relative block rounded-2xl overflow-hidden cursor-pointer w-full h-[78vh] hover:shadow-2xl transition-shadow duration-300"
           onMouseEnter={() => setHoveredId(project.id)}
