@@ -3838,8 +3838,8 @@ function AppEditionsSolutionSection() {
             </p>
             <div className="flex flex-col gap-3">
               {capabilities.map((cap) => (
-                <div key={cap.label} className="flex items-start gap-3">
-                  <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: "white", color: cap.color, border: "1px solid rgba(26,26,26,0.07)" }}>
+                  <div key={cap.label} className="flex items-center gap-3">
+                  <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: "white", color: cap.color, border: "1px solid rgba(26,26,26,0.07)" }}>
                     {cap.icon}
                   </div>
                   <p className="text-sm text-[#1a1a1a]/70 leading-snug" style={{ fontFamily: FF }}>{cap.label}</p>
