@@ -265,7 +265,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     image: "/project-design-system.png",
     imageAlt: "Atlassian Marketplace trust and transparency features",
     overview:
-      "Designed transparency and trust features for the Atlassian Marketplace that surfaced security certifications, privacy details, and compliance status - converting hesitant enterprise buyers into confident installers.",
+      "Not every customer needs the same thing — or wants to pay the same price. App Editions lets Marketplace partners offer multiple tiers of the same app within a single listing: a free or lightweight edition for price-sensitive teams, and a premium edition packed with advanced features for customers who want more.\n\nInstead of building and maintaining separate apps, partners can define editions — each with its own feature set and pricing — all under one Marketplace listing. Customers pick the tier that fits their needs, and partners unlock a clearer path to monetization.",
     metrics: [
       { label: "FEWER TICKETS", value: "67%" },
       { label: "FEWER DETRACTORS", value: "16%" },
