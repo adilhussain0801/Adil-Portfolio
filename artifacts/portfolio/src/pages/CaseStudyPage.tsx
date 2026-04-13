@@ -1827,7 +1827,7 @@ function ProcessSection({ study }: { study: CaseStudy }) {
       <section
         id="section-process"
         className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
-        style={{ background: "#F5F5F7" }}
+        style={{ background: "#F5EFEA" }}
       >
         <SnapReveal>
           <div className="max-w-3xl mx-auto w-full px-8">
