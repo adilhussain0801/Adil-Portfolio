@@ -3538,7 +3538,7 @@ function EvaluationJourneySection() {
             style={{ marginLeft: 144, marginRight: 144, borderColor: "rgba(26,26,26,0.08)", background: "#fff", padding: "24px 32px" }}
           >
             <img
-              src="/editions-journey.png"
+              src="/editions-journey-v2.png"
               alt="Current customer evaluation and installation journey diagram"
               className="block"
               style={{ height: 420, width: "auto", maxWidth: "none" }}
