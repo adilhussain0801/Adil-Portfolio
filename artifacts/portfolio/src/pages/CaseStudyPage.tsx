@@ -3859,7 +3859,7 @@ function AppEditionsSolutionSection() {
               </div>
               <div className="flex flex-col gap-2 pt-3" style={{ borderTop: "1px solid rgba(26,26,26,0.07)" }}>
                 <p className="text-[10px] uppercase tracking-widest font-bold" style={{ color: "rgba(26,26,26,0.35)", fontFamily: FF }}>Enables</p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-nowrap gap-2">
                   {partnerEnables.map((e) => (
                     <span key={e} className="text-xs font-semibold px-2.5 py-1 rounded-full" style={{ background: "rgba(67,56,202,0.08)", color: "#4338CA", border: "1px solid rgba(67,56,202,0.18)", fontFamily: FF }}>{e}</span>
                   ))}
