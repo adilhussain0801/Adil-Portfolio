@@ -1458,26 +1458,24 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
               3rd largest revenue-generating vertical for Atlassian
             </p>
 
-            {/* Expand toggle */}
-            <button
-              onClick={() => setStatsOpen(o => !o)}
-              className="flex items-center gap-2 group"
-              style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}
-            >
-              <span
-                className="text-[11px] uppercase tracking-widest font-bold"
-                style={{ color: statsOpen ? "#E8654B" : "rgba(26,26,26,0.35)", fontFamily: "'Wotfard', sans-serif", transition: "color 0.2s" }}
+            {/* Expand toggle — one-way, disappears once opened */}
+            {!statsOpen && (
+              <button
+                onClick={() => setStatsOpen(true)}
+                className="flex items-center gap-2"
+                style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}
               >
-                {statsOpen ? "Hide numbers" : "See the scale"}
-              </span>
-              <motion.span
-                animate={{ rotate: statsOpen ? 180 : 0 }}
-                transition={{ duration: 0.25 }}
-                style={{ display: "flex", color: statsOpen ? "#E8654B" : "rgba(26,26,26,0.3)", marginTop: 1 }}
-              >
-                <ChevronDown size={14} strokeWidth={2.5} />
-              </motion.span>
-            </button>
+                <span
+                  className="text-[11px] uppercase tracking-widest font-bold"
+                  style={{ color: "rgba(26,26,26,0.35)", fontFamily: "'Wotfard', sans-serif" }}
+                >
+                  See the scale
+                </span>
+                <span style={{ display: "flex", color: "rgba(26,26,26,0.3)", marginTop: 1 }}>
+                  <ChevronDown size={14} strokeWidth={2.5} />
+                </span>
+              </button>
+            )}
 
             {/* Collapsible stats */}
             <motion.div
@@ -1491,9 +1489,9 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                 style={{ borderTop: "1px solid rgba(26,26,26,0.10)", borderBottom: "1px solid rgba(26,26,26,0.10)" }}
               >
                 {[
-                  { end: 6000,  format: (n: number) => `${(n / 1000).toFixed(0)}K+`, label: "Apps & integrations" },
-                  { end: 2000,  format: (n: number) => `${(n / 1000).toFixed(0)}K+`, label: "Vendors building on the platform" },
-                  { end: 20000, format: (n: number) => `~${(n / 1000).toFixed(0)}K`, label: "Installs every week" },
+                  { end: 6000,  format: (n: number) => `${n.toLocaleString()}+`, label: "Apps & integrations" },
+                  { end: 2000,  format: (n: number) => `${n.toLocaleString()}+`, label: "Vendors building on the platform" },
+                  { end: 20000, format: (n: number) => `~${n.toLocaleString()}`, label: "Installs every week" },
                 ].map((stat, i) => (
                   <div
                     key={i}
@@ -1794,7 +1792,7 @@ function StatTicker({ end, format, label }: { end: number; format: (n: number) =
   const [display, setDisplay] = useState(format(0));
   useEffect(() => {
     if (!isVisible) { setDisplay(format(0)); return; }
-    const dur = 1200;
+    const dur = 550;
     const start = performance.now();
     let raf: number;
     const tick = (now: number) => {
