@@ -3249,7 +3249,7 @@ function ExperienceWalkthroughSection() {
             }}
           >
             <a
-              href="https://ainwi-services-v-2.replit.app/"
+              href="https://www.figma.com/proto/QHNJT47ZQcfuHx3qfwvM37/%E2%9C%85-App-editions?node-id=40000014-94476&viewport=507%2C-5323%2C0.18&t=SjxUysXf26zjf9qp-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=40000014%3A94476&page-id=10646%3A81810"
               target="_blank"
               rel="noopener noreferrer"
               style={{
