@@ -296,7 +296,7 @@ function IndexSlide() {
     <section
       id="section-index"
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
-      style={{ background: "#FAFAF9" }}
+      style={{ background: "#F5F5F7" }}
     >
       <div ref={ref} className="max-w-2xl mx-auto w-full px-6">
         <motion.div
@@ -1428,7 +1428,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
       <section
         id="section-challenge"
         className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
-        style={{ background: "#FFFFFF" }}
+        style={{ background: "#F5F5F7" }}
       >
         <SnapReveal>
           <div className="max-w-3xl mx-auto w-full px-8">
@@ -1827,7 +1827,7 @@ function ProcessSection({ study }: { study: CaseStudy }) {
       <section
         id="section-process"
         className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
-        style={{ background: "#FFFFFF" }}
+        style={{ background: "#F5F5F7" }}
       >
         <SnapReveal>
           <div className="max-w-3xl mx-auto w-full px-8">
@@ -2256,7 +2256,7 @@ function EarlyStageConceptsSection() {
     <section
       id="section-concepts"
       className="relative h-screen snap-start snap-always overflow-hidden"
-      style={{ background: "#F6F4F0" }}
+      style={{ background: "#F5F5F7" }}
     >
       {/* Subtle paper noise texture */}
       <svg style={{ position: "absolute", width: 0, height: 0 }}>
@@ -3509,7 +3509,7 @@ function EvaluationJourneySection() {
     <section
       id="section-evaluation-journey"
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
-      style={{ background: "#FAFAF9" }}
+      style={{ background: "#F5F5F7" }}
     >
       <SnapReveal>
         <div className="flex flex-col gap-6">
@@ -3575,7 +3575,7 @@ function CustomerRealitySection() {
     <section
       id="section-customer-reality"
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
-      style={{ background: "#FFFFFF" }}
+      style={{ background: "#F5F5F7" }}
     >
       <SnapReveal>
         <div className="max-w-2xl mx-auto w-full px-8 flex flex-col gap-8">
@@ -3778,7 +3778,7 @@ function PartnerChallengesSection() {
     <section
       id="section-partner-challenges"
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
-      style={{ background: "#FFFFFF" }}
+      style={{ background: "#F5F5F7" }}
     >
       <SnapReveal>
         <div className="max-w-3xl mx-auto w-full px-8">
