@@ -3795,9 +3795,7 @@ function ReframingProblemSection() {
             style={{ background: "rgba(67,56,202,0.06)", border: "1px solid rgba(67,56,202,0.18)" }}
           >
             <Building2 size={16} className="flex-shrink-0" style={{ color: "#4338CA" }} />
-            <p className="text-sm font-semibold" style={{ color: "#4338CA", fontFamily: FF }}>
-              A platform-level design problem, not just UI
-            </p>
+            <p className="text-sm font-semibold" style={{ color: "#4338CA", fontFamily: FF }}>This wasn’t a UI problem — it was a packaging problem</p>
           </div>
 
         </div>
