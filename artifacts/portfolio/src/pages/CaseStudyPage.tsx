@@ -3811,7 +3811,7 @@ function AppEditionsSolutionSection() {
     { icon: <Sparkles size={14} strokeWidth={1.6} />, text: "Continued investment", color: "#4338CA" },
     { icon: <Users size={14} strokeWidth={1.6} />, text: "Expand addressable market", color: "#4338CA" },
   ];
-  const partnerEnables = ["Revenue growth", "Continued product investment"];
+  const partnerEnables = ["Revenue growth", "Continued investment"];
   const customerItems = [
     { icon: <Target size={14} strokeWidth={1.6} />, text: "Choose based on actual needs", color: "#0891B2" },
     { icon: <ArrowRight size={14} strokeWidth={1.6} />, text: "Lower barrier to entry", color: "#0891B2" },
