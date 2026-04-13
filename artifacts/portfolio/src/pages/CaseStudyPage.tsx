@@ -3844,7 +3844,7 @@ function AppEditionsSolutionSection() {
                 <div className="w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: "rgba(67,56,202,0.10)", border: "1px solid rgba(67,56,202,0.20)" }}>
                   <Building2 size={12} style={{ color: "#4338CA" }} strokeWidth={1.8} />
                 </div>
-                <p className="text-[10px] uppercase tracking-widest font-bold" style={{ color: "#4338CA", fontFamily: FF }}>Partner</p>
+                <p className="text-[10px] uppercase tracking-widest font-bold" style={{ color: "#4338CA", fontFamily: FF }}>What this unlocks for Partner</p>
               </div>
               <p className="text-sm font-semibold text-[#1a1a1a] leading-snug" style={{ fontFamily: FF }}>A scalable monetization model</p>
               <div className="flex flex-col gap-2">
@@ -3873,7 +3873,7 @@ function AppEditionsSolutionSection() {
                 <div className="w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: "rgba(8,145,178,0.10)", border: "1px solid rgba(8,145,178,0.20)" }}>
                   <Users size={12} style={{ color: "#0891B2" }} strokeWidth={1.8} />
                 </div>
-                <p className="text-[10px] uppercase tracking-widest font-bold" style={{ color: "#0891B2", fontFamily: FF }}>Customer</p>
+                <p className="text-[10px] uppercase tracking-widest font-bold" style={{ color: "#0891B2", fontFamily: FF }}>What this unlocks for Customer</p>
               </div>
               <p className="text-sm font-semibold text-[#1a1a1a] leading-snug" style={{ fontFamily: FF }}>Flexibility drives adoption</p>
               <div className="flex flex-col gap-2">
