@@ -125,8 +125,6 @@ function ProjectCard({
       ) : (
         <a
           href={(project as any).externalUrl ?? `/work/${project.id}`}
-          target="_blank"
-          rel="noopener noreferrer"
           aria-label={`View case study: ${project.title} — ${project.category}`}
           className="group relative block rounded-2xl overflow-hidden cursor-pointer w-full h-[78vh] hover:shadow-2xl transition-shadow duration-300"
           onMouseEnter={() => setHoveredId(project.id)}
