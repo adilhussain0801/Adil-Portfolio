@@ -1,7 +1,7 @@
 import { useParams, Link } from "wouter";
 import { useRef, useEffect, useState, useMemo, type RefObject } from "react";
 import { motion, useInView, AnimatePresence, useMotionValue, useTransform, useSpring, animate } from "framer-motion";
-import { ArrowLeft, ArrowRight, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, AlertCircle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare, ChevronLeft, ChevronRight, X, CheckCircle2, Settings, Banknote, Layers, Users, BookOpen, Bot, GraduationCap, Briefcase, Link2, ArrowLeftRight, BarChart2, Building2, Target, ShieldCheck, Menu } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, AlertCircle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare, ChevronLeft, ChevronRight, ChevronDown, X, CheckCircle2, Settings, Banknote, Layers, Users, BookOpen, Bot, GraduationCap, Briefcase, Link2, ArrowLeftRight, BarChart2, Building2, Target, ShieldCheck, Menu } from "lucide-react";
 import walkthroughScreenshot from "@assets/ExpWalkthrough_1775735219205.png";
 import { getCaseStudy, getNextCaseStudy, getAllCaseStudies, type CaseStudy } from "@/data/caseStudies";
 import NotFound from "@/pages/not-found";
@@ -1076,6 +1076,7 @@ function DrumRollValue({ color = "inherit" }: { color?: string }) {
 
 function ChallengeSection({ study }: { study: CaseStudy }) {
   const groups = study.challenge.timelineGroups;
+  const [statsOpen, setStatsOpen] = useState(false);
 
   const heroStatement =
     "Service agents spend more time understanding requests than resolving them. A single request requires navigating fragmented tools, clarifying missing information, and manually stitching together a resolution plan resulting in delays, inefficiencies, and high cognitive load.";
@@ -1451,11 +1452,59 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
               <span style={{ display: "block" }}>Atlassian's growth</span>
             </h2>
             <p
-              className="text-base text-[#1a1a1a]/50"
+              className="text-base text-[#1a1a1a]/50 mb-6"
               style={{ fontFamily: "'Wotfard', sans-serif" }}
             >
               3rd largest revenue-generating vertical for Atlassian
             </p>
+
+            {/* Expand toggle */}
+            <button
+              onClick={() => setStatsOpen(o => !o)}
+              className="flex items-center gap-2 group"
+              style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}
+            >
+              <span
+                className="text-[11px] uppercase tracking-widest font-bold"
+                style={{ color: statsOpen ? "#E8654B" : "rgba(26,26,26,0.35)", fontFamily: "'Wotfard', sans-serif", transition: "color 0.2s" }}
+              >
+                {statsOpen ? "Hide numbers" : "See the scale"}
+              </span>
+              <motion.span
+                animate={{ rotate: statsOpen ? 180 : 0 }}
+                transition={{ duration: 0.25 }}
+                style={{ display: "flex", color: statsOpen ? "#E8654B" : "rgba(26,26,26,0.3)", marginTop: 1 }}
+              >
+                <ChevronDown size={14} strokeWidth={2.5} />
+              </motion.span>
+            </button>
+
+            {/* Collapsible stats */}
+            <motion.div
+              initial={false}
+              animate={{ height: statsOpen ? "auto" : 0, opacity: statsOpen ? 1 : 0 }}
+              transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+              style={{ overflow: "hidden" }}
+            >
+              <div
+                className="flex items-stretch mt-5"
+                style={{ borderTop: "1px solid rgba(26,26,26,0.10)", borderBottom: "1px solid rgba(26,26,26,0.10)" }}
+              >
+                {[
+                  { end: 6000,  format: (n: number) => `${(n / 1000).toFixed(0)}K+`, label: "Apps & integrations" },
+                  { end: 2000,  format: (n: number) => `${(n / 1000).toFixed(0)}K+`, label: "Vendors building on the platform" },
+                  { end: 20000, format: (n: number) => `~${(n / 1000).toFixed(0)}K`, label: "Installs every week" },
+                ].map((stat, i) => (
+                  <div
+                    key={i}
+                    className="flex-1 flex flex-col justify-center py-5 px-5"
+                    style={{ borderRight: i < 2 ? "1px solid rgba(26,26,26,0.10)" : "none" }}
+                  >
+                    <StatTicker end={stat.end} format={stat.format} label={stat.label} />
+                  </div>
+                ))}
+              </div>
+            </motion.div>
           </div>
         </SnapReveal>
       </section>
@@ -1798,23 +1847,6 @@ function ProcessSection({ study }: { study: CaseStudy }) {
             >
               A fast-growing, high-volume ecosystem
             </h2>
-            {/* Stat tickers */}
-            <div className="flex items-stretch mb-8" style={{ borderTop: "1px solid rgba(26,26,26,0.10)", borderBottom: "1px solid rgba(26,26,26,0.10)" }}>
-              {[
-                { end: 6000, format: (n: number) => `${(n / 1000).toFixed(0)}K+`, label: "Apps & integrations" },
-                { end: 2000, format: (n: number) => `${(n / 1000).toFixed(0)}K+`, label: "Vendors building on the platform" },
-                { end: 20000, format: (n: number) => `~${(n / 1000).toFixed(0)}K`, label: "Installs every week" },
-              ].map((stat, i) => (
-                <div
-                  key={i}
-                  className="flex-1 flex flex-col justify-center py-6 px-5"
-                  style={{ borderRight: i < 2 ? "1px solid rgba(26,26,26,0.10)" : "none" }}
-                >
-                  <StatTicker end={stat.end} format={stat.format} label={stat.label} />
-                </div>
-              ))}
-            </div>
-
             {/* Marketplace journey — hand-drawn sketch */}
             <div style={{ background: "#FFFDF5", borderRadius: 10, padding: "18px 12px 14px" }}>
               <svg
