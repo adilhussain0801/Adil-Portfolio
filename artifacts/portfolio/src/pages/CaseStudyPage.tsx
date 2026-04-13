@@ -4628,6 +4628,112 @@ function PartnerAnecdotesSection() {
   );
 }
 
+const STUDY3_LEARNINGS = [
+  {
+    title: "We weren't solving pricing — we were fixing how value shows up",
+    lines: [
+      "We started thinking this was a pricing problem.",
+      "It turned out to be about how value is structured and understood during evaluation.",
+    ],
+  },
+  {
+    title: "The hardest part wasn't choosing — it was justifying",
+    lines: [
+      "Customers could understand the product.",
+      "But they struggled to explain why it was worth the cost to others.",
+    ],
+  },
+  {
+    title: "More options didn't hurt — unclear options did",
+    lines: [
+      "Adding tiers didn't increase confusion.",
+      "It actually reduced it, because the value became easier to reason about.",
+    ],
+  },
+  {
+    title: "Confidence shows up before conversion",
+    lines: [
+      "We saw that once users felt confident in what they were getting,",
+      "trial and installation naturally followed.",
+    ],
+  },
+  {
+    title: "This only worked when partners actually used it",
+    lines: [
+      "Editions created the capability, but the impact depended entirely on how partners packaged their apps.",
+      "The system worked only when the ecosystem leaned into it.",
+    ],
+  },
+];
+
+function KeyLearningsSection() {
+  const FF = "'Wotfard', sans-serif";
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: false, amount: 0.15 });
+
+  return (
+    <section
+      id="section-learnings"
+      ref={ref}
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#F5F5F7" }}
+    >
+      <div style={{ maxWidth: 760, margin: "0 auto", width: "100%", padding: "0 48px" }}>
+
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
+          transition={{ duration: 0.5, ease: EASE }}
+          style={{ display: "flex", flexDirection: "column", gap: 5, marginBottom: 36 }}
+        >
+          <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.38)", margin: 0 }}>
+            Learnings
+          </p>
+          <h2 style={{ fontFamily: FF, fontWeight: 700, fontSize: "clamp(20px,2.4vw,28px)", color: "#1a1a1a", margin: 0, lineHeight: 1.1 }}>
+            Key Learnings
+          </h2>
+        </motion.div>
+
+        {/* Items */}
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          {STUDY3_LEARNINGS.map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 14 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
+              transition={{ duration: 0.5, ease: EASE, delay: 0.08 + i * 0.07 }}
+              style={{
+                display: "grid",
+                gridTemplateColumns: "32px 1fr",
+                gap: "0 20px",
+                padding: "16px 0",
+                borderTop: i === 0 ? "none" : "1px solid rgba(26,26,26,0.08)",
+                alignItems: "start",
+              }}
+            >
+              {/* Number */}
+              <span style={{ fontFamily: FF, fontSize: 11, fontWeight: 700, color: "rgba(26,26,26,0.22)", letterSpacing: "0.06em", paddingTop: 2 }}>
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              {/* Content */}
+              <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
+                <p style={{ fontFamily: FF, fontSize: 14, fontWeight: 700, color: "#1a1a1a", margin: 0, lineHeight: 1.35 }}>
+                  {item.title}
+                </p>
+                <p style={{ fontFamily: FF, fontSize: 12, color: "rgba(26,26,26,0.5)", margin: 0, lineHeight: 1.6 }}>
+                  {item.lines.join(" ")}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
 function ImpactSection({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObject<HTMLDivElement> }) {
   const FF = "'Wotfard', sans-serif";
   const ref = useRef<HTMLDivElement>(null);
@@ -4998,6 +5104,7 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
     { id: "section-impact", label: "Impact" },
     ...(study.id === 3 ? [{ id: "section-adoption", label: "Go-to-Market" }] : []),
     ...(study.id === 3 ? [{ id: "section-partner-anecdotes", label: "Anecdotes" }] : []),
+    ...(study.id === 3 ? [{ id: "section-learnings", label: "Learnings" }] : []),
     ...(study.id === 4 ? [{ id: "section-retrospective", label: "Learnings" }] : []),
     ...(study.id === 4 ? [{ id: "section-whatnext", label: "What's Next" }] : []),
     { id: "section-next", label: "Next Project" },
@@ -5274,6 +5381,7 @@ export default function CaseStudyPage() {
         <ImpactSection study={study} scrollRef={scrollRef} />
         {study.id === 3 && <AdoptionAtScaleSection />}
         {study.id === 3 && <PartnerAnecdotesSection />}
+        {study.id === 3 && <KeyLearningsSection />}
         {study.id === 4 && <RetrospectiveSection />}
         {study.id === 4 && <WhatNextSection />}
         <NextProjectSection study={study} />
