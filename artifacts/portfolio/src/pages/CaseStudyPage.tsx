@@ -4564,14 +4564,9 @@ function AdoptionAtScaleSection() {
           }}
         >
           <span style={{ fontSize: 18 }}>⚡</span>
-          <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-            <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(26,26,26,0.4)", margin: 0 }}>
-              Outcome
-            </p>
-            <p style={{ fontFamily: FF, fontSize: 13, color: "#1a1a1a", margin: 0, lineHeight: 1.5 }}>
-              App Editions scaled not just through launch — but through partner enablement.
-            </p>
-          </div>
+          <p style={{ fontFamily: FF, fontSize: 13, color: "#1a1a1a", margin: 0, lineHeight: 1.5 }}>
+            App Editions scaled not just through launch — but through partner enablement.
+          </p>
         </motion.div>
 
       </div>
