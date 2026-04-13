@@ -3224,18 +3224,27 @@ function SolutionSection({ study }: { study: CaseStudy }) {
       <section
         id="section-solution"
         className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
-        style={{ background: "#FFFFFF" }}
+        style={{ background: "#111111" }}
       >
         <SnapReveal>
           <div className="max-w-3xl mx-auto w-full px-8">
-            <p className="text-[10px] uppercase tracking-widest font-semibold mb-3" style={{ color: "#E8654B", fontFamily: FF }}>
-              How the Ecosystem Works
+            <p
+              className="font-black leading-tight"
+              style={{ fontFamily: FF, fontSize: "clamp(36px, 4.5vw, 60px)", letterSpacing: "-0.03em", color: "rgba(255,255,255,0.22)" }}
+            >
+              A $5.7B ecosystem.
             </p>
-            <h2 className="text-4xl md:text-5xl font-black leading-tight text-[#1a1a1a] mb-4" style={{ fontFamily: FF, letterSpacing: "-0.03em" }}>
-              A $5.7B ecosystem powering Atlassian's growth
-            </h2>
-            <p className="text-sm text-[#1a1a1a]/50" style={{ fontFamily: FF }}>
-              3rd largest revenue-generating vertical for Atlassian
+            <p
+              className="font-black leading-tight mt-2"
+              style={{ fontFamily: FF, fontSize: "clamp(36px, 4.5vw, 60px)", letterSpacing: "-0.03em", color: "rgba(255,255,255,0.22)" }}
+            >
+              3rd largest revenue vertical.
+            </p>
+            <p
+              className="font-black leading-tight mt-4"
+              style={{ fontFamily: FF, fontSize: "clamp(36px, 4.5vw, 60px)", letterSpacing: "-0.03em", color: "#FFFFFF" }}
+            >
+              But we were still leaving<br />a lot of money on the table.
             </p>
           </div>
         </SnapReveal>
