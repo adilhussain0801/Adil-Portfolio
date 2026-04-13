@@ -1,0 +1,2 @@
+artifacts/portfolio/public/AppEditionsV3.mov filter=lfs diff=lfs merge=lfs -text
+attached_assets/AppEditionsV3_1776077380555.mov filter=lfs diff=lfs merge=lfs -text

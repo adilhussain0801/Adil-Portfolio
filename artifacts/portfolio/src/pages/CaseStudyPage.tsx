@@ -3,6 +3,7 @@ import { useRef, useEffect, useState, useMemo, type RefObject } from "react";
 import { motion, useInView, AnimatePresence, useMotionValue, useTransform, useSpring, animate } from "framer-motion";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, AlertCircle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare, ChevronLeft, ChevronRight, ChevronDown, X, CheckCircle2, Settings, Banknote, Layers, Users, BookOpen, Bot, GraduationCap, Briefcase, Link2, ArrowLeftRight, BarChart2, Building2, Target, ShieldCheck, Menu } from "lucide-react";
 import walkthroughScreenshot from "@assets/Bento_1776074204042.png";
+import docsScreenshot from "@assets/Screenshot_2026-04-13_at_16.19.24_1776077371148.png";
 import { getCaseStudy, getNextCaseStudy, getAllCaseStudies, type CaseStudy } from "@/data/caseStudies";
 import NotFound from "@/pages/not-found";
 
@@ -4419,6 +4420,165 @@ function EditionAnecdoteCard({ a, visible }: { a: (typeof EDITION_ANECDOTES)[0];
   );
 }
 
+function AdoptionAtScaleSection() {
+  const FF = "'Wotfard', sans-serif";
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: false, amount: 0.15 });
+
+  const fadeUp = (delay: number) => ({
+    initial: { opacity: 0, y: 18 },
+    animate: isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 },
+    transition: { duration: 0.55, ease: EASE, delay },
+  });
+
+  const bullets = {
+    video: [
+      "Introduce App Editions to a global audience",
+      "Align internal teams on positioning and value",
+      "Drive early awareness across the ecosystem",
+    ],
+    docs: [
+      "Understand Editions and pricing models",
+      "Package features into Standard vs Advanced",
+      "Roll out Editions with confidence",
+    ],
+  };
+
+  return (
+    <section
+      id="section-adoption"
+      ref={ref}
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#F5F5F7" }}
+    >
+      <div style={{ maxWidth: 940, margin: "0 auto", width: "100%", padding: "0 48px", display: "flex", flexDirection: "column", gap: 28 }}>
+
+        {/* Header */}
+        <motion.div {...fadeUp(0)} style={{ display: "flex", flexDirection: "column", gap: 5 }}>
+          <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.38)", margin: 0 }}>
+            Go-to-Market
+          </p>
+          <h2 style={{ fontFamily: FF, fontWeight: 700, fontSize: "clamp(20px,2.4vw,28px)", color: "#1a1a1a", margin: 0, lineHeight: 1.1 }}>
+            Enabling adoption at scale
+          </h2>
+        </motion.div>
+
+        {/* Two-column panels */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+
+          {/* Left — Video */}
+          <motion.div {...fadeUp(0.1)} style={{
+            background: "#fff",
+            borderRadius: 18,
+            border: "1px solid rgba(26,26,26,0.07)",
+            overflow: "hidden",
+            display: "flex",
+            flexDirection: "column",
+          }}>
+            {/* Video */}
+            <div style={{ background: "#0D0D0D", aspectRatio: "16/9", overflow: "hidden", flexShrink: 0 }}>
+              <video
+                src="/AppEditionsV3.mov"
+                autoPlay
+                muted
+                loop
+                playsInline
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+              />
+            </div>
+            {/* Text */}
+            <div style={{ padding: "20px 22px 22px", display: "flex", flexDirection: "column", gap: 12, flex: 1 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <span style={{ fontSize: 16 }}>🎥</span>
+                <p style={{ fontFamily: FF, fontSize: 13, fontWeight: 700, color: "#1a1a1a", margin: 0 }}>Flagship launch at Team</p>
+              </div>
+              <p style={{ fontFamily: FF, fontSize: 12, color: "rgba(26,26,26,0.5)", margin: 0, lineHeight: 1.55 }}>
+                Promo video showcased at Atlassian's flagship event to:
+              </p>
+              <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 5 }}>
+                {bullets.video.map((b, i) => (
+                  <li key={i} style={{ fontFamily: FF, fontSize: 12, color: "rgba(26,26,26,0.65)", display: "flex", alignItems: "flex-start", gap: 8 }}>
+                    <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#E8654B", flexShrink: 0, marginTop: 6, opacity: 0.8 }} />
+                    {b}
+                  </li>
+                ))}
+              </ul>
+              <p style={{ fontFamily: FF, fontSize: 12, color: "#E8654B", margin: 0, lineHeight: 1.5, fontWeight: 600 }}>
+                → Established a clear narrative from day one
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Right — Documentation */}
+          <motion.div {...fadeUp(0.18)} style={{
+            background: "#fff",
+            borderRadius: 18,
+            border: "1px solid rgba(26,26,26,0.07)",
+            overflow: "hidden",
+            display: "flex",
+            flexDirection: "column",
+          }}>
+            {/* Screenshot */}
+            <div style={{ background: "#F0F4F8", overflow: "hidden", flexShrink: 0, aspectRatio: "16/9" }}>
+              <img
+                src={docsScreenshot}
+                alt="Atlassian partner documentation for App Editions"
+                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top left", display: "block" }}
+              />
+            </div>
+            {/* Text */}
+            <div style={{ padding: "20px 22px 22px", display: "flex", flexDirection: "column", gap: 12, flex: 1 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <span style={{ fontSize: 16 }}>📚</span>
+                <p style={{ fontFamily: FF, fontSize: 13, fontWeight: 700, color: "#1a1a1a", margin: 0 }}>Partner documentation & onboarding</p>
+              </div>
+              <p style={{ fontFamily: FF, fontSize: 12, color: "rgba(26,26,26,0.5)", margin: 0, lineHeight: 1.55 }}>
+                Built comprehensive guides to help partners:
+              </p>
+              <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 5 }}>
+                {bullets.docs.map((b, i) => (
+                  <li key={i} style={{ fontFamily: FF, fontSize: 12, color: "rgba(26,26,26,0.65)", display: "flex", alignItems: "flex-start", gap: 8 }}>
+                    <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#6B8CDA", flexShrink: 0, marginTop: 6, opacity: 0.8 }} />
+                    {b}
+                  </li>
+                ))}
+              </ul>
+              <p style={{ fontFamily: FF, fontSize: 12, color: "#6B8CDA", margin: 0, lineHeight: 1.5, fontWeight: 600 }}>
+                → Adoption depended on partners — value was unlocked only when they implemented it
+              </p>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Outcome strip */}
+        <motion.div
+          {...fadeUp(0.26)}
+          style={{
+            background: "rgba(26,26,26,0.04)",
+            border: "1px solid rgba(26,26,26,0.07)",
+            borderRadius: 14,
+            padding: "16px 24px",
+            display: "flex",
+            alignItems: "center",
+            gap: 14,
+          }}
+        >
+          <span style={{ fontSize: 18 }}>⚡</span>
+          <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(26,26,26,0.4)", margin: 0 }}>
+              Outcome
+            </p>
+            <p style={{ fontFamily: FF, fontSize: 13, color: "#1a1a1a", margin: 0, lineHeight: 1.5 }}>
+              App Editions scaled not just through launch — but through partner enablement.
+            </p>
+          </div>
+        </motion.div>
+
+      </div>
+    </section>
+  );
+}
+
 function PartnerAnecdotesSection() {
   const FF = "'Wotfard', sans-serif";
   const ref = useRef<HTMLDivElement>(null);
@@ -4841,6 +5001,7 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
     { id: "section-walkthrough", label: "Walkthrough" },
     ...(study.id === 4 ? [{ id: "section-anecdotes", label: "Anecdotes" }] : []),
     { id: "section-impact", label: "Impact" },
+    ...(study.id === 3 ? [{ id: "section-adoption", label: "Go-to-Market" }] : []),
     ...(study.id === 3 ? [{ id: "section-partner-anecdotes", label: "Anecdotes" }] : []),
     ...(study.id === 4 ? [{ id: "section-retrospective", label: "Learnings" }] : []),
     ...(study.id === 4 ? [{ id: "section-whatnext", label: "What's Next" }] : []),
@@ -5116,6 +5277,7 @@ export default function CaseStudyPage() {
         <ExperienceWalkthroughSection />
         {study.id === 4 && <CustomerAnecdotesSection />}
         <ImpactSection study={study} scrollRef={scrollRef} />
+        {study.id === 3 && <AdoptionAtScaleSection />}
         {study.id === 3 && <PartnerAnecdotesSection />}
         {study.id === 4 && <RetrospectiveSection />}
         {study.id === 4 && <WhatNextSection />}
