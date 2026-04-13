@@ -3747,12 +3747,10 @@ function ReframingProblemSection() {
           <p className="text-[10px] uppercase tracking-widest font-semibold mb-3" style={{ color: "#E8654B", fontFamily: FF }}>
             Reframing the Problem
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight mb-2" style={{ fontFamily: FF }}>
-            From pricing limitations
+          <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight mb-8" style={{ fontFamily: FF }}>
+            The shift: from pricing controls{" "}
+            <span style={{ color: "#E8654B" }}>→ value packaging</span>
           </h2>
-          <p className="text-base font-bold mb-8" style={{ color: "#E8654B", fontFamily: FF }}>
-            → value packaging system
-          </p>
 
           {/* Before → After */}
           <div className="flex items-stretch gap-3 mb-8">
