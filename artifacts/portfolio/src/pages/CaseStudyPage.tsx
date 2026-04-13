@@ -3507,7 +3507,7 @@ function EvaluationJourneySection() {
               Current Journey
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight" style={{ fontFamily: FF }}>
-              Evaluation is fragmented<br />and cognitively heavy
+              Evaluation is fragmented and cognitively heavy
             </h2>
             <ul className="flex flex-col gap-2.5 list-none m-0 p-0">
               {bullets.map((b, i) => (
