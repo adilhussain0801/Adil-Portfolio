@@ -20,7 +20,7 @@ const PROJECTS = [
     category: "Growth & Optimization",
     description: "Designed transparency features that surfaced security certifications and compliance details, building user confidence in third-party apps.",
     timeline: "APR 2024 — JUN 2025",
-    image: null,
+    image: "/marketplace-cover.png",
     placeholderColor: "#0D0D0D",
     colSpan: "md:col-span-2",
     type: "image",
