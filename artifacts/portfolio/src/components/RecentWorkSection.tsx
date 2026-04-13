@@ -44,6 +44,7 @@ const PROJECTS = [
     description: "Led cross-functional team to redesign support workflows. Reduced resolution time by 42% through smart routing and self-serve options.",
     timeline: "2023 – 2024",
     image: "/carrara-cover.png",
+    backgroundPosition: "right center",
     placeholderColor: "#D4C5F9",
     colSpan: "md:col-span-1",
     type: "image",
@@ -118,7 +119,7 @@ function ProjectCard({
         <a
           href={`/work/${project.id}`}
           aria-label={`View case study: ${project.title} — ${project.category}`}
-          className="group relative block rounded-2xl overflow-hidden cursor-pointer w-full h-[78vh] hover:shadow-2xl transition-shadow duration-300"
+          className="group relative block rounded-2xl overflow-hidden cursor-pointer w-full h-[39vh] hover:shadow-2xl transition-shadow duration-300"
           onMouseEnter={() => setHoveredId(project.id)}
           onMouseLeave={() => setHoveredId(null)}
         >
