@@ -4424,14 +4424,15 @@ function PartnerAnecdotesSection() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, amount: 0.15 });
 
-  // Scattered absolute positions — two loose rows of 3, some bleeding off edges
+  // Scattered absolute positions — two centred rows of 3
+  // Card width 248px, ~28px gap → row width ~800px centred in viewport (~1200px) → start ≈ 17%
   const positions: { top: string; left: string; zIndex: number }[] = [
-    { top: "14%",  left: "-3%",  zIndex: 2 },   // row 1 — bleeds left
-    { top: "19%",  left: "24%",  zIndex: 3 },   // row 1 — centre-left
-    { top: "13%",  left: "51%",  zIndex: 2 },   // row 1 — centre-right
-    { top: "51%",  left: "5%",   zIndex: 2 },   // row 2 — left
-    { top: "49%",  left: "31%",  zIndex: 4 },   // row 2 — centre (on top)
-    { top: "53%",  left: "63%",  zIndex: 2 },   // row 2 — bleeds right
+    { top: "15%",  left: "17%",  zIndex: 2 },   // row 1 — left
+    { top: "19%",  left: "40%",  zIndex: 3 },   // row 1 — centre
+    { top: "13%",  left: "63%",  zIndex: 2 },   // row 1 — right
+    { top: "51%",  left: "17%",  zIndex: 2 },   // row 2 — left
+    { top: "49%",  left: "40%",  zIndex: 4 },   // row 2 — centre (on top)
+    { top: "53%",  left: "63%",  zIndex: 2 },   // row 2 — right
   ];
 
   return (
