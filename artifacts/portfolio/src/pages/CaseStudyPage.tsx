@@ -3202,75 +3202,15 @@ function SolutionSection({ study }: { study: CaseStudy }) {
       >
         <SnapReveal>
           <div className="max-w-3xl mx-auto w-full px-8">
-
             <p className="text-[10px] uppercase tracking-widest font-semibold mb-3" style={{ color: "#E8654B", fontFamily: FF }}>
               How the Ecosystem Works
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight mb-2" style={{ fontFamily: FF }}>
-              A multi-sided platform
+            <h2 className="text-4xl md:text-5xl font-black leading-tight text-[#1a1a1a] mb-4" style={{ fontFamily: FF, letterSpacing: "-0.03em" }}>
+              A $5.7B ecosystem powering Atlassian's growth
             </h2>
-            <p className="text-sm text-[#1a1a1a]/50 mb-8" style={{ fontFamily: FF }}>
-              Partners, Marketplace, and Customers connected in a shared value loop.
+            <p className="text-sm text-[#1a1a1a]/50" style={{ fontFamily: FF }}>
+              3rd largest revenue-generating vertical for Atlassian
             </p>
-
-            {/* Platform flow */}
-            <div className="flex items-stretch gap-0 mb-6">
-              {nodes.map((node, i) => (
-                <div key={node.title} className="flex items-center gap-0 flex-1 min-w-0">
-                  {/* Node card */}
-                  <div
-                    className="flex-1 rounded-2xl px-4 py-4 flex flex-col gap-2 min-w-0"
-                    style={{ background: node.bg, border: `1px solid ${node.border}` }}
-                  >
-                    <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: "white", color: node.color }}>
-                      {node.icon}
-                    </div>
-                    <p className="text-sm font-bold text-[#1a1a1a]" style={{ fontFamily: FF }}>{node.title}</p>
-                    <p className="text-xs text-[#1a1a1a]/55 leading-snug" style={{ fontFamily: FF }}>{node.desc}</p>
-                  </div>
-                  {/* Arrow between nodes */}
-                  {i < nodes.length - 1 && (
-                    <div className="flex flex-col items-center px-2 flex-shrink-0">
-                      <ArrowRight size={16} className="text-[#1a1a1a]/25" />
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            {/* Revenue loop */}
-            <div
-              className="flex items-center gap-3 rounded-xl px-4 py-3 mb-8"
-              style={{ background: "rgba(99,102,241,0.06)", border: "1px solid rgba(99,102,241,0.18)" }}
-            >
-              <ArrowLeftRight size={15} className="flex-shrink-0" style={{ color: "#4338CA" }} />
-              <p className="text-sm" style={{ fontFamily: FF }}>
-                <span className="font-semibold text-[#4338CA]">Revenue is shared</span>
-                <span className="text-[#1a1a1a]/60"> between Atlassian and partners, creating aligned incentives for growth.</span>
-              </p>
-            </div>
-
-            {/* Growth levers */}
-            <p className="text-xs uppercase tracking-widest font-semibold text-[#1a1a1a]/35 mb-3" style={{ fontFamily: FF }}>
-              Growth depends on
-            </p>
-            <div className="flex gap-2 flex-wrap">
-              {[
-                { label: "Partner innovation", icon: <Lightbulb size={13} strokeWidth={1.6} />, color: "#7C3AED", bg: "rgba(124,58,237,0.07)", border: "rgba(124,58,237,0.18)" },
-                { label: "Effective monetization", icon: <Banknote size={13} strokeWidth={1.6} />, color: "#2563EB", bg: "rgba(37,99,235,0.07)", border: "rgba(37,99,235,0.18)" },
-                { label: "Customer adoption", icon: <Users size={13} strokeWidth={1.6} />, color: "#0891B2", bg: "rgba(8,145,178,0.07)", border: "rgba(8,145,178,0.18)" },
-              ].map((lever) => (
-                <div
-                  key={lever.label}
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-full"
-                  style={{ background: lever.bg, border: `1px solid ${lever.border}`, color: lever.color }}
-                >
-                  {lever.icon}
-                  <span className="text-sm font-medium" style={{ fontFamily: FF, color: "#1a1a1a" }}>{lever.label}</span>
-                </div>
-              ))}
-            </div>
-
           </div>
         </SnapReveal>
       </section>
