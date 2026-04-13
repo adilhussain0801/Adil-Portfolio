@@ -17,7 +17,7 @@ const PROJECTS = [
   {
     id: 3,
     title: "App Editions",
-    category: "Growth & Optimization",
+    category: "Atlassian Marketplace",
     description: "One app. Multiple tiers. App Editions lets Marketplace partners package and price features for different types of customers — all from a single listing.",
     timeline: "APR 2024 — JUN 2025",
     image: "/app-editions-cover.png",
