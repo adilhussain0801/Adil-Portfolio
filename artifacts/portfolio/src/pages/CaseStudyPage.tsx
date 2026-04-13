@@ -3405,12 +3405,6 @@ function SolutionSection({ study }: { study: CaseStudy }) {
               A $5.7B ecosystem.
             </p>
             <p
-              className="font-black leading-tight mt-2"
-              style={{ fontFamily: FF, fontSize: "clamp(36px, 4.5vw, 60px)", letterSpacing: "-0.03em", color: "rgba(255,255,255,0.22)" }}
-            >
-              3rd largest revenue vertical.
-            </p>
-            <p
               className="font-black leading-tight mt-4"
               style={{ fontFamily: FF, fontSize: "clamp(36px, 4.5vw, 60px)", letterSpacing: "-0.03em", color: "#FFFFFF" }}
             >
