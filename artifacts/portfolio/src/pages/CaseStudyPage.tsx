@@ -1839,7 +1839,7 @@ function ProcessSection({ study }: { study: CaseStudy }) {
             src="/growth-loop-diagram.png"
             alt="Marketplace growth loop: Customer → Marketplace → Growth Loop ← Partner, with Growth Loop feeding back to Customer"
             style={{ width: "100%", maxWidth: 720, display: "block" }}
-          />
+            className="border-t-[#fef9f9] border-r-[#fef9f9] border-b-[#fef9f9] border-l-[#fef9f9]" />
         </SnapReveal>
       </section>
     );
