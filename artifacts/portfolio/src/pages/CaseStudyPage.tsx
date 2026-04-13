@@ -3570,7 +3570,7 @@ function CustomerRealitySection() {
               Customer Reality
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight" style={{ fontFamily: FF }}>
-              Adoption stalls during<br />internal validation
+              Adoption stalls when value is not justified
             </h2>
           </div>
 
