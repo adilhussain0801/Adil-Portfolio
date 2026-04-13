@@ -3869,11 +3869,11 @@ function AppEditionsSolutionSection() {
 function ScopeOfInitiativeSection() {
   const FF = "'Wotfard', sans-serif";
   const systems = [
-    { label: "Partner Portal", desc: "configuration & setup", color: "#7C3AED", bg: "rgba(124,58,237,0.07)", border: "rgba(124,58,237,0.18)" },
-    { label: "Marketplace", desc: "discovery & purchase", color: "#0891B2", bg: "rgba(8,145,178,0.07)", border: "rgba(8,145,178,0.18)" },
-    { label: "Admin Hub", desc: "post-purchase management", color: "#16A34A", bg: "rgba(22,163,74,0.07)", border: "rgba(22,163,74,0.18)" },
-    { label: "Commerce systems", desc: "pricing, billing, licensing", color: "#D97706", bg: "rgba(217,119,6,0.07)", border: "rgba(217,119,6,0.18)" },
-    { label: "Advocate Central & Partner Purchase flows", desc: "", color: "#4338CA", bg: "rgba(67,56,202,0.07)", border: "rgba(67,56,202,0.18)" },
+    { label: "Partner Portal", desc: "configuration & setup", icon: <Building2 size={14} strokeWidth={1.8} />, color: "#7C3AED", bg: "rgba(124,58,237,0.07)", border: "rgba(124,58,237,0.18)" },
+    { label: "Marketplace", desc: "discovery & purchase", icon: <Sparkles size={14} strokeWidth={1.8} />, color: "#0891B2", bg: "rgba(8,145,178,0.07)", border: "rgba(8,145,178,0.18)" },
+    { label: "Admin Hub", desc: "post-purchase management", icon: <Users size={14} strokeWidth={1.8} />, color: "#16A34A", bg: "rgba(22,163,74,0.07)", border: "rgba(22,163,74,0.18)" },
+    { label: "Commerce systems", desc: "pricing, billing, licensing", icon: <Banknote size={14} strokeWidth={1.8} />, color: "#D97706", bg: "rgba(217,119,6,0.07)", border: "rgba(217,119,6,0.18)" },
+    { label: "Advocate Central & Partner Purchase flows", desc: "", icon: <ArrowRight size={14} strokeWidth={1.8} />, color: "#4338CA", bg: "rgba(67,56,202,0.07)", border: "rgba(67,56,202,0.18)" },
   ];
   const roles = ["defining value", "communicating value", "and transacting value"];
   return (
@@ -3896,18 +3896,22 @@ function ScopeOfInitiativeSection() {
             </p>
           </div>
 
-          <div className="flex flex-col gap-2">
+          <div className="grid grid-cols-2 gap-3">
             {systems.map((s) => (
               <div
                 key={s.label}
-                className="flex items-center gap-3 rounded-2xl px-4 py-3"
+                className="rounded-2xl px-4 py-4 flex items-center gap-3"
                 style={{ background: s.bg, border: `1px solid ${s.border}` }}
               >
-                <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: s.color }} />
-                <p className="text-sm font-semibold" style={{ color: s.color, fontFamily: FF }}>
-                  {s.label}
-                  {s.desc && <span className="font-normal text-[#1a1a1a]/45 ml-1">— {s.desc}</span>}
-                </p>
+                <div className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: "white", border: "1px solid rgba(26,26,26,0.06)", color: s.color }}>
+                  {s.icon}
+                </div>
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold leading-snug" style={{ color: s.color, fontFamily: FF }}>
+                    {s.label}
+                  </p>
+                  {s.desc && <p className="text-xs text-[#1a1a1a]/45 leading-snug" style={{ fontFamily: FF }}>{s.desc}</p>}
+                </div>
               </div>
             ))}
           </div>
