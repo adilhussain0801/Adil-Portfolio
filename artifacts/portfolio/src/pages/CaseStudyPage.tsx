@@ -5176,8 +5176,8 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
     ...(study.id === 3 ? [{ id: "section-system-design-complexity", label: "Adoption" }] : []),
     ...(study.id === 3 ? [{ id: "section-business-impact", label: "Business Case" }] : []),
     { id: "section-walkthrough", label: "Walkthrough" },
-    ...(study.id === 4 ? [{ id: "section-anecdotes", label: "Anecdotes" }] : []),
     { id: "section-impact", label: "Impact" },
+    ...(study.id === 4 ? [{ id: "section-anecdotes", label: "Anecdotes" }] : []),
     ...(study.id === 3 ? [{ id: "section-adoption", label: "Go-to-Market" }] : []),
     ...(study.id === 3 ? [{ id: "section-partner-anecdotes", label: "Anecdotes" }] : []),
     ...(study.id === 3 ? [{ id: "section-learnings", label: "Learnings" }] : []),
@@ -5453,8 +5453,8 @@ export default function CaseStudyPage() {
         {study.id === 3 && <SystemDesignComplexitySection />}
         {study.id === 3 && <BusinessImpactSection />}
         <ExperienceWalkthroughSection />
-        {study.id === 4 && <CustomerAnecdotesSection />}
         <ImpactSection study={study} scrollRef={scrollRef} />
+        {study.id === 4 && <CustomerAnecdotesSection />}
         {study.id === 3 && <AdoptionAtScaleSection />}
         {study.id === 3 && <PartnerAnecdotesSection />}
         {study.id === 3 && <KeyLearningsSection />}
