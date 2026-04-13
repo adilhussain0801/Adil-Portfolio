@@ -3806,11 +3806,18 @@ function ReframingProblemSection() {
 
 function AppEditionsSolutionSection() {
   const FF = "'Wotfard', sans-serif";
-  const capabilities = [
-    { icon: <Layers size={14} strokeWidth={1.6} />, label: "Create multiple editions", color: "#4338CA" },
-    { icon: <Banknote size={14} strokeWidth={1.6} />, label: "Bundle features into differentiated tiers", color: "#0891B2" },
-    { icon: <Target size={14} strokeWidth={1.6} />, label: "Align pricing with value", color: "#16A34A" },
+  const partnerItems = [
+    { icon: <Banknote size={14} strokeWidth={1.6} />, text: "Monetize high-value features separately", color: "#4338CA" },
+    { icon: <Sparkles size={14} strokeWidth={1.6} />, text: "Introduce premium tiers", color: "#4338CA" },
+    { icon: <Users size={14} strokeWidth={1.6} />, text: "Expand addressable market", color: "#4338CA" },
   ];
+  const partnerEnables = ["Revenue growth", "Continued product investment"];
+  const customerItems = [
+    { icon: <Target size={14} strokeWidth={1.6} />, text: "Choose based on actual needs", color: "#0891B2" },
+    { icon: <ArrowRight size={14} strokeWidth={1.6} />, text: "Lower barrier to entry", color: "#0891B2" },
+    { icon: <BarChart2 size={14} strokeWidth={1.6} />, text: "Upgrade as needs evolve", color: "#0891B2" },
+  ];
+  const customerEnables = ["Justifiable", "Transparent", "Scalable"];
   return (
     <section
       id="section-app-editions"
@@ -3826,26 +3833,69 @@ function AppEditionsSolutionSection() {
           <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight mb-2" style={{ fontFamily: FF }}>
             App Editions
           </h2>
-          <p className="text-sm text-[#1a1a1a]/50 mb-8" style={{ fontFamily: FF }}>Structure value into clear, purchasable choices</p>
+          <p className="text-sm text-[#1a1a1a]/50 mb-6" style={{ fontFamily: FF }}>Structure value into clear, purchasable choices</p>
 
-          {/* What partners can do */}
-          <div
-            className="rounded-2xl px-5 py-5 flex flex-col gap-4 mb-6"
-            style={{ background: "#F5F5F7", border: "1px solid rgba(26,26,26,0.08)" }}
-          >
-            <p className="text-[10px] uppercase tracking-widest font-bold" style={{ color: "rgba(26,26,26,0.35)", fontFamily: FF }}>
-              App Editions allows partners to
-            </p>
-            <div className="flex flex-col gap-3">
-              {capabilities.map((cap) => (
-                  <div key={cap.label} className="flex items-center gap-3">
-                  <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: "white", color: cap.color, border: "1px solid rgba(26,26,26,0.07)" }}>
-                    {cap.icon}
-                  </div>
-                  <p className="text-sm text-[#1a1a1a]/70 leading-snug" style={{ fontFamily: FF }}>{cap.label}</p>
+          {/* Partner / Customer grid */}
+          <div className="grid grid-cols-2 gap-4 mb-5">
+
+            {/* Partner column */}
+            <div className="rounded-2xl px-5 py-5 flex flex-col gap-4" style={{ background: "#FFFFFF", border: "1px solid rgba(26,26,26,0.08)" }}>
+              <div className="flex items-center gap-2">
+                <div className="w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: "rgba(67,56,202,0.10)", border: "1px solid rgba(67,56,202,0.20)" }}>
+                  <Building2 size={12} style={{ color: "#4338CA" }} strokeWidth={1.8} />
                 </div>
-              ))}
+                <p className="text-[10px] uppercase tracking-widest font-bold" style={{ color: "#4338CA", fontFamily: FF }}>Partner</p>
+              </div>
+              <p className="text-sm font-semibold text-[#1a1a1a] leading-snug" style={{ fontFamily: FF }}>A scalable monetization model</p>
+              <div className="flex flex-col gap-2">
+                {partnerItems.map((item) => (
+                  <div key={item.text} className="flex items-start gap-2">
+                    <div className="w-5 h-5 rounded-md flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: "rgba(67,56,202,0.07)", color: item.color }}>
+                      {item.icon}
+                    </div>
+                    <p className="text-xs text-[#1a1a1a]/60 leading-snug" style={{ fontFamily: FF }}>{item.text}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-col gap-2 pt-3" style={{ borderTop: "1px solid rgba(26,26,26,0.07)" }}>
+                <p className="text-[10px] uppercase tracking-widest font-bold" style={{ color: "rgba(26,26,26,0.35)", fontFamily: FF }}>Enables</p>
+                <div className="flex flex-wrap gap-2">
+                  {partnerEnables.map((e) => (
+                    <span key={e} className="text-xs font-semibold px-2.5 py-1 rounded-full" style={{ background: "rgba(67,56,202,0.08)", color: "#4338CA", border: "1px solid rgba(67,56,202,0.18)", fontFamily: FF }}>{e}</span>
+                  ))}
+                </div>
+              </div>
             </div>
+
+            {/* Customer column */}
+            <div className="rounded-2xl px-5 py-5 flex flex-col gap-4" style={{ background: "#FFFFFF", border: "1px solid rgba(26,26,26,0.08)" }}>
+              <div className="flex items-center gap-2">
+                <div className="w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: "rgba(8,145,178,0.10)", border: "1px solid rgba(8,145,178,0.20)" }}>
+                  <Users size={12} style={{ color: "#0891B2" }} strokeWidth={1.8} />
+                </div>
+                <p className="text-[10px] uppercase tracking-widest font-bold" style={{ color: "#0891B2", fontFamily: FF }}>Customer</p>
+              </div>
+              <p className="text-sm font-semibold text-[#1a1a1a] leading-snug" style={{ fontFamily: FF }}>Flexibility drives adoption</p>
+              <div className="flex flex-col gap-2">
+                {customerItems.map((item) => (
+                  <div key={item.text} className="flex items-start gap-2">
+                    <div className="w-5 h-5 rounded-md flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: "rgba(8,145,178,0.07)", color: item.color }}>
+                      {item.icon}
+                    </div>
+                    <p className="text-xs text-[#1a1a1a]/60 leading-snug" style={{ fontFamily: FF }}>{item.text}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-col gap-2 pt-3" style={{ borderTop: "1px solid rgba(26,26,26,0.07)" }}>
+                <p className="text-[10px] uppercase tracking-widest font-bold" style={{ color: "rgba(26,26,26,0.35)", fontFamily: FF }}>Pricing becomes</p>
+                <div className="flex flex-wrap gap-2">
+                  {customerEnables.map((e) => (
+                    <span key={e} className="text-xs font-semibold px-2.5 py-1 rounded-full" style={{ background: "rgba(8,145,178,0.08)", color: "#0891B2", border: "1px solid rgba(8,145,178,0.18)", fontFamily: FF }}>{e}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
           </div>
 
           {/* One app callout */}
@@ -3976,104 +4026,6 @@ function FocusOfCaseStudySection() {
             <p className="text-sm leading-relaxed" style={{ fontFamily: FF, color: "#4338CA" }}>
               This is where adoption decisions are made — and where App Editions creates the most immediate impact
             </p>
-          </div>
-        </div>
-      </SnapReveal>
-    </section>
-  );
-}
-
-function WhatThisUnlocksSection() {
-  const FF = "'Wotfard', sans-serif";
-  const partnerItems = [
-    { icon: <Banknote size={14} strokeWidth={1.6} />, text: "Monetize high-value features separately", color: "#4338CA" },
-    { icon: <Sparkles size={14} strokeWidth={1.6} />, text: "Introduce premium tiers", color: "#4338CA" },
-    { icon: <Users size={14} strokeWidth={1.6} />, text: "Expand addressable market", color: "#4338CA" },
-  ];
-  const partnerEnables = ["Revenue growth", "Continued product investment"];
-  const customerItems = [
-    { icon: <Target size={14} strokeWidth={1.6} />, text: "Choose based on actual needs", color: "#0891B2" },
-    { icon: <ArrowRight size={14} strokeWidth={1.6} />, text: "Lower barrier to entry", color: "#0891B2" },
-    { icon: <BarChart2 size={14} strokeWidth={1.6} />, text: "Upgrade as needs evolve", color: "#0891B2" },
-  ];
-  const customerEnables = ["Justifiable", "Transparent", "Scalable"];
-
-  return (
-    <section
-      id="section-what-unlocks"
-      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
-      style={{ background: "#F5F5F7" }}
-    >
-      <SnapReveal>
-        <div className="max-w-3xl mx-auto w-full px-8">
-
-          <p className="text-[10px] uppercase tracking-widest font-semibold mb-3" style={{ color: "#E8654B", fontFamily: FF }}>
-            What This Unlocks
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight mb-8" style={{ fontFamily: FF }}>
-            Value for every side of the marketplace
-          </h2>
-
-          <div className="grid grid-cols-2 gap-4">
-
-            {/* Partner column */}
-            <div className="rounded-2xl px-5 py-5 flex flex-col gap-4" style={{ background: "#FFFFFF", border: "1px solid rgba(26,26,26,0.08)" }}>
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: "rgba(67,56,202,0.10)", border: "1px solid rgba(67,56,202,0.20)" }}>
-                  <Building2 size={12} style={{ color: "#4338CA" }} strokeWidth={1.8} />
-                </div>
-                <p className="text-[10px] uppercase tracking-widest font-bold" style={{ color: "#4338CA", fontFamily: FF }}>Partner</p>
-              </div>
-              <p className="text-sm font-semibold text-[#1a1a1a] leading-snug" style={{ fontFamily: FF }}>A scalable monetization model</p>
-              <div className="flex flex-col gap-2">
-                {partnerItems.map((item) => (
-                  <div key={item.text} className="flex items-start gap-2">
-                    <div className="w-5 h-5 rounded-md flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: "rgba(67,56,202,0.07)", color: item.color }}>
-                      {item.icon}
-                    </div>
-                    <p className="text-xs text-[#1a1a1a]/60 leading-snug" style={{ fontFamily: FF }}>{item.text}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="flex flex-col gap-2 pt-3" style={{ borderTop: "1px solid rgba(26,26,26,0.07)" }}>
-                <p className="text-[10px] uppercase tracking-widest font-bold" style={{ color: "rgba(26,26,26,0.35)", fontFamily: FF }}>Enables</p>
-                <div className="flex flex-wrap gap-2">
-                  {partnerEnables.map((e) => (
-                    <span key={e} className="text-xs font-semibold px-2.5 py-1 rounded-full" style={{ background: "rgba(67,56,202,0.08)", color: "#4338CA", border: "1px solid rgba(67,56,202,0.18)", fontFamily: FF }}>{e}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Customer column */}
-            <div className="rounded-2xl px-5 py-5 flex flex-col gap-4" style={{ background: "#FFFFFF", border: "1px solid rgba(26,26,26,0.08)" }}>
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: "rgba(8,145,178,0.10)", border: "1px solid rgba(8,145,178,0.20)" }}>
-                  <Users size={12} style={{ color: "#0891B2" }} strokeWidth={1.8} />
-                </div>
-                <p className="text-[10px] uppercase tracking-widest font-bold" style={{ color: "#0891B2", fontFamily: FF }}>Customer</p>
-              </div>
-              <p className="text-sm font-semibold text-[#1a1a1a] leading-snug" style={{ fontFamily: FF }}>Flexibility drives adoption</p>
-              <div className="flex flex-col gap-2">
-                {customerItems.map((item) => (
-                  <div key={item.text} className="flex items-start gap-2">
-                    <div className="w-5 h-5 rounded-md flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: "rgba(8,145,178,0.07)", color: item.color }}>
-                      {item.icon}
-                    </div>
-                    <p className="text-xs text-[#1a1a1a]/60 leading-snug" style={{ fontFamily: FF }}>{item.text}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="flex flex-col gap-2 pt-3" style={{ borderTop: "1px solid rgba(26,26,26,0.07)" }}>
-                <p className="text-[10px] uppercase tracking-widest font-bold" style={{ color: "rgba(26,26,26,0.35)", fontFamily: FF }}>Pricing becomes</p>
-                <div className="flex flex-wrap gap-2">
-                  {customerEnables.map((e) => (
-                    <span key={e} className="text-xs font-semibold px-2.5 py-1 rounded-full" style={{ background: "rgba(8,145,178,0.08)", color: "#0891B2", border: "1px solid rgba(8,145,178,0.18)", fontFamily: FF }}>{e}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
-
           </div>
         </div>
       </SnapReveal>
@@ -5333,7 +5285,6 @@ export default function CaseStudyPage() {
         {study.id === 3 && <AppEditionsSolutionSection />}
         {study.id === 3 && <ScopeOfInitiativeSection />}
         {study.id === 3 && <FocusOfCaseStudySection />}
-        {study.id === 3 && <WhatThisUnlocksSection />}
         {study.id === 3 && <ExperienceTransformationSection />}
         {study.id === 3 && <KeyExperienceMomentsSection />}
         {study.id === 3 && <SystemDesignComplexitySection />}
