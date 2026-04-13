@@ -388,9 +388,9 @@ function OverviewSection({ study }: { study: CaseStudy }) {
             >
               <div style={{ transform: "skewY(3deg)" }}>
                 {study.id === 3 ? (
-                  <div className="flex flex-col gap-2">
+                  <div className="flex flex-col gap-5">
                     <p
-                      className="text-[10px] uppercase tracking-widest font-bold mb-1"
+                      className="text-[10px] uppercase tracking-widest font-bold"
                       style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
                     >
                       What is App Editions?
@@ -398,15 +398,35 @@ function OverviewSection({ study }: { study: CaseStudy }) {
                     <p
                       style={{
                         fontFamily: "'Wotfard', sans-serif",
-                        fontSize: "clamp(22px, 3vw, 32px)",
+                        fontSize: "clamp(20px, 2.6vw, 28px)",
                         fontWeight: 800,
-                        lineHeight: 1.2,
+                        lineHeight: 1.25,
                         letterSpacing: "-0.02em",
                         color: "#1a1a1a",
                       }}
                     >
-                      {study.overview}
+                      One app, sold smarter. App Editions lets Marketplace partners offer{" "}
+                      <mark style={{ background: "rgba(232,101,75,0.14)", color: "#C05437", borderRadius: "5px", padding: "2px 6px" }}>
+                        multiple pricing tiers
+                      </mark>
+                      {" "}— Free, Standard, Premium — within a single listing.
                     </p>
+                    <div className="flex flex-col gap-3">
+                      <p className="text-base leading-relaxed text-[#1a1a1a]" style={{ fontFamily: "'Wotfard', sans-serif" }}>
+                        Customers get{" "}
+                        <mark style={{ background: "rgba(99,102,241,0.12)", color: "#4338CA", borderRadius: "5px", padding: "2px 6px", fontWeight: 600 }}>
+                          options that match their needs and budget
+                        </mark>
+                        {" "}— without needing to find a different app.
+                      </p>
+                      <p className="text-base leading-relaxed text-[#1a1a1a]" style={{ fontFamily: "'Wotfard', sans-serif" }}>
+                        For partners and Atlassian, every upgrade is a{" "}
+                        <mark style={{ background: "rgba(22,163,74,0.12)", color: "#15803D", borderRadius: "5px", padding: "2px 6px", fontWeight: 600 }}>
+                          direct revenue event
+                        </mark>
+                        {" "}— turning app discovery into a scalable growth lever for the Marketplace.
+                      </p>
+                    </div>
                   </div>
                 ) : study.id === 4 ? (
                   <div className="flex flex-col gap-4">
