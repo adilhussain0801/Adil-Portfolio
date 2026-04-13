@@ -4422,208 +4422,137 @@ function EditionAnecdoteCard({ a, visible }: { a: (typeof EDITION_ANECDOTES)[0];
 
 function AdoptionAtScaleSection() {
   const FF = "'Wotfard', sans-serif";
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: false, amount: 0.15 });
 
-  const fadeUp = (delay: number) => ({
-    initial: { opacity: 0, y: 28 },
-    animate: isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 },
-    transition: { duration: 0.72, ease: APPLE, delay },
-  });
-
-  const bullets = {
-    video: [
-      "Introduce App Editions to a global audience",
-      "Align internal teams on positioning and value",
-      "Drive early awareness across the ecosystem",
-    ],
-    docs: [
-      "Understand Editions and pricing models",
-      "Package features into Standard vs Advanced",
-      "Roll out Editions with confidence",
-    ],
-  };
+  const videoBullets = [
+    "Introduce App Editions to a global audience",
+    "Align internal teams on positioning and value",
+    "Drive early awareness across the ecosystem",
+  ];
+  const docsBullets = [
+    "Understand Editions and pricing models",
+    "Package features into Standard vs Advanced",
+    "Roll out Editions with confidence",
+  ];
 
   return (
     <section
       id="section-adoption"
-      ref={ref}
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
       style={{ background: "#F5F5F7" }}
     >
-      <div style={{ maxWidth: 940, margin: "0 auto", width: "100%", padding: "0 48px", display: "flex", flexDirection: "column", gap: 28 }}>
+      <SnapReveal>
+        <div style={{ maxWidth: 940, margin: "0 auto", width: "100%", padding: "0 48px", display: "flex", flexDirection: "column", gap: 28 }}>
 
-        {/* Header */}
-        <motion.div {...fadeUp(0)} style={{ display: "flex", flexDirection: "column", gap: 5 }}>
-          <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.38)", margin: 0 }}>
-            Go-to-Market
-          </p>
-          <h2 style={{ fontFamily: FF, fontWeight: 700, fontSize: "clamp(20px,2.4vw,28px)", color: "#1a1a1a", margin: 0, lineHeight: 1.1 }}>
-            Enabling adoption at scale
-          </h2>
-        </motion.div>
+          {/* Header */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
+            <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.38)", margin: 0 }}>
+              Go-to-Market
+            </p>
+            <h2 style={{ fontFamily: FF, fontWeight: 700, fontSize: "clamp(20px,2.4vw,28px)", color: "#1a1a1a", margin: 0, lineHeight: 1.1 }}>
+              Enabling adoption at scale
+            </h2>
+          </div>
 
-        {/* Two-column panels */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+          {/* Two-column panels */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
 
-          {/* Left — Video */}
-          <motion.div {...fadeUp(0.1)} style={{
-            background: "#fff",
-            borderRadius: 18,
-            border: "1px solid rgba(26,26,26,0.07)",
-            overflow: "hidden",
-            display: "flex",
-            flexDirection: "column",
-          }}>
-            {/* Video */}
-            <div style={{ background: "#0D0D0D", aspectRatio: "16/9", overflow: "hidden", flexShrink: 0 }}>
-              <video
-                src="/AppEditionsV3.mov"
-                autoPlay
-                muted
-                loop
-                playsInline
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-              />
-            </div>
-            {/* Text */}
-            <div style={{ padding: "20px 22px 22px", display: "flex", flexDirection: "column", gap: 12, flex: 1 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <span style={{ fontSize: 16 }}>🎥</span>
-                <p style={{ fontFamily: FF, fontSize: 13, fontWeight: 700, color: "#1a1a1a", margin: 0 }}>Flagship launch at Team</p>
+            {/* Left — Video */}
+            <div style={{ background: "#fff", borderRadius: 18, border: "1px solid rgba(26,26,26,0.07)", overflow: "hidden", display: "flex", flexDirection: "column" }}>
+              <div style={{ background: "#0D0D0D", aspectRatio: "16/9", overflow: "hidden", flexShrink: 0 }}>
+                <video src="/AppEditionsV3.mov" autoPlay muted loop playsInline style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
               </div>
-              <p style={{ fontFamily: FF, fontSize: 12, color: "rgba(26,26,26,0.5)", margin: 0, lineHeight: 1.55 }}>
-                Promo video showcased at Atlassian's flagship event to:
-              </p>
-              <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 5 }}>
-                {bullets.video.map((b, i) => (
-                  <li key={i} style={{ fontFamily: FF, fontSize: 12, color: "rgba(26,26,26,0.65)", display: "flex", alignItems: "flex-start", gap: 8 }}>
-                    <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#E8654B", flexShrink: 0, marginTop: 6, opacity: 0.8 }} />
-                    {b}
-                  </li>
-                ))}
-              </ul>
-              <p style={{ fontFamily: FF, fontSize: 12, color: "#E8654B", margin: 0, lineHeight: 1.5, fontWeight: 600 }}>
-                → Established a clear narrative from day one
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Right — Documentation */}
-          <motion.div {...fadeUp(0.18)} style={{
-            background: "#fff",
-            borderRadius: 18,
-            border: "1px solid rgba(26,26,26,0.07)",
-            overflow: "hidden",
-            display: "flex",
-            flexDirection: "column",
-          }}>
-            {/* Screenshot */}
-            <div style={{ background: "#F0F4F8", overflow: "hidden", flexShrink: 0, aspectRatio: "16/9" }}>
-              <img
-                src={docsScreenshot}
-                alt="Atlassian partner documentation for App Editions"
-                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top left", display: "block" }}
-              />
-            </div>
-            {/* Text */}
-            <div style={{ padding: "20px 22px 22px", display: "flex", flexDirection: "column", gap: 12, flex: 1 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <span style={{ fontSize: 16 }}>📚</span>
-                <p style={{ fontFamily: FF, fontSize: 13, fontWeight: 700, color: "#1a1a1a", margin: 0 }}>Partner documentation & onboarding</p>
+              <div style={{ padding: "20px 22px 22px", display: "flex", flexDirection: "column", gap: 12, flex: 1 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  <span style={{ fontSize: 16 }}>🎥</span>
+                  <p style={{ fontFamily: FF, fontSize: 13, fontWeight: 700, color: "#1a1a1a", margin: 0 }}>Flagship launch at Team</p>
+                </div>
+                <p style={{ fontFamily: FF, fontSize: 12, color: "rgba(26,26,26,0.5)", margin: 0, lineHeight: 1.55 }}>Promo video showcased at Atlassian's flagship event to:</p>
+                <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 5 }}>
+                  {videoBullets.map((b, i) => (
+                    <li key={i} style={{ fontFamily: FF, fontSize: 12, color: "rgba(26,26,26,0.65)", display: "flex", alignItems: "flex-start", gap: 8 }}>
+                      <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#E8654B", flexShrink: 0, marginTop: 6, opacity: 0.8 }} />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+                <p style={{ fontFamily: FF, fontSize: 12, color: "#E8654B", margin: 0, lineHeight: 1.5, fontWeight: 600 }}>→ Established a clear narrative from day one</p>
               </div>
-              <p style={{ fontFamily: FF, fontSize: 12, color: "rgba(26,26,26,0.5)", margin: 0, lineHeight: 1.55 }}>
-                Built comprehensive guides to help partners:
-              </p>
-              <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 5 }}>
-                {bullets.docs.map((b, i) => (
-                  <li key={i} style={{ fontFamily: FF, fontSize: 12, color: "rgba(26,26,26,0.65)", display: "flex", alignItems: "flex-start", gap: 8 }}>
-                    <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#6B8CDA", flexShrink: 0, marginTop: 6, opacity: 0.8 }} />
-                    {b}
-                  </li>
-                ))}
-              </ul>
-              <p style={{ fontFamily: FF, fontSize: 12, color: "#6B8CDA", margin: 0, lineHeight: 1.5, fontWeight: 600 }}>
-                → Adoption depended on partners — value was unlocked only when they implemented it
-              </p>
             </div>
-          </motion.div>
+
+            {/* Right — Documentation */}
+            <div style={{ background: "#fff", borderRadius: 18, border: "1px solid rgba(26,26,26,0.07)", overflow: "hidden", display: "flex", flexDirection: "column" }}>
+              <div style={{ background: "#F0F4F8", overflow: "hidden", flexShrink: 0, aspectRatio: "16/9" }}>
+                <img src={docsScreenshot} alt="Atlassian partner documentation for App Editions" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top left", display: "block" }} />
+              </div>
+              <div style={{ padding: "20px 22px 22px", display: "flex", flexDirection: "column", gap: 12, flex: 1 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  <span style={{ fontSize: 16 }}>📚</span>
+                  <p style={{ fontFamily: FF, fontSize: 13, fontWeight: 700, color: "#1a1a1a", margin: 0 }}>Partner documentation & onboarding</p>
+                </div>
+                <p style={{ fontFamily: FF, fontSize: 12, color: "rgba(26,26,26,0.5)", margin: 0, lineHeight: 1.55 }}>Built comprehensive guides to help partners:</p>
+                <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 5 }}>
+                  {docsBullets.map((b, i) => (
+                    <li key={i} style={{ fontFamily: FF, fontSize: 12, color: "rgba(26,26,26,0.65)", display: "flex", alignItems: "flex-start", gap: 8 }}>
+                      <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#6B8CDA", flexShrink: 0, marginTop: 6, opacity: 0.8 }} />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+                <p style={{ fontFamily: FF, fontSize: 12, color: "#6B8CDA", margin: 0, lineHeight: 1.5, fontWeight: 600 }}>→ Adoption depended on partners — value was unlocked only when they implemented it</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Outcome strip */}
+          <div style={{ background: "rgba(26,26,26,0.04)", border: "1px solid rgba(26,26,26,0.07)", borderRadius: 14, padding: "16px 24px", display: "flex", alignItems: "center", gap: 14 }}>
+            <span style={{ fontSize: 18 }}>⚡</span>
+            <p style={{ fontFamily: FF, fontSize: 13, color: "#1a1a1a", margin: 0, lineHeight: 1.5 }}>
+              App Editions scaled not just through launch — but through partner enablement.
+            </p>
+          </div>
+
         </div>
-
-        {/* Outcome strip */}
-        <motion.div
-          {...fadeUp(0.26)}
-          style={{
-            background: "rgba(26,26,26,0.04)",
-            border: "1px solid rgba(26,26,26,0.07)",
-            borderRadius: 14,
-            padding: "16px 24px",
-            display: "flex",
-            alignItems: "center",
-            gap: 14,
-          }}
-        >
-          <span style={{ fontSize: 18 }}>⚡</span>
-          <p style={{ fontFamily: FF, fontSize: 13, color: "#1a1a1a", margin: 0, lineHeight: 1.5 }}>
-            App Editions scaled not just through launch — but through partner enablement.
-          </p>
-        </motion.div>
-
-      </div>
+      </SnapReveal>
     </section>
   );
 }
 
 function PartnerAnecdotesSection() {
   const FF = "'Wotfard', sans-serif";
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: false, amount: 0.15 });
-
-  // Column stagger offsets — col 2 drops down, col 3 slightly up
   const colOffsets = [0, 36, 12];
 
   return (
     <section
       id="section-partner-anecdotes"
-      ref={ref}
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
       style={{ background: "#F5F5F7" }}
     >
-      <div style={{ maxWidth: 920, margin: "0 auto", width: "100%", padding: "0 48px", display: "flex", flexDirection: "column", gap: 28 }}>
+      <SnapReveal>
+        <div style={{ maxWidth: 920, margin: "0 auto", width: "100%", padding: "0 48px", display: "flex", flexDirection: "column", gap: 28 }}>
 
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
-          transition={{ duration: 0.72, ease: APPLE }}
-          style={{ display: "flex", flexDirection: "column", gap: 5 }}
-        >
-          <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.38)", margin: 0 }}>
-            Anecdotes
-          </p>
-          <h2 style={{ fontFamily: FF, fontWeight: 700, fontSize: "clamp(20px,2.4vw,28px)", color: "#1a1a1a", margin: 0, lineHeight: 1.1 }}>
-            What we heard from partners and customers
-          </h2>
-        </motion.div>
+          {/* Header */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
+            <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.38)", margin: 0 }}>
+              Anecdotes
+            </p>
+            <h2 style={{ fontFamily: FF, fontWeight: 700, fontSize: "clamp(20px,2.4vw,28px)", color: "#1a1a1a", margin: 0, lineHeight: 1.1 }}>
+              What we heard from partners and customers
+            </h2>
+          </div>
 
-        {/* 3-column staggered grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 20, alignItems: "start" }}>
-          {[0, 1, 2].map((col) => (
-            <motion.div
-              key={col}
-              initial={{ opacity: 0, y: 28 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
-              transition={{ duration: 0.72, ease: APPLE, delay: 0.1 + col * 0.12 }}
-              style={{ display: "flex", flexDirection: "column", gap: 20, paddingTop: colOffsets[col] }}
-            >
-              {[col, col + 3].map((cardIdx) => (
-                <EditionAnecdoteCard key={cardIdx} a={EDITION_ANECDOTES[cardIdx]} visible={true} />
-              ))}
-            </motion.div>
-          ))}
+          {/* 3-column staggered grid */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 20, alignItems: "start" }}>
+            {[0, 1, 2].map((col) => (
+              <div key={col} style={{ display: "flex", flexDirection: "column", gap: 20, paddingTop: colOffsets[col] }}>
+                {[col, col + 3].map((cardIdx) => (
+                  <EditionAnecdoteCard key={cardIdx} a={EDITION_ANECDOTES[cardIdx]} visible={true} />
+                ))}
+              </div>
+            ))}
+          </div>
+
         </div>
-
-      </div>
+      </SnapReveal>
     </section>
   );
 }
@@ -4668,68 +4597,57 @@ const STUDY3_LEARNINGS = [
 
 function KeyLearningsSection() {
   const FF = "'Wotfard', sans-serif";
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: false, amount: 0.15 });
 
   return (
     <section
       id="section-learnings"
-      ref={ref}
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
       style={{ background: "#F5F5F7" }}
     >
-      <div style={{ maxWidth: 760, margin: "0 auto", width: "100%", padding: "0 48px" }}>
+      <SnapReveal>
+        <div style={{ maxWidth: 760, margin: "0 auto", width: "100%", padding: "0 48px" }}>
 
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
-          transition={{ duration: 0.72, ease: APPLE }}
-          style={{ display: "flex", flexDirection: "column", gap: 5, marginBottom: 36 }}
-        >
-          <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.38)", margin: 0 }}>
-            Learnings
-          </p>
-          <h2 style={{ fontFamily: FF, fontWeight: 700, fontSize: "clamp(20px,2.4vw,28px)", color: "#1a1a1a", margin: 0, lineHeight: 1.1 }}>
-            Key Learnings
-          </h2>
-        </motion.div>
+          {/* Header */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 5, marginBottom: 36 }}>
+            <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.38)", margin: 0 }}>
+              Learnings
+            </p>
+            <h2 style={{ fontFamily: FF, fontWeight: 700, fontSize: "clamp(20px,2.4vw,28px)", color: "#1a1a1a", margin: 0, lineHeight: 1.1 }}>
+              Key Learnings
+            </h2>
+          </div>
 
-        {/* Items */}
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          {STUDY3_LEARNINGS.map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 24 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-              transition={{ duration: 0.62, ease: APPLE, delay: 0.1 + i * 0.08 }}
-              style={{
-                display: "grid",
-                gridTemplateColumns: "32px 1fr",
-                gap: "0 20px",
-                padding: "16px 0",
-                borderTop: i === 0 ? "none" : "1px solid rgba(26,26,26,0.08)",
-                alignItems: "start",
-              }}
-            >
-              {/* Number */}
-              <span style={{ fontFamily: FF, fontSize: 11, fontWeight: 700, color: "rgba(26,26,26,0.22)", letterSpacing: "0.06em", paddingTop: 2 }}>
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              {/* Content */}
-              <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
-                <p style={{ fontFamily: FF, fontSize: 14, fontWeight: 700, color: "#1a1a1a", margin: 0, lineHeight: 1.35 }}>
-                  {item.title}
-                </p>
-                <p style={{ fontFamily: FF, fontSize: 12, color: "rgba(26,26,26,0.5)", margin: 0, lineHeight: 1.6 }}>
-                  {item.lines.join(" ")}
-                </p>
+          {/* Items */}
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            {STUDY3_LEARNINGS.map((item, i) => (
+              <div
+                key={i}
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "32px 1fr",
+                  gap: "0 20px",
+                  padding: "16px 0",
+                  borderTop: i === 0 ? "none" : "1px solid rgba(26,26,26,0.08)",
+                  alignItems: "start",
+                }}
+              >
+                <span style={{ fontFamily: FF, fontSize: 11, fontWeight: 700, color: "rgba(26,26,26,0.22)", letterSpacing: "0.06em", paddingTop: 2 }}>
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
+                  <p style={{ fontFamily: FF, fontSize: 14, fontWeight: 700, color: "#1a1a1a", margin: 0, lineHeight: 1.35 }}>
+                    {item.title}
+                  </p>
+                  <p style={{ fontFamily: FF, fontSize: 12, color: "rgba(26,26,26,0.5)", margin: 0, lineHeight: 1.6 }}>
+                    {item.lines.join(" ")}
+                  </p>
+                </div>
               </div>
-            </motion.div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-      </div>
+        </div>
+      </SnapReveal>
     </section>
   );
 }
@@ -4760,45 +4678,42 @@ function ImpactSection({ study, scrollRef }: { study: CaseStudy; scrollRef: RefO
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
       style={{ background: "#F5F5F7" }}
     >
-      <div style={{ maxWidth: 880, margin: "0 auto", width: "100%", padding: "0 40px", display: "flex", flexDirection: "column", gap: 0 }}>
+      <SnapReveal>
+        <div style={{ maxWidth: 880, margin: "0 auto", width: "100%", padding: "0 40px", display: "flex", flexDirection: "column", gap: 0 }}>
 
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
-          transition={{ duration: 0.72, ease: APPLE }}
-          style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 36 }}
-        >
-          <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.45)", margin: 0 }}>
-            {isStudy3 ? "Revenue Impact Since Launch" : "Impact — Early Signals"}
-          </p>
-          <p style={{ fontFamily: FF, fontSize: "clamp(22px,2.5vw,30px)", fontWeight: 700, color: "#1a1a1a", margin: 0, lineHeight: 1.1 }}>
-            {isStudy3 ? "App Editions unlocked monetization at scale" : "First 30 days post GA"}
-          </p>
-          <p style={{ fontFamily: FF, fontSize: 13, color: "rgba(26,26,26,0.45)", margin: 0, lineHeight: 1.55 }}>
-            {isStudy3
-              ? "By aligning pricing with value, Editions expanded both adoption and monetization."
-              : "Early signals show Rovo Service is beginning to execute work end-to-end with increasing accuracy and reduced need for intervention."}
-          </p>
-        </motion.div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 36 }}>
+            <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.45)", margin: 0 }}>
+              {isStudy3 ? "Revenue Impact Since Launch" : "Impact — Early Signals"}
+            </p>
+            <p style={{ fontFamily: FF, fontSize: "clamp(22px,2.5vw,30px)", fontWeight: 700, color: "#1a1a1a", margin: 0, lineHeight: 1.1 }}>
+              {isStudy3 ? "App Editions unlocked monetization at scale" : "First 30 days post GA"}
+            </p>
+            <p style={{ fontFamily: FF, fontSize: 13, color: "rgba(26,26,26,0.45)", margin: 0, lineHeight: 1.55 }}>
+              {isStudy3
+                ? "By aligning pricing with value, Editions expanded both adoption and monetization."
+                : "Early signals show Rovo Service is beginning to execute work end-to-end with increasing accuracy and reduced need for intervention."}
+            </p>
+          </div>
 
-        {/* Cards — 3 columns */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, marginBottom: 28 }}>
-          {isStudy3 ? (
-            <>
-              <ImpactCard numericValue={200} suffix="+" label="Apps supporting Editions on the Marketplace" category="Adoption" categoryColor="#E8654B" delay={0.1} sectionInView={isInView} />
-              <ImpactCard numericValue={15} prefix="12–" suffix="%" label="Higher ARPU on Advanced editions" category="Monetization" categoryColor="#16A34A" delay={0.18} sectionInView={isInView} />
-              <ImpactCard numericValue={150} prefix="$" suffix="M+" label="Incremental annual revenue unlocked" category="Impact" categoryColor="#0891B2" delay={0.26} sectionInView={isInView} />
-            </>
-          ) : (
-            <>
-              <ImpactCard numericValue={21} suffix="%" label="Tickets fully resolved by AI (early adopter cohort)" category="Execution" categoryColor="#E8654B" delay={0.1} sectionInView={isInView} />
-              <ImpactCard numericValue={1200} prefix="~" suffix=" hrs" format={(n) => n.toLocaleString()} label="1 in 5 tickets handled end-to-end by AI" category="Execution" categoryColor="#E8654B" delay={0.18} sectionInView={isInView} />
-              <ImpactCard numericValue={82} suffix="%" label="Plans executed without major changes" category="Quality" categoryColor="#6B8CDA" delay={0.26} sectionInView={isInView} />
-            </>
-          )}
+          {/* Cards — 3 columns */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, marginBottom: 28 }}>
+            {isStudy3 ? (
+              <>
+                <ImpactCard numericValue={200} suffix="+" label="Apps supporting Editions on the Marketplace" category="Adoption" categoryColor="#E8654B" delay={0} sectionInView={isInView} />
+                <ImpactCard numericValue={15} prefix="12–" suffix="%" label="Higher ARPU on Advanced editions" category="Monetization" categoryColor="#16A34A" delay={0} sectionInView={isInView} />
+                <ImpactCard numericValue={150} prefix="$" suffix="M+" label="Incremental annual revenue unlocked" category="Impact" categoryColor="#0891B2" delay={0} sectionInView={isInView} />
+              </>
+            ) : (
+              <>
+                <ImpactCard numericValue={21} suffix="%" label="Tickets fully resolved by AI (early adopter cohort)" category="Execution" categoryColor="#E8654B" delay={0.1} sectionInView={isInView} />
+                <ImpactCard numericValue={1200} prefix="~" suffix=" hrs" format={(n) => n.toLocaleString()} label="1 in 5 tickets handled end-to-end by AI" category="Execution" categoryColor="#E8654B" delay={0.18} sectionInView={isInView} />
+                <ImpactCard numericValue={82} suffix="%" label="Plans executed without major changes" category="Quality" categoryColor="#6B8CDA" delay={0.26} sectionInView={isInView} />
+              </>
+            )}
+          </div>
+
         </div>
-
-      </div>
+      </SnapReveal>
     </section>
   );
 }
