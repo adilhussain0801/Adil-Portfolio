@@ -4114,9 +4114,9 @@ function ExperienceTransformationSection() {
 function SystemDesignComplexitySection() {
   const FF = "'Wotfard', sans-serif";
   const bullets = [
-    "Edition visibility during trial",
-    "Clear cost expectations",
-    "Flexibility to switch plans",
+    "Customers understand what they're getting — before and during trial",
+    "Pricing and value remain aligned throughout the journey",
+    "Teams can validate, adjust, and commit with confidence.",
   ];
   return (
     <section
@@ -4128,10 +4128,10 @@ function SystemDesignComplexitySection() {
         {/* Text content */}
         <div className="flex flex-col gap-4" style={{ paddingLeft: 144, paddingRight: 144 }}>
           <p className="text-[10px] uppercase tracking-widest font-semibold" style={{ color: "#E8654B", fontFamily: FF }}>
-            Decision Confidence with Editions
+            Journey With Editions
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight" style={{ fontFamily: FF }}>
-            Confidence carries through trial and installation
+            Confidence doesn't stop at evaluation — it accelerates adoption.
           </h2>
           <ul className="flex flex-col gap-2.5 list-none m-0 p-0">
             {bullets.map((b, i) => (
