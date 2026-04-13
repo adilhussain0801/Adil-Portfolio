@@ -4891,6 +4891,92 @@ function KeyLearningsSection() {
   );
 }
 
+function EngineeringHandoffSection() {
+  const FF = "'Wotfard', sans-serif";
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: false, amount: 0.15 });
+
+  const col = (delay: number) => ({
+    initial: { opacity: 0, y: 18 },
+    animate: isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 },
+    transition: { duration: 0.6, ease: APPLE, delay },
+  });
+
+  return (
+    <section
+      id="section-engineering-handoff"
+      ref={ref}
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#F5F5F7" }}
+    >
+      <div style={{ maxWidth: 960, margin: "0 auto", width: "100%", padding: "0 40px" }}>
+
+        {/* Header */}
+        <motion.div {...col(0)} style={{ marginBottom: 28 }}>
+          <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.4)", margin: "0 0 8px 0" }}>
+            Engineering Partnership
+          </p>
+          <h2 style={{ fontFamily: FF, fontSize: "clamp(22px,2.6vw,32px)", fontWeight: 800, color: "#1a1a1a", margin: 0, letterSpacing: "-0.02em", lineHeight: 1.1 }}>
+            Partnering with engineering to make it real
+          </h2>
+        </motion.div>
+
+        {/* Two cards side by side */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+
+          {/* Card 1 — Structured handoff */}
+          <motion.div {...col(0.1)} style={{ background: "#fff", border: "1px solid rgba(26,26,26,0.08)", borderRadius: 18, overflow: "hidden", display: "flex", flexDirection: "column" }}>
+            <div style={{ overflow: "hidden", flexShrink: 0 }}>
+              <img src="/handoff-screens.png" alt="Key screens and panel states" style={{ width: "100%", display: "block", objectFit: "cover", objectPosition: "top" }} />
+            </div>
+            <div style={{ padding: "20px 22px 22px", display: "flex", flexDirection: "column", gap: 12 }}>
+              <h3 style={{ fontFamily: FF, fontSize: 15, fontWeight: 700, color: "#1a1a1a", margin: 0 }}>Structured handoff</h3>
+              <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 7 }}>
+                {[
+                  "Defined system states (loading, low confidence, failure, partial execution)",
+                  "Mapped AI → system → human transitions",
+                  "Annotated decision points and fallbacks",
+                  "Behavior, not just UI — when AI proceeds vs pauses",
+                  "How plans evolve during execution",
+                  "Clear override and recovery patterns",
+                ].map((item, i) => (
+                  <li key={i} style={{ fontFamily: FF, fontSize: 12, color: "rgba(26,26,26,0.6)", display: "flex", alignItems: "flex-start", gap: 8, lineHeight: 1.5 }}>
+                    <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#E8654B", flexShrink: 0, marginTop: 6 }} />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+
+          {/* Card 2 — Accessibility by design (annotations) */}
+          <motion.div {...col(0.18)} style={{ background: "#fff", border: "1px solid rgba(26,26,26,0.08)", borderRadius: 18, overflow: "hidden", display: "flex", flexDirection: "column" }}>
+            <div style={{ overflow: "hidden", flexShrink: 0 }}>
+              <img src="/handoff-annotations.png" alt="Accessibility annotations" style={{ width: "100%", display: "block", objectFit: "cover", objectPosition: "top" }} />
+            </div>
+            <div style={{ padding: "20px 22px 22px", display: "flex", flexDirection: "column", gap: 12 }}>
+              <h3 style={{ fontFamily: FF, fontSize: 15, fontWeight: 700, color: "#1a1a1a", margin: 0 }}>Accessibility by design</h3>
+              <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 7 }}>
+                {[
+                  "Structured, readable AI-generated content",
+                  "Screen reader support for dynamic states",
+                  "Clear communication of confidence, errors, and actions",
+                ].map((item, i) => (
+                  <li key={i} style={{ fontFamily: FF, fontSize: 12, color: "rgba(26,26,26,0.6)", display: "flex", alignItems: "flex-start", gap: 8, lineHeight: 1.5 }}>
+                    <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#6B8CDA", flexShrink: 0, marginTop: 6 }} />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function ImpactSection({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObject<HTMLDivElement> }) {
   const FF = "'Wotfard', sans-serif";
   const ref = useRef<HTMLDivElement>(null);
@@ -5265,6 +5351,7 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
     ...(study.id === 3 ? [{ id: "section-system-design-complexity", label: "Adoption" }] : []),
     ...(study.id === 3 ? [{ id: "section-business-impact", label: "Business Case" }] : []),
     { id: "section-walkthrough", label: "Walkthrough" },
+    ...(study.id === 4 ? [{ id: "section-engineering-handoff", label: "Eng Handoff" }] : []),
     { id: "section-impact", label: "Impact" },
     ...(study.id === 4 ? [{ id: "section-anecdotes", label: "Anecdotes" }] : []),
     ...(study.id === 3 ? [{ id: "section-adoption", label: "Go-to-Market" }] : []),
@@ -5543,6 +5630,7 @@ export default function CaseStudyPage() {
         {study.id === 3 && <SystemDesignComplexitySection />}
         {study.id === 3 && <BusinessImpactSection />}
         <ExperienceWalkthroughSection />
+        {study.id === 4 && <EngineeringHandoffSection />}
         <ImpactSection study={study} scrollRef={scrollRef} />
         {study.id === 4 && <CustomerAnecdotesSection />}
         {study.id === 3 && <AdoptionAtScaleSection />}
