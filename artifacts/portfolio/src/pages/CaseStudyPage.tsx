@@ -3900,7 +3900,7 @@ function ScopeOfInitiativeSection() {
             {systems.map((s) => (
               <div
                 key={s.label}
-                className={`rounded-2xl px-4 py-4 flex items-center gap-3 justify-center text-center${s.label === "Commerce platform" ? " col-span-2" : ""}`}
+                className={`rounded-2xl px-4 py-4 flex flex-col items-center justify-center text-center gap-2${s.label === "Commerce platform" ? " col-span-2" : ""}`}
                 style={{ background: s.bg, border: `1px solid ${s.border}` }}
               >
                 <div className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: "white", border: "1px solid rgba(26,26,26,0.06)", color: s.color }}>
