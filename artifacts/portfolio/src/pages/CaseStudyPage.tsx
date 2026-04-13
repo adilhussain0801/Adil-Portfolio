@@ -1826,33 +1826,15 @@ function ProcessSection({ study }: { study: CaseStudy }) {
     return (
       <section
         id="section-process"
-        className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+        className="relative h-screen snap-start snap-always flex flex-col items-center justify-center overflow-hidden"
         style={{ background: "#F5EFEA" }}
       >
         <SnapReveal>
-          <div className="max-w-3xl mx-auto w-full px-8">
-
-            {/* Header */}
-            <p
-              className="text-[10px] uppercase tracking-widest font-semibold mb-3"
-              style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
-            >
-              Ecosystem at Scale
-            </p>
-            <h2
-              className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight mb-2"
-              style={{ fontFamily: "'Wotfard', sans-serif" }}
-            >
-              A fast-growing, high-volume ecosystem
-            </h2>
-            {/* Marketplace growth loop diagram */}
-            <img
-              src="/growth-loop-diagram.png"
-              alt="Marketplace growth loop: Customer → Marketplace → Growth Loop ← Partner, with Growth Loop feeding back to Customer"
-              style={{ width: "100%", display: "block", borderRadius: 8 }}
-            />
-
-          </div>
+          <img
+            src="/growth-loop-diagram.png"
+            alt="Marketplace growth loop: Customer → Marketplace → Growth Loop ← Partner, with Growth Loop feeding back to Customer"
+            style={{ width: "100%", maxWidth: 760, display: "block" }}
+          />
         </SnapReveal>
       </section>
     );
