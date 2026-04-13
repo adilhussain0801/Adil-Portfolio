@@ -1732,68 +1732,83 @@ function ProcessSection({ study }: { study: CaseStudy }) {
               ))}
             </div>
 
-            {/* Marketplace journey */}
-            <div style={{ fontFamily: "'Wotfard', sans-serif" }}>
-              {/* Flow nodes */}
-              <div className="flex items-center" style={{ gap: 0 }}>
-                {[
-                  { label: "Customer", sub: "Has a gap the\nproduct can't fill" },
-                  { label: "Marketplace", sub: "Discovers and\ntries an app" },
-                  { label: "Partner", sub: "Built and listed\nthe app" },
-                  { label: "Revenue", sub: "Partner earns.\nAtlassian earns.", highlight: true },
-                ].map((node, i, arr) => (
-                  <div key={i} className="flex items-center" style={{ flex: 1, minWidth: 0 }}>
-                    {/* Node */}
-                    <div className="flex flex-col gap-1.5" style={{ flex: 1, minWidth: 0 }}>
-                      <div
-                        style={{
-                          height: 36,
-                          borderRadius: 8,
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          background: node.highlight ? "rgba(232,101,75,0.10)" : "rgba(26,26,26,0.05)",
-                          border: node.highlight ? "1px solid rgba(232,101,75,0.28)" : "1px solid rgba(26,26,26,0.10)",
-                        }}
-                      >
-                        <span
-                          style={{
-                            fontSize: 11,
-                            fontWeight: 700,
-                            color: node.highlight ? "#C05437" : "#1a1a1a",
-                            letterSpacing: "0.01em",
-                          }}
-                        >
-                          {node.label}
-                        </span>
-                      </div>
-                      <p
-                        style={{
-                          fontSize: 10,
-                          lineHeight: 1.5,
-                          color: "rgba(26,26,26,0.45)",
-                          whiteSpace: "pre-line",
-                          textAlign: "center",
-                        }}
-                      >
-                        {node.sub}
-                      </p>
-                    </div>
-                    {/* Arrow */}
-                    {i < arr.length - 1 && (
-                      <div
-                        className="flex-shrink-0 flex items-start pt-[10px]"
-                        style={{ width: 28 }}
-                      >
-                        <svg width="28" height="10" viewBox="0 0 28 10" fill="none">
-                          <line x1="2" y1="5" x2="22" y2="5" stroke="rgba(26,26,26,0.18)" strokeWidth="1.5" strokeDasharray="3 2" />
-                          <polyline points="18,2 24,5 18,8" stroke="rgba(26,26,26,0.18)" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
+            {/* Marketplace journey — hand-drawn sketch */}
+            <div style={{ background: "#FFFDF5", borderRadius: 10, padding: "18px 12px 14px" }}>
+              <svg
+                width="100%"
+                viewBox="0 0 580 155"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style={{ overflow: "visible" }}
+              >
+                <defs>
+                  <filter id="mkp-rough" x="-3%" y="-3%" width="106%" height="106%">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.032" numOctaves="4" seed="5" result="noise"/>
+                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.3" xChannelSelector="R" yChannelSelector="G"/>
+                  </filter>
+                </defs>
+
+                {/* Boxes + arrows — apply rough filter */}
+                <g filter="url(#mkp-rough)">
+                  {/* Box 1: Customer */}
+                  <path
+                    d="M 13,24 C 44,20 79,26 122,23 C 126,35 124,50 123,68 C 88,71 47,66 14,69 C 10,55 12,38 13,24 Z"
+                    stroke="#3d3d3d" strokeWidth="1.7" fill="rgba(255,255,255,0.75)"
+                  />
+                  {/* Box 2: Marketplace */}
+                  <path
+                    d="M 158,23 C 194,19 228,25 284,22 C 288,35 286,51 285,68 C 248,71 207,66 159,69 C 155,54 157,37 158,23 Z"
+                    stroke="#3d3d3d" strokeWidth="1.7" fill="rgba(255,255,255,0.75)"
+                  />
+                  {/* Box 3: Partner */}
+                  <path
+                    d="M 318,24 C 348,20 384,26 429,23 C 433,35 431,51 430,68 C 395,71 353,66 319,69 C 315,55 317,38 318,24 Z"
+                    stroke="#3d3d3d" strokeWidth="1.7" fill="rgba(255,255,255,0.75)"
+                  />
+                  {/* Box 4: Revenue (accent) */}
+                  <path
+                    d="M 458,23 C 488,19 521,25 568,22 C 572,35 571,51 569,68 C 534,71 495,66 459,69 C 455,54 457,37 458,23 Z"
+                    stroke="#C05437" strokeWidth="2" fill="rgba(232,101,75,0.09)"
+                  />
+
+                  {/* Arrow 1 */}
+                  <path d="M 125,45 C 133,43 144,47 153,45" stroke="#3d3d3d" strokeWidth="1.4" strokeLinecap="round"/>
+                  <path d="M 149,42 L 155,45 L 149,49" stroke="#3d3d3d" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+
+                  {/* Arrow 2 */}
+                  <path d="M 287,45 C 295,43 306,47 314,45" stroke="#3d3d3d" strokeWidth="1.4" strokeLinecap="round"/>
+                  <path d="M 310,42 L 316,45 L 310,49" stroke="#3d3d3d" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+
+                  {/* Arrow 3 */}
+                  <path d="M 432,45 C 439,43 449,47 454,45" stroke="#3d3d3d" strokeWidth="1.4" strokeLinecap="round"/>
+                  <path d="M 450,42 L 456,45 L 450,49" stroke="#3d3d3d" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+                </g>
+
+                {/* Labels — no filter so text stays sharp */}
+                <text x="68" y="51" textAnchor="middle" fontSize="15" fontWeight="700" fill="#2a2a2a" fontFamily="'Caveat', cursive">Customer</text>
+                <text x="221" y="51" textAnchor="middle" fontSize="15" fontWeight="700" fill="#2a2a2a" fontFamily="'Caveat', cursive">Marketplace</text>
+                <text x="374" y="51" textAnchor="middle" fontSize="15" fontWeight="700" fill="#2a2a2a" fontFamily="'Caveat', cursive">Partner</text>
+                <text x="513" y="51" textAnchor="middle" fontSize="15" fontWeight="700" fill="#C05437" fontFamily="'Caveat', cursive">Revenue</text>
+
+                {/* Underline scribble on Revenue */}
+                <path d="M 483,55 C 493,57 512,54 543,56" stroke="rgba(192,84,55,0.35)" strokeWidth="1.4" strokeLinecap="round"/>
+
+                {/* Sub-labels */}
+                <text x="68" y="86" textAnchor="middle" fontSize="12.5" fill="rgba(26,26,26,0.42)" fontFamily="'Caveat', cursive">Hit a gap the product</text>
+                <text x="68" y="101" textAnchor="middle" fontSize="12.5" fill="rgba(26,26,26,0.42)" fontFamily="'Caveat', cursive">couldn't fill</text>
+
+                <text x="221" y="86" textAnchor="middle" fontSize="12.5" fill="rgba(26,26,26,0.42)" fontFamily="'Caveat', cursive">Found &amp; tried an app</text>
+                <text x="221" y="101" textAnchor="middle" fontSize="12.5" fill="rgba(26,26,26,0.42)" fontFamily="'Caveat', cursive">on the marketplace</text>
+
+                <text x="374" y="86" textAnchor="middle" fontSize="12.5" fill="rgba(26,26,26,0.42)" fontFamily="'Caveat', cursive">Built &amp; listed</text>
+                <text x="374" y="101" textAnchor="middle" fontSize="12.5" fill="rgba(26,26,26,0.42)" fontFamily="'Caveat', cursive">the app</text>
+
+                <text x="513" y="86" textAnchor="middle" fontSize="12.5" fill="rgba(192,84,55,0.6)" fontFamily="'Caveat', cursive">Partner earns.</text>
+                <text x="513" y="101" textAnchor="middle" fontSize="12.5" fill="rgba(192,84,55,0.6)" fontFamily="'Caveat', cursive">Atlassian earns.</text>
+
+                {/* Small "how marketplace works" annotation */}
+                <text x="290" y="140" textAnchor="middle" fontSize="11" fill="rgba(26,26,26,0.25)" fontFamily="'Caveat', cursive" fontStyle="italic">how Atlassian Marketplace generates revenue</text>
+              </svg>
             </div>
 
           </div>
