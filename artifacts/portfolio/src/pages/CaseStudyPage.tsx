@@ -239,7 +239,7 @@ function HeroSection({
         {/* Text — middle, closer to illustration */}
         <motion.div
           className="relative z-10 px-8 my-auto"
-          style={{ marginLeft: "30%", maxWidth: 480 }}
+          style={{ marginLeft: "8%", maxWidth: 420 }}
           {...fadeUp(0.1)}
         >
           <p
