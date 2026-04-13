@@ -18,7 +18,7 @@ const PROJECTS = [
     id: 3,
     title: "App Editions",
     category: "Growth & Optimization",
-    description: "Designed transparency features that surfaced security certifications and compliance details, building user confidence in third-party apps.",
+    description: "One app. Multiple tiers. App Editions lets Marketplace partners package and price features for different types of customers — all from a single listing.",
     timeline: "APR 2024 — JUN 2025",
     image: "/app-editions-cover.png",
     backgroundPosition: "40% 40%",
