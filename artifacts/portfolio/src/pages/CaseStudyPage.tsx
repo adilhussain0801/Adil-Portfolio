@@ -212,6 +212,60 @@ function HeroSection({
   imageBottom?: number | string;
 }) {
   const resolvedImage = imageSrc ?? (study.id === 4 ? "/rovo-screens.png" : "/rovo-banner.png");
+
+  if (study.id === 3) {
+    return (
+      <section
+        id={sectionId}
+        className="relative h-screen snap-start snap-always flex flex-col pb-0 overflow-hidden"
+        style={{ background: "#0D0D0D" }}
+      >
+        {/* Full-bleed cover image */}
+        <motion.div
+          className="absolute inset-0"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.9, ease: "easeOut", delay: 0.15 }}
+        >
+          <img
+            src="/marketplace-cover.png"
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full select-none pointer-events-none"
+            style={{ objectFit: "cover", objectPosition: "center right" }}
+          />
+        </motion.div>
+
+        {/* Text — top left, over image */}
+        <motion.div
+          className="relative z-10 px-8 md:px-20 pt-48 md:pt-56 pb-0 max-w-xl"
+          {...fadeUp(0.1)}
+        >
+          <p
+            className="text-[10px] uppercase tracking-widest mb-3 font-medium"
+            style={{ fontFamily: "'Wotfard', sans-serif", color: "rgba(255,255,255,0.42)", letterSpacing: "0.16em" }}
+          >
+            {study.timeline}
+          </p>
+          <h1
+            className="text-5xl md:text-[3.6rem] leading-[1.05] mb-4"
+            style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700, color: "#FFFFFF" }}
+          >
+            {study.title}
+          </h1>
+          {study.subtitle && (
+            <p
+              className="text-sm md:text-[15px] leading-relaxed max-w-sm"
+              style={{ fontFamily: "'Wotfard', sans-serif", color: "rgba(255,255,255,0.55)" }}
+            >
+              {study.subtitle}
+            </p>
+          )}
+        </motion.div>
+      </section>
+    );
+  }
+
   return (
     <section
       id={sectionId}
