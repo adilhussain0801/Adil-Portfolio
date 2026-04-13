@@ -3872,8 +3872,8 @@ function ScopeOfInitiativeSection() {
     { label: "Partner Portal", desc: "configuration & setup", icon: <Building2 size={14} strokeWidth={1.8} />, color: "#7C3AED", bg: "rgba(124,58,237,0.07)", border: "rgba(124,58,237,0.18)" },
     { label: "Marketplace", desc: "discovery & purchase", icon: <Sparkles size={14} strokeWidth={1.8} />, color: "#0891B2", bg: "rgba(8,145,178,0.07)", border: "rgba(8,145,178,0.18)" },
     { label: "Admin Hub", desc: "post-purchase management", icon: <Users size={14} strokeWidth={1.8} />, color: "#16A34A", bg: "rgba(22,163,74,0.07)", border: "rgba(22,163,74,0.18)" },
-    { label: "Commerce systems", desc: "pricing, billing, licensing", icon: <Banknote size={14} strokeWidth={1.8} />, color: "#D97706", bg: "rgba(217,119,6,0.07)", border: "rgba(217,119,6,0.18)" },
     { label: "Advocate Central & Partner Purchase flows", desc: "", icon: <ArrowRight size={14} strokeWidth={1.8} />, color: "#4338CA", bg: "rgba(67,56,202,0.07)", border: "rgba(67,56,202,0.18)" },
+    { label: "Commerce systems", desc: "pricing, billing, licensing", icon: <Banknote size={14} strokeWidth={1.8} />, color: "#D97706", bg: "rgba(217,119,6,0.07)", border: "rgba(217,119,6,0.18)" },
   ];
   const roles = ["defining value", "communicating value", "and transacting value"];
   return (
@@ -3900,6 +3900,7 @@ function ScopeOfInitiativeSection() {
             {systems.map((s) => (
               <div
                 key={s.label}
+                className={s.label === "Commerce systems" ? "col-span-2" : ""}
                 className="rounded-2xl px-4 py-4 flex items-center gap-3"
                 style={{ background: s.bg, border: `1px solid ${s.border}` }}
               >
