@@ -4511,11 +4511,11 @@ function ImpactSection({ study, scrollRef }: { study: CaseStudy; scrollRef: RefO
             {isStudy3 ? "Revenue Impact Since Launch" : "Impact — Early Signals"}
           </p>
           <p style={{ fontFamily: FF, fontSize: "clamp(22px,2.5vw,30px)", fontWeight: 700, color: "#1a1a1a", margin: 0, lineHeight: 1.1 }}>
-            {isStudy3 ? "App Editions drove platform-wide revenue growth" : "First 30 days post GA"}
+            {isStudy3 ? "App Editions unlocked monetization at scale" : "First 30 days post GA"}
           </p>
           <p style={{ fontFamily: FF, fontSize: 13, color: "rgba(26,26,26,0.45)", margin: 0, lineHeight: 1.55 }}>
             {isStudy3
-              ? "Measured across the Atlassian Marketplace following the launch of App Editions."
+              ? "By aligning pricing with value, Editions expanded both adoption and monetization."
               : "Early signals show Rovo Service is beginning to execute work end-to-end with increasing accuracy and reduced need for intervention."}
           </p>
         </motion.div>
@@ -4525,8 +4525,8 @@ function ImpactSection({ study, scrollRef }: { study: CaseStudy; scrollRef: RefO
           {isStudy3 ? (
             <>
               <ImpactCard numericValue={200} suffix="+" label="Apps supporting Editions on the Marketplace" category="Adoption" categoryColor="#E8654B" delay={0.1} sectionInView={isInView} />
-              <ImpactCard numericValue={15} prefix="12–" suffix="%" label="Higher revenue per customer on Advanced edition" category="Revenue" categoryColor="#16A34A" delay={0.18} sectionInView={isInView} />
-              <ImpactCard numericValue={150} prefix="$" suffix="M+" label="Incremental annual revenue uplift from Editions" category="Revenue" categoryColor="#0891B2" delay={0.26} sectionInView={isInView} />
+              <ImpactCard numericValue={15} prefix="12–" suffix="%" label="Higher ARPU on Advanced editions" category="Monetization" categoryColor="#16A34A" delay={0.18} sectionInView={isInView} />
+              <ImpactCard numericValue={150} prefix="$" suffix="M+" label="Incremental annual revenue unlocked" category="Impact" categoryColor="#0891B2" delay={0.26} sectionInView={isInView} />
             </>
           ) : (
             <>
