@@ -48,7 +48,7 @@ const PROJECTS = [
     timeline: "2019 – 2020",
     image: "/carrara-cover.png",
     backgroundSize: "95%",
-    backgroundPosition: "right 40%",
+    backgroundPosition: "65% 40%",
     backgroundRepeat: "no-repeat",
     placeholderColor: "#D4C5F9",
     colSpan: "md:col-span-1",
