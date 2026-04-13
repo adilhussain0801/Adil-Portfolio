@@ -4424,93 +4424,53 @@ function PartnerAnecdotesSection() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, amount: 0.15 });
 
-  const GROUPS = 2;
-  const PER_GROUP = 3;
-  const [groupIndex, setGroupIndex] = useState(0);
-  const [direction, setDirection] = useState(1);
-  const [paused, setPaused] = useState(false);
-
-  useEffect(() => {
-    if (!isInView || paused) return;
-    const id = setInterval(() => {
-      setDirection(1);
-      setGroupIndex((g) => (g + 1) % GROUPS);
-    }, 4200);
-    return () => clearInterval(id);
-  }, [isInView, paused]);
-
-  const visibleCards = EDITION_ANECDOTES.slice(groupIndex * PER_GROUP, groupIndex * PER_GROUP + PER_GROUP);
-
-  const slideVariants = {
-    enter: (d: number) => ({ opacity: 0, x: d > 0 ? 60 : -60 }),
-    center: { opacity: 1, x: 0 },
-    exit: (d: number) => ({ opacity: 0, x: d > 0 ? -60 : 60 }),
-  };
-
   return (
     <section
       id="section-partner-anecdotes"
       ref={ref}
       className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
       style={{ background: "#F5F5F7" }}
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
     >
-      <div style={{ maxWidth: 980, margin: "0 auto", width: "100%", padding: "0 40px", display: "flex", flexDirection: "column", gap: 40 }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
 
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
           transition={{ duration: 0.55, ease: EASE }}
-          style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}
+          style={{ padding: "0 56px", display: "flex", flexDirection: "column", gap: 6 }}
         >
-          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-            <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.4)", margin: 0 }}>
-              Anecdotes
-            </p>
-            <h2 style={{ fontFamily: FF, fontWeight: 700, fontSize: "clamp(22px,2.8vw,30px)", color: "#1a1a1a", margin: 0, lineHeight: 1.1 }}>
-              What we heard from partners and customers
-            </h2>
-          </div>
-
-          {/* Dot indicators */}
-          <div style={{ display: "flex", gap: 8, flexShrink: 0, marginLeft: 24 }}>
-            {Array.from({ length: GROUPS }).map((_, i) => (
-              <button
-                key={i}
-                onClick={() => { setDirection(i > groupIndex ? 1 : -1); setGroupIndex(i); }}
-                style={{
-                  width: i === groupIndex ? 22 : 8, height: 8, borderRadius: 4,
-                  background: i === groupIndex ? "#1a1a1a" : "rgba(26,26,26,0.2)",
-                  border: "none", padding: 0, cursor: "pointer",
-                  transition: "width 0.35s ease, background 0.25s ease",
-                }}
-                aria-label={`Show group ${i + 1}`}
-              />
-            ))}
-          </div>
+          <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.4)", margin: 0 }}>
+            Anecdotes
+          </p>
+          <h2 style={{ fontFamily: FF, fontWeight: 700, fontSize: "clamp(22px,2.8vw,30px)", color: "#1a1a1a", margin: 0, lineHeight: 1.1 }}>
+            What we heard from partners and customers
+          </h2>
         </motion.div>
 
-        {/* Cards carousel */}
-        <div style={{ position: "relative", overflow: "hidden", paddingBottom: 16 }}>
-          <AnimatePresence custom={direction} mode="wait">
-            <motion.div
-              key={groupIndex}
-              custom={direction}
-              variants={slideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ duration: 0.45, ease: EASE }}
-              style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 48, paddingTop: 52, paddingBottom: 52, paddingLeft: 32, paddingRight: 32 }}
-            >
-              {visibleCards.map((a, i) => (
-                <EditionAnecdoteCard key={i} a={a} visible={true} />
-              ))}
-            </motion.div>
-          </AnimatePresence>
-        </div>
+        {/* Horizontal scroll — all 6 cards, edge cards bleed off screen */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.55, ease: EASE, delay: 0.15 }}
+          className="hide-scrollbar"
+          style={{
+            display: "flex",
+            gap: 20,
+            overflowX: "auto",
+            overflowY: "visible",
+            paddingLeft: 56,
+            paddingRight: 56,
+            paddingTop: 44,
+            paddingBottom: 56,
+          }}
+        >
+          {EDITION_ANECDOTES.map((a, i) => (
+            <div key={i} style={{ flexShrink: 0, width: 272 }}>
+              <EditionAnecdoteCard a={a} visible={true} />
+            </div>
+          ))}
+        </motion.div>
 
       </div>
     </section>
