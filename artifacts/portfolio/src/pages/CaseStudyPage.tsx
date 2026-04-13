@@ -3826,9 +3826,7 @@ function AppEditionsSolutionSection() {
           <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight mb-2" style={{ fontFamily: FF }}>
             App Editions
           </h2>
-          <p className="text-sm text-[#1a1a1a]/50 mb-8" style={{ fontFamily: FF }}>
-            Flexible pricing and packaging within a single listing.
-          </p>
+          <p className="text-sm text-[#1a1a1a]/50 mb-8" style={{ fontFamily: FF }}>Structure value into clear, purchasable choices</p>
 
           {/* What partners can do */}
           <div
