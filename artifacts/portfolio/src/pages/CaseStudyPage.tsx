@@ -263,6 +263,34 @@ function HeroSection({
             </p>
           )}
         </motion.div>
+
+        {/* Scroll nudge — bottom center */}
+        <motion.div
+          className="absolute bottom-8 left-1/2 z-10 flex flex-col items-center gap-2"
+          style={{ x: "-50%" }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 1.2 }}
+        >
+          <span
+            style={{
+              fontFamily: "'Wotfard', sans-serif",
+              fontSize: 10,
+              fontWeight: 600,
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              color: "rgba(255,255,255,0.32)",
+            }}
+          >
+            Scroll to begin
+          </span>
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <ChevronDown size={18} strokeWidth={1.5} color="rgba(255,255,255,0.32)" />
+          </motion.div>
+        </motion.div>
       </section>
     );
   }
