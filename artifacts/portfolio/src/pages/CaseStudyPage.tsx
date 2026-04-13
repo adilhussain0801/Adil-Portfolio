@@ -1820,7 +1820,7 @@ function ProcessSection({ study }: { study: CaseStudy }) {
       <section
         id="section-process"
         className="relative h-screen snap-start snap-always flex flex-col items-center justify-center overflow-hidden"
-        style={{ background: "#F5EFEA", isolation: "isolate" }}
+        style={{ background: "#FCFCFD" }}
       >
         <SnapReveal className="w-full max-w-3xl px-8">
           <p
@@ -1838,7 +1838,7 @@ function ProcessSection({ study }: { study: CaseStudy }) {
           <img
             src="/growth-loop-diagram.png"
             alt="Marketplace growth loop: Customer → Marketplace → Growth Loop ← Partner, with Growth Loop feeding back to Customer"
-            style={{ width: "100%", maxWidth: 720, display: "block", mixBlendMode: "multiply" }}
+            style={{ width: "100%", maxWidth: 720, display: "block" }}
           />
         </SnapReveal>
       </section>
