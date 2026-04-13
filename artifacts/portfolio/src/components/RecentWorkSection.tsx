@@ -6,7 +6,7 @@ const PROJECTS = [
   {
     id: 4,
     title: "Rovo Service",
-    category: "Atlassian AI Assistant",
+    category: "Jira Service Management - AI",
     description: "Reimagining Jira Service Management with embedded AI agents that proactively detect, prevent, and resolve issues within workflows.",
     timeline: "Aug '25 – Mar '26",
     image: "/rovo-service-bg.png",
