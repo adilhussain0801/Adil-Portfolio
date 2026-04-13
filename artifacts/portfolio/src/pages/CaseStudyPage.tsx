@@ -1845,82 +1845,114 @@ function ProcessSection({ study }: { study: CaseStudy }) {
             >
               A fast-growing, high-volume ecosystem
             </h2>
-            {/* Marketplace journey — hand-drawn sketch */}
+            {/* Marketplace growth loop — hand-drawn sketch */}
             <div style={{ background: "#FFFDF5", borderRadius: 10, padding: "18px 12px 14px" }}>
               <svg
                 width="100%"
-                viewBox="0 0 580 155"
+                viewBox="0 0 580 375"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
                 style={{ overflow: "visible" }}
               >
                 <defs>
-                  <filter id="mkp-rough" x="-3%" y="-3%" width="106%" height="106%">
-                    <feTurbulence type="fractalNoise" baseFrequency="0.032" numOctaves="4" seed="5" result="noise"/>
-                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.3" xChannelSelector="R" yChannelSelector="G"/>
+                  <filter id="mkp-rough" x="-4%" y="-4%" width="108%" height="108%">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.030" numOctaves="4" seed="5" result="noise"/>
+                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.4" xChannelSelector="R" yChannelSelector="G"/>
                   </filter>
+                  <marker id="mkp-arr" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+                    <polygon points="0 0, 9 3.5, 0 7" fill="#5a5a5a" opacity="0.7"/>
+                  </marker>
                 </defs>
 
-                {/* Boxes + arrows — apply rough filter */}
+                {/* Nodes — rough filter for hand-drawn feel */}
                 <g filter="url(#mkp-rough)">
-                  {/* Box 1: Customer */}
-                  <path
-                    d="M 13,24 C 44,20 79,26 122,23 C 126,35 124,50 123,68 C 88,71 47,66 14,69 C 10,55 12,38 13,24 Z"
-                    stroke="#3d3d3d" strokeWidth="1.7" fill="rgba(255,255,255,0.75)"
-                  />
-                  {/* Box 2: Marketplace */}
-                  <path
-                    d="M 158,23 C 194,19 228,25 284,22 C 288,35 286,51 285,68 C 248,71 207,66 159,69 C 155,54 157,37 158,23 Z"
-                    stroke="#3d3d3d" strokeWidth="1.7" fill="rgba(255,255,255,0.75)"
-                  />
-                  {/* Box 3: Partner */}
-                  <path
-                    d="M 318,24 C 348,20 384,26 429,23 C 433,35 431,51 430,68 C 395,71 353,66 319,69 C 315,55 317,38 318,24 Z"
-                    stroke="#3d3d3d" strokeWidth="1.7" fill="rgba(255,255,255,0.75)"
-                  />
-                  {/* Box 4: Revenue (accent) */}
-                  <path
-                    d="M 458,23 C 488,19 521,25 568,22 C 572,35 571,51 569,68 C 534,71 495,66 459,69 C 455,54 457,37 458,23 Z"
-                    stroke="#C05437" strokeWidth="2" fill="rgba(232,101,75,0.09)"
-                  />
+                  {/* Customer — small pill, top-left */}
+                  <rect x="6" y="105" width="150" height="54" rx="27"
+                    stroke="#3d3d3d" strokeWidth="1.9" fill="rgba(255,255,255,0.88)"/>
 
-                  {/* Arrow 1 */}
-                  <path d="M 125,45 C 133,43 144,47 153,45" stroke="#3d3d3d" strokeWidth="1.4" strokeLinecap="round"/>
-                  <path d="M 149,42 L 155,45 L 149,49" stroke="#3d3d3d" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+                  {/* Marketplace — large pill, top-center/right */}
+                  <rect x="175" y="38" width="270" height="68" rx="34"
+                    stroke="#3d3d3d" strokeWidth="1.9" fill="rgba(255,255,255,0.88)"/>
 
-                  {/* Arrow 2 */}
-                  <path d="M 287,45 C 295,43 306,47 314,45" stroke="#3d3d3d" strokeWidth="1.4" strokeLinecap="round"/>
-                  <path d="M 310,42 L 316,45 L 310,49" stroke="#3d3d3d" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+                  {/* Partner — medium pill, bottom-center */}
+                  <rect x="110" y="238" width="250" height="62" rx="31"
+                    stroke="#3d3d3d" strokeWidth="1.9" fill="rgba(255,255,255,0.88)"/>
 
-                  {/* Arrow 3 */}
-                  <path d="M 432,45 C 439,43 449,47 454,45" stroke="#3d3d3d" strokeWidth="1.4" strokeLinecap="round"/>
-                  <path d="M 450,42 L 456,45 L 450,49" stroke="#3d3d3d" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+                  {/* Growth Loop — accent box, right side */}
+                  <rect x="378" y="165" width="196" height="158" rx="5"
+                    stroke="#C05437" strokeWidth="2.1" fill="rgba(232,101,75,0.07)"/>
                 </g>
 
-                {/* Labels — no filter so text stays sharp */}
-                <text x="68" y="51" textAnchor="middle" fontSize="15" fontWeight="700" fill="#2a2a2a" fontFamily="'Caveat', cursive">Customer</text>
-                <text x="221" y="51" textAnchor="middle" fontSize="15" fontWeight="700" fill="#2a2a2a" fontFamily="'Caveat', cursive">Marketplace</text>
-                <text x="374" y="51" textAnchor="middle" fontSize="15" fontWeight="700" fill="#2a2a2a" fontFamily="'Caveat', cursive">Partner</text>
-                <text x="513" y="51" textAnchor="middle" fontSize="15" fontWeight="700" fill="#C05437" fontFamily="'Caveat', cursive">Revenue</text>
+                {/* Arrows — rough filter applied */}
+                <g filter="url(#mkp-rough)">
+                  {/* 1. Customer → Marketplace */}
+                  <path d="M 156,118 C 161,100 166,82 175,67"
+                    stroke="#5a5a5a" strokeWidth="1.6" strokeLinecap="round" fill="none"
+                    markerEnd="url(#mkp-arr)"/>
 
-                {/* Underline scribble on Revenue */}
-                <path d="M 483,55 C 493,57 512,54 543,56" stroke="rgba(192,84,55,0.35)" strokeWidth="1.4" strokeLinecap="round"/>
+                  {/* 2. Marketplace → Growth Loop (right side, curving down) */}
+                  <path d="M 445,72 C 464,105 474,138 474,165"
+                    stroke="#5a5a5a" strokeWidth="1.6" strokeLinecap="round" fill="none"
+                    markerEnd="url(#mkp-arr)"/>
+
+                  {/* 3. Partner → Growth Loop */}
+                  <path d="M 360,260 C 366,244 372,228 378,216"
+                    stroke="#5a5a5a" strokeWidth="1.6" strokeLinecap="round" fill="none"
+                    markerEnd="url(#mkp-arr)"/>
+
+                  {/* 4. Growth Loop → Customer (big loop back, goes below Partner) */}
+                  <path d="M 378,272 C 305,340 162,340 81,159"
+                    stroke="#5a5a5a" strokeWidth="1.6" strokeLinecap="round" fill="none"
+                    markerEnd="url(#mkp-arr)"/>
+                </g>
+
+                {/* Node labels — no filter so text stays sharp */}
+                <text x="81" y="139" textAnchor="middle" fontSize="18" fontWeight="700" fontStyle="italic"
+                  fill="#2a2a2a" fontFamily="'Caveat', cursive">Customer</text>
+
+                <text x="310" y="80" textAnchor="middle" fontSize="24" fontWeight="700" fontStyle="italic"
+                  fill="#2a2a2a" fontFamily="'Caveat', cursive">Marketplace</text>
+
+                <text x="235" y="275" textAnchor="middle" fontSize="22" fontWeight="700" fontStyle="italic"
+                  fill="#2a2a2a" fontFamily="'Caveat', cursive">Partner</text>
 
                 {/* Sub-labels */}
-                <text x="68" y="86" textAnchor="middle" fontSize="12.5" fill="rgba(26,26,26,0.42)" fontFamily="'Caveat', cursive">Hit a gap the product</text>
-                <text x="68" y="101" textAnchor="middle" fontSize="12.5" fill="rgba(26,26,26,0.42)" fontFamily="'Caveat', cursive">couldn't fill</text>
+                <text x="81" y="173" textAnchor="middle" fontSize="12.5" fontStyle="italic"
+                  fill="rgba(26,26,26,0.48)" fontFamily="'Caveat', cursive">Has a need the core</text>
+                <text x="81" y="188" textAnchor="middle" fontSize="12.5" fontStyle="italic"
+                  fill="rgba(26,26,26,0.48)" fontFamily="'Caveat', cursive">product can't solve</text>
 
-                <text x="221" y="86" textAnchor="middle" fontSize="12.5" fill="rgba(26,26,26,0.42)" fontFamily="'Caveat', cursive">Found &amp; tried an app</text>
-                <text x="221" y="101" textAnchor="middle" fontSize="12.5" fill="rgba(26,26,26,0.42)" fontFamily="'Caveat', cursive">on the marketplace</text>
+                <text x="310" y="120" textAnchor="middle" fontSize="12.5" fontStyle="italic"
+                  fill="rgba(26,26,26,0.48)" fontFamily="'Caveat', cursive">Discovers, evaluates,</text>
+                <text x="310" y="135" textAnchor="middle" fontSize="12.5" fontStyle="italic"
+                  fill="rgba(26,26,26,0.48)" fontFamily="'Caveat', cursive">and installs apps</text>
 
-                <text x="374" y="86" textAnchor="middle" fontSize="12.5" fill="rgba(26,26,26,0.42)" fontFamily="'Caveat', cursive">Built &amp; listed</text>
-                <text x="374" y="101" textAnchor="middle" fontSize="12.5" fill="rgba(26,26,26,0.42)" fontFamily="'Caveat', cursive">the app</text>
+                <text x="235" y="314" textAnchor="middle" fontSize="12.5" fontStyle="italic"
+                  fill="rgba(26,26,26,0.48)" fontFamily="'Caveat', cursive">Builds and lists apps</text>
+                <text x="235" y="329" textAnchor="middle" fontSize="12.5" fontStyle="italic"
+                  fill="rgba(26,26,26,0.48)" fontFamily="'Caveat', cursive">on Marketplace</text>
 
-                <text x="513" y="86" textAnchor="middle" fontSize="12.5" fill="rgba(192,84,55,0.6)" fontFamily="'Caveat', cursive">Partner earns.</text>
-                <text x="513" y="101" textAnchor="middle" fontSize="12.5" fill="rgba(192,84,55,0.6)" fontFamily="'Caveat', cursive">Atlassian earns.</text>
+                {/* Growth Loop title */}
+                <text x="476" y="194" textAnchor="middle" fontSize="19" fontWeight="700" fontStyle="italic"
+                  fill="#C05437" fontFamily="'Caveat', cursive">Growth Loop</text>
 
-                {/* Small "how marketplace works" annotation */}
-                <text x="290" y="140" textAnchor="middle" fontSize="11" fill="rgba(26,26,26,0.25)" fontFamily="'Caveat', cursive" fontStyle="italic">how Atlassian Marketplace generates revenue</text>
+                {/* Thin divider under title */}
+                <line x1="388" y1="201" x2="566" y2="201" stroke="rgba(192,84,55,0.22)" strokeWidth="1"/>
+
+                {/* Bullet items */}
+                <text x="390" y="220" fontSize="12" fill="rgba(192,84,55,0.80)" fontFamily="'Caveat', cursive">– Better solutions for customers</text>
+                <text x="390" y="238" fontSize="12" fill="rgba(192,84,55,0.80)" fontFamily="'Caveat', cursive">– More revenue for partners</text>
+                <text x="390" y="256" fontSize="12" fill="rgba(192,84,55,0.80)" fontFamily="'Caveat', cursive">– More innovation in the ecosystem</text>
+
+                {/* Bottom annotation */}
+                <text x="290" y="358" textAnchor="middle" fontSize="11.5" fontStyle="italic"
+                  fill="rgba(26,26,26,0.28)" fontFamily="'Caveat', cursive">
+                  A continuous loop where customer needs drive partner innovation,
+                </text>
+                <text x="290" y="373" textAnchor="middle" fontSize="11.5" fontStyle="italic"
+                  fill="rgba(26,26,26,0.28)" fontFamily="'Caveat', cursive">
+                  and monetization fuels ecosystem growth
+                </text>
               </svg>
             </div>
 
