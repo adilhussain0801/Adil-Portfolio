@@ -925,7 +925,7 @@ function FrictionSlide({
   );
 }
 
-function DrumRollValue() {
+function DrumRollValue({ color = "inherit" }: { color?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const isVisible = useInView(ref, { once: false, amount: 0.4 });
   const ITEM_H = 72;
@@ -953,10 +953,11 @@ function DrumRollValue() {
         height: ITEM_H,
         width: "2.5ch",
         overflow: "hidden",
-        verticalAlign: "middle",
         position: "relative",
+        flexShrink: 0,
         WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%)",
         maskImage: "linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%)",
+        color,
       }}
     >
       <motion.span
@@ -1357,7 +1358,13 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
               className="font-black text-[#1a1a1a] leading-tight mb-5"
               style={{ fontFamily: "'Wotfard', sans-serif", fontSize: "clamp(40px,5vw,64px)", letterSpacing: "-0.03em" }}
             >
-              A $<DrumRollValue />B ecosystem powering<br />Atlassian's growth
+              <span style={{ display: "flex", alignItems: "center", lineHeight: 1 }}>
+                <span>A&nbsp;$</span>
+                <DrumRollValue color="#E8654B" />
+                <span style={{ color: "#E8654B" }}>B</span>
+                <span>&nbsp;ecosystem powering</span>
+              </span>
+              <span style={{ display: "block" }}>Atlassian's growth</span>
             </h2>
             <p
               className="text-base text-[#1a1a1a]/50"
