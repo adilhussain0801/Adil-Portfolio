@@ -3590,6 +3590,9 @@ function CustomerRealitySection() {
               </div>
             ))}
           </div>
+          <p className="text-xs" style={{ color: "rgba(26,26,26,0.35)", fontFamily: FF }}>
+            Customers evaluate whether the value justifies the cost and whether it solves my team's problem
+          </p>
         </div>
       </SnapReveal>
     </section>
