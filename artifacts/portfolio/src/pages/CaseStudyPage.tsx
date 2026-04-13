@@ -341,20 +341,6 @@ function HeroSection({
             {study.subtitle}
           </p>
         )}
-        {study.id === 4 && (
-          <div className="mt-5 flex flex-wrap gap-2">
-            {[
-              { label: "AI-powered triage", icon: <Sparkles size={11} strokeWidth={1.8} /> },
-              { label: "Autonomous workflows", icon: <Zap size={11} strokeWidth={1.8} /> },
-              { label: "Real-time insights", icon: <Network size={11} strokeWidth={1.8} /> },
-            ].map(({ label, icon }) => (
-              <span key={label} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#5b8def]/12 border border-[#4a7de8]/20 text-[#4a7de8]">
-                {icon}
-                <span className="text-xs text-[#1a1a1a]/65" style={{ fontFamily: "'Wotfard', sans-serif" }}>{label}</span>
-              </span>
-            ))}
-          </div>
-        )}
       </motion.div>
     </section>
   );
