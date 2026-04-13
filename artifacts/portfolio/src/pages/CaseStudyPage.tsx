@@ -3740,101 +3740,6 @@ function CoreProblemSection() {
   );
 }
 
-function DualChallengesSection() {
-  const FF = "'Wotfard', sans-serif";
-  return (
-    <section
-      id="section-partner-challenges"
-      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
-      style={{ background: "#F5F5F7" }}
-    >
-      <SnapReveal>
-        <div className="max-w-3xl mx-auto w-full px-8">
-
-          <p className="text-[10px] uppercase tracking-widest font-semibold mb-3" style={{ color: "#E8654B", fontFamily: FF }}>
-            The Problem
-          </p>
-          <h2 className="text-2xl md:text-3xl font-bold text-[#1a1a1a] leading-tight mb-1" style={{ fontFamily: FF }}>
-            Two sides of the platform. Two separate blockers.
-          </h2>
-          <p className="text-sm text-[#1a1a1a]/45 mb-6" style={{ fontFamily: FF }}>
-            Both working against growth at the same time.
-          </p>
-
-          <div className="grid grid-cols-2 gap-4 mb-5">
-
-            {/* Partners */}
-            <div className="rounded-2xl px-5 py-5 flex flex-col gap-4" style={{ background: "rgba(124,58,237,0.06)", border: "1px solid rgba(124,58,237,0.18)" }}>
-              <div>
-                <p className="text-[10px] uppercase tracking-widest font-bold mb-1" style={{ color: "#7C3AED", fontFamily: FF }}>Partners</p>
-                <p className="text-base font-bold text-[#1a1a1a] leading-snug" style={{ fontFamily: FF }}>
-                  Couldn't effectively monetize value
-                </p>
-              </div>
-              <div className="flex flex-col gap-2">
-                {[
-                  "Premium capabilities bundled into a single tier",
-                  "No way to price-differentiate features",
-                  "Couldn't target different customer segments",
-                ].map((t, i) => (
-                  <div key={i} className="flex items-start gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0" style={{ background: "#7C3AED" }} />
-                    <p className="text-xs text-[#1a1a1a]/65 leading-snug" style={{ fontFamily: FF }}>{t}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-auto pt-3" style={{ borderTop: "1px solid rgba(124,58,237,0.15)" }}>
-                <p className="text-[10px] uppercase tracking-widest font-bold mb-1.5" style={{ color: "rgba(124,58,237,0.50)", fontFamily: FF }}>Result</p>
-                <p className="text-xs font-semibold" style={{ color: "#7C3AED", fontFamily: FF }}>Lost revenue · Reduced build incentive</p>
-              </div>
-            </div>
-
-            {/* Customers */}
-            <div className="rounded-2xl px-5 py-5 flex flex-col gap-4" style={{ background: "rgba(8,145,178,0.06)", border: "1px solid rgba(8,145,178,0.18)" }}>
-              <div>
-                <p className="text-[10px] uppercase tracking-widest font-bold mb-1" style={{ color: "#0891B2", fontFamily: FF }}>Customers</p>
-                <p className="text-base font-bold text-[#1a1a1a] leading-snug" style={{ fontFamily: FF }}>
-                  Couldn't flexibly choose what they needed
-                </p>
-              </div>
-              <div className="flex flex-col gap-2">
-                {[
-                  "All-or-nothing pricing with no trial path",
-                  "Paying for features they didn't use",
-                  "Couldn't justify cost to internal stakeholders",
-                ].map((t, i) => (
-                  <div key={i} className="flex items-start gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0" style={{ background: "#0891B2" }} />
-                    <p className="text-xs text-[#1a1a1a]/65 leading-snug" style={{ fontFamily: FF }}>{t}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-auto pt-3" style={{ borderTop: "1px solid rgba(8,145,178,0.15)" }}>
-                <p className="text-[10px] uppercase tracking-widest font-bold mb-1.5" style={{ color: "rgba(8,145,178,0.50)", fontFamily: FF }}>Result</p>
-                <p className="text-xs font-semibold" style={{ color: "#0891B2", fontFamily: FF }}>Evaluation drop-offs · Failed approvals · Lost sales</p>
-              </div>
-            </div>
-
-          </div>
-
-          {/* Unified callout */}
-          <div
-            className="flex items-start gap-3 rounded-2xl px-5 py-4"
-            style={{ background: "rgba(232,101,75,0.07)", border: "1px solid rgba(232,101,75,0.20)" }}
-          >
-            <AlertCircle size={16} className="flex-shrink-0 mt-0.5" style={{ color: "#C05437" }} />
-            <p className="text-xs leading-relaxed text-[#1a1a1a]/60" style={{ fontFamily: FF }}>
-              <span className="font-semibold text-[#C05437]">A systemic inefficiency across the ecosystem — </span>
-              not isolated UX issues. Structural gaps that suppressed revenue, slowed adoption, and capped the value the platform could unlock at scale.
-            </p>
-          </div>
-
-        </div>
-      </SnapReveal>
-    </section>
-  );
-}
-
 function KeyInsightSection() {
   const FF = "'Wotfard', sans-serif";
   return (
@@ -5547,7 +5452,6 @@ export default function CaseStudyPage() {
         {study.id === 3 && <EvaluationJourneySection />}
         {study.id === 3 && <CustomerRealitySection />}
         {study.id === 3 && <EvaluationKeyInsightSection />}
-        {study.id === 3 && <DualChallengesSection />}
         {study.id === 3 && <KeyInsightSection />}
         {study.id === 3 && <ReframingProblemSection />}
         {study.id === 3 && <AppEditionsSolutionSection />}
