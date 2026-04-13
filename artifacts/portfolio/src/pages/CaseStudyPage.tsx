@@ -3645,9 +3645,12 @@ function CoreProblemSection() {
       color: "#7C3AED",
       bg: "rgba(124,58,237,0.07)",
       border: "rgba(124,58,237,0.18)",
-      tagBg: "rgba(124,58,237,0.10)",
-      problem: "Couldn't effectively monetize value",
-      detail: "A single pricing model forced every app into the same commercial structure — regardless of how much value it delivered or how enterprise customers actually wanted to pay.",
+      problem: "Couldn't package and monetize value effectively",
+      bullets: [
+        "All features bundled into a single offering",
+        "No way to differentiate premium capabilities",
+        "Limited ability to target different customer segments",
+      ],
     },
     {
       who: "Customers",
@@ -3655,9 +3658,12 @@ function CoreProblemSection() {
       color: "#0891B2",
       bg: "rgba(8,145,178,0.07)",
       border: "rgba(8,145,178,0.18)",
-      tagBg: "rgba(8,145,178,0.10)",
-      problem: "Couldn't flexibly choose what they needed",
-      detail: "Buyers had to commit to full feature sets with no way to trial, tier, or adopt incrementally — making purchase decisions slower and more risky.",
+      problem: "Couldn't evaluate and justify the purchase",
+      bullets: [
+        "Features and pricing lacked clear structure",
+        "Forced into all-or-nothing decisions",
+        "Difficult to map cost → value → need",
+      ],
     },
   ];
   return (
@@ -3673,10 +3679,10 @@ function CoreProblemSection() {
             The Core Problem
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight mb-2" style={{ fontFamily: FF }}>
-            Monetization and adoption were both constrained
+            Value wasn't structured for decision-making
           </h2>
           <p className="text-sm text-[#1a1a1a]/50 mb-8" style={{ fontFamily: FF }}>
-            Two sides of the platform, two separate blockers — working against growth at the same time.
+            The problem wasn't pricing — it was how value was presented for decision-making.
           </p>
 
           {/* Two constraint cards */}
@@ -3698,10 +3704,15 @@ function CoreProblemSection() {
                 <p className="text-base font-bold text-[#1a1a1a] leading-snug" style={{ fontFamily: FF }}>
                   {c.problem}
                 </p>
-                {/* Detail */}
-                <p className="text-xs text-[#1a1a1a]/55 leading-relaxed" style={{ fontFamily: FF }}>
-                  {c.detail}
-                </p>
+                {/* Bullets */}
+                <div className="flex flex-col gap-1.5">
+                  {c.bullets.map((b, bi) => (
+                    <div key={bi} className="flex items-start gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0" style={{ background: c.color, opacity: 0.5 }} />
+                      <p className="text-xs text-[#1a1a1a]/60 leading-snug" style={{ fontFamily: FF }}>{b}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
@@ -3712,14 +3723,10 @@ function CoreProblemSection() {
             style={{ background: "rgba(232,101,75,0.07)", border: "1px solid rgba(232,101,75,0.20)" }}
           >
             <AlertCircle size={17} className="flex-shrink-0 mt-0.5" style={{ color: "#C05437" }} />
-            <div>
-              <p className="text-sm font-semibold text-[#C05437] mb-0.5" style={{ fontFamily: FF }}>
-                A systemic inefficiency across the ecosystem
-              </p>
-              <p className="text-xs text-[#1a1a1a]/55 leading-relaxed" style={{ fontFamily: FF }}>
-                These weren't isolated UX issues — they were structural gaps that suppressed revenue, slowed adoption, and limited how much value the platform could unlock at scale.
-              </p>
-            </div>
+            <p className="text-sm leading-relaxed" style={{ fontFamily: FF, color: "#1a1a1a" }}>
+              <span className="font-semibold text-[#C05437]">Evaluation is where decisions are made — </span>
+              but without structured packaging, customers couldn't confidently choose, and partners couldn't fully monetize.
+            </p>
           </div>
 
         </div>
