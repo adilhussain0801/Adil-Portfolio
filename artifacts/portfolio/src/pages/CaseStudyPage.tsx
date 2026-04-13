@@ -1583,6 +1583,37 @@ function EmergingThemesSection() {
   );
 }
 
+function StatTicker({ end, format, label }: { end: number; format: (n: number) => string; label: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isVisible = useInView(ref, { once: false, amount: 0.3 });
+  const [display, setDisplay] = useState(format(0));
+  useEffect(() => {
+    if (!isVisible) { setDisplay(format(0)); return; }
+    const dur = 1200;
+    const start = performance.now();
+    let raf: number;
+    const tick = (now: number) => {
+      const p = Math.min((now - start) / dur, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      setDisplay(format(Math.round(ease * end)));
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isVisible, end]);
+  return (
+    <div ref={ref}>
+      <p className="text-4xl font-black leading-none mb-2 tabular-nums" style={{ fontFamily: "'Wotfard', sans-serif", color: "#1a1a1a", letterSpacing: "-0.03em" }}>
+        {display}
+      </p>
+      <p className="text-xs text-[#1a1a1a]/45 leading-snug" style={{ fontFamily: "'Wotfard', sans-serif" }}>
+        {label}
+      </p>
+    </div>
+  );
+}
+
 function ProcessSection({ study }: { study: CaseStudy }) {
   if (study.id === 4) {
     return <IndustryTrendsSection />;
@@ -1615,24 +1646,19 @@ function ProcessSection({ study }: { study: CaseStudy }) {
               The Atlassian Marketplace operates at enterprise scale across every major deployment tier.
             </p>
 
-            {/* Stat cards */}
-            <div className="grid grid-cols-3 gap-3 mb-6">
+            {/* Stat tickers */}
+            <div className="flex items-stretch mb-8" style={{ borderTop: "1px solid rgba(26,26,26,0.10)", borderBottom: "1px solid rgba(26,26,26,0.10)" }}>
               {[
-                { value: "6,000+", label: "Apps & integrations", color: "#4338CA", bg: "rgba(99,102,241,0.07)", border: "rgba(99,102,241,0.18)" },
-                { value: "2,000+", label: "Vendors building on the platform", color: "#0891B2", bg: "rgba(8,145,178,0.07)", border: "rgba(8,145,178,0.18)" },
-                { value: "~20K", label: "Installs every week", color: "#16A34A", bg: "rgba(22,163,74,0.07)", border: "rgba(22,163,74,0.18)" },
-              ].map((stat) => (
+                { end: 6000, format: (n: number) => `${(n / 1000).toFixed(0)}K+`, label: "Apps & integrations" },
+                { end: 2000, format: (n: number) => `${(n / 1000).toFixed(0)}K+`, label: "Vendors building on the platform" },
+                { end: 20000, format: (n: number) => `~${(n / 1000).toFixed(0)}K`, label: "Installs every week" },
+              ].map((stat, i) => (
                 <div
-                  key={stat.value}
-                  className="rounded-2xl px-5 py-5"
-                  style={{ background: stat.bg, border: `1px solid ${stat.border}` }}
+                  key={i}
+                  className="flex-1 flex flex-col justify-center py-6 px-5"
+                  style={{ borderRight: i < 2 ? "1px solid rgba(26,26,26,0.10)" : "none" }}
                 >
-                  <p className="text-3xl font-bold mb-1 leading-none" style={{ color: stat.color, fontFamily: "'Wotfard', sans-serif" }}>
-                    {stat.value}
-                  </p>
-                  <p className="text-xs text-[#1a1a1a]/55 leading-snug mt-2" style={{ fontFamily: "'Wotfard', sans-serif" }}>
-                    {stat.label}
-                  </p>
+                  <StatTicker end={stat.end} format={stat.format} label={stat.label} />
                 </div>
               ))}
             </div>
