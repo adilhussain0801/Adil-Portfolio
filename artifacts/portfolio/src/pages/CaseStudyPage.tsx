@@ -3527,9 +3527,7 @@ function EvaluationJourneySection() {
               style={{ background: "rgba(232,101,75,0.08)", border: "1px solid rgba(232,101,75,0.22)" }}
             >
               <span className="text-base flex-shrink-0" style={{ marginTop: 1 }}>👉</span>
-              <p className="text-sm font-semibold text-[#C05437] leading-snug" style={{ fontFamily: FF }}>
-                Customers are forced to assemble value themselves
-              </p>
+              <p className="text-sm font-semibold text-[#C05437] leading-snug" style={{ fontFamily: FF }}>Customers are forced to assemble and justify value themselves</p>
             </div>
           </div>
 
