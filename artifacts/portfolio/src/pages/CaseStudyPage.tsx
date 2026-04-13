@@ -4424,60 +4424,51 @@ function PartnerAnecdotesSection() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, amount: 0.15 });
 
-  // Scattered absolute positions — two centred rows of 3
-  // Card width 248px, ~28px gap → row width ~800px centred in viewport (~1200px) → start ≈ 17%
-  const positions: { top: string; left: string; zIndex: number }[] = [
-    { top: "15%",  left: "17%",  zIndex: 2 },   // row 1 — left
-    { top: "19%",  left: "40%",  zIndex: 3 },   // row 1 — centre
-    { top: "13%",  left: "63%",  zIndex: 2 },   // row 1 — right
-    { top: "51%",  left: "17%",  zIndex: 2 },   // row 2 — left
-    { top: "49%",  left: "40%",  zIndex: 4 },   // row 2 — centre (on top)
-    { top: "53%",  left: "63%",  zIndex: 2 },   // row 2 — right
-  ];
+  // Column stagger offsets — col 2 drops down, col 3 slightly up
+  const colOffsets = [0, 36, 12];
 
   return (
     <section
       id="section-partner-anecdotes"
       ref={ref}
-      className="relative h-screen snap-start snap-always overflow-hidden"
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
       style={{ background: "#F5F5F7" }}
     >
-      {/* Header — pinned top-left */}
-      <motion.div
-        initial={{ opacity: 0, y: 14 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
-        transition={{ duration: 0.5, ease: EASE }}
-        style={{
-          position: "absolute", top: 48, left: 56, zIndex: 20,
-          display: "flex", flexDirection: "column", gap: 5,
-        }}
-      >
-        <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.38)", margin: 0 }}>
-          Anecdotes
-        </p>
-        <h2 style={{ fontFamily: FF, fontWeight: 700, fontSize: "clamp(20px,2.4vw,28px)", color: "#1a1a1a", margin: 0, lineHeight: 1.1 }}>
-          What we heard from partners and customers
-        </h2>
-      </motion.div>
+      <div style={{ maxWidth: 920, margin: "0 auto", width: "100%", padding: "0 48px", display: "flex", flexDirection: "column", gap: 28 }}>
 
-      {/* Scattered cards */}
-      {EDITION_ANECDOTES.map((a, i) => (
+        {/* Header */}
         <motion.div
-          key={i}
-          initial={{ opacity: 0, scale: 0.88, y: 16 }}
-          animate={isInView ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.88, y: 16 }}
-          transition={{ duration: 0.55, ease: EASE, delay: 0.1 + i * 0.07 }}
-          style={{
-            position: "absolute",
-            top: positions[i].top,
-            left: positions[i].left,
-            width: 248,
-            zIndex: positions[i].zIndex,
-          }}
+          initial={{ opacity: 0, y: 14 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
+          transition={{ duration: 0.5, ease: EASE }}
+          style={{ display: "flex", flexDirection: "column", gap: 5 }}
         >
-          <EditionAnecdoteCard a={a} visible={true} />
+          <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.38)", margin: 0 }}>
+            Anecdotes
+          </p>
+          <h2 style={{ fontFamily: FF, fontWeight: 700, fontSize: "clamp(20px,2.4vw,28px)", color: "#1a1a1a", margin: 0, lineHeight: 1.1 }}>
+            What we heard from partners and customers
+          </h2>
         </motion.div>
-      ))}
+
+        {/* 3-column staggered grid */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 20, alignItems: "start" }}>
+          {[0, 1, 2].map((col) => (
+            <motion.div
+              key={col}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.55, ease: EASE, delay: 0.1 + col * 0.08 }}
+              style={{ display: "flex", flexDirection: "column", gap: 20, paddingTop: colOffsets[col] }}
+            >
+              {[col, col + 3].map((cardIdx) => (
+                <EditionAnecdoteCard key={cardIdx} a={EDITION_ANECDOTES[cardIdx]} visible={true} />
+              ))}
+            </motion.div>
+          ))}
+        </div>
+
+      </div>
     </section>
   );
 }
