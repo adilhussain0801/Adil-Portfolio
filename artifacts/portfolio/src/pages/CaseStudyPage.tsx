@@ -3916,28 +3916,6 @@ function ScopeOfInitiativeSection() {
             ))}
           </div>
 
-          <div
-            className="flex items-start gap-3 rounded-2xl px-5 py-4"
-            style={{ background: "rgba(232,101,75,0.08)", border: "1px solid rgba(232,101,75,0.22)" }}
-          >
-            <span className="text-base flex-shrink-0" style={{ marginTop: 1 }}>👉</span>
-            <div>
-              <p className="text-sm font-semibold text-[#C05437] mb-1" style={{ fontFamily: FF }}>
-                Each system plays a role in:
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {roles.map((r) => (
-                  <span
-                    key={r}
-                    className="text-xs px-3 py-1.5 rounded-full"
-                    style={{ background: "rgba(232,101,75,0.10)", color: "#C05437", fontFamily: FF }}
-                  >
-                    {r}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
         </div>
       </SnapReveal>
     </section>
