@@ -1484,20 +1484,13 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
               transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
               style={{ overflow: "hidden" }}
             >
-              <div
-                className="flex items-stretch mt-5"
-                style={{ borderTop: "1px solid rgba(26,26,26,0.10)", borderBottom: "1px solid rgba(26,26,26,0.10)" }}
-              >
+              <div className="flex items-stretch mt-5 gap-8">
                 {[
-                  { end: 6000,  format: (n: number) => `${n.toLocaleString()}+`, label: "Apps & integrations" },
-                  { end: 2000,  format: (n: number) => `${n.toLocaleString()}+`, label: "Vendors building on the platform" },
+                  { end: 6000,  format: (n: number) => `${n.toLocaleString()}\u2009+`, label: "Apps & integrations" },
+                  { end: 2000,  format: (n: number) => `${n.toLocaleString()}\u2009+`, label: "Vendors building on the platform" },
                   { end: 20000, format: (n: number) => `~${n.toLocaleString()}`, label: "Installs every week" },
                 ].map((stat, i) => (
-                  <div
-                    key={i}
-                    className="flex-1 flex flex-col justify-center py-5 px-5"
-                    style={{ borderRight: i < 2 ? "1px solid rgba(26,26,26,0.10)" : "none" }}
-                  >
+                  <div key={i} className="flex flex-col justify-center py-5">
                     <StatTicker end={stat.end} format={stat.format} label={stat.label} />
                   </div>
                 ))}
