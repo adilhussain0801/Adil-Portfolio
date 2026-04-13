@@ -387,7 +387,28 @@ function OverviewSection({ study }: { study: CaseStudy }) {
               }}
             >
               <div style={{ transform: "skewY(3deg)" }}>
-                {study.id === 4 ? (
+                {study.id === 3 ? (
+                  <div className="flex flex-col gap-2">
+                    <p
+                      className="text-[10px] uppercase tracking-widest font-bold mb-1"
+                      style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
+                    >
+                      What is App Editions?
+                    </p>
+                    <p
+                      style={{
+                        fontFamily: "'Wotfard', sans-serif",
+                        fontSize: "clamp(22px, 3vw, 32px)",
+                        fontWeight: 800,
+                        lineHeight: 1.2,
+                        letterSpacing: "-0.02em",
+                        color: "#1a1a1a",
+                      }}
+                    >
+                      {study.overview}
+                    </p>
+                  </div>
+                ) : study.id === 4 ? (
                   <div className="flex flex-col gap-4">
                     <p className="text-base md:text-lg leading-relaxed text-[#1a1a1a]" style={{ fontFamily: "'Wotfard', sans-serif" }}>
                       Rovo Service is an AI-powered system designed to{" "}
