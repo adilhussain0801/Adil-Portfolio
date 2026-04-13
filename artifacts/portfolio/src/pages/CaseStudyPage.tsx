@@ -4262,9 +4262,9 @@ function ImpactCard({
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 16 }}
-      animate={cardInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-      transition={{ duration: 0.55, ease: EASE, delay }}
+      initial={{ opacity: 0, y: 28 }}
+      animate={cardInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
+      transition={{ duration: 0.72, ease: APPLE, delay }}
       style={{
         background: "#FFFFFF",
         border: "1px solid rgba(26,26,26,0.08)",
@@ -4426,9 +4426,9 @@ function AdoptionAtScaleSection() {
   const isInView = useInView(ref, { once: false, amount: 0.15 });
 
   const fadeUp = (delay: number) => ({
-    initial: { opacity: 0, y: 18 },
-    animate: isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 },
-    transition: { duration: 0.55, ease: EASE, delay },
+    initial: { opacity: 0, y: 28 },
+    animate: isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 },
+    transition: { duration: 0.72, ease: APPLE, delay },
   });
 
   const bullets = {
@@ -4593,9 +4593,9 @@ function PartnerAnecdotesSection() {
 
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
-          transition={{ duration: 0.5, ease: EASE }}
+          initial={{ opacity: 0, y: 28 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
+          transition={{ duration: 0.72, ease: APPLE }}
           style={{ display: "flex", flexDirection: "column", gap: 5 }}
         >
           <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.38)", margin: 0 }}>
@@ -4611,9 +4611,9 @@ function PartnerAnecdotesSection() {
           {[0, 1, 2].map((col) => (
             <motion.div
               key={col}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.55, ease: EASE, delay: 0.1 + col * 0.08 }}
+              initial={{ opacity: 0, y: 28 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
+              transition={{ duration: 0.72, ease: APPLE, delay: 0.1 + col * 0.12 }}
               style={{ display: "flex", flexDirection: "column", gap: 20, paddingTop: colOffsets[col] }}
             >
               {[col, col + 3].map((cardIdx) => (
@@ -4682,9 +4682,9 @@ function KeyLearningsSection() {
 
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
-          transition={{ duration: 0.5, ease: EASE }}
+          initial={{ opacity: 0, y: 28 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
+          transition={{ duration: 0.72, ease: APPLE }}
           style={{ display: "flex", flexDirection: "column", gap: 5, marginBottom: 36 }}
         >
           <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.38)", margin: 0 }}>
@@ -4700,9 +4700,9 @@ function KeyLearningsSection() {
           {STUDY3_LEARNINGS.map((item, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 14 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
-              transition={{ duration: 0.5, ease: EASE, delay: 0.08 + i * 0.07 }}
+              initial={{ opacity: 0, y: 24 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+              transition={{ duration: 0.62, ease: APPLE, delay: 0.1 + i * 0.08 }}
               style={{
                 display: "grid",
                 gridTemplateColumns: "32px 1fr",
@@ -4763,9 +4763,9 @@ function ImpactSection({ study, scrollRef }: { study: CaseStudy; scrollRef: RefO
       <div style={{ maxWidth: 880, margin: "0 auto", width: "100%", padding: "0 40px", display: "flex", flexDirection: "column", gap: 0 }}>
 
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
-          transition={{ duration: 0.55, ease: EASE }}
+          initial={{ opacity: 0, y: 28 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
+          transition={{ duration: 0.72, ease: APPLE }}
           style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 36 }}
         >
           <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.45)", margin: 0 }}>
