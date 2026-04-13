@@ -3154,33 +3154,12 @@ function ExperienceWalkthroughSection() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, amount: 0.35 });
 
-  const rawX = useMotionValue(0);
-  const rawY = useMotionValue(0);
-  const springConfig = { stiffness: 120, damping: 22, mass: 0.6 };
-  const springX = useSpring(rawX, springConfig);
-  const springY = useSpring(rawY, springConfig);
-  const rotateY = useTransform(springX, [-0.5, 0.5], [-5, 5]);
-  const rotateX = useTransform(springY, [-0.5, 0.5], [4, -4]);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    rawX.set((e.clientX - rect.left) / rect.width - 0.5);
-    rawY.set((e.clientY - rect.top) / rect.height - 0.5);
-  };
-
-  const handleMouseLeave = () => {
-    rawX.set(0);
-    rawY.set(0);
-  };
-
   return (
     <section
       id="section-walkthrough"
       ref={ref}
       className="relative h-screen snap-start snap-always flex items-center justify-center overflow-hidden"
       style={{ background: "#F5F5F7" }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
     >
       <CosmicWaveBackground />
       <div
@@ -3191,7 +3170,6 @@ function ExperienceWalkthroughSection() {
           transform: "translate(-50%, -50%)",
           width: "min(1188px, calc(100% - 112px))",
           zIndex: 5,
-          perspective: 1400,
         }}
       >
         <motion.div
@@ -3206,10 +3184,6 @@ function ExperienceWalkthroughSection() {
             overflow: "hidden",
             background: "#fff",
             boxShadow: "0 24px 80px rgba(0,0,0,0.22), 0 4px 16px rgba(0,0,0,0.10)",
-            rotateX,
-            rotateY,
-            transformStyle: "preserve-3d",
-            willChange: "transform",
           }}
         >
           {/* Browser chrome */}
