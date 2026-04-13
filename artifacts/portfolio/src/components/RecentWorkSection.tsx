@@ -8,7 +8,7 @@ const PROJECTS = [
     title: "Rovo Service",
     category: "Jira Service Management - AI",
     description: "Reimagining Jira Service Management with embedded AI agents that proactively detect, prevent, and resolve issues within workflows.",
-    timeline: "Aug '25 – Mar '26",
+    timeline: "AUG 2025 — MAR 2026",
     image: "/rovo-service-bg.png",
     placeholderColor: "#C5D9F9",
     colSpan: "md:col-span-1",
