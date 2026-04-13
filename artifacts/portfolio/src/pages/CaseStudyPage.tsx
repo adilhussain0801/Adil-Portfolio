@@ -4111,107 +4111,6 @@ function ExperienceTransformationSection() {
   );
 }
 
-function KeyExperienceMomentsSection() {
-  const FF = "'Wotfard', sans-serif";
-  const moments = [
-    {
-      step: "01",
-      label: "Entry",
-      heading: "Clear starting point",
-      body: "Base edition provides an obvious, low-risk place to begin.",
-      color: "#4338CA",
-      bg: "rgba(67,56,202,0.07)",
-      border: "rgba(67,56,202,0.18)",
-    },
-    {
-      step: "02",
-      label: "Comparison",
-      heading: "Understand differences across tiers",
-      body: "Feature contrast makes the value of upgrading immediately legible.",
-      color: "#0891B2",
-      bg: "rgba(8,145,178,0.07)",
-      border: "rgba(8,145,178,0.18)",
-    },
-    {
-      step: "03",
-      label: "Expansion",
-      heading: "Upgrade based on evolving needs",
-      body: "Customers grow into higher tiers naturally as their requirements mature.",
-      color: "#16A34A",
-      bg: "rgba(22,163,74,0.07)",
-      border: "rgba(22,163,74,0.18)",
-    },
-  ];
-  const supports = ["Immediate decisions", "Long-term growth"];
-  return (
-    <section
-      id="section-key-experience-moments"
-      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
-      style={{ background: "#F5F5F7" }}
-    >
-      <SnapReveal>
-        <div className="max-w-2xl mx-auto w-full px-8">
-
-          <p className="text-[10px] uppercase tracking-widest font-semibold mb-3" style={{ color: "#E8654B", fontFamily: FF }}>
-            Key Experience Moments
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight mb-8" style={{ fontFamily: FF }}>
-            Designing the decision journey
-          </h2>
-
-          {/* 3 steps */}
-          <div className="flex flex-col gap-3 mb-6">
-            {moments.map((m) => (
-              <div
-                key={m.step}
-                className="flex items-start gap-4 rounded-2xl px-5 py-4"
-                style={{ background: "#FFFFFF", border: "1px solid rgba(26,26,26,0.08)" }}
-              >
-                {/* Step number */}
-                <div
-                  className="flex-shrink-0 w-8 h-8 rounded-xl flex items-center justify-center mt-0.5 text-[11px] font-bold"
-                  style={{ background: m.bg, border: `1px solid ${m.border}`, color: m.color, fontFamily: FF }}
-                >
-                  {m.step}
-                </div>
-                <div className="flex flex-col gap-0.5">
-                  <div className="flex items-center gap-2 mb-0.5">
-                    <span
-                      className="text-[10px] font-bold uppercase tracking-widest"
-                      style={{ color: m.color, fontFamily: FF }}
-                    >
-                      {m.label}
-                    </span>
-                  </div>
-                  <p className="text-sm font-semibold text-[#1a1a1a] leading-snug" style={{ fontFamily: FF }}>{m.heading}</p>
-                  <p className="text-xs text-[#1a1a1a]/55 leading-snug mt-0.5" style={{ fontFamily: FF }}>{m.body}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Supporting callout */}
-          <div
-            className="flex items-center gap-3 rounded-2xl px-5 py-4"
-            style={{ background: "rgba(232,101,75,0.07)", border: "1px solid rgba(232,101,75,0.20)" }}
-          >
-            <Sparkles size={15} className="flex-shrink-0" style={{ color: "#C05437" }} />
-            <p className="text-sm" style={{ fontFamily: FF }}>
-              <span className="font-bold text-[#C05437]">Supporting both: </span>
-              {supports.map((s, i) => (
-                <span key={s} className="text-[#1a1a1a]/65">
-                  {s}{i < supports.length - 1 ? " · " : ""}
-                </span>
-              ))}
-            </p>
-          </div>
-
-        </div>
-      </SnapReveal>
-    </section>
-  );
-}
-
 function SystemDesignComplexitySection() {
   const FF = "'Wotfard', sans-serif";
   const bullets = [
@@ -5284,7 +5183,6 @@ export default function CaseStudyPage() {
         {study.id === 3 && <ScopeOfInitiativeSection />}
         {study.id === 3 && <FocusOfCaseStudySection />}
         {study.id === 3 && <ExperienceTransformationSection />}
-        {study.id === 3 && <KeyExperienceMomentsSection />}
         {study.id === 3 && <SystemDesignComplexitySection />}
         {study.id === 3 && <BusinessImpactSection />}
         <ExperienceWalkthroughSection />
