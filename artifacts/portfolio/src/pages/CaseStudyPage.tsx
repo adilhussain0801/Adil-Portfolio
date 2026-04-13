@@ -925,6 +925,71 @@ function FrictionSlide({
   );
 }
 
+function DrumRollValue() {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isVisible = useInView(ref, { once: false, amount: 0.4 });
+  const ITEM_H = 72;
+  const values: string[] = Array.from({ length: 58 }, (_, i) => (i / 10).toFixed(1));
+  const yMotion = useMotionValue(0);
+
+  useEffect(() => {
+    if (isVisible) {
+      yMotion.set(0);
+      animate(yMotion, -(57 * ITEM_H), {
+        duration: 1.5,
+        ease: [0.12, 0.9, 0.3, 1],
+      });
+    } else {
+      yMotion.set(0);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isVisible]);
+
+  return (
+    <span
+      ref={ref}
+      style={{
+        display: "inline-block",
+        height: ITEM_H,
+        width: "2.5ch",
+        overflow: "hidden",
+        verticalAlign: "middle",
+        position: "relative",
+        WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%)",
+        maskImage: "linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%)",
+      }}
+    >
+      <motion.span
+        style={{
+          y: yMotion,
+          display: "flex",
+          flexDirection: "column",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+        }}
+      >
+        {values.map((v, i) => (
+          <span
+            key={i}
+            style={{
+              height: ITEM_H,
+              flexShrink: 0,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontVariantNumeric: "tabular-nums",
+            }}
+          >
+            {v}
+          </span>
+        ))}
+      </motion.span>
+    </span>
+  );
+}
+
 function ChallengeSection({ study }: { study: CaseStudy }) {
   const groups = study.challenge.timelineGroups;
 
@@ -1292,7 +1357,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
               className="font-black text-[#1a1a1a] leading-tight mb-5"
               style={{ fontFamily: "'Wotfard', sans-serif", fontSize: "clamp(40px,5vw,64px)", letterSpacing: "-0.03em" }}
             >
-              A $5.7B ecosystem powering<br />Atlassian's growth
+              A $<DrumRollValue />B ecosystem powering<br />Atlassian's growth
             </h2>
             <p
               className="text-base text-[#1a1a1a]/50"
