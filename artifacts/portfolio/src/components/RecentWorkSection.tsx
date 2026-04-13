@@ -47,6 +47,7 @@ const PROJECTS = [
     category: "Amazon Post-Purchase",
     description: "Improving the customer satisfaction in the post purchase support experience for the customer by minimized friction in the high touch resolution journey",
     timeline: "2019 – 2020",
+    externalUrl: "https://www.figma.com/deck/DacDTxcURiSwbGRE7f4EJj/Project-Caracara?node-id=1-318&t=d2DRbmSypzqpTit6-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1",
     image: "/carrara-cover.png",
     backgroundSize: "95%",
     backgroundPosition: "65% 40%",
