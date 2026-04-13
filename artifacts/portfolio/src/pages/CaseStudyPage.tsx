@@ -370,11 +370,11 @@ function OverviewSection({ study }: { study: CaseStudy }) {
     return (
       <section
         id="section-overview"
-        className="relative h-screen snap-start snap-always flex flex-col justify-between overflow-hidden"
+        className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
         style={{ background: "#F5F5F7" }}
       >
         <SnapReveal>
-          <div className="max-w-3xl mx-auto w-full px-8 pt-20 flex flex-col gap-8">
+          <div className="max-w-3xl mx-auto w-full px-8 flex flex-col gap-8">
             {/* Eyebrow */}
             <p
               className="text-[10px] uppercase tracking-widest font-bold"
@@ -415,42 +415,31 @@ function OverviewSection({ study }: { study: CaseStudy }) {
                 This unlocks flexible pricing for partners and better-fit choices for customers.
               </p>
             </div>
-          </div>
-        </SnapReveal>
 
-        {/* Punchline pinned to bottom */}
-        <SnapReveal delay={0.2}>
-          <div
-            className="max-w-3xl mx-auto w-full px-8 pb-16"
-          >
-            <div
-              className="flex items-center gap-4 px-6 py-4 rounded-2xl"
-              style={{ background: "rgba(26,26,26,0.04)", border: "1px solid rgba(26,26,26,0.08)" }}
-            >
-              <span
-                className="text-sm font-medium"
-                style={{ color: "rgba(26,26,26,0.45)", fontFamily: FF }}
-              >
-                From one-size pricing
-              </span>
-              <span
+            {/* Punchline */}
+            <div className="flex flex-col gap-1 pt-2">
+              <p
                 style={{
                   fontFamily: FF,
-                  fontSize: 20,
-                  fontWeight: 700,
-                  color: "#E8654B",
-                  lineHeight: 1,
-                  flexShrink: 0,
+                  fontSize: "clamp(13px, 1.4vw, 15px)",
+                  color: "rgba(26,26,26,0.38)",
+                  fontWeight: 500,
+                  letterSpacing: "0.01em",
                 }}
               >
-                →
-              </span>
-              <span
-                className="text-sm font-semibold"
-                style={{ color: "#1a1a1a", fontFamily: FF }}
+                From one-size pricing
+              </p>
+              <p
+                style={{
+                  fontFamily: FF,
+                  fontSize: "clamp(15px, 1.8vw, 19px)",
+                  color: "#E8654B",
+                  fontWeight: 700,
+                  letterSpacing: "-0.01em",
+                }}
               >
-                structured value and scalable growth
-              </span>
+                → structured value and scalable growth
+              </p>
             </div>
           </div>
         </SnapReveal>
