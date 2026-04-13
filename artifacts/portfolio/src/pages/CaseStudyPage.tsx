@@ -1732,18 +1732,68 @@ function ProcessSection({ study }: { study: CaseStudy }) {
               ))}
             </div>
 
-            {/* Callout */}
-            <div
-              className="flex items-start gap-4 rounded-2xl px-5 py-4"
-              style={{ background: "rgba(232,101,75,0.06)", border: "1px solid rgba(232,101,75,0.18)" }}
-            >
-              <TrendingDown size={18} className="flex-shrink-0 mt-0.5" style={{ color: "#C05437" }} />
-              <p className="text-sm leading-relaxed" style={{ color: "#1a1a1a", fontFamily: "'Wotfard', sans-serif" }}>
-                <span className="font-semibold text-[#C05437]">Small inefficiencies at this scale</span>
-                {" "}translate into{" "}
-                <span className="font-semibold text-[#C05437]">massive revenue impact</span>
-                {" "}— for Atlassian, its partners, and the customers who depend on these apps.
-              </p>
+            {/* Marketplace journey */}
+            <div style={{ fontFamily: "'Wotfard', sans-serif" }}>
+              {/* Flow nodes */}
+              <div className="flex items-center" style={{ gap: 0 }}>
+                {[
+                  { label: "Customer", sub: "Has a gap the\nproduct can't fill" },
+                  { label: "Marketplace", sub: "Discovers and\ntries an app" },
+                  { label: "Partner", sub: "Built and listed\nthe app" },
+                  { label: "Revenue", sub: "Partner earns.\nAtlassian earns.", highlight: true },
+                ].map((node, i, arr) => (
+                  <div key={i} className="flex items-center" style={{ flex: 1, minWidth: 0 }}>
+                    {/* Node */}
+                    <div className="flex flex-col gap-1.5" style={{ flex: 1, minWidth: 0 }}>
+                      <div
+                        style={{
+                          height: 36,
+                          borderRadius: 8,
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          background: node.highlight ? "rgba(232,101,75,0.10)" : "rgba(26,26,26,0.05)",
+                          border: node.highlight ? "1px solid rgba(232,101,75,0.28)" : "1px solid rgba(26,26,26,0.10)",
+                        }}
+                      >
+                        <span
+                          style={{
+                            fontSize: 11,
+                            fontWeight: 700,
+                            color: node.highlight ? "#C05437" : "#1a1a1a",
+                            letterSpacing: "0.01em",
+                          }}
+                        >
+                          {node.label}
+                        </span>
+                      </div>
+                      <p
+                        style={{
+                          fontSize: 10,
+                          lineHeight: 1.5,
+                          color: "rgba(26,26,26,0.45)",
+                          whiteSpace: "pre-line",
+                          textAlign: "center",
+                        }}
+                      >
+                        {node.sub}
+                      </p>
+                    </div>
+                    {/* Arrow */}
+                    {i < arr.length - 1 && (
+                      <div
+                        className="flex-shrink-0 flex items-start pt-[10px]"
+                        style={{ width: 28 }}
+                      >
+                        <svg width="28" height="10" viewBox="0 0 28 10" fill="none">
+                          <line x1="2" y1="5" x2="22" y2="5" stroke="rgba(26,26,26,0.18)" strokeWidth="1.5" strokeDasharray="3 2" />
+                          <polyline points="18,2 24,5 18,8" stroke="rgba(26,26,26,0.18)" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
 
           </div>
