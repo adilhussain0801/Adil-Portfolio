@@ -213,6 +213,88 @@ function HeroSection({
 }) {
   const resolvedImage = imageSrc ?? (study.id === 4 ? "/rovo-screens.png" : "/rovo-banner.png");
 
+  if (study.id === 4) {
+    return (
+      <section
+        id={sectionId}
+        className="relative h-screen snap-start snap-always flex flex-col pb-0 overflow-hidden"
+        style={{ background: "#F7F5F0" }}
+      >
+        {/* Full-bleed cover image */}
+        <motion.div
+          className="absolute inset-0"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.9, ease: "easeOut", delay: 0.15 }}
+        >
+          <img
+            src="/service-collection-cover.png"
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full select-none pointer-events-none"
+            style={{ objectFit: "cover", objectPosition: "center" }}
+          />
+        </motion.div>
+
+        {/* Text — below the Service Collection logo, left side */}
+        <motion.div
+          className="relative z-10 px-8"
+          style={{ marginLeft: "8%", maxWidth: 440, marginTop: "28%" }}
+          {...fadeUp(0.1)}
+        >
+          <p
+            className="text-[10px] uppercase tracking-widest mb-3 font-medium"
+            style={{ fontFamily: "'Wotfard', sans-serif", color: "rgba(0,0,0,0.38)", letterSpacing: "0.16em" }}
+          >
+            {study.timeline}
+          </p>
+          <h1
+            className="text-5xl md:text-[3.6rem] leading-[1.05] mb-4"
+            style={{ fontFamily: "'Wotfard', sans-serif", fontWeight: 700, color: "#1a1a1a" }}
+          >
+            {study.title}
+          </h1>
+          {study.subtitle && (
+            <p
+              className="text-sm md:text-[15px] leading-relaxed max-w-sm"
+              style={{ fontFamily: "'Wotfard', sans-serif", color: "rgba(0,0,0,0.5)" }}
+            >
+              {study.subtitle}
+            </p>
+          )}
+        </motion.div>
+
+        {/* Scroll nudge — bottom center */}
+        <motion.div
+          className="absolute bottom-8 left-1/2 z-10 flex flex-col items-center gap-2"
+          style={{ x: "-50%" }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 1.2 }}
+        >
+          <span
+            style={{
+              fontFamily: "'Wotfard', sans-serif",
+              fontSize: 10,
+              fontWeight: 600,
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              color: "rgba(0,0,0,0.28)",
+            }}
+          >
+            Scroll to begin
+          </span>
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <ChevronDown size={18} strokeWidth={1.5} color="rgba(0,0,0,0.28)" />
+          </motion.div>
+        </motion.div>
+      </section>
+    );
+  }
+
   if (study.id === 3) {
     return (
       <section
