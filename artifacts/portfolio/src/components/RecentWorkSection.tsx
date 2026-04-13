@@ -33,7 +33,7 @@ const PROJECTS = [
     description: "Reimagining the self serve and automation experience for Amazon post purchase experience team",
     timeline: "2020 – 2021",
     image: "/foresight-cover.png",
-    backgroundSize: "75%",
+    backgroundSize: "50%",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     placeholderColor: "#B8D8C8",
