@@ -4155,7 +4155,7 @@ function SystemDesignComplexitySection() {
             style={{ marginLeft: 144, marginRight: 144, borderColor: "rgba(26,26,26,0.08)", background: "#fff", padding: "24px 32px" }}
           >
             <img
-              src="/with-editions.png"
+              src="/group-6272430.png"
               alt="Customer journey with App Editions showing evaluation and installation tasks"
               className="block"
               style={{ height: 420, width: "auto", maxWidth: "none" }}
