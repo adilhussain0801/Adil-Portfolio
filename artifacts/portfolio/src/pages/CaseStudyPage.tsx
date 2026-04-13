@@ -1491,7 +1491,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                   { end: 2000,  format: (n: number) => `${n.toLocaleString()}\u2009+`, label: "Partners on the platform" },
                   { end: 20000, format: (n: number) => `~${n.toLocaleString()}`, label: "Installs every week" },
                 ].map((stat, i) => (
-                  <div key={i} className="flex-1 flex flex-col justify-center pt-6 pb-2">
+                  <div key={i} className="flex flex-col justify-center pt-6 pb-2 pr-10">
                     <StatTicker end={stat.end} format={stat.format} label={stat.label} />
                   </div>
                 ))}
