@@ -3498,55 +3498,6 @@ function EvaluationJourneySection() {
   );
 }
 
-function WhereItBreaksSection() {
-  const FF = "'Wotfard', sans-serif";
-  const bullets = [
-    "Feature lists ≠ decision clarity",
-    "Pricing lacks flexibility",
-    "No clear entry point",
-    "Hard to justify internally",
-  ];
-  return (
-    <section
-      id="section-where-it-breaks"
-      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
-      style={{ background: "#1a1a1a" }}
-    >
-      <SnapReveal>
-        <div className="max-w-2xl mx-auto w-full px-8 flex flex-col gap-8">
-          <p className="text-[10px] uppercase tracking-widest font-semibold" style={{ color: "rgba(232,101,75,0.8)", fontFamily: FF }}>
-            Where It Breaks
-          </p>
-          <h2
-            className="text-4xl md:text-5xl font-black leading-tight"
-            style={{ fontFamily: FF, color: "#ffffff", letterSpacing: "-0.02em" }}
-          >
-            The system breaks at<br />evaluation and justification
-          </h2>
-          <ul className="flex flex-col gap-0 list-none m-0 p-0">
-            {bullets.map((b, i) => (
-              <li
-                key={i}
-                className="flex items-center gap-5 py-4 border-b"
-                style={{ borderColor: "rgba(255,255,255,0.08)" }}
-              >
-                <span
-                  className="flex-shrink-0 text-xs tabular-nums"
-                  style={{ color: "rgba(255,255,255,0.20)", fontFamily: "'Courier New', monospace" }}
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span className="text-base font-semibold" style={{ color: "rgba(255,255,255,0.85)", fontFamily: FF }}>
-                  {b}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </SnapReveal>
-    </section>
-  );
-}
 
 function CustomerRealitySection() {
   const FF = "'Wotfard', sans-serif";
@@ -5612,7 +5563,6 @@ export default function CaseStudyPage() {
         <SolutionSection study={study} />
         {study.id === 3 && <CoreProblemSection />}
         {study.id === 3 && <EvaluationJourneySection />}
-        {study.id === 3 && <WhereItBreaksSection />}
         {study.id === 3 && <CustomerRealitySection />}
         {study.id === 3 && <EvaluationKeyInsightSection />}
         {study.id === 3 && <PartnerChallengesSection />}
