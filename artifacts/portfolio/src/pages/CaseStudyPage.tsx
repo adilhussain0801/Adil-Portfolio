@@ -3593,6 +3593,35 @@ function CustomerRealitySection() {
           <p className="text-xs" style={{ color: "rgba(26,26,26,0.35)", fontFamily: FF }}>
             Customers evaluate whether the value justifies the cost and whether it solves my team's problem
           </p>
+
+          {/* Mental model */}
+          <div
+            className="flex items-stretch gap-px rounded-2xl overflow-hidden"
+            style={{ border: "1px solid rgba(26,26,26,0.10)" }}
+          >
+            <div className="flex-1 px-6 py-5" style={{ background: "#FFFFFF" }}>
+              <p className="text-[10px] uppercase tracking-widest font-semibold mb-3" style={{ color: "rgba(26,26,26,0.35)", fontFamily: FF }}>
+                Customers evaluate
+              </p>
+              <p className="text-base font-bold" style={{ color: "#1a1a1a", fontFamily: FF }}>
+                "What am I getting?"
+              </p>
+            </div>
+            <div className="flex items-center justify-center px-4 flex-shrink-0" style={{ background: "rgba(26,26,26,0.04)" }}>
+              <p className="text-sm font-bold" style={{ color: "rgba(26,26,26,0.20)", fontFamily: FF }}>vs</p>
+            </div>
+            <div className="flex-1 px-6 py-5" style={{ background: "#FFFFFF" }}>
+              <p className="text-[10px] uppercase tracking-widest font-semibold mb-3" style={{ color: "rgba(26,26,26,0.35)", fontFamily: FF }}>
+                &nbsp;
+              </p>
+              <p className="text-base font-bold" style={{ color: "#1a1a1a", fontFamily: FF }}>
+                "What am I paying?"
+              </p>
+            </div>
+          </div>
+          <p className="text-sm" style={{ color: "rgba(26,26,26,0.45)", fontFamily: FF }}>
+            When this mapping isn't justified → trust drops, decisions stall
+          </p>
         </div>
       </SnapReveal>
     </section>
@@ -3718,52 +3747,6 @@ function KeyInsightSection() {
           >
             Adoption breaks when price doesn't map to perceived value
           </h2>
-
-          {/* The mental model */}
-          <div
-            className="flex items-stretch gap-px rounded-2xl overflow-hidden mb-8"
-            style={{ border: "1px solid rgba(26,26,26,0.10)" }}
-          >
-            <div className="flex-1 px-6 py-5" style={{ background: "#F5F5F7" }}>
-              <p className="text-[10px] uppercase tracking-widest font-semibold mb-3" style={{ color: "rgba(26,26,26,0.35)", fontFamily: FF }}>
-                Customers evaluate
-              </p>
-              <p className="text-base font-bold" style={{ color: "#1a1a1a", fontFamily: FF }}>
-                "What am I getting?"
-              </p>
-            </div>
-            <div className="flex items-center justify-center px-4 flex-shrink-0" style={{ background: "rgba(26,26,26,0.04)" }}>
-              <p className="text-sm font-bold" style={{ color: "rgba(26,26,26,0.20)", fontFamily: FF }}>vs</p>
-            </div>
-            <div className="flex-1 px-6 py-5" style={{ background: "#F5F5F7" }}>
-              <p className="text-[10px] uppercase tracking-widest font-semibold mb-3" style={{ color: "rgba(26,26,26,0.35)", fontFamily: FF }}>
-                &nbsp;
-              </p>
-              <p className="text-base font-bold" style={{ color: "#1a1a1a", fontFamily: FF }}>
-                "What am I paying?"
-              </p>
-            </div>
-          </div>
-
-          {/* When the mapping is unclear */}
-          <div className="flex gap-3 mb-10">
-            {[
-              { label: "Trust drops", icon: <TrendingDown size={14} strokeWidth={1.8} />, color: "#E8654B", bg: "rgba(232,101,75,0.08)", border: "rgba(232,101,75,0.20)" },
-              { label: "Decisions stall", icon: <AlertCircle size={14} strokeWidth={1.8} />, color: "#D97706", bg: "rgba(217,119,6,0.08)", border: "rgba(217,119,6,0.20)" },
-            ].map((item) => (
-              <div
-                key={item.label}
-                className="flex items-center gap-2.5 px-4 py-3 rounded-xl"
-                style={{ background: item.bg, border: `1px solid ${item.border}` }}
-              >
-                {item.icon}
-                <span className="text-sm font-semibold" style={{ fontFamily: FF, color: item.color }}>{item.label}</span>
-              </div>
-            ))}
-            <p className="text-sm self-center ml-1" style={{ color: "rgba(26,26,26,0.35)", fontFamily: FF }}>
-              when this mapping is unclear
-            </p>
-          </div>
 
           {/* Reframe */}
           <div
