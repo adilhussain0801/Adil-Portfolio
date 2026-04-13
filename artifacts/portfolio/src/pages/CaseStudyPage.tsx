@@ -364,6 +364,100 @@ function IndexSlide() {
 }
 
 function OverviewSection({ study }: { study: CaseStudy }) {
+  const FF = "'Wotfard', sans-serif";
+
+  if (study.id === 3) {
+    return (
+      <section
+        id="section-overview"
+        className="relative h-screen snap-start snap-always flex flex-col justify-between overflow-hidden"
+        style={{ background: "#F5F5F7" }}
+      >
+        <SnapReveal>
+          <div className="max-w-3xl mx-auto w-full px-8 pt-20 flex flex-col gap-8">
+            {/* Eyebrow */}
+            <p
+              className="text-[10px] uppercase tracking-widest font-bold"
+              style={{ color: "#E8654B", fontFamily: FF }}
+            >
+              What is App Editions?
+            </p>
+
+            {/* Title */}
+            <h2
+              style={{
+                fontFamily: FF,
+                fontSize: "clamp(26px, 3.5vw, 40px)",
+                fontWeight: 800,
+                lineHeight: 1.15,
+                letterSpacing: "-0.025em",
+                color: "#1a1a1a",
+              }}
+            >
+              Reimagining how apps are<br />packaged and monetized
+            </h2>
+
+            {/* Divider */}
+            <div style={{ width: 40, height: 2, background: "#E8654B", borderRadius: 2 }} />
+
+            {/* Body */}
+            <div className="flex flex-col gap-4">
+              <p
+                className="text-base leading-relaxed"
+                style={{ color: "#1a1a1a", fontFamily: FF, maxWidth: 520 }}
+              >
+                App Editions lets partners package the same app into multiple editions — each with its own features and price — all under a single Marketplace listing.
+              </p>
+              <p
+                className="text-base leading-relaxed"
+                style={{ color: "rgba(26,26,26,0.6)", fontFamily: FF, maxWidth: 520 }}
+              >
+                This unlocks flexible pricing for partners and better-fit choices for customers.
+              </p>
+            </div>
+          </div>
+        </SnapReveal>
+
+        {/* Punchline pinned to bottom */}
+        <SnapReveal delay={0.2}>
+          <div
+            className="max-w-3xl mx-auto w-full px-8 pb-16"
+          >
+            <div
+              className="flex items-center gap-4 px-6 py-4 rounded-2xl"
+              style={{ background: "rgba(26,26,26,0.04)", border: "1px solid rgba(26,26,26,0.08)" }}
+            >
+              <span
+                className="text-sm font-medium"
+                style={{ color: "rgba(26,26,26,0.45)", fontFamily: FF }}
+              >
+                From one-size pricing
+              </span>
+              <span
+                style={{
+                  fontFamily: FF,
+                  fontSize: 20,
+                  fontWeight: 700,
+                  color: "#E8654B",
+                  lineHeight: 1,
+                  flexShrink: 0,
+                }}
+              >
+                →
+              </span>
+              <span
+                className="text-sm font-semibold"
+                style={{ color: "#1a1a1a", fontFamily: FF }}
+              >
+                structured value and scalable growth
+              </span>
+            </div>
+          </div>
+        </SnapReveal>
+      </section>
+    );
+  }
+
   return (
     <section
       id="section-overview"
@@ -387,41 +481,7 @@ function OverviewSection({ study }: { study: CaseStudy }) {
               }}
             >
               <div style={{ transform: "skewY(3deg)" }}>
-                {study.id === 3 ? (
-                  <div className="flex flex-col gap-5">
-                    <p
-                      className="text-[10px] uppercase tracking-widest font-bold"
-                      style={{ color: "#E8654B", fontFamily: "'Wotfard', sans-serif" }}
-                    >
-                      What is App Editions?
-                    </p>
-                    <p
-                      style={{
-                        fontFamily: "'Wotfard', sans-serif",
-                        fontSize: "clamp(20px, 2.6vw, 28px)",
-                        fontWeight: 800,
-                        lineHeight: 1.25,
-                        letterSpacing: "-0.02em",
-                        color: "#1a1a1a",
-                      }}
-                    >
-                      App Editions lets partners package the same app into{" "}
-                      <mark style={{ background: "rgba(232,101,75,0.14)", color: "#C05437", borderRadius: "5px", padding: "2px 6px" }}>
-                        multiple editions
-                      </mark>
-                      {" "}— each with its own features and price — all under a single Marketplace listing.
-                    </p>
-                    <div className="flex flex-col gap-3">
-                      <p className="text-base leading-relaxed text-[#1a1a1a]" style={{ fontFamily: "'Wotfard', sans-serif" }}>
-                        Budget-conscious customers get what they need at the right price. Customers who want{" "}
-                        <mark style={{ background: "rgba(99,102,241,0.12)", color: "#4338CA", borderRadius: "5px", padding: "2px 6px", fontWeight: 600 }}>
-                          richer features pay for more
-                        </mark>
-                        {" "}— without being pushed to a different app.
-                      </p>
-                    </div>
-                  </div>
-                ) : study.id === 4 ? (
+                {study.id === 4 ? (
                   <div className="flex flex-col gap-4">
                     <p className="text-base md:text-lg leading-relaxed text-[#1a1a1a]" style={{ fontFamily: "'Wotfard', sans-serif" }}>
                       Rovo Service is an AI-powered system designed to{" "}
