@@ -428,6 +428,19 @@ function HeroSection({
   );
 }
 
+const APP_EDITIONS_CHAPTERS = [
+  { num: "01", title: "Overview", desc: "Product context & brief" },
+  { num: "02", title: "Challenge", desc: "Understanding the problem space" },
+  { num: "03", title: "Core Problem", desc: "Root cause analysis" },
+  { num: "04", title: "Evaluation Journey", desc: "How customers make decisions" },
+  { num: "05", title: "Customer Reality", desc: "Pain points in the field" },
+  { num: "06", title: "Reframing", desc: "Shifting the design lens" },
+  { num: "07", title: "Solution", desc: "App Editions design direction" },
+  { num: "08", title: "Walkthrough", desc: "The experience in action" },
+  { num: "09", title: "Business Impact", desc: "Revenue & adoption outcomes" },
+  { num: "10", title: "Learnings", desc: "Reflections & takeaways" },
+];
+
 const INDEX_CHAPTERS = [
   { num: "01", title: "Overview", desc: "The brief and product context" },
   { num: "02", title: "Challenge", desc: "Understanding the problem space" },
@@ -480,6 +493,81 @@ function IndexSlide() {
 
         <div className="flex flex-col">
           {INDEX_CHAPTERS.map((ch, i) => (
+            <motion.div
+              key={ch.num}
+              className="flex items-center justify-between border-b border-[#E8E4DE] py-4"
+              initial={{ opacity: 0, y: 8 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+              transition={{ duration: 0.45, ease: APPLE, delay: 0.18 + i * 0.055 }}
+            >
+              <div className="flex items-center gap-5">
+                <span
+                  className="text-xs tabular-nums w-5 text-right flex-shrink-0"
+                  style={{ color: "rgba(0,0,0,0.18)", fontFamily: "'Courier New', monospace" }}
+                >
+                  {ch.num}
+                </span>
+                <span
+                  className="text-base font-semibold text-[#1a1a1a]"
+                  style={{ fontFamily: "'Wotfard', sans-serif" }}
+                >
+                  {ch.title}
+                </span>
+              </div>
+              <span
+                className="text-xs text-[#1a1a1a]/35 text-right ml-6"
+                style={{ fontFamily: "'Wotfard', sans-serif" }}
+              >
+                {ch.desc}
+              </span>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AppEditionsIndexSlide() {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: false, amount: 0.2 });
+
+  return (
+    <section
+      id="section-index"
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
+      style={{ background: "#F5F5F7" }}
+    >
+      <div ref={ref} className="max-w-2xl mx-auto w-full px-6">
+        <motion.div
+          className="mb-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, ease: APPLE }}
+        >
+          <p
+            className="text-[10px] uppercase tracking-widest font-semibold mb-2"
+            style={{ color: "#0052CC", fontFamily: "'Wotfard', sans-serif" }}
+          >
+            App Editions · Case study
+          </p>
+          <h2
+            className="text-2xl md:text-3xl font-bold text-[#1a1a1a]"
+            style={{ fontFamily: "'Wotfard', sans-serif" }}
+          >
+            What we'll cover
+          </h2>
+        </motion.div>
+
+        <motion.div
+          className="border-t border-[#E8E4DE]"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.3, ease: APPLE, delay: 0.1 }}
+        />
+
+        <div className="flex flex-col">
+          {APP_EDITIONS_CHAPTERS.map((ch, i) => (
             <motion.div
               key={ch.num}
               className="flex items-center justify-between border-b border-[#E8E4DE] py-4"
@@ -5158,6 +5246,7 @@ function SectionNav({ study, scrollRef }: { study: CaseStudy; scrollRef: RefObje
   const [hovered, setHovered] = useState<string | null>(null);
 
   const sections = useMemo(() => [
+    ...(study.id === 3 ? [{ id: "section-index", label: "Index" }] : []),
     { id: "section-overview", label: "Overview" },
     { id: "section-challenge", label: "Challenge" },
     ...(study.id === 4 ? [{ id: "section-consolidation", label: "AI Strategy" }] : []),
@@ -5433,6 +5522,7 @@ export default function CaseStudyPage() {
           imageBottom={study.id === 4 ? 0 : undefined}
         />
         {study.id === 4 && <IndexSlide />}
+        {study.id === 3 && <AppEditionsIndexSlide />}
         <OverviewSection study={study} />
         <ChallengeSection study={study} />
         {study.id === 4 && <AIConsolidationSection />}
