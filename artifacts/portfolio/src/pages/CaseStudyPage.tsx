@@ -3570,29 +3570,21 @@ function CustomerRealitySection() {
             </h2>
           </div>
 
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-6">
             {quotes.map((q, i) => (
               <div
                 key={i}
-                className="flex items-start gap-4 rounded-2xl px-5 py-4"
-                style={{ background: "#F5F5F7", border: "1px solid rgba(26,26,26,0.07)" }}
+                className="flex items-start gap-5 pl-5"
+                style={{ borderLeft: "2px solid rgba(26,26,26,0.12)" }}
               >
-                <span className="text-lg flex-shrink-0 mt-0.5" style={{ opacity: 0.35 }}>"</span>
-                <p className="text-base italic text-[#1a1a1a]/70 leading-snug" style={{ fontFamily: FF }}>
-                  {q}
+                <p
+                  className="text-xl md:text-2xl italic leading-snug"
+                  style={{ fontFamily: FF, color: "rgba(26,26,26,0.55)" }}
+                >
+                  "{q}"
                 </p>
               </div>
             ))}
-          </div>
-
-          <div
-            className="flex items-start gap-3 rounded-2xl px-5 py-4"
-            style={{ background: "rgba(232,101,75,0.08)", border: "1px solid rgba(232,101,75,0.22)" }}
-          >
-            <span className="text-base flex-shrink-0" style={{ marginTop: 1 }}>👉</span>
-            <p className="text-sm font-semibold text-[#C05437] leading-snug" style={{ fontFamily: FF }}>
-              Evaluation is not just individual — it's organizational
-            </p>
           </div>
         </div>
       </SnapReveal>
