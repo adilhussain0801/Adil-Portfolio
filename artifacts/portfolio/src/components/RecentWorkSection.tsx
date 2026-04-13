@@ -48,7 +48,7 @@ const PROJECTS = [
     timeline: "2023 – 2024",
     image: "/carrara-cover.png",
     backgroundSize: "95%",
-    backgroundPosition: "right bottom",
+    backgroundPosition: "right top",
     backgroundRepeat: "no-repeat",
     placeholderColor: "#D4C5F9",
     colSpan: "md:col-span-1",
