@@ -3619,9 +3619,16 @@ function CustomerRealitySection() {
               </p>
             </div>
           </div>
-          <p className="text-sm" style={{ color: "rgba(26,26,26,0.45)", fontFamily: FF }}>
-            When this mapping isn't justified → trust drops, decisions stall
-          </p>
+          <div
+            className="flex items-start gap-3 rounded-2xl px-5 py-4"
+            style={{ background: "rgba(232,101,75,0.07)", border: "1px solid rgba(232,101,75,0.20)" }}
+          >
+            <AlertCircle size={15} className="flex-shrink-0 mt-0.5" style={{ color: "#C05437" }} />
+            <p className="text-sm leading-relaxed" style={{ fontFamily: FF, color: "#1a1a1a" }}>
+              <span className="font-semibold text-[#C05437]">When this mapping isn't justified — </span>
+              trust drops, decisions stall
+            </p>
+          </div>
         </div>
       </SnapReveal>
     </section>
