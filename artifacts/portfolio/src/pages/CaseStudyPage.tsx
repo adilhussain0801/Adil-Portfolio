@@ -3488,9 +3488,10 @@ function SolutionSection({ study }: { study: CaseStudy }) {
 function EvaluationJourneySection() {
   const FF = "'Wotfard', sans-serif";
   const bullets = [
-    "Customers navigate multiple sources — Marketplace, partner sites, docs",
+    "Customers navigate multiple sources — Marketplace, partner sites, and documentation",
     "Value is scattered across features, pricing, and documentation",
     "No clear mapping between features → price → value",
+    "Decisions require manual comparison and interpretation",
   ];
   return (
     <section
