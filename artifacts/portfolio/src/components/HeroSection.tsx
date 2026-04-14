@@ -3,27 +3,88 @@ import { useRef, useState } from "react";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
-function SparkleGlyph() {
+const ROUGH_FILTER_ID = "rough-sketch";
+
+function RoughSketchDefs() {
   return (
-    <svg aria-hidden="true" width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M18 4 C18 4 17.5 11 18 18" stroke="#1a1a1a" strokeWidth="1.6" strokeLinecap="round"/>
-      <path d="M18 18 C18 18 18.5 25 18 32" stroke="#1a1a1a" strokeWidth="1.6" strokeLinecap="round"/>
-      <path d="M4 18 C4 18 11 17.5 18 18" stroke="#1a1a1a" strokeWidth="1.6" strokeLinecap="round"/>
-      <path d="M18 18 C18 18 25 18.5 32 18" stroke="#1a1a1a" strokeWidth="1.6" strokeLinecap="round"/>
-      <path d="M8 8 C8 8 12.5 12.5 18 18" stroke="#1a1a1a" strokeWidth="1.6" strokeLinecap="round"/>
-      <path d="M18 18 C18 18 23.5 23.5 28 28" stroke="#1a1a1a" strokeWidth="1.6" strokeLinecap="round"/>
-      <path d="M28 8 C28 8 23.5 12.5 18 18" stroke="#1a1a1a" strokeWidth="1.6" strokeLinecap="round"/>
-      <path d="M18 18 C18 18 12.5 23.5 8 28" stroke="#1a1a1a" strokeWidth="1.6" strokeLinecap="round"/>
+    <svg width="0" height="0" style={{ position: "absolute" }}>
+      <defs>
+        <filter id={ROUGH_FILTER_ID} x="-20%" y="-20%" width="140%" height="140%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="4" seed="8" result="noise" />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+      </defs>
     </svg>
   );
 }
 
-function GesturalLineEyelash() {
+function AsteriskGlyph({ size = 52 }: { size?: number }) {
   return (
-    <svg aria-hidden="true" width="70.8" height="38.66" viewBox="0 0 70.8 38.66" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M3 8 Q15 5 25 12 T45 8 T65 15" stroke="#000000" strokeWidth="2.2" strokeLinecap="round" fill="none"/>
-      <path d="M0 20 Q12 18 22 25 T42 20 T62 28" stroke="#000000" strokeWidth="2.2" strokeLinecap="round" fill="none"/>
-      <path d="M5 32 Q16 30 26 37 T46 33 T65 38" stroke="#000000" strokeWidth="2.2" strokeLinecap="round" fill="none"/>
+    <svg
+      aria-hidden="true"
+      width={size}
+      height={size}
+      viewBox="0 0 52 52"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      style={{ filter: `url(#${ROUGH_FILTER_ID})` }}
+    >
+      <path d="M26 5 C26 5 25 18 26 26" stroke="#1a1a1a" strokeWidth="2.4" strokeLinecap="round"/>
+      <path d="M26 26 C26 26 27 38 26 47" stroke="#1a1a1a" strokeWidth="2.4" strokeLinecap="round"/>
+      <path d="M5 26 C5 26 18 25.5 26 26" stroke="#1a1a1a" strokeWidth="2.4" strokeLinecap="round"/>
+      <path d="M26 26 C26 26 37 26.5 47 26" stroke="#1a1a1a" strokeWidth="2.4" strokeLinecap="round"/>
+      <path d="M10 10 C10 10 17.5 17.5 26 26" stroke="#1a1a1a" strokeWidth="2.4" strokeLinecap="round"/>
+      <path d="M26 26 C26 26 33.5 33.5 42 42" stroke="#1a1a1a" strokeWidth="2.4" strokeLinecap="round"/>
+      <path d="M42 10 C42 10 34.5 17.5 26 26" stroke="#1a1a1a" strokeWidth="2.4" strokeLinecap="round"/>
+      <path d="M26 26 C26 26 18.5 33.5 10 42" stroke="#1a1a1a" strokeWidth="2.4" strokeLinecap="round"/>
+    </svg>
+  );
+}
+
+function ScribbleCurve() {
+  return (
+    <svg
+      aria-hidden="true"
+      width="90"
+      height="52"
+      viewBox="0 0 90 52"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      style={{ filter: `url(#${ROUGH_FILTER_ID})` }}
+    >
+      <path d="M4 10 Q20 6 34 16 Q50 26 66 12 Q78 4 88 18" stroke="#1a1a1a" strokeWidth="2.4" strokeLinecap="round" fill="none"/>
+      <path d="M2 28 Q18 22 32 34 Q48 44 64 30 Q76 20 88 36" stroke="#1a1a1a" strokeWidth="2.4" strokeLinecap="round" fill="none"/>
+      <path d="M6 46 Q22 40 36 50 Q52 58 68 46 Q78 38 88 50" stroke="#1a1a1a" strokeWidth="2.4" strokeLinecap="round" fill="none"/>
+    </svg>
+  );
+}
+
+function ScribbleLoop() {
+  return (
+    <svg
+      aria-hidden="true"
+      width="72"
+      height="72"
+      viewBox="0 0 72 72"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      style={{ filter: `url(#${ROUGH_FILTER_ID})` }}
+    >
+      <path
+        d="M36 8 C52 8 64 20 64 36 C64 52 52 64 36 64 C20 64 8 52 8 36 C8 22 18 12 30 10"
+        stroke="#1a1a1a"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+        fill="none"
+      />
+      <path
+        d="M36 16 C48 16 56 26 56 36 C56 46 48 56 36 56 C24 56 16 46 16 36 C16 28 22 20 30 17"
+        stroke="#1a1a1a"
+        strokeWidth="2"
+        strokeLinecap="round"
+        fill="none"
+        strokeOpacity="0.35"
+      />
     </svg>
   );
 }
@@ -66,6 +127,8 @@ export default function HeroSection() {
       id="hero"
       className="min-h-screen flex flex-col justify-center pt-24 pb-12 px-6 md:px-24 relative overflow-hidden"
     >
+      <RoughSketchDefs />
+
       <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center justify-between gap-12 md:gap-8">
 
         {/* Left: Text Content */}
@@ -98,23 +161,23 @@ export default function HeroSection() {
           </motion.h1>
         </motion.div>
 
-        {/* Right: Arch photo with floating decorative shapes */}
+        {/* Right: Arch photo + floating decorative shapes */}
         <motion.div
-          className="relative shrink-0 flex items-end justify-center"
-          style={{ width: "min(480px, 90vw)", height: "min(520px, 75vw)" }}
+          className="relative shrink-0"
+          style={{ width: "min(500px, 90vw)", height: "min(560px, 80vw)" }}
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.1, ease: EASE }}
         >
-          {/* Arch photo */}
+          {/* Arch photo — centred */}
           <div
             className="absolute overflow-hidden"
             style={{
               borderRadius: "220px 220px 0 0",
-              width: "72%",
-              height: "90%",
+              width: "62%",
+              height: "88%",
               left: "50%",
-              top: "4%",
+              top: "6%",
               transform: "translateX(-50%)",
               background: "#FFFFFF",
               boxShadow: "0 4px 40px rgba(0,0,0,0.08)",
@@ -129,51 +192,62 @@ export default function HeroSection() {
             />
           </div>
 
-          {/* Coral quarter circle */}
-          <FloatingShape speed={0.55} amplitude={7} offset={0} className="absolute" style={{ right: "6%", top: "2%", zIndex: 6 }}>
+          {/* Coral quarter circle — top-left */}
+          <FloatingShape speed={0.55} amplitude={7} offset={0} className="absolute" style={{ left: "3%", top: "4%", zIndex: 6 }}>
             <motion.div
               initial={{ opacity: 0, scale: 0.6, rotate: -20 }}
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
               transition={{ duration: 0.9, delay: 0.5, ease: EASE }}
             >
-              <svg width="110" height="110" viewBox="0 0 110 110" fill="none">
+              <svg width="100" height="100" viewBox="0 0 110 110" fill="none">
                 <path d="M110 0 A110 110 0 0 0 0 110 L110 110 Z" fill="#E8654B" />
               </svg>
             </motion.div>
           </FloatingShape>
 
-          {/* Sparkle glyph */}
-          <FloatingShape speed={0.7} amplitude={5} offset={1.2} className="absolute" style={{ right: "2%", top: "14%", zIndex: 6 }}>
+          {/* Asterisk — upper-right, large and prominent */}
+          <FloatingShape speed={0.6} amplitude={6} offset={0.8} className="absolute" style={{ right: "3%", top: "10%", zIndex: 6 }}>
             <motion.div
-              initial={{ opacity: 0, rotate: -45 }}
-              animate={{ opacity: 1, rotate: 0 }}
-              transition={{ duration: 0.8, delay: 0.7, ease: EASE }}
+              initial={{ opacity: 0, rotate: -60, scale: 0.5 }}
+              animate={{ opacity: 1, rotate: 15, scale: 1 }}
+              transition={{ duration: 0.9, delay: 0.65, ease: EASE }}
             >
-              <SparkleGlyph />
+              <AsteriskGlyph size={64} />
             </motion.div>
           </FloatingShape>
 
-          {/* Teal rounded square */}
-          <FloatingShape speed={0.5} amplitude={9} offset={2.1} className="absolute" style={{ left: "0%", bottom: "20%", zIndex: 6 }}>
+          {/* Teal rounded square — right side mid */}
+          <FloatingShape speed={0.48} amplitude={9} offset={2.1} className="absolute" style={{ right: "0%", bottom: "30%", zIndex: 6 }}>
             <motion.div
               initial={{ opacity: 0, scale: 0.6, rotate: 15 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ duration: 0.9, delay: 0.6, ease: EASE }}
+              animate={{ opacity: 1, scale: 1, rotate: -8 }}
+              transition={{ duration: 0.9, delay: 0.55, ease: EASE }}
             >
-              <svg width="110" height="110" viewBox="0 0 110 110" fill="none">
+              <svg width="90" height="90" viewBox="0 0 110 110" fill="none">
                 <rect width="110" height="110" rx="22" fill="#3E9C7B" />
               </svg>
             </motion.div>
           </FloatingShape>
 
-          {/* Gestural eyelash */}
-          <FloatingShape speed={0.65} amplitude={6} offset={0.7} className="absolute" style={{ left: "2%", bottom: "8%", transform: "rotate(-150deg)", zIndex: 6 }}>
+          {/* Scribble curve — bottom-left */}
+          <FloatingShape speed={0.62} amplitude={6} offset={1.4} className="absolute" style={{ left: "1%", bottom: "18%", transform: "rotate(-20deg)", zIndex: 6 }}>
             <motion.div
-              initial={{ opacity: 0, x: -15 }}
+              initial={{ opacity: 0, x: -12 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.75, ease: EASE }}
             >
-              <GesturalLineEyelash />
+              <ScribbleCurve />
+            </motion.div>
+          </FloatingShape>
+
+          {/* Scribble loop — bottom-right */}
+          <FloatingShape speed={0.5} amplitude={8} offset={3.2} className="absolute" style={{ right: "4%", bottom: "8%", zIndex: 6 }}>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 0.7, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.85, ease: EASE }}
+            >
+              <ScribbleLoop />
             </motion.div>
           </FloatingShape>
         </motion.div>
