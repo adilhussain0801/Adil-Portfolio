@@ -2,7 +2,8 @@ import { useParams, Link } from "wouter";
 import { useRef, useEffect, useState, useMemo, type RefObject } from "react";
 import { motion, useInView, AnimatePresence, useMotionValue, useTransform, useSpring, animate } from "framer-motion";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, AlertCircle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare, ChevronLeft, ChevronRight, ChevronDown, X, CheckCircle2, Settings, Banknote, Layers, Users, BookOpen, Bot, GraduationCap, Briefcase, Link2, ArrowLeftRight, BarChart2, Building2, Target, ShieldCheck, Menu } from "lucide-react";
-import walkthroughScreenshot from "@assets/Banner_1776167290381.png";
+import walkthroughScreenshotStudy3 from "@assets/After_1776166484326.png";
+import walkthroughScreenshotStudy4 from "@assets/Banner_1776167290381.png";
 import docsScreenshot from "@assets/Screenshot_2026-04-13_at_16.19.24_1776077371148.png";
 import { getCaseStudy, getNextCaseStudy, getAllCaseStudies, type CaseStudy } from "@/data/caseStudies";
 import NotFound from "@/pages/not-found";
@@ -3390,9 +3391,11 @@ function CustomerAnecdotesSection() {
   );
 }
 
-function ExperienceWalkthroughSection() {
+function ExperienceWalkthroughSection({ study }: { study: CaseStudy }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, amount: 0.35 });
+
+  const screenshot = study.id === 4 ? walkthroughScreenshotStudy4 : walkthroughScreenshotStudy3;
 
   return (
     <section
@@ -3446,48 +3449,50 @@ function ExperienceWalkthroughSection() {
           </div>
 
           <img
-            src={walkthroughScreenshot}
+            src={screenshot}
             alt="Experience walkthrough"
             style={{ display: "block", width: "100%", height: "auto" }}
           />
 
-          {/* Prototype CTA */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              padding: "14px 20px",
-              background: "#F8FAFC",
-              borderTop: "1px solid rgba(15,23,42,0.07)",
-            }}
-          >
-            <a
-              href="https://ainwi-services-v-2.replit.app/issue"
-              target="_blank"
-              rel="noopener noreferrer"
+          {/* Prototype CTA — study 4 only */}
+          {study.id === 4 && (
+            <div
               style={{
-                display: "inline-flex",
+                display: "flex",
                 alignItems: "center",
-                gap: 7,
-                background: "#1a1a1a",
-                color: "#fff",
-                borderRadius: 10,
-                padding: "9px 18px",
-                fontFamily: "'Wotfard', sans-serif",
-                fontSize: 13,
-                fontWeight: 600,
-                textDecoration: "none",
-                letterSpacing: "0.01em",
-                transition: "background 0.18s ease, transform 0.18s ease",
+                justifyContent: "center",
+                padding: "14px 20px",
+                background: "#F8FAFC",
+                borderTop: "1px solid rgba(15,23,42,0.07)",
               }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#333"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#1a1a1a"; }}
             >
-              View interactive prototype
-              <ArrowUpRight size={14} strokeWidth={2} />
-            </a>
-          </div>
+              <a
+                href="https://ainwi-services-v-2.replit.app/issue"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 7,
+                  background: "#1a1a1a",
+                  color: "#fff",
+                  borderRadius: 10,
+                  padding: "9px 18px",
+                  fontFamily: "'Wotfard', sans-serif",
+                  fontSize: 13,
+                  fontWeight: 600,
+                  textDecoration: "none",
+                  letterSpacing: "0.01em",
+                  transition: "background 0.18s ease, transform 0.18s ease",
+                }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#333"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#1a1a1a"; }}
+              >
+                View interactive prototype
+                <ArrowUpRight size={14} strokeWidth={2} />
+              </a>
+            </div>
+          )}
         </motion.div>
       </div>
     </section>
@@ -5630,7 +5635,7 @@ export default function CaseStudyPage() {
         {study.id === 3 && <ExperienceTransformationSection />}
         {study.id === 3 && <SystemDesignComplexitySection />}
         {study.id === 3 && <BusinessImpactSection />}
-        <ExperienceWalkthroughSection />
+        <ExperienceWalkthroughSection study={study} />
         {study.id === 4 && <EngineeringHandoffSection />}
         <ImpactSection study={study} scrollRef={scrollRef} />
         {study.id === 4 && <CustomerAnecdotesSection />}
