@@ -218,16 +218,19 @@ export default function HeroSection() {
             </motion.div>
           </FloatingShape>
 
-          {/* Teal rounded square — right side mid */}
-          <FloatingShape speed={0.48} amplitude={9} offset={2.1} className="absolute" style={{ right: "0%", bottom: "30%", zIndex: 6 }}>
+          {/* Teal shape — right side mid */}
+          <FloatingShape speed={0.48} amplitude={9} offset={2.1} className="absolute" style={{ right: "-4%", bottom: "24%", zIndex: 6 }}>
             <motion.div
               initial={{ opacity: 0, scale: 0.6, rotate: 15 }}
-              animate={{ opacity: 1, scale: 1, rotate: -8 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
               transition={{ duration: 0.9, delay: 0.55, ease: EASE }}
             >
-              <svg width="90" height="90" viewBox="0 0 110 110" fill="none">
-                <rect width="110" height="110" rx="22" fill="#3E9C7B" />
-              </svg>
+              <div style={{
+                width: 160,
+                height: 160,
+                background: "#3E9C7B",
+                borderRadius: "12px 80px 12px 80px",
+              }} />
             </motion.div>
           </FloatingShape>
 
