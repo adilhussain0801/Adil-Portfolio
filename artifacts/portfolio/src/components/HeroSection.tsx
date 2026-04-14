@@ -48,8 +48,8 @@ function ScribbleCurve() {
     <svg
       aria-hidden="true"
       width="90"
-      height="52"
-      viewBox="0 0 90 52"
+      height="66"
+      viewBox="0 0 90 66"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       style={{ filter: `url(#${ROUGH_FILTER_ID})` }}
