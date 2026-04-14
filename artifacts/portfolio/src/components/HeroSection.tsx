@@ -125,7 +125,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="min-h-screen flex flex-col justify-center pt-24 pb-12 px-6 md:px-24 relative overflow-hidden"
+      className="min-h-screen flex flex-col justify-center pt-24 pb-12 px-6 md:px-24 relative"
     >
       <RoughSketchDefs />
 
@@ -164,7 +164,7 @@ export default function HeroSection() {
         {/* Right: Arch photo + floating decorative shapes */}
         <motion.div
           className="relative shrink-0"
-          style={{ width: "min(500px, 90vw)", height: "min(560px, 80vw)" }}
+          style={{ width: "min(500px, 90vw)", height: "min(560px, 80vw)", overflow: "visible" }}
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.1, ease: EASE }}
