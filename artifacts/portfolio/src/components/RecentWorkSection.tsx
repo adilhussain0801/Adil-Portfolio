@@ -8,7 +8,7 @@ const PROJECTS = [
     title: "Rovo Service",
     category: "Jira Service Management - AI",
     description: "Reimagining Jira Service Management with embedded AI agents that proactively detect, prevent, and resolve issues within workflows.",
-    timeline: "AUG 2025 — MAR 2026",
+    timeline: "AUG 2025 - MAR 2026",
     image: "/rovo-service-bg.png",
     placeholderColor: "#C5D9F9",
     colSpan: "md:col-span-1",
@@ -18,8 +18,8 @@ const PROJECTS = [
     id: 3,
     title: "App Editions",
     category: "Atlassian Marketplace",
-    description: "One app. Multiple tiers. App Editions lets Marketplace partners package and price features for different types of customers — all from a single listing.",
-    timeline: "APR 2024 — JUN 2025",
+    description: "One app. Multiple tiers. App Editions lets Marketplace partners package and price features for different types of customers - all from a single listing.",
+    timeline: "APR 2024 - JUN 2025",
     image: "/app-editions-cover.png",
     backgroundPosition: "40% 40%",
     placeholderColor: "#0D0D0D",
@@ -125,7 +125,7 @@ function ProjectCard({
       ) : (
         <a
           href={(project as any).externalUrl ?? `/work/${project.id}`}
-          aria-label={`View case study: ${project.title} — ${project.category}`}
+          aria-label={`View case study: ${project.title} - ${project.category}`}
           className="group relative block rounded-2xl overflow-hidden cursor-pointer w-full h-[78vh] hover:shadow-2xl transition-shadow duration-300"
           onMouseEnter={() => setHoveredId(project.id)}
           onMouseLeave={() => setHoveredId(null)}

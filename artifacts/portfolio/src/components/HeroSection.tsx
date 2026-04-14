@@ -171,7 +171,7 @@ export default function HeroSection() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.1, ease: EASE }}
         >
-          {/* Arch photo — centred */}
+          {/* Arch photo - centred */}
           <div
             className="absolute overflow-hidden"
             style={{
@@ -194,7 +194,7 @@ export default function HeroSection() {
             />
           </div>
 
-          {/* Coral quarter circle — top-left */}
+          {/* Coral quarter circle - top-left */}
           <FloatingShape speed={0.55} amplitude={7} offset={0} className="absolute" style={{ left: "13%", top: "4%", zIndex: 6 }}>
             <motion.div
               initial={{ opacity: 0, scale: 0.6, rotate: -20 }}
@@ -207,7 +207,7 @@ export default function HeroSection() {
             </motion.div>
           </FloatingShape>
 
-          {/* Asterisk — upper-right, large and prominent */}
+          {/* Asterisk - upper-right, large and prominent */}
           <FloatingShape speed={0.6} amplitude={6} offset={0.8} className="absolute" style={{ right: "3%", top: "10%", zIndex: 6 }}>
             <motion.div
               initial={{ opacity: 0, rotate: -60, scale: 0.5 }}
@@ -218,7 +218,7 @@ export default function HeroSection() {
             </motion.div>
           </FloatingShape>
 
-          {/* Teal shape — right side mid */}
+          {/* Teal shape - right side mid */}
           <FloatingShape speed={0.48} amplitude={9} offset={2.1} className="absolute" style={{ right: "7%", bottom: "24%", zIndex: 6 }}>
             <motion.div
               initial={{ opacity: 0, scale: 0.6, rotate: 15 }}
@@ -234,7 +234,7 @@ export default function HeroSection() {
             </motion.div>
           </FloatingShape>
 
-          {/* Scribble curve — bottom-left */}
+          {/* Scribble curve - bottom-left */}
           <FloatingShape speed={0.62} amplitude={6} offset={1.4} className="absolute" style={{ left: "1%", bottom: "18%", transform: "rotate(-20deg)", zIndex: 6 }}>
             <motion.div
               initial={{ opacity: 0, x: -12 }}
@@ -245,7 +245,7 @@ export default function HeroSection() {
             </motion.div>
           </FloatingShape>
 
-          {/* Scribble loop — bottom-right of photo */}
+          {/* Scribble loop - bottom-right of photo */}
           <FloatingShape speed={0.5} amplitude={8} offset={3.2} className="absolute" style={{ right: "26%", bottom: "-4%", zIndex: 7 }}>
             <motion.div
               initial={{ opacity: 0, scale: 0.5 }}

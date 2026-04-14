@@ -174,7 +174,7 @@ function CaseStudyHeroBg({
         style={{ objectFit: "cover", objectPosition: "center", zIndex: 0, opacity: 0.65 }}
       />
 
-      {/* ── Product screenshot — anchored to bottom ── */}
+      {/* ── Product screenshot - anchored to bottom ── */}
       <img
         src={imageSrc}
         alt="Rovo Service Management interface"
@@ -237,7 +237,7 @@ function HeroSection({
           />
         </motion.div>
 
-        {/* Text — below the Service Collection logo, left side */}
+        {/* Text - below the Service Collection logo, left side */}
         <motion.div
           className="relative z-10"
           style={{ marginLeft: "8%", maxWidth: 440, marginTop: "22%" }}
@@ -265,7 +265,7 @@ function HeroSection({
           )}
         </motion.div>
 
-        {/* Scroll nudge — bottom center */}
+        {/* Scroll nudge - bottom center */}
         <motion.div
           className="absolute bottom-8 left-1/2 z-10 flex flex-col items-center gap-2"
           style={{ x: "-50%" }}
@@ -319,7 +319,7 @@ function HeroSection({
           />
         </motion.div>
 
-        {/* Text — middle, closer to illustration */}
+        {/* Text - middle, closer to illustration */}
         <motion.div
           className="relative z-10 px-8 my-auto"
           style={{ marginLeft: "8%", maxWidth: 420 }}
@@ -347,7 +347,7 @@ function HeroSection({
           )}
         </motion.div>
 
-        {/* Scroll nudge — bottom center */}
+        {/* Scroll nudge - bottom center */}
         <motion.div
           className="absolute bottom-8 left-1/2 z-10 flex flex-col items-center gap-2"
           style={{ x: "-50%" }}
@@ -384,7 +384,7 @@ function HeroSection({
       className="relative h-screen snap-start snap-always flex flex-col pb-0 overflow-hidden"
       style={{ backgroundColor: study.heroColor }}
     >
-      {/* Background + screenshot — fills entire section */}
+      {/* Background + screenshot - fills entire section */}
       <motion.div
         className="absolute inset-0"
         initial={{ opacity: 0 }}
@@ -399,7 +399,7 @@ function HeroSection({
           imageBottom={imageBottom}
         />
       </motion.div>
-      {/* Title + description — top left, above image */}
+      {/* Title + description - top left, above image */}
       <motion.div
         className="relative z-10 px-8 md:px-20 pt-48 md:pt-56 pb-0 max-w-xl"
         {...fadeUp(0.1)}
@@ -647,7 +647,7 @@ function OverviewSection({ study }: { study: CaseStudy }) {
                 className="text-base leading-relaxed"
                 style={{ color: "#1a1a1a", fontFamily: FF, maxWidth: 520 }}
               >
-                App Editions lets partners package the same app into multiple editions — each with its own features and price — all under a single Marketplace listing.
+                App Editions lets partners package the same app into multiple editions - each with its own features and price - all under a single Marketplace listing.
               </p>
               <p
                 className="text-base leading-relaxed"
@@ -854,7 +854,7 @@ function JourneyFocusDiagram() {
   });
 
   /*
-   * Orthogonal layout — ViewBox "0 0 1200 500"
+   * Orthogonal layout - ViewBox "0 0 1200 500"
    * Row 1 (y=155): Customer ─── Help portal ─── Work item ─── Service Agent
    * Row 2 (y=375): Virtual service agent    Help articles
    *
@@ -883,14 +883,14 @@ function JourneyFocusDiagram() {
   const WIcx = 718, WIcy = WIY + WIH / 2;
   const R_ICON = 26;
 
-  // Row 1 arrow endpoints — arrows start/end at outer ring edge
+  // Row 1 arrow endpoints - arrows start/end at outer ring edge
   const arr1x1 = CX + R_RING + 2, arr1x2 = HPX - 2;          // Customer → HP
   const arr2x1 = HPX + HPW + 2, arr2x2 = WIX - 2;             // HP → WI
   const arr3x1 = SAX - R_RING - 2, arr3x2 = WIX + WIW + 2;   // SA → WI (reversed)
 
   // HP → Row 2 elbow tree (exact spec values)
-  const HP_BX = 405;     // trunk x — midpoint of VX(320) and HAX(490) for equal arms
-  const HP_BY = 190;     // trunk y — HP bottom (spec, +2 from stroke edge)
+  const HP_BX = 405;     // trunk x - midpoint of VX(320) and HAX(490) for equal arms
+  const HP_BY = 190;     // trunk y - HP bottom (spec, +2 from stroke edge)
   const SPLIT_Y = 242;   // y where trunk splits into branches
 
   // Row 2 → WI L-shape (exact spec values)
@@ -1152,7 +1152,7 @@ function FrictionSlide({
               </span>
             </div>
             <div className="relative">
-              {/* SLA breach marker — label above bar, line drops to bar top */}
+              {/* SLA breach marker - label above bar, line drops to bar top */}
               <div
                 className="absolute z-10 flex flex-col items-center"
                 style={{ left: "65%", bottom: "100%", paddingBottom: 2, transform: "translateX(-50%)" }}
@@ -1347,7 +1347,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                 {[
                   <>Enterprise support operates at massive scale, where even small inefficiencies compound into significant <strong className="text-[#1a1a1a] font-semibold">operational cost.</strong></>,
                   <span style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                    <span>Agents don't spend most of their time <strong className="text-[#1a1a1a] font-semibold">resolving issues</strong> — they spend it trying to <strong className="text-[#1a1a1a] font-semibold">understand them</strong>. Across tools, context is fragmented, incomplete, and constantly shifting.</span>
+                    <span>Agents don't spend most of their time <strong className="text-[#1a1a1a] font-semibold">resolving issues</strong> - they spend it trying to <strong className="text-[#1a1a1a] font-semibold">understand them</strong>. Across tools, context is fragmented, incomplete, and constantly shifting.</span>
                     <span style={{ display: "flex", flexDirection: "column", gap: 4 }}>
                       <span>As a result, <strong className="text-[#1a1a1a] font-semibold">40–60% of effort</strong> goes into:</span>
                       <span style={{ display: "flex", flexDirection: "column", gap: 2, paddingLeft: 12 }}>
@@ -1361,7 +1361,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
                       <span className="text-[#1a1a1a]/50" style={{ fontStyle: "italic" }}>Before a resolution plan is even created.</span>
                     </span>
                   </span>,
-                  <>This results in <strong className="text-[#1a1a1a] font-semibold">slower resolution times</strong>, higher <strong className="text-[#1a1a1a] font-semibold">cognitive load</strong>, and a model that <strong className="text-[#1a1a1a] font-semibold">scales linearly with headcount</strong> — making it increasingly <strong className="text-[#1a1a1a] font-semibold">unsustainable</strong> as demand grows.</>,
+                  <>This results in <strong className="text-[#1a1a1a] font-semibold">slower resolution times</strong>, higher <strong className="text-[#1a1a1a] font-semibold">cognitive load</strong>, and a model that <strong className="text-[#1a1a1a] font-semibold">scales linearly with headcount</strong> - making it increasingly <strong className="text-[#1a1a1a] font-semibold">unsustainable</strong> as demand grows.</>,
                 ].map((content, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <span className="mt-2 flex-shrink-0" style={{ width: 6, height: 6, background: "rgba(232,101,75,0.55)", borderRadius: 1 }} />
@@ -1699,7 +1699,7 @@ function ChallengeSection({ study }: { study: CaseStudy }) {
               3rd largest revenue-generating vertical for Atlassian
             </p>
 
-            {/* Expand toggle — one-way, disappears once opened */}
+            {/* Expand toggle - one-way, disappears once opened */}
             {!statsOpen && (
               <button
                 onClick={() => setStatsOpen(true)}
@@ -2279,8 +2279,8 @@ const DESIGN_PRINCIPLES = [
     icon: () => <Lightbulb size={20} color="#6366F1" strokeWidth={1.5} />,
     iconBg: "rgba(99,102,241,0.10)",
     title: "Make AI trustworthy, not just visible",
-    description: "AI should communicate intent, confidence, and outcomes in a way that builds trust before action is taken — without exposing unnecessary complexity.",
-    insight: "Showing AI as 'thinking' exposed the real gap — invisible reasoning erodes trust before action is even taken.",
+    description: "AI should communicate intent, confidence, and outcomes in a way that builds trust before action is taken - without exposing unnecessary complexity.",
+    insight: "Showing AI as 'thinking' exposed the real gap - invisible reasoning erodes trust before action is even taken.",
   },
   {
     num: "02",
@@ -2288,7 +2288,7 @@ const DESIGN_PRINCIPLES = [
     iconBg: "rgba(232,101,75,0.10)",
     title: "Design for outcomes, not interactions",
     description: "AI systems should collapse multi-step workflows into outcome-driven actions, removing the need for users to orchestrate the process.",
-    insight: "Early designs exposed logic — plans, trees, steps. But users care about resolution, not how the system gets there.",
+    insight: "Early designs exposed logic - plans, trees, steps. But users care about resolution, not how the system gets there.",
   },
   {
     num: "03",
@@ -2296,7 +2296,7 @@ const DESIGN_PRINCIPLES = [
     iconBg: "rgba(6,182,212,0.10)",
     title: "Reduce decisions, not just effort",
     description: "AI should eliminate unnecessary decisions by acting with context, not defer them back to the user for validation.",
-    insight: "Users were asked to interpret, validate, and fix flows — AI added work instead of removing it.",
+    insight: "Users were asked to interpret, validate, and fix flows - AI added work instead of removing it.",
   },
 ];
 
@@ -2433,7 +2433,7 @@ function RovoServiceOverviewSection() {
         </h2>
       </motion.div>
 
-      {/* Diagram — click to toggle */}
+      {/* Diagram - click to toggle */}
       <div className="flex-1 flex items-end justify-center overflow-hidden px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -2442,16 +2442,16 @@ function RovoServiceOverviewSection() {
           style={{ position: "relative", width: "90%", cursor: "pointer" }}
           onClick={() => setToggled(t => !t)}
         >
-          {/* Base image — always visible */}
+          {/* Base image - always visible */}
           <img
             src={IMGS[0]}
             alt="Rovo Service capability orbit diagram"
             style={{ width: "100%", display: "block", objectFit: "contain" }}
           />
-          {/* Overlay image — fades in on top */}
+          {/* Overlay image - fades in on top */}
           <img
             src={IMGS[1]}
-            alt="Rovo Service capability orbit diagram — highlighted"
+            alt="Rovo Service capability orbit diagram - highlighted"
             style={{
               position: "absolute",
               inset: 0,
@@ -2785,7 +2785,7 @@ function AIConsolidationSection() {
       {/* ── Slide 1 ── */}
       <div className="relative h-screen flex flex-col overflow-hidden">
 
-        {/* ── Text — top ── */}
+        {/* ── Text - top ── */}
         <motion.div
           ref={ref}
           className="w-full flex flex-col gap-4 pt-12 md:pt-16"
@@ -2816,7 +2816,7 @@ function AIConsolidationSection() {
             className="text-base leading-relaxed text-[#1a1a1a]/65"
             style={{ fontFamily: FF }}
           >
-            Jira Service Management already included multiple AI capabilities — similar requests, comments summary, suggestions, and a service request helper agent. However, these evolved independently across different workflows.
+            Jira Service Management already included multiple AI capabilities - similar requests, comments summary, suggestions, and a service request helper agent. However, these evolved independently across different workflows.
           </p>
 
           {/* As a result bullets */}
@@ -2839,7 +2839,7 @@ function AIConsolidationSection() {
           </div>
         </motion.div>
 
-        {/* ── Image — bottom ── */}
+        {/* ── Image - bottom ── */}
         <motion.img
           src="/ai-features.png"
           alt="AI features scattered across Jira Service Management"
@@ -2859,7 +2859,7 @@ function AIConsolidationSection() {
             {/* ── Left: narrative ── */}
             <div className="flex-1 flex flex-col gap-6 min-w-0">
               <p className="text-xl md:text-2xl font-semibold leading-snug text-[#1a1a1a]" style={{ fontFamily: FF }}>
-                Service agents aren't looking for features — they're trying to{" "}
+                Service agents aren't looking for features - they're trying to{" "}
                 <mark style={{ background: "rgba(99,102,241,0.13)", color: "#4338CA", borderRadius: "5px", padding: "2px 6px", fontWeight: 700 }}>
                   resolve work faster
                 </mark>
@@ -2883,7 +2883,7 @@ function AIConsolidationSection() {
               </div>
 
               <p className="text-sm leading-relaxed text-[#1a1a1a]/55" style={{ fontFamily: FF, borderTop: "1px solid rgba(26,26,26,0.08)", paddingTop: 16 }}>
-                A system designed to <strong className="text-[#1a1a1a]/80 font-semibold">understand context</strong>, reason over it, and <strong className="text-[#1a1a1a]/80 font-semibold">execute work</strong> — working alongside agents as a teammate.
+                A system designed to <strong className="text-[#1a1a1a]/80 font-semibold">understand context</strong>, reason over it, and <strong className="text-[#1a1a1a]/80 font-semibold">execute work</strong> - working alongside agents as a teammate.
               </p>
             </div>
 
@@ -2892,10 +2892,10 @@ function AIConsolidationSection() {
 
               {/* Label */}
               <p className="text-[10px] font-bold tracking-widest uppercase text-[#1a1a1a]/35 mb-5 self-center" style={{ fontFamily: FF }}>
-                Previously — Isolated AI Features
+                Previously - Isolated AI Features
               </p>
 
-              {/* Pills — centered, in container */}
+              {/* Pills - centered, in container */}
               <div
                 className="flex flex-col items-center gap-3 px-4 py-5 mb-5 rounded-2xl"
                 style={{ background: "rgba(255,255,255,0.5)", border: "1px solid rgba(26,26,26,0.08)", maxWidth: 460, width: "100%" }}
@@ -2980,7 +2980,7 @@ function AIConsolidationSection() {
                     <div className="flex flex-col gap-1 items-center">
                       <p className="text-base font-bold text-[#1a1a1a]" style={{ fontFamily: FF }}>Rovo Service</p>
                       <p className="text-sm leading-relaxed text-[#1a1a1a]/60 text-center" style={{ fontFamily: FF }}>
-                        One AI system — connected, contextual, and embedded across the service lifecycle
+                        One AI system - connected, contextual, and embedded across the service lifecycle
                       </p>
                     </div>
                   </div>
@@ -3202,7 +3202,7 @@ function CosmicWaveBackground() {
 const CUSTOMER_ANECDOTES = [
   {
     title: "Handling trivial tickets",
-    quote: "A big chunk of my day used to go into repetitive tickets — password resets, VPN access, basic troubleshooting. With Rovo in place, most of that just gets handled or pre-resolved before it even reaches me.\n\nWhat's changed is I can now focus on the tickets that actually need investigation, instead of constantly clearing the queue.",
+    quote: "A big chunk of my day used to go into repetitive tickets - password resets, VPN access, basic troubleshooting. With Rovo in place, most of that just gets handled or pre-resolved before it even reaches me.\n\nWhat's changed is I can now focus on the tickets that actually need investigation, instead of constantly clearing the queue.",
     name: "IT Support Specialist",
     role: "Enterprise SaaS",
     rotate: -6,
@@ -3216,7 +3216,7 @@ const CUSTOMER_ANECDOTES = [
   },
   {
     title: "Guided resolution & confidence",
-    quote: "Earlier, resolving complex tickets meant jumping between Jira, Confluence, and internal docs just to piece together context. Now, I get relevant information and next steps surfaced directly in the workflow.\n\nIt feels like there's always guidance available — I don't have to second-guess if I'm missing something.",
+    quote: "Earlier, resolving complex tickets meant jumping between Jira, Confluence, and internal docs just to piece together context. Now, I get relevant information and next steps surfaced directly in the workflow.\n\nIt feels like there's always guidance available - I don't have to second-guess if I'm missing something.",
     name: "Senior Service Desk Agent",
     role: "Fintech",
     rotate: 2,
@@ -3253,7 +3253,7 @@ function AnecdoteCard({ a }: { a: (typeof CUSTOMER_ANECDOTES)[0] }) {
 
   return (
     <div style={{ position: "relative" }}>
-      {/* Tilted colour backing — peeks behind the white card */}
+      {/* Tilted colour backing - peeks behind the white card */}
       <div
         style={{
           position: "absolute",
@@ -3288,7 +3288,7 @@ function AnecdoteCard({ a }: { a: (typeof CUSTOMER_ANECDOTES)[0] }) {
           zIndex: hovered ? 10 : 1,
         }}
       >
-        {/* Icon — absolute at corner of the white card */}
+        {/* Icon - absolute at corner of the white card */}
         <img
           src={a.icon}
           alt=""
@@ -3712,7 +3712,7 @@ function SolutionSection({ study }: { study: CaseStudy }) {
 function EvaluationJourneySection() {
   const FF = "'Wotfard', sans-serif";
   const bullets = [
-    "Customers navigate multiple sources — Marketplace, partner sites, and documentation",
+    "Customers navigate multiple sources - Marketplace, partner sites, and documentation",
     "Value is scattered across features, pricing, and documentation",
     "No clear mapping between features → price → value",
     "Decisions require manual comparison and interpretation",
@@ -3725,7 +3725,7 @@ function EvaluationJourneySection() {
     >
       <SnapReveal>
         <div className="flex flex-col gap-6">
-          {/* Text content — 72px margins */}
+          {/* Text content - 72px margins */}
           <div className="flex flex-col gap-4" style={{ paddingLeft: 144, paddingRight: 144 }}>
             <p className="text-[10px] uppercase tracking-widest font-semibold" style={{ color: "#E8654B", fontFamily: FF }}>
               Current Journey
@@ -3755,7 +3755,7 @@ function EvaluationJourneySection() {
             </div>
           </div>
 
-          {/* Journey image — respects 144px margins */}
+          {/* Journey image - respects 144px margins */}
           <div
             className="overflow-x-auto overflow-y-hidden rounded-2xl border"
             style={{ marginLeft: 144, marginRight: 144, borderColor: "rgba(26,26,26,0.08)", background: "#fff", padding: "24px 32px" }}
@@ -3845,7 +3845,7 @@ function CustomerRealitySection() {
           >
             <AlertCircle size={15} className="flex-shrink-0 mt-0.5" style={{ color: "#C05437" }} />
             <p className="text-sm leading-relaxed" style={{ fontFamily: FF, color: "#1a1a1a" }}>
-              <span className="font-semibold text-[#C05437]">When this mapping isn't justified — </span>
+              <span className="font-semibold text-[#C05437]">When this mapping isn't justified - </span>
               trust drops, decisions stall
             </p>
           </div>
@@ -3900,7 +3900,7 @@ function CoreProblemSection() {
           <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight mb-2" style={{ fontFamily: FF }}>
             Value wasn't structured for decision-making
           </h2>
-          <p className="text-sm text-[#1a1a1a]/50 mb-8" style={{ fontFamily: FF }}>The problem wasn’t pricing — it was how value was packaged and understood</p>
+          <p className="text-sm text-[#1a1a1a]/50 mb-8" style={{ fontFamily: FF }}>The problem wasn’t pricing - it was how value was packaged and understood</p>
 
           {/* Two constraint cards */}
           <div className="grid grid-cols-2 gap-4 mb-6">
@@ -3941,7 +3941,7 @@ function CoreProblemSection() {
           >
             <AlertCircle size={17} className="flex-shrink-0 mt-0.5" style={{ color: "#C05437" }} />
             <p className="text-sm leading-relaxed" style={{ fontFamily: FF, color: "#1a1a1a" }}>
-              <span className="font-semibold text-[#C05437]">Evaluation is where decisions are made — </span>
+              <span className="font-semibold text-[#C05437]">Evaluation is where decisions are made - </span>
               but without structured packaging, customers couldn't confidently choose, and partners couldn't fully monetize.
             </p>
           </div>
@@ -4019,7 +4019,7 @@ function ReframingProblemSection() {
             style={{ background: "rgba(67,56,202,0.06)", border: "1px solid rgba(67,56,202,0.18)" }}
           >
             <Building2 size={16} className="flex-shrink-0" style={{ color: "#4338CA" }} />
-            <p className="text-sm font-semibold" style={{ color: "#4338CA", fontFamily: FF }}>This wasn’t a UI problem — it was a packaging problem</p>
+            <p className="text-sm font-semibold" style={{ color: "#4338CA", fontFamily: FF }}>This wasn’t a UI problem - it was a packaging problem</p>
           </div>
 
         </div>
@@ -4246,7 +4246,7 @@ function FocusOfCaseStudySection() {
           >
             <Building2 size={16} className="flex-shrink-0 mt-0.5" style={{ color: "#4338CA" }} />
             <p className="text-sm leading-relaxed" style={{ fontFamily: FF, color: "#4338CA" }}>
-              This is where adoption decisions are made — and where App Editions creates the most immediate impact
+              This is where adoption decisions are made - and where App Editions creates the most immediate impact
             </p>
           </div>
         </div>
@@ -4338,7 +4338,7 @@ function ExperienceTransformationSection() {
 function SystemDesignComplexitySection() {
   const FF = "'Wotfard', sans-serif";
   const bullets = [
-    "Customers understand what they're getting — before and during trial",
+    "Customers understand what they're getting - before and during trial",
     "Pricing and value remain aligned throughout the journey",
     "Teams can validate, adjust, and commit with confidence.",
   ];
@@ -4355,7 +4355,7 @@ function SystemDesignComplexitySection() {
             Journey With Editions
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] leading-tight" style={{ fontFamily: FF }}>
-            Confidence doesn't stop at evaluation — it accelerates adoption.
+            Confidence doesn't stop at evaluation - it accelerates adoption.
           </h2>
           <ul className="flex flex-col gap-2.5 list-none m-0 p-0">
             {bullets.map((b, i) => (
@@ -4373,7 +4373,7 @@ function SystemDesignComplexitySection() {
         </div>
       </SnapReveal>
 
-      {/* Journey image — outside SnapReveal so overflow-x-auto is properly constrained */}
+      {/* Journey image - outside SnapReveal so overflow-x-auto is properly constrained */}
       <div
         className="overflow-x-auto overflow-y-hidden rounded-2xl border"
         style={{ marginLeft: 144, marginRight: 144, borderColor: "rgba(26,26,26,0.08)", background: "#fff", padding: "24px 32px" }}
@@ -4565,14 +4565,14 @@ const EDITION_ANECDOTES: {
 }[] = [
   {
     title: "Monetising advanced features",
-    quote: "We can finally charge for our most advanced features instead of bundling everything into one price.\n\nEditions gave us the structure to have a real conversation about value — and customers are responding to it.",
+    quote: "We can finally charge for our most advanced features instead of bundling everything into one price.\n\nEditions gave us the structure to have a real conversation about value - and customers are responding to it.",
     type: "partner", tier: "Platinum Marketplace Partner",
     rotate: -4, bgColor: "#D6E8F5", bgRotate: -9, bgScale: 1.04,
     icon: "/icon-star-new.png", iconRotate: -8, iconSize: 62, iconCorner: { top: -22, right: -22 },
   },
   {
     title: "Budget approval, simplified",
-    quote: "The tiered structure made it much easier to justify pricing in enterprise deals — procurement could see exactly what they were getting at each level.\n\nWe closed two deals faster because of it.",
+    quote: "The tiered structure made it much easier to justify pricing in enterprise deals - procurement could see exactly what they were getting at each level.\n\nWe closed two deals faster because of it.",
     type: "customer", tier: "SMB Customer",
     rotate: 3, bgColor: "#F5DEC8", bgRotate: 7, bgScale: 1.05,
     icon: "/icon-okhand-new.png", iconRotate: 0, iconSize: 60, iconCorner: { bottom: -22, right: -22 },
@@ -4586,21 +4586,21 @@ const EDITION_ANECDOTES: {
   },
   {
     title: "Paying for what we actually use",
-    quote: "We used to pay full price for features half our team never used. Editions let us start where we were and grow into the advanced capabilities over time.\n\nIt felt fair — and that matters when you're renewing.",
+    quote: "We used to pay full price for features half our team never used. Editions let us start where we were and grow into the advanced capabilities over time.\n\nIt felt fair - and that matters when you're renewing.",
     type: "customer", tier: "Enterprise Customer",
     rotate: -3, bgColor: "#EDE0F5", bgRotate: -8, bgScale: 1.04,
     icon: "/icon-star-new.png", iconRotate: 6, iconSize: 58, iconCorner: { bottom: -20, right: -20 },
   },
   {
     title: "A roadmap, not just a price list",
-    quote: "Clear tier differentiation gave our sales team a real story to tell. It's not just pricing — it's a roadmap for how customers grow with the product.\n\nThat narrative is worth a lot in a competitive deal.",
+    quote: "Clear tier differentiation gave our sales team a real story to tell. It's not just pricing - it's a roadmap for how customers grow with the product.\n\nThat narrative is worth a lot in a competitive deal.",
     type: "partner", tier: "Platinum Marketplace Partner",
     rotate: 2, bgColor: "#F5E8C8", bgRotate: 6, bgScale: 1.05,
     icon: "/icon-okhand-new.png", iconRotate: -4, iconSize: 60, iconCorner: { top: -22, right: -22 },
   },
   {
     title: "Scaling without renegotiating",
-    quote: "Upgrading felt natural as we scaled. We didn't have to renegotiate the whole contract — just move to the next tier when we were ready.\n\nIt removed the friction that usually delays these decisions.",
+    quote: "Upgrading felt natural as we scaled. We didn't have to renegotiate the whole contract - just move to the next tier when we were ready.\n\nIt removed the friction that usually delays these decisions.",
     type: "customer", tier: "Enterprise Customer",
     rotate: -5, bgColor: "#C8EDF5", bgRotate: -10, bgScale: 1.04,
     icon: "/icon-heart-new.png", iconRotate: 8, iconSize: 62, iconCorner: { bottom: -22, right: -22 },
@@ -4705,7 +4705,7 @@ function AdoptionAtScaleSection() {
           {/* Two-column panels */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
 
-            {/* Left — Video */}
+            {/* Left - Video */}
             <div style={{ background: "#fff", borderRadius: 18, border: "1px solid rgba(26,26,26,0.07)", overflow: "hidden", display: "flex", flexDirection: "column" }}>
               <div style={{ background: "#0D0D0D", aspectRatio: "16/9", overflow: "hidden", flexShrink: 0 }}>
                 <video src="/AppEditionsV3.mov" autoPlay muted loop playsInline style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
@@ -4728,7 +4728,7 @@ function AdoptionAtScaleSection() {
               </div>
             </div>
 
-            {/* Right — Documentation */}
+            {/* Right - Documentation */}
             <div style={{ background: "#fff", borderRadius: 18, border: "1px solid rgba(26,26,26,0.07)", overflow: "hidden", display: "flex", flexDirection: "column" }}>
               <div style={{ background: "#F0F4F8", overflow: "hidden", flexShrink: 0, aspectRatio: "16/9" }}>
                 <img src={docsScreenshot} alt="Atlassian partner documentation for App Editions" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top left", display: "block" }} />
@@ -4747,7 +4747,7 @@ function AdoptionAtScaleSection() {
                     </li>
                   ))}
                 </ul>
-                <p style={{ fontFamily: FF, fontSize: 12, color: "#6B8CDA", margin: 0, lineHeight: 1.5, fontWeight: 600 }}>→ Adoption depended on partners — value was unlocked only when they implemented it</p>
+                <p style={{ fontFamily: FF, fontSize: 12, color: "#6B8CDA", margin: 0, lineHeight: 1.5, fontWeight: 600 }}>→ Adoption depended on partners - value was unlocked only when they implemented it</p>
               </div>
             </div>
           </div>
@@ -4756,7 +4756,7 @@ function AdoptionAtScaleSection() {
           <div style={{ background: "rgba(26,26,26,0.04)", border: "1px solid rgba(26,26,26,0.07)", borderRadius: 14, padding: "16px 24px", display: "flex", alignItems: "center", gap: 14 }}>
             <span style={{ fontSize: 18 }}>⚡</span>
             <p style={{ fontFamily: FF, fontSize: 13, color: "#1a1a1a", margin: 0, lineHeight: 1.5 }}>
-              App Editions scaled not just through launch — but through partner enablement.
+              App Editions scaled not just through launch - but through partner enablement.
             </p>
           </div>
 
@@ -4808,21 +4808,21 @@ function PartnerAnecdotesSection() {
 
 const STUDY3_LEARNINGS = [
   {
-    title: "We weren't solving pricing — we were fixing how value shows up",
+    title: "We weren't solving pricing - we were fixing how value shows up",
     lines: [
       "We started thinking this was a pricing problem.",
       "It turned out to be about how value is structured and understood during evaluation.",
     ],
   },
   {
-    title: "The hardest part wasn't choosing — it was justifying",
+    title: "The hardest part wasn't choosing - it was justifying",
     lines: [
       "Customers could understand the product.",
       "But they struggled to explain why it was worth the cost to others.",
     ],
   },
   {
-    title: "More options didn't hurt — unclear options did",
+    title: "More options didn't hurt - unclear options did",
     lines: [
       "Adding tiers didn't increase confusion.",
       "It actually reduced it, because the value became easier to reason about.",
@@ -4934,7 +4934,7 @@ function EngineeringHandoffSection() {
         {/* Two cards side by side */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
 
-          {/* Card 1 — Structured handoff */}
+          {/* Card 1 - Structured handoff */}
           <motion.div {...col(0.1)} style={{ background: "#fff", border: "1px solid rgba(26,26,26,0.08)", borderRadius: 18, overflow: "hidden", display: "flex", flexDirection: "column" }}>
             <div style={{ height: 200, overflow: "hidden", flexShrink: 0 }}>
               <img src="/handoff-screens.png" alt="Key screens and panel states" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover", objectPosition: "top" }} />
@@ -4946,7 +4946,7 @@ function EngineeringHandoffSection() {
                   "Defined system states (loading, low confidence, failure, partial execution)",
                   "Mapped AI → system → human transitions",
                   "Annotated decision points and fallbacks",
-                  "Behavior, not just UI — when AI proceeds vs pauses",
+                  "Behavior, not just UI - when AI proceeds vs pauses",
                   "How plans evolve during execution",
                   "Clear override and recovery patterns",
                 ].map((item, i) => (
@@ -4959,7 +4959,7 @@ function EngineeringHandoffSection() {
             </div>
           </motion.div>
 
-          {/* Card 2 — Accessibility by design (annotations) */}
+          {/* Card 2 - Accessibility by design (annotations) */}
           <motion.div {...col(0.18)} style={{ background: "#fff", border: "1px solid rgba(26,26,26,0.08)", borderRadius: 18, overflow: "hidden", display: "flex", flexDirection: "column" }}>
             <div style={{ height: 200, overflow: "hidden", flexShrink: 0 }}>
               <img src="/handoff-annotations.png" alt="Accessibility annotations" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover", objectPosition: "top" }} />
@@ -5018,7 +5018,7 @@ function ImpactSection({ study, scrollRef }: { study: CaseStudy; scrollRef: RefO
 
           <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 36 }}>
             <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,26,26,0.45)", margin: 0 }}>
-              {isStudy3 ? "Revenue Impact Since Launch" : "Impact — Early Signals"}
+              {isStudy3 ? "Revenue Impact Since Launch" : "Impact - Early Signals"}
             </p>
             <p style={{ fontFamily: FF, fontSize: "clamp(22px,2.5vw,30px)", fontWeight: 700, color: "#1a1a1a", margin: 0, lineHeight: 1.1 }}>
               {isStudy3 ? "App Editions unlocked monetization at scale" : "First 30 days post GA"}
@@ -5030,7 +5030,7 @@ function ImpactSection({ study, scrollRef }: { study: CaseStudy; scrollRef: RefO
             </p>
           </div>
 
-          {/* Cards — 3 columns */}
+          {/* Cards - 3 columns */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, marginBottom: 28 }}>
             {isStudy3 ? (
               <>
@@ -5059,9 +5059,9 @@ const RETROSPECTIVE_ITEMS: { icon: React.ElementType; color: string; bg: string;
     color: "#E8654B",
     bg: "rgba(232,101,75,0.1)",
     boldTitle: "Execution drives value",
-    regularTitle: " — not assistance",
+    regularTitle: " - not assistance",
     body: "AI assisting workflows saw limited engagement. The real adoption came from AI driving end-to-end execution.",
-    takeaway: "Users don't want help doing the work — they want the work done.",
+    takeaway: "Users don't want help doing the work - they want the work done.",
   },
   {
     icon: Brain,
@@ -5069,7 +5069,7 @@ const RETROSPECTIVE_ITEMS: { icon: React.ElementType; color: string; bg: string;
     bg: "rgba(124,58,237,0.1)",
     boldTitle: "Trust is the gating factor",
     regularTitle: " for autonomy",
-    body: "Even when accurate, plans were gated by trust — agents needed to fully understand and be able to intervene.",
+    body: "Even when accurate, plans were gated by trust - agents needed to fully understand and be able to intervene.",
     takeaway: "Autonomy scales only when trust is built into the interaction.",
   },
   {
@@ -5532,7 +5532,7 @@ export default function CaseStudyPage() {
         />
       )}
 
-      {/* Invisible hover zone — only active after scrolling past hero */}
+      {/* Invisible hover zone - only active after scrolling past hero */}
       {headerScrolled && (
         <div
           className="fixed top-0 left-0 right-0 z-40 h-16 pointer-events-auto"

@@ -5,7 +5,7 @@ const TESTIMONIALS = [
   {
     title: "A rare design thinker",
     quote:
-      "Adil brings a rare combination of systems thinking and empathy to every problem. He doesn't just design interfaces — he shapes how entire teams think about the user. Working with him at Atlassian was a masterclass in craft.",
+      "Adil brings a rare combination of systems thinking and empathy to every problem. He doesn't just design interfaces - he shapes how entire teams think about the user. Working with him at Atlassian was a masterclass in craft.",
     name: "Priya M.",
     location: "London, UK",
     icon: "/icon-heart.png",
@@ -15,7 +15,7 @@ const TESTIMONIALS = [
   {
     title: "Truly one of a kind ✨",
     quote:
-      "Adil's ability to navigate ambiguity and turn complex, agentic workflows into delightful, intuitive experiences is unmatched. He drove the Rovo design vision with clarity and conviction — and made everyone around him better.",
+      "Adil's ability to navigate ambiguity and turn complex, agentic workflows into delightful, intuitive experiences is unmatched. He drove the Rovo design vision with clarity and conviction - and made everyone around him better.",
     name: "James T.",
     location: "Sydney, Australia",
     icon: "/icon-okhand.png",

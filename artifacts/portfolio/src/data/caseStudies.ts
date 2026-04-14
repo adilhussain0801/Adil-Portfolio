@@ -263,12 +263,12 @@ export const CASE_STUDIES: CaseStudy[] = [
     year: "2024",
     role: "Senior Product Designer",
     platform: "Web App · Marketplace",
-    timeline: "APR 2024 — JUN 2025",
+    timeline: "APR 2024 - JUN 2025",
     heroColor: "#0D0D0D",
     image: "/project-design-system.png",
     imageAlt: "Atlassian Marketplace trust and transparency features",
     overview:
-      "One app. Multiple tiers. App Editions lets Marketplace partners package and price features for different types of customers — all from a single listing.",
+      "One app. Multiple tiers. App Editions lets Marketplace partners package and price features for different types of customers - all from a single listing.",
     metrics: [
       { label: "FEWER TICKETS", value: "67%" },
       { label: "FEWER DETRACTORS", value: "16%" },
