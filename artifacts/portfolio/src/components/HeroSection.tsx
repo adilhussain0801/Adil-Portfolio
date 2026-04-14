@@ -219,7 +219,7 @@ export default function HeroSection() {
           </FloatingShape>
 
           {/* Teal shape — right side mid */}
-          <FloatingShape speed={0.48} amplitude={9} offset={2.1} className="absolute" style={{ right: "13%", bottom: "24%", zIndex: 6 }}>
+          <FloatingShape speed={0.48} amplitude={9} offset={2.1} className="absolute" style={{ right: "7%", bottom: "24%", zIndex: 6 }}>
             <motion.div
               initial={{ opacity: 0, scale: 0.6, rotate: 15 }}
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
