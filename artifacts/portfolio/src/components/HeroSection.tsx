@@ -179,17 +179,23 @@ export default function HeroSection() {
 
   const coralAnim = useAnimation();
   const tealAnim = useAnimation();
+  const sparkleAnim = useAnimation();
+  const eyelashAnim = useAnimation();
 
   useEffect(() => {
     coralAnim.start({ opacity: 1, scale: 1, rotate: 0, transition: { duration: 0.9, delay: 0.5, ease: EASE } });
     tealAnim.start({ opacity: 1, scale: 1, rotate: 0, transition: { duration: 0.9, delay: 0.6, ease: EASE } });
-  }, [coralAnim, tealAnim]);
+    sparkleAnim.start({ opacity: 1, rotate: 0, transition: { duration: 0.8, delay: 0.7, ease: EASE } });
+    eyelashAnim.start({ opacity: 1, x: 0, transition: { duration: 0.8, delay: 0.75, ease: EASE } });
+  }, [coralAnim, tealAnim, sparkleAnim, eyelashAnim]);
 
   const handleMouseEnter = () => {
     if (!isFinePointer) return;
     setIsHovered(true);
     coralAnim.start({ opacity: 0, scale: 0.7, transition: { duration: 0.32, ease: EASE } });
     tealAnim.start({ opacity: 0, scale: 0.7, transition: { duration: 0.32, delay: 0.05, ease: EASE } });
+    sparkleAnim.start({ opacity: 0, scale: 0.7, transition: { duration: 0.32, delay: 0.02, ease: EASE } });
+    eyelashAnim.start({ opacity: 0, scale: 0.7, transition: { duration: 0.32, delay: 0.08, ease: EASE } });
   };
 
   const handleMouseLeave = () => {
@@ -197,6 +203,8 @@ export default function HeroSection() {
     setIsHovered(false);
     coralAnim.start({ opacity: 1, scale: 1, rotate: 0, transition: { duration: 0.55, ease: EASE } });
     tealAnim.start({ opacity: 1, scale: 1, rotate: 0, transition: { duration: 0.55, delay: 0.05, ease: EASE } });
+    sparkleAnim.start({ opacity: 1, scale: 1, rotate: 0, transition: { duration: 0.55, delay: 0.03, ease: EASE } });
+    eyelashAnim.start({ opacity: 1, scale: 1, x: 0, transition: { duration: 0.55, delay: 0.1, ease: EASE } });
   };
 
   return (
@@ -323,9 +331,9 @@ export default function HeroSection() {
               </motion.div>
             </FloatingShape>
 
-            {/* Sparkle glyph - always visible */}
+            {/* Sparkle glyph - hides on hover */}
             <FloatingShape speed={0.7} amplitude={5} offset={1.2} className="absolute" style={{ right: "-2%", top: "14%" }}>
-              <motion.div initial={{ opacity: 0, rotate: -45 }} animate={{ opacity: 1, rotate: 0 }} transition={{ duration: 0.8, delay: 0.7, ease: EASE }}>
+              <motion.div initial={{ opacity: 0, rotate: -45 }} animate={sparkleAnim}>
                 <SparkleGlyph />
               </motion.div>
             </FloatingShape>
@@ -339,9 +347,9 @@ export default function HeroSection() {
               </motion.div>
             </FloatingShape>
 
-            {/* Gestural eyelash - always visible */}
+            {/* Gestural eyelash - hides on hover */}
             <FloatingShape speed={0.65} amplitude={6} offset={0.7} className="absolute" style={{ left: "-6%", bottom: "8%", transform: "rotate(-150deg)" }}>
-              <motion.div initial={{ opacity: 0, x: -15 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.75, ease: EASE }}>
+              <motion.div initial={{ opacity: 0, x: -15 }} animate={eyelashAnim}>
                 <GesturalLineEyelash />
               </motion.div>
             </FloatingShape>
