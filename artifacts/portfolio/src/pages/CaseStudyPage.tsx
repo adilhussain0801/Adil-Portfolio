@@ -3,7 +3,6 @@ import { useRef, useEffect, useState, useMemo, type RefObject } from "react";
 import { motion, useInView, AnimatePresence, useMotionValue, useTransform, useSpring, animate } from "framer-motion";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, AlertCircle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare, ChevronLeft, ChevronRight, ChevronDown, X, CheckCircle2, Settings, Banknote, Layers, Users, BookOpen, Bot, GraduationCap, Briefcase, Link2, ArrowLeftRight, BarChart2, Building2, Target, ShieldCheck, Menu } from "lucide-react";
 import walkthroughScreenshot from "@assets/After_1776166484326.png";
-import walkthroughInner from "@assets/nner_1776166723391.png";
 import docsScreenshot from "@assets/Screenshot_2026-04-13_at_16.19.24_1776077371148.png";
 import { getCaseStudy, getNextCaseStudy, getAllCaseStudies, type CaseStudy } from "@/data/caseStudies";
 import NotFound from "@/pages/not-found";
@@ -3495,92 +3494,6 @@ function ExperienceWalkthroughSection() {
   );
 }
 
-function ExperienceWalkthroughInnerSection() {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: false, amount: 0.35 });
-  const FF = "'Wotfard', sans-serif";
-
-  return (
-    <section
-      id="section-walkthrough-inner"
-      ref={ref}
-      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
-      style={{ background: "#F5F5F7" }}
-    >
-      <CosmicWaveBackground />
-
-      {/* Title + CTA — left-aligned, constrained width */}
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-        transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
-        style={{
-          position: "relative",
-          zIndex: 5,
-          padding: "0 56px 20px",
-          display: "flex",
-          alignItems: "center",
-          gap: 24,
-        }}
-      >
-        <h2
-          style={{ fontFamily: FF, fontSize: "clamp(20px, 2.4vw, 32px)", fontWeight: 700, color: "#1a1a1a", letterSpacing: "-0.02em", margin: 0 }}
-        >
-          Try the interactive prototype
-        </h2>
-        <a
-          href="https://ainwi-services-v-2.replit.app/issue"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 7,
-            background: "#1a1a1a",
-            color: "#fff",
-            borderRadius: 10,
-            padding: "10px 20px",
-            fontFamily: FF,
-            fontSize: 13,
-            fontWeight: 600,
-            textDecoration: "none",
-            letterSpacing: "0.01em",
-            flexShrink: 0,
-            transition: "background 0.18s ease",
-          }}
-          onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#333"; }}
-          onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#1a1a1a"; }}
-        >
-          View interactive prototype
-          <ArrowUpRight size={14} strokeWidth={2} />
-        </a>
-      </motion.div>
-
-      {/* Full-bleed image */}
-      <motion.div
-        initial={{ scale: 0.04, borderRadius: "50%", opacity: 1 }}
-        animate={
-          isInView
-            ? { scale: 1, borderRadius: "0px", opacity: 1 }
-            : { scale: 0.04, borderRadius: "50%", opacity: 1 }
-        }
-        transition={{ duration: 1.05, ease: [0.16, 1, 0.3, 1] }}
-        style={{
-          position: "relative",
-          zIndex: 5,
-          overflow: "hidden",
-          flex: 1,
-        }}
-      >
-        <img
-          src={walkthroughInner}
-          alt="Interactive prototype walkthrough"
-          style={{ display: "block", width: "100%", height: "100%", objectFit: "cover", objectPosition: "top center" }}
-        />
-      </motion.div>
-    </section>
-  );
-}
 
 function SolutionSection({ study }: { study: CaseStudy }) {
   if (study.id === 3) {
@@ -5718,7 +5631,6 @@ export default function CaseStudyPage() {
         {study.id === 3 && <SystemDesignComplexitySection />}
         {study.id === 3 && <BusinessImpactSection />}
         <ExperienceWalkthroughSection />
-        {study.id === 4 && <ExperienceWalkthroughInnerSection />}
         {study.id === 4 && <EngineeringHandoffSection />}
         <ImpactSection study={study} scrollRef={scrollRef} />
         {study.id === 4 && <CustomerAnecdotesSection />}
