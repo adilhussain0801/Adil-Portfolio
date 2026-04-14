@@ -195,7 +195,7 @@ export default function HeroSection() {
           </div>
 
           {/* Coral quarter circle — top-left */}
-          <FloatingShape speed={0.55} amplitude={7} offset={0} className="absolute" style={{ left: "3%", top: "4%", zIndex: 6 }}>
+          <FloatingShape speed={0.55} amplitude={7} offset={0} className="absolute" style={{ left: "13%", top: "4%", zIndex: 6 }}>
             <motion.div
               initial={{ opacity: 0, scale: 0.6, rotate: -20 }}
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
@@ -219,7 +219,7 @@ export default function HeroSection() {
           </FloatingShape>
 
           {/* Teal shape — right side mid */}
-          <FloatingShape speed={0.48} amplitude={9} offset={2.1} className="absolute" style={{ right: "-4%", bottom: "24%", zIndex: 6 }}>
+          <FloatingShape speed={0.48} amplitude={9} offset={2.1} className="absolute" style={{ right: "13%", bottom: "24%", zIndex: 6 }}>
             <motion.div
               initial={{ opacity: 0, scale: 0.6, rotate: 15 }}
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
