@@ -245,8 +245,8 @@ export default function HeroSection() {
             </motion.div>
           </FloatingShape>
 
-          {/* Scribble loop — bottom-right */}
-          <FloatingShape speed={0.5} amplitude={8} offset={3.2} className="absolute" style={{ right: "4%", bottom: "8%", zIndex: 6 }}>
+          {/* Scribble loop — bottom-right of photo */}
+          <FloatingShape speed={0.5} amplitude={8} offset={3.2} className="absolute" style={{ right: "9%", bottom: "4%", zIndex: 7 }}>
             <motion.div
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 0.7, scale: 1 }}
