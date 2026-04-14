@@ -3504,85 +3504,80 @@ function ExperienceWalkthroughInnerSection() {
     <section
       id="section-walkthrough-inner"
       ref={ref}
-      className="relative h-screen snap-start snap-always flex items-center justify-center overflow-hidden"
+      className="relative h-screen snap-start snap-always flex flex-col justify-center overflow-hidden"
       style={{ background: "#F5F5F7" }}
     >
       <CosmicWaveBackground />
-      <div
+
+      {/* Title + CTA — left-aligned, constrained width */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+        transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
         style={{
-          position: "absolute",
-          left: "50%",
-          top: "50%",
-          transform: "translate(-50%, -50%)",
-          width: "min(1188px, calc(100% - 112px))",
+          position: "relative",
           zIndex: 5,
+          padding: "0 56px 20px",
           display: "flex",
-          flexDirection: "column",
           alignItems: "center",
-          gap: 28,
+          gap: 24,
         }}
       >
-        {/* Title + CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
-          style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: 16 }}
+        <h2
+          style={{ fontFamily: FF, fontSize: "clamp(20px, 2.4vw, 32px)", fontWeight: 700, color: "#1a1a1a", letterSpacing: "-0.02em", margin: 0 }}
         >
-          <h2
-            style={{ fontFamily: FF, fontSize: "clamp(22px, 2.8vw, 36px)", fontWeight: 700, color: "#1a1a1a", letterSpacing: "-0.02em", margin: 0 }}
-          >
-            Try the interactive prototype
-          </h2>
-          <a
-            href="https://ainwi-services-v-2.replit.app/issue"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 7,
-              background: "#1a1a1a",
-              color: "#fff",
-              borderRadius: 10,
-              padding: "10px 20px",
-              fontFamily: FF,
-              fontSize: 13,
-              fontWeight: 600,
-              textDecoration: "none",
-              letterSpacing: "0.01em",
-              transition: "background 0.18s ease",
-            }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#333"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#1a1a1a"; }}
-          >
-            View interactive prototype
-            <ArrowUpRight size={14} strokeWidth={2} />
-          </a>
-        </motion.div>
-
-        {/* Expanding image card */}
-        <motion.div
-          initial={{ scale: 0.04, borderRadius: "50%", opacity: 1 }}
-          animate={
-            isInView
-              ? { scale: 1, borderRadius: "18px", opacity: 1 }
-              : { scale: 0.04, borderRadius: "50%", opacity: 1 }
-          }
-          transition={{ duration: 1.05, ease: [0.16, 1, 0.3, 1] }}
+          Try the interactive prototype
+        </h2>
+        <a
+          href="https://ainwi-services-v-2.replit.app/issue"
+          target="_blank"
+          rel="noopener noreferrer"
           style={{
-            overflow: "hidden",
-            width: "100%",
-            boxShadow: "0 24px 80px rgba(0,0,0,0.22), 0 4px 16px rgba(0,0,0,0.10)",
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 7,
+            background: "#1a1a1a",
+            color: "#fff",
+            borderRadius: 10,
+            padding: "10px 20px",
+            fontFamily: FF,
+            fontSize: 13,
+            fontWeight: 600,
+            textDecoration: "none",
+            letterSpacing: "0.01em",
+            flexShrink: 0,
+            transition: "background 0.18s ease",
           }}
+          onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#333"; }}
+          onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#1a1a1a"; }}
         >
-          <img
-            src={walkthroughInner}
-            alt="Interactive prototype walkthrough"
-            style={{ display: "block", width: "100%", height: "auto" }}
-          />
-        </motion.div>
-      </div>
+          View interactive prototype
+          <ArrowUpRight size={14} strokeWidth={2} />
+        </a>
+      </motion.div>
+
+      {/* Full-bleed image */}
+      <motion.div
+        initial={{ scale: 0.04, borderRadius: "50%", opacity: 1 }}
+        animate={
+          isInView
+            ? { scale: 1, borderRadius: "0px", opacity: 1 }
+            : { scale: 0.04, borderRadius: "50%", opacity: 1 }
+        }
+        transition={{ duration: 1.05, ease: [0.16, 1, 0.3, 1] }}
+        style={{
+          position: "relative",
+          zIndex: 5,
+          overflow: "hidden",
+          flex: 1,
+        }}
+      >
+        <img
+          src={walkthroughInner}
+          alt="Interactive prototype walkthrough"
+          style={{ display: "block", width: "100%", height: "100%", objectFit: "cover", objectPosition: "top center" }}
+        />
+      </motion.div>
     </section>
   );
 }
