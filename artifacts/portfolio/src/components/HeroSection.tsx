@@ -173,7 +173,7 @@ export default function HeroSection() {
           <div
             className="absolute overflow-hidden"
             style={{
-              borderRadius: "220px 220px 0 0",
+              borderRadius: "220px 220px 16px 16px",
               width: "62%",
               height: "88%",
               left: "50%",
