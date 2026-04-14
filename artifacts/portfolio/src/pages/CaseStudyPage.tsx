@@ -2,7 +2,7 @@ import { useParams, Link } from "wouter";
 import { useRef, useEffect, useState, useMemo, type RefObject } from "react";
 import { motion, useInView, AnimatePresence, useMotionValue, useTransform, useSpring, animate } from "framer-motion";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Quote, Inbox, SearchCode, Clock, Repeat2, Search, Brain, Zap, FileText, Clock as ClockIcon, TrendingDown, AlertTriangle, AlertCircle, Lightbulb, Sparkles, RefreshCw, Network, MessageSquare, ChevronLeft, ChevronRight, ChevronDown, X, CheckCircle2, Settings, Banknote, Layers, Users, BookOpen, Bot, GraduationCap, Briefcase, Link2, ArrowLeftRight, BarChart2, Building2, Target, ShieldCheck, Menu } from "lucide-react";
-import walkthroughScreenshotStudy3 from "@assets/After_1776166484326.png";
+import walkthroughScreenshotStudy3 from "@assets/Screenshot_2026-04-14_at_17.29.18_1776167963230.png";
 import walkthroughScreenshotStudy4 from "@assets/Banner_1776167290381.png";
 import docsScreenshot from "@assets/Screenshot_2026-04-13_at_16.19.24_1776077371148.png";
 import { getCaseStudy, getNextCaseStudy, getAllCaseStudies, type CaseStudy } from "@/data/caseStudies";
@@ -3454,8 +3454,8 @@ function ExperienceWalkthroughSection({ study }: { study: CaseStudy }) {
             style={{ display: "block", width: "100%", height: "auto" }}
           />
 
-          {/* Prototype CTA — study 4 only */}
-          {study.id === 4 && (
+          {/* Prototype CTA */}
+          {(study.id === 3 || study.id === 4) && (
             <div
               style={{
                 display: "flex",
@@ -3467,7 +3467,11 @@ function ExperienceWalkthroughSection({ study }: { study: CaseStudy }) {
               }}
             >
               <a
-                href="https://ainwi-services-v-2.replit.app/issue"
+                href={
+                  study.id === 3
+                    ? "https://www.figma.com/proto/QHNJT47ZQcfuHx3qfwvM37/%E2%9C%85-App-editions?node-id=40000014-94476&viewport=507%2C-5323%2C0.18&t=MvhuGKAsjlRfkRMh-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=40000014%3A94476&page-id=10646%3A81810"
+                    : "https://ainwi-services-v-2.replit.app/issue"
+                }
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
