@@ -30,15 +30,15 @@ function AsteriskGlyph({ size = 52 }: { size?: number }) {
       style={{ filter: `url(#${ROUGH_FILTER_ID})` }}
     >
       {/* Bold diagonal: top-left → bottom-right */}
-      <path d="M18 14 Q62 60 112 108" stroke="#111" strokeWidth="2.8" strokeLinecap="round"/>
+      <path d="M18 14 Q62 60 112 108" stroke="#111" strokeWidth="3" strokeLinecap="round"/>
       {/* Bold diagonal: top-right → bottom-left */}
-      <path d="M108 12 Q66 58 22 106" stroke="#111" strokeWidth="2.8" strokeLinecap="round"/>
+      <path d="M108 12 Q66 58 22 106" stroke="#111" strokeWidth="3" strokeLinecap="round"/>
       {/* Roughly horizontal, angled slightly */}
-      <path d="M8 72 Q52 52 118 58" stroke="#111" strokeWidth="2.8" strokeLinecap="round"/>
+      <path d="M8 72 Q52 52 118 58" stroke="#111" strokeWidth="3" strokeLinecap="round"/>
       {/* Near-vertical, offset left of centre */}
-      <path d="M48 8 Q56 56 60 118" stroke="#111" strokeWidth="2.8" strokeLinecap="round"/>
+      <path d="M48 8 Q56 56 60 118" stroke="#111" strokeWidth="3" strokeLinecap="round"/>
       {/* Extra slash: upper-right to lower-left, short */}
-      <path d="M90 22 Q72 60 38 98" stroke="#111" strokeWidth="2.8" strokeLinecap="round"/>
+      <path d="M90 22 Q72 60 38 98" stroke="#111" strokeWidth="3" strokeLinecap="round"/>
     </svg>
   );
 }
