@@ -190,7 +190,7 @@ export default function HeroSection() {
               src="/adil-photo.jpg"
               alt="Adil Hussain"
               className="w-full h-full object-cover"
-              style={{ objectPosition: "center top", transform: "scale(1.3) translateY(-8%) translateX(6%)", transformOrigin: "top center" }}
+              style={{ objectPosition: "center top", transform: "scale(1.3) translateY(-8%) translateX(10%)", transformOrigin: "top center" }}
             />
           </div>
 
