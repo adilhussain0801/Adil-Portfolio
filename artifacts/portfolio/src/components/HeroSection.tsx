@@ -1,6 +1,64 @@
-import { motion } from "framer-motion";
+import { motion, useAnimationFrame } from "framer-motion";
+import { useRef, useState } from "react";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
+function SparkleGlyph() {
+  return (
+    <svg aria-hidden="true" width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18 4 C18 4 17.5 11 18 18" stroke="#1a1a1a" strokeWidth="1.6" strokeLinecap="round"/>
+      <path d="M18 18 C18 18 18.5 25 18 32" stroke="#1a1a1a" strokeWidth="1.6" strokeLinecap="round"/>
+      <path d="M4 18 C4 18 11 17.5 18 18" stroke="#1a1a1a" strokeWidth="1.6" strokeLinecap="round"/>
+      <path d="M18 18 C18 18 25 18.5 32 18" stroke="#1a1a1a" strokeWidth="1.6" strokeLinecap="round"/>
+      <path d="M8 8 C8 8 12.5 12.5 18 18" stroke="#1a1a1a" strokeWidth="1.6" strokeLinecap="round"/>
+      <path d="M18 18 C18 18 23.5 23.5 28 28" stroke="#1a1a1a" strokeWidth="1.6" strokeLinecap="round"/>
+      <path d="M28 8 C28 8 23.5 12.5 18 18" stroke="#1a1a1a" strokeWidth="1.6" strokeLinecap="round"/>
+      <path d="M18 18 C18 18 12.5 23.5 8 28" stroke="#1a1a1a" strokeWidth="1.6" strokeLinecap="round"/>
+    </svg>
+  );
+}
+
+function GesturalLineEyelash() {
+  return (
+    <svg aria-hidden="true" width="70.8" height="38.66" viewBox="0 0 70.8 38.66" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M3 8 Q15 5 25 12 T45 8 T65 15" stroke="#000000" strokeWidth="2.2" strokeLinecap="round" fill="none"/>
+      <path d="M0 20 Q12 18 22 25 T42 20 T62 28" stroke="#000000" strokeWidth="2.2" strokeLinecap="round" fill="none"/>
+      <path d="M5 32 Q16 30 26 37 T46 33 T65 38" stroke="#000000" strokeWidth="2.2" strokeLinecap="round" fill="none"/>
+    </svg>
+  );
+}
+
+function useFloatY(speed = 1, amplitude = 8, offset = 0) {
+  const [y, setY] = useState(0);
+  const t = useRef(offset);
+  useAnimationFrame((_, delta) => {
+    t.current += (delta / 1000) * speed;
+    setY(Math.sin(t.current) * amplitude);
+  });
+  return y;
+}
+
+function FloatingShape({
+  children, speed, amplitude, offset, className, style,
+}: {
+  children: React.ReactNode;
+  speed?: number;
+  amplitude?: number;
+  offset?: number;
+  className?: string;
+  style?: React.CSSProperties;
+}) {
+  const y = useFloatY(speed, amplitude, offset);
+  const baseTransform = style?.transform ?? "";
+  const transform = baseTransform
+    ? `${baseTransform} translateY(${y}px)`
+    : `translateY(${y}px)`;
+  return (
+    <div className={className} style={{ ...style, transform }}>
+      {children}
+    </div>
+  );
+}
 
 export default function HeroSection() {
   return (
@@ -40,20 +98,27 @@ export default function HeroSection() {
           </motion.h1>
         </motion.div>
 
-        {/* Right: Arch photo */}
+        {/* Right: Arch photo with floating decorative shapes */}
         <motion.div
           className="relative shrink-0 flex items-end justify-center"
-          style={{ width: "min(340px, 80vw)", height: "min(520px, 75vw)" }}
+          style={{ width: "min(480px, 90vw)", height: "min(520px, 75vw)" }}
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.1, ease: EASE }}
         >
+          {/* Arch photo */}
           <div
-            className="w-full h-full overflow-hidden"
+            className="absolute overflow-hidden"
             style={{
               borderRadius: "220px 220px 0 0",
+              width: "72%",
+              height: "90%",
+              left: "50%",
+              top: "4%",
+              transform: "translateX(-50%)",
               background: "#FFFFFF",
               boxShadow: "0 4px 40px rgba(0,0,0,0.08)",
+              zIndex: 5,
             }}
           >
             <img
@@ -63,6 +128,54 @@ export default function HeroSection() {
               style={{ objectPosition: "center top" }}
             />
           </div>
+
+          {/* Coral quarter circle */}
+          <FloatingShape speed={0.55} amplitude={7} offset={0} className="absolute" style={{ right: "6%", top: "2%", zIndex: 6 }}>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.6, rotate: -20 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ duration: 0.9, delay: 0.5, ease: EASE }}
+            >
+              <svg width="110" height="110" viewBox="0 0 110 110" fill="none">
+                <path d="M110 0 A110 110 0 0 0 0 110 L110 110 Z" fill="#E8654B" />
+              </svg>
+            </motion.div>
+          </FloatingShape>
+
+          {/* Sparkle glyph */}
+          <FloatingShape speed={0.7} amplitude={5} offset={1.2} className="absolute" style={{ right: "2%", top: "14%", zIndex: 6 }}>
+            <motion.div
+              initial={{ opacity: 0, rotate: -45 }}
+              animate={{ opacity: 1, rotate: 0 }}
+              transition={{ duration: 0.8, delay: 0.7, ease: EASE }}
+            >
+              <SparkleGlyph />
+            </motion.div>
+          </FloatingShape>
+
+          {/* Teal rounded square */}
+          <FloatingShape speed={0.5} amplitude={9} offset={2.1} className="absolute" style={{ left: "0%", bottom: "20%", zIndex: 6 }}>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.6, rotate: 15 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ duration: 0.9, delay: 0.6, ease: EASE }}
+            >
+              <svg width="110" height="110" viewBox="0 0 110 110" fill="none">
+                <rect width="110" height="110" rx="22" fill="#3E9C7B" />
+              </svg>
+            </motion.div>
+          </FloatingShape>
+
+          {/* Gestural eyelash */}
+          <FloatingShape speed={0.65} amplitude={6} offset={0.7} className="absolute" style={{ left: "2%", bottom: "8%", transform: "rotate(-150deg)", zIndex: 6 }}>
+            <motion.div
+              initial={{ opacity: 0, x: -15 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.75, ease: EASE }}
+            >
+              <GesturalLineEyelash />
+            </motion.div>
+          </FloatingShape>
         </motion.div>
       </div>
     </section>
