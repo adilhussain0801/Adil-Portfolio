@@ -19,6 +19,7 @@ export interface CaseStudy {
   title: string;
   subtitle?: string;
   category: string;
+  externalUrl?: string;
   company: string;
   year: string;
   role: string;
@@ -68,6 +69,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     id: 1,
     title: "Project Carrara",
     category: "Amazon Post-Purchase",
+    externalUrl: "https://www.figma.com/deck/DacDTxcURiSwbGRE7f4EJj/Project-Caracara?node-id=1-318&t=d2DRbmSypzqpTit6-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1",
     company: "Amazon",
     year: "2021",
     role: "User Experience Designer",
@@ -160,6 +162,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     id: 2,
     title: "Foresight",
     category: "Native iOS/Android",
+    externalUrl: "https://www.figma.com/deck/zSxmLm58MTe6eJhTKxXC4D/Project-Foresight?node-id=2002-55&node-type=slide&t=somX4fp2syAZZTQe-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1",
     company: "Amazon",
     year: "2021",
     role: "User Experience Designer",

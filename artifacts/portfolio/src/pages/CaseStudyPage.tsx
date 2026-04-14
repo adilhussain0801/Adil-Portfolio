@@ -5305,7 +5305,30 @@ function NextProjectSection({ study }: { study: CaseStudy }) {
             More projects
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12 }}>
-            {others.map((cs) => (
+            {others.map((cs) => cs.externalUrl ? (
+              <a
+                key={cs.id}
+                href={cs.externalUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col justify-between rounded-2xl hover:bg-[#252525] transition-colors"
+                style={{ background: "#1a1a1a", padding: "28px 28px 24px", textDecoration: "none" }}
+              >
+                <div style={{ display: "flex", flexDirection: "column", gap: 6, flex: 1 }}>
+                  <p style={{ fontFamily: FF, fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", margin: 0 }}>
+                    {cs.company}
+                  </p>
+                  <h3 style={{ fontFamily: FF, fontSize: 17, fontWeight: 700, color: "#fff", margin: 0, lineHeight: 1.3 }}>
+                    {cs.title}
+                  </h3>
+                </div>
+                <div style={{ marginTop: 32, display: "flex", justifyContent: "flex-end" }}>
+                  <div className="w-8 h-8 rounded-full bg-white/8 flex items-center justify-center group-hover:bg-white/18 transition-colors">
+                    <ArrowUpRight size={15} className="text-white/60" />
+                  </div>
+                </div>
+              </a>
+            ) : (
               <Link
                 key={cs.id}
                 href={`/work/${cs.id}`}
@@ -5573,7 +5596,32 @@ export default function CaseStudyPage() {
                 <div className="flex flex-col pb-2">
                   {getAllCaseStudies()
                     .filter((cs) => cs.id !== study.id)
-                    .map((cs) => (
+                    .map((cs) => cs.externalUrl ? (
+                      <a
+                        key={cs.id}
+                        href={cs.externalUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => setSwitchWorkOpen(false)}
+                        className="flex items-center justify-between px-4 py-3 hover:bg-[#2D2D2D]/5 transition-colors group/item"
+                      >
+                        <div className="flex flex-col gap-0.5">
+                          <span
+                            className="text-[10px] font-bold tracking-widest uppercase text-[#2D2D2D]/55"
+                            style={{ fontFamily: "'Wotfard', sans-serif" }}
+                          >
+                            {cs.company}
+                          </span>
+                          <span
+                            className="text-sm font-medium text-[#2D2D2D] leading-tight"
+                            style={{ fontFamily: "'Wotfard', sans-serif" }}
+                          >
+                            {cs.title}
+                          </span>
+                        </div>
+                        <ArrowUpRight size={13} strokeWidth={1.5} className="text-[#2D2D2D]/30 group-hover/item:text-[#2D2D2D]/70 transition-colors flex-shrink-0 ml-3" />
+                      </a>
+                    ) : (
                       <Link
                         key={cs.id}
                         href={`/work/${cs.id}`}
