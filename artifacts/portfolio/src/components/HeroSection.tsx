@@ -226,10 +226,10 @@ export default function HeroSection() {
               transition={{ duration: 0.9, delay: 0.55, ease: EASE }}
             >
               <div style={{
-                width: 160,
-                height: 160,
+                width: 112,
+                height: 112,
                 background: "#3E9C7B",
-                borderRadius: "12px 80px 12px 80px",
+                borderRadius: "8px 56px 8px 56px",
               }} />
             </motion.div>
           </FloatingShape>
