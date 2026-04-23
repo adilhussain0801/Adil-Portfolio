@@ -3,11 +3,18 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { name: "About Me", href: "#about" },
-  { name: "Work", href: "#work-showcase" },
-  { name: "Experience", href: "#experience" },
-  { name: "Contact", href: "#contact" },
+  { name: "About Me", sectionId: "about" },
+  { name: "Work", sectionId: "work-showcase" },
+  { name: "Experience", sectionId: "experience" },
+  { name: "Contact", sectionId: "contact" },
 ];
+
+function scrollToSection(sectionId: string) {
+  const el = document.getElementById(sectionId);
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -47,14 +54,14 @@ export default function Navigation() {
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8" aria-label="Primary navigation">
           {navLinks.map((link) => (
-            <a
+            <button
               key={link.name}
-              href={link.href}
-              className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors duration-300 relative group rounded-sm"
+              onClick={() => scrollToSection(link.sectionId)}
+              className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors duration-300 relative group rounded-sm bg-transparent border-none cursor-pointer p-0"
             >
               {link.name}
               <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#1a1a1a] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-center" />
-            </a>
+            </button>
           ))}
         </nav>
 
@@ -82,17 +89,19 @@ export default function Navigation() {
             >
               <nav className="flex flex-col items-center gap-8" aria-label="Mobile navigation">
                 {navLinks.map((link, i) => (
-                  <motion.a
+                  <motion.button
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.1 + 0.1 }}
                     key={link.name}
-                    href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="text-4xl font-serif tracking-tight hover:italic transition-all rounded-sm"
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      setTimeout(() => scrollToSection(link.sectionId), 300);
+                    }}
+                    className="text-4xl font-serif tracking-tight hover:italic transition-all rounded-sm bg-transparent border-none cursor-pointer"
                   >
                     {link.name}
-                  </motion.a>
+                  </motion.button>
                 ))}
               </nav>
             </motion.div>
