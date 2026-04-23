@@ -13,7 +13,7 @@ function scrollToSection(sectionId: string) {
   const el = document.getElementById(sectionId);
   if (el) {
     const top = el.getBoundingClientRect().top + window.scrollY;
-    window.scrollTo({ top, behavior: "instant" });
+    window.scrollTo({ top, behavior: "smooth" });
   }
 }
 
