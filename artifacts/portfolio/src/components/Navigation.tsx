@@ -12,7 +12,8 @@ const navLinks = [
 function scrollToSection(sectionId: string) {
   const el = document.getElementById(sectionId);
   if (el) {
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    const top = el.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({ top, behavior: "instant" });
   }
 }
 

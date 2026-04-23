@@ -84,7 +84,6 @@
   }
 
   html {
-    scroll-behavior: smooth;
     background: linear-gradient(to bottom, #F5F5F7 0%, #F1F2F4 100%);
     background-attachment: fixed;
     min-height: 100%;
