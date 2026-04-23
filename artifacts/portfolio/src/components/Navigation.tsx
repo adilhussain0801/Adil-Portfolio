@@ -11,10 +11,27 @@ const navLinks = [
 
 function scrollToSection(sectionId: string) {
   const el = document.getElementById(sectionId);
-  if (el) {
-    const top = el.getBoundingClientRect().top + window.scrollY;
-    window.scrollTo({ top, behavior: "smooth" });
+  if (!el) return;
+
+  const target = el.getBoundingClientRect().top + window.scrollY;
+  const start = window.scrollY;
+  const distance = target - start;
+  const duration = 380;
+  let startTime: number | null = null;
+
+  function easeOutCubic(t: number) {
+    return 1 - Math.pow(1 - t, 3);
   }
+
+  function step(timestamp: number) {
+    if (startTime === null) startTime = timestamp;
+    const elapsed = timestamp - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    window.scrollTo(0, start + distance * easeOutCubic(progress));
+    if (progress < 1) requestAnimationFrame(step);
+  }
+
+  requestAnimationFrame(step);
 }
 
 export default function Navigation() {
